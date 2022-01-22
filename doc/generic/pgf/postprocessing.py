@@ -408,7 +408,7 @@ def semantic_tags(soup):
         p = examplecode.find("p")
         p.name = "code"
 
-for filename in sorted(os.listdir(".")):
+for filename in sorted(os.listdir()):
     if filename.endswith(".html"):
         if filename in ["description.html", "pgfmanual_html.html", "home.html"]:
             continue
