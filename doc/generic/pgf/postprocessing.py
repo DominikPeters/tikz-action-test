@@ -375,21 +375,22 @@ def _add_dimensions(tag, svgfilename):
     return (width_px, height_px)
 
 def process_images(soup):
-    for tag in soup.find_all("img"):
-        if "svg" in tag['src']: 
-            width_px, height_px = _add_dimensions(tag, tag['src'])
-            if height_px > 10000:
-                tag.decompose()
-                continue
-            tag["loading"] = "lazy"
-            # replace all SVGs by PNGs except if that's a big filesize penalty
-            # doing this because the SVGs are missing some features like shadows
-            png_filename = tag['src'].replace("svg", "png")
-            if kilobytes(png_filename) < 5 * kilobytes(tag['src']):
-                tag['src'] = png_filename
-    for tag in soup.find_all("object"):
-        if "svg" in tag['data']: 
-            _add_dimensions(tag, tag['data'])
+    pass
+    # for tag in soup.find_all("img"):
+    #     if "svg" in tag['src']: 
+    #         width_px, height_px = _add_dimensions(tag, tag['src'])
+    #         if height_px > 10000:
+    #             tag.decompose()
+    #             continue
+    #         tag["loading"] = "lazy"
+    #         # replace all SVGs by PNGs except if that's a big filesize penalty
+    #         # doing this because the SVGs are missing some features like shadows
+    #         png_filename = tag['src'].replace("svg", "png")
+    #         if kilobytes(png_filename) < 5 * kilobytes(tag['src']):
+    #             tag['src'] = png_filename
+    # for tag in soup.find_all("object"):
+    #     if "svg" in tag['data']: 
+    #         _add_dimensions(tag, tag['data'])
 
 def rewrite_svg_links(soup):
     for tag in soup.find_all("a"):
