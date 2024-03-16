@@ -16,6 +16,7 @@ jobs:
           run: |
             apk add poppler-utils
             cd doc/generic/pgf/
+            ./latexbuild.sh
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -30,10 +31,11 @@ jobs:
           pip install beautifulsoup4 html5lib requests
           npm install -g prettier
           npm install -g svgo
-      - name: Build docs
+      - name: Posprocessing
         run: |
-          ./build.sh
-          sleep 30
+          sleep 10
+          python3 postprocessing.py
+          svgo -f processed/pgfmanual-images
       - name: Push to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
