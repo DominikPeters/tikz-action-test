@@ -14,7 +14,6 @@ jobs:
         with:
           scheme: full
           run: |
-            apk add poppler-utils
             cd doc/generic/pgf/
             ./latexbuild.sh
       - name: Set up Python
@@ -28,6 +27,7 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: |
+          sudo apt-get install poppler-utils
           pip install beautifulsoup4 html5lib requests
           npm install -g prettier
           npm install -g svgo
