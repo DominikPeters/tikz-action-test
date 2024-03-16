@@ -17,6 +17,10 @@
 
 \usepackage{xkeyval,calc,listings,tikz,fp}
 
+\usepackage{silence}
+\WarningFilter{latex}{Overfull \hbox (131.68803pt}
+\WarningFilter{latex}{Reference `LWRlateximage-pgfmanual}
+
 % \usepackage{imakeidx}
 % \makeindex
 \usepackage{hyperref}
@@ -100,7 +104,7 @@
   perspective,
 }
 
-\usepackage{ifluatex}
+\usepackage{iftex}
 \newif\ifgdccodebasic
 \newif\ifgdccodeogdf
 
@@ -168,14 +172,7 @@
   % required by luatextra. Needs to be \relaxed since
   % pgfmanual-en-macros.tex defines an environment named filedescription
   \let\filedescription\relax
-  \usepackage[utf8]{luainputenc}
-  % dvisvgm does not support OpenType fonts so we have to bite the bullet and
-  % use T1 where quotes are weird.  In LuaTeX \outputmode=0 means DVI.
-  \ifnum\outputmode=0
-    \usepackage[T1]{fontenc}
-  \fi
 \else
-  \usepackage[utf8]{inputenc}
   \usepackage[T1]{fontenc}
 \fi
 
@@ -199,9 +196,8 @@
 % require texlive 2021 or above
 % \tracinglostchars=3 % DP: okay, but I don't know how to handle them?
 
-\graphicspath{{../../images/}}
-\input{./pgfmanual-en-macros-fixed}
-% \input{pgfmanual-en-macros}
+\graphicspath{{images/}{../images/}}
+\input{pgfmanual-en-macros}
 
 
 \usepackage{todonotes}

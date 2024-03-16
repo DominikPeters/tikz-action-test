@@ -59,7 +59,7 @@ the node. Then, you can optionally \emph{name} the node by providing a name in
 parentheses. Lastly, for the |node| operation you must provide some label text
 for the node in curly braces, while for the |coordinate| operation you may not.
 The node is placed at the current position of the path either \emph{after the
-path has been drawn} or (more seldomly and only if you add the |behind path|
+path has been drawn} or (more seldom and only if you add the |behind path|
 option) \emph{just before the path is drawn.} Thus, all nodes are drawn ``on
 top'' or ``behind'' the path and are retained until the path is complete. If
 there are several nodes on a path, perhaps some behind and some on top of the
@@ -890,7 +890,7 @@ text. There are three different ways of achieving this:
         This approach offers the most flexibility in the sense that it allows
         you to use all of the alignment commands offered by your format of
         choice.
-    \item You use |\\| inside your node to mark the end of lines and then
+    \item You use |\\\\| inside your node to mark the end of lines and then
         request \tikzname\ to arrange these lines in some manner. This will
         only be done, however, if the |align| option has been given.
         %
@@ -902,7 +902,7 @@ text. There are three different ways of achieving this:
 \tikz[align=center] \node[draw] {This is a\\demonstration.};
 \end{codeexample}
         %
-        The |\\| command takes an optional extra space as an argument in square
+        The |\\\\| command takes an optional extra space as an argument in square
         brackets.
         %
 \begin{codeexample}[]
@@ -912,7 +912,7 @@ text. There are three different ways of achieving this:
         %
     \item You can request that \tikzname\ does an automatic line-breaking for
         you inside the node by specifying a fixed |text width| for the node. In
-        this case, you can still use |\\| to enforce a line-break. Note that
+        this case, you can still use |\\\\| to enforce a line-break. Note that
         when you specify a text width, the node will have this width,
         independently of whether the text actually ``reaches the end'' of the
         node.
@@ -951,7 +951,7 @@ Let us now first have a look at the |text width| command.
     then a different mechanism is used internally, namely the key
     |node halign header|, is set to an appropriate value. While this key, which
     is documented below, is not to be used by beginners, the net effect is
-    simple: When |text width| is not set, you can use |\\| to break lines and
+    simple: When |text width| is not set, you can use |\\\\| to break lines and
     align them according to \meta{alignment option} and the resulting node's
     width will be minimal to encompass the resulting lines.
 
@@ -1069,7 +1069,7 @@ Let us now first have a look at the |text width| command.
             badly typeset lines. (For this manual I asked \TeX\ to stop
             complaining by using |\hbadness=10000|, but this is a foul deed,
             indeed.)
-        \item |align=|\declare{|none|} Disables all alignments and |\\| will
+        \item |align=|\declare{|none|} Disables all alignments and |\\\\| will
             not be redefined.
     \end{itemize}
 \end{key}
@@ -1084,11 +1084,11 @@ Let us now first have a look at the |text width| command.
     key also has no effect. So, suppose |text width| is empty, but
     \meta{header} is not. In this case the following happens:
 
-    When the node text is parsed, the command |\\| is redefined internally.
+    When the node text is parsed, the command |\\\\| is redefined internally.
     This redefinition is done in such a way that the text from the start of the
-    node to the first occurrence of |\\| is put in an |\hbox|. Then the text
-    following |\\| up to the next |\\| is put in another |\hbox|. This goes on
-    until the text between the last |\\| and the closing |}| is also put in an
+    node to the first occurrence of |\\\\| is put in an |\hbox|. Then the text
+    following |\\\\| up to the next |\\\\| is put in another |\hbox|. This goes on
+    until the text between the last |\\\\| and the closing |}| is also put in an
     |\hbox|.
 
     The \meta{macro storing a header} should be a macro that contains some text
@@ -2905,6 +2905,13 @@ Let us have a look at the effect of these options.
 
 Let us now have a look at a few examples. These examples work only if this
 document is processed with a driver that supports picture remembering.
+
+\BlockClassSingle{warning-see-pdf}{
+For the intended rendering of the following examples, please see the PDF version of the manual.
+
+\includegraphics{standalone/pgfmanual-sec-17-13-1}
+}
+
 \medskip
 
 \noindent%
@@ -2951,6 +2958,7 @@ part of the picture.
 
 \subsubsection{Referencing the Current Page Node -- Absolute Positioning}
 
+\begin{BlockClass}{section-absolute-positioning}
 There is a special node called |current page| that can be used to access the
 current page. It is a node of shape rectangle whose |south west| anchor is the
 lower left corner of the page and whose |north east| anchor is the upper right
@@ -2962,7 +2970,7 @@ options to a picture, you can position nodes \emph{absolutely} on a page.
 The first example places some text in the lower left corner of the current
 page:
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{BlockClass}{example-absolute-positioning-bottom-left}},post={\end{BlockClass}}]
 \begin{tikzpicture}[remember picture,overlay]
   \node [xshift=1cm,yshift=1cm] at (current page.south west)
         [text width=7cm,fill=red!20,rounded corners,above right]
@@ -2975,7 +2983,7 @@ page:
 
 The next example adds a circle in the middle of the page.
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{BlockClass}{example-absolute-positioning-center}},post={\end{BlockClass}}]
 \begin{tikzpicture}[remember picture,overlay]
   \draw [line width=1mm,opacity=.25]
     (current page.center) circle (3cm);
@@ -2985,13 +2993,13 @@ The next example adds a circle in the middle of the page.
 The final example overlays some text over the page (depending on where this
 example is found on the page, the text may also be behind the page).
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{BlockClass}{example-absolute-positioning-center}},post={\end{BlockClass}}]
 \begin{tikzpicture}[remember picture,overlay]
   \node [rotate=60,scale=10,text opacity=0.2]
     at (current page.center) {Example};
 \end{tikzpicture}
 \end{codeexample}
-
+\end{BlockClass}
 
 \subsection{Late Code and Late Options}
 \label{section-node-also}

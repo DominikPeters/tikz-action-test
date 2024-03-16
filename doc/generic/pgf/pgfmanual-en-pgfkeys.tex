@@ -254,25 +254,24 @@ continue with the next subsection.
 \end{command}
 
 \begin{command}{\pgfkeysvalueof\marg{full key}}
-    Inserts the value stored in \meta{full key} at the current position into
-    the text.
+    Inserts the value stored in \meta{full key} at the current position into the
+    text. It expands to an alias of the primitive |\relax| if the key is undefined.
     %
 \begin{codeexample}[]
 \pgfkeyssetvalue{/my family/my key}{Hello, world!}
 \pgfkeysvalueof{/my family/my key}
 \end{codeexample}
     %
+    \emph{Note:} It is an error to assign to the result of the expansion of
+    |\pgfkeysvalueof|, not only semantically but in recent versions of \pgfname\
+    also logically. To set the value of a key \emph{always} use the appropriate
+    interfaces, e.g.\ |\pgfkeyssetvalue|.
 \end{command}
 
 \begin{command}{\pgfkeysifdefined\marg{full key}\marg{if}\marg{else}}
     Checks whether this key was previously set using either |\pgfkeyssetvalue|
     or |\pgfkeyslet|. If so, the code in \meta{if} is executed, otherwise the
     code in \meta{else}.
-
-    This command will use e\TeX's |\ifcsname| command, if available, for
-    efficiency. This means, however, that it may behave differently for \TeX\
-    and for e\TeX\ when you set keys to |\relax|. For this reason you should
-    not do so.
     %
 \begin{codeexample}[]
 \pgfkeyssetvalue{/my family/my key}{Hello, world!}
@@ -284,7 +283,7 @@ continue with the next subsection.
 
 \subsection{Setting Keys}
 
-Settings keys is done using a powerful command called |\pgfkeys|. This command
+Setting keys is done using a powerful command called |\pgfkeys|. This command
 takes a list of so-called \emph{key--value pairs}. These are pairs of the form
 \meta{key}|=|\meta{value}. The principal idea is the following: For each pair
 in the list, some \emph{action} is taken. This action can be one of the
@@ -445,7 +444,7 @@ a certain character, two things need to be done:
 Let us now have a look at an example. We install two handlers, one for strings
 starting with |"| and one for strings starting with |<|.
 %
-\begin{codeexample}[]
+\begin{codeexample}[pre={\begin{lateximage}},post={\end{lateximage}}]
 \pgfkeys{
   /handlers/first char syntax=true,
   /handlers/first char syntax/the character "/.initial=\myquotemacro,
@@ -566,12 +565,12 @@ instance, assume that you have a key that expects a \meta{value} of the form
 ``\meta{text}|+|\meta{more text}'' and wishes to store \meta{text} and
 \meta{more text} in two different macros. This can be achieved as follows:
 %
-\begin{codeexample}[]
+\begin{codeexample}[preamble={\usepackage{shortvrb} \MakeShortVerb{\|}}]
 \def\mystore#1+#2\pgfeov{\def\a{#1}\def\b{#2}}
 \pgfkeyslet{/my key/.@cmd}{\mystore}
 \pgfkeys{/my key=hello+world}
 
-|\a| is \a, |\b| is \b.
+|\a| is `\a', |\b| is `\b'.
 \end{codeexample}
 
 Naturally, defining the code to be stored in a key in the above manner is too
@@ -605,7 +604,7 @@ Section~\ref{section-code-handlers}.
     This command works like |\pgfkeysdef|, but it allows you to provide an
     arbitrary \meta{argument count} between $0$ and $9$ (inclusive).
     %
-\begin{codeexample}[]
+\begin{codeexample}[preamble={\usepackage{shortvrb} \MakeShortVerb{\|}}]
 \pgfkeysdefnargs{/my key}{2}{\def\a{#1}\def\b{#2}}
 \pgfkeys{/my key=
     {hello}
@@ -625,11 +624,11 @@ Section~\ref{section-code-handlers}.
     This command works like |\pgfkeysdefnargs|, but it allows you to provide an
     arbitrary \meta{argument pattern} rather than just a number of arguments.
     %
-\begin{codeexample}[]
+\begin{codeexample}[preamble={\usepackage{shortvrb} \MakeShortVerb{\|}}]
 \pgfkeysdefargs{/my key}{#1+#2}{\def\a{#1}\def\b{#2}}
 \pgfkeys{/my key=hello+world}
 
-|\a| is \a, |\b| is \b.
+|\a| is `\a', |\b| is `\b'.
 \end{codeexample}
     %
     Note that |\pgfkeysdefnargs| is \emph{better} when it comes to simple
@@ -957,14 +956,14 @@ new ones as described in Section~\ref{section-key-handlers}.
 \end{handler}
 
 \begin{handler}{{.value required}}
-    This handler causes the error message key |/erros/value required| to be
+    This handler causes the error message key |/errors/value required| to be
     issued whenever the \meta{key} is used without a value.
 
     \example |\pgfkeys{/width/.value required}|
 \end{handler}
 
 \begin{handler}{{.value forbidden}}
-    This handler causes the error message key |/erros/value forbidden| to be
+    This handler causes the error message key |/errors/value forbidden| to be
     issued whenever the \meta{key} is used with a value.
 
     This handler works be adding code to the code of the key. This means that
@@ -996,7 +995,7 @@ A number of handlers exist for defining the code of keys.
     special value |\pgfkeysnovalue|.
 
     It is permissible that \meta{code} calls the command |\pgfkeys|. It is also
-    permissible the \meta{code} calls the command |\pgfkeysalso|, which is
+    permissible that \meta{code} calls the command |\pgfkeysalso|, which is
     useful for styles, see below.
     %
 \begin{codeexample}[code only]
@@ -1108,7 +1107,7 @@ There are also handlers for modifying existing keys.
 
 \begin{handler}{{.append code}|=|\meta{append code}}
     This handler is a shortcut for \meta{key}|/.add code={}{|\meta{append
-    code}|}{}|.
+    code}|}|.
 \end{handler}
 
 
@@ -1250,7 +1249,7 @@ directly stored in a key.
     and, thus, |\pgfkeysnovalue| will be stored in |/my key|.
 
     To retrieve the value stored in a key, the handler |/.get| is used.
-    
+
     \medskip
     \emph{Remark:} A key can both store a value and execute commands%
     \footnote{This behavior was partially changed in \pgfname{} 3.1.6 and then
@@ -1290,7 +1289,7 @@ directly stored in a key.
 \end{handler}
 
 \begin{handler}{{.prefix}|=|\marg{prefix value}}
-    Adds the \meta{prefix value} and the beginning of the value stored in
+    Adds the \meta{prefix value} at the beginning of the value stored in
     \meta{key}.
 \end{handler}
 
@@ -1375,8 +1374,8 @@ situation the following handler is useful.
     %
 \begin{codeexample}[code only]
 \pgfkeys{/line cap/.is choice}
-\pgfkeys{/line cap/round/.code={\pgfsetbuttcap}}
-\pgfkeys{/line cap/butt/.code={\pgfsetroundcap}}
+\pgfkeys{/line cap/round/.code={\pgfsetroundcap}}
+\pgfkeys{/line cap/butt/.code={\pgfsetbuttcap}}
 \pgfkeys{/line cap/rect/.code={\pgfsetrectcap}}
 \pgfkeys{/line cap/rectangle/.style={/line cap=rect}}
 ...

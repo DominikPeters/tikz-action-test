@@ -130,7 +130,7 @@ Let us start with the basic coordinate systems.
     $x$-vector points 1cm to the right, the $y$-vector points 1cm upwards, but
     this can be changed arbitrarily as explained in Section~\ref{section-xyz}.
     The default $z$-vector points to
-    $\bigl(-3.85\textrm{mm},-3.85\textrm{mm}\bigr)$.
+    (-3.85mm,-3.85mm).
 
     To specify the factors by which the vectors should be multiplied before
     being added, you use the following three options:
@@ -380,11 +380,11 @@ following coordinate system:
         Specifies an anchor of the node. Here is an example:
         %
 \begin{codeexample}[preamble={\usetikzlibrary{arrows.meta}}]
-\begin{tikzpicture}
-  \node (shape)   at (0,2)  [draw] {\texttt{class Shape}};
-  \node (rect)    at (-2,0) [draw] {\texttt{class Rectangle}};
-  \node (circle)  at (2,0)  [draw] {\texttt{class Circle}};
-  \node (ellipse) at (6,0)  [draw] {\texttt{class Ellipse}};
+\begin{tikzpicture}[node font=\ttfamily]
+  \node (shape)   at (0,2)  [draw] {class Shape};
+  \node (rect)    at (-2,0) [draw] {class Rectangle};
+  \node (circle)  at (2,0)  [draw] {class Circle};
+  \node (ellipse) at (6,0)  [draw] {class Ellipse};
 
   \draw (node cs:name=circle,anchor=north) |- (0,1);
   \draw (node cs:name=ellipse,anchor=north) |- (0,1);
@@ -663,6 +663,7 @@ coordinate systems. For this, the following commands are used:
 \define@key{cylindricalkeys}{angle}{\def\myangle{#1}}
 \define@key{cylindricalkeys}{radius}{\def\myradius{#1}}
 \define@key{cylindricalkeys}{z}{\def\myz{#1}}
+\makeatother
 \tikzdeclarecoordinatesystem{cylindrical}%
 {%
   \setkeys{cylindricalkeys}{#1}%
@@ -687,7 +688,7 @@ coordinate systems. For this, the following commands are used:
 
 You will wish to compute the intersection of two paths. For the special and
 frequent case of two perpendicular lines, a special coordinate system called
-|perpendicular| is available. For more general cases, the |intersection|
+|perpendicular| is available. For more general cases, the |intersections|
 library can be used.
 
 
@@ -777,7 +778,7 @@ point $q$. For this situation there is a useful coordinate system.
 To find the intersections of two paths in \tikzname, they must be ``named''. A
 ``named path'' is, quite simply, a path that has been named using the following
 key (note that this is a \emph{different} key from the |name| key, which only
-attaches a hyperlink target to a path, but does not store the path in a way the
+attaches a hyperlink target to a path, but does not store the path in a way that
 is useful for the intersection computation):
 
 \begin{keylist}{%
@@ -1091,7 +1092,7 @@ that is $1/3 \text{cm}$ to the right of the point |a|:
 The general syntax is the following:
 %
 \begin{quote}
-    \declare{|(|\opt{|[|\meta{options}|]|}|$|\meta{coordinate computation}|$)|}.
+    \declare{|(|\opt{|[|\meta{options}|]|}\$\meta{coordinate computation}\$|)|}.
 \end{quote}
 
 As you can see, the syntax uses the \TeX\ math symbol |$| to %$
@@ -1174,7 +1175,7 @@ One could write for instance
 The meaning of this is: ``Use the coordinate that is three quarters on the way
 from |(1,2)| to |(3,4)|.'' In general, \meta{coordinate
 x}|!|\meta{number}|!|\meta{coordinate y} yields the coordinate $(1 -
-\meta{number})\meta{coordinate x} + \meta{number} \meta{coordinate y}$. Note
+\textit{number})\textit{coordinate x} + \textit{number} \textit{coordinate y}$. Note
 that this is a bit different from the way the \meta{number} is interpreted in
 the |xcolor| package: First, you use a factor between $0$ and $1$, not a
 percentage, and, second, as the \meta{number} approaches $1$, we approach the

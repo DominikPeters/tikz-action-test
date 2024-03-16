@@ -8,32 +8,34 @@ jobs:
         working-directory: ./doc/generic/pgf/
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Build in TeXLive environment
-        uses: xu-cheng/texlive-action/full@v1
+        uses: xu-cheng/texlive-action/full@v2
         with:
+          scheme: full
           run: |
-            apk add poppler-utils
+            apk add make poppler-utils
+            make
             cd doc/generic/pgf/
-            ./latexbuild.sh
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.10'
           architecture: 'x64'
       - name: Set up Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '20'
       - name: Install dependencies
         run: |
           pip install beautifulsoup4
           pip install html5lib
           npm install -g prettier
           npm install -g svgo
-      - name: Python postprocessing
+      - name: Build docs
         run: |
-          python postprocessing.py
+          ./build.sh
+          sleep 30
       - name: Push to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
