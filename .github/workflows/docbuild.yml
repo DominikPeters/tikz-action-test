@@ -17,6 +17,11 @@ jobs:
             apk add poppler-utils pngquant
             cd doc/generic/pgf/
             ./latexbuild.sh
+      - name: Save artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pgfmanual
+          path: doc/generic/pgf/
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
