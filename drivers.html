@@ -1,0 +1,1977 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Supported Formats - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Installation and Configuration",
+            "item": "https://tikz.dev/install"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Supported Formats",
+            "item": "https://tikz.dev/drivers"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/drivers" rel="canonical" />
+    <meta content="https://tikz.dev/drivers" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Supported Formats - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-459"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-10.1"
+                >Supported Input Formats: LaTeX, Plain TeX, ConTeXt</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.1.1"
+                >Using the LaTeX Format</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.1.2"
+                >Using the Plain TeX Format</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.1.3"
+                >Using the ConTeXt Format</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-10.2"
+                >Supported Output Formats</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.2.1"
+                >Selecting the Backend Driver</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.2.2"
+                >Producing PDF Output</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.2.3"
+                >Producing PostScript Output</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.2.4"
+                >Producing SVG Output</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-10.2.5"
+                >Producing Perfectly Portable DVI Output</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="installation">Installation</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="license">Licenses and Copyright</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="drivers">Supported Formats</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Installation and Configuration</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-460">
+            <a id="section-formats"></a
+            ><span
+              ><span class="sectionnumber" id="sec-10">10</span> Supported
+              Formats</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.10"
+              data-pdf-page="118"
+              href="#sec-10"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-460"></a>
+          <a id="pgfmanual-autofile-12"></a>
+
+          <p>
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            was designed to be a flexible system. This is true both for the
+            <em>input</em> for
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            as well as for the <em>output</em>. The present section explains
+            which input formats there are and how they are supported by
+            <span class="textsc">pgf</span>. It also explains which different
+            output formats can be produced.
+          </p>
+          <h5 id="autosec-461">
+            <span
+              ><span class="sectionnumber" id="sec-10.1">10.1</span> Supported
+              Input Formats:
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >L<span class="latexlogosup">a</span>T<span
+                    class="latexlogosub"
+                    >e</span
+                  >X</span
+                ></span
+              >, Plain
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >, Con<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >t</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.1"
+              data-pdf-destination="subsection.10.1"
+              data-pdf-page="118"
+              href="#sec-10.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-461"></a>
+
+          <p>
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            does not prescribe exactly how your input should be formatted. While
+            it is <em>customary</em> that, say, an opening brace starts a scope
+            in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >, this is by no means necessary. Likewise, it is
+            <em>customary</em> that environments start with
+            <span class="verb">\begin</span>, but
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            could not really care less about the exact command name.
+          </p>
+
+          <p>
+            Even though
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            can be reconfigured, users can not. For this reason, certain
+            <em>input formats</em> specify a set of commands and conventions how
+            input for
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            should be formatted. There are currently three &ldquo;major&rdquo;
+            formats: Donald Knuth&rsquo;s original
+            <span class="verb">plain</span>
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            format, Leslie Lamport&rsquo;s popular
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            format, and Hans Hangen&rsquo;s Con<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >t format.
+          </p>
+          <h6 id="autosec-462">
+            <span
+              ><span class="sectionnumber" id="sec-10.1.1">10.1.1</span> Using
+              the
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >L<span class="latexlogosup">a</span>T<span
+                    class="latexlogosub"
+                    >e</span
+                  >X</span
+                ></span
+              >
+              Format</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.1.1"
+              data-pdf-destination="subsubsection.10.1.1"
+              data-pdf-page="118"
+              href="#sec-10.1.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-462"></a>
+
+          <p>
+            Using <span class="textsc">pgf</span> and
+            <span class="tikzname">TikZ</span> with the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            format is easy: You say
+            <span class="verb">\usepackage{pgf}</span> or
+            <span class="verb">\usepackage{tikz}</span>. Usually, that is all
+            you need to do, all configuration will be done automatically and
+            (hopefully) correctly.
+          </p>
+
+          <p>
+            The style files used for the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            format reside in the subdirectory
+            <span class="verb">latex/pgf/</span> of the
+            <span class="textsc">pgf</span>-system. Mainly, what these files do
+            is to include files in the directory
+            <span class="verb">generic/pgf</span>. For example, here is the
+            content of the file
+            <span class="verb">latex/pgf/frontends/tikz.sty</span>:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="example-code-comment"
+                  >% Copyright 2019 by Till Tantau</span
+                ><br />
+                <span class="example-code-comment">%</span><br />
+                <span class="example-code-comment"
+                  >% This file may be distributed and/or modified</span
+                ><br />
+                <span class="example-code-comment">%</span><br />
+                <span class="example-code-comment"
+                  >% 1. under the LaTeX Project Public License and/or</span
+                ><br />
+                <span class="example-code-comment"
+                  >% 2. under the GNU Public License.</span
+                ><br />
+                <span class="example-code-comment">%</span><br />
+                <span class="example-code-comment"
+                  >% See the file doc/generic/pgf/licenses/LICENSE for more
+                  details.</span
+                ><br />
+                <br />
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\RequirePackage</span
+                >{<span class="textcolor" style="color: #000000"
+                  ><a href="base-scopes#pgf.pgf">pgf</a></span
+                >,<span class="textcolor" style="color: #000000"
+                  ><a href="pgffor#pgf.pgffor">pgffor</a></span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #0000b2">\input</span
+                >{<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-scopes#pgf.tikz">tikz</a></span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.code">code</a></span
+                >.<span class="textcolor" style="color: #000000">tex</span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #0000b2">\endinput</span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The files in the <span class="verb">generic/pgf</span> directory do
+            the actual work.
+          </p>
+          <h6 id="autosec-463">
+            <span
+              ><span class="sectionnumber" id="sec-10.1.2">10.1.2</span> Using
+              the Plain
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              Format</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.1.2"
+              data-pdf-destination="subsubsection.10.1.2"
+              data-pdf-page="118"
+              href="#sec-10.1.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-463"></a>
+
+          <p>
+            When using the plain
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            format, you say <span class="verb">\input{pgf.tex}</span> or
+            <span class="verb">\input{tikz.tex}</span>. Then, instead of
+            <span class="verb">\begin{pgfpicture}</span> and
+            <span class="verb">\end{pgfpicture}</span> you use
+            <span class="verb">\pgfpicture</span> and
+            <span class="verb">\endpgfpicture</span>.
+          </p>
+
+          <p>
+            Unlike for the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            format, <span class="textsc">pgf</span> is not as good at discerning
+            the appropriate configuration for the plain
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            format. In particular, it can only automatically determine the
+            correct output format if you use <span class="verb">pdftex</span> or
+            <span class="verb">tex</span> plus <span class="verb">dvips</span>.
+            For all other output formats you need to set the macro
+            <span class="verb">\pgfsysdriver</span> to the correct value. See
+            the description of using output formats later on.
+          </p>
+
+          <p>
+            Like the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            style files, the plain
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            files like <span class="verb">tikz.tex</span> also just include the
+            correct <span class="verb">tikz.code.tex</span> file.
+          </p>
+          <h6 id="autosec-464">
+            <span
+              ><span class="sectionnumber" id="sec-10.1.3">10.1.3</span> Using
+              the Con<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >t Format</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.1.3"
+              data-pdf-destination="subsubsection.10.1.3"
+              data-pdf-page="118"
+              href="#sec-10.1.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-464"></a>
+
+          <p>
+            When using the Con<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >t format, you say <span class="verb">\usemodule[pgf]</span> or
+            <span class="verb">\usemodule[tikz]</span>. As for the plain
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            format you also have to replace the start- and end-of-environment
+            tags as follows: Instead of
+            <span class="verb">\begin{pgfpicture}</span> and
+            <span class="verb">\end{pgfpicture}</span> you use
+            <span class="verb">\startpgfpicture</span> and
+            <span class="verb">\stoppgfpicture</span>; similarly, instead of
+            <span class="verb">\begin{tikzpicture}</span> and
+            <span class="verb">\end{tikzpicture}</span> you use must now use
+            <span class="verb">\starttikzpicture</span> and
+            <span class="verb">\stoptikzpicture</span>; and so on for other
+            environments.
+          </p>
+
+          <p>
+            The Con<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >t support is very similar to the plain
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            support, so the same restrictions apply: You may have to set the
+            output format directly and graphics inclusion may be a problem.
+          </p>
+
+          <p>
+            In addition to <span class="verb">pgf</span> and
+            <span class="verb">tikz</span> there also exist modules like
+            <span class="verb">pgfcore</span> or
+            <span class="verb">pgfmodulematrix</span>. To use them, you may need
+            to include the module <span class="verb">pgfmod</span> first (the
+            modules <span class="verb">pgf</span> and
+            <span class="verb">tikz</span> both include
+            <span class="verb">pgfmod</span> for you, so typically you can skip
+            this). This special module is necessary since old versions of
+            Con<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >t&nbsp;MkII before 2005 satanically restricted the length of module
+            names to 8 characters and <span class="textsc">pgf</span>&rsquo;s
+            long names are mapped to cryptic 6-letter-names for you by the
+            module <span class="verb">pgfmod</span>. This restriction was never
+            in place in Con<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >t&nbsp;MkIV and the <span class="verb">pgfmod</span> module can be
+            safely ignored nowadays.
+          </p>
+          <h5 id="autosec-465">
+            <a id="section-drivers"></a
+            ><span
+              ><span class="sectionnumber" id="sec-10.2">10.2</span> Supported
+              Output Formats</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.2"
+              data-pdf-destination="subsection.10.2"
+              data-pdf-page="119"
+              href="#sec-10.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-465"></a>
+
+          <p>
+            An output format is a format in which
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            outputs the text it has typeset. Producing the output is
+            (conceptually) a two-stage process:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span>
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                typesets your text and graphics. The result of this typesetting
+                is mainly a long list of letter&ndash;coordinate pairs, plus
+                (possibly) some &ldquo;special&rdquo; commands. This long list
+                of pairs is written to something called a
+                <span class="verb">.dvi</span>-file (informally known as
+                &ldquo;device-independent file&rdquo;).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Some other program reads this
+                <span class="verb">.dvi</span>-file and translates the
+                letter&ndash;coordinate pairs into, say, PostScript commands for
+                placing the given letter at the given coordinate.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            The classical example of this process is the combination of
+            <span class="verb">latex</span> and <span class="verb">dvips</span>.
+            The <span class="verb">latex</span> program (which is just the
+            <span class="verb">tex</span> program called with the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >-macros preinstalled) produces a
+            <span class="verb">.dvi</span>-file as its output. The
+            <span class="verb">dvips</span> program takes this output and
+            produces a <span class="verb">.ps</span>-file (a PostScript file).
+            Possibly, this file is further converted using, say,
+            <span class="verb">ps2pdf</span>, whose name is supposed to mean
+            &ldquo;PostScript to PDF&rdquo;. Another example of programs using
+            this process is the combination of <span class="verb">tex</span> and
+            <span class="verb">dvipdfm</span>. The
+            <span class="verb">dvipdfm</span> program takes a
+            <span class="verb">.dvi</span>-file as input and translates the
+            letter&ndash;coordinate pairs therein into
+            <span class="textsc">pdf</span>-commands, resulting in a
+            <span class="verb">.pdf</span> file directly. Finally, the
+            <span class="verb">tex4ht</span> is also a program that takes a
+            <span class="verb">.dvi</span>-file and produces an output, this
+            time it is a <span class="verb">.html</span> file. The programs
+            <span class="verb">pdftex</span> and
+            <span class="verb">pdflatex</span> are special: They directly
+            produce a <span class="verb">.pdf</span>-file without the
+            intermediate <span class="verb">.dvi</span>-stage. However, from the
+            programmer&rsquo;s point of view they behave exactly as if there was
+            an intermediate stage.
+          </p>
+
+          <p>
+            Normally,
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            only produces letter&ndash;coordinate pairs as its
+            &ldquo;output&rdquo;. This obviously makes it difficult to draw,
+            say, a curve. For this, &ldquo;special&rdquo; commands can be used.
+            Unfortunately, these special commands are not the same for the
+            different programs that process the
+            <span class="verb">.dvi</span>-file. Indeed, every program that
+            takes a <span class="verb">.dvi</span>-file as input has a totally
+            different syntax for the special commands.
+          </p>
+
+          <p>
+            One of the main jobs of <span class="textsc">pgf</span> is to
+            &ldquo;abstract away&rdquo; the difference in the syntax of the
+            different programs. However, this means that support for each
+            program has to be &ldquo;programmed&rdquo;, which is a
+            time-consuming and complicated process.
+          </p>
+          <h6 id="autosec-466">
+            <span
+              ><span class="sectionnumber" id="sec-10.2.1">10.2.1</span>
+              Selecting the Backend Driver</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.2.1"
+              data-pdf-destination="subsubsection.10.2.1"
+              data-pdf-page="119"
+              href="#sec-10.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-466"></a>
+
+          <p>
+            When
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            typesets your document, it does not know which program you are going
+            to use to transform the <span class="verb">.dvi</span>-file. If your
+            <span class="verb">.dvi</span>-file does not contain any special
+            commands, this would be fine; but these days almost all
+            <span class="verb">.dvi</span>-files contain lots of special
+            commands. It is thus necessary to tell
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            which program you are going to use later on.
+          </p>
+
+          <p>
+            Unfortunately, there is no &ldquo;standard&rdquo; way of telling
+            this to
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >. For the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            format a sophisticated mechanism exists inside the
+            <span class="verb">graphics</span> package and
+            <span class="textsc">pgf</span> plugs into this mechanism. For other
+            formats and when this plugging does not work as expected, it is
+            necessary to tell <span class="textsc">pgf</span> directly which
+            program you are going to use. This is done by redefining the macro
+            <span class="verb">\pgfsysdriver</span> to an appropriate value
+            <em>before</em> you load <span class="verb">pgf</span>. If you are
+            going to use the <span class="verb">dvips</span> program, you set
+            this macro to the value <span class="verb">pgfsys-dvips.def</span>;
+            if you use <span class="verb">pdftex</span> or
+            <span class="verb">pdflatex</span>, you set it to
+            <span class="verb">pgfsys-pdftex.def</span>; and so on. In the
+            following, details of the support of the different programs are
+            discussed.
+          </p>
+          <h6 id="autosec-467">
+            <span
+              ><span class="sectionnumber" id="sec-10.2.2">10.2.2</span>
+              Producing PDF Output</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.2.2"
+              data-pdf-destination="subsubsection.10.2.2"
+              data-pdf-page="119"
+              href="#sec-10.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-467"></a>
+
+          <p>
+            <span class="textsc">pgf</span> supports three programs that produce
+            <span class="textsc">pdf</span> output (<span class="textsc"
+              >pdf</span
+            >
+            means &ldquo;portable document format&rdquo; and was invented by the
+            Adobe company): <span class="verb">dvipdfm</span>,
+            <span class="verb">pdftex</span>, and
+            <span class="verb">vtex</span>. The
+            <span class="verb">pdflatex</span> program is the same as the
+            <span class="verb">pdftex</span> program: it uses a different input
+            format, but the output is exactly the same.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-pdftex.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the driver file for use with pdf<span
+                  class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, that is, with the <span class="verb">pdftex</span> or
+                <span class="verb">pdflatex</span> command. It includes
+                <span class="verb">pgfsys-common-pdf.def</span>.
+              </p>
+              <p>
+                This driver has a lot of functionality. (Almost) everything
+                <span class="textsc">pgf</span> &ldquo;can do at all&rdquo; is
+                implemented in this driver.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-dvipdfm.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a driver file for use with (<span class="verb">la</span
+                >)<span class="verb">tex</span> followed by
+                <span class="verb">dvipdfm</span>. It includes
+                <span class="verb">pgfsys-common-pdf.def</span>.
+              </p>
+              <p>
+                This driver supports most of
+                <span class="textsc">pgf</span>&rsquo;s features, but there are
+                some restrictions:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> In
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >L<span class="latexlogosup">a</span>T<span
+                          class="latexlogosub"
+                          >e</span
+                        >X</span
+                      ></span
+                    >
+                    mode it uses <span class="verb">graphicx</span> for the
+                    graphics inclusion and does not support masking.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> In plain
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    mode it does not support image inclusion.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-xetex.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a driver file for use with
+                <span class="verb">xe</span>(<span class="verb">la</span>)<span
+                  class="verb"
+                  >tex</span
+                >
+                followed by <span class="verb">xdvipdfmx</span>. This driver
+                supports largely the same operations as the
+                <span class="verb">dvipdfm</span> driver.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-vtex.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the driver file for use with the commercial
+                <span class="textsc">vtex</span> program. Even though it
+                produces <span class="textsc">pdf</span> output, it includes
+                <span class="verb">pgfsys-common-postscript.def</span>. Note
+                that the <span class="textsc">vtex</span> program can produce
+                <em>both</em> Postscript and
+                <span class="textsc">pdf</span> output, depending on the command
+                line parameters. However, whether you produce Postscript or
+                <span class="textsc">pdf</span> output does not change anything
+                with respect to the driver.
+              </p>
+              <p>
+                This driver supports most of
+                <span class="textsc">pgf</span>&rsquo;s features, except for the
+                following restrictions:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> In
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >L<span class="latexlogosup">a</span>T<span
+                          class="latexlogosub"
+                          >e</span
+                        >X</span
+                      ></span
+                    >
+                    mode it uses <span class="verb">graphicx</span> for the
+                    graphics inclusion and does not support masking.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> In plain
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    mode it does not support image inclusion.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Shadings are approximated
+                    with discrete colors. This typically leads to aliasing
+                    patterns in PostScript and
+                    <span class="textsc">pdf</span> viewing applications.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Opacity, Transparency
+                    Groups, Fadings and Blend Modes are not supported.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> Remembering of pictures
+                    (inter-picture connections) is not supported.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <p>
+            It is also possible to produce a <span class="verb">.pdf</span>-file
+            by first producing a PostScript file (see below) and then using a
+            PostScript-to-<span class="textsc">pdf</span> conversion program
+            like <span class="verb">ps2pdf</span> or Acrobat Distiller.
+          </p>
+          <h6 id="autosec-468">
+            <span
+              ><span class="sectionnumber" id="sec-10.2.3">10.2.3</span>
+              Producing PostScript Output</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.2.3"
+              data-pdf-destination="subsubsection.10.2.3"
+              data-pdf-page="120"
+              href="#sec-10.2.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-468"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-dvips.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a driver file for use with (<span class="verb">la</span
+                >)<span class="verb">tex</span> followed by
+                <span class="verb">dvips</span>. It includes
+                <span class="verb">pgfsys-common-postscript.def</span>.
+              </p>
+              <p>
+                This driver also supports most of
+                <span class="textsc">pgf</span>&rsquo;s features, except for the
+                following restrictions:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> In
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >L<span class="latexlogosup">a</span>T<span
+                          class="latexlogosub"
+                          >e</span
+                        >X</span
+                      ></span
+                    >
+                    mode it uses <span class="verb">graphicx</span> for the
+                    graphics inclusion. Image masking is supported if the
+                    PostScript output is further processed with
+                    <span class="verb">ps2pdf</span> to produce
+                    <span class="textsc">pdf</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> In plain
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    mode it does not support image inclusion.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Functional shadings are
+                    approximated with Type-0 functions (sampled functions),
+                    because Type-4 functions are not available in the latest
+                    (version 3) PostScript language definition. Due to their
+                    fixed resolution, Type-0 functional shadings are of lesser
+                    quality at higher zoom levels as compared to functional
+                    shadings from <span class="textsc">pdf</span> producing
+                    drivers. Axial and radial shadings are fully supported. The
+                    same output quality (smooth shadings) is achieved as with
+                    drivers that produce <span class="textsc">pdf</span> output.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Although fully supported,
+                    opacity and fadings are
+                    <span class="textsc">pdf</span> features that become visible
+                    only after further processing the PostScript output with
+                    <span class="verb">ps2pdf</span>. Note that newer
+                    Ghostscript versions are necessary for producing opacity in
+                    the <span class="textsc">pdf</span> output. Also, beginning
+                    with version 9.52 of Ghostscript, command line option
+                    <span class="verb">-dALLOWPSTRANSPARENCY</span> must be
+                    added:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #000000"
+                          >ps2pdf</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >-dALLOWPSTRANSPARENCY</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >example</span
+                        >.<span class="textcolor" style="color: #000000"
+                          >ps</span
+                        ><br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> For remembering of
+                    pictures (inter-picture connections) you need to use a
+                    recent version of <span class="verb">pdftex</span> running
+                    in DVI-mode.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-textures.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a driver file for use with the
+                <span class="textsc">textures</span> program. It includes
+                <span class="verb">pgfsys-common-postscript.def</span>.
+              </p>
+              <p>
+                This driver shares the restrictions of the
+                <span class="verb">vtex</span> driver, but adds limited opacity
+                support (no transparency groups, fadings and blend modes,
+                though).
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            You can also use the <span class="verb">vtex</span> program together
+            with <span class="verb">pgfsys-vtex.def</span> to produce Postscript
+            output.
+          </p>
+          <h6 id="autosec-469">
+            <span
+              ><span class="sectionnumber" id="sec-10.2.4">10.2.4</span>
+              Producing SVG Output</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.2.4"
+              data-pdf-destination="subsubsection.10.2.4"
+              data-pdf-page="121"
+              href="#sec-10.2.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-469"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-dvisvgm.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This driver converts <span class="textsc">dvi</span> files to
+                <span class="textsc">svg</span> file, including text and fonts.
+                When you select this driver,
+                <span class="textsc">pgf</span> will output the required raw
+                <span class="textsc">svg</span> code for the pictures it
+                produces.
+              </p>
+              <p>
+                Since the <span class="verb">graphics</span> package does not
+                (yet?) support this driver directly, there is special rule for
+                this driver in
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >: If the option <span class="verb">dvisvgm</span> is given to
+                the <span class="verb">tikz</span> package, this driver gets
+                selected (normally, the driver selected by
+                <span class="verb">graphics</span> would be used). For packages
+                like <span class="verb">beamer</span> that load
+                <span class="textsc">pgf</span> themselves, this means that the
+                option <span class="verb">dvisvgm</span> should be given to the
+                document class.
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="example-code-comment">% example.tex</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\documentclass</span
+                    >[<span class="textcolor" style="color: #008000"
+                      >dvisvgm</span
+                    >]{<span class="textcolor" style="color: #000000"
+                      >minimal</span
+                    >}<br />
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\usepackage</span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-scopes#pgf.tikz">tikz</a></span
+                    >}<br />
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >document</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Hello</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!80!black</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,.75ex)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                    >=<span class="textcolor" style="color: #008000">.75ex</span
+                    >];<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >document</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>And then run</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">latex</span>
+                    <span class="textcolor" style="color: #000000">example</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >dvisvgm</span
+                    >
+                    <span class="textcolor" style="color: #000000">example</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>or better</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >lualatex</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >--output-format=dvi</span
+                    >
+                    <span class="textcolor" style="color: #000000">example</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >dvisvgm</span
+                    >
+                    <span class="textcolor" style="color: #000000">example</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                (This is &ldquo;better&rdquo; since it gives you access to the
+                full power of Lua<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                inside your
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-file. In particular, <span class="tikzname">TikZ</span> is
+                able to run graph drawing algorithms in this case.)
+              </p>
+              <p>
+                Unlike the <span class="verb">tex4ht</span> driver below, this
+                driver has full support of text nodes.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-tex4ht.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a driver file for use with the
+                <span class="verb">tex4ht</span> program. It is selected
+                automatically when the <span class="verb">tex4ht</span> style or
+                command is loaded. It includes
+                <span class="verb">pgfsys-common-svg.def</span>.
+              </p>
+              <p>
+                The <span class="verb">tex4ht</span> program converts
+                <span class="verb">.dvi</span>-files to
+                <span class="verb">.html</span>-files. While the
+                <span class="textsc">html</span>-format cannot be used to draw
+                graphics, the <span class="textsc">svg</span>-format can. This
+                driver will ask <span class="textsc">pgf</span> to produce an
+                <span class="textsc">svg</span>-picture for each
+                <span class="textsc">pgf</span> graphic in your text.
+              </p>
+              <p>
+                When using this driver you should be aware of the following
+                restrictions:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> In
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >L<span class="latexlogosup">a</span>T<span
+                          class="latexlogosub"
+                          >e</span
+                        >X</span
+                      ></span
+                    >
+                    mode it uses <span class="verb">graphicx</span> for the
+                    graphics inclusion.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> In plain
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    mode it does not support image inclusion.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Remembering of pictures
+                    (inter-picture connections) is not supported.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Text inside
+                    <span class="verb">pgfpicture</span>s is not supported very
+                    well. The reason is that the
+                    <span class="textsc">svg</span> specification currently does
+                    not support text very well and, although it is possible to
+                    &ldquo;escape back&rdquo; to
+                    <span class="textsc">html</span>,
+                    <span class="tikzname">TikZ</span> has then to guess what
+                    size the text rendered by the browser would have.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> Unlike for other output
+                    formats, the bounding box of a picture &ldquo;really
+                    crops&rdquo; the picture.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">6.</span> Matrices do not work.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">7.</span> Functional shadings are
+                    not supported.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The driver basically works as follows: When a
+                <span class="verb">{pgfpicture}</span> is started, appropriate
+                <span class="verb">\special</span> commands are used to directed
+                the output of <span class="verb">tex4ht</span> to a new file
+                called <span class="verb">\jobname-xxx.svg</span>, where
+                <span class="verb">xxx</span> is a number that is increased for
+                each graphic. Then, till the end of the picture, each (system
+                layer) graphic command creates a special that inserts
+                appropriate <span class="textsc">svg</span> literal text into
+                the output file. The exact details are a bit complicated since
+                the imaging model and the processing model of PostScript/<span
+                  class="textsc"
+                  >pdf</span
+                >
+                and <span class="textsc">svg</span> are not quite the same; but
+                they are &ldquo;close enough&rdquo; for
+                <span class="textsc">pgf</span>&rsquo;s purposes.
+              </p>
+              <p>
+                Because text is not supported very well in the
+                <span class="textsc">svg</span> standard, you may wish to use
+                the following options to modify the way text is handled:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/tex4ht:node/escape"></a
+                        ><a id="pgf.escape"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/tex4ht node/escape</span
+                              ></span
+                            ><span class="textcolor" style="color: #008000"
+                              >=</span
+                            ></kbd
+                          ><span class="textcolor" style="color: #008000"
+                            ><span class="angle">&langle;</span><i>boolean</i
+                            ><span class="angle">&rangle;</span>
+                          </span></span
+                        ><span class="hl-default"
+                          >(default <kbd><span class="verb">false</span></kbd
+                          >)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/tex4ht:node/escape"
+                          href="#pgf/tex4ht:node/escape"
+                          id="pgf/tex4ht:node/escape"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Selects the rendering method for a text node with the tex4ht
+                    driver.
+                  </p>
+                  <p>
+                    When this key is set to <span class="verb">false</span>,
+                    text is translated into
+                    <span class="textsc">svg</span> text, which is somewhat
+                    limited: simple characters (letters, numerals, punctuation,
+                    \(\sum \), \(\int \), &hellip;), subscripts and superscripts
+                    (but not subsubscripts) will display but everything else
+                    will be filtered out, ignored or will produce invalid
+                    <span class="textsc">html</span> code (in the worst case).
+                    This means that two kind of texts render reasonably well:
+                  </p>
+                  <ul class="enumerate" style="list-style-type: none">
+                    <li>
+                      <p>
+                        <span class="listmarker">1.</span> First, plain text
+                        without math mode, special characters or anything else
+                        special.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">2.</span> Second,
+                        <em>very</em> simple mathematical text that contains
+                        subscripts or superscripts. Even then, variables are not
+                        correctly set in italics and, in general, text simple
+                        does not look very nice.
+                      </p>
+                    </li>
+                  </ul>
+                  <p>
+                    If you use text that contains anything special, even
+                    something as simple as <span class="verb">$\alpha$</span>,
+                    this may corrupt the graphic.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="drivers#pgf./pgf/tex4ht:node/escape"
+                            >/pgf/tex4ht node/escape</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="pgfkeys#pgf.false">false</a></span
+                        >] {<span class="textcolor" style="color: #000000"
+                          >Example</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.:">:</a></span
+                        >
+                        <span class="textcolor" style="color: #000000">$</span
+                        ><span class="textcolor" style="color: #800080"
+                          >(a+b)</span
+                        ><span class="textcolor" style="color: #000000"
+                          >^2=a^2+2ab+b^2$</span
+                        >};<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    When you write
+                    <span class="verb"
+                      >node[/pgf/tex4ht node/escape=true] {</span
+                    ><span class="angle">&langle;</span><i>text</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">}</span>,
+                    <span class="textsc">pgf</span> escapes back to
+                    <span class="textsc">html</span> to render the
+                    <span class="angle">&langle;</span><i>text</i
+                    ><span class="angle">&rangle;</span>. This method produces
+                    valid <span class="textsc">html</span> code in most cases
+                    and the support for complicated text nodes is much better
+                    since code that renders well outside a
+                    <span class="verb">{pgfpicture}</span>, should also render
+                    well inside a text node. Another advantage is that inside
+                    text nodes with fixed width,
+                    <span class="textsc">html</span> will produce line breaks
+                    for long lines. On the other hand, you need a browser with
+                    good <span class="textsc">svg</span> support to display the
+                    picture. Also, the text will display differently, depending
+                    on your browsers, the fonts you have on your system and your
+                    settings. Finally, <span class="textsc">pgf</span> has to
+                    guess the size of the text rendered by the browser to scale
+                    it and prevent it from sticking from the node. When it
+                    fails, the text will be either cropped or too small.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="drivers#pgf./pgf/tex4ht:node/escape"
+                            >/pgf/tex4ht node/escape</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="pgfkeys#pgf.true">true</a></span
+                        >]<br />
+                        <span class="spaces">  </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >Example</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.:">:</a></span
+                        >
+                        <span class="textcolor" style="color: #000000">$</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\int</span
+                        ><span class="textcolor" style="color: #000000"
+                          >_0^</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\infty</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\frac</span
+                        >{<span class="textcolor" style="color: #000000">1</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >1+t^2</span
+                        >}<span class="textcolor" style="color: #000000"
+                          >dt=</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\frac</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\pi</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >2</span
+                        >}<span class="textcolor" style="color: #000000">$</span
+                        >};<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/tex4ht:node/css"></a
+                        ><a id="pgf.css"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/tex4ht node/css</span
+                              ></span
+                            ><span class="textcolor" style="color: #008000"
+                              >=</span
+                            ></kbd
+                          ><span class="textcolor" style="color: #008000"
+                            ><span class="angle">&langle;</span><i>filename</i
+                            ><span class="angle">&rangle;</span>
+                          </span></span
+                        ><span class="hl-default"
+                          >(default <kbd><span class="verb">\jobname</span></kbd
+                          >)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/tex4ht:node/css"
+                          href="#pgf/tex4ht:node/css"
+                          id="pgf/tex4ht:node/css"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option allows you to tell the browser what
+                    <span class="textsc">css</span> file it should use to style
+                    the display of the node (only with
+                    <span class="verb">tex4ht node/escape=true</span>).
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/tex4ht:node/class"></a
+                        ><a id="pgf.class"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/tex4ht node/class</span
+                              ></span
+                            ><span class="textcolor" style="color: #008000"
+                              >=</span
+                            ></kbd
+                          ><span class="textcolor" style="color: #008000"
+                            ><span class="angle">&langle;</span><i>class name</i
+                            ><span class="angle">&rangle;</span>
+                          </span></span
+                        ><span class="hl-default"
+                          >(default <kbd>foreignobject</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/tex4ht:node/class"
+                          href="#pgf/tex4ht:node/class"
+                          id="pgf/tex4ht:node/class"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option allows you to give a class name to the node,
+                    allowing it to be styled by a
+                    <span class="textsc">css</span> file (only with
+                    <span class="verb">tex4ht node/escape=true</span>).
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/tex4ht:node/id"></a><a id="pgf.id"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/tex4ht node/id</span
+                              ></span
+                            ><span class="textcolor" style="color: #008000"
+                              >=</span
+                            ></kbd
+                          ><span class="textcolor" style="color: #008000"
+                            ><span class="angle">&langle;</span><i>id name</i
+                            ><span class="angle">&rangle;</span>
+                          </span></span
+                        ><span class="hl-default"
+                          >(default
+                          <kbd
+                            ><span class="verb"
+                              >\jobname picture number-node number</span
+                            ></kbd
+                          >)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/tex4ht:node/id"
+                          href="#pgf/tex4ht:node/id"
+                          id="pgf/tex4ht:node/id"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option allows you to give a unique id to the node,
+                    allowing it to be styled by a
+                    <span class="textsc">css</span> file (only with
+                    <span class="verb">tex4ht node/escape=true</span>).
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+          <h6 id="autosec-470">
+            <span
+              ><span class="sectionnumber" id="sec-10.2.5">10.2.5</span>
+              Producing Perfectly Portable DVI Output</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-10.2.5"
+              data-pdf-destination="subsubsection.10.2.5"
+              data-pdf-page="122"
+              href="#sec-10.2.5"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-470"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfsys-dvi.def</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a driver file that can be used with any output driver,
+                except for <span class="verb">tex4ht</span>.
+              </p>
+              <p>
+                The driver will produce perfectly portable
+                <span class="verb">.dvi</span> files by composing all pictures
+                entirely of black rectangles, the basic and only graphic shape
+                supported by the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                core. Even straight, but slanted lines are tricky to get right
+                in this model (they need to be composed of lots of little
+                squares).
+              </p>
+              <p>
+                Naturally, <em>very little</em> is possible with this driver. In
+                fact, so little is possible that it is easier to list what is
+                possible:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Text boxes can be
+                    placed in the normal way.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Lines and curves can
+                    be drawn (stroked). If they are not horizontal or vertical,
+                    they are composed of hundreds of small rectangles.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Lines of different
+                    width are supported.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Transformations are
+                    supported.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that, say, even filling is not supported! (Let alone color
+                or anything fancy.)
+              </p>
+              <p>
+                This driver has only one real application: It might be useful
+                when you only need horizontal or vertical lines in a picture.
+                Then, the results are quite satisfactory.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

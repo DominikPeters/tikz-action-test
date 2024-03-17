@@ -1,0 +1,2412 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Matrices - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Matrices",
+            "item": "https://tikz.dev/base-matrices"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-matrices" rel="canonical" />
+    <meta content="https://tikz.dev/base-matrices" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Matrices - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8200"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-107.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-107.2"
+                >Cell Pictures and Their Alignment</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-107.3">The Matrix Command</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-107.4"
+                >Row and Column Spacing</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-107.5">Callbacks</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8201">
+            <a id="section-base-matrices"></a
+            ><span
+              ><span class="sectionnumber" id="sec-107">107</span>
+              Matrices</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.107"
+              data-pdf-page="1151"
+              href="#sec-107"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8201"></a>
+          <a id="pgfmanual-autofile-116"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepgfmodule{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >matrix</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        >
+                        and plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        and pure pgf</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepgfmodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >matrix</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t and pure pgf</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>The present section documents the commands of this module.</p>
+            </ul>
+          </div>
+          <h5 id="autosec-8203">
+            <span
+              ><span class="sectionnumber" id="sec-107.1">107.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-107.1"
+              data-pdf-destination="subsection.107.1"
+              data-pdf-page="1151"
+              href="#sec-107.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8203"></a>
+
+          <p>
+            Matrices are a mechanism for aligning several so-called cell
+            pictures horizontally and vertically. The resulting alignment is
+            placed in a normal node and the command for creating matrices,
+            <span class="verb">\pgfmatrix</span>, takes options very similar to
+            the <span class="verb">\pgfnode</span> command.
+          </p>
+
+          <p>
+            In the following, the basic idea behind the alignment mechanism is
+            explained first. Then the command
+            <span class="verb">\pgfmatrix</span> is explained. At the end of the
+            section, additional ways of modifying the width of columns and rows
+            are discussed.
+          </p>
+          <h5 id="autosec-8204">
+            <span
+              ><span class="sectionnumber" id="sec-107.2">107.2</span> Cell
+              Pictures and Their Alignment</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-107.2"
+              data-pdf-destination="subsection.107.2"
+              data-pdf-page="1151"
+              href="#sec-107.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8204"></a>
+
+          <p>
+            A matrix consists of rows of <em>cells</em>. Cells are separated
+            using the special command
+            <span class="verb">\pgfmatrixnextcell</span>, rows are ended using
+            the command <span class="verb">\pgfmatrixendrow</span> (the command
+            <span class="verb">\\</span> is set up to mean the same as
+            <span class="verb">\pgfmatrixendrow</span> by default). Each cell
+            contains a <em>cell picture</em>, although cell pictures are not
+            complete pictures as they lack layers. However, each cell picture
+            has its own bounding box like a normal picture does. These bounding
+            boxes are important for the alignment as explained in the following.
+          </p>
+
+          <p>
+            Each cell picture will have an origin somewhere in the picture (or
+            even outside the picture). The position of these origins are
+            important for the alignment: On each row the origins will be on the
+            same horizontal line and for each column the origins will also be on
+            the same vertical line. These two requirements mean that the cell
+            pictures may need to be shifted around so that the origins wind up
+            on the same lines. The top of a row is given by the top of the cell
+            picture whose bounding box&rsquo;s maximum \(y\)-position is
+            largest. Similarly, the bottom of a row is given by the bottom of
+            the cell picture whose bounding box&rsquo;s minimum \(y\)-position
+            is the most negative. Similarly, the left end of a column is given
+            by the left end of the cell whose bounding box&rsquo;s
+            \(x\)-position is the most negative; and similarly for the right end
+            of a column.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3296"
+                  ><!--
+1 2 3 4
+
+
+
+
+5 6 7 8
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="127.418"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3296.png"
+                    style
+                    width="118.204"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >=<span class="textcolor" style="color: #008000">3mm</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >=<span class="textcolor" style="color: #008000">3mm</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!50</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  >\def</span
+                ><span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">#1</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                >[<span class="textcolor" style="color: #008000">black</span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                > {<span class="textcolor" style="color: #0000b2"
+                  >\tiny</span
+                > <span class="textcolor" style="color: #000000">#1</span
+                >};}<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrix"
+                    >\pgfmatrix</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >}{<span class="textcolor" style="color: #000000">center</span
+                >}{<span class="textcolor" style="color: #000000">mymatrix</span
+                >}<br />
+                <span class="spaces">    </span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="base-actions#pgf.back/pgfusepath"
+                    >\pgfusepath</a
+                  ></span
+                >{}}{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpointorigin"
+                    >\pgfpointorigin</a
+                  ></span
+                >}{}<br />
+                <span class="spaces">    </span>{<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,-3)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">1</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                    >\pgfmatrixnextcell</a
+                  ></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,0)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">2</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                    >\pgfmatrixnextcell</a
+                  ></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,-2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">3</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                    >\pgfmatrixnextcell</a
+                  ></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,3)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">4</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,0)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(4,1)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">5</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                    >\pgfmatrixnextcell</a
+                  ></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,-1)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">6</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                    >\pgfmatrixnextcell</a
+                  ></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,4)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">7</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                    >\pgfmatrixnextcell</a
+                  ></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                >;<span class="textcolor" style="color: #0000b2">\atorig</span
+                ><span class="textcolor" style="color: #000000">8</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">    </span>}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+          <h5 id="autosec-8207">
+            <span
+              ><span class="sectionnumber" id="sec-107.3">107.3</span> The
+              Matrix Command</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-107.3"
+              data-pdf-destination="subsection.107.3"
+              data-pdf-page="1151"
+              href="#sec-107.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8207"></a>
+
+          <p>All matrices are typeset using the following command:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrix"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrix</kbd></span
+                      >{<span class="angle">&langle;</span><i>shape</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>anchor</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>name</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>usage</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>shift</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>pre-code</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>matrix cells</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrix"
+                      href="#\pgfmatrix"
+                      id="\pgfmatrix"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command creates a node that contains a matrix. The name of
+                the node is <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span>, its shape is
+                <span class="angle">&langle;</span><i>shape</i
+                ><span class="angle">&rangle;</span> and the node is anchored at
+                <span class="angle">&langle;</span><i>anchor</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>matrix cell</i
+                ><span class="angle">&rangle;</span> parameter contains the
+                cells of the matrix. In each cell drawing commands may be given,
+                which create a so-called cell picture. For each cell picture a
+                bounding box is computed and the cells are aligned according to
+                the rules outlined in the previous section.
+              </p>
+              <p>
+                The resulting matrix is used as the
+                <span class="verb">text</span> box of the node. As for a normal
+                node, the <span class="angle">&langle;</span><i>usage</i
+                ><span class="angle">&rangle;</span> commands are applied, so
+                that the path(s) of the resulting node is (are) stroked or
+                filled or whatever.
+              </p>
+              <p>
+                <b>Specifying the cells and rows. </b> Even though this command
+                uses <span class="verb">\halign</span> internally, there are two
+                special rules for indicating cells:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> Cells in the same row
+                    must be separated using the macro
+                    <span class="verb">\pgfmatrixnextcell</span> rather than
+                    <span class="verb">&amp;</span>. Using
+                    <span class="verb">&amp;</span> will result in an error
+                    message.
+                  </p>
+                  <p>
+                    However, you can make <span class="verb">&amp;</span> an
+                    active character and have it expand to
+                    <span class="verb">\pgfmatrixnextcell</span>. This way, it
+                    will &ldquo;look&rdquo; as if
+                    <span class="verb">&amp;</span> is used.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> Rows are ended using the
+                    command <span class="verb">\pgfmatrixendrow</span>, but
+                    <span class="verb">\\</span> is set up to mean the same by
+                    default. However, some environments like
+                    <span class="verb">{minipage}</span> redefine
+                    <span class="verb">\\</span>, so it is good to have
+                    <span class="verb">\pgfmatrixendrow</span> as a
+                    &ldquo;fallback&rdquo;.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Every row
+                    <em>including the last row</em> must be ended using the
+                    command <span class="verb">\\</span> or
+                    <span class="verb">\pgfmatrixendrow</span>.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Both <span class="verb">\pgfmatrixnextcell</span> and
+                <span class="verb">\pgfmatrixendrow</span> (and, thus, also
+                <span class="verb">\\</span>) take an optional argument as
+                explained in the Section&nbsp;<a
+                  href="base-matrices#section-matrix-spacing"
+                  >107.4</a
+                >
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3297"
+                      ><!--
+a b
+c d
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="30.099"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3297.png"
+                        style
+                        width="26.571"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrix"
+                        >\pgfmatrix</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >center</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >mymatrix</span
+                    >}<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{}<br />
+                    <span class="spaces">    </span>{<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >a</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >b</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixendrow"
+                        >\pgfmatrixendrow</a
+                      ></span
+                    ><br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >c</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >d</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixendrow"
+                        >\pgfmatrixendrow</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <b>Anchoring matrices at nodes inside the matrix. </b> The
+                parameter <span class="angle">&langle;</span><i>shift</i
+                ><span class="angle">&rangle;</span> is an additional negative
+                shift for the node. Normally, such a shift could be given
+                beforehand (that is, the shift could be preapplied to the
+                current transformation matrix). However, when
+                <span class="angle">&langle;</span><i>shift</i
+                ><span class="angle">&rangle;</span> is evaluated, you can refer
+                to <em>temporary</em> positions of nodes inside the matrix. In
+                detail, the following happens: When the matrix has been typeset,
+                all nodes in the matrix temporarily get assigned their positions
+                in the matrix box. The origin of this coordinate system is at
+                the left baseline end of the matrix box, which corresponds to
+                the <span class="verb">text</span> anchor. The position
+                <span class="angle">&langle;</span><i>shift</i
+                ><span class="angle">&rangle;</span> is then interpreted inside
+                this coordinate system and then used for shifting.
+              </p>
+              <p>
+                This allows you to use the parameter
+                <span class="angle">&langle;</span><i>shift</i
+                ><span class="angle">&rangle;</span> in the following way: If
+                you use <span class="verb">text</span> as the
+                <span class="angle">&langle;</span><i>anchor</i
+                ><span class="angle">&rangle;</span> and specify
+                <span class="verb"
+                  >\pgfpointanchor{inner node}{some anchor}</span
+                >
+                for the parameter <span class="angle">&langle;</span><i>shift</i
+                ><span class="angle">&rangle;</span>, where
+                <span class="verb">inner node</span> is a node that is created
+                in the matrix, then the whole matrix will be shifted such that
+                <span class="verb">inner node.some anchor</span> lies at the
+                origin of the whole picture.
+              </p>
+              <p>
+                <b>Rotations and scaling. </b> The matrix node is never rotated
+                or scaled, because the current coordinate transformation matrix
+                is reset (except for the translational part) at the beginning of
+                <span class="verb">\pgfmatrix</span>. This is intentional and
+                will not change in the future. If you need to rotate or scale
+                the matrix, you must install an appropriate canvas
+                transformation yourself.
+              </p>
+              <p>
+                However, nodes and stuff inside the cell pictures can be rotated
+                and scaled normally.
+              </p>
+              <p>
+                <b>Callbacks. </b> At the beginning and at the end of each cell
+                the special macros
+                <span class="verb">\pgfmatrixbegincode</span>,
+                <span class="verb">\pgfmatrixendcode</span> and possibly
+                <span class="verb">\pgfmatrixemptycode</span> are called. The
+                effect is explained in Section&nbsp;<a
+                  href="base-matrices#section-matrix-callbacks"
+                  >107.5</a
+                >.
+              </p>
+              <p>
+                <b>Executing extra code. </b> The parameter
+                <span class="angle">&langle;</span><i>pre-code</i
+                ><span class="angle">&rangle;</span> is executed at the
+                beginning of the outermost
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-group enclosing the matrix node. It is inside this
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-group, but outside the matrix itself. It can be used for
+                different purposes:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> It can be used to
+                    simplify the next cell macro. For example, saying
+                    <span class="verb">\let\&amp;=\pgfmatrixnextcell</span>
+                    allows you to use <span class="verb">\&amp;</span> instead
+                    of <span class="verb">\pgfmatrixnextcell</span>. You can
+                    also set the catcode of <span class="verb">&amp;</span> to
+                    active.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> It can be used to issue
+                    an <span class="verb">\aftergroup</span> command. This
+                    allows you to regain control after the
+                    <span class="verb">\pgfmatrix</span> command. (If you do not
+                    know the <span class="verb">\aftergroup</span> command, you
+                    are probably blessed with a simple and happy life.)
+                  </p>
+                </li>
+              </ul>
+              <p>
+                <b>Special considerations concerning macro expansion. </b> As
+                said before, the matrix is typeset using
+                <span class="verb">\halign</span> internally. This command does
+                a lot of strange and magic things like expanding the first macro
+                of every cell in a most unusual manner. Here are some effects
+                you may wish to be aware of:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> It is not necessary
+                    to actually mention
+                    <span class="verb">\pgfmatrixnextcell</span> or
+                    <span class="verb">\pgfmatrixendrow</span> inside the
+                    <span class="angle">&langle;</span><i>matrix cells</i
+                    ><span class="angle">&rangle;</span>. It suffices that the
+                    macros inside <span class="angle">&langle;</span
+                    ><i>matrix cells</i
+                    ><span class="angle">&rangle;</span> expand to these macros
+                    sooner or later.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> In particular, you
+                    can define clever macros that insert columns and rows as
+                    needed for special effects.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+          <h5 id="autosec-8210">
+            <a id="section-matrix-spacing"></a
+            ><span
+              ><span class="sectionnumber" id="sec-107.4">107.4</span> Row and
+              Column Spacing</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-107.4"
+              data-pdf-destination="subsection.107.4"
+              data-pdf-page="1153"
+              href="#sec-107.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8210"></a>
+
+          <p>
+            It is possible to control the space between columns and rows rather
+            detailedly. Two commands are important for the row spacing and two
+            commands for the column spacing.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetmatrixcolumnsep"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetmatrixcolumnsep</kbd></span
+                      >{<span class="angle">&langle;</span><i>sep list</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetmatrixcolumnsep"
+                      href="#\pgfsetmatrixcolumnsep"
+                      id="\pgfsetmatrixcolumnsep"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro sets the default separation list for columns. The
+                details of the format of this list are explained in the
+                description of the next command.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixnextcell"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixnextcell</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span
+                        ><i>additional sep list</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixnextcell"
+                      href="#\pgfmatrixnextcell"
+                      id="\pgfmatrixnextcell"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command has two purposes: First, it is used to separate
+                cells. Second, by providing the optional argument
+                <span class="angle">&langle;</span><i>additional sep list</i
+                ><span class="angle">&rangle;</span> you can modify the spacing
+                between the columns that are separated by this command.
+              </p>
+              <p>
+                The optional <span class="angle">&langle;</span
+                ><i>additional sep list</i
+                ><span class="angle">&rangle;</span> may only be provided when
+                the <span class="verb">\pgfmatrixnextcell</span> command starts
+                a new column. Normally, this will only be the case in the first
+                row, but sometimes a later row has more elements than the first
+                row. In this case, the
+                <span class="verb">\pgfmatrixnextcell</span> commands that start
+                the new columns in the later row may also have the optional
+                argument. Once a column has been started, subsequent uses of
+                this optional argument for the column have no effect.
+              </p>
+              <p>
+                To determine the space between the two columns that are
+                separated by <span class="verb">\pgfmatrixnextcell</span>, the
+                following algorithm is executed:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> Both the default
+                    separation list (as set up by
+                    <span class="verb">\pgfsetmatrixcolumnsep</span>) and the
+                    <span class="angle">&langle;</span><i>additional sep list</i
+                    ><span class="angle">&rangle;</span> are processed, in this
+                    order. If the <span class="angle">&langle;</span
+                    ><i>additional sep list</i
+                    ><span class="angle">&rangle;</span> argument is missing,
+                    only the default separation list is processed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> Both lists may contain
+                    dimensions, separated by commas, as well as occurrences of
+                    the keywords <span class="verb">between origins</span> and
+                    <span class="verb">between borders</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> All dimensions occurring
+                    in either list are added together to arrive at a dimension
+                    \(d\).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> The last occurrence of
+                    either of the keywords is located. If neither keyword is
+                    present, we proceed as if
+                    <span class="verb">between borders</span> were present.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                At the end of the algorithm, a dimension \(d\) has been computed
+                and one of the two <em>modes</em>
+                <span class="verb">between borders</span> and
+                <span class="verb">between origins</span> has been determined.
+                Depending on which mode has been determined, the following
+                happens:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> For the
+                    <span class="verb">between borders</span> mode, an
+                    additional horizontal space of \(d\) is added between the
+                    two columns. Note that \(d\) may be negative.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> For the
+                    <span class="verb">between origins</span> mode, the spacing
+                    between the two columns is computed differently: Recall that
+                    the origins of the cell pictures in both pictures lie on two
+                    vertical lines. The spacing between the two columns is set
+                    up such that the horizontal distance between these two lines
+                    is exactly \(d\).
+                  </p>
+                  <p>
+                    This mode may only be used between columns
+                    <em>already introduced in the first row</em>.
+                  </p>
+                </li>
+              </ul>
+              <p>All of the above rules boil down to the following effects:</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> A default spacing
+                    between columns should be set up using
+                    <span class="verb">\pgfsetmatrixcolumnsep</span>. For
+                    example, you might say
+                    <span class="verb">\pgfsetmatrixcolumnsep{5pt}</span> to
+                    have columns spaced apart by <span class="verb">5pt</span>.
+                    You could say
+                  </p>
+                  <pre class="verbatim">
+\pgfsetmatrixcolumnsep{1cm,between origins}
+</pre
+                  >
+                  <p>
+                    to specify that horizontal space between the origins of cell
+                    pictures in adjacent columns should be 1cm by default
+                    &ndash; regardless of the actual size of the cell pictures.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> You can now use the
+                    optional argument of
+                    <span class="verb">\pgfmatrixnextcell</span> to locally
+                    overrule the spacing between two columns. By saying
+                    <span class="verb">\pgfmatrixnextcell[5pt]</span> you
+                    <em>add</em> 5pt to the space between of the two columns,
+                    regardless of the mode.
+                  </p>
+                  <p>
+                    You can also (locally) change the spacing mode for these two
+                    columns. For example, even if the normal spacing mode is
+                    <span class="verb">between origins</span>, you can say
+                  </p>
+                  <pre class="verbatim">
+\pgfmatrixnextcell[5pt,between borders]
+</pre
+                  >
+                  <p>
+                    to locally change the mode for these columns to
+                    <span class="verb">between borders</span>.
+                  </p>
+                </li>
+              </ul>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3298"
+                      ><!--
+8 1 6
+3 5 7
+4 9 2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="57.644"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3298.png"
+                        style
+                        width="65.077"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfsetmatrixcolumnsep"
+                        >\pgfsetmatrixcolumnsep</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrix"
+                        >\pgfmatrix</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >center</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >mymatrix</span
+                    >}<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #0000b2">\let</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;=</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >8</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span
+                    >[<span class="textcolor" style="color: #008000">2mm</span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span
+                    >[<span class="textcolor" style="color: #008000">-1mm</span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >6</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >3</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >{<span class="textcolor" style="color: #000000">5</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >7</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >4</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >{<span class="textcolor" style="color: #000000">9</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >2</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3299"
+                      ><!--
+     11mm
+8 1 6
+3 5 7
+4 9 2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="62.199"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3299.png"
+                        style
+                        width="89.628"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfsetmatrixcolumnsep"
+                        >\pgfsetmatrixcolumnsep</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrix"
+                        >\pgfmatrix</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >center</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >mymatrix</span
+                    >}<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #0000b2">\let</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;=</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >8</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span
+                    >[<span class="textcolor" style="color: #008000">2mm</span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="textcolor" style="color: #800080">(a)</span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span
+                    >[<span class="textcolor" style="color: #008000">1cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      >between origins</span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="textcolor" style="color: #800080">(b)</span
+                    >{<span class="textcolor" style="color: #000000">6</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >3</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >5</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">                     </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >7</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >4</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >9</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">                     </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >2</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.&lt;-&gt;">&lt;-&gt;</a></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=] <span class="textcolor" style="color: #800080"
+                      >(a.center)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(b.center)</span
+                    ><br />
+                    <span class="spaces">        </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.above">above</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.midway">midway</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >11mm</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3300"
+                      ><!--
+10mm 10mm
+8 1 6
+3 5 7
+4 9 2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="62.344"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3300.png"
+                        style
+                        width="112.305"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfsetmatrixcolumnsep"
+                        >\pgfsetmatrixcolumnsep</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >,<span class="textcolor" style="color: #000000"
+                      >between</span
+                    >
+                    <span class="textcolor" style="color: #000000">origins</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrix"
+                        >\pgfmatrix</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >center</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >mymatrix</span
+                    >}<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #0000b2">\let</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;=</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(a)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >8</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(b)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >1</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span
+                    >[<span class="textcolor" style="color: #008000"
+                      >between borders</span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(c)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >6</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >3</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >5</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">                 </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >7</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >4</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >9</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">                 </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >2</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.&lt;-&gt;">&lt;-&gt;</a></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(a.center)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(b.center)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.above">above</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.midway">midway</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >10mm</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.&lt;-&gt;">&lt;-&gt;</a></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(b.east)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(c.west)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.above">above</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.midway">midway</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >10mm</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>
+            The mechanism for the between-row-spacing is the same, only the
+            commands are called differently.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetmatrixrowsep"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetmatrixrowsep</kbd></span
+                      >{<span class="angle">&langle;</span><i>sep list</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetmatrixrowsep"
+                      href="#\pgfsetmatrixrowsep"
+                      id="\pgfsetmatrixrowsep"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>This macro sets the default separation list for rows.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixendrow"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixendrow</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span
+                        ><i>additional sep list</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixendrow"
+                      href="#\pgfmatrixendrow"
+                      id="\pgfmatrixendrow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command ends a line. The optional
+                <span class="angle">&langle;</span><i>additional sep list</i
+                ><span class="angle">&rangle;</span> is used to determine the
+                spacing between the row being ended and the next row. The modes
+                and the computation of \(d\) is done in the same way as for
+                columns. For the last row the optional argument has no effect.
+              </p>
+              <p>
+                Inside matrices (and only there) the command
+                <span class="verb">\\</span> is set up to mean the same as this
+                command.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8219">
+            <a id="section-matrix-callbacks"></a
+            ><span
+              ><span class="sectionnumber" id="sec-107.5">107.5</span>
+              Callbacks</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-107.5"
+              data-pdf-destination="subsection.107.5"
+              data-pdf-page="1154"
+              href="#sec-107.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8219"></a>
+
+          <p>
+            There are three macros that get called at the beginning and end of
+            cells. By redefining these macros, which are empty by default, you
+            can change the appearance of cells in a very general manner.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixemptycode"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixemptycode</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixemptycode"
+                      href="#\pgfmatrixemptycode"
+                      id="\pgfmatrixemptycode"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro is executed for empty cells. This means that
+                <span class="textsc">pgf</span> uses some macro magic to
+                determine whether a cell is empty (it immediately ends with
+                <span class="verb">\pgfmatrixemptycode</span> or
+                <span class="verb">\pgfmatrixendrow</span>) and, if so, put this
+                macro inside the cell.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3301"
+                      ><!--
+  a empty b
+empty c d empty
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="33.723"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3301.png"
+                        style
+                        width="162.290"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\def</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixemptycode"
+                        >\pgfmatrixemptycode</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >{<span class="textcolor" style="color: #000000">empty</span
+                    >};}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrix"
+                        >\pgfmatrix</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >center</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >mymatrix</span
+                    >}<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #0000b2">\let</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;=</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >a</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">          </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >b</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">               </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >{<span class="textcolor" style="color: #000000">c</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      >d</span
+                    >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                As can be seen, the macro is not executed for empty cells at the
+                end of row when columns are added only later on.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixbegincode"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixbegincode</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixbegincode"
+                      href="#\pgfmatrixbegincode"
+                      id="\pgfmatrixbegincode"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro is executed at the beginning of non-empty cells.
+                Correspondingly, <span class="verb">\pgfmatrixendcode</span> is
+                added at the end of every non-empty cell.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3302"
+                      ><!--
+a b c
+d e
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="40.037"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3302.png"
+                        style
+                        width="54.803"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\def</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixbegincode"
+                        >\pgfmatrixbegincode</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<span class="textcolor" style="color: #0000b2"
+                      >\bgroup</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\def</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixendcode"
+                        >\pgfmatrixendcode</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\egroup</span
+                    >;}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrix"
+                        >\pgfmatrix</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >center</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >mymatrix</span
+                    >}<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #0000b2">\let</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;=</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-matrices#pgf.back/pgfmatrixnextcell"
+                        >\pgfmatrixnextcell</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">b</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">c</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >d</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">e</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Note that between
+                <span class="verb">\pgfmatrixbegincode</span> and
+                <span class="verb">\pgfmatrixendcode</span> there will
+                <em>not</em> only be the contents of the cell. Rather,
+                <span class="textsc">pgf</span> will add some (invisible)
+                commands for book-keeping purposes that involve
+                <span class="verb">\let</span> and
+                <span class="verb">\gdef</span>. In particular, it is not a good
+                idea to have <span class="verb">\pgfmatrixbegincode</span> end
+                with <span class="verb">\csname</span> and
+                <span class="verb">\pgfmatrixendcode</span> start with
+                <span class="verb">\endcsname</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixendcode"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixendcode</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixendcode"
+                      href="#\pgfmatrixendcode"
+                      id="\pgfmatrixendcode"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>See the explanation above.</p>
+            </ul>
+          </div>
+
+          <p>
+            The following two counters allow you to access the current row and
+            current column in a callback:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixcurrentrow"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixcurrentrow</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixcurrentrow"
+                      href="#\pgfmatrixcurrentrow"
+                      id="\pgfmatrixcurrentrow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This counter stores the current row of the current cell of the
+                matrix. Do not even think about changing this counter.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmatrixcurrentcolumn"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmatrixcurrentcolumn</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmatrixcurrentcolumn"
+                      href="#\pgfmatrixcurrentcolumn"
+                      id="\pgfmatrixcurrentcolumn"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This counter stores the current column of the current cell of
+                the matrix.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

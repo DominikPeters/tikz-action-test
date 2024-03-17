@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Extended Color Support - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Utilities",
+            "item": "https://tikz.dev/utilities"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Extended Color Support",
+            "item": "https://tikz.dev/xxcolor"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/xxcolor" rel="canonical" />
+    <meta content="https://tikz.dev/xxcolor" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Extended Color Support - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7635"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfkeys">Key Management</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgffor"
+                >Repeating Things: The Foreach Statement</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfcalendar"
+                >Date and Calendar Utility Macros</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pages">Page Management</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="xxcolor">Extended Color Support</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="module-parser">Parser Module</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Utilities</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7636">
+            <span
+              ><span class="sectionnumber" id="sec-91">91</span> Extended Color
+              Support</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.91"
+              data-pdf-page="1022"
+              href="#sec-91"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7636"></a>
+          <a id="pgfmanual-autofile-98"></a>
+
+          <p>
+            This section documents the package <kbd>xxcolor</kbd>, which is
+            currently distributed as part of <span class="textsc">pgf</span>.
+            This package extends the <kbd>xcolor</kbd> package, written by Uwe
+            Kern, which in turn extends the <kbd>color</kbd> package. I hope
+            that the commands in <kbd>xxcolor</kbd> will some day migrate to
+            <kbd>xcolor</kbd>, such that this package becomes superfluous.
+          </p>
+
+          <p>
+            The main aim of the <kbd>xxcolor</kbd> package is to provide an
+            environment inside which all colors are &ldquo;washed out&rdquo; or
+            &ldquo;dimmed&rdquo;. This is useful in numerous situations and must
+            typically be achieved in a roundabout manner if such an environment
+            is not available.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.colormixin"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\begin{<span class="textcolor" style="color: #bf0000"
+                          >colormixin</span
+                        >}</kbd
+                      >{<span class="angle">&langle;</span
+                      ><i>mix-in specification</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.colormixin"
+                      href="#pgf.colormixin"
+                      id="pgf.colormixin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\end{<span class="textcolor" style="color: #bf0000"
+                          >colormixin</span
+                        >}</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The mix-in specification is applied to all colors inside the
+                environment. At the beginning of the environment, the mix-in is
+                applied to the current color, i.e., the color that was in effect
+                before the environment started. A mix-in specification is a
+                number between 0 and 100 followed by an exclamation mark and a
+                color name. When a <span class="verb">\color</span> command is
+                encountered inside a mix-in environment, the number states what
+                percentage of the desired color should be used. The rest is
+                &ldquo;filled up&rdquo; with the color given in the mix-in
+                specification. Thus, a mix-in specification like
+                <span class="verb">90!blue</span> will mix in 10% of blue into
+                everything, whereas <span class="verb">25!white</span> will make
+                everything nearly white.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3117"
+                      ><!--
+Red
+text,washed-out
+red text,
+washed-out blue
+text, dark
+washed-out blue
+text, dark
+washed-out green
+text, back to
+washed-out blue
+text,and back to
+red.
+--><img
+                        alt="(image)"
+                        class="lateximage"
+                        height="239.906"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3117.png"
+                        style
+                        width="118.754"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {xxcolor} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >minipage</span
+                    >}{<span class="textcolor" style="color: #000000">3</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\raggedright</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2">\color</span
+                    >{<span class="textcolor" style="color: #000000">red</span
+                    >}<span class="textcolor" style="color: #000000">Red</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >25!white</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >washed-out</span
+                    >
+                    <span class="textcolor" style="color: #000000">red</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">blue</span
+                    >} <span class="textcolor" style="color: #000000"
+                      >washed-out</span
+                    >
+                    <span class="textcolor" style="color: #000000">blue</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >25!black</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >dark</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >washed-out</span
+                    >
+                    <span class="textcolor" style="color: #000000">blue</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">green</span
+                    >} <span class="textcolor" style="color: #000000"
+                      >dark</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >washed-out</span
+                    >
+                    <span class="textcolor" style="color: #000000">green</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="library-turtle#pgf.back">back</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >washed-out</span
+                    >
+                    <span class="textcolor" style="color: #000000">blue</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.and">and</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-turtle#pgf.back">back</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">red</span
+                    >.<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >minipage</span
+                    >}<span class="example-code-comment">%</span><br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>
+            Note that the environment only changes colors that have been
+            installed using the standard
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            <span class="verb">\color</span> command. In particular, the colors
+            in images are not changed. There is, however, some support offered
+            by the commands <span class="verb">\pgfuseimage</span> and
+            <span class="verb">\pgfuseshading</span>. If the first command is
+            invoked inside a <span class="verb">colormixin</span> environment
+            with the parameter, say, <span class="verb">50!black</span> on an
+            image with the name <span class="verb">foo</span>, the command will
+            first check whether there is also a defined image with the name
+            <span class="verb">foo.!50!black</span>. If so, this image is used
+            instead. This allows you to provide a different image for this case.
+            If you nest <span class="verb">colormixin</span> environments, the
+            different mix-ins are all appended. For example, inside the inner
+            environment of the above example,
+            <span class="verb">\pgfuseimage{foo}</span> would first check
+            whether there exists an image named
+            <span class="verb">foo.!25!white!25!black</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/colorcurrentmixin"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\colorcurrentmixin</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/colorcurrentmixin"
+                      href="#\colorcurrentmixin"
+                      id="\colorcurrentmixin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Expands to the current accumulated mix-in. Each nesting of a
+                <span class="verb">colormixin</span> adds a mix-in to this list.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3118"
+                      ><!--
+!75!white should be “!75!white”
+!75!black!75!white should be “!75!black!75!white”
+!50!white!75!black!75!white should be “!50!white!75!black!75!white”
+--><img
+                        alt="(image)"
+                        class="lateximage"
+                        height="53.619"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3118.png"
+                        style
+                        width="453.650"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usepackage {xxcolor} \usepackage {calc} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >minipage</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      >\linewidth-</span
+                    ><span class="textcolor" style="color: #000000">6pt</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\raggedright</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >75!white</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.back/colorcurrentmixin"
+                        >\colorcurrentmixin</a
+                      ></span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    > <span class="textcolor" style="color: #000000"
+                      >should</span
+                    >
+                    <span class="textcolor" style="color: #000000">be</span>
+                    <span class="textcolor" style="color: #000000"
+                      >``!75!white''</span
+                    ><span class="textcolor" style="color: #0000b2">\par</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >75!black</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="xxcolor#pgf.back/colorcurrentmixin"
+                        >\colorcurrentmixin</a
+                      ></span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    > <span class="textcolor" style="color: #000000"
+                      >should</span
+                    >
+                    <span class="textcolor" style="color: #000000">be</span>
+                    <span class="textcolor" style="color: #000000"
+                      >``!75!black!75!white''</span
+                    ><span class="textcolor" style="color: #0000b2">\par</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >50!white</span
+                    >}<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="xxcolor#pgf.back/colorcurrentmixin"
+                        >\colorcurrentmixin</a
+                      ></span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    > <span class="textcolor" style="color: #000000"
+                      >should</span
+                    >
+                    <span class="textcolor" style="color: #000000">be</span>
+                    <span class="textcolor" style="color: #000000"
+                      >``!50!white!75!black!75!white''</span
+                    ><span class="textcolor" style="color: #0000b2">\par</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="xxcolor#pgf.colormixin">colormixin</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >minipage</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

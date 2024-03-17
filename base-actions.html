@@ -1,0 +1,3242 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Using Paths - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Using Paths",
+            "item": "https://tikz.dev/base-actions"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-actions" rel="canonical" />
+    <meta content="https://tikz.dev/base-actions" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Using Paths - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8078"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-104.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-104.2">Stroking a Path</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.2.1"
+                >Graphic Parameter: Line Width</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.2.2"
+                >Graphic Parameter: Caps and Joins</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.2.3"
+                >Graphic Parameter: Dashing</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.2.4"
+                >Graphic Parameter: Stroke Color</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.2.5"
+                >Graphic Parameter: Stroke Opacity</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.2.6">Inner Lines</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-104.3"
+                >Arrow Tips on a Path</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-104.4">Filling a Path</a></p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.4.1"
+                >Graphic Parameter: Interior Rule</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.4.2"
+                >Graphic Parameter: Filling Color</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-104.4.3"
+                >Graphic Parameter: Fill Opacity</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-104.5">Clipping a Path</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-104.6"
+                >Using a Path as a Bounding Box</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8079">
+            <span
+              ><span class="sectionnumber" id="sec-104">104</span> Using
+              Paths</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.104"
+              data-pdf-page="1120"
+              href="#sec-104"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8079"></a>
+          <a id="pgfmanual-autofile-113"></a>
+          <h5 id="autosec-8080">
+            <span
+              ><span class="sectionnumber" id="sec-104.1">104.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.1"
+              data-pdf-destination="subsection.104.1"
+              data-pdf-page="1120"
+              href="#sec-104.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8080"></a>
+
+          <p>
+            Once a path has been constructed, it can be <em>used</em> in
+            different ways. For example, you can draw the path or fill it or use
+            it for clipping.
+          </p>
+
+          <p>
+            Numerous graph parameters influence how a path will be rendered. For
+            example, when you draw a path, the line width is important as well
+            as the dashing pattern. The options that govern how paths are
+            rendered can all be set with commands starting with
+            <span class="verb">\pgfset</span>.
+            <em
+              >All options that influence how a path is rendered always
+              influence the complete path.</em
+            >
+            Thus, it is not possible to draw part of a path using, say, a red
+            color and drawing another part using a green color. To achieve such
+            an effect, you must use two paths.
+          </p>
+
+          <p>In detail, paths can be used in the following ways:</p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> You can <em>stroke</em> (also
+                known as <em>draw</em>) a path.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> You can add
+                <em>arrow tips</em> to a path.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> You can <em>fill</em> a path
+                with a uniform color.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> You can
+                <em>clip</em> subsequent renderings against the path.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> You can <em>shade</em> a
+                path.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span> You can
+                <em>use the path as bounding box</em> for the whole picture.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            You can also perform any combination of the above, though it makes
+            no sense to fill and shade a path at the same time.
+          </p>
+
+          <p>
+            To perform (a combination of) the first four actions, you can use
+            the following command:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfusepath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfusepath</kbd></span
+                      >{<span class="angle">&langle;</span><i>actions</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfusepath"
+                      href="#\pgfusepath"
+                      id="\pgfusepath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Applies the given <span class="angle">&langle;</span
+                ><i>actions</i><span class="angle">&rangle;</span> to the
+                current path. Afterwards, the current path is (globally) empty.
+                The following actions are possible:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">fill</span></span
+                    >
+                    fills the path. See Section&nbsp;<a
+                      href="base-actions#section-fill"
+                      >104.4</a
+                    >
+                    for further details.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-3261"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="40.491"
+                            loading="lazy"
+                            src="pgfmanual-images/image-3261.png"
+                            style
+                            width="40.475"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathmoveto"
+                            >\pgfpathmoveto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpointorigin"
+                            >\pgfpointorigin</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathlineto"
+                            >\pgfpathlineto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathlineto"
+                            >\pgfpathlineto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0cm</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-actions#pgf.back/pgfusepath"
+                            >\pgfusepath</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          ><a href="tikz-actions#pgf.fill">fill</a></span
+                        >}<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">stroke</span></span
+                    >
+                    strokes the path. See Section&nbsp;<a
+                      href="base-actions#section-stroke"
+                      >104.2</a
+                    >
+                    for further details.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-3262"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="41.307"
+                            loading="lazy"
+                            src="pgfmanual-images/image-3262.png"
+                            style
+                            width="40.939"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathmoveto"
+                            >\pgfpathmoveto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpointorigin"
+                            >\pgfpointorigin</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathlineto"
+                            >\pgfpathlineto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathlineto"
+                            >\pgfpathlineto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0cm</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-actions#pgf.back/pgfusepath"
+                            >\pgfusepath</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >stroke</span
+                        >}<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">draw</span></span
+                    >
+                    has the same effect as <span class="verb">stroke</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">clip</span></span
+                    >
+                    clips all subsequent drawings against the path. Always
+                    suppresses arrow tips. See Section&nbsp;<a
+                      href="base-actions#section-clip"
+                      >104.5</a
+                    >
+                    for further details.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-3263"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="41.307"
+                            loading="lazy"
+                            src="pgfmanual-images/image-3263.png"
+                            style
+                            width="40.939"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathmoveto"
+                            >\pgfpathmoveto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpointorigin"
+                            >\pgfpointorigin</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathlineto"
+                            >\pgfpathlineto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathlineto"
+                            >\pgfpathlineto</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0cm</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-actions#pgf.back/pgfusepath"
+                            >\pgfusepath</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >stroke</span
+                        >,<span class="textcolor" style="color: #000000"
+                          ><a href="tikz-actions#pgf.clip">clip</a></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathcircle"
+                            >\pgfpathcircle</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >1cm</span
+                        >}}{<span class="textcolor" style="color: #000000"
+                          >0</span
+                        >.<span class="textcolor" style="color: #000000"
+                          >5cm</span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-actions#pgf.back/pgfusepath"
+                            >\pgfusepath</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          ><a href="tikz-actions#pgf.fill">fill</a></span
+                        >}<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">discard</span></span
+                    >
+                    discards the path, that is, it is not used at all. Giving
+                    this option (alone) has the same effect as giving an empty
+                    options list.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                When more than one of the first three actions are given, they
+                are applied in the above ordering, regardless of their ordering
+                in <span class="angle">&langle;</span><i>actions</i
+                ><span class="angle">&rangle;</span>. Thus,
+                <span class="verb">{stroke,fill}</span> and
+                <span class="verb">{fill,stroke}</span> have the same effect.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            To shade a path, use the
+            <span class="verb">\pgfshadepath</span> command, which is explained
+            in Section&nbsp;<a href="base-shadings#section-shadings">114</a>.
+          </p>
+          <h5 id="autosec-8087">
+            <a id="section-stroke"></a
+            ><span
+              ><span class="sectionnumber" id="sec-104.2">104.2</span> Stroking
+              a Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2"
+              data-pdf-destination="subsection.104.2"
+              data-pdf-page="1121"
+              href="#sec-104.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8087"></a>
+
+          <p>
+            When you use <span class="verb">\pgfusepath{stroke}</span> to stroke
+            a path, several graphic parameters influence how the path is drawn.
+            The commands for setting these parameters are explained in the
+            following.
+          </p>
+
+          <p>
+            Note that all graphic parameters apply to the path as a whole, never
+            only to a part of it.
+          </p>
+
+          <p>
+            All graphic parameters are local to the current
+            <span class="verb">{pgfscope}</span>, but they persists past
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            groups, <em>except</em> for the interior rule (even-odd or nonzero)
+            and the arrow tip kinds. The latter graphic parameters only persist
+            till the end of the current
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            group, but this may change in the future, so do not count on this.
+          </p>
+          <h6 id="autosec-8088">
+            <span
+              ><span class="sectionnumber" id="sec-104.2.1">104.2.1</span>
+              Graphic Parameter: Line Width</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2.1"
+              data-pdf-destination="subsubsection.104.2.1"
+              data-pdf-page="1121"
+              href="#sec-104.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8088"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetlinewidth"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetlinewidth</kbd></span
+                      >{<span class="angle">&langle;</span><i>line width</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetlinewidth"
+                      href="#\pgfsetlinewidth"
+                      id="\pgfsetlinewidth"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command sets the line width for subsequent strokes (in the
+                current <span class="verb">pgfscope</span>). The line width is
+                given as a normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                dimension like <span class="verb">0.4pt</span> or
+                <span class="verb">1mm</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3264"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="27.267"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3264.png"
+                        style
+                        width="78.290"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">0mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">0mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgflinewidth"
+                        >\pgflinewidth</a
+                      ></span
+                    >} <span class="example-code-comment"
+                      >% double in size</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">5mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">5mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgflinewidth"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgflinewidth</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgflinewidth"
+                      href="#\pgflinewidth"
+                      id="\pgflinewidth"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                You can access the current line width via the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                dimension <span class="verb">\pgflinewidth</span>. It will be
+                set to the correct line width, that is, even when a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group closed, the value will be correct since it is set
+                globally, but when a
+                <span class="verb">{pgfscope}</span> closes, the value is set to
+                the correct value it had before the scope.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-8091">
+            <span
+              ><span class="sectionnumber" id="sec-104.2.2">104.2.2</span>
+              Graphic Parameter: Caps and Joins</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2.2"
+              data-pdf-destination="subsubsection.104.2.2"
+              data-pdf-page="1121"
+              href="#sec-104.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8091"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetbuttcap"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetbuttcap</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetbuttcap"
+                      href="#\pgfsetbuttcap"
+                      id="\pgfsetbuttcap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the line cap to a butt cap. See Section&nbsp;<a
+                  href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >
+                for an explanation of what this is.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetroundcap"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetroundcap</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetroundcap"
+                      href="#\pgfsetroundcap"
+                      id="\pgfsetroundcap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the line cap to a round cap. See again Section&nbsp;<a
+                  href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetrectcap"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetrectcap</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetrectcap"
+                      href="#\pgfsetrectcap"
+                      id="\pgfsetrectcap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the line cap to a square cap. See again Section&nbsp;<a
+                  href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetroundjoin"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetroundjoin</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetroundjoin"
+                      href="#\pgfsetroundjoin"
+                      id="\pgfsetroundjoin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the line join to a round join. See again Section&nbsp;<a
+                  href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetbeveljoin"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetbeveljoin</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetbeveljoin"
+                      href="#\pgfsetbeveljoin"
+                      id="\pgfsetbeveljoin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the line join to a bevel join. See again Section&nbsp;<a
+                  href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetmiterjoin"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetmiterjoin</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetmiterjoin"
+                      href="#\pgfsetmiterjoin"
+                      id="\pgfsetmiterjoin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the line join to a miter join. See again Section&nbsp;<a
+                  href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetmiterlimit"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetmiterlimit</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>miter limit factor</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetmiterlimit"
+                      href="#\pgfsetmiterlimit"
+                      id="\pgfsetmiterlimit"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the miter limit to <span class="angle">&langle;</span
+                ><i>miter limit factor</i><span class="angle">&rangle;</span>.
+                See again Section&nbsp;<a href="tikz-actions#section-cap-joins"
+                  >15.3.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-8092">
+            <span
+              ><span class="sectionnumber" id="sec-104.2.3">104.2.3</span>
+              Graphic Parameter: Dashing</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2.3"
+              data-pdf-destination="subsubsection.104.2.3"
+              data-pdf-page="1121"
+              href="#sec-104.2.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8092"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetdash"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetdash</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>list of even length of dimensions</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>phase</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetdash"
+                      href="#\pgfsetdash"
+                      id="\pgfsetdash"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the dashing of a line. The first entry in the list
+                specifies the length of the first solid part of the list. The
+                second entry specifies the length of the following gap. Then
+                comes the length of the second solid part, following by the
+                length of the second gap, and so on. The
+                <span class="angle">&langle;</span><i>phase</i
+                ><span class="angle">&rangle;</span> specifies where the first
+                solid part starts relative to the beginning of the line.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3265"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="10.779"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3265.png"
+                        style
+                        width="70.722"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetdash"
+                        >\pgfsetdash</a
+                      ></span
+                    >{{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">2cm</span
+                    >}}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">0mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">0mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetdash"
+                        >\pgfsetdash</a
+                      ></span
+                    >{{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">2cm</span
+                    >}}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">1cm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">1mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetdash"
+                        >\pgfsetdash</a
+                      ></span
+                    >{{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">2cm</span
+                    >}}{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">2cm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">2mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">2mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Use <span class="verb">\pgfsetdash{}{0pt}</span> to get a solid
+                dashing.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-8095">
+            <span
+              ><span class="sectionnumber" id="sec-104.2.4">104.2.4</span>
+              Graphic Parameter: Stroke Color</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2.4"
+              data-pdf-destination="subsubsection.104.2.4"
+              data-pdf-page="1122"
+              href="#sec-104.2.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8095"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetstrokecolor"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetstrokecolor</kbd></span
+                      >{<span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetstrokecolor"
+                      href="#\pgfsetstrokecolor"
+                      id="\pgfsetstrokecolor"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the color used for stroking lines to
+                <span class="angle">&langle;</span><i>color</i
+                ><span class="angle">&rangle;</span>, where
+                <span class="angle">&langle;</span><i>color</i
+                ><span class="angle">&rangle;</span> is a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >
+                color like <span class="verb">red</span> or
+                <span class="verb">black!20!red</span>. Unlike the
+                <span class="verb">\color</span> command, the effect of this
+                command lasts till the end of the current
+                <span class="verb">{pgfscope}</span> and not till the end of the
+                current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group.
+              </p>
+              <p>
+                The color used for stroking may be different from the color used
+                for filling. However, a <span class="verb">\color</span> command
+                will always &ldquo;immediately override&rdquo; any special
+                settings for the stroke and fill colors.
+              </p>
+              <p>
+                In plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, this command will also work, but the problem of
+                <em>defining</em> a color arises. After all, plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                does not provide
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >
+                colors. For this reason,
+                <span class="textsc">pgf</span> implements a minimalistic
+                &ldquo;emulation&rdquo; of the
+                <span class="verb">\definecolor</span>,
+                <span class="verb">\colorlet</span>, and
+                <span class="verb">\color</span> commands. Only gray-scale and
+                rgb colors are supported. For most cases this turns out to be
+                enough.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3266"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="26.715"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3266.png"
+                        style
+                        width="102.300"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">red</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">3mm</span
+                    >} <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetstrokecolor"
+                        >\pgfsetstrokecolor</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">black</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">3mm</span
+                    >} <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">red</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">3mm</span
+                    >} <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetcolor"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetcolor</kbd></span
+                      >{<span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetcolor"
+                      href="#\pgfsetcolor"
+                      id="\pgfsetcolor"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets both the stroke and fill color. The difference to the
+                normal <span class="verb">\color</span> command is that the
+                effect lasts till the end of the current
+                <span class="verb">{pgfscope}</span>, not only till the end of
+                the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-8098">
+            <span
+              ><span class="sectionnumber" id="sec-104.2.5">104.2.5</span>
+              Graphic Parameter: Stroke Opacity</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2.5"
+              data-pdf-destination="subsubsection.104.2.5"
+              data-pdf-page="1122"
+              href="#sec-104.2.5"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8098"></a>
+
+          <p>
+            You can set the stroke opacity using
+            <span class="verb">\pgfsetstrokeopacity</span>. This command is
+            described in Section&nbsp;<a
+              href="base-transparency#section-transparency"
+              >115</a
+            >.
+          </p>
+          <h6 id="autosec-8099">
+            <span
+              ><span class="sectionnumber" id="sec-104.2.6">104.2.6</span> Inner
+              Lines</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.2.6"
+              data-pdf-destination="subsubsection.104.2.6"
+              data-pdf-page="1122"
+              href="#sec-104.2.6"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8099"></a>
+
+          <p>
+            When a path is stroked, it is possible to request that it is stroked
+            twice, the second time with a different line width and a different
+            color. This is a useful effect for creating &ldquo;double&rdquo;
+            lines, for instance by setting the line width to 2pt and stroking a
+            black line and then setting the inner line width to 1pt and stroking
+            a white line on the same path as the original path. This results in
+            what looks like two lines, each of thickness 0.5pt, spaced 1pt
+            apart.
+          </p>
+
+          <p>
+            You may wonder why there is direct support for this &ldquo;double
+            stroking&rdquo; in the basic layer. After all, this effect is easy
+            to achieve &ldquo;by hand&rdquo;. The main reason is that arrow tips
+            must be treated in a special manner when such &ldquo;double
+            lines&rdquo; are present. First, the order of actions is important:
+            First, the (thick) main line should be stroked, then the (thin)
+            inner line, and only then should the arrow tip be drawn. Second, the
+            way an arrow tip looks typically depends strongly on the width of
+            the inner line, so the arrow tip code, which is part of the basic
+            layer, needs access to the inner line thickness.
+          </p>
+
+          <p>Two commands are used to set the inner line width and color.</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetinnerlinewidth"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetinnerlinewidth</kbd></span
+                      >{<span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetinnerlinewidth"
+                      href="#\pgfsetinnerlinewidth"
+                      id="\pgfsetinnerlinewidth"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command sets the width of the inner line. Whenever a path
+                is stroked (and only then), it will be stroked normally and,
+                afterward, it is stroked once more with the color set to the
+                inner line color and the line width set to
+                <span class="angle">&langle;</span><i>dimension</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                In case arrow tips are added to a path, the path is first
+                stroked normally, then the inner line is stroked, and then the
+                arrow tip is added. In case the main path is shortened because
+                of the added arrow tip, this shortened path is double stroked,
+                not the original path (which is exactly what you want).
+              </p>
+              <p>
+                When the inner line width is set to 0pt, which is the default,
+                no inner line is stroked at all (not even a line of width 0pt).
+                So, in order to &ldquo;switch off&rdquo; double stroking, set
+                <span class="angle">&langle;</span><i>dimension</i
+                ><span class="angle">&rangle;</span> to&nbsp;<span class="verb"
+                  >0pt</span
+                >.
+              </p>
+              <p>
+                The setting of the inner line width is local to the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group and <em>not</em> to the current
+                <span class="textsc">pgf</span>
+                scope.
+              </p>
+              <p>
+                Note that inner lines will <em>not</em> be drawn for paths that
+                are also used for clipping. However, this may change in the
+                future, so you should not depend on this.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3267"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="44.643"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3267.png"
+                        style
+                        width="42.747"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetinnerlinewidth"
+                        >\pgfsetinnerlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetinnerstrokecolor"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetinnerstrokecolor</kbd></span
+                      >{<span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetinnerstrokecolor"
+                      href="#\pgfsetinnerstrokecolor"
+                      id="\pgfsetinnerstrokecolor"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command sets the <span class="angle">&langle;</span
+                ><i>color</i><span class="angle">&rangle;</span> that is to be
+                used when the inner line is stroked. The effect of this command
+                is also local to the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3268"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="44.643"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3268.png"
+                        style
+                        width="42.747"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetinnerlinewidth"
+                        >\pgfsetinnerlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetinnerstrokecolor"
+                        >\pgfsetinnerstrokecolor</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >red!50</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-8104">
+            <a id="section-tips"></a
+            ><span
+              ><span class="sectionnumber" id="sec-104.3">104.3</span> Arrow
+              Tips on a Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.3"
+              data-pdf-destination="subsection.104.3"
+              data-pdf-page="1123"
+              href="#sec-104.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8104"></a>
+
+          <p>
+            After a path has been drawn, <span class="textsc">pgf</span> can add
+            arrow tips at the ends, depending on how the
+            <span class="verb">tips</span> key is set, on whether
+            <span class="verb">stroke</span> or
+            <span class="verb">clip</span> are used and on whether the path
+            contains closed subpaths. The exact rules when arrow tips are added
+            are explained in Section&nbsp;<a
+              href="tikz-arrows#section-arrow-tips-where"
+              >16.2</a
+            >.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetarrowsstart"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetarrowsstart</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>start arrow tip specification</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetarrowsstart"
+                      href="#\pgfsetarrowsstart"
+                      id="\pgfsetarrowsstart"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the arrow tip kind used at the start of a (possibly curved)
+                path. The syntax of the <span class="angle">&langle;</span
+                ><i>start arrow specification</i
+                ><span class="angle">&rangle;</span> is detailed in
+                Section&nbsp;<a href="tikz-arrows#section-arrow-spec">16.4</a>.
+              </p>
+              <p>
+                To &ldquo;clear&rdquo; the start arrow, say
+                <span class="verb">\pgfsetarrowsstart{}</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3269"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="18.675"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3269.png"
+                        style
+                        width="40.524"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usepgflibrary {arrows.meta} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetarrowsstart"
+                        >\pgfsetarrowsstart</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">Latex</span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.length">length</a></span
+                    >=<span class="textcolor" style="color: #008000">10pt</span
+                    >]}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetarrowsstart"
+                        >\pgfsetarrowsstart</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Computer</span
+                    >
+                    <span class="textcolor" style="color: #000000">Modern</span>
+                    <span class="textcolor" style="color: #000000"
+                      >Rightarrow</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0cm</span
+                    >}{<span class="textcolor" style="color: #000000">2mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">2mm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The effect of this command persists only till the end of the
+                current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetarrowsend"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetarrowsend</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>end arrow tip specification</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetarrowsend"
+                      href="#\pgfsetarrowsend"
+                      id="\pgfsetarrowsend"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Sets the arrow tip kind used at the end of a path.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3270"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="12.627"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3270.png"
+                        style
+                        width="40.520"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usepgflibrary {arrows.meta} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetarrowsstart"
+                        >\pgfsetarrowsstart</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">Latex</span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.length">length</a></span
+                    >=<span class="textcolor" style="color: #008000">10pt</span
+                    >]}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetarrowsend"
+                        >\pgfsetarrowsend</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Computer</span
+                    >
+                    <span class="textcolor" style="color: #000000">Modern</span>
+                    <span class="textcolor" style="color: #000000"
+                      >Rightarrow</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetarrows"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetarrows</kbd></span
+                      >{<span class="angle">&langle;</span><i>argument</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetarrows"
+                      href="#\pgfsetarrows"
+                      id="\pgfsetarrows"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The <span class="angle">&langle;</span><i>argument</i
+                ><span class="angle">&rangle;</span> can be of the form
+                <span class="angle">&langle;</span
+                ><i>start arrow tip specification</i
+                ><span class="angle">&rangle;</span><span class="verb">-</span
+                ><span class="angle">&langle;</span
+                ><i>end arrow tip specification</i
+                ><span class="angle">&rangle;</span>. In this case, both the
+                start and the end arrow specification are set:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3271"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="12.627"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3271.png"
+                        style
+                        width="40.520"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usepgflibrary {arrows.meta} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetarrows"
+                        >\pgfsetarrows</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">Latex</span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.length">length</a></span
+                    >=<span class="textcolor" style="color: #008000">10pt</span
+                    >]<span class="textcolor" style="color: #000000"
+                      >-&gt;&gt;</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Alternatively, <span class="angle">&langle;</span><i>argument</i
+                ><span class="angle">&rangle;</span> can be of the form
+                <span class="verb">[</span><span class="angle">&langle;</span
+                ><i>arrow keys</i><span class="angle">&rangle;</span
+                ><span class="verb">]</span>. In this case, the
+                <span class="angle">&langle;</span><i>arrow keys</i
+                ><span class="angle">&rangle;</span> will be set for all arrow
+                tips in the current scope, see Section&nbsp;<a
+                  href="tikz-arrows#section-arrow-scopes"
+                  >16.4.5</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetshortenstart"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetshortenstart</kbd></span
+                      >{<span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetshortenstart"
+                      href="#\pgfsetshortenstart"
+                      id="\pgfsetshortenstart"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will shortened the start of every stroked path by
+                the given dimension. This shortening is done in addition to
+                automatic shortening done by a start arrow, but it can be used
+                even if no start arrow is given.
+              </p>
+              <p>
+                It is usually better to use the
+                <span class="verb">sep</span> key with arrow tips.
+              </p>
+              <p>
+                This command is useful if you wish arrows or lines to
+                &ldquo;stop shortly before&rdquo; a given point.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3272"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="41.019"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3272.png"
+                        style
+                        width="97.466"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usepgflibrary {arrows.meta} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #000000">5mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetarrows"
+                        >\pgfsetarrows</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Latex-</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetshortenstart"
+                        >\pgfsetshortenstart</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">4pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5mm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}} <span class="example-code-comment"
+                      >% would be on the circle</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetshortenend"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetshortenend</kbd></span
+                      >{<span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetshortenend"
+                      href="#\pgfsetshortenend"
+                      id="\pgfsetshortenend"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works like <span class="verb">\pgfsetshortenstart</span>.</p>
+            </ul>
+          </div>
+          <h5 id="autosec-8113">
+            <a id="section-fill"></a
+            ><span
+              ><span class="sectionnumber" id="sec-104.4">104.4</span> Filling a
+              Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.4"
+              data-pdf-destination="subsection.104.4"
+              data-pdf-page="1124"
+              href="#sec-104.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8113"></a>
+
+          <p>
+            Filling a path means coloring every interior point of the path with
+            the current fill color. It is not always obvious whether a point is
+            &ldquo;inside&rdquo; a path when the path is self-intersecting
+            and/or consists or multiple parts. In this case either the nonzero
+            winding number rule or the even-odd crossing number rule is used to
+            decide which points lie &ldquo;inside&rdquo;. These rules are
+            explained in Section&nbsp;<a href="tikz-actions#section-rules"
+              >15.5</a
+            >.
+          </p>
+          <h6 id="autosec-8114">
+            <span
+              ><span class="sectionnumber" id="sec-104.4.1">104.4.1</span>
+              Graphic Parameter: Interior Rule</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.4.1"
+              data-pdf-destination="subsubsection.104.4.1"
+              data-pdf-page="1124"
+              href="#sec-104.4.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8114"></a>
+
+          <p>You can set which rule is used using the following commands:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfseteorule"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfseteorule</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfseteorule"
+                      href="#\pgfseteorule"
+                      id="\pgfseteorule"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Dictates that the even-odd rule is used in subsequent fillings
+                in the current
+                <em
+                  ><span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  scope</em
+                >. Thus, for once, the effect of this command does not persist
+                past the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3273"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="55.587"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3273.png"
+                        style
+                        width="74.522"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfseteorule"
+                        >\pgfseteorule</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">7mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5mm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">7mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetnonzerorule"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetnonzerorule</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetnonzerorule"
+                      href="#\pgfsetnonzerorule"
+                      id="\pgfsetnonzerorule"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Dictates that the nonzero winding number rule is used in
+                subsequent fillings in the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope. This is the default.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3274"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="55.587"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3274.png"
+                        style
+                        width="74.522"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetnonzerorule"
+                        >\pgfsetnonzerorule</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0mm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">7mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5mm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000">7mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-8119">
+            <span
+              ><span class="sectionnumber" id="sec-104.4.2">104.4.2</span>
+              Graphic Parameter: Filling Color</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.4.2"
+              data-pdf-destination="subsubsection.104.4.2"
+              data-pdf-page="1125"
+              href="#sec-104.4.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8119"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetfillcolor"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetfillcolor</kbd></span
+                      >{<span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetfillcolor"
+                      href="#\pgfsetfillcolor"
+                      id="\pgfsetfillcolor"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the color used for filling paths to
+                <span class="angle">&langle;</span><i>color</i
+                ><span class="angle">&rangle;</span>. Like the stroke color, the
+                effect lasts only till the next use of
+                <span class="verb">\color</span>.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-8120">
+            <span
+              ><span class="sectionnumber" id="sec-104.4.3">104.4.3</span>
+              Graphic Parameter: Fill Opacity</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.4.3"
+              data-pdf-destination="subsubsection.104.4.3"
+              data-pdf-page="1125"
+              href="#sec-104.4.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8120"></a>
+
+          <p>
+            You can set the fill opacity using
+            <span class="verb">\pgfsetfillopacity</span>. This command is
+            described in Section&nbsp;<a
+              href="base-transparency#section-transparency"
+              >115</a
+            >.
+          </p>
+          <h5 id="autosec-8121">
+            <a id="section-clip"></a
+            ><span
+              ><span class="sectionnumber" id="sec-104.5">104.5</span> Clipping
+              a Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.5"
+              data-pdf-destination="subsection.104.5"
+              data-pdf-page="1125"
+              href="#sec-104.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8121"></a>
+
+          <p>
+            When you add the <span class="verb">clip</span> option, the current
+            path is used for clipping subsequent drawings. The same rule as for
+            filling is used to decide whether a point is inside or outside the
+            path, that is, either the even-odd rule or the nonzero rule.
+          </p>
+
+          <p>
+            Clipping never enlarges the clipping area. Thus, when you clip
+            against a certain path and then clip again against another path, you
+            clip against the intersection of both.
+          </p>
+
+          <p>
+            The only way to enlarge the clipping path is to end the
+            <span class="verb">{pgfscope}</span> in which the clipping was done.
+            At the end of a <span class="verb">{pgfscope}</span> the clipping
+            path that was in force at the beginning of the scope is reinstalled.
+          </p>
+          <h5 id="autosec-8122">
+            <a id="section-using-bb"></a
+            ><span
+              ><span class="sectionnumber" id="sec-104.6">104.6</span> Using a
+              Path as a Bounding Box</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-104.6"
+              data-pdf-destination="subsection.104.6"
+              data-pdf-page="1125"
+              href="#sec-104.6"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8122"></a>
+
+          <p>
+            When you add the
+            <span class="verb">use as bounding box</span> option, the bounding
+            box of the picture will be enlarged such that the path in
+            encompassed, but any <em>subsequent</em> paths of the current
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            scope will not have any effect on the size of the bounding box.
+            Typically, you use this command at the very beginning of a
+            <span class="verb">{pgfpicture}</span> environment. Alternatively,
+            you can use <span class="verb">\pgfresetboundingbox</span>, followed
+            by <span class="verb">\pgfusepath{use as bounding box}</span> to
+            overrule the picture&rsquo;s bounding box completely.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                Left<span
+                  class="lateximagesource"
+                  id="lateximage-pgfmanual-3275"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="26.811"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3275.png"
+                    style
+                    width="26.813" /></span
+                >right.
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">Left</span><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-paths#pgf.back/pgfpathrectangle"
+                    >\pgfpathrectangle</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpointorigin"
+                    >\pgfpointorigin</a
+                  ></span
+                >}{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #000000">2ex</span
+                >}{<span class="textcolor" style="color: #000000">1ex</span
+                >}}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-actions#pgf.back/pgfusepath"
+                    >\pgfusepath</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">use</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.as">as</a></span
+                >
+                <span class="textcolor" style="color: #000000">bounding</span>
+                <span class="textcolor" style="color: #000000">box</span
+                >} <span class="example-code-comment"
+                  >% draws nothing</span
+                ><br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-paths#pgf.back/pgfpathcircle"
+                    >\pgfpathcircle</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpointorigin"
+                    >\pgfpointorigin</a
+                  ></span
+                >}{<span class="textcolor" style="color: #000000">2ex</span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-actions#pgf.back/pgfusepath"
+                    >\pgfusepath</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">stroke</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >.<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

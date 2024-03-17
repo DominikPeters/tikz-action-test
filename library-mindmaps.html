@@ -1,0 +1,3541 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mindmap Drawing Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Mindmap Drawing Library",
+            "item": "https://tikz.dev/library-mindmaps"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-mindmaps" rel="canonical" />
+    <meta content="https://tikz.dev/library-mindmaps" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/library-mindmaps.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Mindmap Drawing Library - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5893"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-60.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-60.2">The Mindmap Style</a>
+            </p>
+            <p><a class="tocsubsection" href="#sec-60.3">Concepts Nodes</a></p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-60.3.1"
+                >Isolated Concepts</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-60.3.2"
+                >Concepts in Trees</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-60.4">Connecting Concepts</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-60.4.1"
+                >Simple Connections</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-60.4.2"
+                >The Circle Connection Bar Decoration</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-60.4.3"
+                >The Circle Connection Bar To-Path</a
+              >
+            </p>
+            <p><a class="tocsubsubsection" href="#sec-60.4.4">Tree Edges</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-60.5">Adding Annotations</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5894">
+            <span
+              ><span class="sectionnumber" id="sec-60">60</span> Mindmap Drawing
+              Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.60"
+              data-pdf-page="714"
+              href="#sec-60"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5894"></a>
+          <a id="pgfmanual-autofile-65"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.mindmap"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >mindmap</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.mindmap"
+                      href="#pgf.mindmap"
+                      id="pgf.mindmap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >mindmap</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >mindmap</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This packages provides styles for drawing mindmap diagrams.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-5896">
+            <span
+              ><span class="sectionnumber" id="sec-60.1">60.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.1"
+              data-pdf-destination="subsection.60.1"
+              data-pdf-page="714"
+              href="#sec-60.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5896"></a>
+
+          <p>
+            This library is intended to make the creation of mindmaps or concept
+            maps easier. A <em>mindmap</em> is a graphical representation of a
+            concept together with related concepts and annotations. Mindmaps
+            are, essentially, trees, possibly with a few extra edges added, but
+            they are usually drawn in a special way: The root concept is placed
+            in the middle of the page and is drawn as a huge circle, ellipse, or
+            cloud. The related concepts then &ldquo;leave&rdquo; this root
+            concept via branch-like tendrils.
+          </p>
+
+          <p>
+            The <span class="verb">mindmap</span> library of
+            <span class="tikzname">TikZ</span> produces mindmaps that look a bit
+            different from the standard mindmaps: While the big root concept is
+            still a circle, related concepts are also depicted as (smaller)
+            circles. The related concepts are linked to the root concept via
+            organic-looking connections. The overall effect is visually rather
+            pleasing, but readers may not immediately think of a mindmap when
+            they see a picture created with this library.
+          </p>
+
+          <p>
+            Although it is not strictly necessary, you will usually create
+            mindmaps using <span class="tikzname">TikZ</span>&rsquo;s tree
+            mechanism and some of the styles and macros of the package work best
+            when used inside trees. However, it is still possible and sometimes
+            necessary to treat parts of a mindmap as a graph with arbitrary
+            edges and this is also possible.
+          </p>
+          <h5 id="autosec-5897">
+            <span
+              ><span class="sectionnumber" id="sec-60.2">60.2</span> The Mindmap
+              Style</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.2"
+              data-pdf-destination="subsection.60.2"
+              data-pdf-page="714"
+              href="#sec-60.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5897"></a>
+
+          <p>
+            Every mindmap should be put in a scope or a picture where the
+            <span class="verb">mindmap</span> style is used. This style installs
+            some internal settings.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/mindmap"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/mindmap</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/mindmap"
+                      href="#tikz/mindmap"
+                      id="tikz/mindmap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Use this style with all pictures or at least scopes that contain
+                a mindmap. It installs a whole bunch of settings that are useful
+                for drawing mindmaps.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2420"
+                      ><!--
+                Child
+Root concept concept
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="155.474"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2420.png"
+                        style
+                        width="311.386"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!50</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Child</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The sizes of concepts are predefined in such a way that a
+                medium-size mindmap will fit on an A4 page (more or less).
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:mindmap"></a
+                        ><a id="pgf.every:mindmap"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every mindmap</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:mindmap"
+                          href="#tikz/every:mindmap"
+                          id="tikz/every:mindmap"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is included by the
+                    <span class="verb">mindmap</span> style. Change this style
+                    to add special settings to your mindmaps.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2421"
+                          ><!--
+Root concept Child concept
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="217.010"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2421.png"
+                            style
+                            width="436.228"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {mindmap} </span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="library-mindmaps#pgf.large:mindmap"
+                            >large mindmap</a
+                          ></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="library-mindmaps#pgf.concept:color"
+                            >concept color</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red!50</span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-mindmaps#pgf.concept"
+                            >concept</a
+                          ></span
+                        >] {<span class="textcolor" style="color: #000000"
+                          >Root</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="library-mindmaps#pgf.concept"
+                            >concept</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="tikz-trees#pgf.child">child</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-trees#pgf.grow">grow</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-arrows#pgf.right">right</a></span
+                        >] {<span class="textcolor" style="color: #000000"
+                          ><a href="tikz-coordinates#pgf.node">node</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="library-mindmaps#pgf.concept"
+                            >concept</a
+                          ></span
+                        >] {<span class="textcolor" style="color: #000000"
+                          >Child</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="library-mindmaps#pgf.concept"
+                            >concept</a
+                          ></span
+                        >}};<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+            </ul>
+            <p>
+              <span class="paragraph" id="autosec-5902">Remark:</span>
+              <a id="pgfmanual-autopage-5902"></a>
+              Note that <span class="verb">mindmap</span> redefines
+              <span class="verb">font</span> sizes and
+              <span class="verb">sibling angle</span> depending on the current
+              concept level (i.e. inside of
+              <span class="verb">level 1 concept</span>,
+              <span class="verb">level 2 concept</span> etc.). Thus, if you need
+              to redefine these variables, use
+            </p>
+            <p>
+              <span class="verb"
+                >level 1 concept/.append style={font=\small}</span
+              >
+            </p>
+            <p>or</p>
+            <p>
+              <span class="verb"
+                >level 2 concept/.append style={sibling distance=90}</span
+              >
+            </p>
+            <p><em>after</em> the <span class="verb">mindmap</span> style.</p>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/small:mindmap"></a
+                    ><a id="pgf.small:mindmap"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/small mindmap</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/small:mindmap"
+                      href="#tikz/small:mindmap"
+                      id="tikz/small:mindmap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style includes the <span class="verb">mindmap</span> style,
+                but additionally changes the default size of concepts, fonts and
+                distances so that a medium-sized mindmap will fit on an A5 page
+                (A5 pages are half as large as A4 pages). Mindmaps with
+                <span class="verb">small mindmap</span> will also fit onto a
+                standard frame of the <span class="verb">beamer</span> package.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/large:mindmap"></a
+                    ><a id="pgf.large:mindmap"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/large mindmap</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/large:mindmap"
+                      href="#tikz/large:mindmap"
+                      id="tikz/large:mindmap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style includes the <span class="verb">mindmap</span> style,
+                but additionally changes the default size of concepts, fonts and
+                distances so that a medium-sized mindmap will fit on an A3 page
+                (A3 pages are twice as large as A4 pages).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/huge:mindmap"></a
+                    ><a id="pgf.huge:mindmap"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/huge mindmap</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/huge:mindmap"
+                      href="#tikz/huge:mindmap"
+                      id="tikz/huge:mindmap"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style causes concepts to be even bigger and it is best used
+                with A2 paper and above.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-5903">
+            <span
+              ><span class="sectionnumber" id="sec-60.3">60.3</span> Concepts
+              Nodes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.3"
+              data-pdf-destination="subsection.60.3"
+              data-pdf-page="715"
+              href="#sec-60.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5903"></a>
+
+          <p>
+            The basic entities of mindmaps are called <em>concepts</em> in
+            <span class="tikzname">TikZ</span>. A concept is a node of style
+            <span class="verb">concept</span> and it must be circular for some
+            of the connection macros to work.
+          </p>
+          <h6 id="autosec-5904">
+            <span
+              ><span class="sectionnumber" id="sec-60.3.1">60.3.1</span>
+              Isolated Concepts</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.3.1"
+              data-pdf-destination="subsubsection.60.3.1"
+              data-pdf-page="715"
+              href="#sec-60.3.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5904"></a>
+
+          <p>
+            The following styles influence how isolated concepts are rendered:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/concept"></a><a id="pgf.concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/concept"
+                      href="#tikz/concept"
+                      id="tikz/concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style should be used with all nodes that are concepts,
+                although some styles like
+                <span class="verb">extra concept</span> install this style
+                automatically.
+              </p>
+              <p>
+                Basically, this style makes the concept node circular and
+                installs a uniform color called
+                <span class="verb">concept color</span>, see below.
+                Additionally, the style
+                <span class="verb">every concept</span> is called.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2422"
+                      ><!--
+Some concept
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="155.474"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2422.png"
+                        style
+                        width="155.478"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!50</span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Some</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:concept"></a
+                        ><a id="pgf.every:concept"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every concept</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:concept"
+                          href="#tikz/every:concept"
+                          id="tikz/every:concept"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    In order to change the appearance of concept nodes, you
+                    should change this style. Note, however, that the color of a
+                    concept should be uniform for some of the connection bar
+                    stuff to work, so you should not change the color or the
+                    draw/fill state of concepts using this option. It is mostly
+                    useful for changing the text color and font.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/concept:color"></a
+                        ><a id="pgf.concept:color"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/concept color</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>color</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/concept:color"
+                          href="#tikz/concept:color"
+                          id="tikz/concept:color"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option tells <span class="tikzname">TikZ</span> which
+                    color should be used for filling and stroking concepts. The
+                    difference between this option and just setting
+                    <span class="verb">every concept</span> to the desired color
+                    is that this option allows
+                    <span class="tikzname">TikZ</span> to keep track of the
+                    colors used for concepts. This is important when you
+                    <em>change</em> the color between two connected concepts. In
+                    this case, <span class="tikzname">TikZ</span> can
+                    automatically create a shading that provides a smooth
+                    transition between the old and the new concept color; we
+                    will come back to this in the next section.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/extra:concept"></a
+                    ><a id="pgf.extra:concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/extra concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/extra:concept"
+                      href="#tikz/extra:concept"
+                      id="tikz/extra:concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style is intended for concepts that are not part of the
+                &ldquo;mindmap tree&rdquo;, but stand beside it. Typically, they
+                will have a subdued color or be smaller. In order to have these
+                concepts appear in a uniform way and in order to indicate in the
+                code that these concepts are additional, you can use this style.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2423"
+                      ><!--
+                extra
+Root concept concept
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="155.474"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2423.png"
+                        style
+                        width="490.921"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!80</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >]<span class="spaces">                 </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.extra:concept"
+                        >extra concept</a
+                      ></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(10,0)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >extra</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:extra:concept"></a
+                        ><a id="pgf.every:extra:concept"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every extra concept</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:extra:concept"
+                          href="#tikz/every:extra:concept"
+                          id="tikz/every:extra:concept"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Change this style to change the appearance of extra
+                    concepts.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+          <h6 id="autosec-5909">
+            <span
+              ><span class="sectionnumber" id="sec-60.3.2">60.3.2</span>
+              Concepts in Trees</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.3.2"
+              data-pdf-destination="subsubsection.60.3.2"
+              data-pdf-page="716"
+              href="#sec-60.3.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5909"></a>
+
+          <p>
+            As pointed out earlier, <span class="tikzname">TikZ</span> assumes
+            that your mindmap is built using the
+            <span class="verb">child</span> facilities of
+            <span class="tikzname">TikZ</span>. There are numerous options that
+            influence how concepts are rendered at the different levels of a
+            tree.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/root:concept"></a
+                    ><a id="pgf.root:concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/root concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/root:concept"
+                      href="#tikz/root:concept"
+                      id="tikz/root:concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style is used for the roots of mindmap trees. By adding
+                something to this, you can change how the root of a mindmap will
+                be rendered.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2424"
+                      ><!--
+Root concept
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="139.778"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2424.png"
+                        style
+                        width="139.778"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    ><br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.root:concept"
+                        >root concept</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.append:style"
+                        >.append style</a
+                      ></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!80</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.minimum:size"
+                        >minimum size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3.5cm}</span
+                    >,<br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Note that styles like
+                <span class="verb">large mindmap</span> redefine these styles,
+                so you should add something to this style only inside the
+                picture.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/level:1:concept"></a
+                    ><a id="pgf.level:1:concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/level 1 concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/level:1:concept"
+                      href="#tikz/level:1:concept"
+                      id="tikz/level:1:concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The <span class="verb">mindmap</span> style adds this style to
+                the <span class="verb">level 1</span> style. This means that the
+                first level children of a mindmap tree will use this style.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2425"
+                      ><!--
+               child
+
+
+
+
+Root concept child
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="216.890"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2425.png"
+                        style
+                        width="311.386"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    ><br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.root:concept"
+                        >root concept</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.append:style"
+                        >.append style</a
+                      ></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!80}</span
+                    >,<br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.level:1:concept"
+                        >level 1 concept</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.append:style"
+                        >.append style</a
+                      ></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!50}</span
+                    >,<br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000">0 </span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/level:2:concept"></a
+                    ><a id="pgf.level:2:concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/level 2 concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/level:2:concept"
+                      href="#tikz/level:2:concept"
+                      id="tikz/level:2:concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like <span class="verb">level 1 concept</span>, only for
+                second level children.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/level:3:concept"></a
+                    ><a id="pgf.level:3:concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/level 3 concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/level:3:concept"
+                      href="#tikz/level:3:concept"
+                      id="tikz/level:3:concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works like <span class="verb">level 1 concept</span>.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/level:4:concept"></a
+                    ><a id="pgf.level:4:concept"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/level 4 concept</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/level:4:concept"
+                      href="#tikz/level:4:concept"
+                      id="tikz/level:4:concept"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like <span class="verb">level 1 concept</span>. Note that
+                there are no fifth and higher level styles, you need to modify
+                <span class="verb">level 5</span> directly in such cases.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/concept color</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                  </p>
+                </li>
+              </div>
+              <p>
+                We saw already that this option is used to change the color of
+                concepts. We now have a look at its effect when used on child
+                nodes of a concept. Normally, this option simply changes the
+                color of the children. However, when the option is given as an
+                option to the <span class="verb">child</span> operation (and not
+                to the <span class="verb">node</span> operation and also not as
+                an option to all children via the
+                <span class="verb">level 1</span> style),
+                <span class="tikzname">TikZ</span> will smoothly change the
+                concept color from the parent&rsquo;s color to the color of the
+                child concept.
+              </p>
+              <p>Here is an example:</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2426"
+                      ><!--
+                Child
+               concept
+
+
+
+
+                   Child
+Root concept concept
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="216.890"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2426.png"
+                        style
+                        width="311.386"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!80</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Child</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >orange</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000">0</span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Child</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In order to have a concept color which changes with the
+                hierarchy level, a tiny bit of magic is needed:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2427"
+                      ><!--
+               child
+
+
+
+
+Root concept child
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="216.890"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2427.png"
+                        style
+                        width="311.386"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >,<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.root:concept"
+                        >root concept</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">blue}</span
+                    >,<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.level:1:concept"
+                        >level 1 concept</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.append:style"
+                        >.append style</a
+                      ></span
+                    >=<br />
+                    {<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.every:child"
+                        >every child</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!50}}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000">0 </span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-5918">
+            <span
+              ><span class="sectionnumber" id="sec-60.4">60.4</span> Connecting
+              Concepts</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.4"
+              data-pdf-destination="subsection.60.4"
+              data-pdf-page="718"
+              href="#sec-60.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5918"></a>
+          <h6 id="autosec-5919">
+            <span
+              ><span class="sectionnumber" id="sec-60.4.1">60.4.1</span> Simple
+              Connections</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.4.1"
+              data-pdf-destination="subsubsection.60.4.1"
+              data-pdf-page="718"
+              href="#sec-60.4.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5919"></a>
+
+          <p>
+            The easiest way to connect two concepts is to draw a line between
+            them. In order to give such lines a consistent appearance, it is
+            recommendable to use the following style when drawing such lines:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/concept:connection"></a
+                    ><a id="pgf.concept:connection"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/concept connection</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/concept:connection"
+                      href="#tikz/concept:connection"
+                      id="tikz/concept:connection"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style can be used for lines between two concepts. Feel free
+                to redefine this style.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            A problem arises when you need to connect concepts after the main
+            mindmap has been drawn. In this case you will want the connection
+            lines to lie <em>behind</em> the main mindmap. However, you can draw
+            the lines only after the coordinates of the concepts have been
+            determined. In this case you should place the connecting lines on a
+            background layer as in the following example:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2428"
+                  ><!--
+               child
+
+
+
+
+Root concept child
+
+
+
+
+               child
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="356.594"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2428.png"
+                    style
+                    width="303.530"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {backgrounds,mindmap} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.root:concept"
+                    >root concept</a
+                  ></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.append:style"
+                    >.append style</a
+                  ></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:color"
+                    >concept color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.minimum:size">minimum size</a></span
+                >=<span class="textcolor" style="color: #008000">2cm}</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-mindmaps#pgf.level:1:concept"
+                    >level 1 concept</a
+                  ></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.append:style"
+                    >.append style</a
+                  ></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="library-trees#pgf.sibling:angle"
+                    >sibling angle</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">45}</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >Root</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >}<br />
+                <span class="spaces">    </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-trees#pgf.clockwise:from"
+                    >clockwise from</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">45</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(c1)</span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(c2)</span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(c3)</span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}};<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                >}{<span class="textcolor" style="color: #000000"
+                  >background</span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:connection"
+                    >concept connection</a
+                  ></span
+                >]<span class="spaces">  </span><span class="textcolor" style="color: #800080"
+                  >(c1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(c2)</span><br />
+                <span class="spaces">                              </span><span class="spaces">       </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(c3)</span><br />
+                <span class="spaces">                              </span><span class="spaces">  </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(c2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(c3)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+          <h6 id="autosec-5922">
+            <span
+              ><span class="sectionnumber" id="sec-60.4.2">60.4.2</span> The
+              Circle Connection Bar Decoration</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.4.2"
+              data-pdf-destination="subsubsection.60.4.2"
+              data-pdf-page="719"
+              href="#sec-60.4.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5922"></a>
+
+          <p>
+            Instead of a simple line between two concepts, you can also add a
+            bar between the two nodes that has slightly organic ends. These bars
+            are also used by default as the edges from parents in the mindmap
+            tree.
+          </p>
+
+          <p>
+            For the drawing of the bars a special decoration is used, which is
+            defined in the <span class="verb">mindmap</span> library:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>Decoration</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >circle connection bar</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This decoration can be used to connect two circles. The start of
+                the to-be-decorated path should lie on the border of the first
+                circle, the end should lie on the border of the second circle.
+                The following two decoration keys should be initialized with the
+                sizes of the circles:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">start radius</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">end radius</span>
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Furthermore, the following two decoration keys influence the
+                decoration:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">amplitude</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">angle</span>
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The decoration turns a straight line into a path that starts on
+                the border of the first circle at the specified angle relative
+                to the line connecting the centers of the circles. The path then
+                changes into a rectangle whose thickness is given by the
+                amplitude. Finally, the path ends with the same angles on the
+                second circle.
+              </p>
+              <p>Here is an example that should make this clearer:</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2429"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.290"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2429.png"
+                        style
+                        width="153.890"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{start radius=1cm,<a href="base-animations#pgf.end"
+                        >end</a
+                      >
+                      radius=.5cm,amplitude=2mm,angle=30}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    ><span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1cm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >]<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(2.5,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5cm)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">black</span
+                    >,<br />
+                    <span class="spaces">             </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a> connection
+                      bar</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                As can be seen, the decorated path consists of three parts and
+                is not really useful for drawing. However, if you fill the
+                decorated path only, and if you use the same color as for the
+                circles, the result is better.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2430"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.290"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2430.png"
+                        style
+                        width="153.890"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      >blue!50</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{start radius=1cm,<br />
+                      <span class="spaces">                       </span><a
+                        href="base-animations#pgf.end"
+                        >end</a
+                      >
+                      radius=.5cm,amplitude=2mm,angle=30}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    ><span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1cm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(2.5,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5cm)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a> connection
+                      bar</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In the above example you may notice the small white line between
+                the circles and the decorated path. This is due to rounding
+                errors. Unfortunately, for larger distances, the errors can
+                accumulate quite strongly, especially since
+                <span class="tikzname">TikZ</span> and
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                are not very good at computing square roots. For this reason, it
+                is a good idea to make the circles slightly larger to cover up
+                such problems. When using nodes of shape
+                <span class="verb">circle</span>, you can just add the
+                <span class="verb">draw</span> option with a
+                <span class="verb">line width</span> of one or two points (for
+                very large distances you may need line width up to 4pt).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2431"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="80.954"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2431.png"
+                        style
+                        width="152.762"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      >blue!50</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{start radius=1cm,<br />
+                      <span class="spaces">                       </span><a
+                        href="base-animations#pgf.end"
+                        >end</a
+                      >
+                      radius=.5cm,amplitude=2mm,angle=30}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    ><span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1cm+1pt)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(2.4,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(.5cm+1pt)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a> connection
+                      bar</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1.9,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-5929">
+            <span
+              ><span class="sectionnumber" id="sec-60.4.3">60.4.3</span> The
+              Circle Connection Bar To-Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.4.3"
+              data-pdf-destination="subsubsection.60.4.3"
+              data-pdf-page="720"
+              href="#sec-60.4.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5929"></a>
+
+          <p>
+            The <span class="verb">circle connection bar</span> decoration is a
+            bit complicated to use. Especially specifying the radii is quite
+            bothersome (the amplitude and the angle can be set once and for
+            all). For this reason, the <span class="verb">mindmap</span> library
+            defines a special to-path that performs the necessary computations
+            for you.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/circle:connection:bar"></a
+                    ><a id="pgf.circle:connection:bar"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/circle connection bar</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/circle:connection:bar"
+                      href="#tikz/circle:connection:bar"
+                      id="tikz/circle:connection:bar"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style installs a rather involved to-path. Unlike normal
+                to-paths, this path requires that the start and the target of
+                the to-path are named nodes of shape
+                <span class="verb">circle</span> &ndash; if this is not the
+                case, this path will produce errors.
+              </p>
+              <p>
+                Assuming that the start and the target are circles, the to-path
+                will first compute the radii of these circles (by measuring the
+                distance from the <span class="verb">center</span> anchor to
+                some anchor on the border) and will set the
+                <span class="verb">start circle</span> keys accordingly. Next,
+                the <span class="verb">fill</span> option is set to the
+                <span class="verb">concept color</span> while
+                <span class="verb">draw=none</span> is set. The decoration is
+                set to <span class="verb">circle connection bar</span>. Finally,
+                the following style is included:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:circle:connection:bar"></a
+                        ><a id="pgf.every:circle:connection:bar"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every circle connection bar</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:circle:connection:bar"
+                          href="#tikz/every:circle:connection:bar"
+                          id="tikz/every:circle:connection:bar"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Redefine this style to change the appearance of circle
+                    connection bar to-paths.
+                  </p>
+                </ul>
+              </div>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2432"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="79.346"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2432.png"
+                        style
+                        width="154.948"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!50</span
+                    >,<span class="textcolor" style="color: #008000"
+                      >blue!50</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.outer:sep">outer sep</a></span
+                    >=<span class="textcolor" style="color: #008000">0pt</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(n1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0)</span
+                    ><span class="spaces">   </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.minimum:size"
+                        >minimum size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] {};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(n2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2.5,0)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.minimum:size"
+                        >minimum size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] {};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/path">\path</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(n1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.circle:connection:bar"
+                        >circle connection bar</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(n2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Note that it is not a good idea to have more than one
+                <span class="verb">to</span> operation together with the option
+                <span class="verb">circle connection bar</span> in a single
+                <span class="verb">\path</span>. Use the
+                <span class="verb">edge</span> operation, instead, for creating
+                multiple connections and this operation creates a new scope for
+                each edge.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            In a mindmap we sometimes want colors to change from one concept
+            color to another. Then, the connection bar should, ideally, consist
+            of a smooth transition between these two colors. Getting this right
+            using shadings is a bit tricky if you try this &ldquo;by
+            hand&rdquo;, so the <span class="verb">mindmap</span> library
+            provides a special option for facilitating this procedure.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/circle:connection:bar:switch:color"></a
+                    ><a id="pgf.circle:connection:bar:switch:color"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/circle connection bar switch color</span
+                          ></span
+                        >=</kbd
+                      ><span class="verb">from (</span
+                      ><span class="angle">&langle;</span><i>first color</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">) to (</span
+                      ><span class="angle">&langle;</span><i>second color</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">)</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/circle:connection:bar:switch:color"
+                      href="#tikz/circle:connection:bar:switch:color"
+                      id="tikz/circle:connection:bar:switch:color"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style works similarly to the
+                <span class="verb">circle connection bar</span>. The only
+                difference is that instead of filling the path with a single
+                color a shading is used.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2433"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="107.690"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2433.png"
+                        style
+                        width="142.298"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.outer:sep">outer sep</a></span
+                    >=<span class="textcolor" style="color: #008000">0pt</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(n1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0)</span
+                    ><span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.minimum:size"
+                        >minimum size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] {};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(n2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(30:2.5)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.minimum:size"
+                        >minimum size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] {};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/path">\path</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(n1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a
+                        href="library-mindmaps#pgf.circle:connection:bar:switch:color"
+                        >circle connection bar switch color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >from
+                      <span class="textcolor" style="color: #800080">(red)</span
+                      > <a href="tikz-paths#pgf.to">to</a>
+                      <span class="textcolor" style="color: #800080"
+                        >(blue)</span
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(n2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-5934">
+            <span
+              ><span class="sectionnumber" id="sec-60.4.4">60.4.4</span> Tree
+              Edges</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.4.4"
+              data-pdf-destination="subsubsection.60.4.4"
+              data-pdf-page="721"
+              href="#sec-60.4.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5934"></a>
+
+          <p>
+            Most of the time, concepts in a mindmap are connected automatically
+            when the mindmap is built as a tree. The reason is that the
+            <span class="verb">mindmap</span> installs a
+            <span class="verb">circle connection bar</span> path as the
+            <span class="verb">edge from parent path</span>. Also, the
+            <span class="verb">mindmap</span> option takes care of things like
+            setting the correct <span class="verb">draw</span> and
+            <span class="verb">outer sep</span> settings and some other stuff.
+          </p>
+
+          <p>
+            In detail, the <span class="verb">mindmap</span> option sets the
+            <span class="verb">edge from parent path</span> to a path that uses
+            the to-path <span class="verb">circle connection bar</span> to
+            connect the parent node and the child node. The
+            <span class="verb">concept color</span> option (locally) changes
+            this by using
+            <span class="verb">circle connection bar switch color</span> instead
+            with the from-color set to the old (parent&rsquo;s) concept color
+            and the to-color set to the new (child&rsquo;s) concept color. This
+            means that when you provide the
+            <span class="verb">concept color</span> option to a
+            <span class="verb">child</span> command, the color will change from
+            the parent&rsquo;s concept color to the specified color.
+          </p>
+
+          <p>
+            Let us now build a tree that way. Please note that we pass the
+            <span class="verb">concept color</span> to the respective
+            <span class="verb">child</span> and not to a
+            <span class="verb">node</span> under it.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2434"
+                  ><!--
+                                                 algo-
+                                                rithms
+
+
+                                                             data
+                                                            struc-
+                                                            tures
+
+
+
+theoretical
+                          Computer practical
+                           Science
+                                                              pro-
+                                                           gramming
+                                                           languages
+
+                                               software
+                                               engineer-
+                                                  ing
+
+
+
+              technical applied
+
+
+
+                                               databases
+
+
+
+
+                                     WWW
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="453.314"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2434.png"
+                    style
+                    width="554.233"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-paths#pgf.back/path">\path</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:color"
+                    >concept color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">black</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.text">text</a></span
+                >=<span class="textcolor" style="color: #008000">white</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >Computer</span
+                >
+                <span class="textcolor" style="color: #000000">Science</span
+                >}<br />
+                <span class="spaces">    </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-trees#pgf.clockwise:from"
+                    >clockwise from</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0</span>]<br />
+                <span class="spaces">    </span><span class="example-code-comment"
+                  >% note that `sibling angle' can only be defined in</span
+                ><br />
+                <span class="spaces">    </span><span class="example-code-comment"
+                  >% `level 1 concept/.append style={}'</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:color"
+                    >concept color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >green!50!black</span
+                >] {<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >practical</span
+                >}<br />
+                <span class="spaces">      </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-trees#pgf.clockwise:from"
+                    >clockwise from</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">90</span
+                >]<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >algorithms</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                <span class="textcolor" style="color: #000000">structures</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >pro</span
+                ><span class="textcolor" style="color: #0000b2">\-gramming</span
+                > <span class="textcolor" style="color: #000000"
+                  >languages</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >software</span
+                >
+                <span class="textcolor" style="color: #000000">engineer</span
+                ><span class="textcolor" style="color: #0000b2">\-ing</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">    </span><span class="example-code-comment"
+                  >% note that the `concept color' is passed to the
+                  `child'(!)</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:color"
+                    >concept color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >] {<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >applied</span
+                >}<br />
+                <span class="spaces">      </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-trees#pgf.clockwise:from"
+                    >clockwise from</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">-30</span
+                >]<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >databases</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >WWW</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:color"
+                    >concept color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">red</span
+                >] {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >technical</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept:color"
+                    >concept color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">orange</span
+                >] {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="library-mindmaps#pgf.concept">concept</a></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >theoretical</span
+                >}<span class="spaces"> </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+          <h5 id="autosec-5937">
+            <span
+              ><span class="sectionnumber" id="sec-60.5">60.5</span> Adding
+              Annotations</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-60.5"
+              data-pdf-destination="subsection.60.5"
+              data-pdf-page="722"
+              href="#sec-60.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5937"></a>
+
+          <p>
+            An <em>annotation</em> is some text outside a mindmap that, unlike
+            an extra concept, simply explains something in the mindmap. The
+            following style is mainly intended to help readers of the code see
+            that a node in an annotation node.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/annotation"></a
+                    ><a id="pgf.annotation"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/annotation</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/annotation"
+                      href="#tikz/annotation"
+                      id="tikz/annotation"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style indicates that a node is an annotation node. It
+                includes the style <span class="verb">every annotation</span>,
+                which allows you to change this style in a convenient fashion.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2435"
+                      ><!--
+Root concept
+               The root concept is, in
+               general, the most important
+               concept.
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="155.474"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2435.png"
+                        style
+                        width="300.195"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {mindmap} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-mindmaps#pgf.mindmap">mindmap</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept:color"
+                        >concept color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!80</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.every:annotation"
+                        >every annotation</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(root)</span
+                    ><span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Root</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-mindmaps#pgf.annotation"
+                        >annotation</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(root.east)</span
+                    ><br />
+                    <span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >The</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="gd-trees#pgf.root">root</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">is</span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">general</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >the</span
+                    >
+                    <span class="textcolor" style="color: #000000">most</span>
+                    <span class="textcolor" style="color: #000000"
+                      >important</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-mindmaps#pgf.concept">concept</a></span
+                    >.};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:annotation"></a
+                        ><a id="pgf.every:annotation"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every annotation</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:annotation"
+                          href="#tikz/every:annotation"
+                          id="tikz/every:annotation"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is included by
+                    <span class="verb">annotation</span>.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

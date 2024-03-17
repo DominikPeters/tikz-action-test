@@ -1,0 +1,2020 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Externalizing Graphics - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Externalizing Graphics",
+            "item": "https://tikz.dev/base-external"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-external" rel="canonical" />
+    <meta content="https://tikz.dev/base-external" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Externalizing Graphics - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8353"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-111.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-111.2"
+                >Workflow Step 1: Naming Graphics</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-111.3"
+                >Workflow Step 2: Generating the External Graphics</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-111.4"
+                >Workflow Step 3: Including the External Graphics</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-111.5">A Complete Example</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8354">
+            <a id="section-external"></a
+            ><span
+              ><span class="sectionnumber" id="sec-111">111</span> Externalizing
+              Graphics</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.111"
+              data-pdf-page="1178"
+              href="#sec-111"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8354"></a>
+          <a id="pgfmanual-autofile-120"></a>
+          <h5 id="autosec-8355">
+            <span
+              ><span class="sectionnumber" id="sec-111.1">111.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-111.1"
+              data-pdf-destination="subsection.111.1"
+              data-pdf-page="1178"
+              href="#sec-111.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8355"></a>
+
+          <p>
+            There are two fundamentally different ways of inserting graphics
+            into a
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-document. First, you can create a graphic using some external
+            program like <span class="verb">xfig</span> or
+            <span class="verb">InDesign</span> and then include this graphic in
+            your text. This is done using commands like
+            <span class="verb">\includegraphics</span> or
+            <span class="verb">\pgfimage</span>. In this case, the graphic file
+            contains all the low-level graphic commands that describe the
+            picture. When such a file is included, all
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            has to worry about is the size of the picture; the internals of the
+            picture are unknown to
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            and it does not care about them.
+          </p>
+
+          <p>
+            The second method of creating graphics is to use a special package
+            that transforms
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-commands like <span class="verb">\draw</span> or
+            <span class="verb">\psline</span> into appropriate low-level graphic
+            commands. In this case,
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            has to do all the hard work of &ldquo;typesetting&rdquo; the picture
+            and if a picture has a complicated internal structure this may take
+            a lot of time.
+          </p>
+
+          <p>
+            While <span class="textsc">pgf</span> was created to facilitate the
+            second method of creating pictures, there are two main reasons why
+            you may need to employ the first method of image-inclusion,
+            nevertheless:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Typesetting a picture using
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                can be a very time-consuming process. If
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                needs a minute to typeset a picture, you do not want to wait
+                this minute when you re<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                your document after having changed a single comma.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Some users, especially
+                journal editors, may not be able to process files that contain
+                <span class="textsc">pgf</span> commands &ndash; for the simple
+                reason that the systems of many publishing houses do not have
+                <span class="textsc">pgf</span> installed.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            In both cases, the solution is to &ldquo;extract&rdquo; or
+            &ldquo;externalize&rdquo; pictures that would normally be typeset
+            every time a document is
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >ed. Once the pictures have been extracted into separate graphics
+            files, these graphic files can be reinserted into the text using the
+            first method.
+          </p>
+
+          <p>
+            Extracting a graphic from a file is not as easy as it may sound at
+            first since
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            cannot write parts of its output into different files and a bit of
+            trickery is needed. The following macros simplify the workflow:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> You have to tell
+                <span class="textsc">pgf</span> which files will be used for
+                which pictures. To do so, you enclose each picture that you wish
+                to be &ldquo;externalized&rdquo; in a pair of
+                <span class="verb">\beginpgfgraphicnamed</span> and
+                <span class="verb">\endpgfgraphicnamed</span> macros.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> The next step is to generate
+                the extracted graphics. For this you run
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                with the <span class="verb">\jobname</span> set to the graphic
+                file&rsquo;s name. This will cause
+                <span class="verb">\pgfname</span> to behave in a very special
+                way: All of your document will simply be thrown away,
+                <em>except</em> for the single graphic having the same name as
+                the current jobname.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> After you have run
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                once for each graphic that your wish to externalize, you can
+                rerun
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                on your document normally. This will have the following effect:
+                Each time a <span class="verb">\beginpgfgraphicnamed</span> is
+                encountered, <span class="textsc">pgf</span> checks whether a
+                graphic file of the given name exists (if you did step 2, it
+                will). If this graphic file exists, it will be input and the
+                text till the corresponding
+                <span class="verb">\endpgfgraphicnamed</span> will be ignored.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            In the rest of this section, the above workflow is explained in more
+            detail.
+          </p>
+          <h5 id="autosec-8356">
+            <span
+              ><span class="sectionnumber" id="sec-111.2">111.2</span> Workflow
+              Step 1: Naming Graphics</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-111.2"
+              data-pdf-destination="subsection.111.2"
+              data-pdf-page="1178"
+              href="#sec-111.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8356"></a>
+
+          <p>
+            In order to put each graphic in an external file, you first need to
+            tell <span class="textsc">pgf</span> the names of these files.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/beginpgfgraphicnamed"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\beginpgfgraphicnamed</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>file name prefix</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/beginpgfgraphicnamed"
+                      href="#\beginpgfgraphicnamed"
+                      id="\beginpgfgraphicnamed"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command indicates that everything up to the next call of
+                <span class="verb">\endpgfgraphicnamed</span> is part of a
+                graphic that should be placed in a file named
+                <span class="angle">&langle;</span><i>file name prefix</i
+                ><span class="angle">&rangle;</span><span class="verb">.</span
+                ><span class="angle">&langle;</span><i>suffix</i
+                ><span class="angle">&rangle;</span>, where the
+                <span class="angle">&langle;</span><i>suffix</i
+                ><span class="angle">&rangle;</span> depends on your backend
+                driver. Typically, <span class="angle">&langle;</span
+                ><i>suffix</i><span class="angle">&rangle;</span> will be
+                <span class="verb">dvi</span> or <span class="verb">pdf</span>.
+              </p>
+              <p>Here is a typical example of how this command is used:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="example-code-comment">% In file main.tex:</span
+                    ><br />
+                    ...<br />
+                    <span class="textcolor" style="color: #000000">As</span>
+                    <span class="textcolor" style="color: #000000">we</span>
+                    <span class="textcolor" style="color: #000000">see</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">Figure~</span
+                    ><span class="textcolor" style="color: #0000b2">\ref</span
+                    >{<span class="textcolor" style="color: #000000">fig1</span
+                    >}, <span class="textcolor" style="color: #000000"
+                      >the</span
+                    >
+                    <span class="textcolor" style="color: #000000">world</span>
+                    <span class="textcolor" style="color: #000000">is</span>
+                    <span class="textcolor" style="color: #000000">flat</span
+                    >.<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >figure</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                        >\beginpgfgraphicnamed</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >graphic-of-flat-world</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1cm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                        >\endpgfgraphicnamed</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\caption</span
+                    >{<span class="textcolor" style="color: #000000">The</span>
+                    <span class="textcolor" style="color: #000000">flat</span>
+                    <span class="textcolor" style="color: #000000">world</span
+                    >.}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\label</span
+                    >{<span class="textcolor" style="color: #000000">fig1</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >figure</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Each graphic to be externalized should have a unique name. Note
+                that this name will be used as the name of a file in the file
+                system, so it should not contain any funny characters.
+              </p>
+              <p>This command can have three different effects:</p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> The easiest situation
+                    arises if there does not yet exist a graphic file called
+                    <span class="angle">&langle;</span><i>file name prefix</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">.</span
+                    ><span class="angle">&langle;</span><i>suffix</i
+                    ><span class="angle">&rangle;</span>, where the
+                    <span class="angle">&langle;</span><i>suffix</i
+                    ><span class="angle">&rangle;</span> is one of the suffixes
+                    understood by your current backend driver (so
+                    <span class="verb">pdf</span> or
+                    <span class="verb">jpg</span> if you use
+                    <span class="verb">pdftex</span>,
+                    <span class="verb">eps</span> if you use
+                    <span class="verb">dvips</span>, and so on). In this case,
+                    both this command and the
+                    <span class="verb">\endpgfgraphicnamed</span> command simply
+                    have no effect.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> A more complex situation
+                    arises when a graphic file named
+                    <span class="angle">&langle;</span><i>file name prefix</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">.</span
+                    ><span class="angle">&langle;</span><i>suffix</i
+                    ><span class="angle">&rangle;</span> <em>does</em> exist. In
+                    this case, this graphic file is included using the
+                    <span class="verb">\includegraphics</span>
+                    command<sup>16</sup>. Furthermore, the text between
+                    <span class="verb">\beginpgfgraphicnamed</span> and
+                    <span class="verb">\endpgfgraphicnamed</span> is ignored.
+                  </p>
+                  <p>
+                    When the text is &ldquo;ignored&rdquo;, what actually
+                    happens is that all text up to the next occurrence of
+                    <span class="verb">\endpgfgraphicnamed</span> is thrown away
+                    without any macro expansion. This means, in particular, that
+                    (a) you cannot put
+                    <span class="verb">\endpgfgraphicnamed</span> inside a macro
+                    and (b) the macros used in the graphics need not be defined
+                    at all when the graphic file is included.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> The most complex behavior
+                    arises when current the
+                    <span class="verb">\jobname</span> equals the
+                    <span class="angle">&langle;</span><i>file name prefix</i
+                    ><span class="angle">&rangle;</span> and, furthermore, the
+                    <em>real job name</em> has been declared. The behavior for
+                    this case is explained later.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that the
+                <span class="verb">\beginpgfgraphicnamed</span> does not really
+                have any effect until you have generated the graphic files
+                named. Till then, this command is simply ignored. Also, if you
+                delete the graphics file later on, the graphics are typeset
+                normally once more.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/endpgfgraphicnamed"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\endpgfgraphicnamed</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/endpgfgraphicnamed"
+                      href="#\endpgfgraphicnamed"
+                      id="\endpgfgraphicnamed"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command just marks the end of the graphic that should be
+                externalized.
+              </p>
+            </ul>
+          </div>
+          <div class="footnotes" role="note">
+            <a id="pgfmanual-autopage-8357"></a>
+
+            <p>
+              <sup>16</sup>&nbsp;Actually, the command key
+              <kbd>/pgf/images/include external</kbd> is invoked which calls an
+              appropriate <kbd>\includegraphics</kbd> command.
+            </p>
+          </div>
+          <h5 id="autosec-8358">
+            <span
+              ><span class="sectionnumber" id="sec-111.3">111.3</span> Workflow
+              Step 2: Generating the External Graphics</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-111.3"
+              data-pdf-destination="subsection.111.3"
+              data-pdf-page="1179"
+              href="#sec-111.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8358"></a>
+
+          <p>
+            We have now indicated all the graphics for which we would like
+            graphic files to be generated. In order to generate the files, you
+            now need to modify the
+            <span class="verb">\jobname</span> appropriately. This is done in
+            two steps:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> You use the following command
+                to tell <span class="textsc">pgf</span> the real name of your
+                <span class="verb">.tex</span> file:
+              </p>
+
+              <div class="manualentry">
+                <ul class="enumerate" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf.back/pgfrealjobname"></a>
+                        <span class="hl-def"
+                          ><span class="textcolor" style="color: #bf0000"
+                            ><kbd>\pgfrealjobname</kbd></span
+                          >{<span class="angle">&langle;</span><i>name</i
+                          ><span class="angle">&rangle;</span>}</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf.back/pgfrealjobname"
+                          href="#\pgfrealjobname"
+                          id="\pgfrealjobname"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Tells <span class="textsc">pgf</span> the real name of your
+                    job. For instance, if you have a file called
+                    <span class="verb">survey.tex</span> that contains two
+                    graphics that you wish to be called
+                    <span class="verb">survey-graphic1</span> and
+                    <span class="verb">survey-graphic2</span>, then you should
+                    write the following.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="example-code-comment"
+                          >% This is file survey.tex</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          >\documentclass</span
+                        >{<span class="textcolor" style="color: #000000"
+                          >article</span
+                        >}<br />
+                        ...<br />
+                        <span class="textcolor" style="color: #0000b2"
+                          >\usepackage</span
+                        >{<span class="textcolor" style="color: #000000"
+                          ><a href="tikz-scopes#pgf.tikz">tikz</a></span
+                        >}<br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-external#pgf.back/pgfrealjobname"
+                            >\pgfrealjobname</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >survey</span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p></p>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> You run
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                with the <span class="verb">\jobname</span> set to the name of
+                the graphic for which you need an external graphic to be
+                generated. To set the <span class="verb">\jobname</span>, you
+                use the <span class="verb">--jobname=</span> option of
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >bash&gt;</span
+                    >
+                    <span class="textcolor" style="color: #000000">latex</span>
+                    <span class="textcolor" style="color: #000000"
+                      >--jobname=survey-graphic1</span
+                    >
+                    <span class="textcolor" style="color: #000000">survey</span
+                    >.<span class="textcolor" style="color: #000000">tex</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </li>
+          </ul>
+
+          <p>The following things will now happen:</p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span>
+                <span class="verb">\pgfrealjobname</span> notices that the
+                <span class="verb">\jobname</span> is not the &ldquo;real&rdquo;
+                jobname and, thus, must be the name of a graphic that is to be
+                put in an external file.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> At the beginning of the
+                document, <span class="textsc">pgf</span> changes the definition
+                of
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >&rsquo;s internal <span class="verb">\shipout</span> macro. The
+                new shipout macro simply throws away the output. This means that
+                the document is typeset normally, but no output is produced.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> When the
+                <span class="verb">\beginpgfgraphicnamed{</span
+                ><span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">}</span> command is encountered where the
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> is the same as the current
+                <span class="verb">\jobname</span>, then a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-box is started and <span class="angle">&langle;</span
+                ><i>everything</i><span class="angle">&rangle;</span> up to the
+                following <span class="verb">\endpgfgraphicnamed</span> command
+                is stored inside this box.
+              </p>
+              <p>
+                Note that, typically, <span class="angle">&langle;</span
+                ><i>everything</i><span class="angle">&rangle;</span> will
+                contain just a single <span class="verb">{tikzpicture}</span> or
+                <span class="verb">{pgfpicture}</span> environment. However,
+                this need not be the case, you can use, say, a
+                <span class="verb">{pspicture}</span> environment as
+                <span class="angle">&langle;</span><i>everything</i
+                ><span class="angle">&rangle;</span> or even just some normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-text.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> At the
+                <span class="verb">\endpgfgraphicnamed</span>, the box
+                <em>is</em> shipped out using the original
+                <span class="verb">\shipout</span> command. Thus, unlike
+                everything else, the contents of the graphic is made part of the
+                output.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> When the box containing the
+                graphic is shipped out, the paper size is modified such that it
+                is exactly equal to the height and width of the box.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            The net effect of everything described above is that the two
+            commands
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">bash&gt;</span>
+                <span class="textcolor" style="color: #000000">latex</span>
+                <span class="textcolor" style="color: #000000"
+                  >--jobname=survey-graphic1</span
+                >
+                <span class="textcolor" style="color: #000000">survey</span
+                >.<span class="textcolor" style="color: #000000">tex</span
+                ><br />
+                <span class="textcolor" style="color: #000000">bash&gt;</span>
+                <span class="textcolor" style="color: #000000">dvips</span>
+                <span class="textcolor" style="color: #000000"
+                  >survey-graphic1</span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            produce a file called
+            <span class="verb">survey-graphic1.ps</span> that consists of a
+            single page that contains exactly the graphic produced by the code
+            between
+            <span class="verb">\beginpgfgraphicnamed{survey-graphic1}</span> and
+            <span class="verb">\endpgfgraphicnamed</span>. Furthermore, the size
+            of this single page is exactly the size of the graphic.
+          </p>
+
+          <p>
+            If you use pdf<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >, producing the graphic is even simpler:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">bash&gt;</span>
+                <span class="textcolor" style="color: #000000">pdflatex</span>
+                <span class="textcolor" style="color: #000000"
+                  >--jobname=survey-graphic1</span
+                >
+                <span class="textcolor" style="color: #000000">survey</span
+                >.<span class="textcolor" style="color: #000000">tex</span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            produces the single-page <span class="verb">pdf</span>-file
+            <span class="verb">survey-graphic1.pdf</span>.
+          </p>
+          <h5 id="autosec-8359">
+            <span
+              ><span class="sectionnumber" id="sec-111.4">111.4</span> Workflow
+              Step 3: Including the External Graphics</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-111.4"
+              data-pdf-destination="subsection.111.4"
+              data-pdf-page="1180"
+              href="#sec-111.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8359"></a>
+
+          <p>
+            Once you have produced all the pictures in the text, including them
+            into the main document is easy: Simply run
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            again without any modification of the
+            <span class="verb">\jobname</span>. In this case the
+            <span class="verb">\pgfrealjobname</span> command will notice that
+            the main file is, indeed, the main file. The main file will then be
+            typeset normally and the
+            <span class="verb">\beginpgfgraphicnamed</span> commands also behave
+            normally, which means that they will try to include the generated
+            graphic files &ndash; which is exactly what you want.
+          </p>
+
+          <p>
+            Suppose that you wish to send your survey to a journal that does not
+            have <span class="textsc">pgf</span> installed. In this case, you
+            now have all the necessary external graphics, but you still need
+            <span class="textsc">pgf</span> to automatically include them
+            instead of the executing the picture code! One way to solve this
+            problem is to simply delete all of the
+            <span class="textsc">pgf</span> or
+            <span class="tikzname">TikZ</span> code from your
+            <span class="verb">survey.tex</span> and instead insert appropriate
+            <span class="verb">\includegraphics</span> commands &ldquo;by
+            hand&rdquo;. However, there is a better way: You input the file
+            <span class="verb">pgfexternal.tex</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      >File
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >pgfexternal.tex</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This file defines the command
+                <span class="verb">\beginpgfgraphicnamed</span> and causes it to
+                have the following effect: It includes the graphic file given as
+                a parameter to it and then gobbles everything up to
+                <span class="verb">\endpgfgraphicnamed</span>.
+              </p>
+              <p>
+                Since <span class="verb">\beginpgfgraphicnamed</span> does not
+                do macro expansion as it searches for
+                <span class="verb">\endpgfgraphicnamed</span>, it is not
+                necessary to actually include the packages necessary for
+                <em>creating</em> the graphics. So the idea is that you comment
+                out things like <span class="verb">\usepackage{tikz}</span> and
+                instead say <span class="verb">\input pgfexternal.tex</span>.
+              </p>
+              <p>
+                Indeed, the contents of this file is simply the following line:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2">\long</span
+                    ><span class="textcolor" style="color: #0000b2">\def</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                        >\beginpgfgraphicnamed</a
+                      ></span
+                    ><span class="textcolor" style="color: #000000">#1#2</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                        >\endpgfgraphicnamed</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\includegraphics</span
+                    >{<span class="textcolor" style="color: #000000">#1</span
+                    >}}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Instead of <span class="verb">\input pgfexternal.tex</span> you
+                could also include this line in your main file.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            As a final remark, note that the
+            <span class="verb">baseline</span> option does not work directly
+            with pictures written to an external graphic file. The simple reason
+            is that there is no way to store this baseline information in an
+            external graphic file. To allow the
+            <span class="verb">baseline</span> option (or any
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            construction with non-zero depth), the baseline information is
+            stored into a separate file. This file is named {<span class="angle"
+              >&langle;</span
+            ><i>image file</i><span class="angle">&rangle;</span>}<span
+              class="verb"
+              >.dpth</span
+            >
+            and contains something like <span class="verb">5pt</span>.
+          </p>
+
+          <p>
+            So, if you need baseline information, you will have to keep the
+            external graphic file together with its&nbsp;<span class="verb"
+              >.dpth</span
+            >
+            file. Furthermore, the short command in
+            <span class="verb">\input pgfexternal.tex</span> is no longer enough
+            because it ignores any baseline information. You will need to use
+            <span class="verb">\input pgfexternalwithdepth.tex</span> instead
+            (it is shown below). It is slightly longer, but it can be used in
+            the same way as <span class="verb">pgfexternal.tex</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/images/include external</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default"
+                      >(initially <kbd>\pgfimage{#1}</kbd>)</span
+                    >
+                  </p>
+                </li>
+              </div>
+              <a id="pgf:includeexternalkey"></a>
+              <p>
+                This key constitutes the public interface to exchange the
+                <span class="verb">\includegraphics</span> command used for the
+                image inclusion.
+              </p>
+              <p>
+                Redefining this key allows to provide bounding box or viewport
+                options:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        ><a
+                          href="library-external#pgf./pgf/images/include:external"
+                          >/pgf/images/include external</a
+                        ></span
+                      >/<span class="textcolor" style="color: #0000b2"
+                        ><a href="pgfkeys#pgf./handlers/.code">.code</a></span
+                      >=<span class="textcolor" style="color: #008000"
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\includegraphics</span
+                        >[<span class="textcolor" style="color: #008000"
+                          >viewport</span
+                        >=<span class="textcolor" style="color: #008000"
+                          >0 0 211.28 175.686</span
+                        >]{#1}}</span
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Do not forget the <span class="verb">.code</span> here which
+                redefines the command.
+              </p>
+              <p>
+                One application could be image externalization and bounding box
+                restrictions: As far as I know, a
+                <span class="verb">.pdf</span> graphics with restricted bounding
+                box is always cropped (which is not always desired). One
+                solution could be to use <span class="verb">latex</span> and
+                <span class="verb">dvips</span> which doesn&rsquo;t have this
+                restriction. Another is to manually provide the
+                <span class="verb">viewport</span> option as shown above.
+              </p>
+              <p>
+                A possible value for <span class="verb">viewport</span> can be
+                found in the <span class="verb">.pdf</span> image, search for
+                <span class="verb">/MediaBox = [ ... ]</span>.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8360">
+            <span
+              ><span class="sectionnumber" id="sec-111.5">111.5</span> A
+              Complete Example</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-111.5"
+              data-pdf-destination="subsection.111.5"
+              data-pdf-page="1181"
+              href="#sec-111.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8360"></a>
+
+          <p>
+            Let us now have a look at a simple, but complete example. We start
+            out with a normal file called
+            <span class="verb">survey.tex</span> that has the following
+            contents:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="example-code-comment"
+                  >% This is the file survey.tex</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\documentclass</span
+                >{<span class="textcolor" style="color: #000000">article</span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #0000b2">\usepackage</span
+                >{<span class="textcolor" style="color: #000000">graphics</span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2">\usepackage</span
+                >{<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-scopes#pgf.tikz">tikz</a></span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2">document</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">In</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000">following</span>
+                <span class="textcolor" style="color: #000000">figure</span
+                >, <span class="textcolor" style="color: #000000"
+                  >we</span
+                >
+                <span class="textcolor" style="color: #000000">see</span>
+                <span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000">circle:</span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10pt)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #000000">By</span>
+                <span class="textcolor" style="color: #000000">comparison</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000">this</span>
+                <span class="textcolor" style="color: #000000">figure</span>
+                <span class="textcolor" style="color: #000000">we</span>
+                <span class="textcolor" style="color: #000000">see</span>
+                <span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000">rectangle:</span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10pt,10pt)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >document</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Now our editor tells us that the publisher will need all figures to
+            be provided in separate PostScript or
+            <span class="verb">.pdf</span>-files. For this, we enclose all
+            figures in <span class="verb">...graphicnamed</span>-pairs and we
+            add a call to the <span class="verb">\pgfrealjobname</span> macro:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="example-code-comment"
+                  >% This is the file survey.tex</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\documentclass</span
+                >{<span class="textcolor" style="color: #000000">article</span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #0000b2">\usepackage</span
+                >{<span class="textcolor" style="color: #000000">graphics</span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2">\usepackage</span
+                >{<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-scopes#pgf.tikz">tikz</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/pgfrealjobname"
+                    >\pgfrealjobname</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">survey</span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2">document</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">In</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000">following</span>
+                <span class="textcolor" style="color: #000000">figure</span
+                >, <span class="textcolor" style="color: #000000"
+                  >we</span
+                >
+                <span class="textcolor" style="color: #000000">see</span>
+                <span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000">circle:</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                    >\beginpgfgraphicnamed</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">survey-f1</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10pt)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                    >\endpgfgraphicnamed</a
+                  ></span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000">By</span>
+                <span class="textcolor" style="color: #000000">comparison</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000">this</span>
+                <span class="textcolor" style="color: #000000">figure</span>
+                <span class="textcolor" style="color: #000000">we</span>
+                <span class="textcolor" style="color: #000000">see</span>
+                <span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000">rectangle:</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                    >\beginpgfgraphicnamed</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">survey-f2</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10pt,10pt)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                    >\endpgfgraphicnamed</a
+                  ></span
+                ><br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >document</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            After these changes, typesetting the file will still yield the same
+            output as it did before &ndash; after all, we have not yet created
+            any external graphics.
+          </p>
+
+          <p>
+            To create the external graphics, we run
+            <span class="verb">pdflatex</span> twice, once for each graphic:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">bash&gt;</span>
+                <span class="textcolor" style="color: #000000">pdflatex</span>
+                <span class="textcolor" style="color: #000000"
+                  >--jobname=survey-f1</span
+                >
+                <span class="textcolor" style="color: #000000">survey</span
+                >.<span class="textcolor" style="color: #000000">tex</span
+                ><br />
+                <span class="textcolor" style="color: #000000">This</span>
+                <span class="textcolor" style="color: #000000">is</span>
+                <span class="textcolor" style="color: #000000">pdfTeX</span
+                >, <span class="textcolor" style="color: #000000"
+                  >Version</span
+                >
+                <span class="textcolor" style="color: #000000">3</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >141592-1</span
+                >.<span class="textcolor" style="color: #000000">40</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >3</span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(Web2C 7.5.6)</span
+                ><br />
+                <span class="textcolor" style="color: #000000">entering</span>
+                <span class="textcolor" style="color: #000000">extended</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-external#pgf.mode">mode</a></span
+                ><br />
+                <span class="textcolor" style="color: #800080"
+                  >(./survey.tex<br />
+                  LaTeX2e &lt;2005/12/01&gt;<br />
+                  ...<br />
+                  )</span
+                > [<span class="textcolor" style="color: #008000">1</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(./survey-f1.aux)</span
+                ><span class="spaces"> </span>)<br />
+                <span class="textcolor" style="color: #000000">Output</span>
+                <span class="textcolor" style="color: #000000">written</span>
+                <span class="textcolor" style="color: #000000">on</span>
+                <span class="textcolor" style="color: #000000">survey-f1</span
+                >.<span class="textcolor" style="color: #000000">pdf</span>
+                <span class="textcolor" style="color: #800080"
+                  >(1 page, 1016 bytes)</span
+                >.<br />
+                <span class="textcolor" style="color: #000000">Transcript</span>
+                <span class="textcolor" style="color: #000000">written</span>
+                <span class="textcolor" style="color: #000000">on</span>
+                <span class="textcolor" style="color: #000000">survey-f1</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.log">log</a></span
+                >.<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">bash&gt;</span>
+                <span class="textcolor" style="color: #000000">pdflatex</span>
+                <span class="textcolor" style="color: #000000"
+                  >--jobname=survey-f2</span
+                >
+                <span class="textcolor" style="color: #000000">survey</span
+                >.<span class="textcolor" style="color: #000000">tex</span
+                ><br />
+                <span class="textcolor" style="color: #000000">This</span>
+                <span class="textcolor" style="color: #000000">is</span>
+                <span class="textcolor" style="color: #000000">pdfTeX</span
+                >, <span class="textcolor" style="color: #000000"
+                  >Version</span
+                >
+                <span class="textcolor" style="color: #000000">3</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >141592-1</span
+                >.<span class="textcolor" style="color: #000000">40</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >3</span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(Web2C 7.5.6)</span
+                ><br />
+                <span class="textcolor" style="color: #000000">entering</span>
+                <span class="textcolor" style="color: #000000">extended</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-external#pgf.mode">mode</a></span
+                ><br />
+                <span class="textcolor" style="color: #800080"
+                  >(./survey.tex<br />
+                  LaTeX2e &lt;2005/12/01&gt;<br />
+                  ...<br />
+                  (./survey-f2.aux)</span
+                ><span class="spaces"> </span>)<br />
+                <span class="textcolor" style="color: #000000">Output</span>
+                <span class="textcolor" style="color: #000000">written</span>
+                <span class="textcolor" style="color: #000000">on</span>
+                <span class="textcolor" style="color: #000000">survey-f2</span
+                >.<span class="textcolor" style="color: #000000">pdf</span>
+                <span class="textcolor" style="color: #800080"
+                  >(1 page, 1002 bytes)</span
+                >.<br />
+                <span class="textcolor" style="color: #000000">Transcript</span>
+                <span class="textcolor" style="color: #000000">written</span>
+                <span class="textcolor" style="color: #000000">on</span>
+                <span class="textcolor" style="color: #000000">survey-f2</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.log">log</a></span
+                >.<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            We can now send the two generated graphics (<span class="verb"
+              >survey-f1.pdf</span
+            >
+            and <span class="verb">survey-f2.pdf</span>) to the editor. However,
+            the publisher cannot use our
+            <span class="verb">survey.tex</span> file, yet. The reason is that
+            it contains the command
+            <span class="verb">\usepackage{tikz}</span> and they do not have
+            <span class="textsc">pgf</span> installed.
+          </p>
+
+          <p>
+            Thus, we modify the main file
+            <span class="verb">survey.tex</span> as follows:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="example-code-comment"
+                  >% This is the file survey.tex</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\documentclass</span
+                >{<span class="textcolor" style="color: #000000">article</span
+                >}<br />
+                <br />
+                <span class="textcolor" style="color: #0000b2">\usepackage</span
+                >{<span class="textcolor" style="color: #000000">graphics</span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2">\input</span
+                > <span class="textcolor" style="color: #000000"
+                  >pgfexternal</span
+                >.<span class="textcolor" style="color: #000000">tex</span
+                ><br />
+                <span class="example-code-comment">% \usepackage{tikz}</span
+                ><br />
+                <span class="example-code-comment"
+                  >% \pgfrealjobname{survey}</span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2">document</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">In</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000">following</span>
+                <span class="textcolor" style="color: #000000">figure</span
+                >, <span class="textcolor" style="color: #000000"
+                  >we</span
+                >
+                <span class="textcolor" style="color: #000000">see</span>
+                <span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000">circle:</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                    >\beginpgfgraphicnamed</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">survey-f1</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10pt)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                    >\endpgfgraphicnamed</a
+                  ></span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000">By</span>
+                <span class="textcolor" style="color: #000000">comparison</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000">this</span>
+                <span class="textcolor" style="color: #000000">figure</span>
+                <span class="textcolor" style="color: #000000">we</span>
+                <span class="textcolor" style="color: #000000">see</span>
+                <span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000">rectangle:</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                    >\beginpgfgraphicnamed</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">survey-f2</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10pt,10pt)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                    >\endpgfgraphicnamed</a
+                  ></span
+                ><br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >document</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            If we now run pdf<span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >, then, indeed, <span class="textsc">pgf</span> is no longer
+            needed:
+          </p>
+          <pre class="verbatim">bash&gt; pdflatex survey.tex
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6)
+entering extended mode
+(./survey.tex
+LaTeX2e &lt;2005/12/01&gt;
+Babel <v3.8h> and hyphenation patterns for english, ..., loaded.
+(/usr/local/gwTeX/texmf.texlive/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/local/gwTeX/texmf.texlive/tex/latex/base/size10.clo))
+(/usr/local/gwTeX/texmf.texlive/tex/latex/graphics/graphics.sty
+(/usr/local/gwTeX/texmf.texlive/tex/latex/graphics/trig.sty)
+(/usr/local/gwTeX/texmf.texlive/tex/latex/config/graphics.cfg)
+(/usr/local/gwTeX/texmf.texlive/tex/latex/pdftex-def/pdftex.def))
+(/Users/tantau/Library/texmf/tex/generic/pgf/generic/pgf/utilities/pgfexternal.
+tex) (./survey.aux)
+(/usr/local/gwTeX/texmf.texlive/tex/context/base/supp-pdf.tex
+[Loading MPS to PDF converter (version 2006.09.02).]
+) <survey-f1.pdf, 19.99973pt 23.33318pt id="1," x> <use survey-f1.pdf>
+<survey-f2.pdf, 10.00037pt 13.33382pt id="2," x> <use survey-f2.pdf> [1{/Users/ta
+ntau/Library/texmf/fonts/map/pdftex/updmap/pdftex.map} &lt;./survey-f1.pdf&gt; &lt;./sur
+vey-f2.pdf&gt;] (./survey.aux) )
+Output written on survey.pdf (1 page, 10006 bytes).
+Transcript written on survey.log.
+
+</use></survey-f2.pdf,></use></survey-f1.pdf,></v3.8h></pre>
+
+          <p>To our editor, we send the following files:</p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The last
+                <span class="verb">survey.tex</span> shown above.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The graphic file
+                <span class="verb">survey-f1.pdf</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The graphic file
+                <span class="verb">survey-f2.pdf</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The file
+                <span class="verb">pgfexternal.tex</span>, whose contents is
+                simply
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2">\long</span
+                    ><span class="textcolor" style="color: #0000b2">\def</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                        >\beginpgfgraphicnamed</a
+                      ></span
+                    ><span class="textcolor" style="color: #000000">#1#2</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                        >\endpgfgraphicnamed</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\includegraphics</span
+                    >{<span class="textcolor" style="color: #000000">#1</span
+                    >}}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                (Alternatively, we can also directly add this line to our
+                <span class="verb">survey.tex</span> file).
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            In case we have used the <span class="verb">baseline</span> option,
+            we also need to include any <span class="verb">.dpth</span> files
+            and we need to use the file
+            <span class="verb">pgfexternalwithdepth.tex</span> instead of
+            <span class="verb">pgfexternal.tex</span>. This file also checks for
+            the existence of <span class="verb">.dpth</span> files containing
+            baseline information, its contents is
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2">\long</span
+                ><span class="textcolor" style="color: #0000b2">\def</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/beginpgfgraphicnamed"
+                    >\beginpgfgraphicnamed</a
+                  ></span
+                ><span class="textcolor" style="color: #000000">#1#2</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-external#pgf.back/endpgfgraphicnamed"
+                    >\endpgfgraphicnamed</a
+                  ></span
+                >{<span class="example-code-comment">%</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\begingroup</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\setbox</span
+                ><span class="textcolor" style="color: #000000">1=</span
+                ><span class="textcolor" style="color: #0000b2">\hbox</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  >\includegraphics</span
+                >{<span class="textcolor" style="color: #000000">#1</span
+                >}}<span class="example-code-comment">%</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\openin</span
+                ><span class="textcolor" style="color: #000000">1=#1</span
+                >.<span class="textcolor" style="color: #000000">dpth</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\ifeof</span
+                ><span class="textcolor" style="color: #000000">1</span>
+                <span class="textcolor" style="color: #0000b2">\box</span
+                ><span class="textcolor" style="color: #000000">1</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\else</span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\read</span
+                ><span class="textcolor" style="color: #000000">1</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.to">to</a></span
+                ><span class="textcolor" style="color: #0000b2"
+                  >\pgfincludeexternalgraphicsdp</span
+                ><span class="textcolor" style="color: #0000b2">\closein</span
+                ><span class="textcolor" style="color: #000000">1</span><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\dimen</span
+                ><span class="textcolor" style="color: #000000">0=</span
+                ><span class="textcolor" style="color: #0000b2"
+                  >\pgfincludeexternalgraphicsdp</span
+                ><span class="textcolor" style="color: #0000b2">\relax</span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\hbox</span
+                >{<span class="textcolor" style="color: #0000b2">\lower</span
+                ><span class="textcolor" style="color: #0000b2">\dimen</span
+                ><span class="textcolor" style="color: #000000">0</span>
+                <span class="textcolor" style="color: #0000b2">\box</span
+                ><span class="textcolor" style="color: #000000">1</span> }<span
+                  class="example-code-comment"
+                  >%</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\fi</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\endgroup</span
+                ><br />
+                }<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Again, we could simply copy these lines to our
+            <span class="verb">survey.tex</span> file.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

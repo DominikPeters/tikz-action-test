@@ -1,0 +1,2526 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau and Mark Wibrow
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Shadows Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Shadows Library",
+            "item": "https://tikz.dev/library-shadows"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-shadows" rel="canonical" />
+    <meta content="https://tikz.dev/library-shadows" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/library-shadows.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta content="Shadows Library - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-6306"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-70.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-70.2"
+                >The General Shadow Option</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-70.3"
+                >Shadows for Arbitrary Paths and Shapes</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-70.3.1">Drop Shadows</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-70.3.2">Copy Shadows</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-70.4"
+                >Shadows for Special Paths and Nodes</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-6307">
+            <a id="section-libs-shadows"></a
+            ><span
+              ><span class="sectionnumber" id="sec-70">70</span> Shadows
+              Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.70"
+              data-pdf-page="781"
+              href="#sec-70"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-6307"></a>
+          <a id="pgfmanual-autofile-75"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.shadows"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >shadows</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.shadows"
+                      href="#pgf.shadows"
+                      id="pgf.shadows"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >shadows</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >shadows</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library defines styles that help adding a (partly)
+                transparent shadow to a path or node.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-6309">
+            <span
+              ><span class="sectionnumber" id="sec-70.1">70.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-70.1"
+              data-pdf-destination="subsection.70.1"
+              data-pdf-page="781"
+              href="#sec-70.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6309"></a>
+
+          <p>
+            A <em>shadow</em> is usually a black or gray area that is drawn
+            behind a path or a node, thereby adding visual depth to a picture.
+            The <span class="verb">shadows</span> library defines options that
+            make it easy to add shadows to paths. Internally, these options are
+            based on using the <span class="verb">preaction</span> option to use
+            a path twice: Once for drawing the shadow (slightly shifted) and
+            once for actually using the path.
+          </p>
+
+          <p>
+            Note that you can only add shadows to <em>paths</em>, not to whole
+            scopes.
+          </p>
+
+          <p>
+            In addition to the general <span class="verb">shadow</span> option,
+            there exist special options like
+            <span class="verb">circular shadow</span>. These can only (sensibly)
+            be used with a special kind of path (for
+            <span class="verb">circular shadow</span>, a circle) and, thus, they
+            are not as general. The advantage is, however, that they are more
+            visually pleasing since these shadows blend smoothly with the
+            background. Note that these special shadows use fadings, which few
+            printers will support.
+          </p>
+          <h5 id="autosec-6310">
+            <span
+              ><span class="sectionnumber" id="sec-70.2">70.2</span> The General
+              Shadow Option</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-70.2"
+              data-pdf-destination="subsection.70.2"
+              data-pdf-page="781"
+              href="#sec-70.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6310"></a>
+
+          <p>
+            The shadows are internally created by using a single option called
+            <span class="verb">general shadow</span>. The different options like
+            <span class="verb">drop shadow</span> or
+            <span class="verb">copy shadow</span> only differ in the commands
+            that they preset.
+          </p>
+
+          <p>
+            You will not need to use this option directly under normal
+            circumstances.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/general:shadow"></a
+                    ><a id="pgf.general:shadow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/general shadow</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>shadow options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/general:shadow"
+                      href="#tikz/general:shadow"
+                      id="tikz/general:shadow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option should be given to a
+                <span class="verb">\path</span> or a
+                <span class="verb">node</span>. It has the following effect:
+                Before the path is used normally, it is used once with the
+                <span class="angle">&langle;</span><i>shadow options</i
+                ><span class="angle">&rangle;</span> in force. Furthermore, when
+                the path is &ldquo;preused&rdquo; in this way, it is shifted and
+                scaled a little bit.
+              </p>
+              <p>
+                In detail, the following happens: A
+                <span class="verb">preaction</span> is used to paint the path in
+                a special manner before it is actually painted. This
+                &ldquo;special&rdquo; manner is as follows: The options in
+                <span class="angle">&langle;</span><i>shadow options</i
+                ><span class="angle">&rangle;</span> are used for painting this
+                path. Typically, the <span class="angle">&langle;</span
+                ><i>shadow options</i><span class="angle">&rangle;</span> will
+                contain options like <span class="verb">fill=black</span> to
+                create, say, a black shadow. Furthermore, after the
+                <span class="angle">&langle;</span><i>shadow options</i
+                ><span class="angle">&rangle;</span> have been set up, the
+                following extra canvas transformations are applied to the path:
+                It is scaled by <span class="verb">shadow scale</span> (with the
+                origin of scaling at the path&rsquo;s center) and it is shifted
+                by <span class="verb">shadow xshift</span> and
+                <span class="verb">shadow yshift</span>.
+              </p>
+              <p>
+                Note that since scaling and shifting is done using canvas
+                transformations, shadows are not taken into account when the
+                picture&rsquo;s bounding box is computed.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2581"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="41.019"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2581.png"
+                        style
+                        width="59.931"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.even:odd:rule"
+                        >even odd rule</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.general:shadow"
+                        >general shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{fill=red}</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0.5,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/shadow:scale"></a
+                        ><a id="pgf.shadow:scale"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/shadow scale</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>factor</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>1</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/shadow:scale"
+                          href="#tikz/shadow:scale"
+                          id="tikz/shadow:scale"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Shadows are scaled by <span class="angle">&langle;</span
+                    ><i>factor</i><span class="angle">&rangle;</span>.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2582"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="49.923"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2582.png"
+                            style
+                            width="73.564"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {shadows} </span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.even:odd:rule"
+                            >even odd rule</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-shadows#pgf.general:shadow"
+                            >general shadow</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{fill=red,shadow scale=1.25}</span
+                        >]<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.circle">circle</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(.5)</span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0.5,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.circle">circle</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(.5)</span
+                        >;<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/shadow:xshift"></a
+                        ><a id="pgf.shadow:xshift"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/shadow xshift</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0pt</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/shadow:xshift"
+                          href="#tikz/shadow:xshift"
+                          id="tikz/shadow:xshift"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Shadows are shifted horizontally by
+                    <span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2583"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="41.019"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2583.png"
+                            style
+                            width="66.296"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {shadows} </span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.even:odd:rule"
+                            >even odd rule</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-shadows#pgf.general:shadow"
+                            >general shadow</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{fill=red,shadow xshift=-5pt}</span
+                        >]<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.circle">circle</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(.5)</span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0.5,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.circle">circle</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(.5)</span
+                        >;<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/shadow:yshift"></a
+                        ><a id="pgf.shadow:yshift"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/shadow yshift</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0pt</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/shadow:yshift"
+                          href="#tikz/shadow:yshift"
+                          id="tikz/shadow:yshift"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Shadows are shifted vertically by
+                    <span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+          <h5 id="autosec-6317">
+            <span
+              ><span class="sectionnumber" id="sec-70.3">70.3</span> Shadows for
+              Arbitrary Paths and Shapes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-70.3"
+              data-pdf-destination="subsection.70.3"
+              data-pdf-page="782"
+              href="#sec-70.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6317"></a>
+          <h6 id="autosec-6318">
+            <span
+              ><span class="sectionnumber" id="sec-70.3.1">70.3.1</span> Drop
+              Shadows</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-70.3.1"
+              data-pdf-destination="subsubsection.70.3.1"
+              data-pdf-page="782"
+              href="#sec-70.3.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-6318"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/drop:shadow"></a
+                    ><a id="pgf.drop:shadow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/drop shadow</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>shadow options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/drop:shadow"
+                      href="#tikz/drop:shadow"
+                      id="tikz/drop:shadow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option adds a drop shadow to a
+                <span class="verb">\path</span> or a
+                <span class="verb">node</span>. It uses the
+                <span class="verb">general shadow</span> and passes the
+                <span class="angle">&langle;</span><i>shadow options</i
+                ><span class="angle">&rangle;</span> to it, plus, before them,
+                the following extra options:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">scale=1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">xshift=</span
+                    >.<span class="textcolor" style="color: #000000">5ex</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >yshift=-</span
+                    >.<span class="textcolor" style="color: #000000">5ex</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >opacity=</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >fill=black!50</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >every</span
+                    >
+                    <span class="textcolor" style="color: #000000">shadow</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2584"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.707"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2584.png"
+                        style
+                        width="62.619"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.even:odd:rule"
+                        >even odd rule</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.drop:shadow"
+                        >drop shadow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0.5,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2585"
+                      ><!--
+Burst 4
+
+Burst 3
+
+Burst 2
+
+Burst 1
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="174.170"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2585.png"
+                        style
+                        width="116.090"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {shadows,shapes.symbols} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\i</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,...,<span class="textcolor" style="color: #000000">4</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-shapes#pgf.starburst"
+                        >starburst</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.drop:shadow"
+                        >drop shadow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,\i)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Burst</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\i</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2586"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="100.394"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2586.png"
+                        style
+                        width="116.341"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.drop:shadow"
+                        >drop shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{opacity=1}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(1,2)</span
+                    ><span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(1.5,2)</span
+                    ><span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.drop:shadow"
+                        >drop shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{opacity=0.25}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(1,.5)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(1.5,.5)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/every:shadow"></a
+                    ><a id="pgf.every:shadow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/every shadow</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default"
+                      >(style, initially <kbd>empty</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/every:shadow"
+                      href="#tikz/every:shadow"
+                      id="tikz/every:shadow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style is executed in addition to any
+                <span class="angle">&langle;</span><i>shadow options</i
+                ><span class="angle">&rangle;</span> for each shadow. Use this
+                style to reconfigure the way shadows are drawn.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2587"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.707"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2587.png"
+                        style
+                        width="62.619"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.every:shadow"
+                        >every shadow</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transparency#pgf.opacity">opacity</a></span
+                    >=<span class="textcolor" style="color: #008000">.8</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!50!black}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.drop:shadow"
+                        >drop shadow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0.5,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-6327">
+            <span
+              ><span class="sectionnumber" id="sec-70.3.2">70.3.2</span> Copy
+              Shadows</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-70.3.2"
+              data-pdf-destination="subsubsection.70.3.2"
+              data-pdf-page="782"
+              href="#sec-70.3.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-6327"></a>
+
+          <p>
+            A <em>copy shadow</em> is not really a shadow. Rather, it looks like
+            another copy of the path drawn behind the path and a little bit
+            offset. This creates the visual impression of having multiple copies
+            of the path/object present.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/copy:shadow"></a
+                    ><a id="pgf.copy:shadow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/copy shadow</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>shadow options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/copy:shadow"
+                      href="#tikz/copy:shadow"
+                      id="tikz/copy:shadow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>This shadow installs the following default options:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">scale=1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">xshift=</span
+                    >.<span class="textcolor" style="color: #000000">5ex</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >yshift=-</span
+                    >.<span class="textcolor" style="color: #000000">5ex</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >every</span
+                    >
+                    <span class="textcolor" style="color: #000000">shadow</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Furthermore, the options <span class="verb">fill=</span
+                ><span class="angle">&langle;</span><i>fill color</i
+                ><span class="angle">&rangle;</span> and
+                <span class="verb">draw=</span
+                ><span class="angle">&langle;</span><i>draw color</i
+                ><span class="angle">&rangle;</span> are also set, where the
+                <span class="angle">&langle;</span><i>fill color</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>draw color</i
+                ><span class="angle">&rangle;</span> are the fill and draw
+                colors used for the main path.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2588"
+                      ><!--
+Hello World!
+
+Hello World!
+
+Hello World!
+
+Hello World!
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="138.390"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2588.png"
+                        style
+                        width="104.490"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {shadows,shapes.symbols} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.copy:shadow"
+                        >copy shadow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,-1)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.copy:shadow"
+                        >copy shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{shadow xshift=1ex,shadow yshift=1ex}</span
+                    >,<br />
+                    <span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,-2)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.copy:shadow"
+                        >copy shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{opacity=.5}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shapes#pgf.tape">tape</a></span
+                    >,<br />
+                    <span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% We have to repeat the left color since shadings are
+                      not</span
+                    ><br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% automatically applied to shadows</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,-3)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.copy:shadow"
+                        >copy shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-arrows#pgf.left">left</a>
+                      color=blue!50}</span
+                    >,<br />
+                    <span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-shadings#pgf.left:color"
+                        >left color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!50</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/double:copy:shadow"></a
+                    ><a id="pgf.double:copy:shadow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/double copy shadow</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>shadow options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/double:copy:shadow"
+                      href="#tikz/double:copy:shadow"
+                      id="tikz/double:copy:shadow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This shadow works like a <span class="verb">copy shadow</span>,
+                only the shadow is added twice, the second time with the double
+                <span class="verb">xshift</span> and
+                <span class="verb">yshift</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2589"
+                      ><!--
+Hello World!
+
+Hello World!
+
+Hello World!
+
+Hello World!
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="141.340"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2589.png"
+                        style
+                        width="110.388"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {shadows,shapes.symbols} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.double:copy:shadow"
+                        >double copy shadow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,-1)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.double:copy:shadow"
+                        >double copy shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{shadow xshift=1ex,shadow yshift=1ex}</span
+                    >,<br />
+                    <span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,-2)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.double:copy:shadow"
+                        >double copy shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{opacity=.5}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shapes#pgf.tape">tape</a></span
+                    >,<br />
+                    <span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,-3)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.double:copy:shadow"
+                        >double copy shadow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-arrows#pgf.left">left</a>
+                      color=blue!50}</span
+                    >,<br />
+                    <span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-shadings#pgf.left:color"
+                        >left color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!50</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">World!</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-6332">
+            <span
+              ><span class="sectionnumber" id="sec-70.4">70.4</span> Shadows for
+              Special Paths and Nodes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-70.4"
+              data-pdf-destination="subsection.70.4"
+              data-pdf-page="783"
+              href="#sec-70.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6332"></a>
+
+          <p>
+            The shadows in this section should normally be added only to paths
+            that have a special shape. They will look strange with other shapes.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/circular:drop:shadow"></a
+                    ><a id="pgf.circular:drop:shadow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/circular drop shadow</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>shadow options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/circular:drop:shadow"
+                      href="#tikz/circular:drop:shadow"
+                      id="tikz/circular:drop:shadow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This shadow works like a drop shadow, only it adds a circular
+                fading to the shadow. This means that the shadow will fade out
+                at the border. The following options are preset for this shadow:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">scale=1</span
+                    >.<span class="textcolor" style="color: #000000">1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">xshift=</span
+                    >.<span class="textcolor" style="color: #000000">3ex</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >yshift=-</span
+                    >.<span class="textcolor" style="color: #000000">3ex</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >fill=black</span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.path">path</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">fading=</span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">with</span>
+                    <span class="textcolor" style="color: #000000">fuzzy</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.edge">edge</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">15</span>
+                    <span class="textcolor" style="color: #000000">percent</span
+                    >},<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >every</span
+                    >
+                    <span class="textcolor" style="color: #000000">shadow</span
+                    >,<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2590"
+                      ><!--
+     Circle 2
+ Circle 3 Circle 1
+
+Circle 4 Circle 8
+
+ Circle 5 Circle 7
+     Circle 6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="218.882"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2590.png"
+                        style
+                        width="218.911"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\i</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,...,<span class="textcolor" style="color: #000000">8</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.circular:drop:shadow"
+                        >circular drop shadow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(\i*45:1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Circle</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\i</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/circular:glow"></a
+                    ><a id="pgf.circular:glow"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/circular glow</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>shadow options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/circular:glow"
+                      href="#tikz/circular:glow"
+                      id="tikz/circular:glow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This shadow works much like the
+                <span class="verb">circular shadow</span>, only it is not
+                shifted. This creates a visual effect of a &ldquo;glow&rdquo;
+                behind the circle. The following options are preset for this
+                shadow:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000">scale=1</span
+                    >.<span class="textcolor" style="color: #000000">25</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >xshift=0pt</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >shadow</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >yshift=0pt</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >fill=black</span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.path">path</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">fading=</span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">with</span>
+                    <span class="textcolor" style="color: #000000">fuzzy</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.edge">edge</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">15</span>
+                    <span class="textcolor" style="color: #000000">percent</span
+                    >},<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >every</span
+                    >
+                    <span class="textcolor" style="color: #000000">shadow</span
+                    >,<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2591"
+                      ><!--
+     Circle 2
+ Circle 3 Circle 1
+
+Circle 4 Circle 8
+
+ Circle 5 Circle 7
+     Circle 6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="238.082"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2591.png"
+                        style
+                        width="238.085"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\i</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,...,<span class="textcolor" style="color: #000000">8</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.circular:glow"
+                        >circular glow</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(\i*45:1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Circle</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\i</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2592"
+                      ><!--
+     Circle 2
+ Circle 3 Circle 1
+
+Circle 4 Circle 8
+
+ Circle 5 Circle 7
+     Circle 6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="238.082"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2592.png"
+                        style
+                        width="238.085"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\i</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,...,<span class="textcolor" style="color: #000000">8</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.circular:glow"
+                        >circular glow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{fill=white}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(\i*45:1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Circle</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\i</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2593"
+                      ><!--
+     Circle 2
+ Circle 3 Circle 1
+
+Circle 4 Circle 8
+
+ Circle 5 Circle 7
+     Circle 6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="238.058"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2593.png"
+                        style
+                        width="238.075"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\i</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,...,<span class="textcolor" style="color: #000000">8</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.circular:glow"
+                        >circular glow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{fill=green}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">black</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >green!50!black</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(\i*45:1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Circle</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\i</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                An especially interesting effect can be achieved by only using
+                the glow and not filling the path:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2594"
+                      ><!--
+     Circle 2
+ Circle 3 Circle 1
+
+Circle 4 Circle 8
+
+ Circle 5 Circle 7
+     Circle 6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="238.058"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2594.png"
+                        style
+                        width="238.075"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {shadows} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\i</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,...,<span class="textcolor" style="color: #000000">8</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadows#pgf.circular:glow"
+                        >circular glow</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{fill=red!<span class="textcolor" style="color: #0000b2"
+                        >\i</span
+                      >0}</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(\i*45:1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Circle</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\i</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

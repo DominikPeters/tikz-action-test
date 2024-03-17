@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Design Principles - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Design Principles",
+            "item": "https://tikz.dev/base-design"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-design" rel="canonical" />
+    <meta content="https://tikz.dev/base-design" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Design Principles - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7841"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-99.1">Core and Modules</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-99.2"
+                >Communicating with the Basic Layer via Macros</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-99.3"
+                >Path-Centered Approach</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-99.4"
+                >Coordinate Versus Canvas Transformations</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7842">
+            <span
+              ><span class="sectionnumber" id="sec-99">99</span> Design
+              Principles</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.99"
+              data-pdf-page="1072"
+              href="#sec-99"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7842"></a>
+          <a id="pgfmanual-autofile-108"></a>
+
+          <p>
+            This section describes the basic layer of
+            <span class="textsc">pgf</span>. This layer is built on top of the
+            system layer. Whereas the system layer just provides the absolute
+            minimum for drawing graphics, the basic layer provides numerous
+            commands that make it possible to create sophisticated graphics
+            easily and also quickly.
+          </p>
+
+          <p>
+            The basic layer does not provide a convenient syntax for describing
+            graphics, which is left to frontends like
+            <span class="tikzname">TikZ</span>. For this reason, the basic layer
+            is typically used only by &ldquo;other programs&rdquo;. For example,
+            the <span class="textsc">beamer</span> package uses the basic layer
+            extensively, but does not need a convenient input syntax. Rather,
+            speed and flexibility are needed when
+            <span class="textsc">beamer</span> creates graphics.
+          </p>
+
+          <p>The following basic design principles underlie the basic layer:</p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Structuring into a core and
+                modules.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Consistently named
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                macros for all graphics commands.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> Path-centered description of
+                graphics.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> Coordinate transformation
+                system.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-7844">
+            <span
+              ><span class="sectionnumber" id="sec-99.1">99.1</span> Core and
+              Modules</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-99.1"
+              data-pdf-destination="subsection.99.1"
+              data-pdf-page="1072"
+              href="#sec-99.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7844"></a>
+
+          <p>
+            The basic layer consists of a <em>core package</em>, called
+            <span class="verb">pgfcore</span>, which provides the most basic
+            commands, and several <em>modules</em> like commands for plotting
+            (in the <span class="verb">plot</span> module). Modules are loaded
+            using the <span class="verb">\usepgfmodule</span> command.
+          </p>
+
+          <p>
+            If you say <span class="verb">\usepackage{pgf}</span> or
+            <span class="verb">\input pgf.tex</span> or
+            <span class="verb">\usemodule[pgf]</span>, the
+            <span class="verb">plot</span> and
+            <span class="verb">shapes</span> modules are preloaded (as well as
+            the core and the system layer).
+          </p>
+          <h5 id="autosec-7845">
+            <span
+              ><span class="sectionnumber" id="sec-99.2">99.2</span>
+              Communicating with the Basic Layer via Macros</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-99.2"
+              data-pdf-destination="subsection.99.2"
+              data-pdf-page="1072"
+              href="#sec-99.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7845"></a>
+
+          <p>
+            In order to &ldquo;communicate&rdquo; with the basic layer you use
+            long sequences of commands that start with
+            <span class="verb">\pgf</span>. You are only allowed to give these
+            commands inside a
+            <span class="verb">{pgfpicture}</span> environment. (Note that
+            <span class="verb">{tikzpicture}</span> opens a
+            <span class="verb">{pgfpicture}</span> internally, so you can freely
+            mix <span class="textsc">pgf</span> commands and
+            <span class="tikzname">TikZ</span> commands inside a
+            <span class="verb">{tikzpicture}</span>.) It is possible to
+            &ldquo;do other things&rdquo; between the commands. For example, you
+            might use one command to move to a certain point, then have a
+            complicated computation of the next point, and then move there.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3181"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="41.379"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3181.png"
+                    style
+                    width="41.389"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2">\newdimen</span
+                ><span class="textcolor" style="color: #0000b2">\myypos</span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-paths#pgf.back/pgfpathmoveto"
+                    >\pgfpathmoveto</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #000000">0cm</span
+                >}{<span class="textcolor" style="color: #0000b2">\myypos</span
+                >}}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-paths#pgf.back/pgfpathlineto"
+                    >\pgfpathlineto</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #000000">1cm</span
+                >}{<span class="textcolor" style="color: #0000b2">\myypos</span
+                >}}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  >\advance</span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\myypos</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.by">by</a></span
+                >
+                <span class="textcolor" style="color: #000000">1cm</span><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-paths#pgf.back/pgfpathlineto"
+                    >\pgfpathlineto</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #000000">1cm</span
+                >}{<span class="textcolor" style="color: #0000b2">\myypos</span
+                >}}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-paths#pgf.back/pgfpathclose"
+                    >\pgfpathclose</a
+                  ></span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-actions#pgf.back/pgfusepath"
+                    >\pgfusepath</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">stroke</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>The following naming conventions are used in the basic layer:</p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> All commands and environments
+                start with <span class="verb">pgf</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> All commands that specify a
+                point (a coordinate) start with
+                <span class="verb">\pgfpoint</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> All commands that extend the
+                current path start with <span class="verb">\pgfpath</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> All commands that set/change
+                a graphics parameter start with
+                <span class="verb">\pgfset</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> All commands that use a
+                previously declared object (like a path, image or shading) start
+                with <span class="verb">\pgfuse</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span> All commands having to do
+                with coordinate transformations start with
+                <span class="verb">\pgftransform</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">7.</span> All commands having to do
+                with arrow tips start with <span class="verb">\pgfarrows</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">8.</span> All commands for
+                &ldquo;quickly&rdquo; extending or drawing a path start with
+                <span class="verb">\pgfpathq</span> or
+                <span class="verb">\pgfusepathq</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">9.</span> All commands having to do
+                with matrices start with <span class="verb">\pgfmatrix</span>.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-7848">
+            <span
+              ><span class="sectionnumber" id="sec-99.3">99.3</span>
+              Path-Centered Approach</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-99.3"
+              data-pdf-destination="subsection.99.3"
+              data-pdf-page="1073"
+              href="#sec-99.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7848"></a>
+
+          <p>
+            In <span class="textsc">pgf</span> the most important entity is the
+            <em>path</em>. All graphics are composed of numerous paths that can
+            be stroked, filled, shaded, or clipped against. Paths can be closed
+            or open, they can self-intersect and consist of unconnected parts.
+          </p>
+
+          <p>
+            Paths are first <em>constructed</em> and then <em>used</em>. In
+            order to construct a path, you can use commands starting with
+            <span class="verb">\pgfpath</span>. Each time such a command is
+            called, the current path is extended in some way.
+          </p>
+
+          <p>
+            Once a path has been completely constructed, you can use it using
+            the command <span class="verb">\pgfusepath</span>. Depending on the
+            parameters given to this command, the path will be stroked (drawn)
+            or filled or subsequent drawings will be clipped against this path.
+          </p>
+          <h5 id="autosec-7849">
+            <a id="section-design-transformations"></a
+            ><span
+              ><span class="sectionnumber" id="sec-99.4">99.4</span> Coordinate
+              Versus Canvas Transformations</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-99.4"
+              data-pdf-destination="subsection.99.4"
+              data-pdf-page="1073"
+              href="#sec-99.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7849"></a>
+
+          <p>
+            <span class="textsc">pgf</span> provides two transformation systems:
+            <span class="textsc">pgf</span>&rsquo;s own
+            <em>coordinate</em> transformation matrix and
+            <span class="textsc">pdf</span>&rsquo;s or PostScript&rsquo;s
+            <em>canvas</em> transformation matrix. These two systems are quite
+            different. Whereas a scaling by a factor of, say, \(2\) of the
+            canvas causes <em>everything</em> to be scaled by this factor
+            (including the thickness of lines and text), a scaling of two in the
+            coordinate system causes only the <em>coordinates</em> to be scaled,
+            but not the line width nor text.
+          </p>
+
+          <p>
+            By default, all transformations only apply to the coordinate
+            transformation system. However, using the command
+            <span class="verb">\pgflowlevel</span> it is possible to apply a
+            transformation to the canvas.
+          </p>
+
+          <p>
+            Coordinate transformations are often preferable over canvas
+            transformations. Text and lines that are transformed using canvas
+            transformations suffer from differing sizes and lines whose
+            thickness differs depending on whether the line is horizontal or
+            vertical. To appreciate the difference, consider the following two
+            &ldquo;circles&rdquo; both of which have been scaled in the
+            \(x\)-direction by a factor of \(3\) and by a factor of \(0.5\) in
+            the \(y\)-direction. The left circle uses a canvas transformation,
+            the right uses <span class="textsc">pgf</span>&rsquo;s coordinate
+            transformation (some viewers will render the left graphic
+            incorrectly since they do no apply the low-level transformation the
+            way they should):
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-3182"
+              ><!--
+canvas coordinate
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="28.227"
+                loading="lazy"
+                src="pgfmanual-images/image-3182.png"
+                style
+                width="549.505"
+            /></span>
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

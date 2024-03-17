@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Graph Drawing - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd" rel="canonical" />
+    <meta content="https://tikz.dev/gd" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Graph Drawing - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4379"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h2 id="autosec-4380">
+            Part&nbsp;<span class="sectionnumber">IV&emsp;</span>Graph Drawing
+          </h2>
+          <div class="mobile-toc">
+            <strong>Sections</strong>
+            <ul>
+              <li>
+                <a href="gd-overview"
+                  >Introduction to Algorithmic Graph Drawing</a
+                >
+              </li>
+              <li><a href="gd-usage-tikz">Using Graph Drawing in TikZ</a></li>
+              <li><a href="gd-usage-pgf">Using Graph Drawing in PGF</a></li>
+              <li><a href="gd-trees">Graph Drawing Layouts: Trees</a></li>
+              <li>
+                <a href="gd-layered"
+                  >Graph Drawing Algorithms: Layered Layouts</a
+                >
+              </li>
+              <li>
+                <a href="gd-force"
+                  >Graph Drawing Algorithms: Force-Based Methods</a
+                >
+              </li>
+              <li>
+                <a href="gd-circular"
+                  >Graph Drawing Algorithms: Circular Layouts</a
+                >
+              </li>
+              <li>
+                <a href="gd-phylogenetics"
+                  >Graph Drawing Layouts: Phylogenetic Trees</a
+                >
+              </li>
+              <li>
+                <a href="gd-edge-routing"
+                  >Graph Drawing Algorithms: Edge Routing</a
+                >
+              </li>
+              <li><a href="gd-algorithm-layer">The Algorithm Layer</a></li>
+              <li>
+                <a href="gd-algorithms-in-c"
+                  >Writing Graph Drawing Algorithms in C</a
+                >
+              </li>
+              <li><a href="gd-display-layer">The Display Layer</a></li>
+              <li><a href="gd-binding-layer">The Binding Layer</a></li>
+            </ul>
+          </div>
+          <a id="pgfmanual-autopage-4380"></a>
+          <a id="pgfmanual-autofile-30"></a>
+
+          <a id="part-gd"></a>
+
+          <p>
+            <em>by Till Tantau et al.</em>
+          </p>
+
+          <p>
+            <em>Graph drawing algorithms</em> do the tough work of computing a
+            layout of a graph for you. <span class="tikzname">TikZ</span> comes
+            with powerful such algorithms, but you can also implement new
+            algorithms in the Lua programming language.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1863"
+                  ><!--
+                                                           5th Edition
+
+
+                                       6th Edition PWB 1.0
+
+
+         LSX Mini Unix Wollongong Interdata 1 BSD USG 1.0 PWB 1.2
+
+
+               7th Edition CB Unix 1 USG 2.0 PWB 2.0
+
+
+  32V Xenix UniPlus+ CB Unix 2 USG 3.0 Unix/TS 1.0
+
+
+3 BSD 2 BSD CB Unix 3 Unix/TS 3.0
+
+
+ 4 BSD PDP-11 Sys V Unix/TS++
+
+
+ 4.1 BSD V7M TS 4.0
+
+
+         2.8 BSD 8th Edition 4.2 BSD System V.0
+
+
+                Ultrix-11 9th Edition 2.9 BSD 4.3 BSD Ultrix-32 System V.2
+
+
+                                                                                    System V.3
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="402.530"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1863.png"
+                    style
+                    width="592.647"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {arrows.meta,graphs,graphdrawing}
+                  \usegdlibrary {layered} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-shapes#pgf.text">text</a>
+                  height=.7em, <a href="tikz-shapes#pgf.text">text</a>
+                  depth=.2em,<br />
+                  <span class="spaces">              </span>draw=black!20, <a
+                    href="tikz-actions#pgf.thick"
+                    >thick</a
+                  >,<span class="spaces"> </span>fill=white,<span class="spaces"> </span>font=<span
+                    class="textcolor"
+                    style="color: #0000b2"
+                    >\footnotesize</span
+                  >}</span
+                >,<br />
+                <span class="spaces">       </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.&gt;">&gt;</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{Stealth[<span class="textcolor" style="color: #008000"
+                    ><a href="tikz-arrows#pgf.round">round</a></span
+                  >,<span class="textcolor" style="color: #008000"
+                    ><a href="tikz-arrows#pgf.sep">sep</a></span
+                  >]}</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.rounded:corners"
+                    >rounded corners</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.semithick">semithick</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-layered#pgf.layered:layout"
+                    >layered layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.level:distance"
+                    >level distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="gd-usage-tikz#pgf.sibling:sep">sibling sep</a></span
+                >=<span class="textcolor" style="color: #008000">.5em</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.sibling:distance"
+                    >sibling distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"5th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"6th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"PWB</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"6th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"LSX"</span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  >&gt;child anchor</span
+                >=<span class="textcolor" style="color: #008000">45</span
+                >],<span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >"1</span
+                >
+                <span class="textcolor" style="color: #000000">BSD"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Mini</span
+                >
+                <span class="textcolor" style="color: #000000">Unix"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Wollongong"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Interdata"</span
+                >
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"Interdata"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"Unix/TS</span
+                >
+                <span class="textcolor" style="color: #000000">3</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"PWB</span
+                >
+                <span class="textcolor" style="color: #000000">2</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"7th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span>
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"7th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"8th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"32V"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"V7M"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Ultrix-11"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Xenix"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"UniPlus+"</span
+                >
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"V7M"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"Ultrix-11"</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"8th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"9th</span>
+                <span class="textcolor" style="color: #000000">Edition"</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"1</span
+                >
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"2</span>
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"2</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >8</span
+                >
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"Ultrix-11"</span
+                >, <span class="textcolor" style="color: #000000">"2</span
+                >.<span class="textcolor" style="color: #000000">9</span>
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"32V"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"3</span>
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"4</span>
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"4</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >1</span
+                >
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000">"4</span
+                >.<span class="textcolor" style="color: #000000">2</span>
+                <span class="textcolor" style="color: #000000">BSD"</span
+                >, <span class="textcolor" style="color: #000000">"2</span
+                >.<span class="textcolor" style="color: #000000">8</span>
+                <span class="textcolor" style="color: #000000">BSD"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"8th</span
+                >
+                <span class="textcolor" style="color: #000000">Edition"</span>
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"4</span
+                >.<span class="textcolor" style="color: #000000">2</span>
+                <span class="textcolor" style="color: #000000">BSD"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000">"4</span
+                >.<span class="textcolor" style="color: #000000">3</span>
+                <span class="textcolor" style="color: #000000">BSD"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Ultrix-32"</span
+                >
+                };<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"PWB</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"PWB</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >2"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"PWB</span>
+                <span class="textcolor" style="color: #000000">2</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"USG</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"CB</span
+                >
+                <span class="textcolor" style="color: #000000">Unix</span>
+                <span class="textcolor" style="color: #000000">1"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"USG</span
+                >
+                <span class="textcolor" style="color: #000000">2</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                }};<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"CB</span
+                >
+                <span class="textcolor" style="color: #000000">Unix</span>
+                <span class="textcolor" style="color: #000000">1"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"CB</span>
+                <span class="textcolor" style="color: #000000">Unix</span>
+                <span class="textcolor" style="color: #000000">2"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"CB</span>
+                <span class="textcolor" style="color: #000000">Unix</span>
+                <span class="textcolor" style="color: #000000">3"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >"Unix/TS++"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"PDP-11</span
+                >
+                <span class="textcolor" style="color: #000000">Sys</span>
+                <span class="textcolor" style="color: #000000">V"</span>
+                };<br />
+                <span class="spaces">    </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"USG</span
+                >
+                <span class="textcolor" style="color: #000000">2</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"USG</span>
+                <span class="textcolor" style="color: #000000">3</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"PWB</span
+                >
+                <span class="textcolor" style="color: #000000">2</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Unix/TS</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                } <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"Unix/TS</span>
+                <span class="textcolor" style="color: #000000">3</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >;<br />
+                <span class="spaces">    </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"Unix/TS++"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"CB</span
+                >
+                <span class="textcolor" style="color: #000000">Unix</span>
+                <span class="textcolor" style="color: #000000">3"</span
+                >, <span class="textcolor" style="color: #000000"
+                  >"Unix/TS</span
+                >
+                <span class="textcolor" style="color: #000000">3</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                } <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"TS</span>
+                <span class="textcolor" style="color: #000000">4</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >0"</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"System</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.V">V</a></span
+                >.<span class="textcolor" style="color: #000000">0"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"System</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.V">V</a></span
+                >.<span class="textcolor" style="color: #000000">2"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">"System</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.V">V</a></span
+                >.<span class="textcolor" style="color: #000000">3"</span
+                >;<br />
+                <span class="spaces">  </span>};<br />
+              </code>
+            </div>
+          </figure>
+          <div class="home-toc-section">
+            <strong>Selected Chapters</strong>
+            <div class="home-toc-container">
+              <div class="home-toc-card">
+                <a href="/gd-overview">
+                  <img
+                    src="toc-banners/gd-overview.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name">
+                    Introduction to Graph Drawing
+                  </span>
+                </a>
+              </div>
+              <div class="home-toc-card">
+                <a href="/gd-usage-tikz">
+                  <img
+                    src="toc-banners/gd-usage-tikz.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name">
+                    Using Graph Drawing in <span class="tikzname">TikZ</span>
+                  </span>
+                </a>
+              </div>
+              <div class="home-toc-card">
+                <a href="/gd-trees">
+                  <img
+                    src="toc-banners/gd-trees.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name">Layouts: Trees</span>
+                </a>
+              </div>
+              <div class="home-toc-card">
+                <a href="/gd-layered">
+                  <img
+                    src="toc-banners/gd-layered.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name">Layered Layouts</span>
+                </a>
+              </div>
+              <div class="home-toc-card">
+                <a href="/gd-force">
+                  <img
+                    src="toc-banners/gd-force.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name">
+                    Force-Based Methods
+                  </span>
+                </a>
+              </div>
+              <div class="home-toc-card">
+                <a href="/gd-circular">
+                  <img
+                    src="toc-banners/gd-circular.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name"> Circular Layouts </span>
+                </a>
+              </div>
+              <div class="home-toc-card">
+                <a href="/gd-phylogenetics">
+                  <img
+                    src="toc-banners/gd-phylogenetics.png"
+                    width="600"
+                    height="315"
+                    loading="lazy"
+                  />
+                  <span class="home-toc-chapter-name">
+                    Phylogenetic Trees
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

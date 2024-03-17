@@ -1,0 +1,2372 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2010-2019 by Renée Ahrens
+Copyright 2010-2019 by Olof Frahm
+Copyright 2010-2019 by Jens Kluttig
+Copyright 2010-2019 by Matthias Schulz
+Copyright 2010-2019 by Stephan Schuster
+Copyright 2019 by Jannis Pohlmann
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Binding Layer - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "The Binding Layer",
+            "item": "https://tikz.dev/gd-binding-layer"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-binding-layer" rel="canonical" />
+    <meta content="https://tikz.dev/gd-binding-layer" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="The Binding Layer - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4919"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-39.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-39.2"
+                >The Binding Class and the Interface Core</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-39.3">The Binding To PGF</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-39.4"
+                >An Example Binding Class</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4920">
+            <a id="section-gd-binding-layer"></a
+            ><span
+              ><span class="sectionnumber" id="sec-39">39</span> The Binding
+              Layer</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.39"
+              data-pdf-page="558"
+              href="#sec-39"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4920"></a>
+          <a id="pgfmanual-autofile-43"></a>
+          <h5 id="autosec-4921">
+            <span
+              ><span class="sectionnumber" id="sec-39.1">39.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-39.1"
+              data-pdf-destination="subsection.39.1"
+              data-pdf-page="558"
+              href="#sec-39.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4921"></a>
+
+          <p>
+            This section explains how the <em>binding</em> of the graph drawing
+            system to a particular display layer works. Let me stress that all
+            of this is important only for readers who
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> either wish to write new
+                display system (see Section&nbsp;<a
+                  href="gd-display-layer#section-gd-display-layer"
+                  >38</a
+                >)
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> or wish to know more
+                about how the graph drawing system works on the pure
+                <span class="textsc">pgf</span> layer (this is were the binding
+                occurs).
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            <em>Bindings</em> are used to encapsulate the details of the
+            communication between the graph drawing system and a display system
+            (see Section&nbsp;<a
+              href="gd-display-layer#section-gd-display-layer"
+              >38</a
+            >
+            for an introduction to display systems).
+          </p>
+
+          <p>
+            Consider a display system that communicates with the graph drawing
+            system. At some point, the display system would like to run an
+            algorithm to lay out a graph. To achieve this, it will call
+            different functions from the class
+            <span class="verb">InterfaceToDisplay</span> and the effect of this
+            is that a representation of the to-be-drawn graph is constructed
+            internally and that the appropriate algorithms are run. All of this
+            is in some sense independent of the actual display system, the class
+            <span class="verb">InterfaceToDisplay</span> offers the same
+            standard interface to all display systems.
+          </p>
+
+          <p>
+            At some point, however, the graph drawing system may need to
+            &ldquo;talk back&rdquo; to the display system. For instance, once
+            the graph has been laid out, to trigger the actual rendering of the
+            graph, the graph drawing system must &ldquo;tell&rdquo; the display
+            layer where the vertices lie. For some display systems this is easy:
+            if the display system itself is written in Lua, it could just access
+            the syntactic digraph directly. However, for systems like
+            <span class="tikzname">TikZ</span> or systems written in another
+            language, the graph drawing system needs a set of functions that it
+            can call that will tell the display system what is going on. This is
+            were bindings come in.
+          </p>
+
+          <p>
+            The class <span class="verb">Binding</span> is an interface that
+            defines numerous methods that will be called by the graph drawing
+            system in different situations (see the documentation below for
+            details). For instance, there is a function
+            <span class="verb">renderVertex</span> that is called by the graph
+            drawing system whenever a vertex should be rendered by the display
+            system. The class is really just an interface in the sense of
+            object-oriented programming. For each display system you need to
+            create a subclass of <span class="verb">Binding</span> like
+            <span class="verb">BindingToPGF</span> or
+            <span class="verb">BindingToASCII</span> that implement the methods
+            declared by <span class="verb">Binding</span>. The number of methods
+            that need to be implemented depends on the display system.
+          </p>
+
+          <p>
+            In the following, you will find the documentation of the
+            <span class="verb">Binding</span> class in Section&nbsp;<a
+              href="gd-binding-layer#section-gd-binding-doc"
+              >39.2</a
+            >. Following this, we first have a quick look at how the
+            <span class="verb">BindingToPGF</span> works and then go over a
+            simple example of a binding to a more or less imaginary display
+            system. This example should help readers interested in implementing
+            their own bindings.
+          </p>
+          <h5 id="autosec-4922">
+            <a id="section-gd-binding-doc"></a
+            ><span
+              ><span class="sectionnumber" id="sec-39.2">39.2</span> The Binding
+              Class and the Interface Core</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-39.2"
+              data-pdf-destination="subsection.39.2"
+              data-pdf-page="558"
+              href="#sec-39.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4922"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>Lua table</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >Binding</span
+                        ></kbd
+                      >
+                      (declared in <kbd>pgf.gd.bindings.Binding</kbd>)</span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This class provides a (non-functional) default implementation of
+                a binding between a display layer and the algorithm layer.
+                Subclasses must implement most of the member functions declared
+                in this class.
+              </p>
+              <p>
+                A instance of a subclass of this class encapsulates the complete
+                implementation of all specific code needed for the communication
+                between the display layer and the graph drawing engine.
+              </p>
+              <p>
+                Note that you never call the methods of a
+                <span class="verb">Binding</span> object directly, neither from
+                the display layer nor from the algorithm layer. Instead, you use
+                the more powerful and more easy to use functions from
+                <span class="verb">InterfaceToDisplay</span> and
+                <span class="verb">InterfaceToAlgorithms</span>. They call the
+                appropriate <span class="verb">Binding</span> methods
+                internally.
+              </p>
+              <p>
+                Because of the above, in order to use the graph drawing system
+                inside a new display layer, you need to subclass
+                <span class="verb">Binding</span> and implement all the
+                functions. Then you need to write the display layer in such a
+                way that it calls the appropriate functions from
+                <span class="verb">InterfaceToDisplay</span>.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          >Field
+                          <kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >storage</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    A <span class="verb">Storage</span> storing the information
+                    passed from the display layer. The interpretation of this
+                    left to the actual binding.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                <em>Alphabetical method summary:</em>
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:createVertex"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >createVertex</span
+                    >
+                    (init)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:declareCallback"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >declareCallback</span
+                    >
+                    (t)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:everyEdgeCreation"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >everyEdgeCreation</span
+                    >
+                    (e)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-binding-layer#pgf/lua/Binding:everyVertexCreation"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >everyVertexCreation</span
+                    >
+                    (v)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-binding-layer#pgf/lua/Binding:renderCollectionStartKind"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderCollectionStartKind</span
+                    >
+                    (kind, layer)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-binding-layer#pgf/lua/Binding:renderCollectionStopKind"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderCollectionStopKind</span
+                    >
+                    (kind, layer)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderCollection"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderCollection</span
+                    >
+                    (collection)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderEdgesStart"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderEdgesStart</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderEdgesStop"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderEdgesStop</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderEdge"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderEdge</span
+                    >
+                    (edge)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderStart"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderStart</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderStop"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderStop</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderVertex"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderVertex</span
+                    >
+                    (vertex)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-binding-layer#pgf/lua/Binding:renderVerticesStart"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderVerticesStart</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/Binding:renderVerticesStop"
+                    >function Binding:<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderVerticesStop</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:declareCallback"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >declareCallback</span
+                        ></kbd
+                      ><kbd>(t)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Declare a new key. This callback is called by
+                <span class="verb">declare</span>. It is the job of the display
+                layer to make the parameter
+                <span class="verb">t.key</span> available to the parsing
+                process. Furthermore, if <span class="verb">t.initial</span> is
+                not <span class="verb">nil</span>, the display layer must
+                convert it into a value that is stored as the initial value and
+                call
+                <span class="verb">InterfaceToDisplay.setOptionInitial</span>.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>t</kbd> See
+                <span class="verb">InterfaceToAlgorithms.declare</span> for
+                details.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderStart"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderStart</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This function and, later on,
+                <span class="verb">renderStop</span> are called whenever the
+                rendering of a laid-out graph starts or stops. See
+                <span class="verb">InterfaceToDisplay.render</span> for details.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderStop"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderStop</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>See <span class="verb">renderStart</span>.</p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderCollectionStartKind"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderCollectionStartKind</span
+                        ></kbd
+                      ><kbd>(kind, layer)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This function and the corresponding
+                <span class="verb">...Stop...</span> functions are called
+                whenever a collection kind should be rendered. See
+                <span class="verb">InterfaceToDisplay.render_collections</span>
+                for details.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>kind</kbd> The kind (a
+                string). <em>2.</em> <kbd>layer</kbd> The kind&rsquo;s layer (a
+                number).
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderCollectionStopKind"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderCollectionStopKind</span
+                        ></kbd
+                      ><kbd>(kind, layer)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The counterpart to
+                <span class="verb">renderCollectionStartKind</span>.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>kind</kbd> The kind.
+                <em>2.</em> <kbd>layer</kbd> The kind&rsquo;s layer.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderCollection"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderCollection</span
+                        ></kbd
+                      ><kbd>(collection)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Renders a single collection, see
+                <span class="verb">renderCollectionStartKind</span> for details.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>collection</kbd> The
+                collection object.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderVerticesStart"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderVerticesStart</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This function and the corresponding
+                <span class="verb">...Stop...</span> functions are called
+                whenever a vertex should be rendered. See
+                <span class="verb">InterfaceToDisplay.render_vertices</span> for
+                details.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderVerticesStop"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderVerticesStop</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The counterpart to <span class="verb">renderVerticesStop</span>.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderVertex"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderVertex</span
+                        ></kbd
+                      ><kbd>(vertex)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Renders a single vertex, see
+                <span class="verb">renderVertexStartKind</span> for details.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>vertex</kbd> The
+                <span class="verb">Vertex</span> object.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:everyVertexCreation"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >everyVertexCreation</span
+                        ></kbd
+                      ><kbd>(v)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This method is called by the interface to the display layer
+                after the display layer has called
+                <span class="verb">createVertex</span> to create a new vertex.
+                After having done its internal bookkeeping, the interface calls
+                this function to allow the binding to perform further
+                bookkeeping on the node. Typically, this will be done using the
+                information stored in <span class="verb">Binding.infos</span>.
+              </p>
+              <p><em>Parameters:</em> <em>1.</em> <kbd>v</kbd> The vertex.</p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderEdgesStart"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderEdgesStart</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This function and the corresponding
+                <span class="verb">...Stop...</span> functions are called
+                whenever an edge should be rendered. See
+                <span class="verb">InterfaceToDisplay.render_edges</span> for
+                details.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderEdgesStop"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderEdgesStop</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The counterpart to <span class="verb">renderEdgesStop</span>.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:renderEdge"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >renderEdge</span
+                        ></kbd
+                      ><kbd>(edge)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Renders a single vertex, see
+                <span class="verb">renderEdgeStartKind</span> for details.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>edge</kbd> The
+                <span class="verb">Edge</span> object.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:everyEdgeCreation"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >everyEdgeCreation</span
+                        ></kbd
+                      ><kbd>(e)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Like <span class="verb">everyVertexCreation</span>, only for
+                edges.
+              </p>
+              <p><em>Parameters:</em> <em>1.</em> <kbd>e</kbd> The edge.</p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/Binding:createVertex"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >Binding:<span class="textcolor" style="color: #bf0000"
+                          >createVertex</span
+                        ></kbd
+                      ><kbd>(init)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Generate a new vertex. This method will be called when the
+                <em>algorithm</em> layer wishes to trigger the creation of a new
+                vertex. This call will be made while an algorithm is running. It
+                is now the job of the binding to cause the display layer to
+                create the node. This is done by calling the
+                <span class="verb">yield</span> method of the scope&rsquo;s
+                coroutine.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>init</kbd> A table of
+                initial values for the node. The following fields will be used:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <p>
+                  <span class="listmarker">&bull;</span>
+                  <span class="verb">name</span> If present, this name will be
+                  given to the node. If not present, an internal name is
+                  generated. Note that, unless the node is a subgraph node, this
+                  name may not be the name of an already present node of the
+                  graph; in this case an error results.
+                  <span class="listmarker">&bull;</span>
+                  <span class="verb">shape</span> If present, a shape of the
+                  node. <span class="listmarker">&bull;</span>
+                  <span class="verb">generated_options</span> A table that is
+                  passed back to the display layer as a list of key&ndash;value
+                  pairs. <span class="listmarker">&bull;</span>
+                  <span class="verb">text</span> The text of the node, to be
+                  passed back to the higher layer. This is what should be
+                  displayed as the node&rsquo;s text.
+                </p>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>Lua table</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >InterfaceCore</span
+                        ></kbd
+                      >
+                      (declared in
+                      <kbd>pgf.gd.interface.InterfaceCore</kbd>)</span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This class provides the core functionality of the interface
+                between all the different layers (display layer, binding layer,
+                and algorithm layer). The two classes
+                <span class="verb">InterfaceToAlgorithms</span> and
+                <span class="verb">InterfaceToDisplay</span> use, in particular,
+                the data structures provided by this class.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          >Field
+                          <kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >binding</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This field stores the &ldquo;binding&rdquo;. The graph
+                    drawing system is &ldquo;bound&rdquo; to the display layer
+                    through such a binding (a subclass of
+                    <span class="verb">Binding</span>). Such a binding can be
+                    thought of as a &ldquo;driver&rdquo; in operating systems
+                    terminology: It is a small set of functions needed to adapt
+                    the functionality to one specific display system. Note that
+                    the whole graph drawing scope is bound to exactly one
+                    display layer; to use several bindings you need to setup a
+                    completely new Lua instance.
+                  </p>
+                  <p></p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          >Field
+                          <kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >scopes</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This is a stack of graph drawing scopes. All interface
+                    methods refer to the top of this stack.
+                  </p>
+                  <p></p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          >Field
+                          <kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >collection_kinds</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This table stores which collection kinds have been defined
+                    together with their properties.
+                  </p>
+                  <p></p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          >Field
+                          <kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >algorithm_classes</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    A table that maps algorithm keys (like
+                    <span class="verb">tree layout</span> to class objects).
+                  </p>
+                  <p></p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          >Field
+                          <kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >keys</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    A lookup table of all declared keys. Each entry of this
+                    table consists of the original entry passed to the
+                    <span class="verb">declare</span> method. Each of these
+                    tables is both index at a number (so you can iterate over it
+                    using <span class="verb">ipairs</span>) and also via the
+                    key&rsquo;s name.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                <em>Alphabetical method summary:</em>
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/InterfaceCore.convert"
+                    >function InterfaceCore.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >convert</span
+                    >
+                    (s,t)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-binding-layer#pgf/lua/InterfaceCore.topScope"
+                    >function InterfaceCore.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >topScope</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceCore.topScope"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceCore.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >topScope</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Returns the top scope</p>
+              <p>
+                <em>Returns:</em> <em>1.</em> The current top scope, which is
+                the scope in which everything should happen right now.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceCore.convert"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceCore.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >convert</span
+                        ></kbd
+                      ><kbd>(s,t)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Converts parameters types. This method is used by both the
+                algorithm layer as well as the display layer to convert strings
+                into the different types of parameters. When a parameter is
+                pushed onto the option stack, you can either provide a value of
+                the parameter&rsquo;s type; but you can also provide a string.
+                This string can then be converted by this function to a value of
+                the correct type.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>s</kbd> A parameter value
+                or a string. <em>2.</em> <kbd>t</kbd> The type of the parameter
+              </p>
+              <p>
+                <em>Returns:</em> <em>1.</em> If <span class="verb">s</span> is
+                not a string, it is just returned. If it is a string, it is
+                converted to the type <span class="verb">t</span>.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+          <h5 id="autosec-4923">
+            <span
+              ><span class="sectionnumber" id="sec-39.3">39.3</span> The Binding
+              To PGF</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-39.3"
+              data-pdf-destination="subsection.39.3"
+              data-pdf-page="561"
+              href="#sec-39.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4923"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>Lua table</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >BindingToPGF</span
+                        ></kbd
+                      >
+                      (declared in
+                      <kbd>pgf.gd.bindings.BindingToPGF</kbd>)</span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This class, which is a subclass of
+                <span class="verb">Binding</span>, binds the graph drawing
+                system to the <span class="textsc">pgf</span> display system by
+                overriding (that is, implementing) the methods of the
+                <span class="verb">Binding</span> class. As a typical example,
+                consider the implementation of the function
+                <span class="verb">renderVertex</span>:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-formats#pgf.function">function</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >BindingToPGF:renderVertex</span
+                    ><span class="textcolor" style="color: #800080">(v)</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >local</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-circuits#pgf.info">info</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000">assert</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(self.infos[v], "thou shalt not modify the syntactic
+                      digraph")</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >tex</span
+                    >.<span class="textcolor" style="color: #000000">print</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(<br />
+                      string.format(<br />
+                      "\\pgfgdcallbackrendernode{<span
+                        class="example-code-comment"
+                        >%s}{%fpt}{%fpt}{%fpt}{%fpt}{%fpt}{%fpt}{%s}",</span
+                      ><br />
+                      'not yet positionedPGFINTERNAL' .. v.name,<br />
+                      info.x_min,<br />
+                      info.x_max,<br />
+                      info.y_min,<br />
+                      info.y_max,<br />
+                      v.pos.x,<br />
+                      v.pos.y,<br />
+                      info.box_count))<br />
+                      end<br />
+                    </span>
+                  </code>
+                </div>
+              </figure>
+              <p>
+                As can be seen, the main job of this function is to call a
+                function on the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                layer that is called
+                <span class="verb">\pgfgdcallbackrendernode</span>, which gets
+                several parameters like the name of the to-be-rendered node or
+                the (new) position for the node. For almost all methods of the
+                <span class="verb">Binding</span> class there is a corresponding
+                &ldquo;callback&rdquo; macro on the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                layer, all of which are implemented in the
+                <span class="textsc">pgf</span> library
+                <span class="verb">graphdrawing</span>. For details on these
+                callbacks, please consult the code of that file and of the class
+                <span class="verb">BindingToPGF</span> (they are not documented
+                here since they are local to the binding and should not be
+                called by anyone other than the binding class).
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4924">
+            <a id="section-gd-binding-layer-example"></a
+            ><span
+              ><span class="sectionnumber" id="sec-39.4">39.4</span> An Example
+              Binding Class</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-39.4"
+              data-pdf-destination="subsection.39.4"
+              data-pdf-page="561"
+              href="#sec-39.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4924"></a>
+
+          <p>
+            In the present section a complete binding is presented to an
+            imaginary &ldquo;<span class="textsc">ascii</span> art display
+            system&rdquo; is presented. The idea is that this display system
+            will depict graphs using just normal letters and spaces so that,
+            when the text is typeset in a monospace font, a visualization of the
+            graph results. For instance:
+          </p>
+
+          <p></p>
+          <div
+            class="minipage"
+            style="
+              vertical-align: bottom;
+              justify-content: flex-start;
+              width: 241pt;
+            "
+          >
+            <a id="pgfmanual-autopage-4925"></a>
+
+            <p>
+              <em>Graph rendered by <span class="verb">BindingToPGF</span>:</em>
+            </p>
+
+            <p>
+              <span class="lateximagesource" id="lateximage-pgfmanual-2048"
+                ><!--
+                Alice
+
+
+
+
+Charly Bob
+
+
+
+
+         Dave George
+
+
+
+
+                 Eve
+
+
+
+
+                         Fritz
+--><img
+                  alt="(-tikz-&nbsp;diagram)"
+                  class="lateximage"
+                  height="367.274"
+                  loading="lazy"
+                  src="pgfmanual-images/image-2048.png"
+                  style
+                  width="213.698"
+              /></span>
+            </p>
+          </div>
+          <div
+            class="minipage"
+            style="
+              vertical-align: bottom;
+              justify-content: flex-start;
+              width: 236pt;
+            "
+          >
+            <a id="pgfmanual-autopage-4928"></a>
+
+            <p>
+              <em
+                >Graph rendered by <span class="verb">BindingToASCII</span>:</em
+              >
+            </p>
+            <pre class="verbatim">
+ Alice
+                   .......
+                 .. . . .
+            ... . . .
+         ... .. . ..
+      .. . . .
+ Charly Bob . .
+     .. . . .
+        . . . .
+         . . . .
+          .. . . .
+            .. . .
+           Dave George .
+               .. . ... .
+                  . . .. .
+                   . . ...
+                    .. . . ...
+                      .. . ..
+                      Eve . ..
+                         .. . ..
+                            . . .
+                             . . .
+                               .. . ..
+                                 ...
+                                Fritz
+
+</pre
+            >
+          </div>
+
+          <p>
+            The binding will reside in a file
+            <span class="verb">BindingToASCII.lua</span>, whose contents is
+            detailed below, and which is used by calling the
+            <span class="verb">bind</span> function of
+            <span class="verb">InterfaceToDisplay</span>, see its documentation
+            for details.
+          </p>
+
+          <p>The binding&rsquo;s code starts with some initializations:</p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">File</span>
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII</span
+                >.<span class="textcolor" style="color: #000000">lua</span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">Imports</span
+                ><br />
+                <span class="textcolor" style="color: #000000">local</span>
+                <span class="textcolor" style="color: #000000">lib</span>
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">require</span>
+                <span class="textcolor" style="color: #000000">"pgf</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >gd</span
+                >.<span class="textcolor" style="color: #000000">lib"</span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">Subclass</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000">Binding</span>
+                <span class="textcolor" style="color: #000000">class:</span
+                ><br />
+                <span class="textcolor" style="color: #000000">local</span>
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII</span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">lib</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >class</span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >base_class</span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">require</span>
+                <span class="textcolor" style="color: #000000">"pgf</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >gd</span
+                >.<span class="textcolor" style="color: #000000">bindings</span
+                >.<span class="textcolor" style="color: #000000">Binding"</span>
+                }<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The interesting code is the code for &ldquo;rendering&rdquo; a
+            graph. The graph drawing system will invoke the binding&rsquo;s
+            methods <span class="verb">renderStart</span> and
+            <span class="verb">renderStop</span> to signal that the graph
+            drawing algorithms have finished and that the vertices and edges can
+            now be drawn.
+          </p>
+
+          <p>
+            In our <span class="textsc">ascii</span> renderer, we use a
+            two-dimensional field holding characters that severs as the
+            &ldquo;drawing canvas&rdquo;. At the beginning of the rendering, we
+            initialize it with blanks:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">local</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII:renderStart</span
+                ><span class="textcolor" style="color: #800080">()</span><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span> {}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">Clear</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">x=-30</span
+                >,<span class="textcolor" style="color: #000000">30</span>
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >] <span class="textcolor" style="color: #000000">=</span>
+                {}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">y=-30</span
+                >,<span class="textcolor" style="color: #000000">30</span>
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >][<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >] <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.'">'</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.'">'</a></span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            In order to &ldquo;render&rdquo; a vertex, the graph drawing system
+            will call the <span class="verb">renderVertex</span> method. The
+            binding of <span class="tikzname">TikZ</span> does a lot of
+            complicated things in this method to retrieve the underlying
+            node&rsquo;s box from internal table and to somehow reinstall the
+            box in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >&rsquo;s output stream; for our
+            <span class="textsc">ascii</span> binding things are much simpler:
+            We simply put the vertex&rsquo;s name at the canvas position
+            corresponding to the vertex&rsquo;s
+            <span class="verb">pos</span> coordinate. Note that this simple
+            version of an <span class="textsc">ascii</span> renderer does not
+            try to scale things; thus, array out of bounds might occur here.
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII:renderVertex</span
+                ><span class="textcolor" style="color: #800080">(v)</span><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  >math.floor(v.pos.x)</span
+                >][<span class="textcolor" style="color: #008000"
+                  >math.floor(v.pos.y)</span
+                >] <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">v</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-scopes#pgf.name">name</a></span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The rendering of edges is a more complicated process. Given two
+            vertices, we put dots at the canvas positions between them; provided
+            there are no vertices (so edges are behind the nodes). Here is the
+            essential part of the code (for the complete code, have a look at
+            <span class="verb">pgf/gd/examples/BindingToASCII.lua</span>):
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII:renderEdge</span
+                ><span class="textcolor" style="color: #800080">(e)</span><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="oo#pgf.connect">connect</a></span
+                >
+                <span class="textcolor" style="color: #800080">(p,q)</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">Connect</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-patterns#pgf.points">points</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-perspective#pgf.p">p</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.and">and</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-perspective#pgf.q">q</a></span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000">x1</span
+                >, <span class="textcolor" style="color: #000000">y1</span
+                >, <span class="textcolor" style="color: #000000">x2</span
+                >, <span class="textcolor" style="color: #000000"
+                  >y2</span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-math#pgf.math">math</a></span
+                >.<span class="textcolor" style="color: #000000">floor</span
+                ><span class="textcolor" style="color: #800080">(p.x+0.5)</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-math#pgf.math">math</a></span
+                >.<span class="textcolor" style="color: #000000">floor</span
+                ><span class="textcolor" style="color: #800080">(p.y+0.5)</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-math#pgf.math">math</a></span
+                >.<span class="textcolor" style="color: #000000">floor</span
+                ><span class="textcolor" style="color: #800080">(q.x+0.5)</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-math#pgf.math">math</a></span
+                >.<span class="textcolor" style="color: #000000">floor</span
+                ><span class="textcolor" style="color: #800080">(q.y+0.5)</span
+                ><br />
+                <span class="spaces">    </span>...<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000">delta_x</span>
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">x2-x1</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000">delta_y</span>
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">y2-y1</span
+                ><br />
+                <span class="spaces">    </span>...<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000">slope</span>
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  >delta_y/delta_x</span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">i=x1</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >x2</span
+                >
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >,<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">i</span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="library-math#pgf.math">math</a></span
+                >.<span class="textcolor" style="color: #000000">floor</span
+                ><span class="textcolor" style="color: #800080"
+                  >(y1 + (i-x1)</span
+                ><span class="textcolor" style="color: #000000">*slope</span>
+                <span class="textcolor" style="color: #000000">+</span>
+                <span class="textcolor" style="color: #000000">0</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >5</span
+                >)<br />
+                <br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-calender#pgf.if">if</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >][<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >] <span class="textcolor" style="color: #000000"
+                  >==</span
+                >
+                <span class="textcolor" style="color: #000000">"</span>
+                <span class="textcolor" style="color: #000000">"</span>
+                <span class="textcolor" style="color: #000000">then</span><br />
+                <span class="spaces">          </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >][<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >] <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.'">'</a></span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.'">'</a></span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">    </span>...<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">Iterate</span>
+                <span class="textcolor" style="color: #000000">over</span>
+                <span class="textcolor" style="color: #000000">all</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-patterns#pgf.points">points</a></span
+                >
+                <span class="textcolor" style="color: #000000">on</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.path">path</a></span
+                >
+                <span class="textcolor" style="color: #000000">from</span>
+                <span class="textcolor" style="color: #000000">tail</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.to">to</a></span
+                >
+                <span class="textcolor" style="color: #000000">head:</span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-perspective#pgf.p">p</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">e</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >tail</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">i=1</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >#e</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.path">path</a></span
+                >
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="oo#pgf.connect">connect</a></span
+                ><span class="textcolor" style="color: #800080"
+                  >(p, e.tail.pos + e.path[i])</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-perspective#pgf.p">p</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">e</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >tail</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span>
+                <span class="textcolor" style="color: #000000">e</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-graphs#pgf.path">path</a></span
+                >[<span class="textcolor" style="color: #008000">i</span>]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="oo#pgf.connect">connect</a></span
+                ><span class="textcolor" style="color: #800080"
+                  >(p, e.head.pos)</span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The methods <span class="verb">renderVertex</span> and
+            <span class="verb">renderEdge</span> will be called once for each
+            vertex and edge of the to-be-rendered graph. At the end, the
+            <span class="verb">renderStop</span> method is called. In our case,
+            this method will output the canvas using
+            <span class="verb">print</span>. A slight complication arises when
+            node names are longer than just one character. In this case, the
+            following code &ldquo;centers&rdquo; them on their coordinate and
+            makes sure that they do not get overwritten by the dots forming
+            edges:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII:renderStop</span
+                ><span class="textcolor" style="color: #800080">()</span><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">y=10</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >-30</span
+                >,<span class="textcolor" style="color: #000000">-1</span>
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000">t</span>
+                <span class="textcolor" style="color: #000000">=</span> {}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">x=-30</span
+                >,<span class="textcolor" style="color: #000000">30</span>
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >local</span
+                >
+                <span class="textcolor" style="color: #000000">s</span>
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.canvas">canvas</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >][<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >]<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >for</span
+                >
+                <span class="textcolor" style="color: #000000">i=1</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >#s</span
+                >
+                <span class="textcolor" style="color: #000000">do</span><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">x+30+i-math</span
+                >.<span class="textcolor" style="color: #000000">floor</span
+                ><span class="textcolor" style="color: #800080">(#s/2)</span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-calender#pgf.if">if</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.not">not</a></span
+                >
+                <span class="textcolor" style="color: #000000">t</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.or">or</a></span
+                >
+                <span class="textcolor" style="color: #000000">t</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                >] <span class="textcolor" style="color: #000000"
+                  >==</span
+                >
+                <span class="textcolor" style="color: #000000">"</span>
+                <span class="textcolor" style="color: #000000">"</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.or">or</a></span
+                >
+                <span class="textcolor" style="color: #000000">t</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                >] <span class="textcolor" style="color: #000000"
+                  >==</span
+                >
+                <span class="textcolor" style="color: #000000">"</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >"</span
+                >
+                <span class="textcolor" style="color: #000000">then</span><br />
+                <span class="spaces">          </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >t</span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.pos">pos</a></span
+                >] <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">string</span
+                >.<span class="textcolor" style="color: #000000">sub</span
+                ><span class="textcolor" style="color: #800080">(s,i,i)</span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >print</span
+                ><span class="textcolor" style="color: #800080"
+                  >(table.concat(t)</span
+                >)<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="base-animations#pgf.end">end</a></span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>At the end, we need to return the created object:</p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">return</span>
+                <span class="textcolor" style="color: #000000"
+                  >BindingToASCII</span
+                ><br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

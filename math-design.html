@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Mark Wibrow and Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Design Principles - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Mathematical and Object-Oriented Engines",
+            "item": "https://tikz.dev/math"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Design Principles",
+            "item": "https://tikz.dev/math-design"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/math-design" rel="canonical" />
+    <meta content="https://tikz.dev/math-design" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Design Principles - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7661"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-93.1"
+                >Loading the Mathematical Engine</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-93.2"
+                >Layers of the Mathematical Engine</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-93.3"
+                >Efficiency and Accuracy of the Mathematical Engine</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="math-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-parsing"
+                >Mathematical Expressions</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-commands"
+                >Additional Mathematical Commands</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-algorithms"
+                >Customizing the Mathematical Engine</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-numberprinting"
+                >Number Printing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="oo">Object-Oriented Programming</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Mathematical and Object-Oriented Engines</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7662">
+            <span
+              ><span class="sectionnumber" id="sec-93">93</span> Design
+              Principles</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.93"
+              data-pdf-page="1028"
+              href="#sec-93"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7662"></a>
+          <a id="pgfmanual-autofile-101"></a>
+
+          <p>
+            <span class="textsc">pgf</span> needs to perform many computations
+            while typesetting a picture. For this,
+            <span class="textsc">pgf</span> relies on a mathematical engine,
+            which can also be used independently of
+            <span class="textsc">pgf</span>, but which is distributed as part of
+            the <span class="textsc">pgf</span> package nevertheless. Basically,
+            the engine provides a parsing mechanism similar to the
+            <span class="textsc">calc</span> package so that expressions like
+            <span class="verb">2*3cm+5cm</span> can be parsed; but the
+            <span class="textsc">pgf</span> engine is more powerful and can be
+            extended and enhanced.
+          </p>
+
+          <p>
+            <span class="textsc">pgf</span> provides enhanced functionality,
+            which permits the parsing of mathematical operations involving
+            integers and non-integers with or without units. Furthermore,
+            various functions, including trigonometric functions and random
+            number generators can also be parsed (see Section&nbsp;<a
+              href="math-parsing#pgfmath-parsing"
+              >94.1</a
+            >). The <span class="textsc">calc</span> macros
+            <span class="verb">\setlength</span> and friends have
+            <span class="textsc">pgf</span> versions which can parse these
+            operations and functions (see Section&nbsp;<a
+              href="math-parsing#pgfmath-registers"
+              >94.1</a
+            >). Additionally, each operation and function has an independent
+            <span class="textsc">pgf</span> command associated with it (see
+            Section&nbsp;<a href="math-commands#pgfmath-commands">95</a>), and
+            can be accessed outside the parser.
+          </p>
+
+          <p>
+            The mathematical engine of <span class="textsc">pgf</span> is
+            implicitly used whenever you specify a number or dimension in a
+            higher-level macro. For instance, you can write
+            <span class="verb">\pgfpoint{2cm+4cm/2}{3cm*sin(30)}</span> or
+            suchlike. However, the mathematical engine can also be used
+            independently of the <span class="textsc">pgf</span> core, that is,
+            you can also just load it to get access to a mathematical parser.
+          </p>
+          <h5 id="autosec-7664">
+            <span
+              ><span class="sectionnumber" id="sec-93.1">93.1</span> Loading the
+              Mathematical Engine</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-93.1"
+              data-pdf-destination="subsection.93.1"
+              data-pdf-page="1028"
+              href="#sec-93.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7664"></a>
+
+          <p>
+            The mathematical engine of <span class="textsc">pgf</span> is loaded
+            automatically by <span class="textsc">pgf</span>, but if you wish to
+            use the mathematical engine but you do not need
+            <span class="textsc">pgf</span> itself, you can load the following
+            package:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.pgfmath"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepackage{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pgfmath</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.pgfmath"
+                      href="#pgf.pgfmath"
+                      id="pgf.pgfmath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\input
+                        <span class="textcolor" style="color: #bf0000"
+                          >pgfmath</span
+                        >.tex % plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usemodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pgfmath</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will load the mathematical engine of
+                <span class="textsc">pgf</span>, but not
+                <span class="textsc">pgf</span> itself. It defines commands like
+                <span class="verb">\pgfmathparse</span>.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-7665">
+            <span
+              ><span class="sectionnumber" id="sec-93.2">93.2</span> Layers of
+              the Mathematical Engine</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-93.2"
+              data-pdf-destination="subsection.93.2"
+              data-pdf-page="1028"
+              href="#sec-93.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7665"></a>
+
+          <p>
+            Like <span class="textsc">pgf</span> itself, the mathematical engine
+            is also structured into different layers:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> The top layer, which you will
+                typically use directly, provides the command
+                <span class="verb">\pgfmathparse</span>. This command parses a
+                mathematical expression and evaluates it.
+              </p>
+              <p>
+                Additionally, the top layer also defines some additional
+                functions similar to the macros of the
+                <span class="verb">calc</span> package for setting dimensions
+                and counters. These macros are just wrappers around the
+                <span class="verb">\pgfmathparse</span> macro.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> The calculation layer
+                provides macros for performing one specific computation like
+                computing a reciprocal or a multiplication. The parser uses
+                these macros for the actual computation.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> The implementation layer
+                provides the actual implementations of the computations. These
+                can be changed (and possibly be made more efficient) without
+                affecting the higher layers.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-7666">
+            <span
+              ><span class="sectionnumber" id="sec-93.3">93.3</span> Efficiency
+              and Accuracy of the Mathematical Engine</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-93.3"
+              data-pdf-destination="subsection.93.3"
+              data-pdf-page="1028"
+              href="#sec-93.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7666"></a>
+
+          <p>
+            Currently, the mathematical algorithms are all implemented in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >. This poses some intriguing programming challenges as
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            is a language for typesetting, rather than for general mathematics,
+            and as with any programming language, there is a trade-off between
+            accuracy and efficiency. If you find the level of accuracy
+            insufficient for your purposes, you will have to replace the
+            algorithms in the implementation layer.
+          </p>
+
+          <p>
+            All the fancy mathematical &ldquo;bells-and-whistles&rdquo; that the
+            parser provides, come with an additional processing cost, and in
+            some instances, such as simply setting a length to
+            <span class="verb">1cm</span>, with no other operations involved,
+            the additional processing time is undesirable. To overcome this, the
+            following feature is implemented: when no mathematical operations
+            are required, an expression can be preceded by
+            <span class="verb">+</span>. This will bypass the parsing process
+            and the assignment will be orders of magnitude faster. This feature
+            <em>only</em> works with the macros for setting registers described
+            in Section&nbsp;<a href="math-parsing#pgfmath-registers">94.1</a>.
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="math-parsing#pgf.back/pgfmathsetlength"
+                    >\pgfmathsetlength</a
+                  ></span
+                ><span class="textcolor" style="color: #0000b2">\mydimen</span
+                >{<span class="textcolor" style="color: #000000">1cm</span
+                >}<span class="spaces">  </span><span class="example-code-comment"
+                  >% parsed : slower.</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="math-parsing#pgf.back/pgfmathsetlength"
+                    >\pgfmathsetlength</a
+                  ></span
+                ><span class="textcolor" style="color: #0000b2">\mydimen</span
+                >{<span class="textcolor" style="color: #000000">+1cm</span
+                >} <span class="example-code-comment"
+                  >% not parsed : much faster.</span
+                ><br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

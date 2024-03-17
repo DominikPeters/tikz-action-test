@@ -1,0 +1,2950 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pics: Small Pictures on Paths - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "TikZ",
+            "item": "https://tikz.dev/tikz"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Pics: Small Pictures on Paths",
+            "item": "https://tikz.dev/tikz-pics"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <meta
+      content="A &ldquo;pic&rdquo; is a &ldquo;short picture&rdquo; that can be inserted anywhere in TikZ picture where you could also insert a node."
+      name="description"
+    />
+    <meta
+      content="A &ldquo;pic&rdquo; is a &ldquo;short picture&rdquo; that can be inserted anywhere in TikZ picture where you could also insert a node."
+      property="og:description"
+    />
+    <link href="https://tikz.dev/tikz-pics" rel="canonical" />
+    <meta content="https://tikz.dev/tikz-pics" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/tikz-pics.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Pics: Small Pictures on Paths - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-3345"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-18.1">Overview</a></p>
+            <p><a class="tocsubsection" href="#sec-18.2">The Pic Syntax</a></p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.2.1"
+                >The Quotes Syntax</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-18.3"
+                >Defining New Pic Types</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Styles</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-coordinates"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-paths"
+                >Syntax for Path Specifications</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-actions">Actions on Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-arrows">Arrows</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-shapes">Nodes and Edges</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="tikz-pics"
+                >Pics: Small Pictures on Paths</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-graphs">Specifying Graphs</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-matrices"
+                >Matrices and Alignment</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-trees">Making Trees Grow</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-plots">Plots of Functions</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-decorations">Decorated Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transformations"
+                >Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-animations">Animations</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">TikZ</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-3346">
+            <a id="section-pics"></a
+            ><span
+              ><span class="sectionnumber" id="sec-18">18</span> Pics: Small
+              Pictures on Paths</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.18"
+              data-pdf-page="262"
+              href="#sec-18"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-3346"></a>
+          <a id="pgfmanual-autofile-21"></a>
+          <h5 id="autosec-3347">
+            <span
+              ><span class="sectionnumber" id="sec-18.1">18.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-18.1"
+              data-pdf-destination="subsection.18.1"
+              data-pdf-page="262"
+              href="#sec-18.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-3347"></a>
+
+          <p>
+            A &ldquo;pic&rdquo; is a &ldquo;short picture&rdquo; (hence the
+            short name&hellip;) that can be inserted anywhere in
+            <span class="tikzname">TikZ</span> picture where you could also
+            insert a node. Similarly to nodes, pics have a &ldquo;shape&rdquo;
+            (called <em>type</em> to avoid confusion) that someone has defined.
+            Each time a pic of a specified type is used, the type&rsquo;s code
+            is executed, resulting in some drawings to be added to the current
+            picture. The syntax for adding nodes and adding pics to a picture
+            are also very similar. The core difference is that pics are
+            typically more complex than nodes and may consist of a whole bunch
+            of nodes themselves together with complex paths joining them.
+          </p>
+
+          <p>
+            As a very simple example, suppose we want to define a pic type
+            <span class="verb">seagull</span> that just draw &ldquo;two
+            bumps&rdquo;. The code for this definition is quite easy:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >seagull</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-pics#pgf./handlers/.pic">.pic</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<br />
+                  <span class="spaces">    </span><span class="example-code-comment"
+                    >% Code for a "seagull". Do you see it?...</span
+                  ><br />
+                  <span class="spaces">    </span><span
+                    class="textcolor"
+                    style="color: #0000b2"
+                    ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                  > <span class="textcolor" style="color: #800080"
+                    >(-3mm,0)</span
+                  > <a href="tikz-paths#pgf.to">to</a> [<span
+                    class="textcolor"
+                    style="color: #008000"
+                    ><a href="library-edges#pgf.bend:left">bend left</a></span
+                  >] <span class="textcolor" style="color: #800080"
+                    >(0,0)</span
+                  > <a href="tikz-paths#pgf.to">to</a> [<span
+                    class="textcolor"
+                    style="color: #008000"
+                    ><a href="library-edges#pgf.bend:left">bend left</a></span
+                  >] <span class="textcolor" style="color: #800080"
+                    >(3mm,0)</span
+                  >;<br />
+                  <span class="spaces">  </span>}<br /> </span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The first line just tells
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            that you set some <span class="tikzname">TikZ</span> options for the
+            current scope (which is the whole document); you could put
+            <span class="verb">seagull/.pic=...</span> anywhere else where
+            <span class="tikzname">TikZ</span> options are allowed (which is
+            just about anywhere). We have now defined a
+            <span class="verb">seagull</span>
+            pic type and can use it as follows:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1445"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="48.219"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1445.png"
+                    style
+                    width="89.738"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >]<br />
+                <span class="spaces">     </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(1,1)</span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                <span class="spaces">            </span>{<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >seagull</span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                <span class="spaces">            </span>{<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >seagull</span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.rotate">rotate</a></span
+                >=<span class="textcolor" style="color: #008000">30</span
+                >] {<span class="textcolor" style="color: #000000"
+                  >seagull</span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                [<span class="textcolor" style="color: #008000">red</span
+                >]<span class="spaces">       </span>{<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >seagull</span
+                >};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            As can be see, defining new types of pics is much easier than
+            defining new shapes for nodes; but see Section&nbsp;<a
+              href="tikz-pics#section-new-pic-types"
+              >18.3</a
+            >
+            for the fine details.
+          </p>
+
+          <p>
+            Since defining new pics types is easier than defining new node
+            shapes and since using pics is as easy as using nodes, why should
+            you use nodes at all? There are chiefly two reasons:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Unlike nodes, pics cannot be
+                referenced later on. You <em>can</em> reference nodes that are
+                inside a pic, but not &ldquo;the pic itself&rdquo;. In
+                particular, you cannot draw lines between pics the way you can
+                draw them between nodes. In general, whenever it makes sense
+                that some drawing could conceivably be connected to other
+                node-like-things, then a node is better than a pic.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> If pics are used to emulate
+                the full power of a node (which is possible, in principle), they
+                will be slower to construct and take up more memory than a node
+                achieving the same effect.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Despite these drawbacks, pics are an excellent choice for creating
+            highly configurable reusable pieces of drawings that can be inserted
+            into larger contexts.
+          </p>
+          <h5 id="autosec-3350">
+            <span
+              ><span class="sectionnumber" id="sec-18.2">18.2</span> The Pic
+              Syntax</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-18.2"
+              data-pdf-destination="subsection.18.2"
+              data-pdf-page="262"
+              href="#sec-18.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-3350"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pic"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pic</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pic"
+                      href="#\pic"
+                      id="\pic"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Inside <span class="verb">{tikzpicture}</span> this is an
+                abbreviation for <span class="verb">\path pic</span>.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            The syntax for adding a pic to a picture is very similar to the
+            syntax used for nodes (indeed, internally the same parser code is
+            used). The main difference is that instead of a node contents you
+            provide the picture&rsquo;s type between the braces:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.pic"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #808080"
+                        ><kbd>\path</kbd> &hellip;</span
+                      >
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>pic</kbd></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>foreach statements</i
+                        ><span class="angle">&rangle;</span></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="verb">[</span
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">]</span></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="verb">(</span
+                        ><span class="angle">&langle;</span><i>prefix</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">)</span></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="verb">at(</span
+                        ><span class="angle">&langle;</span><i>coordinate</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">)</span></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="verb">:</span
+                        ><span class="angle">&langle;</span
+                        ><i>animation attribute</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">=</span>{<span class="angle"
+                          >&langle;</span
+                        ><i>options</i
+                        ><span class="angle">&rangle;</span>}</span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        >{<span class="angle">&langle;</span><i>pic type</i
+                        ><span class="angle">&rangle;</span>}</span
+                      >
+                      <span class="textcolor" style="color: #808080"
+                        >&hellip;<kbd>;</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.pic"
+                      href="#pgf.pic"
+                      id="pgf.pic"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Adds a pic to the current
+                <span class="tikzname">TikZ</span> picture of the specified
+                <span class="angle">&langle;</span><i>pic type</i
+                ><span class="angle">&rangle;</span>. The effect is, basically,
+                that some code associated with the
+                <span class="angle">&langle;</span><i>pic type</i
+                ><span class="angle">&rangle;</span> is executed (how this
+                works, exactly, is explained later). This code can consist of
+                arbitrary <span class="tikzname">TikZ</span> code. As for nodes,
+                the current path will not be modified by this path command, all
+                drawings produced by the code are &ldquo;external&rdquo; to the
+                path the same way neither a node nor its border are part of the
+                path on which they are specified.
+              </p>
+              <p>
+                Just like the <span class="verb">node</span> command, this path
+                operation is somewhat complex and we go over it step by step.
+              </p>
+              <p>
+                <b>Order of the parts of the specification.</b> Just like for
+                nodes, everything between &ldquo;<span class="verb">pic</span
+                >&rdquo; and the opening brace of the
+                <span class="angle">&langle;</span><i>pic type</i
+                ><span class="angle">&rangle;</span> is optional and can be
+                given in any order. If there are
+                <span class="angle">&langle;</span><i>foreach statements</i
+                ><span class="angle">&rangle;</span>, they must come first,
+                directly following &ldquo;<span class="verb">pic</span>&rdquo;.
+                As for nodes, the &ldquo;end&rdquo; of the pic specification is
+                normally detected by the presence of the opening brace. You can,
+                however, use the <span class="verb">pic type</span> option to
+                specify the pic type as an option.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/pic:type"></a
+                        ><a id="pgf.pic:type"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/pic type</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>pic type</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/pic:type"
+                          href="#tikz/pic:type"
+                          id="tikz/pic:type"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key sets the pic type of the current&nbsp;<span
+                      class="verb"
+                      >pic</span
+                    >. When this option is used inside an option block of a
+                    <span class="verb">pic</span>, the parsing of the
+                    <span class="verb">pic</span> ends immediately and no pic
+                    type in braces is expected. (In other words, this option
+                    behaves exactly like the
+                    <span class="verb">node contents</span> option and, indeed,
+                    the two are interchangeable.)
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1446"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="4.923"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1446.png"
+                            style
+                            width="63.435"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > {<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-paths#pgf.back/path">\path</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >
+                        [<span class="textcolor" style="color: #008000"
+                          >pic type </span
+                        >=
+                        <span class="textcolor" style="color: #008000"
+                          >seagull</span
+                        >]<br />
+                        <span class="spaces">        </span><span
+                          class="textcolor"
+                          style="color: #800080"
+                          >(1,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >
+                        <span class="spaces">                     </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >seagull</span
+                        >};<br />
+                        }<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                <b>The location of a pic.</b> Just like nodes, pics are placed
+                at the last position mentioned on the path or, when
+                <span class="verb">at</span> is used, at a specified position.
+                &ldquo;Placing&rdquo; a pic somewhere actually means that the
+                coordinate system is translated (shifted) to this last position.
+                This means that inside of the pic type&rsquo;s code any
+                mentioning of the origin refers to the last position used on the
+                path or to the specified <span class="verb">at</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1447"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="80.522"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1447.png"
+                        style
+                        width="127.694"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > {<span class="spaces"> </span><span class="example-code-comment"
+                      >% different ways of placing pics</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    ><span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    ><span class="spaces">     </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/path">\path</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(2,1)</span
+                    ><span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    ><span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(3,2)</span
+                      >}</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                As for nodes, except for the described shifting, the coordinate
+                system of a pic is reset prior to executing the pic type&rsquo;s
+                code. This can be changed using the
+                <span class="verb">transform shape</span> option, which has the
+                same effect as for nodes: The &ldquo;outer&rdquo; transformation
+                gets applied to the node:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1448"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="6.579"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1448.png"
+                        style
+                        width="112.562"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.scale">scale</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0)</span
+                    ><span class="spaces">                   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                When the <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> contain transformation
+                commands like <span class="verb">scale</span> or
+                <span class="verb">rotate</span>, these transformations always
+                apply to the pic:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1449"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="33.363"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1449.png"
+                        style
+                        width="47.211"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0)</span
+                    ><span class="spaces">             </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">90</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Just like nodes, pics can also be positioned implicitly and,
+                somewhat unsurprisingly, the same rules concerning positioning
+                and sloping apply:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1450"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="26.955"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1450.png"
+                        style
+                        width="154.136"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="library-edges#pgf.bend:left">bend left</a></span
+                    >]<br />
+                    <span class="spaces">           </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.near:start">near start</a></span
+                    >]<span class="spaces">       </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >}<br />
+                    <span class="spaces">           </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    <span class="spaces">                   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >}<br />
+                    <span class="spaces">           </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.sloped">sloped</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.near:end">near end</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >} <span class="textcolor" style="color: #800080"
+                      >(4,0)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <b>The options of a node.</b> As always, any given
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> apply only to the pic and
+                have no effect outside. As for nodes, most &ldquo;outside&rdquo;
+                options also apply to the pics, but not the &ldquo;action&rdquo;
+                options like <span class="verb">draw</span> or
+                <span class="verb">fill</span>. These must be given in the
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> of the pic.
+              </p>
+              <p>
+                <b>The code of a pic.</b> As stated earlier, the main job of a
+                pic is to execute some code in a scope that is shifted according
+                to the last point on the path or to the
+                <span class="verb">at</span> position specified in the pic. It
+                was also claimed that this code is specified by the
+                <span class="angle">&langle;</span><i>pic type</i
+                ><span class="angle">&rangle;</span>. However, this
+                specification is somewhat indirect. What really happens is the
+                following: When a <span class="verb">pic</span> is encountered,
+                the current path is suspended and a new internal scope is
+                started. The <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> are executed and also the
+                <span class="angle">&langle;</span><i>pic type</i
+                ><span class="angle">&rangle;</span> (as explained in a moment).
+                After all this is done, the code stored in the following key
+                gets executed:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/pics/code"></a><a id="pgf.code"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/pics/code</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/pics/code"
+                          href="#tikz/pics/code"
+                          id="tikz/pics/code"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key stores the <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span> that should
+                    be drawn in the current pic. Normally, setting this key is
+                    done by the <span class="angle">&langle;</span
+                    ><i>pic type</i><span class="angle">&rangle;</span>, but you
+                    can also set it in the <span class="angle">&langle;</span
+                    ><i>options</i><span class="angle">&rangle;</span> and leave
+                    the <span class="angle">&langle;</span><i>pic type</i
+                    ><span class="angle">&rangle;</span> empty:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1451"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="4.923"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1451.png"
+                            style
+                            width="25.635"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-pics#pgf./tikz/pics/code"
+                            >pics/code</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{<span class="textcolor" style="color: #0000b2"
+                            ><a href="tikz-actions#pgf.back/draw"
+                              >\draw</a
+                            ></span
+                          > <span class="textcolor" style="color: #800080"
+                            >(-3mm,0)</span
+                          > <a href="tikz-paths#pgf.to">to</a>[<span
+                            class="textcolor"
+                            style="color: #008000"
+                            ><a href="library-edges#pgf.bend:left"
+                              >bend left</a
+                            ></span
+                          >] <span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(0,0)</span
+                          ><br />
+                          <span class="spaces">                              </span><span class="spaces">        </span><a
+                            href="tikz-paths#pgf.to"
+                            >to</a
+                          >[<span class="textcolor" style="color: #008000"
+                            ><a href="library-edges#pgf.bend:left"
+                              >bend left</a
+                            ></span
+                          >] <span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(3mm,0)</span
+                          >;}</span
+                        >]<br />
+                        <span class="spaces">      </span>{};<span class="spaces"> </span><span
+                          class="example-code-comment"
+                          >% no pic type specified</span
+                        ><br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                Now, how does the <span class="angle">&langle;</span
+                ><i>pic type</i><span class="angle">&rangle;</span> set
+                <span class="verb">pics/code</span>? It turns out that the
+                <span class="angle">&langle;</span><i>pic type</i
+                ><span class="angle">&rangle;</span> is actually just a list of
+                keys that are executed with the prefix
+                <span class="verb">/tikz/pics/</span>. In the above examples,
+                this &ldquo;list of keys&rdquo; just consisted of the single key
+                &ldquo;<span class="verb">seagull</span>&rdquo; that did not
+                take any arguments, but, in principle, you could provide any
+                arbitrary text understood by
+                <span class="verb">\pgfkeys</span> here. This means that when we
+                write <span class="verb">pic{seagull}</span>,
+                <span class="tikzname">TikZ</span> will execute the key
+                <span class="verb">/tikz/pics/seagull</span>. It turns out, see
+                Section&nbsp;<a href="tikz-pics#section-new-pic-types">18.3</a>,
+                that this key is just a style set to
+                <span class="verb">code={\draw(-3mm,0)...;}</span>. Thus,
+                <span class="verb">pic{seagull}</span> will cause the
+                <span class="verb">pics/code</span> key to be set to the text
+                needed to draw the seagull.
+              </p>
+              <p>
+                Indeed, you can also use the <span class="angle">&langle;</span
+                ><i>pic type</i><span class="angle">&rangle;</span> simply to
+                set the <span class="verb">code</span> of the pic. This is
+                useful for cases when you have some code that you &ldquo;just
+                want to execute, but do not want to define a new pic
+                type&rdquo;. Here is a typical example where we use pics to add
+                some markings to a path:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1452"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="46.347"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1452.png"
+                        style
+                        width="121.932"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="library-edges#pgf.controls">controls</a></span
+                    ><span class="textcolor" style="color: #800080">(1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.and">and</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(3,1)</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.foreach">foreach</a></span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\t</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">0</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >0</span
+                    >.<span class="textcolor" style="color: #000000">125</span
+                    >,<span class="spaces"> </span>..., <span
+                      class="textcolor"
+                      style="color: #000000"
+                      >1</span
+                    >} {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.pos">pos</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #0000b2"
+                        >\t</span
+                      ></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >code=</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                    >=<span class="textcolor" style="color: #008000">2pt</span
+                    >];}}<br />
+                    <span class="spaces">  </span>};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In our seagull example, we always explicitly used
+                <span class="verb">\draw</span> to draw the seagull. This
+                implies that when a user writes something
+                <span class="verb">pic[fill]{seagull}</span> in the hope of
+                having a &ldquo;filled&rdquo; seagull, nothing special will
+                happen: The <span class="verb">\draw</span> inside the pic
+                explicitly states that the path should be drawn, not filled, and
+                the fact that in the surrounding scope the
+                <span class="verb">fill</span> option is set has no effect. The
+                following key can be used to change this:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/pic:actions"></a
+                        ><a id="pgf.pic:actions"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/pic actions</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/pic:actions"
+                          href="#tikz/pic:actions"
+                          id="tikz/pic:actions"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key is a style that can be used (only) inside the code
+                    of a pic. There, it will set the &ldquo;action&rdquo; keys
+                    set inside the <span class="angle">&langle;</span
+                    ><i>options</i><span class="angle">&rangle;</span> of the
+                    pic (&ldquo;actions&rdquo; are drawing, filling, shading,
+                    and clipping or any combination thereof).
+                  </p>
+                  <p>
+                    To see how this key works, let us define the following pic:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a
+                        >{<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          >my pic</span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          >.pic </span
+                        >=
+                        <span class="textcolor" style="color: #008000"
+                          >{<br />
+                          <span class="spaces">    </span><span
+                            class="textcolor"
+                            style="color: #0000b2"
+                            ><a href="tikz-paths#pgf.back/path">\path</a></span
+                          > [<span
+                            class="textcolor"
+                            style="color: #008000"
+                            ><a href="tikz-pics#pgf.pic:actions"
+                              >pic actions</a
+                            ></span
+                          >] <span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(0,0)</span
+                          > <a href="tikz-paths#pgf.circle">circle</a
+                          >[<span class="textcolor" style="color: #008000"
+                            ><a href="tikz-coordinates#pgf.radius"
+                              >radius</a
+                            ></span
+                          >=<span class="textcolor" style="color: #008000"
+                            >3mm</span
+                          >];<br />
+                          <span class="spaces">    </span><span
+                            class="textcolor"
+                            style="color: #0000b2"
+                            ><a href="tikz-actions#pgf.back/draw"
+                              >\draw</a
+                            ></span
+                          > <span class="textcolor" style="color: #800080"
+                            >(-3mm,-3mm)</span
+                          > <a href="tikz-paths#pgf.rectangle"
+                            >rectangle</a
+                          >
+                          <span class="textcolor" style="color: #800080"
+                            >(3mm,3mm)</span
+                          >;<br />
+                          <span class="spaces">  </span>}<br /> </span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    In the code, whether or not the circle gets
+                    drawn/filled/shaded depends on which options where given to
+                    the <span class="verb">pic</span> command when it is used.
+                    In contrast, the rectangle will always (just) be drawn.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1453"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="25.875"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1453.png"
+                            style
+                            width="25.875"
+                        /></span>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1454"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="25.875"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1454.png"
+                            style
+                            width="25.875"
+                        /></span>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1455"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="25.923"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1455.png"
+                            style
+                            width="25.923"
+                        /></span>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1456"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="25.923"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1456.png"
+                            style
+                            width="25.923"
+                        /></span>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1457"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="25.923"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1457.png"
+                            style
+                            width="25.923"
+                        /></span>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1458"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="25.875"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1458.png"
+                            style
+                            width="25.875"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        ><span class="spaces">                      </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >my</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                          >\space</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<span class="spaces">                </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >my</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                          >\space</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >]<span class="spaces">               </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >my</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                          >\space</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<span class="spaces">           </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >my</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                          >\space</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >, <span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.shading">shading</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="library-shadings#pgf.ball">ball</a></span
+                        >] {<span class="textcolor" style="color: #000000"
+                          >my</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                          >\space</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.fill">fill</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red!50</span
+                        >]<span class="spaces">        </span>{<span
+                          class="textcolor"
+                          style="color: #000000"
+                          >my</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-pics#pgf.pic">pic</a></span
+                        >};<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                <b>Code executed behind or in front of the path.</b> As for
+                nodes, a pic can be &ldquo;behind&rdquo; the current path or
+                &ldquo;in front of it&rdquo; and, just as for nodes, the two
+                options <span class="verb">behind path</span> and
+                <span class="verb">in front of path</span> are used to specify
+                which is meant. In detail, if <span class="verb">node</span> and
+                <span class="verb">pic</span> are both used repeatedly on a
+                path, in the resulting picture we first see all nodes and pics
+                with the <span class="verb">behind path</span> option set in the
+                order they appear on the path (nodes and pics are
+                interchangeable in this regard), then comes the path, and then
+                come all nodes and pics that are in front of the path in the
+                order they appeared.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1459"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="48.219"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1459.png"
+                        style
+                        width="89.738"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >]<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(1,1)</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.behind:path"
+                        >behind path</a
+                      ></span
+                    >]<span class="spaces">      </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    <span class="spaces">                   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >]<span class="spaces">        </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-pics#pgf.pic">pic</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000">red</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.behind:path"
+                        >behind path</a
+                      ></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In contrast to nodes, a pic need not only be completely behind
+                the path or in front of the path as specified by the user.
+                Instead, a pic type may also specify that a certain part of the
+                drawing should always be behind the path and it may specify that
+                a certain other part should always be before the path. For this,
+                the values of the following keys are relevant:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/pics/foreground:code"></a
+                        ><a id="pgf.foreground:code"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/pics/foreground code</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/pics/foreground:code"
+                          href="#tikz/pics/foreground:code"
+                          id="tikz/pics/foreground:code"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key stores <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span> that will
+                    always be drawn in front of the current path, even when
+                    <span class="verb">behind path</span> is used. If
+                    <span class="verb">behind path</span> is not used and
+                    <span class="verb">code</span> is (also) set, the code of
+                    <span class="verb">code</span> is drawn first, following by
+                    the foreground <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/pics/background:code"></a
+                        ><a id="pgf.background:code"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/pics/background code</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/pics/background:code"
+                          href="#tikz/pics/background:code"
+                          id="tikz/pics/background:code"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Like <span class="verb">foreground code</span>, only that
+                    the <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> is always put behind
+                    the path, except when the
+                    <span class="verb">behind path</span> option is applied to
+                    the pic, then the background code is drawn in front of the
+                    &ldquo;behind path&rdquo; code.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                <b>The foreach statement for pics.</b> As for nodes, a pic
+                specification may start with <span class="verb">foreach</span>.
+                The effect and semantics are the same as for nodes.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1460"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="4.923"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1460.png"
+                        style
+                        width="101.234"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.foreach">foreach</a></span
+                    >
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/x">\x</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">1</span
+                    >,<span class="textcolor" style="color: #000000">2</span
+                    >,<span class="textcolor" style="color: #000000">3</span
+                    >} <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(\x,0)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <b>Styles for pics.</b> The following styles influence how nodes
+                are rendered:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:pic"></a
+                        ><a id="pgf.every:pic"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every pic</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:pic"
+                          href="#tikz/every:pic"
+                          id="tikz/every:pic"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>This style is installed at the beginning of every pic.</p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-1461"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="6.579"
+                            loading="lazy"
+                            src="pgfmanual-images/image-1461.png"
+                            style
+                            width="123.914"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-pics#pgf.every:pic">every pic</a></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-arrows#pgf.scale">scale</a></span
+                        >=<span class="textcolor" style="color: #008000">2</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-shapes#pgf.transform:shape"
+                            >transform shape</a
+                          ></span
+                        >}]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.foreach">foreach</a></span
+                        >
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-paths#pgf.back/x">\x</a></span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="library-edges#pgf.in">in</a></span
+                        >
+                        {<span class="textcolor" style="color: #000000">1</span
+                        >,<span class="textcolor" style="color: #000000">2</span
+                        >,<span class="textcolor" style="color: #000000">3</span
+                        >} <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.at">at</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(\x,0)</span
+                        > {<span class="textcolor" style="color: #000000"
+                          >seagull</span
+                        >};<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                <b>Name scopes.</b> You can specify a
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> for a pic using the key
+                <span class="verb">name=</span
+                ><span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> or by giving the name in
+                parenthesis inside the pic&rsquo;s specification. The effect of
+                this is, for once, quite different from what happens for nodes:
+                All that happens is that
+                <span class="verb">name prefix</span> is set to
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> at the beginning of the
+                pic.
+              </p>
+              <p>
+                The <span class="verb">name prefix</span> key was already
+                introduced in the description of the
+                <span class="verb">node</span> command: It allows you to set
+                some text that is prefixed to all nodes in a scope. For pics
+                this makes particular sense: All nodes defined by a pic&rsquo;s
+                code can be referenced from outside the pic with the prefix
+                provided.
+              </p>
+              <p>
+                To see how this works, let us add some nodes to the code of the
+                seagull:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      >seagull</span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf./handlers/.pic">.pic</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">    </span><span
+                        class="example-code-comment"
+                        >% Code for a "seagull". Do you see it?...</span
+                      ><br />
+                      <span class="spaces">    </span><span
+                        class="textcolor"
+                        style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/coordinate"
+                          >\coordinate</a
+                        ></span
+                      > <span class="textcolor" style="color: #800080"
+                        >(-left wing)</span
+                      > <a href="tikz-paths#pgf.at">at</a>
+                      <span class="textcolor" style="color: #800080"
+                        >(-3mm,0)</span
+                      >;<br />
+                      <span class="spaces">    </span><span
+                        class="textcolor"
+                        style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/coordinate"
+                          >\coordinate</a
+                        ></span
+                      > <span class="textcolor" style="color: #800080"
+                        >(-head)</span
+                      ><span class="spaces">      </span><a
+                        href="tikz-paths#pgf.at"
+                        >at</a
+                      >
+                      <span class="textcolor" style="color: #800080">(0,0)</span
+                      >;<br />
+                      <span class="spaces">    </span><span
+                        class="textcolor"
+                        style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/coordinate"
+                          >\coordinate</a
+                        ></span
+                      > <span class="textcolor" style="color: #800080"
+                        >(-right wing)</span
+                      > <a href="tikz-paths#pgf.at">at</a>
+                      <span class="textcolor" style="color: #800080"
+                        >(3mm,0)</span
+                      >;<br />
+                      <br />
+                      <span class="spaces">    </span><span
+                        class="textcolor"
+                        style="color: #0000b2"
+                        ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                      > <span class="textcolor" style="color: #800080"
+                        >(-left wing)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(0,0)</span
+                      > <span class="textcolor" style="color: #800080"
+                        >(-head)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(-right wing)</span
+                      >;<br />
+                      <span class="spaces">  </span>}<br /> </span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>Now, we can use it as follows:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(Emma)</span
+                    ><span class="spaces">               </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(Alexandra)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(Emma-left wing)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(Alexandra-right wing)</span
+                    >;<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Sometimes, you may also wish your pic to access nodes outside
+                the pic (typically, because they are given as parameters). In
+                this case, the name prefix gets in the way since the nodes
+                outside the picture do not have this prefix. The trick is to
+                locally reset the name prefix to the value it had outside the
+                picture, which is achieved using the following style:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/name:prefix:.."></a
+                        ><a id="pgf.name:prefix:.."></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/name prefix ..</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/name:prefix:.."
+                          href="#tikz/name:prefix:.."
+                          id="tikz/name:prefix:.."
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key is available only inside the code of a pic. There,
+                    it (locally) changes the name prefix to the value it had
+                    outside the pic. This allows you to access nodes outside the
+                    current pic.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                <b>Animations for pics.</b> Just as for nodes, you can use the
+                attribute&ndash;colon syntax to add an animation to a pic:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <object
+                      data="standalone/pgfmanual-en-tikz-pics-animation-1.svg"
+                      height="59.435"
+                      type="image/svg+xml"
+                      width="79.901"
+                    ></object>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      >:rotate=</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >0s="0"</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >20s="90"</span
+                    >} {<span class="textcolor" style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.5,1.5)</span
+                    ><span class="spaces">               </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >seagull</span
+                    >};<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Naturally, you can also use animations in the code of a picture:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <object
+                      data="standalone/pgfmanual-en-tikz-pics-animation-2.svg"
+                      height="61.606"
+                      type="image/svg+xml"
+                      width="79.370"
+                    ></object>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >} [<span class="textcolor" style="color: #008000"
+                      >flapping seagull</span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf./handlers/.pic">.pic</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">    </span><span
+                        class="textcolor"
+                        style="color: #0000b2"
+                        ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                      > <span class="textcolor" style="color: #800080"
+                        >(0,0)</span
+                      ><span class="spaces"> </span>:path={<br />
+                      <span class="spaces">      </span>0s= {"{<span
+                        class="textcolor"
+                        style="color: #800080"
+                        >(180:3mm)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(0,0)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(0:3mm)</span
+                      >}"=base},<br />
+                      <span class="spaces">      </span>1s=
+                      <span class="spaces"> </span>"{<span class="textcolor" style="color: #800080"
+                        >(160:3mm)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(0,0)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(20:3mm)</span
+                      >}",<br />
+                      <span class="spaces">      </span>2s=
+                      <span class="spaces"> </span>"{<span class="textcolor" style="color: #800080"
+                        >(180:3mm)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(0,0)</span
+                      > <a href="tikz-paths#pgf.to">to</a> [<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="library-edges#pgf.bend:left"
+                          >bend left</a
+                        ></span
+                      >] <span class="textcolor" style="color: #800080"
+                        >(0:3mm)</span
+                      >}",<br />
+                      <span class="spaces">      </span><a
+                        href="base-animations#pgf.repeats"
+                        >repeats</a
+                      >
+                      };<br />
+                      <span class="spaces">  </span>}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      >:rotate=</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >0s="0"</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >20s="90"</span
+                    >} {<span class="textcolor" style="color: #000000"
+                      >flapping</span
+                    >
+                    <span class="textcolor" style="color: #000000">seagull</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.5,1.5)</span
+                    ><span class="spaces">               </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >flapping</span
+                    >
+                    <span class="textcolor" style="color: #000000">seagull</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>There are two general purpose keys that pics may find useful:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/pic:text"></a><a id="pgf.pic:text"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/pic text</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>text</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/pic:text"
+                      href="#tikz/pic:text"
+                      id="tikz/pic:text"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro stores the <span class="angle">&langle;</span
+                ><i>text</i><span class="angle">&rangle;</span> in the macro
+                <span class="verb">\tikzpictext</span>, which is
+                <span class="verb">\let</span> to
+                <span class="verb">\relax</span> by default. Setting the
+                <span class="verb">pic text</span> to some value is the
+                &ldquo;preferred&rdquo; way of communicating a (single) piece of
+                text that should become part of a pic (typically of a node). In
+                particular, the <span class="verb">quotes</span> library maps
+                quoted parameters to this key.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/pic:text:options"></a
+                    ><a id="pgf.pic:text:options"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/pic text options</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/pic:text:options"
+                      href="#tikz/pic:text:options"
+                      id="tikz/pic:text:options"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro stores the <span class="angle">&langle;</span
+                ><i>options</i><span class="angle">&rangle;</span> in the macro
+                <span class="verb">\tikzpictextoptions</span>, which is
+                <span class="verb">\let</span> to the empty string by default.
+                The <span class="verb">quotes</span> library maps options for
+                quoted parameters to this key.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-3383">
+            <a id="section-pic-quotes"></a
+            ><span
+              ><span class="sectionnumber" id="sec-18.2.1">18.2.1</span> The
+              Quotes Syntax</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-18.2.1"
+              data-pdf-destination="subsubsection.18.2.1"
+              data-pdf-page="266"
+              href="#sec-18.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-3383"></a>
+
+          <p>
+            When you load the <span class="verb">quotes</span> library, you can
+            use the &ldquo;quotes syntax&rdquo; inside the options of a pic.
+            Recall that for nodes this syntax is used to add a label to a node.
+            For pics, the quotes syntax is used to set the
+            <span class="verb">pic text</span> key. Whether or not the pic
+            type&rsquo;s code takes this key into consideration is, however, up
+            to the key.
+          </p>
+
+          <p>
+            In detail, when the <span class="verb">quotes</span> library is
+            loaded, each time a key&ndash;value pair in a list of options passed
+            to an <span class="verb">pic</span> starts with
+            <span class="verb">"</span>, the key&ndash;value pair must actually
+            be a string of the following form:
+          </p>
+          <blockquote>
+            <p>
+              <span class="verb">"</span><span class="angle">&langle;</span
+              ><i>text</i><span class="angle">&rangle;</span
+              ><span class="verb">"</span
+              ><span class="textcolor" style="color: #008000"
+                ><span class="verb">'</span></span
+              ><span class="textcolor" style="color: #008000"
+                ><span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span></span
+              >
+            </p>
+          </blockquote>
+
+          <p>This string is transformed into the following:</p>
+          <blockquote>
+            <p>
+              <span class="verb">every pic quotes/.try,pic text=</span
+              ><span class="angle">&langle;</span><i>text</i
+              ><span class="angle">&rangle;</span
+              ><span class="verb">, pic text options={</span
+              ><span class="angle">&langle;</span><i>options</i
+              ><span class="angle">&rangle;</span><span class="verb">}</span>
+            </p>
+          </blockquote>
+
+          <p>
+            As example of a pic type that takes these values into account is the
+            <span class="verb">angle</span> pic type:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1462"
+                  ><!--
+α
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.722"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1462.png"
+                    style
+                    width="116.666"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {angles,quotes} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(3,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.coordinate">coordinate</a></span
+                >
+                <span class="textcolor" style="color: #800080">(A)</span><br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.coordinate">coordinate</a></span
+                >
+                <span class="textcolor" style="color: #800080">(B)</span><br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.coordinate">coordinate</a></span
+                >
+                <span class="textcolor" style="color: #800080">(C)</span><br />
+                <span class="spaces">            </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >, <span class="textcolor" style="color: #008000">"$</span
+                ><span class="textcolor" style="color: #0000b2">\alpha</span
+                ><span class="textcolor" style="color: #008000">$"</span
+                >] {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            As described in Section&nbsp;<a
+              href="tikz-shapes#section-label-quotes"
+              >17.10.4</a
+            >, the apostrophe becomes part of the
+            <span class="angle">&langle;</span><i>options</i
+            ><span class="angle">&rangle;</span>, when present. As can be seen
+            above, the following style is executed:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/every:pic:quotes"></a
+                    ><a id="pgf.every:pic:quotes"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/every pic quotes</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default"
+                      >(style, initially <kbd>empty</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/every:pic:quotes"
+                      href="#tikz/every:pic:quotes"
+                      id="tikz/every:pic:quotes"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p></p>
+            </ul>
+          </div>
+          <h5 id="autosec-3388">
+            <a id="section-new-pic-types"></a
+            ><span
+              ><span class="sectionnumber" id="sec-18.3">18.3</span> Defining
+              New Pic Types</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-18.3"
+              data-pdf-destination="subsection.18.3"
+              data-pdf-page="267"
+              href="#sec-18.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-3388"></a>
+
+          <p>
+            As explained in the description of the
+            <span class="verb">pic</span> command, in order to define a new pic
+            type you need to
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> define a key with the path
+                prefix <span class="verb">/tikz/pics</span> that
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> sets the key
+                <span class="verb">/tikz/pics/code</span> to the code of the
+                pic.
+              </p>
+            </li>
+          </ul>
+
+          <p>It turns out that this is easy enough to achieve using styles:</p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >pics/seagull</span
+                >/<span class="textcolor" style="color: #0000b2">.style </span
+                >={<br />
+                <span class="spaces">    </span><span class="example-code-comment"
+                  >% Ok, this is the key that should, when</span
+                ><br />
+                <span class="spaces">    </span><span class="example-code-comment"
+                  >% executed, set the code key:</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  >code </span
+                >=
+                <span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="example-code-comment">%</span><br />
+                  <span class="spaces">      </span><span
+                    class="textcolor"
+                    style="color: #0000b2"
+                    ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                  > <span class="textcolor" style="color: #800080"
+                    >(...)</span
+                  ><span class="spaces"> </span>...<span class="spaces"> </span>;<br />
+                  <span class="spaces">    </span>}<br />
+                  <span class="spaces">  </span>}<br /> </span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Even though the above pattern is easy enough, there is a special
+            so-called key handler that allows us to write even simpler code,
+            namely:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >seagull</span
+                >/<span class="textcolor" style="color: #0000b2">.pic </span>=
+                <span class="textcolor" style="color: #008000"
+                  >{<br />
+                  <span class="spaces">    </span><span
+                    class="textcolor"
+                    style="color: #0000b2"
+                    ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                  > <span class="textcolor" style="color: #800080"
+                    >(...)</span
+                  ><span class="spaces"> </span>...<span class="spaces"> </span>;<br />
+                  <span class="spaces">  </span>}<br /> </span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./handlers/.pic"></a>
+                    <span class="hl-def"
+                      ><b>Key handler</b> <span class="angle">&langle;</span
+                      ><i>key</i><span class="angle">&rangle;</span
+                      ><kbd
+                        >/<span class="textcolor" style="color: #bf0000"
+                          >.pic</span
+                        ></kbd
+                      ><span class="verb">=</span
+                      ><span class="angle">&langle;</span><i>some code</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./handlers/.pic"
+                      href="#handlers/.pic"
+                      id="handlers/.pic"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This handler can only be used with a key with the prefix
+                <span class="verb">/tikz/</span>, so you should normally use it
+                only as an option to a
+                <span class="tikzname">TikZ</span> command or to the
+                <span class="verb">\tikzset</span> command. It takes the
+                <span class="angle">&langle;</span><i>key</i
+                ><span class="angle">&rangle;</span>&rsquo;s path and, inside
+                that path, it replaces <span class="verb">/tikz/</span> by
+                <span class="verb">/tikz/pics/</span> (so, basically, it adds
+                the &ldquo;missing&rdquo; <span class="verb">pics</span> part of
+                the path). Then, it sets up things so that the resulting name to
+                key is a style that executes
+                <span class="verb">code=some code</span>.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            In almost all cases, the <span class="verb">.pic</span> key handler
+            will suffice to setup keys. However, there are cases where you
+            really need to use the first version using
+            <span class="verb">.style</span> and
+            <span class="verb">code=</span>:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Whenever your pic type
+                needs to set the foreground or the background code.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> In case of complicated
+                arguments given to the keys.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            As an example, let us define a simple pic that draws a filled circle
+            behind the path. Furthermore, we make the circle&rsquo;s radius a
+            parameter of the pic:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1463"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="66.962"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1463.png"
+                    style
+                    width="66.962"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >pics/my circle</span
+                >/<span class="textcolor" style="color: #0000b2">.style </span>=
+                {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  >background code </span
+                >=
+                <span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                  > <a href="tikz-paths#pgf.circle">circle</a> [<span
+                    class="textcolor"
+                    style="color: #008000"
+                    ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                  >=<span class="textcolor" style="color: #008000">#1</span
+                  >];<span class="spaces"> </span>}<br />
+                  <span class="spaces">  </span>}<br /> </span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!30</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                {<span class="textcolor" style="color: #000000">my</span>
+                <span class="textcolor" style="color: #000000">circle=2mm</span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-pics#pgf.pic">pic</a></span
+                >
+                {<span class="textcolor" style="color: #000000">my</span>
+                <span class="textcolor" style="color: #000000">circle=5mm</span
+                >};<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

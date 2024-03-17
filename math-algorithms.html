@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Mark Wibrow
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Customizing the Mathematical Engine - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Mathematical and Object-Oriented Engines",
+            "item": "https://tikz.dev/math"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Customizing the Mathematical Engine",
+            "item": "https://tikz.dev/math-algorithms"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/math-algorithms" rel="canonical" />
+    <meta content="https://tikz.dev/math-algorithms" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Customizing the Mathematical Engine - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7710"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-parsing"
+                >Mathematical Expressions</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-commands"
+                >Additional Mathematical Commands</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="math-algorithms"
+                >Customizing the Mathematical Engine</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-numberprinting"
+                >Number Printing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="oo">Object-Oriented Programming</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Mathematical and Object-Oriented Engines</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7711">
+            <a id="pgfmath-reimplement"></a
+            ><span
+              ><span class="sectionnumber" id="sec-96">96</span> Customizing the
+              Mathematical Engine</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.96"
+              data-pdf-page="1049"
+              href="#sec-96"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7711"></a>
+          <a id="pgfmanual-autofile-104"></a>
+
+          <p>
+            Perhaps you have a desire for some function that
+            <span class="textsc">pgf</span> does not provide. Perhaps you are
+            not happy with the accuracy or efficiency of some of the algorithms
+            that are implemented in <span class="textsc">pgf</span>. In these
+            cases you will want to add a function to the parser or replace the
+            current implementations of the algorithms with your own code.
+          </p>
+
+          <p>
+            The mathematical engine was designed with such customization in
+            mind. It is possible to add new functions, or modify the code for
+            existing functions. Note, however, that whilst adding new operators
+            is possible, it can be a rather tricky business and is only
+            recommended for adventurous users.
+          </p>
+
+          <p>
+            To add a new function to the math engine the following command can
+            be used:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathdeclarefunction"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathdeclarefunction</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="verb">*</span></span
+                      >{<span class="angle">&langle;</span><i>function name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>number of arguments</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>code</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathdeclarefunction"
+                      href="#\pgfmathdeclarefunction"
+                      id="\pgfmathdeclarefunction"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This will set up the parser to recognize a function called
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span>. The name of the function
+                can consist of, uppercase or lowercase letters, numbers or the
+                underscore <span class="verb">_</span>. In line with many
+                programming languages, a function name cannot begin with a
+                number or contain any spaces. The function may not have been
+                declared earlier, unless the optional star (<span class="verb"
+                  >*</span
+                >) is provided, which forces an &ldquo;overwriting&rdquo; of the
+                function by the new function. Note that you
+                <em>should never change the arity of standard functions</em> and
+                you should normally use
+                <span class="verb">\pgfmathredeclarefunction</span>, which does
+                not allow you to do anything wrong here.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>number of arguments</i
+                ><span class="angle">&rangle;</span> can be any positive
+                integer, zero, or the value <span class="verb">...</span>, which
+                indicates a variable number of arguments.
+                <span class="textsc">pgf</span> treats constants, such as
+                <span class="verb">pi</span> and <span class="verb">e</span>, as
+                functions with zero arguments. Functions with more than nine
+                arguments or with a variable number of arguments are a
+                &ldquo;bit special&rdquo; and are discussed below.
+              </p>
+              <p>
+                The effect of <span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span> should be to set the macro
+                <span class="verb">\pgfmathresult</span> to the correct value
+                (namely to the result of the computation without units).
+                Furthermore, the function should have no other side effects,
+                that is, it should not change any global values. As an example,
+                consider the creation of a new function
+                <span class="verb">double</span>, which takes one argument, and
+                returns the value of that argument times two.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>88.6</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\makeatletter</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-algorithms#pgf.back/pgfmathdeclarefunction"
+                        >\pgfmathdeclarefunction</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.double">double</a></span
+                    >}{<span class="textcolor" style="color: #000000">1</span
+                    >}{<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\begingroup</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgf</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@x=#1pt</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\multiply</span
+                    ><span class="textcolor" style="color: #0000b2">\pgf</span
+                    ><span class="textcolor" style="color: #000000">@x</span>
+                    <span class="textcolor" style="color: #000000">by2</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgfmathreturn</span
+                    ><span class="textcolor" style="color: #0000b2">\pgf</span
+                    ><span class="textcolor" style="color: #000000">@x</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\endgroup</span
+                    ><br />
+                    }<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\makeatother</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.double">double</a></span
+                    ><span class="textcolor" style="color: #800080">(44.3)</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The macro <span class="verb">\pgfmathreturn</span
+                ><span class="angle">&langle;</span><i>tokens</i
+                ><span class="angle">&rangle;</span> must be directly followed
+                by an <span class="verb">\endgroup</span> and will save the
+                result of the computation, by defining
+                <span class="verb">\pgfmathresult</span> as the expansion of
+                <span class="angle">&langle;</span><i>tokens</i
+                ><span class="angle">&rangle;</span> (without units) outside the
+                group, so <span class="angle">&langle;</span><i>tokens</i
+                ><span class="angle">&rangle;</span> must be something that can
+                be assigned to a dimension register.
+              </p>
+              <p>
+                Alternatively, the <span class="verb">\pgfmathsmuggle</span
+                ><span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> can be used. This must also
+                be directly followed by an
+                <span class="verb">\endgroup</span> and will simply
+                &ldquo;smuggle&rdquo; the definition of
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> outside the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-group.
+              </p>
+              <p>
+                By performing computations within a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-group, <span class="textsc">pgf</span> registers such as
+                <span class="verb">\pgf@x</span>,
+                <span class="verb">\pgf@y</span> and
+                <span class="verb">\c@pgf@counta</span>,
+                <span class="verb">\c@pgfcountb</span>, and so forth, can be
+                used at will.
+              </p>
+              <p>
+                Beyond setting up the parser, this command also defines two
+                macros which provide access to the function independently of the
+                parser:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfmath</span
+                    ><span class="angle">&langle;</span><i>function name</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                  <p>
+                    This macro will provide a &ldquo;public&rdquo; interface for
+                    the function <span class="angle">&langle;</span
+                    ><i>function name</i
+                    ><span class="angle">&rangle;</span> allowing the function
+                    to be called independently of the parser. All arguments
+                    passed to this macro are evaluated using
+                    <span class="verb">\pgfmathparse</span> and then passed on
+                    to the following macro:
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfmath</span
+                    ><span class="angle">&langle;</span><i>function name</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">@</span>
+                  </p>
+                  <p>
+                    This macro is the &ldquo;private&rdquo; implementation of
+                    the function&rsquo;s algorithm (but note that, for speed,
+                    the parser calls this macro rather than the
+                    &ldquo;public&rdquo; one). Arguments passed to this macro
+                    are expected to be numbers without units. It is defined
+                    using <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>, but need not be
+                    self-contained.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                For functions that are declared with less than ten arguments,
+                the public macro is defined in the same way as normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                macros using, for example,
+                <span class="verb">\def\pgfmathNoArgs{</span
+                ><span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">}</span> for a function with no arguments,
+                or <span class="verb">\def\pgfmathThreeArgs#1#2#3{</span
+                ><span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">}</span> for a function with three
+                arguments. The private macro is defined in the same way, and
+                each argument can therefore be accessed in
+                <span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span> using
+                <span class="verb">#1</span>, <span class="verb">#2</span> and
+                so on.
+              </p>
+              <p>
+                For functions with more than nine arguments, or functions with a
+                variable number of arguments, these macros are only defined as
+                taking <em>one</em> argument. The public macro expects its
+                arguments to be comma separated, for example,
+                <span class="verb">\pgfmathVariableArgs{1.1,3.5,-1.5,2.6}</span
+                >. Each argument is parsed and passed on to the private macro as
+                follows:
+                <span class="verb"
+                  >\pgfmathVariableArgs@{{1.1}{3.5}{-1.5}{2.6}}</span
+                >. This means that some &ldquo;extra work&rdquo; will be
+                required to access each argument (although it is a fairly simple
+                task).
+              </p>
+              <p>
+                Note that there are two exceptions to this arrangement: the
+                public versions of the <span class="verb">min</span> and
+                <span class="verb">max</span> functions still take two arguments
+                for compatibility with older versions, but each of these
+                arguments can take several comma separated values.
+              </p>
+            </ul>
+          </div>
+
+          <p>To redefine a function use the following command:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathredeclarefunction"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathredeclarefunction</kbd></span
+                      >{<span class="angle">&langle;</span><i>function name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>code</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathredeclarefunction"
+                      href="#\pgfmathredeclarefunction"
+                      id="\pgfmathredeclarefunction"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command redefines the <span class="verb">\pgfmath</span
+                ><span class="angle">&langle;</span><i>function name</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">@</span> macro with the new
+                <span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span>. See the description of the
+                <span class="verb">\pgfmathdeclarefunction</span> for details.
+                You cannot change the number of arguments for an existing
+                function.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>84.0 126.0</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\makeatletter</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-algorithms#pgf.back/pgfmathdeclarefunction"
+                        >\pgfmathdeclarefunction</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">foo</span
+                    >}{<span class="textcolor" style="color: #000000">1</span
+                    >}{<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\begingroup</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgf</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@x=#1pt</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\multiply</span
+                    ><span class="textcolor" style="color: #0000b2">\pgf</span
+                    ><span class="textcolor" style="color: #000000">@x</span>
+                    <span class="textcolor" style="color: #000000">by2</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgfmathreturn</span
+                    ><span class="textcolor" style="color: #0000b2">\pgf</span
+                    ><span class="textcolor" style="color: #000000">@x</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\endgroup</span
+                    ><br />
+                    }<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">foo</span
+                    ><span class="textcolor" style="color: #800080">(42)</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="math-algorithms#pgf.back/pgfmathredeclarefunction"
+                        >\pgfmathredeclarefunction</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">foo</span
+                    >}{<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\begingroup</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgf</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@x=#1pt</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\multiply</span
+                    ><span class="textcolor" style="color: #0000b2">\pgf</span
+                    ><span class="textcolor" style="color: #000000">@x</span>
+                    <span class="textcolor" style="color: #000000">by3</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgfmathreturn</span
+                    ><span class="textcolor" style="color: #0000b2">\pgf</span
+                    ><span class="textcolor" style="color: #000000">@x</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\endgroup</span
+                    ><br />
+                    }<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">foo</span
+                    ><span class="textcolor" style="color: #800080">(42)</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\makeatother</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <span class="textsc">pgf</span> uses the last known definition of a
+            function within the prevailing scope, so it is possible for a
+            function to be redefined locally. You should also remember that any
+            <span class="verb">.sty</span> or
+            <span class="verb">.tex</span> file containing any
+            re-implementations should be loaded after
+            <span class="verb">pgfmath</span>.
+          </p>
+
+          <p>
+            In addition to the above commands, the following key is provided to
+            quickly create simple ad hoc functions which can greatly improve the
+            readability of code, and is particularly useful in
+            <span class="tikzname">TikZ</span>:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/declare:function"></a
+                    ><a id="pgf.declare:function"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/declare function</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span
+                      ><i>function definitions</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/declare:function"
+                      href="#pgf/declare:function"
+                      id="pgf/declare:function"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key allows simple functions to be created locally. Its use
+                is perhaps best illustrated by an example:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3130"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="88.082"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3130.png"
+                        style
+                        width="119.385"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >0.0085cm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.y">y</a></span
+                    >=<span class="textcolor" style="color: #008000">1cm</span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="math-algorithms#pgf.declare:function"
+                        >declare function</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">      </span>sines<span
+                        class="textcolor"
+                        style="color: #800080"
+                        >(\t,\a,\b)</span
+                      >=1 + 0.5*<span class="textcolor" style="color: #800080"
+                        >(sin(\t)</span
+                      >+sin<span class="textcolor" style="color: #800080"
+                        >(\t*\a)</span
+                      >+sin<span class="textcolor" style="color: #800080"
+                        >(\t*\b)</span
+                      >);<br />
+                      <span class="spaces">    </span>}</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-plots#pgf.plot">plot</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.domain">domain</a></span
+                    >=<span class="textcolor" style="color: #008000">0:360</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.samples">samples</a></span
+                    >=<span class="textcolor" style="color: #008000">144</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.smooth">smooth</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(\x,{sines(\x,3,5)})</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Each definition in <span class="angle">&langle;</span
+                ><i>function definitions</i
+                ><span class="angle">&rangle;</span> takes the form
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span><span class="verb">(</span
+                ><span class="angle">&langle;</span><i>arguments</i
+                ><span class="angle">&rangle;</span><span class="verb">)=</span
+                ><span class="angle">&langle;</span><i>definition</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">;</span> (note the semicolon at the end,
+                this is very important). If multiple functions are being
+                defined, the semicolon is used to separate them (<em>not</em> a
+                comma). The function <span class="angle">&langle;</span
+                ><i>name</i><span class="angle">&rangle;</span> can be any name
+                that is not already a function name in the current scope. The
+                list of <span class="angle">&langle;</span><i>arguments</i
+                ><span class="angle">&rangle;</span> are commands such as
+                <span class="verb">\x</span>, or
+                <span class="verb">\y</span> (it is not possible to declare
+                functions that take variable numbers of arguments using this
+                key). If the function takes no arguments, then the parentheses
+                need not be used. The <span class="angle">&langle;</span
+                ><i>definition</i><span class="angle">&rangle;</span> should be
+                an expression that can be parsed by the mathematical engine and
+                should use the commands specified in
+                <span class="angle">&langle;</span><i>arguments</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                When specifying multiple functions, functions that appear later
+                on in <span class="angle">&langle;</span
+                ><i>function definitions</i
+                ><span class="angle">&rangle;</span> can refer to earlier
+                functions:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3131"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="91.634"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3131.png"
+                        style
+                        width="118.902"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="math-algorithms#pgf.declare:function"
+                        >declare function</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">    </span>excitation<span
+                        class="textcolor"
+                        style="color: #800080"
+                        >(\t,\w)</span
+                      ><span class="spaces"> </span>= <a href="tikz-paths#pgf.sin">sin</a
+                      ><span class="textcolor" style="color: #800080"
+                        >(\t*\w)</span
+                      >;<br />
+                      <span class="spaces">    </span>noise
+                      <span class="spaces">            </span>=
+                      rnd - 0.5;<br />
+                      <span class="spaces">    </span>source<span
+                        class="textcolor"
+                        style="color: #800080"
+                        >(\t)</span
+                      ><span class="spaces">        </span>=
+                      excitation<span class="textcolor" style="color: #800080"
+                        >(\t,20)</span
+                      ><span class="spaces"> </span>+ noise;<br />
+                      <span class="spaces">    </span>filter<span
+                        class="textcolor"
+                        style="color: #800080"
+                        >(\t)</span
+                      ><span class="spaces">        </span>=
+                      1 - abs<span class="textcolor" style="color: #800080"
+                        >(sin(mod(\t, 90)</span
+                      >));<br />
+                      <span class="spaces">    </span>speech<span
+                        class="textcolor"
+                        style="color: #800080"
+                        >(\t)</span
+                      ><span class="spaces">        </span>=
+                      1 + source<span class="textcolor" style="color: #800080"
+                        >(\t)</span
+                      >*filter<span class="textcolor" style="color: #800080"
+                        >(\t)</span
+                      >;<br />
+                      <span class="spaces">  </span>}<br /> </span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >0.0085cm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.y">y</a></span
+                    >=<span class="textcolor" style="color: #008000">1cm</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-plots#pgf.plot">plot</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.domain">domain</a></span
+                    >=<span class="textcolor" style="color: #008000">0:360</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.samples">samples</a></span
+                    >=<span class="textcolor" style="color: #008000">144</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.smooth">smooth</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(\x,{speech(\x)})</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./pgf/declare:function/execute:at:begin:function"
+                    ></a
+                    ><a id="pgf.execute:at:begin:function"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/declare function/execute at begin
+                            function</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>tokens</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/declare:function/execute:at:begin:function"
+                      href="#pgf/declare:function/execute:at:begin:function"
+                      id="pgf/declare:function/execute:at:begin:function"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                These <span class="angle">&langle;</span><i>tokens</i
+                ><span class="angle">&rangle;</span> are inserted just before
+                <span class="verb">\pgfmathdeclarefunction</span> scans the body
+                of the function definition. This is a rather low-level option,
+                so you should read the implementation to figure out where the
+                <span class="angle">&langle;</span><i>tokens</i
+                ><span class="angle">&rangle;</span> are inserted.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./pgf/declare:function/execute:at:end:function"
+                    ></a
+                    ><a id="pgf.execute:at:end:function"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/declare function/execute at end function</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>tokens</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/declare:function/execute:at:end:function"
+                      href="#pgf/declare:function/execute:at:end:function"
+                      id="pgf/declare:function/execute:at:end:function"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                These <span class="angle">&langle;</span><i>tokens</i
+                ><span class="angle">&rangle;</span> are inserted just after
+                <span class="verb">\pgfmathdeclarefunction</span> has finished
+                scanning the body of the function definition. This is a rather
+                low-level option, so you should read the implementation to
+                figure out where the <span class="angle">&langle;</span
+                ><i>tokens</i><span class="angle">&rangle;</span> are inserted.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/declare:function/ignore:spaces"></a
+                    ><a id="pgf.ignore:spaces"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/declare function/ignore spaces</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>boolean</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/declare:function/ignore:spaces"
+                      href="#pgf/declare:function/ignore:spaces"
+                      id="pgf/declare:function/ignore:spaces"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Uses the two previously described keys
+                <span class="verb"
+                  >/pgf/declare function/execute at begin function</span
+                >
+                and
+                <span class="verb"
+                  >/pgf/declare function/execute at end function</span
+                >
+                to install catcodes such that spaces inside the body of the
+                function definition of
+                <span class="verb">\pgfmathdeclarefunction</span> are ignored.
+                The usual
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                tokenization rules apply, so if the body of the function had
+                already been tokenized by other means this will become
+                ineffective. If you want to use a space you can use
+                <span class="verb">~</span> in the function body which has its
+                catcode set to 10 (space).
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

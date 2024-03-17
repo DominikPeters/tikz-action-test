@@ -1,0 +1,3351 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+      Hierarchical Structures: Package, Environments, Scopes, and Styles -
+      PGF/TikZ Manual
+    </title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "TikZ",
+            "item": "https://tikz.dev/tikz"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Hierarchical Structures: Package, Environments, Scopes, and Styles",
+            "item": "https://tikz.dev/tikz-scopes"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <meta
+      content="This section explains how your files should be structured when you use TikZ, explaining tikzpicture and scopes."
+      name="description"
+    />
+    <meta
+      content="This section explains how your files should be structured when you use TikZ, explaining tikzpicture and scopes."
+      property="og:description"
+    />
+    <link href="https://tikz.dev/tikz-scopes" rel="canonical" />
+    <meta content="https://tikz.dev/tikz-scopes" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Hierarchical Structures: Package, Environments, Scopes, and Styles - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-509"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-12.1"
+                >Loading the Package and the Libraries</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-12.2">Creating a Picture</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.2.1"
+                >Creating a Picture Using an Environment</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.2.2"
+                >Creating a Picture Using a Command</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.2.3"
+                >Handling Catcodes and the Babel Package</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.2.4"
+                >Adding a Background</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-12.3"
+                >Using Scopes to Structure a Picture</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.3.1"
+                >The Scope Environment</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.3.2"
+                >Shorthand for Scope Environments</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.3.3"
+                >Single Command Scopes</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.3.4"
+                >Using Scopes Inside Paths</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-12.4"
+                >Using Graphic Options</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.4.1"
+                >How Graphic Options Are Processed</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-12.4.2"
+                >Using Styles to Manage How Pictures Look</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-design">Design Principles</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="tikz-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Styles</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-coordinates"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-paths"
+                >Syntax for Path Specifications</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-actions">Actions on Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-arrows">Arrows</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-shapes">Nodes and Edges</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-pics"
+                >Pics: Small Pictures on Paths</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-graphs">Specifying Graphs</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-matrices"
+                >Matrices and Alignment</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-trees">Making Trees Grow</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-plots">Plots of Functions</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-decorations">Decorated Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transformations"
+                >Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-animations">Animations</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">TikZ</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-510">
+            <span
+              ><span class="sectionnumber" id="sec-12">12</span> Hierarchical
+              Structures: Package, Environments, Scopes, and Styles</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.12"
+              data-pdf-page="128"
+              href="#sec-12"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-510"></a>
+          <a id="pgfmanual-autofile-15"></a>
+
+          <p>
+            The present section explains how your files should be structured
+            when you use <span class="tikzname">TikZ</span>. On the top level,
+            you need to include the <span class="verb">tikz</span> package. In
+            the main text, each graphic needs to be put in a
+            <span class="verb">{tikzpicture}</span> environment. Inside these
+            environments, you can use
+            <span class="verb">{scope}</span> environments to create internal
+            groups. Inside the scopes you use
+            <span class="verb">\path</span> commands to actually draw something.
+            On all levels (except for the package level), graphic options can be
+            given that apply to everything within the environment.
+          </p>
+          <h5 id="autosec-511">
+            <span
+              ><span class="sectionnumber" id="sec-12.1">12.1</span> Loading the
+              Package and the Libraries</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.1"
+              data-pdf-destination="subsection.12.1"
+              data-pdf-page="128"
+              href="#sec-12.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-511"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.tikz"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepackage{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >tikz</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.tikz"
+                      href="#pgf.tikz"
+                      id="pgf.tikz"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\input
+                        <span class="textcolor" style="color: #bf0000"
+                          >tikz</span
+                        >.tex % plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usemodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >tikz</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>This package does not have any options.</p>
+              <p>
+                This will automatically load the
+                <span class="textsc">pgf</span> and the
+                <span class="verb">pgffor</span> package.
+              </p>
+              <p>
+                <span class="textsc">pgf</span> needs to know what
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                driver you are intending to use. In most cases
+                <span class="textsc">pgf</span> is clever enough to determine
+                the correct driver for you; this is true in particular if you
+                use
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >. One situation where <span class="textsc">pgf</span> cannot
+                know the driver &ldquo;by itself&rdquo; is when you use plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                or Con<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >t together with <span class="verb">dvipdfm</span>. In this
+                case, you have to write
+                <span class="verb">\def\pgfsysdriver{pgfsys-dvipdfm.def}</span>
+                <em>before</em> you input <span class="verb">tikz.tex</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/usetikzlibrary"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\usetikzlibrary</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>list of libraries</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/usetikzlibrary"
+                      href="#\usetikzlibrary"
+                      id="\usetikzlibrary"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Once <span class="tikzname">TikZ</span> has been loaded, you can
+                use this command to load further libraries. The list of
+                libraries should contain the names of libraries separated by
+                commas. Instead of curly braces, you can also use square
+                brackets, which is something Con<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >t users will like. If you try to load a library a second time,
+                nothing will happen.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb">\usetikzlibrary{arrows.meta}</span>
+              </p>
+              <p>
+                The above command will load a whole bunch of extra arrow tip
+                definitions.
+              </p>
+              <p>
+                What this command does is to load the file
+                <span class="verb">tikzlibrary</span
+                ><span class="angle">&langle;</span><i>library</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.code.tex</span> for each
+                <span class="angle">&langle;</span><i>library</i
+                ><span class="angle">&rangle;</span> in the
+                <span class="angle">&langle;</span><i>list of libraries</i
+                ><span class="angle">&rangle;</span>. If this file does not
+                exist, the file <span class="verb">pgflibrary</span
+                ><span class="angle">&langle;</span><i>library</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.code.tex</span> is loaded instead. If this
+                file also does not exist, an error message is printed. Thus, to
+                write your own library file, all you need to do is to place a
+                file of the appropriate name somewhere where
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                can find it.
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >, plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, and Con<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >t users can then use your library.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-512">
+            <span
+              ><span class="sectionnumber" id="sec-12.2">12.2</span> Creating a
+              Picture</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.2"
+              data-pdf-destination="subsection.12.2"
+              data-pdf-page="128"
+              href="#sec-12.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-512"></a>
+          <h6 id="autosec-513">
+            <span
+              ><span class="sectionnumber" id="sec-12.2.1">12.2.1</span>
+              Creating a Picture Using an Environment</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.2.1"
+              data-pdf-destination="subsubsection.12.2.1"
+              data-pdf-page="128"
+              href="#sec-12.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-513"></a>
+
+          <p>
+            The &ldquo;outermost&rdquo; scope of
+            <span class="tikzname">TikZ</span> is the
+            <span class="verb">{tikzpicture}</span> environment. You may give
+            drawing commands only inside this environment, giving them outside
+            (as is possible in many other packages) will result in chaos.
+          </p>
+
+          <p>
+            In <span class="tikzname">TikZ</span>, the way graphics are rendered
+            is strongly influenced by graphic options. For example, there is an
+            option for setting the color used for drawing, another for setting
+            the color used for filling, and also more obscure ones like the
+            option for setting the prefix used in the filenames of temporary
+            files written while plotting functions using an external program.
+            The graphic options are specified in <em>key lists</em>, see
+            Section&nbsp;<a href="tikz-scopes#section-graphic-options">12.4</a>
+            below for details. All graphic options are local to the
+            <span class="verb">{tikzpicture}</span> to which they apply.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.tikzpicture"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\begin{<span class="textcolor" style="color: #bf0000"
+                          >tikzpicture</span
+                        >}</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>animations spec</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.tikzpicture"
+                      href="#pgf.tikzpicture"
+                      id="pgf.tikzpicture"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\end{<span class="textcolor" style="color: #bf0000"
+                          >tikzpicture</span
+                        >}</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                All <span class="tikzname">TikZ</span> commands should be given
+                inside this environment, except for the
+                <span class="verb">\tikzset</span> command. You cannot use
+                graphics commands like the low-level command
+                <span class="verb">\pgfpathmoveto</span> outside this
+                environment and doing so will result in chaos. For
+                <span class="tikzname">TikZ</span>, commands like
+                <span class="verb">\path</span> are only defined inside this
+                environment, so there is little chance that you will do
+                something wrong here.
+              </p>
+              <p>
+                When this environment is encountered, the
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> are parsed, see
+                Section&nbsp;<a href="tikz-scopes#section-graphic-options"
+                  >12.4</a
+                >. All options given here will apply to the whole picture.
+                Before the options you can specify animation commands, provided
+                that the <span class="verb">animations</span> library is loaded,
+                see Section&nbsp;<a
+                  href="tikz-animations#section-tikz-animations"
+                  >26</a
+                >
+                for details.
+              </p>
+              <p>
+                Next, the contents of the environment is processed and the
+                graphic commands therein are put into a box. Non-graphic text is
+                suppressed as well as possible, but non-<span class="textsc"
+                  >pgf</span
+                >
+                commands inside a
+                <span class="verb">{tikzpicture}</span> environment should not
+                produce any &ldquo;output&rdquo; since this may totally scramble
+                the positioning system of the backend drivers. The suppressing
+                of normal text, by the way, is done by temporarily switching the
+                font to <span class="verb">\nullfont</span>. You can, however,
+                &ldquo;escape back&rdquo; to normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                typesetting. This happens, for example, when you specify a node.
+              </p>
+              <p>
+                At the end of the environment,
+                <span class="textsc">pgf</span> tries to make a good guess at
+                the size of a bounding box of the graphic and then resizes the
+                picture box such that the box has this size. To &ldquo;make its
+                guess&rdquo;, every time
+                <span class="textsc">pgf</span> encounters a coordinate, it
+                updates the bounding box&rsquo;s size such that it encompasses
+                all these coordinates. This will usually give a good
+                approximation of the bounding box, but will not always be
+                accurate. First, the line thickness of diagonal lines is not
+                taken into account correctly. Second, control points of a curve
+                often lie far &ldquo;outside&rdquo; the curve and make the
+                bounding box too large. In this case, you should use the
+                <span class="verb">[use as bounding box]</span> option.
+              </p>
+              <p>
+                The following key influences the baseline of the resulting
+                picture:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/baseline"></a
+                        ><a id="pgf.baseline"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/baseline</span
+                              ></span
+                            ><span class="textcolor" style="color: #008000"
+                              >=</span
+                            ></kbd
+                          ><span class="textcolor" style="color: #008000"
+                            ><span class="angle">&langle;</span
+                            ><i>dimension or coordinate or <kbd>default</kbd></i
+                            ><span class="angle">&rangle;</span>
+                          </span></span
+                        ><span class="hl-default"
+                          >(default <kbd>0pt</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/baseline"
+                          href="#tikz/baseline"
+                          id="tikz/baseline"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Normally, the lower end of the picture is put on the
+                    baseline of the surrounding text. For example, when you give
+                    the code
+                    <span class="verb">\tikz\draw(0,0)circle(.5ex);</span>,
+                    <span class="textsc">pgf</span> will find out that the lower
+                    end of the picture is at \(-.5\mathrm {ex} - 0.2\mathrm
+                    {pt}\) (the 0.2pt are half the line width, which is 0.4pt)
+                    and that the upper end is at \(.5\mathrm {ex}+.5\mathrm
+                    {pt}\). Then, the lower end will be put on the baseline,
+                    resulting in the following:
+                    <span class="lateximagesource" id="lateximage-pgfmanual-152"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="9.123"
+                        loading="lazy"
+                        src="pgfmanual-images/image-152.png"
+                        style
+                        width="9.117" /></span
+                    >.
+                  </p>
+                  <p>
+                    Using this option, you can specify that the picture should
+                    be raised or lowered such that the height
+                    <span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span> is on the baseline. For
+                    example,
+                    <span class="verb"
+                      >\tikz[baseline=0pt]\draw(0,0)circle(.5ex);</span
+                    >
+                    yields
+                    <span class="lateximagesource" id="lateximage-pgfmanual-153"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="9.123"
+                        loading="lazy"
+                        src="pgfmanual-images/image-153.png"
+                        style
+                        width="9.117"
+                    /></span>
+                    since, now, the baseline is on the height of the \(x\)-axis.
+                  </p>
+                  <p>
+                    This options is often useful for &ldquo;inlined&rdquo;
+                    graphics as in
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-154"
+                          ><!--
+A B
+--><img
+                            alt="(image)"
+                            class="lateximage"
+                            height="12.699"
+                            loading="lazy"
+                            src="pgfmanual-images/image-154.png"
+                            style
+                            width="46.347"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #000000">$A</span>
+                        <span class="textcolor" style="color: #0000b2"
+                          >\mathbin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                        >] <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          >-&gt;&gt;</span
+                        >] <span class="textcolor" style="color: #800080"
+                          >(0pt,.5ex)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(3ex,.5ex)</span
+                        >;} <span class="textcolor" style="color: #000000"
+                          >B$</span
+                        ><br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    Instead of a <span class="angle">&langle;</span
+                    ><i>dimension</i><span class="angle">&rangle;</span> you can
+                    also provide a coordinate in parentheses. Then the effect is
+                    to put the baseline on the \(y\)-coordinate that the given
+                    <span class="angle">&langle;</span><i>coordinate</i
+                    ><span class="angle">&rangle;</span> has
+                    <em>at the end of the picture</em>. This means that, at the
+                    end of the picture, the <span class="angle">&langle;</span
+                    ><i>coordinate</i><span class="angle">&rangle;</span> is
+                    evaluated and then the baseline is set to the
+                    \(y\)-coordinate of the resulting point. This makes it easy
+                    to reference the \(y\)-coordinate of, say, the baseline of
+                    nodes.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-155"
+                          ><!--
+Hello world.
+--><img
+                            alt="(image)"
+                            class="lateximage"
+                            height="21.867"
+                            loading="lazy"
+                            src="pgfmanual-images/image-155.png"
+                            style
+                            width="88.470"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {shapes.misc} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >Hello</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><span class="textcolor" style="color: #800080"
+                            >(X.base)</span
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-shapes#pgf.cross:out"
+                            >cross out</a
+                          ></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >] <span class="textcolor" style="color: #800080"
+                          >(X)</span
+                        > {<span class="textcolor" style="color: #000000"
+                          >world</span
+                        >.};<br />
+                      </code>
+                    </div>
+                  </figure>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-156"
+                          ><!--
+]Top align:
+--><img
+                            alt="(image)"
+                            class="lateximage"
+                            height="19.065"
+                            loading="lazy"
+                            src="pgfmanual-images/image-156.png"
+                            style
+                            width="111.724"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="textcolor" style="color: #000000">]</span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >Top</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >align:</span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><span class="textcolor" style="color: #800080"
+                            >(current bounding box.north)</span
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.rectangle"
+                            >rectangle</a
+                          ></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(1cm,1ex)</span
+                        >;<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    Use <span class="verb">baseline=default</span> to reset the
+                    <span class="verb">baseline</span> option to its initial
+                    configuration.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/execute:at:begin:picture"></a
+                        ><a id="pgf.execute:at:begin:picture"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/execute at begin picture</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/execute:at:begin:picture"
+                          href="#tikz/execute:at:begin:picture"
+                          id="tikz/execute:at:begin:picture"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option causes <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span> to be
+                    executed at the beginning of the picture. This option must
+                    be given in the argument of the
+                    <span class="verb">{tikzpicture}</span> environment itself
+                    since this option will not have an effect otherwise. After
+                    all, the picture has already &ldquo;started&rdquo; later on.
+                    The effect of multiply setting this option accumulates.
+                  </p>
+                  <p>
+                    This option is mainly used in styles like the
+                    <span class="verb">every picture</span> style to execute
+                    certain code at the start of a picture.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/execute:at:end:picture"></a
+                        ><a id="pgf.execute:at:end:picture"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/execute at end picture</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/execute:at:end:picture"
+                          href="#tikz/execute:at:end:picture"
+                          id="tikz/execute:at:end:picture"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option installs <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span> that will be
+                    executed at the end of the picture. Using this option
+                    multiple times will cause the code to accumulate. This
+                    option must also be given in the optional argument of the
+                    <span class="verb">{tikzpicture}</span> environment.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-157"
+                          ><!--
+    Y
+
+X
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="58.467"
+                            loading="lazy"
+                            src="pgfmanual-images/image-157.png"
+                            style
+                            width="98.692"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-scopes#pgf.execute:at:end:picture"
+                            >execute at end picture</a
+                          ></span
+                        >=<span class="example-code-comment">%</span><br />
+                        <span class="textcolor" style="color: #008000"
+                          >{<br />
+                          <span class="spaces">    </span><span
+                            class="textcolor"
+                            style="color: #000000"
+                            >\begin</span
+                          >{<span class="textcolor" style="color: #0000b2"
+                            ><a href="base-layers#pgf.pgfonlayer"
+                              >pgfonlayer</a
+                            ></span
+                          >}{background}<br />
+                          <span class="spaces">      </span><span
+                            class="textcolor"
+                            style="color: #0000b2"
+                            ><a href="tikz-paths#pgf.back/path">\path</a></span
+                          >[<span class="textcolor" style="color: #008000"
+                            ><a href="tikz-actions#pgf.fill">fill</a></span
+                          >=<span class="textcolor" style="color: #008000"
+                            >yellow</span
+                          >,<span class="textcolor" style="color: #008000"
+                            ><a href="tikz-paths#pgf.rounded:corners"
+                              >rounded corners</a
+                            ></span
+                          >]<br />
+                          <span class="spaces">        </span><span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(current bounding box.south west)</span
+                          > <a href="tikz-paths#pgf.rectangle"
+                            >rectangle</a
+                          ><br />
+                          <span class="spaces">        </span><span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(current bounding box.north east)</span
+                          >;<br />
+                          <span class="spaces">    </span><span
+                            class="textcolor"
+                            style="color: #000000"
+                            >\end</span
+                          >{<span class="textcolor" style="color: #0000b2"
+                            ><a href="base-layers#pgf.pgfonlayer"
+                              >pgfonlayer</a
+                            ></span
+                          >}<br />
+                          <span class="spaces">  </span>}</span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.at">at</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > {<span class="textcolor" style="color: #000000"
+                          >X</span
+                        >};<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.at">at</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(2,1)</span
+                        > {<span class="textcolor" style="color: #000000"
+                          >Y</span
+                        >};<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                All options &ldquo;end&rdquo; at the end of the picture. To set
+                an option &ldquo;globally&rdquo; change the following style:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:picture"></a
+                        ><a id="pgf.every:picture"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every picture</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:picture"
+                          href="#tikz/every:picture"
+                          id="tikz/every:picture"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is installed at the beginning of each picture.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a
+                        >{<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-scopes#pgf.every:picture"
+                            >every picture</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.semithick"
+                            >semithick</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p></p>
+                </ul>
+              </div>
+              <p>
+                Note that you should not use
+                <span class="verb">\tikzset</span> to set options directly. For
+                instance, if you want to use a line width of
+                <span class="verb">1pt</span> by default, do not try to say
+                <span class="verb">\tikzset{line width=1pt}</span> at the
+                beginning of your document. This will not work since the line
+                width is changed in many places. Instead, say
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-scopes#pgf.every:picture"
+                        >every picture</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.line:width"
+                        >line width</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1pt}</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>This will have the desired effect.</p>
+            </ul>
+          </div>
+
+          <p>
+            In other
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            formats, you should use the following commands instead:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\tikzpicture</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\endtikzpicture</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                version of the environment.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\starttikzpicture</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\stoptikzpicture</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the Con<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >t version of the environment.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-526">
+            <span
+              ><span class="sectionnumber" id="sec-12.2.2">12.2.2</span>
+              Creating a Picture Using a Command</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.2.2"
+              data-pdf-destination="subsubsection.12.2.2"
+              data-pdf-page="130"
+              href="#sec-12.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-526"></a>
+
+          <p>
+            The following command is an alternative to
+            <span class="verb">{tikzpicture}</span> that is particular useful
+            for graphics consisting of a single or few commands.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/tikz"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\tikz</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>animations spec</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      >{<span class="angle">&langle;</span><i>path commands</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/tikz"
+                      href="#\tikz"
+                      id="\tikz"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command places the <span class="angle">&langle;</span
+                ><i>path commands</i><span class="angle">&rangle;</span> inside
+                a <span class="verb">{tikzpicture}</span> environment. The
+                <span class="angle">&langle;</span><i>path commands</i
+                ><span class="angle">&rangle;</span> may contain paragraphs and
+                fragile material (like verbatim text).
+              </p>
+              <p>
+                If there is only one path command, it need not be surrounded by
+                curly braces, if there are several, you need to add them (this
+                is similar to the <span class="verb">\foreach</span> statement
+                and also to the rules in programming languages like Java or C
+                concerning the placement of curly braces).
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb"
+                  >\tikz{\draw (0,0) rectangle (2ex,1ex);}</span
+                >
+                yields
+                <span class="lateximagesource" id="lateximage-pgfmanual-158"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="9.096"
+                    loading="lazy"
+                    src="pgfmanual-images/image-158.png"
+                    style
+                    width="14.993"
+                /></span>
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb"
+                  >\tikz \draw (0,0) rectangle (2ex,1ex);</span
+                >
+                yields
+                <span class="lateximagesource" id="lateximage-pgfmanual-159"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="9.096"
+                    loading="lazy"
+                    src="pgfmanual-images/image-159.png"
+                    style
+                    width="14.993"
+                /></span>
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-531">
+            <span
+              ><span class="sectionnumber" id="sec-12.2.3">12.2.3</span>
+              Handling Catcodes and the Babel Package</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.2.3"
+              data-pdf-destination="subsubsection.12.2.3"
+              data-pdf-page="130"
+              href="#sec-12.2.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-531"></a>
+
+          <p>
+            Inside a <span class="tikzname">TikZ</span> picture, most symbols
+            need to have the category code 12 (normal text) in order to ensure
+            that the parser works properly. This is typically not the case when
+            packages like <span class="verb">babel</span> are used, which change
+            catcodes aggressively.
+          </p>
+
+          <p>
+            To solve this problem, <span class="tikzname">TikZ</span> provides a
+            small library also called <span class="verb">babel</span> (which
+            can, however, also be used together with any other package that
+            globally changes category codes). What it does is to reset the
+            category codes at the beginning of every
+            <span class="verb">{tikzpicture}</span> and to restore them at the
+            beginning of every node. In almost all cases, this is exactly what
+            you would expect and need, so I recommend to always load this
+            library by saying <span class="verb">\usetikzlibrary{babel}</span>.
+            For details on what, exactly, happens with the category codes, see
+            Section&nbsp;<a href="library-babel#section-library-babel">44</a>.
+          </p>
+          <h6 id="autosec-532">
+            <span
+              ><span class="sectionnumber" id="sec-12.2.4">12.2.4</span> Adding
+              a Background</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.2.4"
+              data-pdf-destination="subsubsection.12.2.4"
+              data-pdf-page="131"
+              href="#sec-12.2.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-532"></a>
+
+          <p>
+            By default, pictures do not have any background, that is, they are
+            &ldquo;transparent&rdquo; on all parts on which you do not draw
+            anything. You may instead wish to have a colored background behind
+            your picture or a black frame around it or lines above and below it
+            or some other kind of decoration.
+          </p>
+
+          <p>
+            Since backgrounds are often not needed at all, the definition of
+            styles for adding backgrounds has been put in the library package
+            <span class="verb">backgrounds</span>. This package is documented in
+            Section&nbsp;<a href="library-backgrounds#section-tikz-backgrounds"
+              >45</a
+            >.
+          </p>
+          <h5 id="autosec-533">
+            <span
+              ><span class="sectionnumber" id="sec-12.3">12.3</span> Using
+              Scopes to Structure a Picture</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.3"
+              data-pdf-destination="subsection.12.3"
+              data-pdf-page="131"
+              href="#sec-12.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-533"></a>
+
+          <p>
+            Inside a <span class="verb">{tikzpicture}</span> environment you can
+            create scopes using the
+            <span class="verb">{scope}</span> environment. This environment is
+            available only inside the <span class="verb">{tikzpicture}</span>
+            environment, so once more, there is little chance of doing anything
+            wrong.
+          </p>
+          <h6 id="autosec-534">
+            <span
+              ><span class="sectionnumber" id="sec-12.3.1">12.3.1</span> The
+              Scope Environment</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.3.1"
+              data-pdf-destination="subsubsection.12.3.1"
+              data-pdf-page="131"
+              href="#sec-12.3.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-534"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.scope"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\begin{<span class="textcolor" style="color: #bf0000"
+                          >scope</span
+                        >}</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>animations spec</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.scope"
+                      href="#pgf.scope"
+                      id="pgf.scope"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\end{<span class="textcolor" style="color: #bf0000"
+                          >scope</span
+                        >}</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                All <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> are local to the
+                <span class="angle">&langle;</span><i>environment contents</i
+                ><span class="angle">&rangle;</span>. Furthermore, the clipping
+                path is also local to the environment, that is, any clipping
+                done inside the environment &ldquo;ends&rdquo; at its end.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span class="lateximagesource" id="lateximage-pgfmanual-160"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="42.627"
+                        loading="lazy"
+                        src="pgfmanual-images/image-160.png"
+                        style
+                        width="40.496"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.ultra:thick"
+                        >ultra thick</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000">red</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0mm,10mm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm,10mm)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0mm,8mm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm,8mm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0mm,6mm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm,6mm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      >green</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0mm,4mm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm,4mm)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0mm,2mm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm,2mm)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0mm,0mm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm,0mm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/name"></a><a id="pgf.name"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/name</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>scope name</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/name"
+                          href="#tikz/name"
+                          id="tikz/name"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Assigns a name to a scope reference in animations. The name
+                    is a &ldquo;high-level&rdquo; name that drivers do not see,
+                    so you can use spaces, number, letters, in a name, but you
+                    should <em>not</em> use any punctuation like a dot, a comma,
+                    or a colon.
+                  </p>
+                </ul>
+              </div>
+              <p>The following style influences scopes:</p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:scope"></a
+                        ><a id="pgf.every:scope"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every scope</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:scope"
+                          href="#tikz/every:scope"
+                          id="tikz/every:scope"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is installed at the beginning of every scope.
+                  </p>
+                </ul>
+              </div>
+              <p>The following options are useful for scopes:</p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/execute:at:begin:scope"></a
+                        ><a id="pgf.execute:at:begin:scope"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/execute at begin scope</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/execute:at:begin:scope"
+                          href="#tikz/execute:at:begin:scope"
+                          id="tikz/execute:at:begin:scope"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option install some code that will be executed at the
+                    beginning of the scope. This option must be given in the
+                    argument of the
+                    <span class="verb">{scope}</span> environment.
+                  </p>
+                  <p>
+                    The effect applies only to the current scope, not to
+                    subscopes.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/execute:at:end:scope"></a
+                        ><a id="pgf.execute:at:end:scope"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/execute at end scope</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/execute:at:end:scope"
+                          href="#tikz/execute:at:end:scope"
+                          id="tikz/execute:at:end:scope"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option installs some code that will be executed at the
+                    end of the current scope. Using this option multiple times
+                    will cause the code to accumulate. This option must also be
+                    given in the optional argument of the
+                    <span class="verb">{scope}</span> environment.
+                  </p>
+                  <p>
+                    Again, the effect applies only to the current scope, not to
+                    subscopes.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\scope</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>animations spec</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\endscope</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                version of the environment.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\startscope</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>animations spec</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\stopscope</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Con<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >t version of the environment.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-537">
+            <span
+              ><span class="sectionnumber" id="sec-12.3.2">12.3.2</span>
+              Shorthand for Scope Environments</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.3.2"
+              data-pdf-destination="subsubsection.12.3.2"
+              data-pdf-page="132"
+              href="#sec-12.3.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-537"></a>
+
+          <p>There is a small library that makes using scopes a bit easier:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.scopes"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >scopes</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.scopes"
+                      href="#pgf.scopes"
+                      id="pgf.scopes"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >scopes</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >scopes</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library defines a shorthand for starting and ending
+                <span class="verb">{scope}</span> environments.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            When this library is loaded, the following happens: At certain
+            places inside a <span class="tikzname">TikZ</span> picture, it is
+            allowed to start a scope just using a single brace, provided the
+            single brace is followed by options in square brackets:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-161"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="41.835"
+                    loading="lazy"
+                    src="pgfmanual-images/image-161.png"
+                    style
+                    width="40.496"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {scopes} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-actions#pgf.ultra:thick">ultra thick</a></span
+                >]<br />
+                <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >red</span
+                >]<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm,10mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,10mm)</span
+                >;<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm,8mm)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,8mm)</span
+                >;<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm,6mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,6mm)</span
+                >;<br />
+                <span class="spaces">  </span>}<br />
+                <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >green</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm,4mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,4mm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm,2mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,2mm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000">blue</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0mm,0mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,0mm)</span
+                >;<br />
+                <span class="spaces">  </span>}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            In the above example,
+            <span class="verb">{ [ultra thick]</span> actually causes a
+            <span class="verb">\begin{scope}[ultra thick]</span> to be inserted,
+            and the corresponding closing <span class="verb">}</span> causes an
+            <span class="verb">\end{scope}</span> to be inserted.
+          </p>
+
+          <p>
+            The &ldquo;certain places&rdquo; where an opening brace has this
+            special meaning are the following: First, right after the semicolon
+            that ends a path. Second, right after the end of a scope. Third,
+            right at the beginning of a scope, which includes the beginning of a
+            picture. Also note that some square bracket must follow, otherwise
+            the brace is treated as a normal
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            scope.
+          </p>
+          <h6 id="autosec-540">
+            <span
+              ><span class="sectionnumber" id="sec-12.3.3">12.3.3</span> Single
+              Command Scopes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.3.3"
+              data-pdf-destination="subsubsection.12.3.3"
+              data-pdf-page="132"
+              href="#sec-12.3.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-540"></a>
+
+          <p>
+            In some situations it is useful to create a scope for a single
+            command. For instance, when you wish to use algorithm graph drawing
+            in order to layout a tree, the path of the tree needs to be
+            surrounded by a scope whose only purpose is to take a key that
+            selects a layout for the scope. Similarly, in order to put something
+            on a background layer, a scope needs to be created. In such cases,
+            where it will cumbersome to create a
+            <span class="verb">\begin{scope}</span> and
+            <span class="verb">\end{scope}</span> pair just for a single
+            command, the <span class="verb">\scoped</span> command may be
+            useful:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/scoped"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\scoped</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span
+                        ><i>animations spec</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ><span class="angle">&langle;</span><i>path command</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/scoped"
+                      href="#\scoped"
+                      id="\scoped"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works like <span class="verb">\tikz</span>, only
+                you can use it inside a <span class="verb">{tikzpicture}</span>.
+                It will take the following <span class="angle">&langle;</span
+                ><i>path command</i><span class="angle">&rangle;</span> and put
+                it inside a <span class="verb">{scope}</span> with the
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> set. The
+                <span class="angle">&langle;</span><i>path command</i
+                ><span class="angle">&rangle;</span> may either be a single
+                command ended by a semicolon or it may contain multiple
+                commands, but then they must be surrounded by curly braces.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span class="lateximagesource" id="lateximage-pgfmanual-162"
+                      ><!--
+Hello world
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.794"
+                        loading="lazy"
+                        src="pgfmanual-images/image-162.png"
+                        style
+                        width="116.697"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >
+                    <span class="textcolor" style="color: #000000">world</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/scoped">\scoped</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.on:background:layer"
+                        >on background layer</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-543">
+            <span
+              ><span class="sectionnumber" id="sec-12.3.4">12.3.4</span> Using
+              Scopes Inside Paths</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.3.4"
+              data-pdf-destination="subsubsection.12.3.4"
+              data-pdf-page="133"
+              href="#sec-12.3.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-543"></a>
+
+          <p>
+            The <span class="verb">\path</span> command, which is described in
+            much more detail in later sections, also takes graphic options.
+            These options are local to the path. Furthermore, it is possible to
+            create local scopes within a path simply by using curly braces as in
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-163"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="41.499"
+                    loading="lazy"
+                    src="pgfmanual-images/image-163.png"
+                    style
+                    width="116.529"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                ><br />
+                <span class="spaces">           </span>{[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-paths#pgf.rounded:corners"
+                    >rounded corners</a
+                  ></span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,1)</span
+                >}<br />
+                <span class="spaces">           </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,1)</span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Note that many options apply only to the path as a whole and cannot
+            be scoped in this way. For example, it is not possible to scope the
+            <span class="verb">color</span> of the path. See the explanations in
+            the section on paths for more details.
+          </p>
+
+          <p>
+            Finally, certain elements that you specify in the argument to the
+            <span class="verb">\path</span> command also take local options. For
+            example, a node specification takes options. In this case, the
+            options apply only to the node, not to the surrounding path.
+          </p>
+          <h5 id="autosec-546">
+            <a id="section-graphic-options"></a
+            ><span
+              ><span class="sectionnumber" id="sec-12.4">12.4</span> Using
+              Graphic Options</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.4"
+              data-pdf-destination="subsection.12.4"
+              data-pdf-page="133"
+              href="#sec-12.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-546"></a>
+
+          <h6 id="autosec-547">
+            <span
+              ><span class="sectionnumber" id="sec-12.4.1">12.4.1</span> How
+              Graphic Options Are Processed</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.4.1"
+              data-pdf-destination="subsubsection.12.4.1"
+              data-pdf-page="133"
+              href="#sec-12.4.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-547"></a>
+
+          <p>
+            Many commands and environments of
+            <span class="tikzname">TikZ</span> accept <em>options</em>. These
+            options are so-called <em>key lists</em>. To process the options,
+            the following command is used, which you can also call yourself.
+            Note that it is usually better not to call this command directly,
+            since this will ensure that the effect of options are local to a
+            well-defined scope.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/tikzset"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\tikzset</kbd></span
+                      >{<span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/tikzset"
+                      href="#\tikzset"
+                      id="\tikzset"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will process the <span class="angle">&langle;</span
+                ><i>options</i><span class="angle">&rangle;</span> using the
+                <span class="verb">\pgfkeys</span> command, documented in detail
+                in Section&nbsp;<a href="pgfkeys#section-keys">87</a>, with the
+                default path set to <span class="verb">/tikz</span>. Under
+                normal circumstances, the <span class="angle">&langle;</span
+                ><i>options</i><span class="angle">&rangle;</span> will be lists
+                of comma-separated pairs of the form
+                <span class="angle">&langle;</span><i>key</i
+                ><span class="angle">&rangle;</span><span class="verb">=</span
+                ><span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span>, but more fancy things can
+                happen when you use the power of the
+                <span class="verb">pgfkeys</span> mechanism, see Section&nbsp;<a
+                  href="pgfkeys#section-keys"
+                  >87</a
+                >
+                once more.
+              </p>
+              <p>
+                When a pair <span class="angle">&langle;</span><i>key</i
+                ><span class="angle">&rangle;</span><span class="verb">=</span
+                ><span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> is processed, the following
+                happens:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> If the
+                    <span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is a full key (starts
+                    with a slash) it is handled directly as described in
+                    Section&nbsp;<a href="pgfkeys#section-keys">87</a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> Otherwise (which is
+                    usually the case), it is checked whether
+                    <span class="verb">/tikz/</span
+                    ><span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is a key and, if so, it
+                    is executed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Otherwise, it is checked
+                    whether <span class="verb">/pgf/</span
+                    ><span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is a key and, if so, it
+                    is executed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Otherwise, it is checked
+                    whether <span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is a color and, if so,
+                    <span class="verb">color=</span
+                    ><span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is executed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> Otherwise, it is checked
+                    whether <span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> contains a dash and, if
+                    so, <span class="verb">arrows=</span
+                    ><span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is executed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">6.</span> Otherwise, it is checked
+                    whether <span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is the name of a shape
+                    and, if so, <span class="verb">shape=</span
+                    ><span class="angle">&langle;</span><i>key</i
+                    ><span class="angle">&rangle;</span> is executed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">7.</span> Otherwise, an error
+                    message is printed.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that by the above description, all keys starting with
+                <span class="verb">/tikz</span> and also all keys starting with
+                <span class="verb">/pgf</span> can be used as
+                <span class="angle">&langle;</span><i>key</i
+                ><span class="angle">&rangle;</span>s in an
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> list.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-548">
+            <span
+              ><span class="sectionnumber" id="sec-12.4.2">12.4.2</span> Using
+              Styles to Manage How Pictures Look</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-12.4.2"
+              data-pdf-destination="subsubsection.12.4.2"
+              data-pdf-page="133"
+              href="#sec-12.4.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-548"></a>
+
+          <p>
+            There is a way of organizing sets of graphic options
+            &ldquo;orthogonally&rdquo; to the normal scoping mechanism. For
+            example, you might wish all your &ldquo;help lines&rdquo; to be
+            drawn in a certain way like, say, gray and thin (do
+            <em>not</em> dash them, that distracts). For this, you can use
+            <em>styles</em>.
+          </p>
+
+          <p>
+            A style is a key that, when used, causes a set of graphic options to
+            be processed. Once a style has been defined, it can be used like any
+            other key. For example, the predefined
+            <span class="verb">help lines</span> style, which you should use for
+            lines in the background like grid lines or construction lines.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-164"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.794"
+                    loading="lazy"
+                    src="pgfmanual-images/image-164.png"
+                    style
+                    width="154.274"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(2,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Defining styles is also done using options. Suppose we wish to
+            define a style called <span class="verb">my style</span> and when
+            this style is used, we want the draw color to be set to
+            <span class="verb">red</span> and the fill color be set to
+            <span class="verb">red!20</span>. To achieve this, we use the
+            following option:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">my</span>
+                <span class="textcolor" style="color: #000000">style/</span
+                >.<span class="textcolor" style="color: #000000">style=</span
+                >{<span class="textcolor" style="color: #000000">draw=red</span
+                >,<span class="textcolor" style="color: #000000"
+                  >fill=red!20</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The meaning of the curious <span class="verb">/.style</span> is the
+            following: &ldquo;The key <span class="verb">my style</span> should
+            not be used here but, rather, be defined. So, set up things such
+            that using the key <span class="verb">my style</span> will, in the
+            following, have the same effect as if we had written
+            <span class="verb">draw=red,fill=red!20</span> instead.&rdquo;
+          </p>
+
+          <p>
+            Returning to the help lines example, suppose we prefer blue help
+            lines. This could be achieved as follows:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-165"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.794"
+                    loading="lazy"
+                    src="pgfmanual-images/image-165.png"
+                    style
+                    width="154.274"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000">blue!50</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.very:thin">very thin</a></span
+                >}]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(2,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Naturally, one of the main ideas behind styles is that they can be
+            used in different pictures. In this case, we have to use the
+            <span class="verb">\tikzset</span> command somewhere at the
+            beginning.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-166"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.794"
+                    loading="lazy"
+                    src="pgfmanual-images/image-166.png"
+                    style
+                    width="154.274"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000">blue!50</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.very:thin">very thin</a></span
+                >}}<br />
+                <span class="example-code-comment">% ...</span><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(2,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Since styles are just special cases of
+            <span class="verb">pgfkeys</span>&rsquo;s general style facility,
+            you can actually do quite a bit more. Let us start with adding
+            options to an already existing style. This is done using
+            <span class="verb">/.append style</span> instead of
+            <span class="verb">/.style</span>:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-167"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.794"
+                    loading="lazy"
+                    src="pgfmanual-images/image-167.png"
+                    style
+                    width="154.274"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.append:style"
+                    >.append style</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">blue!50</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(2,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            In the above example, the option
+            <span class="verb">blue!50</span> is appended to the style
+            <span class="verb">help lines</span>, which now has the same effect
+            as <span class="verb">black!50,very thin,blue!50</span>. Note that
+            two colors are set, so the last one will &ldquo;win&rdquo;. There
+            also exists a handler called
+            <span class="verb">/.prefix style</span> that adds something at the
+            beginning of the style.
+          </p>
+
+          <p>
+            Just as normal keys, styles can be parameterized. This means that
+            you write <span class="angle">&langle;</span><i>style</i
+            ><span class="angle">&rangle;</span><span class="verb">=</span
+            ><span class="angle">&langle;</span><i>value</i
+            ><span class="angle">&rangle;</span> when you use the style instead
+            of just <span class="angle">&langle;</span><i>style</i
+            ><span class="angle">&rangle;</span>. In this case, all occurrences
+            of <span class="verb">#1</span> in
+            <span class="angle">&langle;</span><i>style</i
+            ><span class="angle">&rangle;</span> are replaced by
+            <span class="angle">&langle;</span><i>value</i
+            ><span class="angle">&rangle;</span>. Here is an example that shows
+            how this can be used.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-168"
+                  ><!--
+red
+
+blue
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="59.679"
+                    loading="lazy"
+                    src="pgfmanual-images/image-168.png"
+                    style
+                    width="40.799"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000">outline</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">#1</span>,<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">#1!50}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >outline</span
+                >=<span class="textcolor" style="color: #008000">red</span
+                >]<span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                > {<span class="textcolor" style="color: #000000"
+                  >red</span
+                >};<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >outline</span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                > {<span class="textcolor" style="color: #000000"
+                  >blue</span
+                >};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            For parameterized styles you can also set a <em>default</em> value
+            using the <span class="verb">/.default</span> handler:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-169"
+                  ><!--
+default
+
+ blue
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="59.717"
+                    loading="lazy"
+                    src="pgfmanual-images/image-169.png"
+                    style
+                    width="58.824"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000">outline</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">#1</span>,<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">#1!50}</span
+                >,<br />
+                <span class="spaces">                    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  >outline</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.default">.default</a></span
+                >=<span class="textcolor" style="color: #008000">black</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >outline</span
+                >]<span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                > {<span class="textcolor" style="color: #000000"
+                  >default</span
+                >};<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >outline</span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                > {<span class="textcolor" style="color: #000000"
+                  >blue</span
+                >};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            For more details on using and setting styles, see also
+            Section&nbsp;<a href="pgfkeys#section-keys">87</a>.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Quick Commands - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Quick Commands",
+            "item": "https://tikz.dev/base-quick"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-quick" rel="canonical" />
+    <meta content="https://tikz.dev/base-quick" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Quick Commands - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8517"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-118.1"
+                >Quick Coordinate Commands</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-118.2"
+                >Quick Path Construction Commands</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-118.3"
+                >Quick Path Usage Commands</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-118.4"
+                >Quick Text Box Commands</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8518">
+            <span
+              ><span class="sectionnumber" id="sec-118">118</span> Quick
+              Commands</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.118"
+              data-pdf-page="1229"
+              href="#sec-118"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8518"></a>
+          <a id="pgfmanual-autofile-127"></a>
+
+          <p>
+            This section explains the &ldquo;quick&rdquo; commands of
+            <span class="textsc">pgf</span>. These commands are executed more
+            quickly than the normal commands of <span class="textsc">pgf</span>,
+            but offer less functionality. You should use these commands only if
+            you either have a very large number of commands that need to be
+            processed or if you expect your commands to be executed very often.
+          </p>
+          <h5 id="autosec-8519">
+            <span
+              ><span class="sectionnumber" id="sec-118.1">118.1</span> Quick
+              Coordinate Commands</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-118.1"
+              data-pdf-destination="subsection.118.1"
+              data-pdf-page="1229"
+              href="#sec-118.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8519"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfqpoint"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfqpoint</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfqpoint"
+                      href="#\pgfqpoint"
+                      id="\pgfqpoint"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command does the same as
+                <span class="verb">\pgfpoint</span>, but
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>y</i
+                ><span class="angle">&rangle;</span> must be simple dimensions
+                like <span class="verb">1pt</span> or
+                <span class="verb">1cm</span>. Things like
+                <span class="verb">2ex</span> or
+                <span class="verb">2cm+1pt</span> are not allowed.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfqpointxy"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfqpointxy</kbd></span
+                      >{<span class="angle">&langle;</span><i>\(s_x\)</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>\(s_y\)</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfqpointxy"
+                      href="#\pgfqpointxy"
+                      id="\pgfqpointxy"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command does the same as
+                <span class="verb">\pgfpointxy</span>, but
+                <span class="angle">&langle;</span><i>\(s_x\)</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>\(s_y\)</i
+                ><span class="angle">&rangle;</span> must be simple numbers
+                without unit, like <span class="verb">1.234</span> or
+                <span class="verb">5.0</span>. Mathematical expressions or units
+                are not allowed.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfqpointxyz"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfqpointxyz</kbd></span
+                      >{<span class="angle">&langle;</span><i>\(s_x\)</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>\(s_y\)</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>\(s_z\)</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfqpointxyz"
+                      href="#\pgfqpointxyz"
+                      id="\pgfqpointxyz"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                As <span class="verb">\pgfqpointxy</span>, but for
+                three-dimensional coordinates. Any argument needs to be a number
+                without unit.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfqpointscale"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfqpointscale</kbd></span
+                      >{<span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>coordinate</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfqpointscale"
+                      href="#\pgfqpointscale"
+                      id="\pgfqpointscale"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                As <span class="verb">\pgfpointscale</span>, but {<span
+                  class="angle"
+                  >&langle;</span
+                ><i>factor</i><span class="angle">&rangle;</span>} must be a
+                simple number without unit, as for the other &ldquo;quick&rdquo;
+                commands.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8520">
+            <span
+              ><span class="sectionnumber" id="sec-118.2">118.2</span> Quick
+              Path Construction Commands</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-118.2"
+              data-pdf-destination="subsection.118.2"
+              data-pdf-page="1229"
+              href="#sec-118.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8520"></a>
+
+          <p>
+            The difference between the quick and the normal path commands is
+            that the quick path commands
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> do not keep track of the
+                bounding boxes,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> do not allow you to arc
+                corners,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> do not apply coordinate
+                transformations.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            However, they do use the soft-path subsystem (see Section&nbsp;<a
+              href="pgfsys-paths#section-soft-paths"
+              >121</a
+            >
+            for details), which allows you to mix quick and normal path commands
+            arbitrarily.
+          </p>
+
+          <p>
+            All quick path construction commands start with
+            <span class="verb">\pgfpathq</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfpathqmoveto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfpathqmoveto</kbd></span
+                      >{<span class="angle">&langle;</span><i>x dimension</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y dimension</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfpathqmoveto"
+                      href="#\pgfpathqmoveto"
+                      id="\pgfpathqmoveto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Either starts a path or starts a new part of a path at the
+                coordinate \((\meta {x dimension},\meta {y dimension})\). The
+                coordinate is <em>not</em> transformed by the current coordinate
+                transformation matrix. However, any low-level transformations
+                apply.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3391"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.650"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3391.png"
+                        style
+                        width="116.402"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-transformations#pgf.back/pgftransformxshift"
+                        >\pgftransformxshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfpathqmoveto"
+                        >\pgfpathqmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0pt</span
+                    >}{<span class="textcolor" style="color: #000000">0pt</span
+                    >} <span class="example-code-comment"
+                      >% not transformed</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfpathqlineto"
+                        >\pgfpathqlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >} <span class="example-code-comment"
+                      >% not transformed</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfpathqlineto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfpathqlineto</kbd></span
+                      >{<span class="angle">&langle;</span><i>x dimension</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y dimension</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfpathqlineto"
+                      href="#\pgfpathqlineto"
+                      id="\pgfpathqlineto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>The quick version of the line-to operation.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfpathqcurveto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfpathqcurveto</kbd></span
+                      >{<span class="angle">&langle;</span><i>\(s^1_x\)</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>\(s^1_y\)</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>\(s^2_x\)</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>\(s^2_y\)</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>\(t_x\)</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>\(t_y\)</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfpathqcurveto"
+                      href="#\pgfpathqcurveto"
+                      id="\pgfpathqcurveto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The quick version of the curve-to operation. The first support
+                point is \((s^1_x,s^1_y)\), the second support point is
+                \((s^2_x,s^2_y)\), and the target is \((t_x,t_y)\).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3392"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.578"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3392.png"
+                        style
+                        width="116.450"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfpathqmoveto"
+                        >\pgfpathqmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0pt</span
+                    >}{<span class="textcolor" style="color: #000000">0pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfpathqcurveto"
+                        >\pgfpathqcurveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">3cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfpathqcircle"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfpathqcircle</kbd></span
+                      >{<span class="angle">&langle;</span><i>radius</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfpathqcircle"
+                      href="#\pgfpathqcircle"
+                      id="\pgfpathqcircle"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Adds a radius around the origin of the given
+                <span class="angle">&langle;</span><i>radius</i
+                ><span class="angle">&rangle;</span>. This command is orders of
+                magnitude faster than
+                <span class="verb">\pgfpathcircle{\pgfpointorigin}{</span
+                ><span class="angle">&langle;</span><i>radius</i
+                ><span class="angle">&rangle;</span><span class="verb">}</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3393"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="54.147"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3393.png"
+                        style
+                        width="54.159"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\colorlet</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >examplefill</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >yellow!80!black</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfpathqcircle"
+                        >\pgfpathqcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">10pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetfillcolor"
+                        >\pgfsetfillcolor</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >examplefill</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >,<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-8527">
+            <span
+              ><span class="sectionnumber" id="sec-118.3">118.3</span> Quick
+              Path Usage Commands</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-118.3"
+              data-pdf-destination="subsection.118.3"
+              data-pdf-page="1230"
+              href="#sec-118.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8527"></a>
+
+          <p>
+            The quick path usage commands perform similar tasks as
+            <span class="verb">\pgfusepath</span>, but they
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p><span class="listmarker">&bull;</span> do not add arrows,</p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> do not modify the path in
+                any way, in particular,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> ends are not shortened,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> corners are not replaced
+                by arcs.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Note that you <em>have to</em> use the quick versions in the code of
+            arrow tip definitions since, inside these definition, you obviously
+            do not want arrows to be drawn.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfusepathqstroke"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfusepathqstroke</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfusepathqstroke"
+                      href="#\pgfusepathqstroke"
+                      id="\pgfusepathqstroke"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Strokes the path without further ado. No arrows are drawn, no
+                corners are arced.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3394"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="16.515"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3394.png"
+                        style
+                        width="16.505"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfpathqcircle"
+                        >\pgfpathqcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfusepathqstroke"
+                        >\pgfusepathqstroke</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfusepathqfill"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfusepathqfill</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfusepathqfill"
+                      href="#\pgfusepathqfill"
+                      id="\pgfusepathqfill"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Fills the path without further ado.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfusepathqfillstroke"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfusepathqfillstroke</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfusepathqfillstroke"
+                      href="#\pgfusepathqfillstroke"
+                      id="\pgfusepathqfillstroke"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Fills and then strokes the path without further ado.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfusepathqclip"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfusepathqclip</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfusepathqclip"
+                      href="#\pgfusepathqclip"
+                      id="\pgfusepathqclip"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Clips all subsequent drawings against the current path. The path
+                is not processed.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8530">
+            <span
+              ><span class="sectionnumber" id="sec-118.4">118.4</span> Quick
+              Text Box Commands</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-118.4"
+              data-pdf-destination="subsection.118.4"
+              data-pdf-page="1230"
+              href="#sec-118.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8530"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfqbox"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfqbox</kbd></span
+                      >{<span class="angle">&langle;</span><i>box number</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfqbox"
+                      href="#\pgfqbox"
+                      id="\pgfqbox"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command inserts a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                box into a <span class="verb">{pgfpicture}</span> by
+                &ldquo;escaping&rdquo; to
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, inserting the box number <span class="angle">&langle;</span
+                ><i>box number</i><span class="angle">&rangle;</span> at the
+                origin, and then returning to the typesetting the picture.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfqboxsynced"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfqboxsynced</kbd></span
+                      >{<span class="angle">&langle;</span><i>box number</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfqboxsynced"
+                      href="#\pgfqboxsynced"
+                      id="\pgfqboxsynced"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works similarly to the
+                <span class="verb">\pgfqbox</span> command. However, before
+                inserting the text in <span class="angle">&langle;</span
+                ><i>box number</i><span class="angle">&rangle;</span>, the
+                current coordinate transformation matrix is applied to the
+                current canvas transformation matrix (is it &ldquo;synced&rdquo;
+                with this matrix, hence the name).
+              </p>
+              <p>
+                Thus, this command basically has the same effect as if you first
+                called <span class="verb">\pgflowlevelsynccm</span> followed by
+                <span class="verb">\pgfqbox</span>. However, this command will
+                use <span class="verb">\hskip</span> and
+                <span class="verb">\raise</span> commands for the
+                &ldquo;translational part&rdquo; of the coordinate
+                transformation matrix, instead of adding the translational part
+                to the current canvas transformation matrix directly. Both
+                methods have the same effect (box
+                <span class="angle">&langle;</span><i>box number</i
+                ><span class="angle">&rangle;</span> is translated to where it
+                should be), but the method used by
+                <span class="verb">\pgfqboxsynced</span> ensures that hyperlinks
+                are placed correctly. Note that scaling and rotation will not
+                (cannot, even) apply to hyperlinks.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

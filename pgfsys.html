@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The System Layer - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/pgfsys" rel="canonical" />
+    <meta content="https://tikz.dev/pgfsys" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="The System Layer - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8532"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-overview"
+                >Design of the System Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-commands"
+                >Commands of the System Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-paths"
+                >The Soft Path Subsystem</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-protocol"
+                >The Protocol Subsystem</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-animations"
+                >Animation System Layer</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h2 id="autosec-8533">
+            Part&nbsp;<span class="sectionnumber">X&emsp;</span>The System Layer
+          </h2>
+          <div class="mobile-toc">
+            <strong>Sections</strong>
+            <ul>
+              <li><a href="pgfsys-overview">Design of the System Layer</a></li>
+              <li>
+                <a href="pgfsys-commands">Commands of the System Layer</a>
+              </li>
+              <li><a href="pgfsys-paths">The Soft Path Subsystem</a></li>
+              <li><a href="pgfsys-protocol">The Protocol Subsystem</a></li>
+              <li><a href="pgfsys-animations">Animation System Layer</a></li>
+            </ul>
+          </div>
+          <a id="pgfmanual-autopage-8533"></a>
+          <a id="pgfmanual-autofile-128"></a>
+
+          <a id="part-system"></a>
+
+          <p>
+            <em>by Till Tantau</em>
+          </p>
+
+          <p>
+            This part describes the low-level interface of
+            <span class="textsc">pgf</span>, called the <em>system layer</em>.
+            This interface provides a complete abstraction of the internals of
+            the underlying drivers.
+          </p>
+
+          <p>
+            Unless you intend to port <span class="textsc">pgf</span> to another
+            driver or unless you intend to write your own optimized frontend,
+            you need not read this part.
+          </p>
+
+          <p>
+            In the following it is assumed that you are familiar with the basic
+            workings of the <span class="verb">graphics</span> package and that
+            you know what
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-drivers are and how they work.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3395"
+                  ><!--
+                        7 12
+                6 8 11 13
+
+s 2 3 4 15 16 17 18 19 t
+                    5 9 10 14
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="99.506"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3395.png"
+                    style
+                    width="592.212"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.shorten:&gt;">shorten &gt;</a></span
+                >=<span class="textcolor" style="color: #008000">1pt</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  >vertex</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">black!25</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.minimum:size">minimum size</a></span
+                >=<span class="textcolor" style="color: #008000">17pt</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.inner:sep">inner sep</a></span
+                >=<span class="textcolor" style="color: #008000">0pt}</span
+                >]<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\name/</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-paths#pgf.back/x">\x</a></span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">s/1</span
+                >, <span class="textcolor" style="color: #000000"
+                  >2/2</span
+                >, <span class="textcolor" style="color: #000000"
+                  >3/3</span
+                >, <span class="textcolor" style="color: #000000"
+                  >4/4</span
+                >, <span class="textcolor" style="color: #000000"
+                  >15/11</span
+                >, <span class="textcolor" style="color: #000000"
+                  >16/12</span
+                >, <span class="textcolor" style="color: #000000"
+                  >17/13</span
+                >, <span class="textcolor" style="color: #000000"
+                  >18/14</span
+                >, <span class="textcolor" style="color: #000000"
+                  >19/15</span
+                >, <span class="textcolor" style="color: #000000"
+                  >t/16</span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                >[<span class="textcolor" style="color: #008000">vertex</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(G-\name)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(\x,0)</span
+                > {<span class="textcolor" style="color: #000000">$</span
+                ><span class="textcolor" style="color: #0000b2">\name</span
+                ><span class="textcolor" style="color: #000000">$</span>};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\name/</span
+                ><span class="textcolor" style="color: #0000b2">\angle/</span
+                ><span class="textcolor" style="color: #0000b2">\text</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">P-1/234/5</span
+                >, <span class="textcolor" style="color: #000000"
+                  >P-2/162/6</span
+                >, <span class="textcolor" style="color: #000000"
+                  >P-3/90/7</span
+                >, <span class="textcolor" style="color: #000000"
+                  >P-4/18/8</span
+                >, <span class="textcolor" style="color: #000000"
+                  >P-5/-54/9</span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                >[<span class="textcolor" style="color: #008000">vertex</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.xshift">xshift</a></span
+                >=<span class="textcolor" style="color: #008000">6cm</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.yshift">yshift</a></span
+                >=<span class="textcolor" style="color: #008000">.5cm</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(\name)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(\angle:1cm)</span
+                > {<span class="textcolor" style="color: #000000">$</span
+                ><span class="textcolor" style="color: #0000b2">\text</span
+                ><span class="textcolor" style="color: #000000">$</span>};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\name/</span
+                ><span class="textcolor" style="color: #0000b2">\angle/</span
+                ><span class="textcolor" style="color: #0000b2">\text</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">Q-1/234/10</span
+                >, <span class="textcolor" style="color: #000000"
+                  >Q-2/162/11</span
+                >, <span class="textcolor" style="color: #000000"
+                  >Q-3/90/12</span
+                >, <span class="textcolor" style="color: #000000"
+                  >Q-4/18/13</span
+                >, <span class="textcolor" style="color: #000000"
+                  >Q-5/-54/14</span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                >[<span class="textcolor" style="color: #008000">vertex</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.xshift">xshift</a></span
+                >=<span class="textcolor" style="color: #008000">9cm</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.yshift">yshift</a></span
+                >=<span class="textcolor" style="color: #008000">.5cm</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(\name)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(\angle:1cm)</span
+                > {<span class="textcolor" style="color: #000000">$</span
+                ><span class="textcolor" style="color: #0000b2">\text</span
+                ><span class="textcolor" style="color: #000000">$</span>};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\from/</span
+                ><span class="textcolor" style="color: #0000b2">\to</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">s/2</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >2/3</span
+                >,<span class="textcolor" style="color: #000000">3/4</span
+                >,<span class="textcolor" style="color: #000000">3/4</span
+                >,<span class="textcolor" style="color: #000000">15/16</span
+                >,<span class="textcolor" style="color: #000000">16/17</span
+                >,<span class="textcolor" style="color: #000000">17/18</span
+                >,<span class="textcolor" style="color: #000000">18/19</span
+                >,<span class="textcolor" style="color: #000000">19/t</span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(G-\from)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(G-\to)</span
+                >;<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\from/</span
+                ><span class="textcolor" style="color: #0000b2">\to</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">1/2</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >2/3</span
+                >,<span class="textcolor" style="color: #000000">3/4</span
+                >,<span class="textcolor" style="color: #000000">4/5</span
+                >,<span class="textcolor" style="color: #000000">5/1</span
+                >,<span class="textcolor" style="color: #000000">1/3</span
+                >,<span class="textcolor" style="color: #000000">2/4</span
+                >,<span class="textcolor" style="color: #000000">3/5</span
+                >,<span class="textcolor" style="color: #000000">4/1</span
+                >,<span class="textcolor" style="color: #000000">5/2</span
+                >}<br />
+                <span class="spaces">    </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(P-\from)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(P-\to)</span
+                >;<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(Q-\from)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(Q-\to)</span
+                >;<span class="spaces"> </span>}<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(G-3)</span
+                ><span class="spaces"> </span>..<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.controls">controls</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(-30:2cm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.and">and</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span
+                ><span class="textcolor" style="color: #800080">(-150:1cm)</span
+                ><span class="spaces"> </span>..<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                  >(Q-1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(Q-5)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(G-15)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

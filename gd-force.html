@@ -1,0 +1,3144 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Jannis Pohlmann
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+      Graph Drawing Algorithms: Force-Based Methods - PGF/TikZ Manual
+    </title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Graph Drawing Algorithms: Force-Based Methods",
+            "item": "https://tikz.dev/gd-force"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-force" rel="canonical" />
+    <meta content="https://tikz.dev/gd-force" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/gd-force.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Graph Drawing Algorithms: Force-Based Methods - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4725"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-32.1"
+                >Controlling and Configuring Force-Based Algorithms</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-32.1.1"
+                >Start Configuration</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-32.1.2"
+                >The Iterative Process and Cooling</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-32.1.3"
+                >Forces and Their Effects: Springs</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-32.1.4"
+                >Forces and Their Effects: Electrical Repulsion</a
+              >
+            </p>
+            <p><a class="tocsubsubsection" href="#sec-32.1.5">Coarsening</a></p>
+            <p><a class="tocsubsection" href="#sec-32.2">Spring Layouts</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-32.3"
+                >Spring Electrical Layouts</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4726">
+            <a id="section-library-graphdrawing-force-based"></a
+            ><span
+              ><span class="sectionnumber" id="sec-32">32</span> Graph Drawing
+              Algorithms: Force-Based Methods</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.32"
+              data-pdf-page="474"
+              href="#sec-32"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4726"></a>
+          <a id="pgfmanual-autofile-36"></a>
+
+          <p>
+            <em>by Till Tantau and Jannis Pohlmann</em>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.force"></a>
+                    <span class="hl-def"
+                      ><b>Graph Drawing Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >force</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.force"
+                      href="#pgf.force"
+                      id="pgf.force"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usegdlibrary{<span class="textcolor" style="color: #bf0000"
+                    >force</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usegdlibrary[<span class="textcolor" style="color: #bf0000"
+                    >force</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                >
+              </p>
+              <p>
+                Nature creates beautiful graph layouts all the time. Consider a
+                spider&rsquo;s web: Nodes are connected by edges in a visually
+                most pleasing manner (if you ignore the spider in the middle).
+                The layout of a spider&rsquo;s web is created just by the
+                physical forces exerted by the threads. The idea behind
+                force-based graph drawing algorithms is to mimic nature: We
+                treat edges as threads that exert forces and simulate into which
+                configuration the whole graph is &ldquo;pulled&rdquo; by these
+                forces.
+              </p>
+              <p>
+                When you start thinking about for a moment, it turns out that
+                there are endless variations of the force model. All of these
+                models have the following in common, however:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> &ldquo;Forces&rdquo;
+                    pull and push at the nodes in different directions.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The effect of these
+                    forces is simulated by iteratively moving all the nodes
+                    simultaneously a little in the direction of the forces and
+                    by then recalculating the forces.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The iteration is
+                    stopped either after a certain number of iterations or when
+                    a <em>global energy minimum</em> is reached (a very
+                    scientific way of saying that nothing happens anymore).
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The main difference between the different force-based approaches
+                is how the forces are determined. Here are some ideas what could
+                cause a force to be exerted between two nodes (and there are
+                more):
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> If the nodes are
+                    connected by an edge, one can treat the edge as a
+                    &ldquo;spring&rdquo; that has a &ldquo;natural spring
+                    dimension&rdquo;. If the nodes are nearer than the spring
+                    dimension, they are push apart; if they are farther aways
+                    than the spring dimension, they are pulled together.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> If two nodes are
+                    connected by a path of a certain length, the nodes may
+                    &ldquo;wish to be at a distance proportional to the path
+                    length&rdquo;. If they are nearer, they are pushed apart; if
+                    they are farther, they are pulled together. (This is
+                    obviously a generalization of the previous idea.)
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> There may be a
+                    general force field that pushes nodes apart (an electrical
+                    field), so that nodes do not tend to &ldquo;cluster&rdquo;.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> There may be a
+                    general force field that pulls nodes together (a
+                    gravitational field), so that nodes are not too loosely
+                    scattered.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> There may be highly
+                    nonlinear forces depending on the distance of nodes, so that
+                    nodes very near to each get pushed apart strongly, but the
+                    effect wears of rapidly at a distance. (Such forces are
+                    known as strong nuclear forces.)
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> There rotational
+                    forces caused by the angles between the edges leaving a
+                    node. Such forces try to create a
+                    <em>perfect angular resolution</em> (a very scientific way
+                    of saying that all angles at a node are equal).
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Force-based algorithms combine one or more of the above ideas
+                into a single algorithm that uses &ldquo;good&rdquo; formulas
+                for computing the forces.
+              </p>
+              <p>
+                Currently, three algorithms are implemented in this library, two
+                of which are from the first of the following paper, while the
+                third is from the third paper:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Y. Hu. Efficient,
+                    high-quality force-directed graph drawing.
+                    <em>The Mathematica Journal</em>, 2006.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> C. Walshaw. A
+                    multilevel algorithm for force-directed graph drawing. In J.
+                    Marks, editor, <em>Graph Drawing</em>, Lecture Notes in
+                    Computer Science, 1984:31&ndash;55, 2001.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Our implementation is described in detail in the following
+                diploma thesis:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Jannis Pohlmann,
+                    <em
+                      >Configurable Graph Drawing Algorithms for the
+                      <span class="tikzname">TikZ</span> Graphics Description
+                      Language,</em
+                    >
+                    Diploma Thesis, Institute of Theoretical Computer Science,
+                    Universit&auml;t zu L&uuml;beck, 2011.<br />
+                    <br />
+                    Online at
+                    <a
+                      href="http://www.tcs.uni-luebeck.de/downloads/papers/2011/"
+                      target="_blank"
+                      >http://www.tcs.uni-luebeck.de/downloads/papers/2011/</a
+                    ><br />
+                    <a
+                      href="2011-configurable-graph-drawing-algorithms-jannis-pohlmann.pdf"
+                      target="_blank"
+                      >2011-configurable-graph-drawing-algorithms-jannis-pohlmann.pdf</a
+                    >
+                  </p>
+                </li>
+              </ul>
+              <p>
+                In the future, I hope that most, if not all, of the force-based
+                algorithms become &ldquo;just configuration options&rdquo; of a
+                general force-based algorithm similar to the way the modular
+                Sugiyama method is implemented in the
+                <span class="verb">layered</span> graph drawing library.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4728">
+            <span
+              ><span class="sectionnumber" id="sec-32.1">32.1</span> Controlling
+              and Configuring Force-Based Algorithms</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.1"
+              data-pdf-destination="subsection.32.1"
+              data-pdf-page="475"
+              href="#sec-32.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4728"></a>
+
+          <p>
+            All force-based algorithms are based on a general pattern which we
+            detail in the following. Numerous options can be used to influence
+            the behavior of this general pattern; more specific options that
+            apply only to individual algorithms are explained along with these
+            algorithms.
+          </p>
+
+          <p>
+            The vertices are initially laid out in a random configuration. Then
+            the configuration is annealed to find a configuration of minimal
+            energy. To avoid getting stuck in a local minimum or at a saddle
+            point, random forces are added. All of this makes the final layout
+            extremely susceptible to changes in the random numbers. To achieve a
+            certain stability of the results, you should fix the random seed.
+            However, in the recent past Lua has switched its random number
+            generator, which means that you won&rsquo;t get the same sequence of
+            random numbers as in a previous version, even for identical seed. If
+            you rely on the long-term stability of vertex placement, you should
+            consider using a different layout. With the spring layout you have
+            to assume that the layout will be random.
+          </p>
+          <h6 id="autosec-4729">
+            <span
+              ><span class="sectionnumber" id="sec-32.1.1">32.1.1</span> Start
+              Configuration</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.1.1"
+              data-pdf-destination="subsubsection.32.1.1"
+              data-pdf-page="475"
+              href="#sec-32.1.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4729"></a>
+
+          <p>
+            Currently, the start configuration for force-based algorithms is a
+            random distribution of the vertices. You can influence it by
+            changing the <span class="verb">random seed</span>:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2002"
+                  ><!--
+        d
+g a
+                c
+f e
+
+    h b
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="104.594"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2002.png"
+                    style
+                    width="102.050"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {force} </span
+                ><br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-usage-tikz#pgf.random:seed">random seed</a></span
+                >=<span class="textcolor" style="color: #008000">10</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:layout">spring layout</a></span
+                >] {<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >a</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">b</span
+                >, <span class="textcolor" style="color: #000000">c</span
+                >, <span class="textcolor" style="color: #000000">d</span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">e</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">f</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">g</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >h</span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">a</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >b</span
+                >,<span class="textcolor" style="color: #000000">e</span
+                >};<br />
+                <span class="spaces"> </span>};<br />
+                <span class="spaces"> </span>
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2003"
+                  ><!--
+        c
+    a g
+d
+        e f
+    b h
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="102.722"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2003.png"
+                    style
+                    width="103.274"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {force} </span
+                ><br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-usage-tikz#pgf.random:seed">random seed</a></span
+                >=<span class="textcolor" style="color: #008000">11</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:layout">spring layout</a></span
+                >] {<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >a</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">b</span
+                >, <span class="textcolor" style="color: #000000">c</span
+                >, <span class="textcolor" style="color: #000000">d</span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">e</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">f</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">g</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >h</span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">a</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >b</span
+                >,<span class="textcolor" style="color: #000000">e</span
+                >};<br />
+                <span class="spaces"> </span>};<br />
+                <span class="spaces"> </span>
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Other methods, like a planar preembedding, are not implemented
+            currently.
+          </p>
+          <h6 id="autosec-4734">
+            <span
+              ><span class="sectionnumber" id="sec-32.1.2">32.1.2</span> The
+              Iterative Process and Cooling</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.1.2"
+              data-pdf-destination="subsubsection.32.1.2"
+              data-pdf-page="475"
+              href="#sec-32.1.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4734"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.iterations"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >iterations</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>500</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.iterations"
+                      href="#pgf.iterations"
+                      id="pgf.iterations"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Limits the number of iterations of algorithms for force-based
+                layouts to <span class="angle">&langle;</span><i>number</i
+                ><span class="angle">&rangle;</span>. Depending on the
+                characteristics of the input graph and the parameters chosen for
+                the algorithm, minimizing the system energy may require many
+                iterations.
+              </p>
+              <p>
+                In these situations it may come in handy to limit the number of
+                iterations. This feature can also be useful to draw the same
+                graph after different iterations and thereby demonstrate how the
+                spring or spring-electrical algorithm improves the drawing step
+                by step.
+              </p>
+              <p>
+                The examples shows two drawings generated using two different
+                <span class="verb">iteration</span> limits.
+              </p>
+              <p>
+                <em>Examples</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2004"
+                      ><!--
+2 1
+
+
+    4
+3
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="79.034"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2004.png"
+                        style
+                        width="84.314"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.iterations">iterations</a></span
+                    >=<span class="textcolor" style="color: #008000">10</span
+                    >]<span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">K_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">4</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2005"
+                      ><!--
+2 1
+
+
+
+3 4
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="70.058"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2005.png"
+                        style
+                        width="67.346"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.iterations">iterations</a></span
+                    >=<span class="textcolor" style="color: #008000">500</span
+                    >] {<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">K_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">4</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2006"
+                      ><!--
+    1
+
+
+
+
+3 4
+
+2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="113.306"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2006.png"
+                        style
+                        width="48.915"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout"
+                        >spring electrical layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.iterations">iterations</a></span
+                    >=<span class="textcolor" style="color: #008000">10</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">K_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">4</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2007"
+                      ><!--
+    1
+
+3 2
+
+    4
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="70.898"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2007.png"
+                        style
+                        width="58.179"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout"
+                        >spring electrical layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.iterations">iterations</a></span
+                    >=<span class="textcolor" style="color: #008000">500</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">K_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">4</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.initial:step:length"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >initial step length</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>length</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>0</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.initial:step:length"
+                      href="#pgf.initial:step:length"
+                      id="pgf.initial:step:length"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This parameter specifies the amount by which nodes will be
+                displaced in each iteration, initially. If set to
+                <span class="verb">0</span> (which is the default), an
+                appropriate value is computed automatically.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.cooling:factor"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >cooling factor</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>0.95</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.cooling:factor"
+                      href="#pgf.cooling:factor"
+                      id="pgf.cooling:factor"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This parameter helps in controlling how layouts evolve over
+                time. It is used to gradually reduce the step size between one
+                iteration to the next. A small positive cooling factor \(\ge 0\)
+                means that the movement of nodes is quickly or abruptly reduced,
+                while a large cooling factor \(\le 1\) allows for a smoother
+                step by step layout refinement at the cost of more iterations.
+                The following example demonstrates how a smaller cooling factor
+                may result in a less balanced drawing. By default, Hu2006
+                spring, Hu2006 spring electrical, and Walshaw2000 spring
+                electrical use a cooling factor of
+                <span class="verb">0.95</span>.
+              </p>
+              <p>
+                <em>Examples</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2008"
+                      ><!--
+a
+    c
+
+b
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="65.499"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2008.png"
+                        style
+                        width="84.578"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.cooling:factor"
+                        >cooling factor</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0.1</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">b</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">c</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">a</span>
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2009"
+                      ><!--
+a
+
+    c
+
+b
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="69.506"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2009.png"
+                        style
+                        width="59.979"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.cooling:factor"
+                        >cooling factor</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0.5</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">b</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">c</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">a</span>
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.convergence:tolerance"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >convergence tolerance</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>0.01</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.convergence:tolerance"
+                      href="#pgf.convergence:tolerance"
+                      id="pgf.convergence:tolerance"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                All spring and spring-electrical algorithms implemented in the
+                thesis terminate as soon as the maximum movement of any node
+                drops below \(k \cdot \meta {tolerance}\). This tolerance factor
+                can be changed with the convergence tolerance option:
+              </p>
+              <p>
+                <em>Examples</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2010"
+                      ><!--
+            7
+1
+    3 4 6
+2
+            5
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="62.811"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2010.png"
+                        style
+                        width="75.194"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.convergence:tolerance"
+                        >convergence tolerance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0.001</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    } <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >6</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    }<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2011"
+                      ><!--
+1
+2
+    34 7
+
+         6
+    5
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="76.682"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2011.png"
+                        style
+                        width="73.034"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.convergence:tolerance"
+                        >convergence tolerance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1.0</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    } <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >6</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    }<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-4751">
+            <span
+              ><span class="sectionnumber" id="sec-32.1.3">32.1.3</span> Forces
+              and Their Effects: Springs</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.1.3"
+              data-pdf-destination="subsubsection.32.1.3"
+              data-pdf-page="477"
+              href="#sec-32.1.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4751"></a>
+
+          <p>
+            The most important parameter of springs is their &ldquo;natural
+            length&rdquo;, which can be configured using the general-purpose
+            <span class="verb">node distance</span> parameter. It is the
+            &ldquo;equilibrium length&rdquo; of a spring between two nodes in
+            the graph. When an edge has this length, no forces will
+            &ldquo;push&rdquo; or &ldquo;pull&rdquo; along the edge.
+          </p>
+
+          <p>
+            The following examples shows how a simple graph can be scaled by
+            changing the <span class="verb">node distance</span>:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2012"
+                  ><!--
+1
+    3
+2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="52.683"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2012.png"
+                    style
+                    width="44.211"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2013"
+                  ><!--
+1
+
+    3
+
+2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="70.010"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2013.png"
+                    style
+                    width="60.195"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2014"
+                  ><!--
+    1
+
+
+3
+
+
+    2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="99.002"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2014.png"
+                    style
+                    width="85.442"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs.standard,graphdrawing} \usegdlibrary
+                  {force} </span
+                ><br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:layout">spring layout</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.node:distance"
+                    >node distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">7mm</span
+                >] {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >subgraph</span
+                >
+                <span class="textcolor" style="color: #000000">C_n</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.n">n</a></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >]<span class="spaces"> </span>};<br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:layout">spring layout</a></span
+                >]<span class="spaces">                    </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >subgraph</span
+                >
+                <span class="textcolor" style="color: #000000">C_n</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.n">n</a></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >]<span class="spaces"> </span>};<br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:layout">spring layout</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.node:distance"
+                    >node distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">15mm</span
+                >]{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >subgraph</span
+                >
+                <span class="textcolor" style="color: #000000">C_n</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.n">n</a></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >]<span class="spaces"> </span>};<br />
+                <span class="spaces"> </span>
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2015"
+                  ><!--
+1
+    3
+2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="36.075"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2015.png"
+                    style
+                    width="30.363"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2016"
+                  ><!--
+    1
+3
+    2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="53.475"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2016.png"
+                    style
+                    width="45.267"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2017"
+                  ><!--
+1
+
+    3
+
+2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="72.074"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2017.png"
+                    style
+                    width="61.491"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs.standard,graphdrawing} \usegdlibrary
+                  {force} </span
+                ><br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:electrical:layout"
+                    >spring electrical layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.node:distance"
+                    >node distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0.7cm</span
+                >] {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >subgraph</span
+                >
+                <span class="textcolor" style="color: #000000">C_n</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.n">n</a></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >]<span class="spaces"> </span>};<br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:electrical:layout"
+                    >spring electrical layout</a
+                  ></span
+                >]<span class="spaces">                      </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >subgraph</span
+                >
+                <span class="textcolor" style="color: #000000">C_n</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.n">n</a></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >]<span class="spaces"> </span>};<br />
+                <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:electrical:layout"
+                    >spring electrical layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.node:distance"
+                    >node distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">1.5cm</span
+                >] {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >subgraph</span
+                >
+                <span class="textcolor" style="color: #000000">C_n</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-arrows#pgf.n">n</a></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >]<span class="spaces"> </span>};<br />
+                <span class="spaces"> </span>
+              </code>
+            </div>
+          </figure>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:constant"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring constant</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>0.01</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:constant"
+                      href="#pgf.spring:constant"
+                      id="pgf.spring:constant"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The &ldquo;spring constant&rdquo; is a factor from Hooke&rsquo;s
+                law describing the &ldquo;stiffness&rdquo; of a spring. This
+                factor is used inside spring-based algorithms to determine how
+                strongly edges &ldquo;pull&rdquo; and &ldquo;push&rdquo; at the
+                nodes they connect.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-4764">
+            <span
+              ><span class="sectionnumber" id="sec-32.1.4">32.1.4</span> Forces
+              and Their Effects: Electrical Repulsion</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.1.4"
+              data-pdf-destination="subsubsection.32.1.4"
+              data-pdf-page="478"
+              href="#sec-32.1.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4764"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.electric:charge"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >electric charge</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>1</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.electric:charge"
+                      href="#pgf.electric:charge"
+                      id="pgf.electric:charge"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines the electric charge of the node. The stronger the
+                <span class="verb">electric charge</span> of a node the stronger
+                the repulsion between the node and others in the graph. A
+                negative <span class="verb">electric charge</span> means that
+                other nodes are further attracted to the node rather than
+                repulsed, although in theory this effect strongly depends on how
+                the <span class="verb">spring electrical layout</span> algorithm
+                works. Two typical effects of increasing the
+                <span class="verb">electric charge</span> are distortion of
+                symmetries and an upscaling of the drawings.
+              </p>
+              <p>
+                <em>Examples</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2018"
+                      ><!--
+        4 3
+    5 2
+
+
+6 0 1
+
+    7 10
+        8 9
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="136.778"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2018.png"
+                        style
+                        width="140.282"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary
+                      {force} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout"
+                        >spring electrical layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.horizontal"
+                        >horizontal</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >0 <a href="tikz-paths#pgf.to">to</a> 1</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >0</span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.electric:charge"
+                        >electric charge</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">C_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">10</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2019"
+                      ><!--
+        4 3
+    5 2
+
+
+6 0 1
+
+
+    7 10
+
+        8 9
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="165.626"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2019.png"
+                        style
+                        width="166.778"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout"
+                        >spring electrical layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.horizontal"
+                        >horizontal</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >0 <a href="tikz-paths#pgf.to">to</a> 1</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >0</span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.electric:charge"
+                        >electric charge</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">C_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">10</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2020"
+                      ><!--
+    1
+
+
+
+
+3 2
+
+    4
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="117.122"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2020.png"
+                        style
+                        width="49.587"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout"
+                        >spring electrical layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.horizontal"
+                        >horizontal</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >0 <a href="tikz-paths#pgf.to">to</a> 1</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.electric:charge"
+                        >electric charge</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5</span
+                    >], <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >3</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >4</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.electric:force:order"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >electric force order</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>1</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.electric:force:order"
+                      href="#pgf.electric:force:order"
+                      id="pgf.electric:force:order"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sometimes, when drawing symmetric and mesh-like graphs, the
+                peripheral distortion caused by long-range electric forces may
+                be undesired. Some electric force models allow to reduce
+                long-range forces and distortion effects by increasing the order
+                (exponent) of electric forces. Values between 0 and 1 increase
+                long-range electric forces and the scaling of the generated
+                layouts. Value greater than 1 decrease long-range electric
+                forces and results in shrinking drawings.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.approximate:remote:forces"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >approximate remote forces</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>boolean</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(default <kbd>true</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.approximate:remote:forces"
+                      href="#pgf.approximate:remote:forces"
+                      id="pgf.approximate:remote:forces"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Force based algorithms often need to compute a force for each
+                pair of vertices, which, for larger numbers of vertices, can
+                lead to a significant time overhead. This problem can be
+                addressed by approximating these forces: For a vertex far
+                removed from a cluster of vertices, instead of computing the
+                force contribution of each vertex of the cluster individually,
+                we form a sort of &ldquo;supervertex&rdquo; at the
+                &ldquo;gravitational center&rdquo; of the cluster and then
+                compute only the force between this supervertex and the single
+                vertex.
+              </p>
+              <p>
+                <em>Remark:</em> Currently, the implementation seems to be
+                broken, at least the results are somewhat strange when this key
+                is used.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-4771">
+            <span
+              ><span class="sectionnumber" id="sec-32.1.5">32.1.5</span>
+              Coarsening</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.1.5"
+              data-pdf-destination="subsubsection.32.1.5"
+              data-pdf-page="479"
+              href="#sec-32.1.5"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4771"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.coarsen"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >coarsen</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>boolean</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(default <kbd>true</kbd>, initially <kbd>true</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.coarsen"
+                      href="#pgf.coarsen"
+                      id="pgf.coarsen"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines whether or not a multilevel approach is used that
+                iteratively coarsens the input graph into graphs \(G_1,\dots
+                ,G_l\) with a smaller and smaller number of nodes. The
+                coarsening stops as soon as a minimum number of nodes is
+                reached, as set via the
+                <span class="verb">minimum coarsening size</span> option, or if,
+                in the last iteration, the number of nodes was not reduced by at
+                least the ratio specified via
+                <span class="verb">downsize ratio</span>. A random initial
+                layout is computed for the coarsest graph \(G_l\) first.
+                Afterwards, it is laid out by computing the attractive and
+                repulsive forces between its nodes.
+              </p>
+              <p>
+                In the subsequent steps, the previous coarse graph \(G_{l-1}\)
+                is restored and its node positions are interpolated from the
+                nodes in&nbsp;\(G_l\). The graph \(G_{l-1}\) is again laid out
+                by computing the forces between its nodes. These steps are
+                repeated with \(G_{l-2},\dots ,G_1\) until the original input
+                graph \(G_0\) has been restored, interpolated and laid out.
+              </p>
+              <p>
+                The idea behind this approach is that, by arranging recursively
+                formed supernodes first and then interpolating and arranging
+                their subnodes step by step, the algorithm is less likely to
+                settle in a local energy minimum (of which there can be many,
+                particularly for large graphs). The quality of the drawings with
+                coarsening enabled is expected to be higher than graphics where
+                this feature is not applied.
+              </p>
+              <p>
+                The following example demonstrates how coarsening can improve
+                the quality of graph drawings generated with Walshaw&rsquo;s
+                algorihtm <span class="verb">spring electrical layout'</span>.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2021"
+                      ><!--
+                2
+    1
+            3
+
+
+            4
+6
+                    5
+        7
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="128.282"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2021.png"
+                        style
+                        width="78.002" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2022"
+                      ><!--
+    1 2
+
+        3
+
+
+        4
+7 5
+        6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="125.426"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2022.png"
+                        style
+                        width="77.858"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout'"
+                        >spring electrical layout'</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.coarsen">coarsen</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="pgfkeys#pgf.false">false</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.vertical">vertical</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3 <a href="tikz-paths#pgf.to">to</a> 4</span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    } <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >6</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    }<br />
+                    <span class="spaces">  </span>};<br />
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout'"
+                        >spring electrical layout'</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.coarsen">coarsen</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.vertical">vertical</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3 <a href="tikz-paths#pgf.to">to</a> 4</span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    } <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >6</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    }<br />
+                    <span class="spaces">  </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.minimum:coarsening:size"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >minimum coarsening size</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>2</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.minimum:coarsening:size"
+                      href="#pgf.minimum:coarsening:size"
+                      id="pgf.minimum:coarsening:size"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines the minimum number of nodes down to which the graph is
+                coarsened iteratively. The first graph that has a smaller or
+                equal number of nodes becomes the coarsest graph \(G_l\), where
+                \(l\) is the number of coarsening steps. The algorithm proceeds
+                with the steps described in the documentation of the
+                <span class="verb">coarsen</span> option. In the following
+                example the same graph is coarsened down to two and four nodes,
+                respectively. The layout of the original graph is interpolated
+                from the random initial layout and is not improved further
+                because the forces are not computed (0 iterations). Thus, in the
+                two graphs, the nodes are placed at exactly two and four
+                coordinates in the final drawing.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2023"
+                      ><!--
+    3
+    2
+    1
+    4
+6
+8
+5
+7
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="25.635"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2023.png"
+                        style
+                        width="32.883" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2024"
+                      ><!--
+     3
+     4
+ 2
+ 1
+ 8
+ 7
+6
+5
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.395"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2024.png"
+                        style
+                        width="31.779"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.iterations">iterations</a></span
+                    >=<span class="textcolor" style="color: #008000">0</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-force#pgf.minimum:coarsening:size"
+                        >minimum coarsening size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">C_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">8</span
+                    >]<span class="spaces"> </span>};<br />
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:layout"
+                        >spring layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.iterations">iterations</a></span
+                    >=<span class="textcolor" style="color: #008000">0</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-force#pgf.minimum:coarsening:size"
+                        >minimum coarsening size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">4</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >subgraph</span
+                    >
+                    <span class="textcolor" style="color: #000000">C_n</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.n">n</a></span
+                    >=<span class="textcolor" style="color: #008000">8</span
+                    >]<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.downsize:ratio"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >downsize ratio</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>0.25</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.downsize:ratio"
+                      href="#pgf.downsize:ratio"
+                      id="pgf.downsize:ratio"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Minimum ratio between 0 and 1 by which the number of nodes
+                between two coarse graphs \(G_i\) and \(G_{i+1}\) need to be
+                reduced in order for the coarsening to stop and for the
+                algorithm to use \(G_{i+1}\) as the coarsest graph \(G_l\).
+                Aside from the input graph, the optimal value of
+                <span class="verb">downsize ratio</span> mostly depends on the
+                coarsening scheme being used. Possible schemes are
+                <span class="verb">collapse independent edges</span> and
+                <span class="verb">connect independent nodes</span>. Increasing
+                this option possibly reduces the number of coarse graphs
+                computed during the coarsening phase as coarsening will stop as
+                soon as a coarse graph does not reduce the number of nodes
+                substantially. This may speed up the algorithm but if the size
+                of the coarsest graph \(G_l\) is much larger than
+                <span class="verb">minimum coarsening size</span>, the
+                multilevel approach may not produce drawings as good as with a
+                lower <span class="verb">downsize ratio</span>.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2025"
+                      ><!--
+3
+    5
+    7
+4
+    1
+2
+    6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="82.082"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2025.png"
+                        style
+                        width="53.115" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2026"
+                      ><!--
+    1 2
+        3
+
+        4
+7 5
+        6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="91.322"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2026.png"
+                        style
+                        width="57.099"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="example-code-comment"
+                      >% 1. ratio too high, coarsening stops early, benefits are
+                      lost</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout'"
+                        >spring electrical layout'</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-force#pgf.downsize:ratio"
+                        >downsize ratio</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1.0</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">7mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.vertical">vertical</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3 <a href="tikz-paths#pgf.to">to</a> 4</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    } <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >6</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    }<span class="spaces"> </span>};<br />
+                    <br />
+                    <span class="example-code-comment"
+                      >% 2. ratio set to default, coarsening benefits are
+                      visible</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-force#pgf.spring:electrical:layout'"
+                        >spring electrical layout'</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-force#pgf.downsize:ratio"
+                        >downsize ratio</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0.2</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">7mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.vertical">vertical</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3 <a href="tikz-paths#pgf.to">to</a> 4</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.clique">clique</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    } <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >5</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >6</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    }<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4784">
+            <span
+              ><span class="sectionnumber" id="sec-32.2">32.2</span> Spring
+              Layouts</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.2"
+              data-pdf-destination="subsection.32.2"
+              data-pdf-page="480"
+              href="#sec-32.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4784"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:layout"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring layout</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:layout"
+                      href="#pgf.spring:layout"
+                      id="pgf.spring:layout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key selects Hu&rsquo;s 2006 spring layout with appropriate
+                settings for some parameters.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:Hu:2006:layout"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring Hu 2006 layout</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:Hu:2006:layout"
+                      href="#pgf.spring:Hu:2006:layout"
+                      id="pgf.spring:Hu:2006:layout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Implementation of a spring graph drawing algorithm based on a
+                paper by Hu.
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Y. Hu. Efficient,
+                    high-quality force-directed graph drawing.
+                    <em>The Mathematica Journal</em>, 2006.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                There are some modifications compared to the original algorithm,
+                see the Diploma thesis of Pohlmann for details.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4785">
+            <span
+              ><span class="sectionnumber" id="sec-32.3">32.3</span> Spring
+              Electrical Layouts</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-32.3"
+              data-pdf-destination="subsection.32.3"
+              data-pdf-page="480"
+              href="#sec-32.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4785"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:electrical:layout"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring electrical layout</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:electrical:layout"
+                      href="#pgf.spring:electrical:layout"
+                      id="pgf.spring:electrical:layout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key selects Hu&rsquo;s 2006 spring electrical layout with
+                appropriate settings for some parameters.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:electrical:layout'"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring electrical layout'</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:electrical:layout'"
+                      href="#pgf.spring:electrical:layout'"
+                      id="pgf.spring:electrical:layout'"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key selects Walshaw&rsquo;s 2000 spring electrical layout
+                with appropriate settings for some parameters.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:electrical:Hu:2006:layout"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring electrical Hu 2006 layout</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:electrical:Hu:2006:layout"
+                      href="#pgf.spring:electrical:Hu:2006:layout"
+                      id="pgf.spring:electrical:Hu:2006:layout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Implementation of a spring electrical graph drawing algorithm
+                based on a paper by Hu.
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Y. Hu. Efficient,
+                    high-quality force-directed graph drawing.
+                    <em>The Mathematica Journal</em>, 2006.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                There are some modifications compared to the original algorithm,
+                see the Diploma thesis of Pohlmann for details.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spring:electrical:Walshaw:2000:layout"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >spring electrical Walshaw 2000 layout</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spring:electrical:Walshaw:2000:layout"
+                      href="#pgf.spring:electrical:Walshaw:2000:layout"
+                      id="pgf.spring:electrical:Walshaw:2000:layout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Implementation of a spring electrical graph drawing algorithm
+                based on a paper by Walshaw.
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> C. Walshaw. A
+                    multilevel algorithm for force-directed graph drawing. In J.
+                    Marks, editor, <em>Graph Drawing</em>, Lecture Notes in
+                    Computer Science, 1984:31&ndash;55, 2001.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The following modifications compared to the original algorithm
+                were applied:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> An iteration limit
+                    was added.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The natural spring
+                    length for all coarse graphs is computed based on the
+                    formula presented by Walshaw, so that the natural spring
+                    length of the original graph (coarse graph 0) is the same as
+                    the value requested by the user.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Users can define
+                    custom node and edge weights.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Coarsening stops when
+                    \(|V(G_i+1)|/|V(G_i)| &lt; p\) where \(p = 0.75\).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Coarsening stops when
+                    the maximal matching is empty.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The runtime of the
+                    algorithm is improved by use of a quadtree data structure
+                    like Hu does in his algorithm.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> A limiting the number
+                    of levels of the quadtree is not implemented.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,4077 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Mark Wibrow
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Decorated Paths - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "TikZ",
+            "item": "https://tikz.dev/tikz"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Decorated Paths",
+            "item": "https://tikz.dev/tikz-decorations"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <meta
+      content="Decorations are a general concept to make (sub)paths &ldquo;more interesting&rdquo;. For instance, with the zigzag decoration, the new path is a zigzagging line that goes along the old path."
+      name="description"
+    />
+    <meta
+      content="Decorations are a general concept to make (sub)paths &ldquo;more interesting&rdquo;. For instance, with the zigzag decoration, the new path is a zigzagging line that goes along the old path."
+      property="og:description"
+    />
+    <link href="https://tikz.dev/tikz-decorations" rel="canonical" />
+    <meta content="https://tikz.dev/tikz-decorations" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/tikz-decorations.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta content="Decorated Paths - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4190"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-24.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-24.2"
+                >Decorating a Subpath Using the Decorate Path Command</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-24.3"
+                >Decorating a Complete Path</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-24.4"
+                >Adjusting Decorations</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-24.4.1"
+                >Positioning Decorations Relative to the To-Be-Decorate Path</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-24.4.2"
+                >Starting and Ending Decorations Early or Late</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Styles</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-coordinates"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-paths"
+                >Syntax for Path Specifications</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-actions">Actions on Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-arrows">Arrows</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-shapes">Nodes and Edges</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-pics"
+                >Pics: Small Pictures on Paths</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-graphs">Specifying Graphs</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-matrices"
+                >Matrices and Alignment</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-trees">Making Trees Grow</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-plots">Plots of Functions</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transparency">Transparency</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="tikz-decorations">Decorated Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transformations"
+                >Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-animations">Animations</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">TikZ</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4191">
+            <a id="section-tikz-decorations"></a
+            ><span
+              ><span class="sectionnumber" id="sec-24">24</span> Decorated
+              Paths</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.24"
+              data-pdf-page="366"
+              href="#sec-24"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4191"></a>
+          <a id="pgfmanual-autofile-27"></a>
+          <h5 id="autosec-4192">
+            <span
+              ><span class="sectionnumber" id="sec-24.1">24.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-24.1"
+              data-pdf-destination="subsection.24.1"
+              data-pdf-page="366"
+              href="#sec-24.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4192"></a>
+
+          <p>
+            Decorations are a general concept to make (sub)paths &ldquo;more
+            interesting&rdquo;. Before we have a look at the details, let us
+            have a look at some examples:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1804"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="129.626"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1804.png"
+                    style
+                    width="117.098"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary { decorations.pathmorphing,
+                  decorations.pathreplacing, decorations.shapes, } </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">                              </span><span class="spaces">                  </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,3)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,3)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">zigzag</span
+                >]<span class="spaces">                    </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,2.5)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2.5)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">brace</span
+                >]<span class="spaces">                     </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,2)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">triangles</span
+                >]<span class="spaces">                 </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,1.5)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,1.5)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{coil,segment length=4pt}</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,1)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{coil,aspect=0}</span
+                >]<span class="spaces">           </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,.5)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,.5)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{expanding waves,angle=7}</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,0)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1805"
+                  ><!--
+Bumpy
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="49.131"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1805.png"
+                    style
+                    width="66.926"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">red!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{bumps,<a href="tikz-decorations#pgf.mirror">mirror</a
+                  >}</span
+                >,<br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.minimum:height"
+                    >minimum height</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >]<br />
+                <span class="spaces">  </span>{<span class="textcolor" style="color: #000000"
+                  >Bumpy</span
+                >};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1806"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="85.538"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1806.png"
+                    style
+                    width="122.349"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/filldraw">\filldraw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >]<span class="spaces">                    </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,3)</span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">saw</span
+                >]<span class="spaces">             </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,3)</span
+                ><span class="spaces"> </span>}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{coil,aspect=0}</span
+                >] {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,1)</span
+                ><span class="spaces"> </span>}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">bumps</span
+                >]<span class="spaces">           </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >-|</span
+                >
+                <span class="textcolor" style="color: #800080">(0,3)</span
+                ><span class="spaces"> </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1807"
+                  ><!--
+Saved from trash
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="81.890"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1807.png"
+                    style
+                    width="129.458"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">yellow!50</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.minimum:height"
+                    >minimum height</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">2cm</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.minimum:width"
+                    >minimum width</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">3cm</span
+                >,<br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{random steps,segment length=3pt,amplitude=1pt}</span
+                >]<br />
+                <span class="spaces">    </span>{<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >Saved</span
+                >
+                <span class="textcolor" style="color: #000000">from</span>
+                <span class="textcolor" style="color: #000000">trash</span
+                >};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The general idea of decorations is the following: First, you
+            construct a path using the usual path construction commands. The
+            resulting path is, in essence, a series of straight and curved
+            lines. Instead of directly using this path for filling or drawing,
+            you can then specify that it should form the basis for a decoration.
+            In this case, depending on which decoration you use, a new path is
+            constructed &ldquo;along&rdquo; the path you specified. For
+            instance, with the <span class="verb">zigzag</span> decoration, the
+            new path is a zigzagging line that goes along the old path.
+          </p>
+
+          <p>
+            Let us have a look at an example: In the first picture, we see a
+            path that consists of a line, an arc, and a line. In the second
+            picture, this path has been used as the basis of a decoration.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1808"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="41.571"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1808.png"
+                    style
+                    width="99.962"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                ><br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.arc">arc</a></span
+                >
+                <span class="textcolor" style="color: #800080">(90:-90:.5)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1809"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="47.739"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1809.png"
+                    style
+                    width="101.309"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">{zigzag}</span
+                >]<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.arc">arc</a></span
+                >
+                <span class="textcolor" style="color: #800080">(90:-90:.5)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            It is also possible to decorate only a subpath (the exact syntax
+            will be explained later in this section).
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1810"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="45.195"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1810.png"
+                    style
+                    width="103.898"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">{zigzag}</span
+                >]<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,1)</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.arc">arc</a></span
+                >
+                <span class="textcolor" style="color: #800080">(90:-90:.5)</span
+                ><span class="spaces"> </span>} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The <span class="verb">zigzag</span> decoration will be called a
+            <em>path morphing</em> decoration because it morphs a path into a
+            different, but topologically equivalent path. Not all decorations
+            are path morphing; rather there are three kinds of decorations.
+          </p>
+
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> The just-mentioned
+                <em>path morphing</em> decorations morph the path in the sense
+                that what used to be a straight line might afterwards be a
+                squiggly line or might have bumps. However, a line is still and
+                a line and path deforming decorations do not change the number
+                of subpaths.
+              </p>
+              <p>
+                Examples of such decorations are the
+                <span class="verb">snake</span> or the
+                <span class="verb">zigzag</span> decoration. Many such
+                decorations are defined in the library
+                <span class="verb">decorations.pathmorphing</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span>
+                <em>Path replacing</em> decorations completely replace the path
+                by a different path that is only &ldquo;loosely based&rdquo; on
+                the original path. For instance, the
+                <span class="verb">crosses</span> decoration replaces a path by
+                a path consisting of a sequence of crosses. Note how in the
+                following example filling the path has no effect since the path
+                consist only of (numerous) unconnected straight line subpaths:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1811"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.395"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1811.png"
+                        style
+                        width="101.118"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.shapes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{crosses}</span
+                    >]<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:-90:.5)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Examples of path replacing decorations are
+                <span class="verb">crosses</span> or
+                <span class="verb">ticks</span> or
+                <span class="verb">shape backgrounds</span>. Such decorations
+                are defined in the library
+                <span class="verb">decorations.pathreplacing</span>, but also in
+                <span class="verb">decorations.shapes</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span>
+                <em>Path removing</em> decorations completely remove the
+                to-be-decorated path. Thus, they have no effect on the main path
+                that is being constructed. Instead, they typically have numerous
+                <em>side effects</em>. For instance, they might &ldquo;write
+                some text&rdquo; along the (removed) path or they might place
+                nodes along this path. Note that for such decorations the path
+                usage command for the main path have no influence on how the
+                decoration looks like.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1812"
+                      ><!--
+                  ta
+          a te x
+       is
+
+
+
+
+                   long
+  is
+Th
+a path. Note
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="58.059"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1812.png"
+                        style
+                        width="106.538"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.text} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-shapes#pgf.text">text</a>
+                      <a href="base-animations#pgf.along">along</a>
+                      <a href="tikz-graphs#pgf.path">path</a>,<br />
+                      <span class="spaces">               </span>text=This
+                      is a <a href="tikz-shapes#pgf.text">text</a>
+                      <a href="base-animations#pgf.along">along</a> a
+                      <a href="tikz-graphs#pgf.path">path</a>.<span class="spaces"> </span>Note
+                      <a href="library-turtle#pgf.how">how</a> the
+                      <a href="tikz-graphs#pgf.path">path</a> is lost.}</span
+                    >]<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:-90:.5)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+            </li>
+          </ul>
+
+          <p>
+            Decorations are defined in different decoration libraries, see
+            Section&nbsp;<a
+              href="library-decorations#section-library-decorations"
+              >50</a
+            >
+            for details. It is also possible to define your own decorations, see
+            Section&nbsp;<a href="base-decorations#section-base-decorations"
+              >103</a
+            >, but you need to use the <span class="textsc">pgf</span> basic
+            layer and a bit of theory is involved.
+          </p>
+
+          <p>
+            Decorations can be used to decorate already decorated paths. In the
+            following three graphics, we start with a simple path, then decorate
+            it once, and then decorate the decorated path once more.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1813"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="79.320"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1813.png"
+                    style
+                    width="117.116"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1814"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="101.810"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1814.png"
+                    style
+                    width="140.354"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{zigzag,segment length=10mm,amplitude=2.5mm}</span
+                >]<br />
+                <span class="spaces">    </span>{<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                ><span class="spaces"> </span>};<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1815"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="99.890"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1815.png"
+                    style
+                    width="138.194"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary { decorations.pathmorphing,
+                  decorations.shapes, } </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{crosses,segment length=2mm}</span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{zigzag,segment length=10mm,amplitude=2.5mm}</span
+                >] {<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                ><br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">  </span>};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            One final word of warning: Decorations can be pretty slow to typeset
+            and they can be inaccurate. The reason is that
+            <span class="textsc">pgf</span> has to do a <em>lot</em> of rather
+            difficult computations in the background and
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            is not very good at doing math. Decorations are fastest when applied
+            to straight line segments, but even then they are much slower than
+            other alternatives. For instance, the
+            <span class="verb">ticks</span> decoration can be simulated by
+            clever use of a dashing pattern and the dashing pattern will
+            literally be thousands of times faster to typeset. However, for most
+            decorations there are no real alternatives.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.decorations"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >decorations</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.decorations"
+                      href="#pgf.decorations"
+                      id="pgf.decorations"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >decorations</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >decorations</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                In order to use decorations, you first have to load a
+                <span class="verb">decorations</span> library. This
+                <span class="verb">decorations</span> library defines the basic
+                options described in the following, but it does not define any
+                new decorations. This is done by libraries like
+                <span class="verb">decorations.text</span>. Since these more
+                specialized libraries include the
+                <span class="verb">decorations</span> library automatically, you
+                usually do not have to bother about it.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4217">
+            <span
+              ><span class="sectionnumber" id="sec-24.2">24.2</span> Decorating
+              a Subpath Using the Decorate Path Command</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-24.2"
+              data-pdf-destination="subsection.24.2"
+              data-pdf-page="368"
+              href="#sec-24.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4217"></a>
+
+          <p>
+            The most general way to decorate a (sub)path is the following path
+            command.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.decorate"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #808080"
+                        ><kbd>\path</kbd> &hellip;</span
+                      >
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>decorate</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      >{<span class="angle">&langle;</span><i>subpath</i
+                      ><span class="angle">&rangle;</span>}
+                      <span class="textcolor" style="color: #808080"
+                        >&hellip;<kbd>;</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.decorate"
+                      href="#pgf.decorate"
+                      id="pgf.decorate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This path operation causes the
+                <span class="angle">&langle;</span><i>subpath</i
+                ><span class="angle">&rangle;</span> to be decorated using the
+                current decoration. Depending on the decoration, this may or may
+                not extend the current path.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1816"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="82.082"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1816.png"
+                        style
+                        width="123.482"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.pathmorphing} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{name=zigzag}</span
+                    >]<br />
+                    <span class="spaces">         </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="library-edges#pgf.controls">controls</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.and">and</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,0)</span
+                    ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(3,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      >|-</span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0)</span
+                    ><span class="spaces"> </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The path can include straight lines, curves, rectangles, arcs,
+                circles, ellipses, and even already decorated paths (that is,
+                you can nest applications of the
+                <span class="verb">decorate</span> path command, see below).
+              </p>
+              <p>
+                Due to the limits on the precision in
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, some inaccuracies in positioning when crossing input segment
+                boundaries may occasionally be found.
+              </p>
+              <p>
+                You can use nodes normally inside the
+                <span class="angle">&langle;</span><i>subpath</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1817"
+                      ><!--
+Hi!
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="90.005"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1817.png"
+                        style
+                        width="120.026"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { decorations.pathmorphing,
+                      decorations.shapes, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{name=zigzag}</span
+                    >]<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(hi)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hi!</span
+                    >} <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    ><span class="textcolor" style="color: #800080"
+                      >(90:0:1)</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{crosses}</span
+                    >] {<span class="textcolor" style="color: #800080"
+                      >(3,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(hi)</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The following key is used to select the decoration and also to
+                select further &ldquo;rendering options&rdquo; for the
+                decoration.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/decoration"></a
+                        ><a id="pgf.decoration"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/decoration</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span
+                          ><i>decoration options</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/decoration"
+                          href="#pgf/decoration"
+                          id="pgf/decoration"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <li>
+                    <p>alias <kbd>/tikz/decoration</kbd></p>
+                    <p>
+                      <a id="pgf./tikz/decoration"></a> This option is used to
+                      specify which decoration is used and how it will look
+                      like. Note that this key will <em>not</em> cause any
+                      decorations to be applied, immediately. It takes the
+                      <span class="verb">decorate</span> path command or the
+                      <span class="verb">decorate</span> option to actually
+                      decorate a path. The
+                      <span class="verb">decoration</span> option is only used
+                      to specify which decoration should be used, in principle.
+                      You can also use this option at the beginning of a picture
+                      or a scope to specify the decoration to be used with each
+                      invocation of the <span class="verb">decorate</span> path
+                      command. Naturally, any local options of the
+                      <span class="verb">decorate</span> path command override
+                      these &ldquo;global&rdquo; options.
+                    </p>
+
+                    <figure class="example">
+                      <div class="example-image">
+                        <p>
+                          <span
+                            class="lateximagesource"
+                            id="lateximage-pgfmanual-1818"
+                            ><!--
+--><img
+                              alt="(-tikz-&nbsp;diagram)"
+                              class="lateximage"
+                              height="81.098"
+                              loading="lazy"
+                              src="pgfmanual-images/image-1818.png"
+                              style
+                              width="118.586"
+                          /></span>
+                        </p>
+                      </div>
+
+                      <div class="example-code">
+                        <button class="clipboardButton" type="button">
+                          copy
+                        </button>
+                        <code>
+                          <span class="codepreamble"
+                            >\usetikzlibrary { decorations.pathmorphing,
+                            decorations.shapes, } </span
+                          ><br />
+                          <span class="textcolor" style="color: #000000"
+                            >\begin</span
+                          >{<span class="textcolor" style="color: #0000b2"
+                            ><a href="tikz-scopes#pgf.tikzpicture"
+                              >tikzpicture</a
+                            ></span
+                          >}[<span class="textcolor" style="color: #008000"
+                            ><a href="tikz-decorations#pgf.decoration"
+                              >decoration</a
+                            ></span
+                          >=<span class="textcolor" style="color: #008000"
+                            >zigzag</span
+                          >]<br />
+                          <span class="spaces">  </span><span
+                            class="textcolor"
+                            style="color: #0000b2"
+                            ><a href="tikz-actions#pgf.back/draw"
+                              >\draw</a
+                            ></span
+                          ><span class="spaces">       </span><span
+                            class="textcolor"
+                            style="color: #000000"
+                            ><a href="tikz-decorations#pgf.decorate"
+                              >decorate</a
+                            ></span
+                          >
+                          <span class="spaces">                     </span>{<span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(0,0)</span
+                          > <span class="textcolor" style="color: #000000"
+                            ><a href="tikz-paths#pgf.--">--</a></span
+                          >
+                          <span class="textcolor" style="color: #800080"
+                            >(3,2)</span
+                          >};<br />
+                          <span class="spaces">  </span><span
+                            class="textcolor"
+                            style="color: #0000b2"
+                            ><a href="tikz-actions#pgf.back/draw"
+                              >\draw</a
+                            ></span
+                          > [<span
+                            class="textcolor"
+                            style="color: #008000"
+                            >red</span
+                          >] <span
+                            class="textcolor"
+                            style="color: #000000"
+                            ><a href="tikz-decorations#pgf.decorate"
+                              >decorate</a
+                            ></span
+                          >
+                          [<span class="textcolor" style="color: #008000"
+                            ><a href="tikz-decorations#pgf.decoration"
+                              >decoration</a
+                            ></span
+                          >=<span class="textcolor" style="color: #008000"
+                            >crosses</span
+                          >] {<span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(0,2)</span
+                          > <span class="textcolor" style="color: #000000"
+                            ><a href="tikz-paths#pgf.--">--</a></span
+                          >
+                          <span class="textcolor" style="color: #800080"
+                            >(3,0)</span
+                          >};<br />
+                          <span class="textcolor" style="color: #000000"
+                            >\end</span
+                          >{<span class="textcolor" style="color: #0000b2"
+                            ><a href="tikz-scopes#pgf.tikzpicture"
+                              >tikzpicture</a
+                            ></span
+                          >}<br />
+                        </code>
+                      </div>
+                    </figure>
+                    <p>
+                      The <span class="angle">&langle;</span
+                      ><i>decoration options</i
+                      ><span class="angle">&rangle;</span> are special options
+                      (which have the path prefix
+                      <span class="verb">/pgf/decoration/</span>) that determine
+                      the properties of the decoration. Which options are
+                      appropriate for a decoration strongly depend on the
+                      decoration, you will have to look up the appropriate
+                      options in the documentation of the decoration, see
+                      Section&nbsp;<a
+                        href="library-decorations#section-library-decorations"
+                        >50</a
+                      >.
+                    </p>
+                    <p>
+                      There is one option (available only in
+                      <span class="tikzname">TikZ</span>) that is special:
+                    </p>
+
+                    <div class="manualentry">
+                      <ul class="list" style="list-style-type: none">
+                        <div class="entryheadline">
+                          <li>
+                            <p>
+                              <a id="pgf./pgf/decoration/name"></a>
+                              <span class="hl-def"
+                                ><kbd
+                                  ><span class="keyname"
+                                    ><span
+                                      class="textcolor"
+                                      style="color: #bf0000"
+                                      >/pgf/decoration/name</span
+                                    ></span
+                                  >=</kbd
+                                ><span class="angle">&langle;</span><i>name</i
+                                ><span class="angle">&rangle;</span> </span
+                              ><span class="hl-default"
+                                >(no default, initially <kbd>none</kbd>)</span
+                              >
+                              <a
+                                class="anchor-link"
+                                data-html-link="pgf./pgf/decoration/name"
+                                href="#pgf/decoration/name"
+                                id="pgf/decoration/name"
+                                >&para;</a
+                              >
+                            </p>
+                          </li>
+                        </div>
+                        <p>
+                          Use this key to set which decoration is to be used.
+                          The <span class="angle">&langle;</span><i>name</i
+                          ><span class="angle">&rangle;</span> can both be a
+                          decoration or a meta-decoration (you need to worry
+                          about the difference only if you wish to define your
+                          own decorations).
+                        </p>
+                        <p>
+                          If you set <span class="angle">&langle;</span
+                          ><i>name</i><span class="angle">&rangle;</span> to
+                          <span class="verb">none</span>, no decorations are
+                          added.
+                        </p>
+
+                        <figure class="example">
+                          <div class="example-image">
+                            <p>
+                              <span
+                                class="lateximagesource"
+                                id="lateximage-pgfmanual-1819"
+                                ><!--
+--><img
+                                  alt="(-tikz-&nbsp;diagram)"
+                                  class="lateximage"
+                                  height="78.578"
+                                  loading="lazy"
+                                  src="pgfmanual-images/image-1819.png"
+                                  style
+                                  width="121.130"
+                              /></span>
+                            </p>
+                          </div>
+
+                          <div class="example-code">
+                            <button class="clipboardButton" type="button">
+                              copy
+                            </button>
+                            <code>
+                              <span class="codepreamble"
+                                >\usetikzlibrary {decorations.pathmorphing} </span
+                              ><br />
+                              <span class="textcolor" style="color: #000000"
+                                >\begin</span
+                              >{<span class="textcolor" style="color: #0000b2"
+                                ><a href="tikz-scopes#pgf.tikzpicture"
+                                  >tikzpicture</a
+                                ></span
+                              >}<br />
+                              <span class="spaces">  </span><span
+                                class="textcolor"
+                                style="color: #0000b2"
+                                ><a href="tikz-actions#pgf.back/draw"
+                                  >\draw</a
+                                ></span
+                              > [<span
+                                class="textcolor"
+                                style="color: #008000"
+                                ><a href="tikz-paths#pgf.help:lines"
+                                  >help lines</a
+                                ></span
+                              >] <span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="tikz-paths#pgf.grid">grid</a></span
+                              >
+                              <span class="textcolor" style="color: #800080"
+                                >(3,2)</span
+                              >;<br />
+                              <span class="spaces">  </span><span
+                                class="textcolor"
+                                style="color: #0000b2"
+                                ><a href="tikz-actions#pgf.back/draw"
+                                  >\draw</a
+                                ></span
+                              > <span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="tikz-decorations#pgf.decorate"
+                                  >decorate</a
+                                ></span
+                              >
+                              [<span class="textcolor" style="color: #008000"
+                                ><a href="tikz-decorations#pgf.decoration"
+                                  >decoration</a
+                                ></span
+                              >=<span class="textcolor" style="color: #008000"
+                                >{name=zigzag}</span
+                              >]<br />
+                              <span class="spaces">         </span>{<span class="spaces"> </span><span
+                                class="textcolor"
+                                style="color: #800080"
+                                >(0,0)</span
+                              ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="library-edges#pgf.controls"
+                                  >controls</a
+                                ></span
+                              >
+                              <span class="textcolor" style="color: #800080"
+                                >(0,2)</span
+                              > <span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="pgfkeys#pgf.and">and</a></span
+                              >
+                              <span class="textcolor" style="color: #800080"
+                                >(3,0)</span
+                              ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                                class="textcolor"
+                                style="color: #800080"
+                                >(3,2)</span
+                              ><span class="spaces"> </span>};<br />
+                              <span class="textcolor" style="color: #000000"
+                                >\end</span
+                              >{<span class="textcolor" style="color: #0000b2"
+                                ><a href="tikz-scopes#pgf.tikzpicture"
+                                  >tikzpicture</a
+                                ></span
+                              >}<br />
+                            </code>
+                          </div>
+                        </figure>
+                        <p>
+                          Since this option is used so often, you can also leave
+                          out the <span class="verb">name=</span> part. Thus,
+                          the above example can be rewritten more succinctly:
+                        </p>
+
+                        <figure class="example">
+                          <div class="example-image">
+                            <p>
+                              <span
+                                class="lateximagesource"
+                                id="lateximage-pgfmanual-1820"
+                                ><!--
+--><img
+                                  alt="(-tikz-&nbsp;diagram)"
+                                  class="lateximage"
+                                  height="78.578"
+                                  loading="lazy"
+                                  src="pgfmanual-images/image-1820.png"
+                                  style
+                                  width="121.130"
+                              /></span>
+                            </p>
+                          </div>
+
+                          <div class="example-code">
+                            <button class="clipboardButton" type="button">
+                              copy
+                            </button>
+                            <code>
+                              <span class="codepreamble"
+                                >\usetikzlibrary {decorations.pathmorphing} </span
+                              ><br />
+                              <span class="textcolor" style="color: #000000"
+                                >\begin</span
+                              >{<span class="textcolor" style="color: #0000b2"
+                                ><a href="tikz-scopes#pgf.tikzpicture"
+                                  >tikzpicture</a
+                                ></span
+                              >}<br />
+                              <span class="spaces">  </span><span
+                                class="textcolor"
+                                style="color: #0000b2"
+                                ><a href="tikz-actions#pgf.back/draw"
+                                  >\draw</a
+                                ></span
+                              > [<span
+                                class="textcolor"
+                                style="color: #008000"
+                                ><a href="tikz-paths#pgf.help:lines"
+                                  >help lines</a
+                                ></span
+                              >] <span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="tikz-paths#pgf.grid">grid</a></span
+                              >
+                              <span class="textcolor" style="color: #800080"
+                                >(3,2)</span
+                              >;<br />
+                              <span class="spaces">  </span><span
+                                class="textcolor"
+                                style="color: #0000b2"
+                                ><a href="tikz-actions#pgf.back/draw"
+                                  >\draw</a
+                                ></span
+                              > <span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="tikz-decorations#pgf.decorate"
+                                  >decorate</a
+                                ></span
+                              >
+                              [<span class="textcolor" style="color: #008000"
+                                ><a href="tikz-decorations#pgf.decoration"
+                                  >decoration</a
+                                ></span
+                              >=<span class="textcolor" style="color: #008000"
+                                >zigzag</span
+                              >]<br />
+                              <span class="spaces">         </span>{<span class="spaces"> </span><span
+                                class="textcolor"
+                                style="color: #800080"
+                                >(0,0)</span
+                              ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="library-edges#pgf.controls"
+                                  >controls</a
+                                ></span
+                              >
+                              <span class="textcolor" style="color: #800080"
+                                >(0,2)</span
+                              > <span
+                                class="textcolor"
+                                style="color: #000000"
+                                ><a href="pgfkeys#pgf.and">and</a></span
+                              >
+                              <span class="textcolor" style="color: #800080"
+                                >(3,0)</span
+                              ><span class="spaces"> </span>..<span class="spaces"> </span><span
+                                class="textcolor"
+                                style="color: #800080"
+                                >(3,2)</span
+                              ><span class="spaces"> </span>};<br />
+                              <span class="textcolor" style="color: #000000"
+                                >\end</span
+                              >{<span class="textcolor" style="color: #0000b2"
+                                ><a href="tikz-scopes#pgf.tikzpicture"
+                                  >tikzpicture</a
+                                ></span
+                              >}<br />
+                            </code>
+                          </div>
+                        </figure>
+                        <p>
+                          In general, when <span class="angle">&langle;</span
+                          ><i>decoration options</i
+                          ><span class="angle">&rangle;</span> are parsed, for
+                          each unknown key it is checked whether that key
+                          happens to be a (meta-)decoration and, if so, the
+                          <span class="verb">name</span> option is executed for
+                          this key.
+                        </p>
+                      </ul>
+                    </div>
+                    <p>
+                      Further options allow you to adjust the position of
+                      decorations relative to the to-be-decorated path. See
+                      Section&nbsp;<a
+                        href="tikz-decorations#section-decorations-adjust"
+                        >24.4</a
+                      >
+                      below for details.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <p>
+                Recall that some decorations actually completely remove the
+                to-be-decorated path. In such cases, the construction of the
+                main path is resumed after the
+                <span class="verb">decorate</span> path command ends.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1821"
+                      ><!--
+aroun
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="46.731"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1821.png"
+                        style
+                        width="116.384"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.text} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-shapes#pgf.text">text</a>
+                      <a href="base-animations#pgf.along">along</a>
+                      <a href="tikz-graphs#pgf.path">path</a>,text=<br />
+                      <span class="spaces">      </span>around
+                      <a href="pgfkeys#pgf.and">and</a> around
+                      <a href="pgfkeys#pgf.and">and</a> around
+                      <a href="pgfkeys#pgf.and">and</a> around we go}</span
+                    >]<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    ><span class="spaces"> </span>} <span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                It is permissible to nest
+                <span class="verb">decorate</span> commands. In this case, the
+                path resulting from the first decoration process is used as the
+                to-be-decorated path for the second decoration process. This is
+                especially useful for drawing fractals. The
+                <span class="verb">Koch snowflake</span> decoration replaces a
+                straight line like
+                <span class="lateximagesource" id="lateximage-pgfmanual-1822"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="3.219"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1822.png"
+                    style
+                    width="40.487"
+                /></span>
+                by
+                <span class="lateximagesource" id="lateximage-pgfmanual-1823"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="14.403"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1823.png"
+                    style
+                    width="40.487" /></span
+                >. Repeatedly applying this transformation to a triangle yields
+                a fractal that looks a bit like a snowflake, hence the name.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1824"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="142.946"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1824.png"
+                        style
+                        width="42.339"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.fractals} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >Koch snowflake</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">++</span
+                    ><span class="textcolor" style="color: #800080">(60:1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">++</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(-60:1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                    >
+                    ;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">++</span
+                    ><span class="textcolor" style="color: #800080">(60:1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">++</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(-60:1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                    >
+                    };<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/filldraw"
+                        >\filldraw</a
+                      ></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,-2.5)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">++</span
+                    ><span class="textcolor" style="color: #800080">(60:1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">++</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(-60:1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                    >
+                    }};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4236">
+            <span
+              ><span class="sectionnumber" id="sec-24.3">24.3</span> Decorating
+              a Complete Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-24.3"
+              data-pdf-destination="subsection.24.3"
+              data-pdf-page="370"
+              href="#sec-24.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4236"></a>
+
+          <p>
+            You may sometimes wish to decorate a path over whose construction
+            you have no control. For instance, the path of the background of a
+            node is created without having a chance to issue a
+            <span class="verb">decorate</span> path command. In such cases you
+            can use the following option, which allows you to decorate a path
+            &ldquo;after the fact&rdquo;.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/decorate"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/decorate</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="textcolor" style="color: #008000"
+                          ><span class="angle">&langle;</span><i>boolean</i
+                          ><span class="angle">&rangle;</span></span
+                        >
+                      </span></span
+                    ><span class="hl-default">(default <kbd>true</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/decorate"
+                      href="#tikz/decorate"
+                      id="tikz/decorate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                When this key is set, the whole path is decorated after it has
+                been finished. The decoration used for decorating the path is
+                set via the <span class="verb">decoration</span> way, in exactly
+                the same way as for the <span class="verb">decorate</span> path
+                command. Indeed, the following two commands have the same
+                effect:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span>
+                    <span class="verb">\path decorate[</span
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">] {</span
+                    ><span class="angle">&langle;</span><i>path</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">};</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span>
+                    <span class="verb">\path [decorate,</span
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">] </span
+                    ><span class="angle">&langle;</span><i>path</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">;</span>
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The main use or the <span class="verb">decorate</span> option is
+                the you can also use it with the nodes. It then causes the
+                background path of the node to be decorated. Note that you can
+                decorate a background path only once in this manner. That is, in
+                contrast to the <span class="verb">decorate</span> path command
+                you cannot apply this option twice (this would just set it to
+                <span class="verb">true</span>, once more).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1825"
+                      ><!--
+            Ellipse
+
+
+
+Th
+  i
+ s
+     is
+        g etting silly
+            Ellipse
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="195.506"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1825.png"
+                        style
+                        width="122.930"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { decorations.pathmorphing,
+                      decorations.text, shapes.geometric, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >zigzag</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,5)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(1.5,4)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1cm)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.5,2.5)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Ellipse</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1.5,1)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.inner:sep">inner sep</a></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<br />
+                    <span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-shapes#pgf.text">text</a>
+                      <a href="base-animations#pgf.along">along</a>
+                      <a href="tikz-graphs#pgf.path">path</a>,text={This is
+                      getting silly}}</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Ellipse</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In the last example, the
+                <span class="verb">text along path</span> decoration removes the
+                path. In such cases it is useful to use a pre- or postaction to
+                cause the decoration to be applied only before or after the main
+                path has been used. Incidentally, this is another application of
+                the <span class="verb">decorate</span> option that you cannot
+                achieve with the decorate path command.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1826"
+                      ><!--
+            Ellipse
+
+
+
+
+Th
+  i
+ s
+     is
+        g etting silly
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="85.898"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1826.png"
+                        style
+                        width="129.470"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { decorations.pathmorphing,
+                      decorations.text, shapes.geometric, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >zigzag</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1.5,1)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.inner:sep">inner sep</a></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.postaction"
+                        >postaction</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-decorations#pgf.decorate">decorate</a
+                      >,decoration=<br />
+                      <span class="spaces">    </span>{<a
+                        href="tikz-shapes#pgf.text"
+                        >text</a
+                      >
+                      <a href="base-animations#pgf.along">along</a>
+                      <a href="tikz-graphs#pgf.path">path</a>,text={This is
+                      getting silly}}}</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Ellipse</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Here is more useful example, where a postaction is used to add
+                the path after the main path has been drawn.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1827"
+                      ><!--
+         d and aro u n
+      un d
+
+
+
+
+aro
+
+
+
+
+                           a n d ar
+nd
+                      ou
+      nd and aro u
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="101.234"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1827.png"
+                        style
+                        width="136.058"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.text} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<br />
+                    <span class="spaces">         </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-actions#pgf.postaction"
+                        >postaction</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-decorations#pgf.decorate">decorate</a
+                      >,decoration={raise=2pt,<a href="tikz-shapes#pgf.text"
+                        >text</a
+                      >
+                      <a href="base-animations#pgf.along">along</a>
+                      <a href="tikz-graphs#pgf.path">path</a>,<br />
+                      <span class="spaces">           </span>text=around
+                      <a href="pgfkeys#pgf.and">and</a> around
+                      <a href="pgfkeys#pgf.and">and</a> around
+                      <a href="pgfkeys#pgf.and">and</a> around we go}}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #800080"
+                      >(0,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:-180:1.5cm and 1cm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4243">
+            <a id="section-decorations-adjust"></a
+            ><span
+              ><span class="sectionnumber" id="sec-24.4">24.4</span> Adjusting
+              Decorations</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-24.4"
+              data-pdf-destination="subsection.24.4"
+              data-pdf-page="371"
+              href="#sec-24.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4243"></a>
+
+          <h6 id="autosec-4244">
+            <span
+              ><span class="sectionnumber" id="sec-24.4.1">24.4.1</span>
+              Positioning Decorations Relative to the To-Be-Decorate Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-24.4.1"
+              data-pdf-destination="subsubsection.24.4.1"
+              data-pdf-page="371"
+              href="#sec-24.4.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4244"></a>
+
+          <p>
+            The following option, which are only available with
+            <span class="tikzname">TikZ</span>, allow you to modify the
+            positioning of decorations relative to the to-be-decorated path.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decoration/raise"></a
+                    ><a id="pgf.raise"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decoration/raise</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>0pt</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decoration/raise"
+                      href="#pgf/decoration/raise"
+                      id="pgf/decoration/raise"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The segments of the decoration are raised by
+                <span class="angle">&langle;</span><i>dimension</i
+                ><span class="angle">&rangle;</span> relative to the
+                to-be-decorated path. More precisely, the segments of the path
+                are offset by this much &ldquo;to the left&rdquo; of the path as
+                we travel along the path. This raising is done after and in
+                addition to any transformations set using the
+                <span class="verb">transform</span> option (see below).
+              </p>
+              <p>
+                A negative <span class="angle">&langle;</span><i>dimension</i
+                ><span class="angle">&rangle;</span> will offset the decoration
+                &ldquo;to the right&rdquo; of the to-be-decorated path.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1828"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="80.738"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1828.png"
+                        style
+                        width="127.554"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.shapes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:2 and 1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >crosses</span
+                    >]<br />
+                    <span class="spaces">        </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:2 and 1)</span
+                    ><span class="spaces"> </span>};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{crosses,raise=5pt}</span
+                    >]<br />
+                    <span class="spaces">        </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:2 and 1)</span
+                    ><span class="spaces"> </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decoration/mirror"></a
+                    ><a id="pgf.mirror"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decoration/mirror</span
+                          ></span
+                        >=</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>boolean</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decoration/mirror"
+                      href="#pgf/decoration/mirror"
+                      id="pgf/decoration/mirror"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Causes the segments of the decoration to be mirrored along the
+                to-be-decorated path. This is done after and in addition to any
+                transformations set using the
+                <span class="verb">transform</span> and/or
+                <span class="verb">raise</span>
+                options.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1829"
+                      ><!--
+    B
+
+A
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="49.659"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1829.png"
+                        style
+                        width="88.034"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.pathreplacing} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(a)</span
+                    ><span class="spaces">          </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(b)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                              </span><span class="spaces">                      </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(a)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(b)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">brace</span
+                    >]<span class="spaces">                         </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(a)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(b)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{brace,<a href="tikz-decorations#pgf.mirror">mirror</a
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >]<span class="spaces">            </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(a)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(b)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{brace,<a href="tikz-decorations#pgf.mirror">mirror</a
+                      >,raise=5pt}</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(a)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(b)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decoration/transform"></a
+                    ><a id="pgf.transform"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decoration/transform</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>transformations</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decoration/transform"
+                      href="#pgf/decoration/transform"
+                      id="pgf/decoration/transform"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key allows you to specify general
+                <span class="angle">&langle;</span><i>transformations</i
+                ><span class="angle">&rangle;</span> to be applied to the
+                segments of a decoration. These transformations are applied
+                before and independently of <span class="verb">raise</span> and
+                <span class="verb">mirror</span> transformations. The
+                <span class="angle">&langle;</span><i>transformations</i
+                ><span class="angle">&rangle;</span> should be normal
+                <span class="tikzname">TikZ</span> transformations like
+                <span class="verb">shift</span> or
+                <span class="verb">rotate</span>.
+              </p>
+              <p>
+                In the following example the
+                <span class="verb">shift only</span> transformation is used to
+                make sure that the crosses are <em>not</em> sloped along the
+                path.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1830"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="81.794"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1830.png"
+                        style
+                        width="119.748"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.shapes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:2 and 1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.very:thick"
+                        >very thick</a
+                      ></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">               </span>crosses,transform={<a
+                        href="tikz-transformations#pgf.shift"
+                        >shift</a
+                      >
+                      only},<a href="tikz-shapes#pgf.shape">shape</a>
+                      size=1.5mm}</span
+                    >]<br />
+                    <span class="spaces">        </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:2 and 1)</span
+                    ><span class="spaces"> </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-4251">
+            <span
+              ><span class="sectionnumber" id="sec-24.4.2">24.4.2</span>
+              Starting and Ending Decorations Early or Late</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-24.4.2"
+              data-pdf-destination="subsubsection.24.4.2"
+              data-pdf-page="372"
+              href="#sec-24.4.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4251"></a>
+
+          <p>
+            You sometimes may wish to &ldquo;end&rdquo; a decoration a bit early
+            on the path. For instance, you might wish a
+            <span class="verb">snake</span> decoration to stop 5mm before the
+            end of the path and to continue in a straight line. There are
+            different ways of achieving this effect, but the easiest may be the
+            <span class="verb">pre</span> and
+            <span class="verb">post</span> options, which only have an effect in
+            <span class="tikzname">TikZ</span>. Note, however, that they can
+            only be used with decorations, not with meta-decorations.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decoration/pre"></a><a id="pgf.pre"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decoration/pre</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>decoration</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>lineto</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decoration/pre"
+                      href="#pgf/decoration/pre"
+                      id="pgf/decoration/pre"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key sets a decoration that should be used before the main
+                decoration starts. The <span class="angle">&langle;</span
+                ><i>decoration</i><span class="angle">&rangle;</span> will be
+                used for a length of <span class="verb">pre length</span>, which
+                <span class="verb">0pt</span> by default. Thus, for the
+                <span class="verb">pre</span> option to have any effect, you
+                also need to set the
+                <span class="verb">pre length</span> option.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1831"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.251"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1831.png"
+                        style
+                        width="118.610"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.pathmorphing} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{zigzag,pre=lineto,<a href="tikz-decorations#pgf.pre"
+                        >pre</a
+                      >
+                      length=1cm}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:1)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1832"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.035"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1832.png"
+                        style
+                        width="84.949"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.pathmorphing} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{zigzag,pre=moveto,<a href="tikz-decorations#pgf.pre"
+                        >pre</a
+                      >
+                      length=1cm}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:1)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1833"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="45.339"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1833.png"
+                        style
+                        width="120.794"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { decorations.pathmorphing,
+                      decorations.shapes, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{zigzag,pre=crosses,<a href="tikz-decorations#pgf.pre"
+                        >pre</a
+                      >
+                      length=1cm}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:1)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Note that the default <span class="verb">pre</span> option is
+                <span class="verb">lineto</span>, not
+                <span class="verb">curveto</span>. This means that the default
+                <span class="verb">pre</span> decoration will not follow curves
+                (for efficiency reasons). Change the
+                <span class="verb">pre</span> key to
+                <span class="verb">curveto</span> if you have a curved path.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1834"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="41.019"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1834.png"
+                        style
+                        width="117.194"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.pathmorphing} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{zigzag,<a href="tikz-decorations#pgf.pre">pre</a>
+                      length=3cm}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:1)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1835"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="40.971"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1835.png"
+                        style
+                        width="117.194"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.pathmorphing} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{zigzag,pre=curveto,<a href="tikz-decorations#pgf.pre"
+                        >pre</a
+                      >
+                      length=3cm}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(90:0:1)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decoration/pre:length"></a
+                    ><a id="pgf.pre:length"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decoration/pre length</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>0pt</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decoration/pre:length"
+                      href="#pgf/decoration/pre:length"
+                      id="pgf/decoration/pre:length"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key sets the distance along which the pre-decoration should
+                be used. If you do not need/wish a pre-decoration, set this key
+                to <span class="verb">0pt</span> (exactly this string, not just
+                to something that evaluates to the same things such as
+                <span class="verb">0cm</span>).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decorations/post"></a><a id="pgf.post"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decorations/post</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>decoration</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>lineto</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decorations/post"
+                      href="#pgf/decorations/post"
+                      id="pgf/decorations/post"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like <span class="verb">pre</span>, only for the end of
+                the decoration.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/decorations/post:length"></a
+                    ><a id="pgf.post:length"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/decorations/post length</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>0pt</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/decorations/post:length"
+                      href="#pgf/decorations/post:length"
+                      id="pgf/decorations/post:length"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like <span class="verb">pre length</span>, only for the
+                end of the decoration.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            Here is a typical example that shows how these keys can be used:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1836"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="47.667"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1836.png"
+                    style
+                    width="116.077"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">snake</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  >line around</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-decorations#pgf.pre">pre</a> length=#1,<a
+                    href="tikz-decorations#pgf.post"
+                    >post</a
+                  >
+                  length=#1}}</span
+                >]<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >]<span class="spaces">                  </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                ><span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">++</span
+                ><span class="textcolor" style="color: #800080">(3,0)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  >line around</span
+                >=<span class="textcolor" style="color: #008000">5pt</span
+                >]<span class="spaces">  </span><span class="textcolor" style="color: #800080"
+                  >(0,-5mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">++</span
+                ><span class="textcolor" style="color: #800080">(3,0)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  >line around</span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >]<span class="spaces">  </span><span class="textcolor" style="color: #800080"
+                  >(0,-1cm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">++</span
+                ><span class="textcolor" style="color: #800080">(3,0)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1887 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Sarah Mäusle and Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Graph Drawing Layouts: Phylogenetic Trees - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Graph Drawing Layouts: Phylogenetic Trees",
+            "item": "https://tikz.dev/gd-phylogenetics"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-phylogenetics" rel="canonical" />
+    <meta content="https://tikz.dev/gd-phylogenetics" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/gd-phylogenetics.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Graph Drawing Layouts: Phylogenetic Trees - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4807"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-34.1"
+                >Generating a Phylogenetic Tree</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-34.2"
+                >Laying out the Phylogram</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4808">
+            <a id="section-library-graphdrawing-phylogenetics"></a
+            ><span
+              ><span class="sectionnumber" id="sec-34">34</span> Graph Drawing
+              Layouts: Phylogenetic Trees</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.34"
+              data-pdf-page="484"
+              href="#sec-34"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4808"></a>
+          <a id="pgfmanual-autofile-38"></a>
+
+          <p>
+            <em>by Sarah M&auml;usle and Till Tantau</em>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.phylogenetics"></a>
+                    <span class="hl-def"
+                      ><b>Graph Drawing Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >phylogenetics</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.phylogenetics"
+                      href="#pgf.phylogenetics"
+                      id="pgf.phylogenetics"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usegdlibrary{<span class="textcolor" style="color: #bf0000"
+                    >phylogenetics</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usegdlibrary[<span class="textcolor" style="color: #bf0000"
+                    >phylogenetics</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                >
+              </p>
+              <p>
+                A phylogenetic tree (or network) depicts the evolutionary
+                history of species or, more generally, so called taxa. The
+                present library includes a number of algorithms for drawing
+                phylogenetic trees.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.phylogenetic:tree:layout"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >phylogenetic tree layout</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.phylogenetic:tree:layout"
+                      href="#pgf.phylogenetic:tree:layout"
+                      id="pgf.phylogenetic:tree:layout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Layout for drawing phylogenetic trees. ...</p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2035"
+                      ><!--
+a b c d e f g
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="190.346"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2035.png"
+                        style
+                        width="236.378"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.upgma">upgma</a></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4812">
+            <span
+              ><span class="sectionnumber" id="sec-34.1">34.1</span> Generating
+              a Phylogenetic Tree</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-34.1"
+              data-pdf-destination="subsection.34.1"
+              data-pdf-page="484"
+              href="#sec-34.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4812"></a>
+
+          <p>...</p>
+
+          <p>
+            When a phylogenetic tree is generated, new nodes and edges get
+            created. In order to give you a chance at styling them, the
+            following styles are executed:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./graph:drawing/phylogenetic:inner:node"></a
+                    ><a id="pgf.phylogenetic:inner:node"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/graph drawing/phylogenetic inner node</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./graph:drawing/phylogenetic:inner:node"
+                      href="#graph:drawing/phylogenetic:inner:node"
+                      id="graph:drawing/phylogenetic:inner:node"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The style is added every newly created inner node. In this
+                manual, this key is set to:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfgdset</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >phylogenetic</span
+                    >
+                    <span class="textcolor" style="color: #000000">inner</span>
+                    <span class="textcolor" style="color: #000000">node/</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >style=</span
+                    >{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >/tikz/</span
+                    >.<span class="textcolor" style="color: #000000">cd</span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >, <span class="textcolor" style="color: #000000"
+                      >inner</span
+                    >
+                    <span class="textcolor" style="color: #000000">sep=0pt</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >minimum</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >size=5pt</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./graph:drawing/phylogenetic:edge"></a
+                    ><a id="pgf.phylogenetic:edge"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/graph drawing/phylogenetic edge</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>length</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(style, no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./graph:drawing/phylogenetic:edge"
+                      href="#graph:drawing/phylogenetic:edge"
+                      id="graph:drawing/phylogenetic:edge"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The style is added every newly created phylogenetic edge. The
+                <span class="angle">&langle;</span><i>length</i
+                ><span class="angle">&rangle;</span> will be set to the computed
+                evolutionary length of the edge. In this manual, this key is set
+                to:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfgdset</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >phylogenetic</span
+                    >
+                    <span class="textcolor" style="color: #000000">edge/</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >style=</span
+                    >{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >/tikz/</span
+                    >.<span class="textcolor" style="color: #000000">cd</span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >, <span class="textcolor" style="color: #000000"
+                      >rounded</span
+                    >
+                    <span class="textcolor" style="color: #000000">corners</span
+                    ><br />
+                    <span class="spaces">  </span>}<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.phylogenetic:tree:by:author"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >phylogenetic tree by author</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.phylogenetic:tree:by:author"
+                      href="#pgf.phylogenetic:tree:by:author"
+                      id="pgf.phylogenetic:tree:by:author"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                When this key is used, the phylogenetic tree must be specified
+                by the author (rather than being generated algorithmically). A
+                spanning tree of the input graph will be computed first (it must
+                be connected, otherwise errors will result). The evolutionary
+                length of the edges must be specified through the use of the
+                <span class="verb">length</span> key for each edge.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2036"
+                      ><!--
+    a
+
+
+
+
+            b
+
+
+e d c
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="133.106"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2036.png"
+                        style
+                        width="84.290"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >a</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >b</span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      >&gt;length</span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.length">length</a></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >] {<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >
+                    },<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >e</span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      >&gt;length</span
+                    >=<span class="textcolor" style="color: #008000">3</span
+                    >]<br />
+                    <span class="spaces">  </span>}<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf.unweighted:pair:group:method:using:arithmetic:averages"
+                    ></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >unweighted pair group method using arithmetic
+                          averages</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.unweighted:pair:group:method:using:arithmetic:averages"
+                      href="#pgf.unweighted:pair:group:method:using:arithmetic:averages"
+                      id="pgf.unweighted:pair:group:method:using:arithmetic:averages"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The UPGMA (Unweighted Pair Group Method using arithmetic
+                Averages) algorithm of Sokal and Michener, 1958. It generates a
+                graph on the basis of such a distance matrix by generating nodes
+                and computing the edge lengths. This algorithm uses a distance
+                matrix, ideally an ultrametric one, to compute the graph.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2037"
+                      ><!--
+a b c d e f g
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="190.346"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2037.png"
+                        style
+                        width="124.826"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.sibling:distance"
+                        >sibling distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0pt</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.sibling:sep"
+                        >sibling sep</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2pt</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a
+                        href="gd-phylogenetics#pgf.unweighted:pair:group:method:using:arithmetic:averages"
+                        >unweighted pair group method using arithmetic
+                        averages</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.upgma"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >upgma</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.upgma"
+                      href="#pgf.upgma"
+                      id="pgf.upgma"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An shorthand for
+                <span class="verb"
+                  >unweighted pair group method using arithmetic averages</span
+                >
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.balanced:minimum:evolution"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >balanced minimum evolution</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.balanced:minimum:evolution"
+                      href="#pgf.balanced:minimum:evolution"
+                      id="pgf.balanced:minimum:evolution"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The BME (Balanced Minimum Evolution) algorithm tries to minimize
+                the total tree length. This algorithm is from Desper and
+                Gascuel,
+                <em
+                  >Fast and Accurate Phylogeny Reconstruction Algorithms Based
+                  on the Minimum-Evolution Principle</em
+                >, 2002. The tree is built in a way that minimizes the total
+                tree length. The leaves are inserted into the tree one after
+                another, creating new edges and new nodes. After every insertion
+                the distance matrix has to be updated.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2038"
+                      ><!--
+    a
+
+    b
+c
+
+d
+g
+
+e
+
+f
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="166.970"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2038.png"
+                        style
+                        width="226.790"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.balanced:minimum:evolution"
+                        >balanced minimum evolution</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow'">grow'</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.sibling:distance"
+                        >sibling distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0pt</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.balanced:nearest:neighbour:interchange"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >balanced nearest neighbour interchange</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.balanced:nearest:neighbour:interchange"
+                      href="#pgf.balanced:nearest:neighbour:interchange"
+                      id="pgf.balanced:nearest:neighbour:interchange"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The BNNI (Balanced Nearest Neighbor Interchange) is a
+                postprocessing algorithm for phylogenetic trees. It swaps two
+                distant 3-subtrees if the total tree length is reduced by doing
+                so, until no such swaps are left. This algorithm is from Desper
+                and Gascuel,
+                <em
+                  >Fast and Accurate Phylogeny Reconstruction Algorithms Based
+                  on the Minimum-Evolution Principle</em
+                >, 2002.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.no:phylogenetic:tree:optimization"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >no phylogenetic tree optimization</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.no:phylogenetic:tree:optimization"
+                      href="#pgf.no:phylogenetic:tree:optimization"
+                      id="pgf.no:phylogenetic:tree:optimization"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Switches off any phylogenetic tree optimization.</p>
+            </ul>
+          </div>
+          <h5 id="autosec-4819">
+            <span
+              ><span class="sectionnumber" id="sec-34.2">34.2</span> Laying out
+              the Phylogram</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-34.2"
+              data-pdf-destination="subsection.34.2"
+              data-pdf-page="486"
+              href="#sec-34.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4819"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.rooted:rectangular:phylogram"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >rooted rectangular phylogram</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.rooted:rectangular:phylogram"
+                      href="#pgf.rooted:rectangular:phylogram"
+                      id="pgf.rooted:rectangular:phylogram"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A rooted rectangular phylogram is... ...</p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2039"
+                      ><!--
+        c d g e f
+
+
+
+
+a b
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="228.122"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2039.png"
+                        style
+                        width="236.258"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a
+                        href="gd-phylogenetics#pgf.rooted:rectangular:phylogram"
+                        >rooted rectangular phylogram</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.balanced:minimum:evolution"
+                        >balanced minimum evolution</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.rectangular:phylogram"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >rectangular phylogram</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.rectangular:phylogram"
+                      href="#pgf.rectangular:phylogram"
+                      id="pgf.rectangular:phylogram"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An alias for
+                <span class="verb">rooted rectangular phylogram</span>
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.rooted:straight:phylogram"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >rooted straight phylogram</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.rooted:straight:phylogram"
+                      href="#pgf.rooted:straight:phylogram"
+                      id="pgf.rooted:straight:phylogram"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A rooted straight phylogram is... ...</p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2040"
+                      ><!--
+f
+
+e
+
+    g
+
+
+        d
+
+        c
+
+            b
+
+            a
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="237.146"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2040.png"
+                        style
+                        width="200.675"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.rooted:straight:phylogram"
+                        >rooted straight phylogram</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.balanced:minimum:evolution"
+                        >balanced minimum evolution</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.straight:phylogram"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >straight phylogram</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.straight:phylogram"
+                      href="#pgf.straight:phylogram"
+                      id="pgf.straight:phylogram"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An alias for <span class="verb">rooted straight phylogram</span>
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.unrooted:rectangular:phylogram"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >unrooted rectangular phylogram</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.unrooted:rectangular:phylogram"
+                      href="#pgf.unrooted:rectangular:phylogram"
+                      id="pgf.unrooted:rectangular:phylogram"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A unrooted rectangular phylogram is... ...</p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2041"
+                      ><!--
+    d
+f
+
+    c
+e
+
+g b
+
+        a
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="123.722"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2041.png"
+                        style
+                        width="367.370"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a
+                        href="gd-phylogenetics#pgf.unrooted:rectangular:phylogram"
+                        >unrooted rectangular phylogram</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.balanced:minimum:evolution"
+                        >balanced minimum evolution</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.unrooted:straight:phylogram"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >unrooted straight phylogram</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.unrooted:straight:phylogram"
+                      href="#pgf.unrooted:straight:phylogram"
+                      id="pgf.unrooted:straight:phylogram"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A unrooted straight phylogram is... ...</p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2042"
+                      ><!--
+        d
+    f
+
+        c
+    e
+
+g b
+
+            a
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="123.722"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2042.png"
+                        style
+                        width="355.106"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.phylogenetic:tree:layout"
+                        >phylogenetic tree layout</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a
+                        href="gd-phylogenetics#pgf.unrooted:straight:phylogram"
+                        >unrooted straight phylogram</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-phylogenetics#pgf.balanced:minimum:evolution"
+                        >balanced minimum evolution</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-trees#pgf.grow">grow</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >distance matrix</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">                </span>0
+                      4 9 9 9 9 9<br />
+                      <span class="spaces">                </span>4
+                      0 9 9 9 9 9<br />
+                      <span class="spaces">                </span>9
+                      9 0 2 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 2 0 7 7 7<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 0 3 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 3 0 5<br />
+                      <span class="spaces">                </span>9
+                      9 7 7 5 5 0}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >e</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >f</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >g</span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.evolutionary:unit:length"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >evolutionary unit length</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>length</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >(initially <kbd>1cm</kbd>)
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.evolutionary:unit:length"
+                      href="#pgf.evolutionary:unit:length"
+                      id="pgf.evolutionary:unit:length"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Specifies how long a &ldquo;unit&rdquo; of evolutionary time
+                should be on paper. For instance, if two nodes in a phylogenetic
+                tree have an evolutionary distance of 3 and this length is set
+                to <span class="verb">1cm</span>, then they will be
+                <span class="verb">3cm</span> apart in a straight-line
+                phylogram. (This key used to be called
+                <span class="verb">distance scaling factor</span>.)
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

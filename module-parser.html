@@ -1,0 +1,1639 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+Copyright 2019 by Jonathan P. Spratte
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Parser Module - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Utilities",
+            "item": "https://tikz.dev/utilities"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Parser Module",
+            "item": "https://tikz.dev/module-parser"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/module-parser" rel="canonical" />
+    <meta content="https://tikz.dev/module-parser" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Parser Module - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7643"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-92.1"
+                >Keys of the Parser Module</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-92.2">Examples</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfkeys">Key Management</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgffor"
+                >Repeating Things: The Foreach Statement</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfcalendar"
+                >Date and Calendar Utility Macros</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pages">Page Management</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="xxcolor">Extended Color Support</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="module-parser">Parser Module</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Utilities</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7644">
+            <a id="section-module-parser"></a
+            ><span
+              ><span class="sectionnumber" id="sec-92">92</span> Parser
+              Module</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.92"
+              data-pdf-page="1023"
+              href="#sec-92"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7644"></a>
+          <a id="pgfmanual-autofile-99"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.parser"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepgfmodule{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >parser</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        >
+                        and plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        and pure pgf</kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.parser"
+                      href="#pgf.parser"
+                      id="pgf.parser"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepgfmodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >parser</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t and pure pgf</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This module defines some commands for creating a simple
+                letter-by-letter parser.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.pgfparser"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepackage{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pgfparser</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.pgfparser"
+                      href="#pgf.pgfparser"
+                      id="pgf.pgfparser"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\input
+                        <span class="textcolor" style="color: #bf0000"
+                          >pgfparser</span
+                        >.tex % plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usemodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pgfparser</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Because the parser module is almost independent of the rest of
+                <span class="textsc">pgf</span>, it can also be used as a
+                standalone package with minimal dependencies.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            This module provides commands for defining a parser that scans some
+            given text letter-by-letter. For each letter, some code is executed
+            and, possibly a state-switch occurs. The code for each letter might
+            take mandatory or optional arguments. The parsing process ends when
+            a final state has been reached, and optionally some code is executed
+            afterwards. Each newly defined parser by default ignores space
+            tokens, if you want to change that you&rsquo;ll have to explicitly
+            define an action for blank spaces (with
+            <span class="verb">\pgfparserdef</span>).
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserparse"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserparse</kbd></span
+                      >{<span class="angle">&langle;</span><i>parser name</i
+                      ><span class="angle">&rangle;</span>}<span class="angle"
+                        >&langle;</span
+                      ><i>text</i><span class="angle">&rangle;</span></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserparse"
+                      href="#\pgfparserparse"
+                      id="\pgfparserparse"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command is used to parse the
+                <span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span> using the (previously
+                defined) parser named <span class="angle">&langle;</span
+                ><i>parser name</i><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span> is not contained in curly
+                braces, rather it is all the text that follows. The end of the
+                text is determined implicitly, namely when the final state of
+                the parser has been reached. If you defined a final action for
+                the parser using <span class="verb">\pgfparserdeffinal</span> it
+                is executed now.
+              </p>
+              <p>
+                The parser works as follows: At any moment, it is in a certain
+                <em>state</em>, initially this state is called
+                <span class="verb">initial</span>. Then, the first letter of the
+                <span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span> is examined (using the
+                <span class="verb">\futurelet</span> command). For each possible
+                state and each possible letter, some action code is stored in
+                the parser in a table. This code is then executed. This code
+                may, but need not, trigger a <em>state switch</em>, causing a
+                new state to be set. The parser then moves on to the next
+                character of the text and repeats the whole procedure, unless it
+                is in the state <span class="verb">final</span>, which causes
+                the parsing process to stop immediately.
+              </p>
+              <p>
+                In the following example, the parser counts the number of
+                <span class="verb">a</span>&rsquo;s in the text, ignoring any
+                <span class="verb">b</span>&rsquo;s. The
+                <span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span> ends with the
+                first&nbsp;<span class="verb">c</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>cccThere are 9 a&rsquo;s.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepgfmodule {parser} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\newcount</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\mycount</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="module-parser#pgf.back/pgfparserdef"
+                        >\pgfparserdef</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >myparser</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      ><a href="library-automata#pgf.initial">initial</a></span
+                    >}{<span class="textcolor" style="color: #000000">the</span>
+                    <span class="textcolor" style="color: #000000">letter</span>
+                    <span class="textcolor" style="color: #000000">a</span
+                    >}<span class="example-code-comment">%</span><br />
+                    {<span class="textcolor" style="color: #0000b2"
+                      >\advance</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\mycount</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.by">by</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">1</span
+                    ><span class="textcolor" style="color: #0000b2">\relax</span
+                    >}<span class="example-code-comment">%</span><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="module-parser#pgf.back/pgfparserdef"
+                        >\pgfparserdef</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >myparser</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      ><a href="library-automata#pgf.initial">initial</a></span
+                    >}{<span class="textcolor" style="color: #000000">the</span>
+                    <span class="textcolor" style="color: #000000">letter</span>
+                    <span class="textcolor" style="color: #000000">b</span
+                    >}<span class="example-code-comment">%</span><br />
+                    {} <span class="example-code-comment"
+                      >% do nothing</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="module-parser#pgf.back/pgfparserdef"
+                        >\pgfparserdef</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >myparser</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      ><a href="library-automata#pgf.initial">initial</a></span
+                    >}{<span class="textcolor" style="color: #000000">the</span>
+                    <span class="textcolor" style="color: #000000">letter</span>
+                    <span class="textcolor" style="color: #000000">c</span
+                    >}<span class="example-code-comment">%</span><br />
+                    {<span class="textcolor" style="color: #0000b2"
+                      ><a href="module-parser#pgf.back/pgfparserswitch"
+                        >\pgfparserswitch</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">final</span
+                    >}}<span class="example-code-comment">% done!</span><br />
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="module-parser#pgf.back/pgfparserparse"
+                        >\pgfparserparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >myparser</span
+                    >}<span class="textcolor" style="color: #000000"
+                      >aabaabababbbbbabaabcccc</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">There</span>
+                    <span class="textcolor" style="color: #000000">are</span>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\mycount</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    > <span class="textcolor" style="color: #000000"
+                      >a's</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserdef"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserdef</kbd></span
+                      >{<span class="angle">&langle;</span><i>parser name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>state</i><span class="angle">&rangle;</span>}<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>symbol meaning</i
+                      ><span class="angle">&rangle;</span>[<span class="angle"
+                        >&langle;</span
+                      ><i>arguments</i
+                      ><span class="angle">&rangle;</span>]{<span class="angle"
+                        >&langle;</span
+                      ><i>action</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserdef"
+                      href="#\pgfparserdef"
+                      id="\pgfparserdef"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command should be used repeatedly to define a parser named
+                <span class="angle">&langle;</span><i>parser name</i
+                ><span class="angle">&rangle;</span>. With a call to this
+                command you specify that the <span class="angle">&langle;</span
+                ><i>parser name</i><span class="angle">&rangle;</span> should do
+                the following: When it is in state
+                <span class="angle">&langle;</span><i>state</i
+                ><span class="angle">&rangle;</span> and reads the letter
+                <span class="angle">&langle;</span><i>symbol meaning</i
+                ><span class="angle">&rangle;</span>, perform the code stored in
+                <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>symbol meaning</i
+                ><span class="angle">&rangle;</span> must be the text that
+                results from applying the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                command <span class="verb">\meaning</span> to the given
+                character. For instance,
+                <span class="verb">\meaning a</span> yields
+                <span class="verb">the letter a</span>, while
+                <span class="verb">\meaning 1</span> yields
+                <span class="verb">the character 1</span>. A space yields
+                <span class="verb">blank space </span>. Alternatively you can
+                give the symbol you want without surrounding it in braces. So
+                both
+                <span class="verb"
+                  >\pgfparserdef{myparser}{initial}{the letter a}{foo}</span
+                >
+                and
+                <span class="verb">\pgfparserdef{myparser}{initial}a{foo}</span>
+                define an <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> for
+                <span class="verb">the letter a</span>. This short form works
+                for most tokens, but not for a space (in which case you can use
+                <span class="verb">\pgfparserdef</span
+                ><span class="verb">{myparser}</span
+                ><span class="verb">{initial}</span>
+                <span class="verb">{blank space}</span
+                ><span class="verb">{foo}</span>), and opening braces (in which
+                case you can use <span class="verb">\pgfparserdef</span
+                ><span class="verb">{myparser}</span
+                ><span class="verb">{initial}</span
+                ><span class="verb">{\meaning\bgroup}</span
+                ><span class="verb">{foo}</span>, and one might prefer to use
+                <span class="verb">\pgfparserdef</span
+                ><span class="verb">{myparser}</span
+                ><span class="verb">{initial}</span
+                ><span class="verb">{\meaning\egroup}</span
+                ><span class="verb">{foo}</span> for closing braces as well).
+                You can as well define an action for a macro&rsquo;s meaning
+                (note that macros with different names can have the same
+                meaning), so things like <span class="verb">\pgfparserdef</span
+                ><span class="verb">{myparser}</span
+                ><span class="verb">{initial}\texttt{foo}</span> are possible as
+                well.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> might require arguments
+                which you can specify in the optional
+                <span class="angle">&langle;</span><i>arguments</i
+                ><span class="angle">&rangle;</span> string. The argument string
+                can contain up to nine argument specifications of the following
+                types:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>m</kbd> &emsp;a
+                    normal mandatory argument
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>r</kbd
+                    ><span class="angle">&langle;</span><i>delim</i
+                    ><span class="angle">&rangle;</span> &emsp;a mandatory
+                    argument which is read up to the
+                    <span class="angle">&langle;</span><i>delim</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>o</kbd> &emsp;an
+                    optional argument in <span class="verb">[]</span> defaulting
+                    to a special mark
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>O</kbd>{<span
+                      class="angle"
+                      >&langle;</span
+                    ><i>default</i><span class="angle">&rangle;</span>}
+                    &emsp;like <span class="verb">o</span> but defaulting to
+                    <span class="angle">&langle;</span><i>default</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>d</kbd
+                    ><span class="angle">&langle;</span><i>delim1</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="angle">&langle;</span><i>delim2</i
+                    ><span class="angle">&rangle;</span> &emsp;an optional
+                    argument in <span class="angle">&langle;</span><i>delim1</i
+                    ><span class="angle">&rangle;</span> and
+                    <span class="angle">&langle;</span><i>delim2</i
+                    ><span class="angle">&rangle;</span> defaulting to a special
+                    mark
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>D</kbd
+                    ><span class="angle">&langle;</span><i>delim1</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="angle">&langle;</span><i>delim2</i
+                    ><span class="angle">&rangle;</span>{<span class="angle"
+                      >&langle;</span
+                    ><i>default</i><span class="angle">&rangle;</span>}
+                    &emsp;like <span class="verb">d</span> but defaulting to
+                    <span class="angle">&langle;</span><i>default</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> <kbd>t</kbd
+                    ><span class="angle">&langle;</span><i>token</i
+                    ><span class="angle">&rangle;</span> &emsp;tests whether the
+                    next letter is <span class="angle">&langle;</span
+                    ><i>token</i><span class="angle">&rangle;</span>, if so
+                    gobbles it and the argument is set to a special mark.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                So if you want to define an <span class="angle">&langle;</span
+                ><i>action</i><span class="angle">&rangle;</span> that takes two
+                mandatory arguments you use <span class="verb">[mm]</span>, if
+                it should take an optional star, one optional argument in
+                brackets that returns a marker if it&rsquo;s not used, one
+                mandatory and finally an optional argument in parentheses that
+                defaults to <span class="verb">something</span> you use
+                <span class="verb">[t*omD(){something}]</span> as the argument
+                string. If the argument should be anything up to a semicolon,
+                you use <span class="verb">[r;]</span>. Spaces before argument
+                specifications in the string are ignored. So
+                <span class="verb">[r m]</span> will be one argument and read
+                anything up to an <span class="verb">m</span>. Also spaces
+                before any argument in the parsed letters are ignored, so if
+                <span class="verb">a</span> was setup to take an optional
+                argument the argument would be detected in
+                <span class="verb">a []</span>. Like with normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                ><span class="latexlogofont"
+                  ><span class="latexlogotwoe"
+                    >2<span class="latexlogotwoesub">&epsilon;</span></span
+                  ></span
+                >
+                optional arguments you have to protect nested brackets:
+                <span class="verb">[a[bc]d]</span> would be read as
+                <span class="verb">a[bc</span> with a trailing
+                <span class="verb">d]</span>, <em>not</em> as
+                <span class="verb">a[bc]d</span>. You&rsquo;d have to use
+                <span class="verb">[{a[bc]d}]</span> to get it correct.
+              </p>
+              <p>
+                Inside the <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> you can perform almost any
+                kind of code. This code will not be surrounded by a scope, so
+                its effect persists after the parsing is done. However, each
+                time after the <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> is executed, control goes
+                back to the parser. You should not launch a parser inside the
+                <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> code, unless you put it in
+                a scope.
+              </p>
+              <p>
+                When you use <span class="verb">all</span> as the
+                <span class="angle">&langle;</span><i>state</i
+                ><span class="angle">&rangle;</span>, the
+                <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> is performed in all states
+                as a fallback, whenever <span class="angle">&langle;</span
+                ><i>symbol meaning</i><span class="angle">&rangle;</span> is
+                encountered. This means that when you do not specify anything
+                explicitly for a state and a letter, but you do specify
+                something for <span class="verb">all</span> and this letter,
+                then the specified <span class="angle">&langle;</span
+                ><i>action</i><span class="angle">&rangle;</span> will be used.
+              </p>
+              <p>
+                When the parser encounters a letter for which nothing is
+                specified in the current state (neither directly nor indirectly
+                via <span class="verb">all</span>), an error occurs.
+                Additionally you can specify an action that is executed after
+                the error is thrown using
+                <span class="verb">\pgfparserdefunknown</span>. To suppress
+                these errors (but not the action specified with
+                <span class="verb">\pgfparserdefunknown</span>) you can use the
+                <span class="verb">/pgfparser/silent</span> key or the
+                <span class="verb">silent</span> key of the current
+                <span class="angle">&langle;</span><i>parser name</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserlet"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserlet</kbd></span
+                      >{<span class="angle">&langle;</span><i>parser name 1</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>state 1</i><span class="angle">&rangle;</span>}<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>symbol meaning 1</i
+                      ><span class="angle">&rangle;</span>[<span class="angle"
+                        >&langle;</span
+                      ><i>opt 1</i><span class="angle">&rangle;</span>][<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>opt 2</i><span class="angle">&rangle;</span>]<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>symbol meaning 2</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserlet"
+                      href="#\pgfparserlet"
+                      id="\pgfparserlet"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                If none of the optional arguments are given in the following
+                explanation <span class="angle">&langle;</span
+                ><i>parser name 2</i><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>state 2</i
+                ><span class="angle">&rangle;</span> are the same as
+                <span class="angle">&langle;</span><i>parser name 1</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>state 1</i
+                ><span class="angle">&rangle;</span>. If only the first is given
+                <span class="angle">&langle;</span><i>state 2</i
+                ><span class="angle">&rangle;</span> equals
+                <span class="angle">&langle;</span><i>opt 1</i
+                ><span class="angle">&rangle;</span>. If both are given
+                <span class="angle">&langle;</span><i>parser name 2</i
+                ><span class="angle">&rangle;</span> equals
+                <span class="angle">&langle;</span><i>opt 1</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>state 2</i
+                ><span class="angle">&rangle;</span> equals
+                <span class="angle">&langle;</span><i>opt 2</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                Defines an action for <span class="angle">&langle;</span
+                ><i>parser name 1</i><span class="angle">&rangle;</span> in
+                <span class="angle">&langle;</span><i>state 1</i
+                ><span class="angle">&rangle;</span> for the
+                <span class="angle">&langle;</span><i>symbol meaning 1</i
+                ><span class="angle">&rangle;</span> to do the same as the
+                action of <span class="angle">&langle;</span><i>parser name 2</i
+                ><span class="angle">&rangle;</span> in
+                <span class="angle">&langle;</span><i>state 2</i
+                ><span class="angle">&rangle;</span> for the
+                <span class="angle">&langle;</span><i>symbol meaning 2</i
+                ><span class="angle">&rangle;</span>. For
+                <span class="angle">&langle;</span><i>symbol meaning 1</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>symbol meaning 2</i
+                ><span class="angle">&rangle;</span> the same parsing rules
+                apply as for <span class="angle">&langle;</span
+                ><i>symbol meaning</i><span class="angle">&rangle;</span> in
+                <span class="verb">\pgfparserdef</span> so you either give the
+                meaning in braces or just the symbol.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserdefunknown"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserdefunknown</kbd></span
+                      >{<span class="angle">&langle;</span><i>parser name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>state</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>action</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserdefunknown"
+                      href="#\pgfparserdefunknown"
+                      id="\pgfparserdefunknown"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                With this macro you can define an
+                <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> for the
+                <span class="angle">&langle;</span><i>parser name</i
+                ><span class="angle">&rangle;</span> parser in
+                <span class="angle">&langle;</span><i>state</i
+                ><span class="angle">&rangle;</span> if no action was defined
+                for the letter which was encountered.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserdeffinal"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserdeffinal</kbd></span
+                      >{<span class="angle">&langle;</span><i>parser name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>action</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserdeffinal"
+                      href="#\pgfparserdeffinal"
+                      id="\pgfparserdeffinal"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Every parser can call a final <span class="angle">&langle;</span
+                ><i>action</i><span class="angle">&rangle;</span> after the
+                state was switched to <span class="verb">final</span>. This
+                <span class="angle">&langle;</span><i>action</i
+                ><span class="angle">&rangle;</span> is executed after
+                everything else, so you can use something that grabs more
+                arguments if you want to.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserswitch"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserswitch</kbd></span
+                      >{<span class="angle">&langle;</span><i>state</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserswitch"
+                      href="#\pgfparserswitch"
+                      id="\pgfparserswitch"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command can be called inside the action code of a parser to
+                cause a state switch to <span class="angle">&langle;</span
+                ><i>state</i><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserifmark"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserifmark</kbd></span
+                      >{<span class="angle">&langle;</span><i>arg</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>true</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>false</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserifmark"
+                      href="#\pgfparserifmark"
+                      id="\pgfparserifmark"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Remember that some of the optional argument types set special
+                marks? With <span class="verb">\pgfparserifmark</span> you can
+                test whether <span class="angle">&langle;</span><i>arg</i
+                ><span class="angle">&rangle;</span> is such a mark. So if there
+                was no optional argument for the argument types
+                <span class="verb">o</span> and <span class="verb">d</span> the
+                <span class="angle">&langle;</span><i>true</i
+                ><span class="angle">&rangle;</span> branch will be executed,
+                else the <span class="angle">&langle;</span><i>false</i
+                ><span class="angle">&rangle;</span> branch. For the
+                <span class="verb">t</span> type argument the
+                <span class="angle">&langle;</span><i>true</i
+                ><span class="angle">&rangle;</span> branch is executed if the
+                token was encountered.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserreinsert"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserreinsert</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserreinsert"
+                      href="#\pgfparserreinsert"
+                      id="\pgfparserreinsert"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                You can use this as the final macro in an action of
+                <span class="verb">\pgfparserdef</span> or
+                <span class="verb">\pgfparserdefunknown</span>. This has the
+                effect that the contents of
+                <span class="verb">\pgfparserletter</span> will be parsed next.
+                Without any redefinition the result will be that the last token
+                will be parsed again. You can change the definition of
+                <span class="verb">\pgfparserletter</span> just before
+                <span class="verb">\pgfparserreinsert</span> as well to parse
+                some specific tokens next.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserstate"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserstate</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserstate"
+                      href="#\pgfparserstate"
+                      id="\pgfparserstate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Expands to the current state of the parser.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparsertoken"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparsertoken</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparsertoken"
+                      href="#\pgfparsertoken"
+                      id="\pgfparsertoken"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the macro which is let to the following token with
+                <span class="verb">\futurelet</span>. You can use it inside an
+                action code.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserletter"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserletter</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserletter"
+                      href="#\pgfparserletter"
+                      id="\pgfparserletter"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro stores the letter to which
+                <span class="verb">\pgfparsertoken</span> was let. So if
+                you&rsquo;d use
+                <span class="verb">\pgfparserparse{foo}a</span> this macro would
+                be defined with
+                <span class="verb">\def\pgfparserletter{a}</span>. This
+                definition is done before any action code is executed. There are
+                four special cases: If the next token is of category code 1, 2,
+                6, or 10, so with standard category codes the tokens
+                <span class="verb">{</span>, <span class="verb">}</span>,
+                <span class="verb">#</span>, and &blank; (a space), it would be
+                treated differently. In those cases this macro expands to
+                <span class="verb">\bgroup</span>,
+                <span class="verb">\egroup</span>, <span class="verb">##</span>,
+                and &blank; for the categories 1, 2, 6, and 10, respectively.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfparserset"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfparserset</kbd></span
+                      >{<span class="angle">&langle;</span><i>key list</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfparserset"
+                      href="#\pgfparserset"
+                      id="\pgfparserset"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The <span class="verb">pgfparser</span> module has a few keys
+                you can access through this macro. It is just a shortcut for
+                <span class="verb">\pgfset{/pgfparser/.cd,#1}</span>. The
+                available keys are listed in subsection&nbsp;<a
+                  href="module-parser#sec:parser:keys"
+                  >92.1</a
+                >.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-7646">
+            <a id="sec:parser:keys"></a
+            ><span
+              ><span class="sectionnumber" id="sec-92.1">92.1</span> Keys of the
+              Parser Module</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-92.1"
+              data-pdf-destination="subsection.92.1"
+              data-pdf-page="1025"
+              href="#sec-92.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7646"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgfparser/silent"></a><a id="pgf.silent"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgfparser/silent</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>boolean</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>false</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgfparser/silent"
+                      href="#pgfparser/silent"
+                      id="pgfparser/silent"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                If <span class="verb">true</span> then no error will be thrown
+                when a letter is parsed for which no action is specified,
+                silently ignoring it. This holds true for every parser.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgfparser/status"></a><a id="pgf.status"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgfparser/status</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>boolean</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>false</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgfparser/status"
+                      href="#pgfparser/status"
+                      id="pgfparser/status"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                If <span class="verb">true</span> every parser prints a status
+                message for every action executed. This might help in debugging
+                and understanding what the parser does.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            Additionally to those keys for every
+            <span class="angle">&langle;</span><i>parser name</i
+            ><span class="angle">&rangle;</span> for which
+            <span class="verb">\pgfparserdef</span>,
+            <span class="verb">\pgfparserdefunknown</span> or
+            <span class="verb">\pgfparserlet</span> was run at least once the
+            following will be defined:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgfparser/meta(parser:name)/silent"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgfparser/<span class="angle">&langle;</span
+                            ><i>parser name</i
+                            ><span class="angle">&rangle;</span>/silent</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>boolean</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>false</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgfparser/meta(parser:name)/silent"
+                      href="#pgfparser/meta(parser:name)/silent"
+                      id="pgfparser/meta(parser:name)/silent"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                If <span class="verb">true</span> the parser
+                <span class="angle">&langle;</span><i>parser name</i
+                ><span class="angle">&rangle;</span> will silently ignore
+                undefined letters. This is an individual equivalent of
+                <span class="verb">/pgfparser/silent</span> for each defined
+                parser.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-7647">
+            <span
+              ><span class="sectionnumber" id="sec-92.2">92.2</span>
+              Examples</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-92.2"
+              data-pdf-destination="subsection.92.2"
+              data-pdf-page="1025"
+              href="#sec-92.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7647"></a>
+
+          <p>
+            The following example counts the different letters appearing in a
+            more or less random string of letters. Every letter is counted only
+            once, this is achieved by defining a new action for every
+            encountered unknown letter that does nothing. We can define such
+            rule without knowing which letter is used, because
+            <span class="verb">\pgfparsertoken</span> has the same meaning as
+            that letter.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>13 different letters found</p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usepgfmodule {parser} </span><br />
+                <span class="textcolor" style="color: #0000b2">\mycount</span
+                ><span class="textcolor" style="color: #000000">=0</span><br />
+                <span class="example-code-comment"
+                  >% using the shortcut syntax of just placing ; after the
+                  state</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdef"
+                    >\pgfparserdef</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000">letters</span
+                >}{<span class="textcolor" style="color: #000000">all</span
+                >};{<span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserswitch"
+                    >\pgfparserswitch</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">final</span
+                >}}<span class="example-code-comment">%</span><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdefunknown"
+                    >\pgfparserdefunknown</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000">letters</span
+                >}{<span class="textcolor" style="color: #000000">all</span
+                >}<span class="example-code-comment">%</span><br />
+                <span class="spaces">  </span>{<span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdef"
+                    >\pgfparserdef</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000">letters</span
+                >}{<span class="textcolor" style="color: #000000">all</span
+                >}<span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparsertoken"
+                    >\pgfparsertoken</a
+                  ></span
+                >{}<span class="textcolor" style="color: #0000b2">\advance</span
+                ><span class="textcolor" style="color: #0000b2">\mycount</span
+                ><span class="textcolor" style="color: #000000">1</span>}<span
+                  class="example-code-comment"
+                  >%</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdeffinal"
+                    >\pgfparserdeffinal</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000">letters</span
+                >}<span class="example-code-comment">%</span><br />
+                <span class="spaces">  </span>{<span class="textcolor" style="color: #0000b2"
+                  >\the</span
+                ><span class="textcolor" style="color: #0000b2">\mycount</span
+                ><span class="textcolor" style="color: #0000b2">\</span
+                > <span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000">letters</span>
+                <span class="textcolor" style="color: #000000">found</span
+                >}<span class="example-code-comment">%</span><br />
+                <span class="example-code-comment"
+                  >% don't throw errors for unknown letters</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserset"
+                    >\pgfparserset</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  >letters/silent=true</span
+                >}<span class="example-code-comment">%</span><br />
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserparse"
+                    >\pgfparserparse</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000"
+                  >different</span
+                >
+                <span class="textcolor" style="color: #000000">letters</span
+                >}<span class="textcolor" style="color: #000000"
+                  >udiaternxqlchudiea</span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Next we want to try something that uses some of the different
+            argument types available.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <kbd>nobody</kbd> <b>will</b>
+                <span class="textcolor" style="color: #ff0000"><i>use</i></span>
+                <span class="textcolor" style="color: #00ff00">P</span>arse<span
+                  class="textcolor"
+                  style="color: #0000ff"
+                  >r</span
+                >
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usepgfmodule {parser} </span><br />
+                <span class="example-code-comment"
+                  >% using the long syntax of \pgfparserdef</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdef"
+                    >\pgfparserdef</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">arguments</span
+                >}{<span class="textcolor" style="color: #000000"
+                  ><a href="library-automata#pgf.initial">initial</a></span
+                >}{<span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000">letter</span>
+                <span class="textcolor" style="color: #000000">a</span>}[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >d()</span
+                >]<br />
+                <span class="spaces">  </span>{<span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserifmark"
+                    >\pgfparserifmark</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">#1</span
+                >}{<span class="textcolor" style="color: #0000b2"
+                  >\textcolor</span
+                >{<span class="textcolor" style="color: #000000">red</span
+                >}{<span class="textcolor" style="color: #0000b2">\textit</span
+                >{<span class="textcolor" style="color: #000000">use</span
+                >}}}{<span class="textcolor" style="color: #0000b2"
+                  >\textbf</span
+                >{<span class="textcolor" style="color: #000000">#1</span
+                >}}<span class="spaces"> </span>}<span class="example-code-comment">%</span><br />
+                <span class="example-code-comment"
+                  >% using the shortcut syntax</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdef"
+                    >\pgfparserdef</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">arguments</span
+                >}{<span class="textcolor" style="color: #000000"
+                  ><a href="library-automata#pgf.initial">initial</a></span
+                >}<span class="textcolor" style="color: #000000">t</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-graphs#pgf.m">m</a></span
+                >]{<span class="textcolor" style="color: #0000b2">\texttt</span
+                >{<span class="textcolor" style="color: #000000">#1</span
+                >}<span class="spaces"> </span>}<span class="example-code-comment">%</span><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdef"
+                    >\pgfparserdef</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">arguments</span
+                >}{<span class="textcolor" style="color: #000000"
+                  ><a href="library-automata#pgf.initial">initial</a></span
+                >}<span class="textcolor" style="color: #000000">c</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >t*O{blue}m</span
+                >]<br />
+                <span class="spaces">  </span>{<span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserifmark"
+                    >\pgfparserifmark</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">#1</span
+                >}{<span class="textcolor" style="color: #000000">#3</span
+                >}{<span class="textcolor" style="color: #0000b2"
+                  >\textcolor</span
+                >{<span class="textcolor" style="color: #000000">#2</span
+                >}{<span class="textcolor" style="color: #000000">#3</span
+                >}}}<span class="example-code-comment">%</span><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserdef"
+                    >\pgfparserdef</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">arguments</span
+                >}{<span class="textcolor" style="color: #000000">all</span
+                >};{<span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserswitch"
+                    >\pgfparserswitch</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">final</span
+                >}}<span class="example-code-comment">%</span><br />
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="module-parser#pgf.back/pgfparserparse"
+                    >\pgfparserparse</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">arguments</span
+                >}<span class="textcolor" style="color: #000000">t</span>{<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >nobody</span
+                >}<span class="textcolor" style="color: #000000">a</span
+                ><span class="textcolor" style="color: #800080">(will)</span
+                ><span class="textcolor" style="color: #000000">ac</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >green</span
+                >]{<span class="textcolor" style="color: #000000">P</span>}<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >c*</span
+                >{<span class="textcolor" style="color: #000000">arse</span
+                >}<span class="textcolor" style="color: #000000">c</span>{<span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-perspective#pgf.r">r</a></span
+                >};<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

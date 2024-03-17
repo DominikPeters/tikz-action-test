@@ -1,0 +1,3767 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Christian Feuersaenger
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Floating Point Unit Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Floating Point Unit Library",
+            "item": "https://tikz.dev/library-fpu"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-fpu" rel="canonical" />
+    <meta content="https://tikz.dev/library-fpu" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Floating Point Unit Library - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5786"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-56.1">Overview</a></p>
+            <p><a class="tocsubsection" href="#sec-56.2">Usage</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-56.3"
+                >Comparison to the fixed point arithmetic library</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-56.4"
+                >Command Reference and Programmer&rsquo;s Manual</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-56.4.1"
+                >Creating and Converting Floats</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-56.4.2"
+                >Symbolic Rounding Operations</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-56.4.3"
+                >Math Operations Commands</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-56.4.4"
+                >Accessing the Original Math Routines for Programmers</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5787">
+            <a id="pgfmath-floatunit"></a
+            ><span
+              ><span class="sectionnumber" id="sec-56">56</span> Floating Point
+              Unit Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.56"
+              data-pdf-page="690"
+              href="#sec-56"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5787"></a>
+          <a id="pgfmanual-autofile-61"></a>
+
+          <a id="section-library-fpu"></a>
+
+          <p>
+            <em>by Christian Feuers&auml;nger</em>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.fpu"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >fpu</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.fpu"
+                      href="#pgf.fpu"
+                      id="pgf.fpu"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usepgflibrary{<span class="textcolor" style="color: #bf0000"
+                    >fpu</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  and pure pgf</kbd
+                ><br />
+                <kbd
+                  >\usepgflibrary[<span class="textcolor" style="color: #bf0000"
+                    >fpu</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t and pure pgf</kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >fpu</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  when using <span class="tikzname">TikZ</span></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >fpu</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t when using <span class="tikzname">TikZ</span></kbd
+                ><br />
+                <br />
+                The floating point unit (fpu) allows the full data range of
+                scientific computing for use in <span class="textsc">pgf</span>.
+                Its core is the <span class="textsc">pgf</span> math routines
+                for mantissa operations, leading to a reasonable trade-off
+                between speed and accuracy. It does not require any third-party
+                packages or external programs.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-5789">
+            <span
+              ><span class="sectionnumber" id="sec-56.1">56.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.1"
+              data-pdf-destination="subsection.56.1"
+              data-pdf-page="690"
+              href="#sec-56.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5789"></a>
+
+          <p>
+            The fpu provides a replacement set of math commands which can be
+            installed in isolated placed to achieve large data ranges at
+            reasonable accuracy. It provides at least<sup>10</sup>the IEEE
+            double precision data range, \(-1 \cdot 10^{324}, \dotsc , 1\cdot
+            10^{324}\). The absolute smallest number bigger than zero is \(1
+            \cdot 10^{-324}\). The FPU&rsquo;s relative precision is at least
+            \(1 \cdot 10^{-4}\) although operations like addition have a
+            relative precision of \(1 \cdot 10^{-6}\).
+          </p>
+
+          <p>
+            Note that the library has not really been tested together with any
+            drawing operations. It should be used to work with arbitrary input
+            data which is then transformed somehow into
+            <span class="textsc">pgf</span> precision. This, in turn, can be
+            processed by <span class="textsc">pgf</span>.
+          </p>
+          <div class="footnotes" role="note">
+            <a id="pgfmanual-autopage-5790"></a>
+
+            <p>
+              <sup>10</sup>&nbsp;To be more precise, the FPU&rsquo;s exponent is
+              currently a 32-bit integer. That means it supports a significantly
+              larger data range than an IEEE double precision number &ndash; but
+              if a future
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              version may provide low-level access to doubles, this may change.
+            </p>
+          </div>
+          <h5 id="autosec-5791">
+            <span
+              ><span class="sectionnumber" id="sec-56.2">56.2</span> Usage</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.2"
+              data-pdf-destination="subsection.56.2"
+              data-pdf-page="690"
+              href="#sec-56.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5791"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        >{<span class="angle">&langle;</span><i>boolean</i
+                        ><span class="angle">&rangle;</span>}
+                      </span></span
+                    ><span class="hl-default">(default <kbd>true</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu"
+                      href="#pgf/fpu"
+                      id="pgf/fpu"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key installs or uninstalls the FPU. The installation
+                exchanges any routines of the standard math parser with those of
+                the FPU: <span class="verb">\pgfmathadd</span> will be replaced
+                with <span class="verb">\pgfmathfloatadd</span> and so on.
+                Furthermore, any number will be parsed with
+                <span class="verb">\pgfmathfloatparsenumber</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1Y2.0e0]</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepgflibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu">/pgf/fpu</a></span
+                      ></span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1+1</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The FPU uses a low-level number representation consisting of
+                flags, mantissa and exponent<sup>11</sup>.To avoid unnecessary
+                format conversions,
+                <span class="verb">\pgfmathresult</span> will usually contain
+                such a cryptic number. Depending on the context, the result may
+                need to be converted into something which is suitable for
+                <span class="textsc">pgf</span> processing (like coordinates) or
+                may need to be typeset. The FPU provides such methods as well.
+              </p>
+              <p>
+                Use <span class="verb">fpu=false</span> to deactivate the FPU.
+                This will restore any change. Please note that this is not
+                necessary if the FPU is used inside of a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group &ndash; it will be deactivated afterwards anyway.
+              </p>
+              <p>
+                It does not hurt to call <span class="verb">fpu=true</span> or
+                <span class="verb">fpu=false</span> multiple times.
+              </p>
+              <p>
+                Please note that if the
+                <span class="verb">fixedpointarithmetic</span> library of
+                <span class="textsc">pgf</span> will be activated after the FPU,
+                the FPU will be deactivated automatically.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/output:format"></a
+                    ><a id="pgf.output:format"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/output format</span
+                          ></span
+                        >=</kbd
+                      ><kbd>float</kbd>|<kbd>sci</kbd>|<kbd>fixed</kbd> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>float</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/output:format"
+                      href="#pgf/fpu/output:format"
+                      id="pgf/fpu/output:format"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key allows to change the number format in which the FPU
+                assigns <span class="verb">\pgfmathresult</span>.
+              </p>
+              <p>
+                The predefined choice <span class="verb">float</span> uses the
+                low-level format used by the FPU. This is useful for further
+                processing inside of any library.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1Y2.17765411e23]</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepgflibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu">/pgf/fpu</a></span
+                      >,<span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu/output:format"
+                          >/pgf/fpu/output format</a
+                        ></span
+                      >=<span class="textcolor" style="color: #008000"
+                        >float</span
+                      ></span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">exp</span
+                    ><span class="textcolor" style="color: #800080">(50)</span
+                    ><span class="textcolor" style="color: #000000">*42</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The choice <span class="verb">sci</span> returns numbers in the
+                format <span class="angle">&langle;</span><i>mantissa</i
+                ><span class="angle">&rangle;</span><span class="verb">e</span
+                ><span class="angle">&langle;</span><i>exponent</i
+                ><span class="angle">&rangle;</span>. It provides almost no
+                computational overhead.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>5.6154816e14</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepgflibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu">/pgf/fpu</a></span
+                      >,<span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu/output:format"
+                          >/pgf/fpu/output format</a
+                        ></span
+                      >=<span class="textcolor" style="color: #008000"
+                        ><a href="math-numberprinting#pgf.sci">sci</a></span
+                      ></span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">4</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >22e-8^-2</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The choice <span class="verb">fixed</span> returns normal fixed
+                point numbers and provides the highest compatibility with the
+                <span class="textsc">pgf</span> engine. It is activated
+                automatically in case the FPU scales results.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>0.000000999985</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepgflibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu">/pgf/fpu</a></span
+                      >,<span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu/output:format"
+                          >/pgf/fpu/output format</a
+                        ></span
+                      >=<span class="textcolor" style="color: #008000"
+                        ><a href="math-numberprinting#pgf.fixed">fixed</a></span
+                      ></span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">sqrt</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(1e-12)</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/scale:results"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/scale results</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>scale</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/scale:results"
+                      href="#pgf/fpu/scale:results"
+                      id="pgf/fpu/scale:results"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A feature which allows semi-automatic result scaling. Setting
+                this key has two effects: first, the output format for
+                <em>any</em> computation will be set to
+                <span class="verb">fixed</span> (assuming results will be
+                processed by <span class="textsc">pgf</span>&rsquo;s kernel).
+                Second, any expression which starts with a star,
+                <span class="verb">*</span>, will be multiplied with
+                <span class="angle">&langle;</span><i>scale</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/scale:file:plot:x"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/scale file plot x</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>scale</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/scale:file:plot:x"
+                      href="#pgf/fpu/scale:file:plot:x"
+                      id="pgf/fpu/scale:file:plot:x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/scale:file:plot:y"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/scale file plot y</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>scale</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/scale:file:plot:y"
+                      href="#pgf/fpu/scale:file:plot:y"
+                      id="pgf/fpu/scale:file:plot:y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/scale:file:plot:z"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/scale file plot z</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>scale</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/scale:file:plot:z"
+                      href="#pgf/fpu/scale:file:plot:z"
+                      id="pgf/fpu/scale:file:plot:z"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                These keys will patch <span class="textsc">pgf</span>&rsquo;s
+                <span class="verb">plot file</span> command to automatically
+                scale single coordinates by <span class="angle">&langle;</span
+                ><i>scale</i><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                The initial setting does not scale
+                <span class="verb">plot file</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgflibraryfpuifactive"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgflibraryfpuifactive</kbd></span
+                      >{<span class="angle">&langle;</span><i>true-code</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>false-code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgflibraryfpuifactive"
+                      href="#\pgflibraryfpuifactive"
+                      id="\pgflibraryfpuifactive"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command can be used to execute either
+                <span class="angle">&langle;</span><i>true-code</i
+                ><span class="angle">&rangle;</span> or
+                <span class="angle">&langle;</span><i>false-code</i
+                ><span class="angle">&rangle;</span>, depending on whether the
+                FPU has been activated or not.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/install:only"></a
+                    ><a id="pgf.install:only"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/install only</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>list of names</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/install:only"
+                      href="#pgf/fpu/install:only"
+                      id="pgf/fpu/install:only"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <a id="fpu-install-only"></a>
+              <p>
+                Unfortunately, the FPU is currently incompatible with drawing
+                operations. However, it can still be useful to replace single
+                definitions with FPU counterparts to avoid errors of the kind
+                <span class="verb">Dimension too large</span>
+                which tend to happen when transformation matrices are inverted.
+              </p>
+              <p>
+                This key allows to specify a list of definitions to be pulled
+                into the current scope.
+                <em
+                  >Note that there is no reverse operation to uninstall these
+                  definitions at the moment</em
+                >, so it is advisable to do this in a group. Conveniently,
+                <span class="tikzname">TikZ</span> paths form an implicit group,
+                so you can use this key on a path as well.
+              </p>
+              <p>
+                You have to be aware of the limitations that the FPU imposes. It
+                will not magically give
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                better precision, but it will avoid overflow or underflow
+                situations for large or small operands by rescaling them. In the
+                following example, in the first case the FPU variant performs
+                much better than the normal variant, however, in the second case
+                where a rescaling would not in fact be needed the rescaling
+                introduces a small round-off error.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>10000.000000(good)2.9999000000000(bad)</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepgflibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\begingroup</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        ><a href="library-fpu#pgf./pgf/fpu/install:only"
+                          >/pgf/fpu/install only</a
+                        ></span
+                      >=<span class="textcolor" style="color: #008000"
+                        >{divide}</span
+                      ></span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">12</span
+                    >.<span class="textcolor" style="color: #000000">34/0</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >001234</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(good)</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathparse"
+                        >\pgfmathparse</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">12/4</span
+                    >}<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(bad)</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\endgroup</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                This key is introduced in <span class="textsc">pgf</span>v3.1.6
+                and marked stable since <span class="textsc">pgf</span>v3.1.8.
+              </p>
+            </ul>
+          </div>
+          <div class="footnotes" role="note">
+            <a id="pgfmanual-autopage-5792"></a>
+
+            <p>
+              <sup>11</sup>&nbsp;Users should <em>always</em> use high level
+              routines to manipulate floating point numbers as the format may
+              change in a future release.
+            </p>
+          </div>
+          <h5 id="autosec-5793">
+            <span
+              ><span class="sectionnumber" id="sec-56.3">56.3</span> Comparison
+              to the fixed point arithmetic library</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.3"
+              data-pdf-destination="subsection.56.3"
+              data-pdf-page="691"
+              href="#sec-56.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5793"></a>
+
+          <p>
+            There are other ways to increase the data range and/or the precision
+            of <span class="textsc">pgf</span>&rsquo;s math parser. One of them
+            is the <span class="verb">fp</span> package, preferable combined
+            with <span class="textsc">pgf</span>&rsquo;s
+            <span class="verb">fixedpointarithmetic</span> library. The
+            differences between the FPU and <span class="verb">fp</span> are:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The FPU supports at least
+                the complete IEEE double precision number range, while
+                <span class="verb">fp</span> covers only numbers of magnitude
+                \(\pm 1\cdot 10^{17}\).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The FPU has a uniform
+                relative precision of about 4&ndash;5 correct digits. The fixed
+                point library has an absolute precision which may perform good
+                in many cases &ndash; but will fail at the ends of the data
+                range (as every fixed point routines does).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The FPU has potential to
+                be faster than <span class="verb">fp</span> as it has access to
+                fast mantissa operations using
+                <span class="textsc">pgf</span>&rsquo;s math capabilities (which
+                use
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                registers).
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-5794">
+            <span
+              ><span class="sectionnumber" id="sec-56.4">56.4</span> Command
+              Reference and Programmer&rsquo;s Manual</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.4"
+              data-pdf-destination="subsection.56.4"
+              data-pdf-page="692"
+              href="#sec-56.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5794"></a>
+          <h6 id="autosec-5795">
+            <span
+              ><span class="sectionnumber" id="sec-56.4.1">56.4.1</span>
+              Creating and Converting Floats</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.4.1"
+              data-pdf-destination="subsubsection.56.4.1"
+              data-pdf-page="692"
+              href="#sec-56.4.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5795"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatparsenumber"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatparsenumber</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatparsenumber"
+                      href="#\pgfmathfloatparsenumber"
+                      id="\pgfmathfloatparsenumber"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Reads a number of arbitrary magnitude and precision and stores
+                its result into <span class="verb">\pgfmathresult</span> as
+                floating point number \(m \cdot 10^e\) with mantissa and
+                exponent base&nbsp;\(10\).
+              </p>
+              <p>
+                The algorithm and the storage format is purely text-based. The
+                number is stored as a triple of flags, a positive mantissa and
+                an exponent, such as
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1Y2.0e0]</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Please do not rely on the low-level representation here, use
+                <span class="verb">\pgfmathfloattomacro</span> (and its
+                variants) and <span class="verb">\pgfmathfloatcreate</span> if
+                you want to work with these components.
+              </p>
+              <p>
+                The flags encoded in
+                <span class="verb">\pgfmathresult</span> are represented as a
+                digit where &lsquo;\(0\)&rsquo; stands for the number \(\pm
+                0\cdot 10^0\), &lsquo;\(1\)&rsquo; stands for a positive sign,
+                &lsquo;\(2\)&rsquo; means a negative sign, &lsquo;\(3\)&rsquo;
+                stands for &lsquo;not a number&rsquo;, &lsquo;\(4\)&rsquo; means
+                \(+\infty \) and &lsquo;\(5\)&rsquo; stands for \(-\infty \).
+              </p>
+              <p>
+                The mantissa is a normalized real number \(m \in \mathbb {R}\),
+                \(1 \le m &lt; 10\). It always contains a period and at least
+                one digit after the period. The exponent is an integer.
+              </p>
+              <p>Examples:</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 0; Mantissa 0.0; Exponent 0.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 2.0; Exponent -1.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">2</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 4.2; Exponent 1.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">42</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 2.05; Exponent 3.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">20</span
+                    >.<span class="textcolor" style="color: #000000">5E+2</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 1.0; Exponent 6.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1e6</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 5.21513; Exponent -11.</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >21513e-11</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    >.<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The argument <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> may be given in fixed point
+                format or the scientific &ldquo;e&rdquo; (or &ldquo;E&rdquo;)
+                notation. The scientific notation does not necessarily need to
+                be normalized. The supported exponent range is (currently) only
+                limited by the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-integer range (which uses 31 bit integer numbers).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/handlers/empty:number"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/handlers/empty number</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>input</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>unreadable part</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/handlers/empty:number"
+                      href="#pgf/fpu/handlers/empty:number"
+                      id="pgf/fpu/handlers/empty:number"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command key is invoked in case an empty string is parsed
+                inside of <span class="verb">\pgfmathfloatparsenumber</span>.
+                You can overwrite it to assign a replacement
+                <span class="verb">\pgfmathresult</span> (in float!).
+              </p>
+              <p>
+                The initial setting is to invoke
+                <span class="verb">invalid number</span>, see below.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/handlers/invalid:number"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/handlers/invalid number</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>input</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>unreadable part</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/handlers/invalid:number"
+                      href="#pgf/fpu/handlers/invalid:number"
+                      id="pgf/fpu/handlers/invalid:number"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command key is invoked in case an invalid string is parsed
+                inside of <span class="verb">\pgfmathfloatparsenumber</span>.
+                You can overwrite it to assign a replacement
+                <span class="verb">\pgfmathresult</span> (in float!).
+              </p>
+              <p>The initial setting is to generate an error message.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fpu/handlers/wrong:lowlevel:format"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fpu/handlers/wrong lowlevel format</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>input</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>unreadable part</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fpu/handlers/wrong:lowlevel:format"
+                      href="#pgf/fpu/handlers/wrong:lowlevel:format"
+                      id="pgf/fpu/handlers/wrong:lowlevel:format"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command key is invoked whenever
+                <span class="verb">\pgfmathfloattoregisters</span> or its
+                variants encounter something which is not a properly formatted
+                low-level floating point number. As for
+                <span class="verb">invalid number</span>, this key may assign a
+                new <span class="verb">\pgfmathresult</span> (in floating point)
+                which will be used instead of the offending
+                <span class="angle">&langle;</span><i>input</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>The initial setting is to generate an error message.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatqparsenumber"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatqparsenumber</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatqparsenumber"
+                      href="#\pgfmathfloatqparsenumber"
+                      id="\pgfmathfloatqparsenumber"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The same as <span class="verb">\pgfmathfloatparsenumber</span>,
+                but does not perform sanity checking.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattofixed"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattofixed</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattofixed"
+                      href="#\pgfmathfloattofixed"
+                      id="\pgfmathfloattofixed"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Converts a number in floating point representation to a fixed
+                point number. It is a counterpart to
+                <span class="verb">\pgfmathfloatparsenumber</span>. The
+                algorithm is purely text based and defines
+                <span class="verb">\pgfmathresult</span> as a string sequence
+                which represents the floating point number
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> as a fixed point number (of
+                arbitrary precision).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 5.2; Exponent -4\(\to \)0.00052</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">00052</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">$</span
+                    ><span class="textcolor" style="color: #0000b2">\to</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattofixed"
+                        >\pgfmathfloattofixed</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    Flags: 1; Mantissa 1.23456; Exponent 6\(\to
+                    \)1234560.00000000
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">123</span
+                    >.<span class="textcolor" style="color: #000000">456e4</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">$</span
+                    ><span class="textcolor" style="color: #0000b2">\to</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattofixed"
+                        >\pgfmathfloattofixed</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattoint"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattoint</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattoint"
+                      href="#\pgfmathfloattoint"
+                      id="\pgfmathfloattoint"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Converts a number from low-level floating point representation
+                to an integer (by truncating the fractional part).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>123456</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >123456</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattoint"
+                        >\pgfmathfloattoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                See also <span class="verb">\pgfmathfloatint</span> which
+                returns the result as float.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattosci"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattosci</kbd></span
+                      >{<span class="angle">&langle;</span><i>float</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattosci"
+                      href="#\pgfmathfloattosci"
+                      id="\pgfmathfloattosci"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Converts a number from low-level floating point representation
+                to scientific format, \(1.234e4\). The result will be assigned
+                to the macro <span class="verb">\pgfmathresult</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatvalueof"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatvalueof</kbd></span
+                      >{<span class="angle">&langle;</span><i>float</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatvalueof"
+                      href="#\pgfmathfloatvalueof"
+                      id="\pgfmathfloatvalueof"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Expands a number from low-level floating point representation to
+                scientific format, \(1.234e4\).
+              </p>
+              <p>
+                Use <span class="verb">\pgfmathfloatvalueof</span> in contexts
+                where only expandable macros are allowed.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatcreate"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatcreate</kbd></span
+                      >{<span class="angle">&langle;</span><i>flags</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>mantissa</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>exponent</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatcreate"
+                      href="#\pgfmathfloatcreate"
+                      id="\pgfmathfloatcreate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> as the floating
+                point number encoded by <span class="angle">&langle;</span
+                ><i>flags</i><span class="angle">&rangle;</span>,
+                <span class="angle">&langle;</span><i>mantissa</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>exponent</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                All arguments are characters and will be expanded using
+                <span class="verb">\edef</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>Flags: 1; Mantissa 1.0; Exponent 327</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatcreate"
+                        >\pgfmathfloatcreate</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >}{<span class="textcolor" style="color: #000000">1</span
+                    >.<span class="textcolor" style="color: #000000">0</span
+                    >}{<span class="textcolor" style="color: #000000">327</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattomacro"
+                        >\pgfmathfloattomacro</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #0000b2">\F</span
+                    >}{<span class="textcolor" style="color: #0000b2">\M</span
+                    >}{<span class="textcolor" style="color: #0000b2">\E</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">Flags:</span>
+                    <span class="textcolor" style="color: #0000b2">\F</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Mantissa</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\M</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >Exponent</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\E</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatifflags"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatifflags</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>floating point number</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>flag</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>true-code</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>false-code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatifflags"
+                      href="#\pgfmathfloatifflags"
+                      id="\pgfmathfloatifflags"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Invokes <span class="angle">&langle;</span><i>true-code</i
+                ><span class="angle">&rangle;</span> if the flag of
+                <span class="angle">&langle;</span><i>floating point number</i
+                ><span class="angle">&rangle;</span> equals
+                <span class="angle">&langle;</span><i>flag</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>false-code</i
+                ><span class="angle">&rangle;</span> otherwise.
+              </p>
+              <p>
+                The argument <span class="angle">&langle;</span><i>flag</i
+                ><span class="angle">&rangle;</span> can be one of
+              </p>
+              <dl class="description">
+                <dt><span class="listmarker">0</span></dt>
+                <dd>
+                  <p>to test for zero,</p>
+                </dd>
+                <dt><span class="listmarker">1</span></dt>
+                <dd>
+                  <p>to test for positive numbers,</p>
+                </dd>
+                <dt><span class="listmarker">+</span></dt>
+                <dd>
+                  <p>to test for positive numbers,</p>
+                </dd>
+                <dt><span class="listmarker">2</span></dt>
+                <dd>
+                  <p>to test for negative numbers,</p>
+                </dd>
+                <dt><span class="listmarker">-</span></dt>
+                <dd>
+                  <p>to test for negative numbers,</p>
+                </dd>
+                <dt><span class="listmarker">3</span></dt>
+                <dd>
+                  <p>for &ldquo;not-a-number&rdquo;,</p>
+                </dd>
+                <dt><span class="listmarker">4</span></dt>
+                <dd>
+                  <p>for \(+\infty \),</p>
+                </dd>
+                <dt><span class="listmarker">5</span></dt>
+                <dd>
+                  <p>for \(-\infty \).</p>
+                </dd>
+              </dl>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    It&rsquo;s not zero!It&rsquo;s positive!It&rsquo;s not
+                    negative!It&rsquo;s positive!It&rsquo;s not negative!
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">42</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatifflags"
+                        >\pgfmathfloatifflags</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000">zero!</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.not">not</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">zero!</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatifflags"
+                        >\pgfmathfloatifflags</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #000000">1</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >positive!</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.not">not</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >positive!</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatifflags"
+                        >\pgfmathfloatifflags</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #000000">2</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >negative!</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.not">not</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >negative!</span
+                    >}<br />
+                    <br />
+                    <span class="example-code-comment">% or, equivalently</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatifflags"
+                        >\pgfmathfloatifflags</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #000000">+</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >positive!</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.not">not</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >positive!</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatifflags"
+                        >\pgfmathfloatifflags</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}{<span class="textcolor" style="color: #000000">-</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >negative!</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >It's</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.not">not</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >negative!</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattomacro"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattomacro</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>flagsmacro</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>mantissamacro</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>exponentmacro</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattomacro"
+                      href="#\pgfmathfloattomacro"
+                      id="\pgfmathfloattomacro"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Extracts the flags of a floating point number
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> to
+                <span class="angle">&langle;</span><i>flagsmacro</i
+                ><span class="angle">&rangle;</span>, the mantissa to
+                <span class="angle">&langle;</span><i>mantissamacro</i
+                ><span class="angle">&rangle;</span> and the exponent to
+                <span class="angle">&langle;</span><i>exponentmacro</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattoregisters"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattoregisters</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>flagscount</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>mantissadimen</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>exponentcount</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattoregisters"
+                      href="#\pgfmathfloattoregisters"
+                      id="\pgfmathfloattoregisters"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Takes a floating point number <span class="angle">&langle;</span
+                ><i>x</i><span class="angle">&rangle;</span> as input and writes
+                flags to count register <span class="angle">&langle;</span
+                ><i>flagscount</i><span class="angle">&rangle;</span>, mantissa
+                to dimen register <span class="angle">&langle;</span
+                ><i>mantissadimen</i><span class="angle">&rangle;</span> and
+                exponent to count register <span class="angle">&langle;</span
+                ><i>exponentcount</i><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                Please note that this method rounds the mantissa to
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-precision.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattoregisterstok"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattoregisterstok</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>flagscount</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>mantissatoks</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>exponentcount</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattoregisterstok"
+                      href="#\pgfmathfloattoregisterstok"
+                      id="\pgfmathfloattoregisterstok"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A variant of
+                <span class="verb">\pgfmathfloattoregisters</span> which writes
+                the mantissa into a token register. It maintains the full input
+                precision.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatgetflags"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatgetflags</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>flagscount</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatgetflags"
+                      href="#\pgfmathfloatgetflags"
+                      id="\pgfmathfloatgetflags"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Extracts the flags of <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> into the count register
+                <span class="angle">&langle;</span><i>flagscount</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatgetflagstomacro"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatgetflagstomacro</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>macro</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatgetflagstomacro"
+                      href="#\pgfmathfloatgetflagstomacro"
+                      id="\pgfmathfloatgetflagstomacro"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Extracts the flags of <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> into the macro
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatgetmantissa"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatgetmantissa</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>mantissadimen</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatgetmantissa"
+                      href="#\pgfmathfloatgetmantissa"
+                      id="\pgfmathfloatgetmantissa"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Extracts the mantissa of <span class="angle">&langle;</span
+                ><i>x</i><span class="angle">&rangle;</span> into the dimen
+                register <span class="angle">&langle;</span><i>mantissadimen</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatgetmantissatok"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatgetmantissatok</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>mantissatoks</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatgetmantissatok"
+                      href="#\pgfmathfloatgetmantissatok"
+                      id="\pgfmathfloatgetmantissatok"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Extracts the mantissa of <span class="angle">&langle;</span
+                ><i>x</i><span class="angle">&rangle;</span> into the token
+                register <span class="angle">&langle;</span><i>mantissatoks</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatgetexponent"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatgetexponent</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>exponentcount</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatgetexponent"
+                      href="#\pgfmathfloatgetexponent"
+                      id="\pgfmathfloatgetexponent"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Extracts the exponent of <span class="angle">&langle;</span
+                ><i>x</i><span class="angle">&rangle;</span> into the count
+                register <span class="angle">&langle;</span><i>exponentcount</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-5797">
+            <span
+              ><span class="sectionnumber" id="sec-56.4.2">56.4.2</span>
+              Symbolic Rounding Operations</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.4.2"
+              data-pdf-destination="subsubsection.56.4.2"
+              data-pdf-page="695"
+              href="#sec-56.4.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5797"></a>
+
+          <p>
+            Commands in this section constitute the basic level implementations
+            of the rounding routines. They work symbolically, i.e. they operate
+            on text, not on numbers and allow arbitrarily large numbers.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathroundto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathroundto</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathroundto"
+                      href="#\pgfmathroundto"
+                      id="\pgfmathroundto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Rounds a fixed point number to prescribed precision and writes
+                the result to <span class="verb">\pgfmathresult</span>.
+              </p>
+              <p>
+                The desired precision can be configured with
+                <span class="verb">/pgf/number format/precision</span>, see
+                section&nbsp;<a
+                  href="math-numberprinting#pgfmath-numberprinting"
+                  >97</a
+                >. This section does also contain application examples.
+              </p>
+              <p>
+                Any trailing zeros after the period are discarded. The algorithm
+                is purely text based and allows to deal with precisions beyond
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >&rsquo;s fixed point support.
+              </p>
+              <p>
+                As a side effect, the global boolean
+                <span class="verb">\ifpgfmathfloatroundhasperiod</span> will be
+                set to true if and only if the resulting mantissa has a period.
+                Furthermore,
+                <span class="verb">\ifpgfmathfloatroundmayneedrenormalize</span>
+                will be set to true if and only if the rounding result&rsquo;s
+                floating point representation would have a larger exponent than
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathroundto"
+                        >\pgfmathroundto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>4.69</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathroundto"
+                        >\pgfmathroundto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">4</span
+                    >.<span class="textcolor" style="color: #000000">685</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>20000</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathroundto"
+                        >\pgfmathroundto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">19999</span
+                    >.<span class="textcolor" style="color: #000000">9996</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathroundtozerofill"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathroundtozerofill</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathroundtozerofill"
+                      href="#\pgfmathroundtozerofill"
+                      id="\pgfmathroundtozerofill"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A variant of <span class="verb">\pgfmathroundto</span> which
+                always uses a fixed number of digits behind the period. It fills
+                missing digits with zeros.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1.00</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathroundtozerofill"
+                        >\pgfmathroundtozerofill</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>4.69</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathroundto"
+                        >\pgfmathroundto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">4</span
+                    >.<span class="textcolor" style="color: #000000">685</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>20000.00</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathroundtozerofill"
+                        >\pgfmathroundtozerofill</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">19999</span
+                    >.<span class="textcolor" style="color: #000000">9996</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatround"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatround</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatround"
+                      href="#\pgfmathfloatround"
+                      id="\pgfmathfloatround"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Rounds a normalized floating point number to a prescribed
+                precision and writes the result to
+                <span class="verb">\pgfmathresult</span>.
+              </p>
+              <p>
+                The desired precision can be configured with
+                <span class="verb">/pgf/number format/precision</span>, see
+                section&nbsp;<a
+                  href="math-numberprinting#pgfmath-numberprinting"
+                  >97</a
+                >.
+              </p>
+              <p>
+                This method employs <span class="verb">\pgfmathroundto</span> to
+                round the mantissa and applies renormalization if necessary.
+              </p>
+              <p>
+                As a side effect, the global boolean
+                <span class="verb">\ifpgfmathfloatroundhasperiod</span> will be
+                set to true if and only if the resulting mantissa has a period.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>5.26e1</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">52</span
+                    >.<span class="textcolor" style="color: #000000">5864</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatround"
+                        >\pgfmathfloatround</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattosci"
+                        >\pgfmathfloattosci</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1e1</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">9</span
+                    >.<span class="textcolor" style="color: #000000">995</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatround"
+                        >\pgfmathfloatround</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattosci"
+                        >\pgfmathfloattosci</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatroundzerofill"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatroundzerofill</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatroundzerofill"
+                      href="#\pgfmathfloatroundzerofill"
+                      id="\pgfmathfloatroundzerofill"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A variant of
+                <span class="verb">\pgfmathfloatround</span> produces always the
+                same number of digits after the period (it includes zeros if
+                necessary).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>5.26e1</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">52</span
+                    >.<span class="textcolor" style="color: #000000">5864</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatroundzerofill"
+                        >\pgfmathfloatroundzerofill</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattosci"
+                        >\pgfmathfloattosci</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>1.00e1</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatparsenumber"
+                        >\pgfmathfloatparsenumber</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">9</span
+                    >.<span class="textcolor" style="color: #000000">995</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloatroundzerofill"
+                        >\pgfmathfloatroundzerofill</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathfloattosci"
+                        >\pgfmathfloattosci</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+          <h6 id="autosec-5798">
+            <span
+              ><span class="sectionnumber" id="sec-56.4.3">56.4.3</span> Math
+              Operations Commands</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.4.3"
+              data-pdf-destination="subsubsection.56.4.3"
+              data-pdf-page="696"
+              href="#sec-56.4.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5798"></a>
+
+          <p>
+            This section describes some of the replacement commands in more
+            detail.
+          </p>
+
+          <p>
+            Please note that these commands can be used even if the
+            <span class="verb">fpu</span> as such has not been activated &ndash;
+            it is sufficient to load the library.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloat"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloat</kbd></span
+                      ><span class="angle">&langle;</span><i>op</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloat"
+                      href="#\pgfmathfloat"
+                      id="\pgfmathfloat"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Methods of this form constitute the replacement operations where
+                <span class="angle">&langle;</span><i>op</i
+                ><span class="angle">&rangle;</span> can be any of the
+                well-known math operations.
+              </p>
+              <p>
+                <a id="pgf.back/pgfmathfloatadd"></a>
+                Thus,
+                <kbd
+                  ><span class="textcolor" style="color: #bf0000"
+                    >\pgfmathfloatadd</span
+                  ></kbd
+                >
+                is the counterpart for <span class="verb">\pgfmathadd</span> and
+                so on. The semantics and number of arguments is the same, but
+                all input and output arguments are <em>expected</em> to be
+                floating point numbers.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloattoextentedprecision"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloattoextentedprecision</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloattoextentedprecision"
+                      href="#\pgfmathfloattoextentedprecision"
+                      id="\pgfmathfloattoextentedprecision"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Renormalizes <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> to extended precision
+                mantissa, meaning \(100 \le m &lt; 1000\) instead of \(1 \le m
+                &lt; 10\).
+              </p>
+              <p>
+                The &ldquo;extended precision&rdquo; means we have higher
+                accuracy when we apply pgfmath operations to mantissas.
+              </p>
+              <p>
+                The input argument is expected to be a normalized floating point
+                number; the output argument is a non-normalized floating point
+                number (well, normalized to extended precision).
+              </p>
+              <p>The operation is supposed to be very fast.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatsetextprecision"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatsetextprecision</kbd></span
+                      >{<span class="angle">&langle;</span><i>shift</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatsetextprecision"
+                      href="#\pgfmathfloatsetextprecision"
+                      id="\pgfmathfloatsetextprecision"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the precision used inside of
+                <span class="verb">\pgfmathfloattoextentedprecision</span> to
+                <span class="angle">&langle;</span><i>shift</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>The different choices are</p>
+              <table>
+                <tbody>
+                  <tr style="display: none">
+                    <th>.</th>
+                  </tr>
+
+                  <tr>
+                    <td class="tdl">0</td>
+                    <td class="tdl">normalization to</td>
+                    <td class="tdr">\(0\)</td>
+                    <td class="tdl">\(\le m &lt; 1\)</td>
+                    <td class="tdl">(disable extended precision)</td>
+                  </tr>
+
+                  <tr>
+                    <td class="tdl">1</td>
+                    <td class="tdl">normalization to</td>
+                    <td class="tdr">\(10\)</td>
+                    <td class="tdl">\(\le m &lt; 100\)</td>
+                    <td class="tdl"></td>
+                  </tr>
+
+                  <tr>
+                    <td class="tdl">2</td>
+                    <td class="tdl">normalization to</td>
+                    <td class="tdr">\(100\)</td>
+                    <td class="tdl">\(\le m &lt; 1000\)</td>
+                    <td class="tdl">
+                      (default of
+                      <span class="verb">\pgfmathfloattoextentedprecision</span
+                      >)
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="tdl">3</td>
+                    <td class="tdl">normalization to</td>
+                    <td class="tdr">\(1000\)</td>
+                    <td class="tdl">\(\le m &lt; 10000\)</td>
+                    <td class="tdl"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatlessthan"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatlessthan</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatlessthan"
+                      href="#\pgfmathfloatlessthan"
+                      id="\pgfmathfloatlessthan"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> as \(1.0\) if
+                \(\meta {x} &lt; \meta {y}\), but \(0.0\) otherwise. It also
+                sets the global
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-boolean
+                <span class="verb">\pgfmathfloatcomparison</span> accordingly.
+                The arguments <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>y</i
+                ><span class="angle">&rangle;</span> are expected to be numbers
+                which have already been processed by
+                <span class="verb">\pgfmathfloatparsenumber</span>. Arithmetic
+                is carried out using
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-registers for exponent- and mantissa comparison.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatmultiplyfixed"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatmultiplyfixed</kbd></span
+                      >{<span class="angle">&langle;</span><i>float</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>fixed</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatmultiplyfixed"
+                      href="#\pgfmathfloatmultiplyfixed"
+                      id="\pgfmathfloatmultiplyfixed"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> to be \(\meta
+                {float} \cdot \meta {fixed}\) where
+                <span class="angle">&langle;</span><i>float</i
+                ><span class="angle">&rangle;</span> is a floating point number
+                and <span class="angle">&langle;</span><i>fixed</i
+                ><span class="angle">&rangle;</span> is a fixed point number.
+                The computation is performed in floating point arithmetic, that
+                means we compute \(m \cdot \meta {fixed}\) and renormalize the
+                result where \(m\) is the mantissa of
+                <span class="angle">&langle;</span><i>float</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                This operation renormalizes <span class="angle">&langle;</span
+                ><i>float</i><span class="angle">&rangle;</span> with
+                <span class="verb">\pgfmathfloattoextentedprecision</span>
+                before the operation, that means it is intended for relatively
+                small arguments of <span class="angle">&langle;</span
+                ><i>fixed</i><span class="angle">&rangle;</span>. The result is
+                a floating point number.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatifapproxequalrel"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatifapproxequalrel</kbd></span
+                      >{<span class="angle">&langle;</span><i>a</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>b</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>true-code</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>false-code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatifapproxequalrel"
+                      href="#\pgfmathfloatifapproxequalrel"
+                      id="\pgfmathfloatifapproxequalrel"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Computes the relative error between
+                <span class="angle">&langle;</span><i>a</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>b</i
+                ><span class="angle">&rangle;</span> (assuming
+                <span class="angle">&langle;</span><i>b</i
+                ><span class="angle">&rangle;</span>\(\neq 0\)) and invokes
+                <span class="angle">&langle;</span><i>true-code</i
+                ><span class="angle">&rangle;</span> if the relative error is
+                below <span class="verb">/pgf/fpu/rel thresh</span> and
+                <span class="angle">&langle;</span><i>false-code</i
+                ><span class="angle">&rangle;</span> if that is not the case.
+              </p>
+              <p>
+                The input arguments will be parsed with
+                <span class="verb">\pgfmathfloatparsenumber</span>.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/fpu/rel:thresh"></a
+                        ><a id="pgf.rel:thresh"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/fpu/rel thresh</span
+                              ></span
+                            >=</kbd
+                          >{<span class="angle">&langle;</span><i>number</i
+                          ><span class="angle">&rangle;</span>} </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>1e-4</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/fpu/rel:thresh"
+                          href="#pgf/fpu/rel:thresh"
+                          id="pgf/fpu/rel:thresh"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    A threshold used by
+                    <span class="verb">\pgfmathfloatifapproxequalrel</span> to
+                    decide whether numbers are approximately equal.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatshift"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatshift</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>num</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatshift"
+                      href="#\pgfmathfloatshift"
+                      id="\pgfmathfloatshift"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> to be \(\meta
+                {x} \cdot 10^{\meta {num}}\). The operation is an arithmetic
+                shift base ten and modifies only the exponent of
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span>. The argument
+                <span class="angle">&langle;</span><i>num</i
+                ><span class="angle">&rangle;</span> is expected to be a
+                (positive or negative) integer.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatabserror"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatabserror</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatabserror"
+                      href="#\pgfmathfloatabserror"
+                      id="\pgfmathfloatabserror"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> to be the
+                absolute error between two floating point numbers \(x\) and
+                \(y\), \(\lvert x - y\rvert \) and returns the result as
+                floating point number.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatrelerror"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatrelerror</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatrelerror"
+                      href="#\pgfmathfloatrelerror"
+                      id="\pgfmathfloatrelerror"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> to be the
+                relative error between two floating point numbers \(x\) and
+                \(y\), \(\lvert x - y\rvert / \lvert y \rvert \) and returns the
+                result as floating point number.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathfloatint"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathfloatint</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathfloatint"
+                      href="#\pgfmathfloatint"
+                      id="\pgfmathfloatint"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Returns the integer part of the floating point number
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span>, by truncating any digits
+                after the period. This methods truncates the absolute value
+                \(\rvert x \lvert \) to the next smaller integer and restores
+                the original sign afterwards.
+              </p>
+              <p>The result is returned as floating point number as well.</p>
+              <p>
+                See also <span class="verb">\pgfmathfloattoint</span> which
+                returns the number in integer format.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfmathlog"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfmathlog</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfmathlog"
+                      href="#\pgfmathlog"
+                      id="\pgfmathlog"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Defines <span class="verb">\pgfmathresult</span> to be the
+                natural logarithm of <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span>, \(\ln (\meta {x})\). This
+                method is logically the same as
+                <span class="verb">\pgfmathln</span>, but it applies floating
+                point arithmetic to read number
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> and employs the logarithm
+                identity
+              </p>
+              <p>\[ \ln (m \cdot 10^e) = \ln (m) + e \cdot \ln (10) \]</p>
+              <p>
+                to get the result. The factor \(\ln (10)\) is a constant, so
+                only \(\ln (m)\) with \(1 \le m &lt; 10\) needs to be computed.
+                This is done using standard pgf math operations.
+              </p>
+              <p>
+                Please note that <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> needs to be a number,
+                expression parsing is not possible here.
+              </p>
+              <p>
+                If <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> is <em>not</em> a bounded
+                positive real number (for example \(\meta {x} \le 0\)),
+                <span class="verb">\pgfmathresult</span> will be <em>empty</em>,
+                no error message will be generated.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>-15.7452</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathlog"
+                        >\pgfmathlog</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >452e-7</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>20.28096</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {fpu} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="library-fpu#pgf.back/pgfmathlog"
+                        >\pgfmathlog</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">6</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >426e+8</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\pgfmathresult</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+          <h6 id="autosec-5800">
+            <span
+              ><span class="sectionnumber" id="sec-56.4.4">56.4.4</span>
+              Accessing the Original Math Routines for Programmers</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-56.4.4"
+              data-pdf-destination="subsubsection.56.4.4"
+              data-pdf-page="698"
+              href="#sec-56.4.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5800"></a>
+
+          <p>
+            As soon as the library is loaded, every private math routine will be
+            copied to a new name. This allows library and package authors to
+            access the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-register based math routines even if the FPU is activated. And, of
+            course, it allows the FPU as such to perform its own mantissa
+            computations.
+          </p>
+
+          <p>
+            The private implementations of <span class="textsc">pgf</span> math
+            commands, which are of the form <span class="verb">\pgfmath</span
+            ><span class="angle">&langle;</span><i>name</i
+            ><span class="angle">&rangle;</span><span class="verb">@</span>,
+            will be available as<span class="verb">\pgfmath@basic@</span
+            ><span class="angle">&langle;</span><i>name</i
+            ><span class="angle">&rangle;</span><span class="verb">@</span> as
+            soon as the library is loaded.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

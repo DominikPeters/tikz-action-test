@@ -1,0 +1,1415 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Guidelines on Graphics - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Tutorials and Guidelines",
+            "item": "https://tikz.dev/tutorials-guidelines"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Guidelines on Graphics",
+            "item": "https://tikz.dev/guidelines"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <meta
+      content="This section is not about pgf or TikZ, but about general guidelines and principles concerning the creation of graphics for scientific presentations, papers, and books."
+      name="description"
+    />
+    <meta
+      content="This section is not about pgf or TikZ, but about general guidelines and principles concerning the creation of graphics for scientific presentations, papers, and books."
+      property="og:description"
+    />
+    <link href="https://tikz.dev/guidelines" rel="canonical" />
+    <meta content="https://tikz.dev/guidelines" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Guidelines on Graphics - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-383"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-7.1"
+                >Planning the Time Needed for the Creation of Graphics</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-7.2"
+                >Workflow for Creating a Graphic</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-7.3"
+                >Linking Graphics With the Main Text</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-7.4"
+                >Consistency Between Graphics and Text</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-7.5">Labels in Graphics</a>
+            </p>
+            <p><a class="tocsubsection" href="#sec-7.6">Plots and Charts</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-7.7"
+                >Attention and Distraction</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tutorial"
+                >Tutorial: A Picture for Karl&rsquo;s Students</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tutorial-nodes"
+                >Tutorial: A Petri-Net for Hagen</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tutorial-Euclid"
+                >Tutorial: Euclid&rsquo;s Amber Version of the
+                <em>Elements</em></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tutorial-chains"
+                >Tutorial: Diagrams as Simple Graphs</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tutorial-map"
+                >Tutorial: A Lecture Map for Johannes</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="guidelines">Guidelines on Graphics</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Tutorials and Guidelines</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-384">
+            <span
+              ><span class="sectionnumber" id="sec-7">7</span> Guidelines on
+              Graphics</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.7"
+              data-pdf-page="95"
+              href="#sec-7"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-384"></a>
+          <a id="pgfmanual-autofile-8"></a>
+
+          <p>
+            The present section is not about <span class="textsc">pgf</span> or
+            <span class="tikzname">TikZ</span>, but about general guidelines and
+            principles concerning the creation of graphics for scientific
+            presentations, papers, and books.
+          </p>
+
+          <p>
+            The guidelines in this section come from different sources. Many of
+            them are just what I would like to claim is &ldquo;common
+            sense&rdquo;, some reflect my personal experience (though,
+            hopefully, not my personal preferences), some come from books (the
+            bibliography is still missing, sorry) on graphic design and
+            typography. The most influential source are the brilliant books by
+            Edward Tufte. While I do not agree with everything written in these
+            books, many of Tufte&rsquo;s arguments are so convincing that I
+            decided to repeat them in the following guidelines.
+          </p>
+
+          <p>
+            The first thing you should ask yourself when someone presents a
+            bunch of guidelines is: Should I really follow these guidelines?
+            This is an important question, because there are good reasons not to
+            follow general guidelines. The person who set up the guidelines may
+            have had other objectives than you do. For example, a guideline
+            might say &ldquo;use the color red for emphasis&rdquo;. While this
+            guideline makes perfect sense for, say, a presentation using a
+            projector, red &ldquo;color&rdquo; has the <em>opposite</em> effect
+            of &ldquo;emphasis&rdquo; when printed using a black-and-white
+            printer. Guidelines were almost always set up to address a specific
+            situation. If you are not in this situation, following a guideline
+            can do more harm than good.
+          </p>
+
+          <p>
+            The second thing you should be aware of is the basic rule of
+            typography is: &ldquo;Every rule can be broken, as long as you are
+            <em>aware</em> that you are breaking a rule.&rdquo; This rule also
+            applies to graphics. Phrased differently, the basic rule states:
+            &ldquo;The only mistakes in typography are things done in
+            ignorance.&rdquo; When you are aware of a rule and when you decide
+            that breaking the rule has a desirable effect, break the rule.
+          </p>
+          <h5 id="autosec-386">
+            <span
+              ><span class="sectionnumber" id="sec-7.1">7.1</span> Planning the
+              Time Needed for the Creation of Graphics</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.1"
+              data-pdf-destination="subsection.7.1"
+              data-pdf-page="95"
+              href="#sec-7.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-386"></a>
+
+          <p>
+            When you create a paper with numerous graphics, the time needed to
+            create these graphics becomes an important factor. How much time
+            should you calculate for the creation of graphics?
+          </p>
+
+          <p>
+            As a general rule, assume that a graphic will need as much time to
+            create as would a text of the same length. For example, when I write
+            a paper, I need about one hour per page for the first draft. Later,
+            I need between two and four hours per page for revisions. Thus, I
+            expect to need about half an hour for the creation of
+            <em>a first draft</em> of a half page graphic. Later on, I expect
+            another one to two hours before the final graphic is finished.
+          </p>
+
+          <p>
+            In many publications, even in good journals, the authors and editors
+            have obviously invested a lot of time on the text, but seem to have
+            spend about five minutes to create all of the graphics. Graphics
+            often seem to have been added as an &ldquo;afterthought&rdquo; or
+            look like a screen shot of whatever the authors&rsquo;s statistical
+            software shows them. As will be argued later on, the graphics that
+            programs like <span class="textsc">gnuplot</span> produce by default
+            are of poor quality.
+          </p>
+
+          <p>
+            Creating informative graphics that help the reader and that fit
+            together with the main text is a difficult, lengthy process.
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Treat graphics as
+                first-class citizens of your papers. They deserve as much time
+                and energy as the text does. Indeed, the creation of graphics
+                might deserve <em>even more</em> time than the writing of the
+                main text since more attention will be paid to the graphics and
+                they will be looked at first.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Plan as much time for the
+                creation and revision of a graphic as you would plan for text of
+                the same size.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Difficult graphics with a
+                high information density may require even more time.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Very simple graphics will
+                require less time, but most likely you do not want to have
+                &ldquo;very simple graphics&rdquo; in your paper, anyway; just
+                as you would not like to have a &ldquo;very simple text&rdquo;
+                of the same size.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-387">
+            <span
+              ><span class="sectionnumber" id="sec-7.2">7.2</span> Workflow for
+              Creating a Graphic</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.2"
+              data-pdf-destination="subsection.7.2"
+              data-pdf-page="95"
+              href="#sec-7.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-387"></a>
+
+          <p>
+            When you write a (scientific) paper, you will most likely follow the
+            following pattern: You have some results/ideas that you would like
+            to report about. The creation of the paper will typically start with
+            compiling a rough outline. Then, the different sections are filled
+            with text to create a first draft. This draft is then revised
+            repeatedly until, often after substantial revision, a final paper
+            results. In a good journal paper there is typically not be a single
+            sentence that has survived unmodified from the first draft.
+          </p>
+
+          <p>Creating a graphics follows the same pattern:</p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Decide on what the
+                graphic should communicate. Make this a conscious decision, that
+                is, determine &ldquo;What is the graphic supposed to tell the
+                reader?&rdquo;
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Create an
+                &ldquo;outline&rdquo;, that is, the rough overall
+                &ldquo;shape&rdquo; of the graphic, containing the most crucial
+                elements. Often, it is useful to do this using pencil and paper.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Fill out the finer
+                details of the graphic to create a first draft.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Revise the graphic
+                repeatedly along with the rest of the paper.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-388">
+            <span
+              ><span class="sectionnumber" id="sec-7.3">7.3</span> Linking
+              Graphics With the Main Text</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.3"
+              data-pdf-destination="subsection.7.3"
+              data-pdf-page="96"
+              href="#sec-7.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-388"></a>
+
+          <p>
+            Graphics can be placed at different places in a text. Either, they
+            can be inlined, meaning they are somewhere &ldquo;in the middle of
+            the text&rdquo; or they can be placed in stand-alone
+            &ldquo;figures&rdquo;. Since printers (the people) like to have
+            their pages &ldquo;filled&rdquo;, (both for aesthetic and economic
+            reasons) stand-alone figures may traditionally be placed on pages in
+            the document far away from the main text that refers to them.
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            and
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            tend to encourage this &ldquo;drifting away&rdquo; of graphics for
+            technical reasons.
+          </p>
+
+          <p>
+            When a graphic is inlined, it will more or less automatically be
+            linked with the main text in the sense that the labels of the
+            graphic will be implicitly explained by the surrounding text. Also,
+            the main text will typically make it clear what the graphic is about
+            and what is shown.
+          </p>
+
+          <p>
+            Quite differently, a stand-alone figure will often be viewed at a
+            time when the main text that this graphic belongs to either has not
+            yet been read or has been read some time ago. For this reason, you
+            should follow the following guidelines when creating stand-alone
+            figures:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Stand-alone figures
+                should have a caption than should make them
+                &ldquo;understandable by themselves&rdquo;.
+              </p>
+              <p>
+                For example, suppose a graphic shows an example of the different
+                stages of a quicksort algorithm. Then the figure&rsquo;s caption
+                should, at the very least, inform the reader that &ldquo;the
+                figure shows the different stages of the quicksort algorithm
+                introduced on page xyz&rdquo;. and not just &ldquo;Quicksort
+                algorithm&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> A good caption adds as
+                much context information as possible. For example, you could
+                say: &ldquo;The figure shows the different stages of the
+                quicksort algorithm introduced on page xyz. In the first line,
+                the pivot element 5 is chosen. This causes&hellip;&rdquo; While
+                this information can also be given in the main text, putting it
+                in the caption will ensure that the context is kept. Do not feel
+                afraid of a 5-line caption. (Your editor may hate you for this.
+                Consider hating them back.)
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Reference the graphic in
+                your main text as in &ldquo;for an example of quicksort
+                &lsquo;in action&rsquo;, see Figure&nbsp;2.1 on page xyz&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Most books on style and
+                typography recommend that you do not use abbreviations as in
+                &ldquo;Fig.&nbsp;2.1&rdquo; but write
+                &ldquo;Figure&nbsp;2.1&rdquo;.
+              </p>
+              <p>
+                The main argument against abbreviations is that &ldquo;a period
+                is too valuable to waste it on an abbreviation&rdquo;. The idea
+                is that a period will make the reader assume that the sentence
+                ends after &ldquo;Fig&rdquo; and it takes a &ldquo;conscious
+                backtracking&rdquo; to realize that the sentence did not end
+                after all.
+              </p>
+              <p>
+                The argument in favor of abbreviations is that they save space.
+              </p>
+              <p>
+                Personally, I am not really convinced by either argument. On the
+                one hand, I have not yet seen any hard evidence that
+                abbreviations slow readers down. On the other hand, abbreviating
+                all &ldquo;Figure&rdquo; by &ldquo;Fig.&rdquo; is most unlikely
+                to save even a single line in most documents. I avoid
+                abbreviations.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-389">
+            <span
+              ><span class="sectionnumber" id="sec-7.4">7.4</span> Consistency
+              Between Graphics and Text</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.4"
+              data-pdf-destination="subsection.7.4"
+              data-pdf-page="96"
+              href="#sec-7.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-389"></a>
+
+          <p>
+            Perhaps the most common &ldquo;mistake&rdquo; people do when
+            creating graphics (remember that a &ldquo;mistake&rdquo; in design
+            is always just &ldquo;ignorance&rdquo;) is to have a mismatch
+            between the way their graphics look and the way their text looks.
+          </p>
+
+          <p>
+            It is quite common that authors use several different programs for
+            creating the graphics of a paper. An author might produce some plots
+            using <span class="textsc">gnuplot</span>, a diagram using
+            <span class="textsc">xfig</span>, and include an
+            <span class="verb">.eps</span> graphic a coauthor contributed using
+            some unknown program. All these graphics will, most likely, use
+            different line widths, different fonts, and have different sizes. In
+            addition, authors often use options like
+            <span class="verb">[height=5cm]</span> when including graphics to
+            scale them to some &ldquo;nice size&rdquo;.
+          </p>
+
+          <p>
+            If the same approach were taken to writing the main text, every
+            section would be written in a different font at a different size. In
+            some sections all theorems would be underlined, in another they
+            would be printed all in uppercase letters, and in another in red. In
+            addition, the margins would be different on each page. Readers and
+            editors would not tolerate a text if it were written in this
+            fashion, but with graphics they often have to.
+          </p>
+
+          <p>
+            To create consistency between graphics and text, stick to the
+            following guidelines:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Do not scale graphics.
+              </p>
+              <p>
+                This means that when generating graphics using an external
+                program, create them &ldquo;at the right size&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Use the same font(s) both
+                in graphics and the body text.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Use the same line width
+                in text and graphics.
+              </p>
+              <p>
+                The &ldquo;line width&rdquo; for normal text is the width of the
+                stem of letters like T. For
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, this is usually \(0.4\,\mathrm {pt}\). However, some journals
+                will not accept graphics with a normal line width below
+                \(0.5\,\mathrm {pt}\).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> When using colors, use a
+                consistent color coding in the text and in graphics. For
+                example, if red is supposed to alert the reader to something in
+                the main text, use red also in graphics for important parts of
+                the graphic. If blue is used for structural elements like
+                headlines and section titles, use blue also for structural
+                elements of your graphic.
+              </p>
+              <p>
+                However, graphics may also use a logical intrinsic color coding.
+                For example, no matter what colors you normally use, readers
+                will generally assume, say, that the color green as
+                &ldquo;positive, go, ok&rdquo; and red as &ldquo;alert, warning,
+                action&rdquo;.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Creating consistency when using different graphic programs is almost
+            impossible. For this reason, you should consider sticking to a
+            single graphics program.
+          </p>
+          <h5 id="autosec-390">
+            <span
+              ><span class="sectionnumber" id="sec-7.5">7.5</span> Labels in
+              Graphics</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.5"
+              data-pdf-destination="subsection.7.5"
+              data-pdf-page="97"
+              href="#sec-7.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-390"></a>
+
+          <p>
+            Almost all graphics will contain labels, that is, pieces of text
+            that explain parts of the graphics. When placing labels, stick to
+            the following guidelines:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Follow the rule of
+                consistency when placing labels. You should do so in two ways:
+                First, be consistent with the main text, that is, use the same
+                font as the main text also for labels. Second, be consistent
+                between labels, that is, if you format some labels in some
+                particular way, format all labels in this way.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> In addition to using the
+                same fonts in text and graphics, you should also use the same
+                notation. For example, if you write \(1/2\) in your main text,
+                also use &ldquo;\(1/2\)&rdquo; as labels in graphics, not
+                &ldquo;0.5&rdquo;. A \(\pi \) is a &ldquo;\(\pi \)&rdquo; and
+                not &ldquo;\(3.141\)&rdquo;. Finally, \(\mathrm e^{-\mathrm i
+                \pi }\) is &ldquo;\(\mathrm e^{-\mathrm i \pi }\)&rdquo;, not
+                &ldquo;\(-1\)&rdquo;, let alone &ldquo;-1&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Labels should be legible.
+                They should not only have a reasonably large size, they also
+                should not be obscured by lines or other text. This also applies
+                to labels of lines and text <em>behind</em> the labels.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Labels should be
+                &ldquo;in place&rdquo;. Whenever there is enough space, labels
+                should be placed next to the thing they label. Only if
+                necessary, add a (subdued) line from the label to the labeled
+                object. Try to avoid labels that only reference explanations in
+                external legends. Reader have to jump back and forth between the
+                explanation and the object that is described.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Consider subduing
+                &ldquo;unimportant&rdquo; labels using, for example, a gray
+                color. This will keep the focus on the actual graphic.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-391">
+            <span
+              ><span class="sectionnumber" id="sec-7.6">7.6</span> Plots and
+              Charts</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.6"
+              data-pdf-destination="subsection.7.6"
+              data-pdf-page="97"
+              href="#sec-7.6"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-391"></a>
+
+          <p>
+            One of the most frequent kind of graphics, especially in scientific
+            papers, are <em>plots</em>. They come in a large variety, including
+            simple line plots, parametric plots, three dimensional plots, pie
+            charts, and many more.
+          </p>
+
+          <p>
+            Unfortunately, plots are notoriously hard to get right. Partly, the
+            default settings of programs like
+            <span class="textsc">gnuplot</span> or Excel are to blame for this
+            since these programs make it very convenient to create bad plots.
+          </p>
+
+          <p>
+            The first question you should ask yourself when creating a plot is:
+            Are there enough data points to merit a plot? If the answer is
+            &ldquo;not really&rdquo;, use a table.
+          </p>
+
+          <p>
+            A typical situation where a plot is unnecessary is when people
+            present a few numbers in a bar diagram. Here is a real-life example:
+            At the end of a seminar a lecturer asked the participants for
+            feedback. Of the 50 participants, 30 returned the feedback form.
+            According to the feedback, three participants considered the seminar
+            &ldquo;very good&rdquo;, nine considered it &ldquo;good&rdquo;, ten
+            &ldquo;ok&rdquo;, eight &ldquo;bad&rdquo;, and no one thought that
+            the seminar was &ldquo;very bad&rdquo;.
+          </p>
+
+          <p>
+            A simple way of summing up this information is the following table:
+          </p>
+          <table>
+            <tbody>
+              <tr style="display: none">
+                <th>.</th>
+              </tr>
+
+              <tr>
+                <td class="tdl"><em>Rating given</em></td>
+                <td class="tdp">
+                  <p>
+                    <em>Participants (out of 50) who gave this rating</em>
+                  </p>
+                </td>
+                <td class="tdr"><em>Percentage</em></td>
+              </tr>
+
+              <tr>
+                <td class="tdl">&ldquo;very good&rdquo;</td>
+                <td class="tdp">
+                  <p>3</p>
+                </td>
+                <td class="tdr">6%</td>
+              </tr>
+
+              <tr>
+                <td class="tdl">&ldquo;good&rdquo;</td>
+                <td class="tdp">
+                  <p>9</p>
+                </td>
+                <td class="tdr">18%</td>
+              </tr>
+
+              <tr>
+                <td class="tdl">&ldquo;ok&rdquo;</td>
+                <td class="tdp">
+                  <p>10</p>
+                </td>
+                <td class="tdr">20%</td>
+              </tr>
+
+              <tr>
+                <td class="tdl">&ldquo;bad&rdquo;</td>
+                <td class="tdp">
+                  <p>8</p>
+                </td>
+                <td class="tdr">16%</td>
+              </tr>
+
+              <tr>
+                <td class="tdl">&ldquo;very bad&rdquo;</td>
+                <td class="tdp">
+                  <p>0</p>
+                </td>
+                <td class="tdr">0%</td>
+              </tr>
+
+              <tr>
+                <td class="tdl">none</td>
+                <td class="tdp">
+                  <p>20</p>
+                </td>
+                <td class="tdr">40%</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            What the lecturer did was to visualize the data using a 3D bar
+            diagram. It looked like this (except that in reality the numbers
+            where typeset using some extremely low-resolution bitmap font and
+            were near-unreadable):
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-137"
+              ><!--
+        0
+            20
+                 40
+                      60
+                           80
+                                100
+
+
+
+
+very good
+
+    good
+
+      ok
+
+     bad
+
+ very bad
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="198.362"
+                loading="lazy"
+                src="pgfmanual-images/image-137.png"
+                style
+                width="267.266"
+            /></span>
+          </p>
+
+          <p>
+            Both the table and the &ldquo;plot&rdquo; have about the same size.
+            If your first thought is &ldquo;the graphic looks nicer than the
+            table&rdquo;, try to answer the following questions based on the
+            information in the table or in the graphic:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> How many participants were
+                there?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> How many participants
+                returned the feedback form?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> What percentage of the
+                participants returned the feedback form?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> How many participants checked
+                &ldquo;very good&rdquo;?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> What percentage out of all
+                participants checked &ldquo;very good&rdquo;?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span> Did more than a quarter of
+                the participants check &ldquo;bad&rdquo; or &ldquo;very
+                bad&rdquo;?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">7.</span> What percentage of the
+                participants that returned the form checked &ldquo;very
+                good&rdquo;?
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Sadly, the graphic does not allow us to answer
+            <em>a single one of these questions</em>. The table answers all of
+            them directly, except for the last one. In essence, the information
+            density of the graphic is very close to zero. The table has a much
+            higher information density; despite the fact that it uses quite a
+            lot of white space to present a few numbers. Here is the list of
+            things that went wrong with the 3D-bar diagram:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The whole graphic is
+                dominated by irritating background lines.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> It is not clear what the
+                numbers at the left mean; presumably percentages, but it might
+                also be the absolute number of participants.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The labels at the bottom
+                are rotated, making them hard to read.
+              </p>
+              <p>
+                (In the real presentation that I saw, the text was rendered at a
+                very low resolution with about 10 by 6 pixels per letter with
+                wrong kerning, making the rotated text almost impossible to
+                read.)
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The third dimension adds
+                complexity to the graphic without adding information.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The three dimensional
+                setup makes it much harder to gauge the height of the bars
+                correctly. Consider the &ldquo;bad&rdquo; bar. Is the number
+                this bar stands for more than 20 or less? While the front of the
+                bar is below the 20 line, the back of the bar (which counts) is
+                above.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> It is impossible to tell
+                which numbers are represented by the bars. Thus, the bars
+                needlessly hide the information these bars are all about.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> What do the bar heights
+                add up to? Is it 100% or 60%?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Does the bar for
+                &ldquo;very bad&rdquo; represent 0 or&nbsp;1?
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Why are the bars blue?
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            You might argue that in the example the exact numbers are not
+            important for the graphic. The important things is the
+            &ldquo;message&rdquo;, which is that there are more &ldquo;very
+            good&rdquo; and &ldquo;good&rdquo; ratings than &ldquo;bad&rdquo;
+            and &ldquo;very bad&rdquo;. However, to convey this message either
+            use a sentence that says so or use a graphic that conveys this
+            message more clearly:
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-138"
+              ><!--
+                         none: 20 (40%)
+
+
+
+
+“very good”: 3 (6%)
+                      Ratings given by “very bad”: 0 (0%)
+                       50 participants
+   “good”: 9 (18%) “bad”: 8 (16%)
+
+
+
+
+                      “ok”: 10 (20%)
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="216.626"
+                loading="lazy"
+                src="pgfmanual-images/image-138.png"
+                style
+                width="452.090"
+            /></span>
+          </p>
+
+          <p>
+            The above graphic has about the same information density as the
+            table (about the same size and the same numbers are shown). In
+            addition, one can directly &ldquo;see&rdquo; that there are more
+            good or very good ratings than bad ones. One can also
+            &ldquo;see&rdquo; that the number of people who gave no rating at
+            all is not negligible, which is quite common for feedback forms.
+          </p>
+
+          <p>
+            Charts are not always a good idea. Let us look at an example that I
+            redrew from a pie chart in <em>Die Zeit</em>, June 4th, 2005:
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-139"
+              ><!--
+Kohle ist am wichtigsten
+Energiemix bei der deutschen Stromerzeugung 2004
+Gesamte Netto-Stromerzeugung in Prozent, in Milliarden Kilowattstunden (Mrd. kWh)
+
+  Sonstige (16,5 kWh) 2,9% Regenerative (53,7 kWh)/davon Wind 4,4% (25,0 kWh)
+
+  Mineralölprodukte (9,2 kWh) 1,6% 9,4%
+  Erdgas (59,2 kWh) Kernenergie
+                                      10,4% 27,8%
+                                                                                          (158,4 kWh)
+                                             22,3% 25,6%
+
+  Steinkohle (127,1 kWh) Braunkohle (146,0 kWh)
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="238.586"
+                loading="lazy"
+                src="pgfmanual-images/image-139.png"
+                style
+                width="595.441"
+            /></span>
+          </p>
+
+          <p>
+            This graphic has been redrawn in <span class="tikzname">TikZ</span>,
+            but the original looks almost exactly the same.
+          </p>
+
+          <p>
+            At first sight, the graphic looks &ldquo;nice and
+            informative&rdquo;, but there are a lot of things that went wrong:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The chart is three
+                dimensional. However, the shadings add nothing
+                &ldquo;information-wise&rdquo;, at best, they distract.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> In a 3D-pie-chart the
+                relative sizes are very strongly distorted. For example, the
+                area taken up by the gray color of &ldquo;Braunkohle&rdquo; is
+                larger than the area taken up by the green color of
+                &ldquo;Kernenergie&rdquo;
+                <em
+                  >despite the fact that the percentage of Braunkohle is less
+                  than the percentage of Kernenergie</em
+                >.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The 3D-distortion gets
+                worse for small areas. The area of &ldquo;Regenerative&rdquo;
+                somewhat larger than the area of &ldquo;Erdgas&rdquo;. The area
+                of &ldquo;Wind&rdquo; is slightly smaller than the area of
+                &ldquo;Mineral&ouml;lprodukte&rdquo;
+                <em
+                  >although the percentage of Wind is nearly three times larger
+                  than the percentage of Mineral&ouml;lprodukte.</em
+                >
+              </p>
+              <p>
+                In the last case, the different sizes are only partly due to
+                distortion. The designer(s) of the original graphic have also
+                made the &ldquo;Wind&rdquo; slice too small, even taking
+                distortion into account. (Just compare the size of
+                &ldquo;Wind&rdquo; to &ldquo;Regenerative&rdquo; in general.)
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> According to its caption,
+                this chart is supposed to inform us that coal was the most
+                important energy source in Germany in 2004. Ignoring the strong
+                distortions caused by the superfluous and misleading 3D-setup,
+                it takes quite a while for this message to get across.
+              </p>
+              <p>
+                Coal as an energy source is split up into two slices: one for
+                &ldquo;Steinkohle&rdquo; and one for &ldquo;Braunkohle&rdquo;
+                (two different kinds of coal). When you add them up, you see
+                that the whole lower half of the pie chart is taken up by coal.
+              </p>
+              <p>
+                The two areas for the different kinds of coal are not visually
+                linked at all. Rather, two different colors are used, the labels
+                are on different sides of the graphic. By comparison,
+                &ldquo;Regenerative&rdquo; and &ldquo;Wind&rdquo; are very
+                closely linked.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The color coding of the
+                graphic follows no logical pattern at all. Why is nuclear energy
+                green? Regenerative energy is light blue, &ldquo;other
+                sources&rdquo; are blue. It seems more like a joke that the area
+                for &ldquo;Braunkohle&rdquo; (which literally translates to
+                &ldquo;brown coal&rdquo;) is stone gray, while the area for
+                &ldquo;Steinkohle&rdquo; (which literally translates to
+                &ldquo;stone coal&rdquo;) is brown.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The area with the
+                lightest color is used for &ldquo;Erdgas&rdquo;. This area
+                stands out most because of the brighter color. However, for this
+                chart &ldquo;Erdgas&rdquo; is not really important at all.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Edward Tufte calls graphics like the above &ldquo;chart junk&rdquo;.
+            (I am happy to announce, however, that <em>Die Zeit</em> has stopped
+            using 3D pie charts and their information graphics have got somewhat
+            better.)
+          </p>
+
+          <p>
+            Here are a few recommendations that may help you avoid producing
+            chart junk:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Do not use 3D pie charts.
+                They are <em>evil</em>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Consider using a table
+                instead of a pie chart.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Do not apply colors
+                randomly; use them to direct the readers&rsquo;s focus and to
+                group things.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Do not use background
+                patterns, like a crosshatch or diagonal lines, instead of
+                colors. They distract. Background patterns in information
+                graphics are <em>evil</em>.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-399">
+            <span
+              ><span class="sectionnumber" id="sec-7.7">7.7</span> Attention and
+              Distraction</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-7.7"
+              data-pdf-destination="subsection.7.7"
+              data-pdf-page="100"
+              href="#sec-7.7"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-399"></a>
+
+          <p>
+            Pick up your favorite fiction novel and have a look at a typical
+            page. You will notice that the page is very uniform. Nothing is
+            there to distract the reader while reading; no large headlines, no
+            bold text, no large white areas. Indeed, even when the author does
+            wish to emphasize something, this is done using italic letters. Such
+            letters blend nicely with the main text &ndash; at a distance you
+            will not be able to tell whether a page contains italic letters, but
+            you would notice a single bold word immediately. The reason novels
+            are typeset this way is the following paradigm: Avoid distractions.
+          </p>
+
+          <p>
+            Good typography (like good organization) is something you do
+            <em>not</em> notice. The job of typography is to make reading the
+            text, that is, &ldquo;absorbing&rdquo; its information content, as
+            effortless as possible. For a novel, readers absorb the content by
+            reading the text line-by-line, as if they were listening to someone
+            telling the story. In this situation anything on the page that
+            distracts the eye from going quickly and evenly from line to line
+            will make the text harder to read.
+          </p>
+
+          <p>
+            Now, pick up your favorite weekly magazine or newspaper and have a
+            look at a typical page. You will notice that there is quite a lot
+            &ldquo;going on&rdquo; on the page. Fonts are used at different
+            sizes and in different arrangements, the text is organized in narrow
+            columns, typically interleaved with pictures. The reason magazines
+            are typeset in this way is another paradigm: Steer attention.
+          </p>
+
+          <p>
+            Readers will not read a magazine like a novel. Instead of reading a
+            magazine line-by-line, we use headlines and short abstracts to check
+            whether we want to read a certain article or not. The job of
+            typography is to steer our attention to these abstracts and
+            headlines, first. Once we have decided that we want to read an
+            article, however, we no longer tolerate distractions, which is why
+            the main text of articles is typeset exactly the same way as a
+            novel.
+          </p>
+
+          <p>
+            The two principles &ldquo;avoid distractions&rdquo; and &ldquo;steer
+            attention&rdquo; also apply to graphics. When you design a graphic,
+            you should eliminate everything that will &ldquo;distract the
+            eye&rdquo;. At the same time, you should try to actively help the
+            reader &ldquo;through the graphic&rdquo; by using fonts/colors/line
+            widths to highlight different parts.
+          </p>
+
+          <p>
+            Here is a non-exhaustive list of things that can distract readers:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Strong contrasts will
+                always be registered first by the eye. For example, consider the
+                following two grids:
+              </p>
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-140"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="56.355"
+                    loading="lazy"
+                    src="pgfmanual-images/image-140.png"
+                    style
+                    width="162.626"
+                /></span>
+              </p>
+              <p>
+                Even though the left grid comes first in English reading order,
+                the right one is much more likely to be seen first: The
+                white-to-black contrast is higher than the gray-to-white
+                contrast. In addition, there are more &ldquo;places&rdquo;
+                adding to the overall contrast in the right grid.
+              </p>
+              <p>
+                Things like grids and, more generally, help lines usually should
+                not grab the attention of the readers and, hence, should be
+                typeset with a low contrast to the background. Also, a
+                loosely-spaced grid is less distracting than a very
+                closely-spaced grid.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Dashed lines create many
+                points at which there is black-to-white contrast. Dashed or
+                dotted lines can be very distracting and, hence, should be
+                avoided in general.
+              </p>
+              <p>
+                Do not use different dashing patterns to differentiate curves in
+                plots. You lose data points this way and the eye is not
+                particularly good at &ldquo;grouping things according to a
+                dashing pattern&rdquo;. The eye is <em>much</em> better at
+                grouping things according to colors.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Background patterns
+                filling an area using diagonal lines or horizontal and vertical
+                lines or just dots are almost always distracting and, usually,
+                serve no real purpose.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Background images and
+                shadings distract and only seldom add anything of importance to
+                a graphic.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Cute little clip arts can
+                easily draw attention away from the data.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

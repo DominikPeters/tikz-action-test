@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Introduction to Data Visualization - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Data Visualization",
+            "item": "https://tikz.dev/dv"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Introduction to Data Visualization",
+            "item": "https://tikz.dev/dv-introduction"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/dv-introduction" rel="canonical" />
+    <meta content="https://tikz.dev/dv-introduction" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Introduction to Data Visualization - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-6676"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-79.1">Concept: Data Points</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-79.2"
+                >Concept: Visualization Pipeline</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="dv-introduction"
+                >Introduction to Data Visualization</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-main"
+                >Creating Data Visualizations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-formats"
+                >Providing Data for a Data Visualization</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-axes">Axes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-visualizers">Visualizers</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-stylesheets"
+                >Style Sheets and Legends</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-polar">Polar Axes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-backend"
+                >The Data Visualization Backend</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Data Visualization</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-6677">
+            <span
+              ><span class="sectionnumber" id="sec-79">79</span> Introduction to
+              Data Visualization</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.79"
+              data-pdf-page="853"
+              href="#sec-79"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-6677"></a>
+          <a id="pgfmanual-autofile-85"></a>
+
+          <p>
+            <em>Data visualization</em> is the process of converting
+            <em>data points,</em> which typically consist of multiple numerical
+            values, into a graphical representation. Examples include the
+            well-known function plots, but pie charts, bar diagrams, box plots,
+            or vector fields are also examples of data visualizations.
+          </p>
+
+          <p>
+            The data visualization subsystem of
+            <span class="textsc">pgf</span> takes a general, open approach to
+            data visualization. Like everything else in
+            <span class="textsc">pgf</span>, there is a powerful, but
+            not-so-easy-to-use basic layer in the data visualization system and
+            a less flexible, but much simpler-to-use frontend layer. The present
+            section gives an overview of the basic ideas behind the data
+            visualization system.
+          </p>
+          <h5 id="autosec-6679">
+            <a id="section-dv-intro-data-points"></a
+            ><span
+              ><span class="sectionnumber" id="sec-79.1">79.1</span> Concept:
+              Data Points</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-79.1"
+              data-pdf-destination="subsection.79.1"
+              data-pdf-page="853"
+              href="#sec-79.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6679"></a>
+
+          <p>
+            The most important input for a data visualization is always raw
+            data. This data is typically present in different formats and the
+            data visualization subsystem provides methods for reading such
+            formats and also for defining new input formats. However,
+            independently of the input format, we may ask what kind of data the
+            data visualization subsystem should be able to process. For
+            two-dimensional plots we need lists of pairs of real numbers. For a
+            bar plot we usually need a list of numbers, possibly together with
+            some colors and labels. For a surface plot we need a matrix of
+            triples of real numbers. For a vector field we need even more
+            complex data.
+          </p>
+
+          <p>
+            The data visualization subsystem makes no assumption concerning
+            which kind of data is being processed. Instead, the whole
+            &ldquo;rendering pipeline&rdquo; is centered around a concept called
+            the <em>data point</em>. Conceptually, a data point is an
+            arbitrarily complex record that represents one piece of data that
+            should be visualized. Data points are <em>not</em> just coordinates
+            in the plane or the numerical values that need to be visualized.
+            Rather, they represent the basic units of the data that needs to be
+            visualized.
+          </p>
+
+          <p>
+            Consider the following example: In an experiment we drive a car
+            along a road and have different measurement instruments installed.
+            We measure the position of the car, the time, the speed, the
+            direction the car is heading, the acceleration, and perhaps some
+            further values. A data point would consist of a record consisting of
+            a timestamp together with the current position of the car
+            (presumably two or three numbers), the speed vector (another two or
+            three numbers), the acceleration (another two or three numbers), and
+            perhaps the label text of the current experiment.
+          </p>
+
+          <p>
+            Data points should be &ldquo;information rich&rdquo;. They might
+            even contain more information than what will actually be visualized.
+            It is the job of the rendering pipeline to pick out the information
+            relevant to one particular data visualization &ndash; another
+            visualization of the same data might pick different aspects of the
+            data points, thereby hopefully allowing new insights into the data.
+          </p>
+
+          <p>
+            Technically, there is no special data structure for data points.
+            Rather, when a special macro called
+            <span class="verb">\pgfdatapoint</span> is called, the
+            &ldquo;totality&rdquo; of all currently set keys with the
+            <span class="verb">/data point/</span>
+            prefix in the current scope forms the data point. This is both a
+            very general approach and quite fast since no extra data structures
+            need to be created.
+          </p>
+          <h5 id="autosec-6680">
+            <span
+              ><span class="sectionnumber" id="sec-79.2">79.2</span> Concept:
+              Visualization Pipeline</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-79.2"
+              data-pdf-destination="subsection.79.2"
+              data-pdf-page="853"
+              href="#sec-79.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6680"></a>
+
+          <p>
+            The <em>visualization pipeline</em> is a series of actions that are
+            performed on the to-be-visualized data. The data is presented to the
+            visualization pipeline in the form of a long stream of complex data
+            points. The visualization pipeline makes several passes over this
+            stream of data points. During the first pass(es), called the
+            <em>survey phase(s)</em>, information is gathered about the data
+            points such as minimal and maximal values, which can be useful for
+            automatic fitting of the data into a given area. In the main pass
+            over the data, called the <em>visualization phase</em>, the data
+            points are actually visualized, for instance in the form of lines or
+            points.
+          </p>
+
+          <p>
+            Like as for data points, the visualization pipeline makes no
+            assumptions concerning what kind of visualization is desired.
+            Indeed, one could even use it to produce a plain-text table. This
+            flexibility is achieved by extensive use of objects and signals:
+            When a data visualization starts, a number of signals (see
+            Section&nbsp;<a href="oo#section-signals">98.9</a> for an
+            introduction to signals) are initialized. Then, numerous
+            &ldquo;visualization objects&rdquo; are created that listen to these
+            signals. These objects are all involved in processing the data
+            points. For instance, the job of an
+            <span class="verb">interval mapper</span> object is to map one
+            attribute of a data point, such as a car&rsquo;s velocity, to
+            another, such as the \(y\)-axis of a plot. For each data point the
+            different signals are raised in a certain order and the different
+            visualization objects now have a chance of preparing the data point
+            for the actual visualization. Continuing the above example, there
+            might be a second <span class="verb">interval mapper</span> that
+            takes the computed \(y\)-position and applies a logarithm to it,
+            because a log-plot was requested. Then another mapper, this time a
+            <span class="verb">polar mapper</span> might be used to map
+            everything to polar coordinates. Following this, a
+            <span class="verb">plot mark visualizer</span> might actually draw
+            something at the computed position.
+          </p>
+
+          <p>
+            The whole idea behind the rendering pipeline is that new kinds of
+            data visualizations can be implemented, ideally, just by adding one
+            or two new objects to the visualization pipeline. Furthermore,
+            different kinds of plots can be combined in novel ways in this
+            manner, which is usually very hard to do otherwise. For instance,
+            the visualization pipeline makes it easy to create, say,
+            polar-semilog-box-plots. At first sight, such new kinds of plots may
+            seem frivolous, but data visualization is all about gaining insights
+            into the data from as many different angles as possible.
+          </p>
+
+          <p>
+            Naturally, creating new classes and objects for the rendering
+            pipeline is not trivial, so most users will just use the existing
+            classes, which should, thus, be as flexible as possible. But even
+            when one only intends to use existing classes, it is still tricky to
+            setup the pipeline correctly since the ordering is obviously
+            important and since things like axes and ticks need to be configured
+            and taken care of. For this reason, the frontend libraries provide
+            preconfigured rendering pipelines so that one can simply say that a
+            data visualization should look like a
+            <span class="verb">line plot</span> with
+            <span class="verb">school book axes</span> or with
+            <span class="verb">scientific axes</span>, which selects a certain
+            visualization pipeline that is appropriate for this kind of plot:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2734"
+                  ><!--
+        5
+
+        4
+
+        3
+
+        2
+
+        1
+
+
+−2 −1 0 1 2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="154.178"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2734.png"
+                    style
+                    width="122.456"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {datavisualization.formats.functions} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.scale">scale</a></span
+                >=<span class="textcolor" style="color: #008000">.7</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-main#pgf.back/datavisualization"
+                    >\datavisualization</a
+                  ></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-axes#pgf.school:book:axes"
+                    >school book axes</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                    >visualize as smooth line</a
+                  ></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-main#pgf.format">format</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="pgffor#pgf.var">var</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.:">:</a></span
+                >
+                <span class="textcolor" style="color: #000000">interval</span>
+                [<span class="textcolor" style="color: #008000">-2:2</span
+                >];<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                > <span class="textcolor" style="color: #000000">x*</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span>
+                <span class="textcolor" style="color: #000000">1</span>;<br />
+                <span class="spaces">  </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2735"
+                  ><!--
+5
+4
+3
+2
+1
+ −2 −1 0 1 2
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="100.514"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2735.png"
+                    style
+                    width="148.082"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {datavisualization.formats.functions} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.scale">scale</a></span
+                >=<span class="textcolor" style="color: #008000">.7</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-main#pgf.back/datavisualization"
+                    >\datavisualization</a
+                  ></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-axes#pgf.scientific:axes"
+                    >scientific axes</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                    >visualize as smooth line</a
+                  ></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-main#pgf.format">format</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="pgffor#pgf.var">var</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.:">:</a></span
+                >
+                <span class="textcolor" style="color: #000000">interval</span>
+                [<span class="textcolor" style="color: #008000">-2:2</span
+                >];<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                > <span class="textcolor" style="color: #000000">x*</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >
+                <span class="textcolor" style="color: #000000">+</span>
+                <span class="textcolor" style="color: #000000">1</span>;<br />
+                <span class="spaces">  </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            One must still configure such a plot (choose styles and themes and
+            also specify which attributes of a data point should be used), but
+            on the whole the plot is quite simple to specify.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,3775 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Transformations - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "TikZ",
+            "item": "https://tikz.dev/tikz"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Transformations",
+            "item": "https://tikz.dev/tikz-transformations"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <meta
+      content="pgf has a powerful transformation mechanism that is similar to the transformation capabilities of metafont. The present section explains how you can access it in TikZ."
+      name="description"
+    />
+    <meta
+      content="pgf has a powerful transformation mechanism that is similar to the transformation capabilities of metafont. The present section explains how you can access it in TikZ."
+      property="og:description"
+    />
+    <link href="https://tikz.dev/tikz-transformations" rel="canonical" />
+    <meta content="https://tikz.dev/tikz-transformations" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/tikz-transformations.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta content="Transformations - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4265"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-25.1"
+                >The Different Coordinate Systems</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-25.2"
+                >The XY- and XYZ-Coordinate Systems</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-25.3"
+                >Coordinate Transformations</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-25.4"
+                >Canvas Transformations</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Styles</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-coordinates"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-paths"
+                >Syntax for Path Specifications</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-actions">Actions on Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-arrows">Arrows</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-shapes">Nodes and Edges</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-pics"
+                >Pics: Small Pictures on Paths</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-graphs">Specifying Graphs</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-matrices"
+                >Matrices and Alignment</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-trees">Making Trees Grow</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-plots">Plots of Functions</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-decorations">Decorated Paths</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="tikz-transformations"
+                >Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-animations">Animations</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">TikZ</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4266">
+            <span
+              ><span class="sectionnumber" id="sec-25">25</span>
+              Transformations</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.25"
+              data-pdf-page="374"
+              href="#sec-25"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4266"></a>
+          <a id="pgfmanual-autofile-28"></a>
+
+          <p>
+            <span class="textsc">pgf</span> has a powerful transformation
+            mechanism that is similar to the transformation capabilities of
+            <span class="textsc">metafont</span>. The present section explains
+            how you can access it in <span class="tikzname">TikZ</span>.
+          </p>
+          <h5 id="autosec-4267">
+            <span
+              ><span class="sectionnumber" id="sec-25.1">25.1</span> The
+              Different Coordinate Systems</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-25.1"
+              data-pdf-destination="subsection.25.1"
+              data-pdf-page="374"
+              href="#sec-25.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4267"></a>
+
+          <p>
+            It is a long process from a coordinate like, say, \((1,2)\) or
+            \((1\mathrm {cm},5\mathrm {pt})\), to the position a point is
+            finally placed on the display or paper. In order to find out where
+            the point should go, it is constantly &ldquo;transformed&rdquo;,
+            which means that it is mostly shifted around and possibly rotated,
+            slanted, scaled, and otherwise mutilated.
+          </p>
+
+          <p>
+            In detail, (at least) the following transformations are applied to a
+            coordinate like \((1,2)\) before a point on the screen is chosen:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span>
+                <span class="textsc">pgf</span> interprets a coordinate like
+                \((1,2)\) in its \(xy\)-coordinate system as &ldquo;add the
+                current \(x\)-vector once and the current \(y\)-vector twice to
+                obtain the new point&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span>
+                <span class="textsc">pgf</span> applies its coordinate
+                transformation matrix to the resulting coordinate. This yields
+                the final position of the point inside the picture.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> The backend driver (like
+                <span class="verb">dvips</span> or
+                <span class="verb">pdftex</span>) adds transformation commands
+                such that the coordinate is shifted to the correct position in
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >&rsquo;s page coordinate system.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span>
+                <span class="textsc">pdf</span> (or PostScript) apply the canvas
+                transformation matrix to the point, which can once more change
+                the position on the page.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> The viewer application or the
+                printer applies the device transformation matrix to transform
+                the coordinate to its final pixel coordinate on the screen or
+                paper.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            In reality, the process is even more involved, but the above should
+            give the idea: A point is constantly transformed by changes of the
+            coordinate system.
+          </p>
+
+          <p>
+            In <span class="tikzname">TikZ</span>, you only have access to the
+            first two coordinate systems: The \(xy\)-coordinate system and the
+            coordinate transformation matrix (these will be explained later).
+            <span class="textsc">pgf</span> also allows you to change the canvas
+            transformation matrix, but you have to use commands of the core
+            layer directly to do so and you &ldquo;better know what you are
+            doing&rdquo; when you do this. The moment you start modifying the
+            canvas matrix, <span class="textsc">pgf</span> immediately loses
+            track of all coordinates and shapes, anchors, and bounding box
+            computations will no longer work.
+          </p>
+          <h5 id="autosec-4268">
+            <a id="section-xyz"></a
+            ><span
+              ><span class="sectionnumber" id="sec-25.2">25.2</span> The XY- and
+              XYZ-Coordinate Systems</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-25.2"
+              data-pdf-destination="subsection.25.2"
+              data-pdf-page="374"
+              href="#sec-25.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4268"></a>
+
+          <p>
+            The first and easiest coordinate systems are
+            <span class="textsc">pgf</span>&rsquo;s \(xy\)- and
+            \(xyz\)-coordinate systems. The idea is very simple: Whenever you
+            specify a coordinate like <span class="verb">(2,3)</span> this means
+            \(2v_x + 3v_y\), where \(v_x\) is the current
+            <em>\(x\)-vector</em> and \(v_y\) is the current
+            <em>\(y\)-vector</em>. Similarly, the coordinate
+            <span class="verb">(1,2,3)</span> means \(v_x + 2v_y + 3v_z\).
+          </p>
+
+          <p>
+            Unlike other packages, <span class="textsc">pgf</span> does not
+            insist that \(v_x\) actually has a \(y\)-component of \(0\), that
+            is, that it is a horizontal vector. Instead, the \(x\)-vector can
+            point anywhere you want. Naturally, <em>normally</em> you will want
+            the \(x\)-vector to point horizontally.
+          </p>
+
+          <p>
+            One undesirable effect of this flexibility is that it is not
+            possible to provide mixed coordinates as in \((1,2\mathrm {pt})\).
+            Life is hard.
+          </p>
+
+          <p>
+            To change the \(x\)-, \(y\)-, and \(z\)-vectors, you can use the
+            following options:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/x"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/x</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>value</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>1cm</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/x"
+                      href="#tikz/x"
+                      id="tikz/x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                If <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> is a dimension, the
+                \(x\)-vector of <span class="textsc">pgf</span>&rsquo;s
+                \(xyz\)-coordinate system is set up to point
+                <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> to the right, that is, to
+                (<span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span>,0pt).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1837"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="7.011"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1837.png"
+                        style
+                        width="78.282"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    ><span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">+</span
+                    ><span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000">2cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0.1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">+</span
+                    ><span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1838"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.794"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1838.png"
+                        style
+                        width="116.621"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000">1.5cm</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The last example shows that the size of steppings in grids, just
+                like all other dimensions, are not affected by the \(x\)-vector.
+                After all, the \(x\)-vector is only used to determine the
+                coordinate of the upper right corner of the grid.
+              </p>
+              <p>
+                If <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> is a coordinate, the
+                \(x\)-vector of <span class="textsc">pgf</span>&rsquo;s
+                \(xyz\)-coordinate system is set to the specified coordinate. If
+                <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> contains a comma, it must
+                be put in braces.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1839"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="22.107"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1839.png"
+                        style
+                        width="78.410"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                            </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(2cm,0.5cm)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                You can use this, for example, to exchange the meaning of the
+                \(x\)- and \(y\)-coordinate.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1840"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="119.162"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1840.png"
+                        style
+                        width="119.158"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-plots#pgf.smooth">smooth</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-plots#pgf.plot">plot</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >coordinates</span
+                    >{<span class="textcolor" style="color: #800080">(1,0)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(2,0.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(3,0)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(3,1)</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(0cm,1cm)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.y">y</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(1cm,0cm)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >]<br />
+                    <span class="spaces">        </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-plots#pgf.plot">plot</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >coordinates</span
+                    >{<span class="textcolor" style="color: #800080">(1,0)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(2,0.5)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(3,0)</span
+                    > <span class="textcolor" style="color: #800080"
+                      >(3,1)</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/y"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/y</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>value</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>1cm</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/y"
+                      href="#tikz/y"
+                      id="tikz/y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like the <span class="verb">x=</span> option, only if
+                <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> is a dimension, the
+                resulting vector points to (0,<span class="angle">&langle;</span
+                ><i>value</i><span class="angle">&rangle;</span>).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/z"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/z</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>value</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>\(-3.85\)mm</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/z"
+                      href="#tikz/z"
+                      id="tikz/z"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like the <span class="verb">y=</span> option, but now a
+                dimension is the point (<span class="angle">&langle;</span
+                ><i>value</i><span class="angle">&rangle;</span>,<span
+                  class="angle"
+                  >&langle;</span
+                ><i>value</i><span class="angle">&rangle;</span>).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1841"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.962"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1841.png"
+                        style
+                        width="78.964"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.z">z</a></span
+                    >=<span class="textcolor" style="color: #008000">-1cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    >=<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >orange</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0,1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4279">
+            <span
+              ><span class="sectionnumber" id="sec-25.3">25.3</span> Coordinate
+              Transformations</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-25.3"
+              data-pdf-destination="subsection.25.3"
+              data-pdf-page="375"
+              href="#sec-25.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4279"></a>
+
+          <p>
+            <span class="textsc">pgf</span> and
+            <span class="tikzname">TikZ</span> allow you to specify
+            <em>coordinate transformations</em>. Whenever you specify a
+            coordinate as in <span class="verb">(1,0)</span> or
+            <span class="verb">(1cm,1pt)</span> or
+            <span class="verb">(30:2cm)</span>, this coordinate is first
+            &ldquo;reduced&rdquo; to a position of the form &ldquo;\(x\) points
+            to the right and \(y\) points upwards&rdquo;. For example,
+            <span class="verb">(1in,5pt)</span> is reduced to &ldquo;\(72\frac
+            {27}{100}\) points to the right and 5 points upwards&rdquo; and
+            <span class="verb">(90:100pt)</span> means &ldquo;0pt to the right
+            and 100 points upwards&rdquo;.
+          </p>
+
+          <p>
+            The next step is to apply the current
+            <em>coordinate transformation matrix</em> to the coordinate. For
+            example, the coordinate transformation matrix might currently be set
+            such that it adds a certain constant to the \(x\) value. Also, it
+            might be set up such that it, say, exchanges the \(x\) and \(y\)
+            value. In general, any &ldquo;standard&rdquo; transformation like
+            translation, rotation, slanting, or scaling or any combination
+            thereof is possible. (Internally,
+            <span class="textsc">pgf</span> keeps track of a coordinate
+            transformation matrix very much like the concatenation matrix used
+            by <span class="textsc">pdf</span> or PostScript.)
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1842"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.770"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1842.png"
+                    style
+                    width="116.450"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.xshift">xshift</a></span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >red</span
+                >]<span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.yshift">yshift</a></span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >] [<span class="textcolor" style="color: #008000"
+                  >blue</span
+                >]<span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.rotate">rotate</a></span
+                >=<span class="textcolor" style="color: #008000">30</span
+                >]<span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  >orange</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The most important aspect of the coordinate transformation matrix is
+            <em>that it applies to coordinates only!</em> In particular, the
+            coordinate transformation has no effect on things like the line
+            width or the dash pattern or the shading angle. In certain cases, it
+            is not immediately clear whether the coordinate transformation
+            matrix <em>should</em> apply to a certain dimension. For example,
+            should the coordinate transformation matrix apply to grids? (It
+            does.) And what about the size of arced corners? (It does not.) The
+            general rule is: &ldquo;If there is no &lsquo;coordinate&rsquo;
+            involved, even &lsquo;indirectly&rsquo;, the matrix is not
+            applied.&rdquo;. However, sometimes, you simply have to try or look
+            it up in the documentation whether the matrix will be applied.
+          </p>
+
+          <p>
+            Setting the matrix cannot be done directly. Rather, all you can do
+            is to &ldquo;add&rdquo; another transformation to the current
+            matrix. However, all transformations are local to the current
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-group. All transformations are added using graphic options, which
+            are described below.
+          </p>
+
+          <p>
+            Transformations apply immediately when they are encountered
+            &ldquo;in the middle of a path&rdquo; and they apply only to the
+            coordinates on the path following the transformation option.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1843"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="22.096"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1843.png"
+                    style
+                    width="116.585"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.xshift">xshift</a></span
+                >=<span class="textcolor" style="color: #008000">2cm</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            A final word of warning: You should refrain from using
+            &ldquo;aggressive&rdquo; transformations like a scaling of a factor
+            of 10 000. The reason is that all transformations are done using
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >, which has a fairly low accuracy. Furthermore, in certain
+            situations it is necessary that <span class="tikzname">TikZ</span>
+            <em>inverts</em> the current transformation matrix and this will
+            fail if the transformation matrix is badly conditioned or even
+            singular (if you do not know what singular matrices are, you are
+            blessed).
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/shift"></a><a id="pgf.shift"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/shift</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>coordinate</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/shift"
+                      href="#tikz/shift"
+                      id="tikz/shift"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Adds the <span class="angle">&langle;</span><i>coordinate</i
+                ><span class="angle">&rangle;</span> to all coordinates.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1844"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="79.106"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1844.png"
+                        style
+                        width="116.378"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                       </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.shift">shift</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(1,1)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.shift">shift</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(30:1cm)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/shift:only"></a
+                    ><a id="pgf.shift:only"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/shift only</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/shift:only"
+                      href="#tikz/shift:only"
+                      id="tikz/shift:only"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option does not take any parameter. Its effect is to cancel
+                all current transformations except for the shifting. This means
+                that the origin will remain where it is, but any rotation around
+                the origin or scaling relative to the origin or skewing will no
+                longer have an effect.
+              </p>
+              <p>
+                This option is useful in situations where a complicated
+                transformation is used to &ldquo;get to a position&rdquo;, but
+                you then wish to draw something &ldquo;normal&rdquo; at this
+                position.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1845"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="92.978"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1845.png"
+                        style
+                        width="116.380"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                              </span><span class="spaces">        </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xshift"
+                        >xshift</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2cm</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">           </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">30</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xshift"
+                        >xshift</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2cm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.shift:only"
+                        >shift only</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/xshift"></a><a id="pgf.xshift"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/xshift</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/xshift"
+                      href="#tikz/xshift"
+                      id="tikz/xshift"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Adds <span class="angle">&langle;</span><i>dimension</i
+                ><span class="angle">&rangle;</span> to the \(x\) value of all
+                coordinates.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1846"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.578"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1846.png"
+                        style
+                        width="129.818"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                   </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xshift"
+                        >xshift</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2cm</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xshift"
+                        >xshift</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-10pt</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/yshift"></a><a id="pgf.yshift"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/yshift</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/yshift"
+                      href="#tikz/yshift"
+                      id="tikz/yshift"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Adds <span class="angle">&langle;</span><i>dimension</i
+                ><span class="angle">&rangle;</span> to the \(y\) value of all
+                coordinates.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/scale"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/scale</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/scale"
+                      href="#tikz/scale"
+                      id="tikz/scale"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Multiplies all coordinates by the given
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span>. The
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span> should not be excessively
+                large in absolute terms or very close to zero.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1847"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="117.362"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1847.png"
+                        style
+                        width="154.262"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">               </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.scale">scale</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.scale">scale</a></span
+                    >=<span class="textcolor" style="color: #008000">-1</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/scale:around"></a
+                    ><a id="pgf.scale:around"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/scale around</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">:</span
+                      ><span class="angle">&langle;</span><i>coordinate</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/scale:around"
+                      href="#tikz/scale:around"
+                      id="tikz/scale:around"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Scales the coordinate system by
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span>, with the &ldquo;origin of
+                scaling&rdquo; centered on <span class="angle">&langle;</span
+                ><i>coordinate</i><span class="angle">&rangle;</span> rather
+                than the origin.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1848"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="116.906"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1848.png"
+                        style
+                        width="154.178"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                             </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.scale">scale</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">               </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.scale:around"
+                        >scale around</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{2:<span class="textcolor" style="color: #800080"
+                        >(1,1)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/xscale"></a><a id="pgf.xscale"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/xscale</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/xscale"
+                      href="#tikz/xscale"
+                      id="tikz/xscale"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Multiplies only the \(x\)-value of all coordinates by the given
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1849"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.650"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1849.png"
+                        style
+                        width="154.262"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xscale"
+                        >xscale</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xscale"
+                        >xscale</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-1</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/yscale"></a><a id="pgf.yscale"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/yscale</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/yscale"
+                      href="#tikz/yscale"
+                      id="tikz/yscale"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Multiplies only the \(y\)-value of all coordinates by
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/xslant"></a><a id="pgf.xslant"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/xslant</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/xslant"
+                      href="#tikz/xslant"
+                      id="tikz/xslant"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Slants the coordinate horizontally by the given
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span>:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1850"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.650"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1850.png"
+                        style
+                        width="116.474"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xslant"
+                        >xslant</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xslant"
+                        >xslant</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-1</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/yslant"></a><a id="pgf.yslant"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/yslant</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/yslant"
+                      href="#tikz/yslant"
+                      id="tikz/yslant"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Slants the coordinate vertically by the given
+                <span class="angle">&langle;</span><i>factor</i
+                ><span class="angle">&rangle;</span>:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1851"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="155.522"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1851.png"
+                        style
+                        width="116.450"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.yslant"
+                        >yslant</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.yslant"
+                        >yslant</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-1</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/rotate"></a><a id="pgf.rotate"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/rotate</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>degree</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/rotate"
+                      href="#tikz/rotate"
+                      id="tikz/rotate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Rotates the coordinate system by
+                <span class="angle">&langle;</span><i>degree</i
+                ><span class="angle">&rangle;</span>:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1852"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="91.418"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1852.png"
+                        style
+                        width="116.461"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                 </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">40</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-20</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/rotate:around"></a
+                    ><a id="pgf.rotate:around"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/rotate around</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>degree</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">:</span
+                      ><span class="angle">&langle;</span><i>coordinate</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/rotate:around"
+                      href="#tikz/rotate:around"
+                      id="tikz/rotate:around"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Rotates the coordinate system by
+                <span class="angle">&langle;</span><i>degree</i
+                ><span class="angle">&rangle;</span> around the point
+                <span class="angle">&langle;</span><i>coordinate</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1853"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="93.866"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1853.png"
+                        style
+                        width="126.962"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                              </span><span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around"
+                        >rotate around</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{40:<span class="textcolor" style="color: #800080"
+                        >(1,1)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around"
+                        >rotate around</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{-20:<span class="textcolor" style="color: #800080"
+                        >(1,1)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/rotate:around:x"></a
+                    ><a id="pgf.rotate:around:x"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/rotate around x</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>angle</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/rotate:around:x"
+                      href="#tikz/rotate:around:x"
+                      id="tikz/rotate:around:x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key sets the \(x\), \(y\) and \(z\) vectors of the
+                <span class="textsc">pgf</span> \(xyz\)-coordinate system so
+                that they are rotated by <span class="angle">&langle;</span
+                ><i>angle</i><span class="angle">&rangle;</span> around the axis
+                corresponding to the \(x\)-vector. The rotation is applied so
+                that when looking towards the origin along this axis, positive
+                angles result in an anticlockwise rotation.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1854"
+                      ><!--
+    y
+
+
+
+
+        x
+
+z
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="114.674"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1854.png"
+                        style
+                        width="129.938"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.&gt;">&gt;</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >stealth</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$x$</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,2,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >$y$</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >$z$</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >,<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:x"
+                        >rotate around x</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0</span
+                    >]<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >green</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:x"
+                        >rotate around x</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">45</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >,<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:x"
+                        >rotate around x</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">90</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/rotate:around:y"></a
+                    ><a id="pgf.rotate:around:y"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/rotate around y</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>angle</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/rotate:around:y"
+                      href="#tikz/rotate:around:y"
+                      id="tikz/rotate:around:y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key sets the \(x\), \(y\) and \(z\) vectors of the
+                <span class="textsc">pgf</span> \(xyz\)-coordinate system so
+                that they are rotated by <span class="angle">&langle;</span
+                ><i>angle</i><span class="angle">&rangle;</span> around the axis
+                corresponding to the \(y\)-vector. The rotation is applied so
+                that when looking towards the origin along this axis, positive
+                angles result in an anticlockwise rotation.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1855"
+                      ><!--
+    y
+
+
+
+
+        x
+
+z
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="114.674"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1855.png"
+                        style
+                        width="129.938"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.&gt;">&gt;</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >stealth</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$x$</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,2,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >$y$</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >$z$</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >,<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:y"
+                        >rotate around y</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0</span
+                    >]<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >green</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:y"
+                        >rotate around y</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-45</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >,<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:y"
+                        >rotate around y</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">-90</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/rotate:around:z"></a
+                    ><a id="pgf.rotate:around:z"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/rotate around z</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>angle</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/rotate:around:z"
+                      href="#tikz/rotate:around:z"
+                      id="tikz/rotate:around:z"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key sets the \(x\), \(y\) and \(z\) vectors of the
+                <span class="textsc">pgf</span> \(xyz\)-coordinate system so
+                that they are rotated by <span class="angle">&langle;</span
+                ><i>angle</i><span class="angle">&rangle;</span> around the axis
+                corresponding to the \(z\)-vector. The rotation is applied so
+                that when looking towards the origin along this axis, positive
+                angles result in an anticlockwise rotation.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1856"
+                      ><!--
+    y
+
+
+
+
+        x
+
+z
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="114.674"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1856.png"
+                        style
+                        width="129.938"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.&gt;">&gt;</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >stealth</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$x$</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,2,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >$y$</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,0,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.at:end">at end</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >]<span class="spaces">  </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >$z$</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >,<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:z"
+                        >rotate around z</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">0</span
+                    >]<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >green</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:z"
+                        >rotate around z</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">45</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >,<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate:around:z"
+                        >rotate around z</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">90</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/cm"></a><a id="pgf.cm"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/cm</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>\(a\)</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">,</span
+                      ><span class="angle">&langle;</span><i>\(b\)</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">,</span
+                      ><span class="angle">&langle;</span><i>\(c\)</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">,</span
+                      ><span class="angle">&langle;</span><i>\(d\)</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">,</span
+                      ><span class="angle">&langle;</span><i>coordinate</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/cm"
+                      href="#tikz/cm"
+                      id="tikz/cm"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                applies the following transformation to all coordinates: Let
+                \((x,y)\) be the coordinate to be transformed and let
+                <span class="angle">&langle;</span><i>coordinate</i
+                ><span class="angle">&rangle;</span> specify the point
+                \((t_x,t_y)\). Then the new coordinate is given by \(\left
+                (\begin {smallmatrix} a &amp; c \\ b &amp; d\end
+                {smallmatrix}\right ) \left (\begin {smallmatrix} x \\ y \end
+                {smallmatrix}\right ) + \left (\begin {smallmatrix} t_x \\ t_y
+                \end {smallmatrix}\right )\). Usually, you do not use this
+                option directly.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1857"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="79.586"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1857.png"
+                        style
+                        width="116.426"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                             </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.cm">cm</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{1,1,0,1,<span class="textcolor" style="color: #800080"
+                        >(0,0)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.cm">cm</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{0,1,1,0,<span class="textcolor" style="color: #800080"
+                        >(1cm,1cm)</span
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/reset:cm"></a><a id="pgf.reset:cm"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/reset cm</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/reset:cm"
+                      href="#tikz/reset:cm"
+                      id="tikz/reset:cm"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Completely resets the coordinate transformation matrix to the
+                identity matrix. This will destroy not only the transformations
+                applied in the current scope, but also all transformations
+                inherited from surrounding scopes. Do not use this option,
+                unless you really, really know what you are doing.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4312">
+            <span
+              ><span class="sectionnumber" id="sec-25.4">25.4</span> Canvas
+              Transformations</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-25.4"
+              data-pdf-destination="subsection.25.4"
+              data-pdf-page="379"
+              href="#sec-25.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4312"></a>
+
+          <p>
+            A <em>canvas transformation</em>, see Section&nbsp;<a
+              href="base-design#section-design-transformations"
+              >99.4</a
+            >
+            for details, is best thought of as a transformation in which the
+            drawing canvas is stretched or rotated. Imaging writing something on
+            a balloon (the canvas) and then blowing air into the balloon: Not
+            only does the text become larger, the thin lines also become larger.
+            In particular, if you scale the canvas by a factor of two, all lines
+            are twice as thick.
+          </p>
+
+          <p>
+            Canvas transformations should be used with great care. In most
+            circumstances you do <em>not</em> want line widths to change in a
+            picture as this creates visual inconsistency.
+          </p>
+
+          <p>
+            Just as important, when you use canvas transformations
+            <em
+              ><span class="textsc">pgf</span> loses track of positions of nodes
+              and of picture sizes</em
+            >
+            since it does not take the effect of canvas transformations into
+            account when it computes coordinates of nodes (do not, however, rely
+            on this; it may change in the future).
+          </p>
+
+          <p>
+            Finally, note that a canvas transformation always applies to a path
+            as a whole, it is not possible (as for coordinate transformations)
+            to use different transformations in different parts of a path.
+          </p>
+
+          <p>
+            In short, you should not use canvas transformations unless you
+            really know what you are doing.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/transform:canvas"></a
+                    ><a id="pgf.transform:canvas"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/transform canvas</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/transform:canvas"
+                      href="#tikz/transform:canvas"
+                      id="tikz/transform:canvas"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> should contain coordinate
+                transformations options like <span class="verb">scale</span> or
+                <span class="verb">xshift</span>. Multiple options can be given,
+                their effects accumulate in the usual manner. The effect of
+                these <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> (immediately) changes the
+                current canvas transformation matrix. The coordinate
+                transformation matrix is not changed. Tracking of the picture
+                size is (locally) switched off and the node coordinate will no
+                longer be correct.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1858"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="117.986"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1858.png"
+                        style
+                        width="154.258"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    ><span class="spaces">                              </span><span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.transform:canvas"
+                        >transform canvas</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{scale=2}</span
+                    >,<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.transform:canvas"
+                        >transform canvas</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{rotate=180}</span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

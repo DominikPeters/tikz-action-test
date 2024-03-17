@@ -1,0 +1,2657 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Matrix Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Matrix Library",
+            "item": "https://tikz.dev/library-matrix"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-matrix" rel="canonical" />
+    <meta content="https://tikz.dev/library-matrix" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/library-matrix.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta content="Matrix Library - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5858"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-59.1">Matrices of Nodes</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-59.2"
+                >End-of-Lines and End-of-Row Characters in Matrices of Nodes</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-59.3">Delimiters</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5859">
+            <span
+              ><span class="sectionnumber" id="sec-59">59</span> Matrix
+              Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.59"
+              data-pdf-page="710"
+              href="#sec-59"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5859"></a>
+          <a id="pgfmanual-autofile-64"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >matrix</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >matrix</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >matrix</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library package defines additional styles and options for
+                creating matrices. The basic matrix styles and options can be
+                found in Section&nbsp;<a href="tikz-matrices#section-matrices"
+                  >20</a
+                >.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-5861">
+            <span
+              ><span class="sectionnumber" id="sec-59.1">59.1</span> Matrices of
+              Nodes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-59.1"
+              data-pdf-destination="subsection.59.1"
+              data-pdf-page="710"
+              href="#sec-59.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5861"></a>
+
+          <p>
+            A <em>matrix of nodes</em> is a
+            <span class="tikzname">TikZ</span> matrix in which each cell
+            contains a node. In this case it is bothersome having to write
+            <span class="verb">\node{</span> at the beginning of each cell and
+            <span class="verb">};</span> at the end of each cell. The following
+            key simplifies typesetting such matrices.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/matrix:of:nodes"></a
+                    ><a id="pgf.matrix:of:nodes"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/matrix of nodes</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/matrix:of:nodes"
+                      href="#tikz/matrix:of:nodes"
+                      id="tikz/matrix:of:nodes"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Conceptually, this key adds <span class="verb">\node{</span> at
+                the beginning and <span class="verb">};</span> at the end of
+                each cell and sets the <span class="verb">anchor</span> of the
+                node to <span class="verb">base</span>. Furthermore, it adds the
+                option <span class="verb">name</span> option to each node, where
+                the name is set to <span class="angle">&langle;</span
+                ><i>matrix name</i><span class="angle">&rangle;</span
+                ><span class="verb">-</span><span class="angle">&langle;</span
+                ><i>row number</i><span class="angle">&rangle;</span
+                ><span class="verb">-</span><span class="angle">&langle;</span
+                ><i>column number</i><span class="angle">&rangle;</span>. For
+                example, if the matrix has the name
+                <span class="verb">my matrix</span>, then the node in the upper
+                left cell will get the name
+                <span class="verb">my matrix-1-1</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2406"
+                      ><!--
+8 1 6
+3 5 7
+4 9 2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="47.235"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2406.png"
+                        style
+                        width="42.627"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(magic)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:nodes"
+                        >matrix of nodes</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >8</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">1</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">6</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >3</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">5</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">7</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >4</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">9</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(magic-1-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      >|-</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(magic-2-3)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                You may wish to add options to certain nodes in the matrix. This
+                can be achieved in three ways.
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> You can modify, say, the
+                    <span class="verb">row 2 column 3</span> style to pass
+                    special options to this particular cell.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2407"
+                          ><!--
+8 1 6
+3 5 7
+4 9 2
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="47.235"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2407.png"
+                            style
+                            width="42.627"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {matrix} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}[<span class="textcolor" style="color: #008000"
+                          >row 2 column 3</span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-matrices#pgf.back/matrix"
+                            >\matrix</a
+                          ></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.matrix:of:nodes"
+                            >matrix of nodes</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span>{<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >8</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">1</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">6</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >3</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">5</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">7</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >4</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">9</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">2</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">  </span>};<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> At the beginning of a
+                    cell, you can use a special syntax. If a cell starts with a
+                    vertical bar, then everything between this bar and the next
+                    bar is passed on to the <span class="verb">node</span>
+                    command.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2408"
+                          ><!--
+8 1 6
+3 5 7
+4 9 2
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="47.235"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2408.png"
+                            style
+                            width="42.627"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {matrix} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-matrices#pgf.back/matrix"
+                            >\matrix</a
+                          ></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.matrix:of:nodes"
+                            >matrix of nodes</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span>{<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >8</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">1</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="spaces">        </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >6</span
+                        >
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >3</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">5</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">|</span
+                        >[<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<span class="textcolor" style="color: #000000"
+                          >|</span
+                        >
+                        <span class="textcolor" style="color: #000000">7</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >4</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">9</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="spaces">        </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >2</span
+                        >
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">  </span>};<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    You can also use an option like
+                    <span class="verb">|[red] (seven)|</span> to give a
+                    different name to the node.
+                  </p>
+                  <p>
+                    Note that the <span class="verb">&amp;</span> character also
+                    takes an optional argument, which is an extra column skip.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2409"
+                          ><!--
+8 1 6
+3 5 7
+4 9 2
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="47.235"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2409.png"
+                            style
+                            width="91.778"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {matrix} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-matrices#pgf.back/matrix"
+                            >\matrix</a
+                          ></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.matrix:of:nodes"
+                            >matrix of nodes</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span>{<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >8</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >[<span class="textcolor" style="color: #008000"
+                          >1cm</span
+                        >] <span class="textcolor" style="color: #000000"
+                          >1</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >[<span class="textcolor" style="color: #008000"
+                          >3mm</span
+                        >] <span class="textcolor" style="color: #000000"
+                          >|</span
+                        >[<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<span class="textcolor" style="color: #000000"
+                          >|</span
+                        >
+                        <span class="textcolor" style="color: #000000">6</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >3</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >5</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >|</span
+                        >[<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<span class="textcolor" style="color: #000000"
+                          >|</span
+                        >
+                        <span class="textcolor" style="color: #000000">7</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >4</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >9</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="spaces">             </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >2</span
+                        >
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">  </span>};<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> If your cell starts with
+                    a <span class="verb">\path</span> command or any command
+                    that expands to <span class="verb">\path</span>, which
+                    includes <span class="verb">\draw</span>,
+                    <span class="verb">\node</span>,
+                    <span class="verb">\fill</span> and others, the
+                    <span class="verb">\node{</span> startup code and the
+                    <span class="verb">};</span> code are suppressed. This means
+                    that for this particular cell you can provide totally
+                    different contents.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2410"
+                          ><!--
+8 1 6
+3 5 7
+
+4 9 2
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="56.355"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2410.png"
+                            style
+                            width="57.903"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {matrix} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-matrices#pgf.back/matrix"
+                            >\matrix</a
+                          ></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.matrix:of:nodes"
+                            >matrix of nodes</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span>{<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >8</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">1</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">6</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >3</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">5</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]{<span class="textcolor" style="color: #000000"
+                          >7</span
+                        >};<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        ><span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.circle">circle</a></span
+                        ><span class="textcolor" style="color: #800080"
+                          >(10pt)</span
+                        >;<span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >4</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">9</span>
+                        <span class="textcolor" style="color: #000000"
+                          >&amp;</span
+                        >
+                        <span class="textcolor" style="color: #000000">2</span>
+                        <span class="textcolor" style="color: #0000b2">\</span
+                        ><span class="textcolor" style="color: #0000b2">\</span
+                        ><br />
+                        <span class="spaces">  </span>};<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/matrix:of:math:nodes"></a
+                    ><a id="pgf.matrix:of:math:nodes"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/matrix of math nodes</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/matrix:of:math:nodes"
+                      href="#tikz/matrix:of:math:nodes"
+                      id="tikz/matrix:of:math:nodes"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style is almost the same as the previous style, only
+                <span class="verb">$</span> is added at the beginning and at the
+                end of each node, so math mode will be switched on in all nodes.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2411"
+                      ><!--
+a8 a1 a6
+a3 a5 a7
+a4 a9 a2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="43.875"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2411.png"
+                        style
+                        width="57.891"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:math:nodes"
+                        >matrix of math nodes</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_8</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">a_1</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">        </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_6</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_3</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">a_5</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">|</span
+                    >[<span class="textcolor" style="color: #008000">red</span
+                    >]<span class="textcolor" style="color: #000000">|</span>
+                    <span class="textcolor" style="color: #000000">a_7</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_4</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">a_9</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">        </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_2</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/nodes:in:empty:cells"></a
+                    ><a id="pgf.nodes:in:empty:cells"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/nodes in empty cells</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>true or false</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>true</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/nodes:in:empty:cells"
+                      href="#tikz/nodes:in:empty:cells"
+                      id="tikz/nodes:in:empty:cells"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                When set to <span class="verb">true</span>, a node (with empty
+                contents) is put in empty cells. Normally, empty cells are just,
+                well, empty. The style can be used together with both a
+                <span class="verb">matrix of nodes</span> and a
+                <span class="verb">matrix of math nodes</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2412"
+                      ><!--
+a8 a6
+
+a3 a7
+
+a4 a9
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="86.474"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2412.png"
+                        style
+                        width="86.500"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:math:nodes"
+                        >matrix of math nodes</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.circle">circle</a>,<a
+                        href="tikz-actions#pgf.draw"
+                        >draw</a
+                      >}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_8</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >&amp;</span
+                    >
+                    <span class="textcolor" style="color: #000000">a_6</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_3</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >&amp;</span
+                    >
+                    <span class="textcolor" style="color: #000000">a_7</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_4</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">a_9</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2413"
+                      ><!--
+a8 a6
+
+a3 a7
+
+a4 a9
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="86.474"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2413.png"
+                        style
+                        width="86.500"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:math:nodes"
+                        >matrix of math nodes</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.circle">circle</a>,<a
+                        href="tikz-actions#pgf.draw"
+                        >draw</a
+                      >}</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.nodes:in:empty:cells"
+                        >nodes in empty cells</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_8</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >&amp;</span
+                    >
+                    <span class="textcolor" style="color: #000000">a_6</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_3</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >&amp;</span
+                    >
+                    <span class="textcolor" style="color: #000000">a_7</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a_4</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">a_9</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-5878">
+            <span
+              ><span class="sectionnumber" id="sec-59.2">59.2</span>
+              End-of-Lines and End-of-Row Characters in Matrices of Nodes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-59.2"
+              data-pdf-destination="subsection.59.2"
+              data-pdf-page="711"
+              href="#sec-59.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5878"></a>
+
+          <p>
+            Special care must be taken about the usage of the
+            <span class="verb">\\</span> command inside a matrix of nodes. The
+            reason is that this character is overloaded in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >: On the one hand, it is used to denote the end of a line in normal
+            text; on the other hand it is used to denote the end of a row in a
+            matrix. Now, if a matrix contains node which in turn may have
+            multiple lines, it is unclear which meaning of
+            <span class="verb">\\</span> should be used.
+          </p>
+
+          <p>
+            This problem arises only when you use the
+            <span class="verb">text width</span> option of nodes. Suppose you
+            write a line like
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.text:width">text width</a></span
+                >=<span class="textcolor" style="color: #008000">5cm</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="library-matrix#pgf.matrix:of:nodes"
+                    >matrix of nodes</a
+                  ></span
+                >]<br />
+                {<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.first">first</a></span
+                >
+                <span class="textcolor" style="color: #000000">row</span>
+                <span class="textcolor" style="color: #000000">&amp;</span>
+                <span class="textcolor" style="color: #000000">upper</span>
+                <span class="textcolor" style="color: #000000">line</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span
+                > <span class="textcolor" style="color: #000000"
+                  >lower</span
+                >
+                <span class="textcolor" style="color: #000000">line</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.second">second</a></span
+                >
+                <span class="textcolor" style="color: #000000">row</span>
+                <span class="textcolor" style="color: #000000">&amp;</span>
+                <span class="textcolor" style="color: #000000">hmm</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                };<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            This leaves
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            trying to riddle out how many rows this matrix should have. Do you
+            want two rows with the upper right cell containing a two-line text.
+            Or did you mean a three row matrix with the second row having only
+            one cell?
+          </p>
+
+          <p>
+            Since
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            is not clairvoyant, the following rules are used:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Inside a matrix, the
+                <span class="verb">\\</span> command, by default, signals the
+                end of the row, not the end of a line in a cell.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> However, there is an
+                exception to this rule: If a cell starts with a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-group (this is, with <span class="verb">{</span>), then inside
+                this first group the <span class="verb">\\</span> command
+                retains the meaning of &ldquo;end of line&rdquo; character. Note
+                that this special rule works only for the first group in a cell
+                and this group must be at the beginning.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            The net effect of these rules is the following: Normally,
+            <span class="verb">\\</span> is an end-of-row indicator; if you want
+            to use it as an end-of-line indicator in a cell, just put the whole
+            cell in curly braces. The following example illustrates the
+            difference:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2414"
+                  ><!--
+row 1 upper
+        line
+lower
+line
+row 2 hmm
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="90.084"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2414.png"
+                    style
+                    width="142.384"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {matrix} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="library-matrix#pgf.matrix:of:nodes"
+                    >matrix of nodes</a
+                  ></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-shapes#pgf.text">text</a> width=16mm,<a
+                    href="tikz-actions#pgf.draw"
+                    >draw</a
+                  >}</span
+                >]<br />
+                <span class="spaces">  </span>{<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >row</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>
+                <span class="textcolor" style="color: #000000">&amp;</span>
+                <span class="textcolor" style="color: #000000">upper</span>
+                <span class="textcolor" style="color: #000000">line</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span
+                > <span class="textcolor" style="color: #000000"
+                  >lower</span
+                >
+                <span class="textcolor" style="color: #000000">line</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >row</span
+                >
+                <span class="textcolor" style="color: #000000">2</span>
+                <span class="textcolor" style="color: #000000">&amp;</span>
+                <span class="textcolor" style="color: #000000">hmm</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">  </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2415"
+                  ><!--
+row 1 upper
+        line
+        lower
+        line
+row 2 hmm
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="87.338"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2415.png"
+                    style
+                    width="142.384"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {matrix} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="library-matrix#pgf.matrix:of:nodes"
+                    >matrix of nodes</a
+                  ></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-shapes#pgf.text">text</a> width=16mm,<a
+                    href="tikz-actions#pgf.draw"
+                    >draw</a
+                  >}</span
+                >]<br />
+                <span class="spaces">  </span>{<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >row</span
+                >
+                <span class="textcolor" style="color: #000000">1</span>
+                <span class="textcolor" style="color: #000000">&amp;</span>
+                {<span class="textcolor" style="color: #000000">upper</span>
+                <span class="textcolor" style="color: #000000">line</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span
+                > <span class="textcolor" style="color: #000000"
+                  >lower</span
+                >
+                <span class="textcolor" style="color: #000000">line</span
+                >} <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >row</span
+                >
+                <span class="textcolor" style="color: #000000">2</span>
+                <span class="textcolor" style="color: #000000">&amp;</span>
+                <span class="textcolor" style="color: #000000">hmm</span>
+                <span class="textcolor" style="color: #0000b2">\</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">  </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Note that this system is not fool-proof. If you write things like
+            <span class="verb">a&amp;b{c\\d}\\</span> in a matrix of nodes, an
+            error will result (because the second cell did not start with a
+            brace, so <span class="verb">\\</span> retained its normal meaning
+            and, thus, the second cell contained the text
+            <span class="verb">b{c</span>, which is not balanced with respect to
+            the number of braces).
+          </p>
+          <h5 id="autosec-5883">
+            <span
+              ><span class="sectionnumber" id="sec-59.3">59.3</span>
+              Delimiters</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-59.3"
+              data-pdf-destination="subsection.59.3"
+              data-pdf-page="712"
+              href="#sec-59.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5883"></a>
+
+          <p>
+            Delimiters are parentheses or braces to the left and right of a
+            formula or a matrix. The <span class="verb">matrix</span> library
+            offers options for adding such delimiters to a matrix. However,
+            delimiters can actually be added to any node that has the standard
+            anchors <span class="verb">north</span>,
+            <span class="verb">south</span>,
+            <span class="verb">north west</span> and so on. In particular, you
+            can add delimiters to any <span class="verb">rectangle</span> box.
+            They are implemented by &ldquo;measuring the height&rdquo; of the
+            node and then adding a delimiter of the correct size to the left or
+            right using some after node magic.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/left:delimiter"></a
+                    ><a id="pgf.left:delimiter"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/left delimiter</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>delimiter</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/left:delimiter"
+                      href="#tikz/left:delimiter"
+                      id="tikz/left:delimiter"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option can be given to a any node that has the standard
+                anchors <span class="verb">north</span>,
+                <span class="verb">south</span> and so on. The
+                <span class="angle">&langle;</span><i>delimiter</i
+                ><span class="angle">&rangle;</span> can be any delimiter that
+                is acceptable to
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >&rsquo;s <span class="verb">\left</span> command.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2416"
+                      ><!--
+ 
+  a8 a1 a6 
+             
+ a a a
+ 3 5 7
+  a4 a9 a2 
+             
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="58.443"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2416.png"
+                        style
+                        width="98.042"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:math:nodes"
+                        >matrix of math nodes</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.left:delimiter"
+                        >left delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #800080"
+                        >(</span
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.right:delimiter"
+                        >right delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      >}]<br />
+                      <span class="spaces">  </span>{<br />
+                      <span class="spaces">    </span>a_8 &amp; a_1 &amp; a_6
+                      <span class="textcolor" style="color: #0000b2">\</span
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      ><br />
+                      <span class="spaces">    </span>a_3 &amp; a_5 &amp; a_7
+                      <span class="textcolor" style="color: #0000b2">\</span
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      ><br />
+                      <span class="spaces">    </span>a_4 &amp; a_9 &amp; a_2
+                      <span class="textcolor" style="color: #0000b2">\</span
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      ><br />
+                      <span class="spaces">  </span>};<br />
+                      <span class="textcolor" style="color: #000000">\end</span
+                      >{<span class="textcolor" style="color: #0000b2"
+                        ><a href="tikz-scopes#pgf.tikzpicture"
+                          >tikzpicture</a
+                        ></span
+                      >}<br />
+                    </span>
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2417"
+                      ><!--
+Z 1 )
+      x dx
+ 0
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="44.427"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2417.png"
+                        style
+                        width="77.162"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.left:delimiter"
+                        >left delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #800080"
+                        >(</span
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.right:delimiter"
+                        >right delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      >}]<br />
+                      <span class="spaces">    </span>{$<span
+                        class="textcolor"
+                        style="color: #0000b2"
+                        >\displaystyle</span
+                      ><span class="textcolor" style="color: #0000b2">\int</span
+                      >_0^1 <a href="tikz-coordinates#pgf.x">x</a
+                      ><span class="textcolor" style="color: #0000b2"
+                        >\</span
+                      ></span
+                    >,<span class="textcolor" style="color: #008000">dx$</span
+                    >}<span class="textcolor" style="color: #008000">;</span
+                    ><br />
+                    <br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:delimiter"></a
+                        ><a id="pgf.every:delimiter"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every delimiter</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:delimiter"
+                          href="#tikz/every:delimiter"
+                          id="tikz/every:delimiter"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is executed for every delimiter. You can use it
+                    to shift or color delimiters or do whatever.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:left:delimiter"></a
+                        ><a id="pgf.every:left:delimiter"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every left delimiter</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:left:delimiter"
+                          href="#tikz/every:left:delimiter"
+                          id="tikz/every:left:delimiter"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is additionally executed for every left
+                    delimiter.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2418"
+                          ><!--
+ 
+ a8 a1 a6 
+          
+a a a
+ 3 5 7
+ a4 a9 a2 
+          
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="58.443"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2418.png"
+                            style
+                            width="86.234"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {matrix} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-matrix#pgf.every:left:delimiter"
+                            >every left delimiter</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-transformations#pgf.xshift"
+                            >xshift</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >1ex}</span
+                        >,<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-matrix#pgf.every:right:delimiter"
+                            >every right delimiter</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-transformations#pgf.xshift"
+                            >xshift</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >-1ex}</span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-matrices#pgf.back/matrix"
+                            >\matrix</a
+                          ></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.matrix:of:math:nodes"
+                            >matrix of math nodes</a
+                          ></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.left:delimiter"
+                            >left delimiter</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><span class="textcolor" style="color: #800080"
+                            >(</span
+                          ></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="library-matrix#pgf.right:delimiter"
+                            >right delimiter</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><span class="textcolor" style="color: #0000b2"
+                            >\</span
+                          >}]<br />
+                          <span class="spaces">  </span>{<br />
+                          <span class="spaces">    </span>a_8 &amp; a_1 &amp; a_6
+                          <span class="textcolor" style="color: #0000b2">\</span
+                          ><span class="textcolor" style="color: #0000b2"
+                            >\</span
+                          ><br />
+                          <span class="spaces">    </span>a_3 &amp; a_5 &amp; a_7
+                          <span class="textcolor" style="color: #0000b2">\</span
+                          ><span class="textcolor" style="color: #0000b2"
+                            >\</span
+                          ><br />
+                          <span class="spaces">    </span>a_4 &amp; a_9 &amp; a_2
+                          <span class="textcolor" style="color: #0000b2">\</span
+                          ><span class="textcolor" style="color: #0000b2"
+                            >\</span
+                          ><br />
+                          <span class="spaces">  </span>};<br />
+                          <span class="textcolor" style="color: #000000"
+                            >\end</span
+                          >{<span class="textcolor" style="color: #0000b2"
+                            ><a href="tikz-scopes#pgf.tikzpicture"
+                              >tikzpicture</a
+                            ></span
+                          >}<br />
+                        </span>
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/right:delimiter"></a
+                    ><a id="pgf.right:delimiter"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/right delimiter</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>delimiter</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/right:delimiter"
+                      href="#tikz/right:delimiter"
+                      id="tikz/right:delimiter"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works as above.</p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:right:delimiter"></a
+                        ><a id="pgf.every:right:delimiter"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every right delimiter</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:right:delimiter"
+                          href="#tikz/every:right:delimiter"
+                          id="tikz/every:right:delimiter"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Works as above.</p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/above:delimiter"></a
+                    ><a id="pgf.above:delimiter"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/above delimiter</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>delimiter</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/above:delimiter"
+                      href="#tikz/above:delimiter"
+                      id="tikz/above:delimiter"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option allows you to add a delimiter above the node. It is
+                implemented by rotating a left delimiter.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2419"
+                      ><!--
+ 
+ 
+ 
+ 
+       
+           
+a8 a1 a6 
+           
+           
+a3 a5 a7 
+           
+           
+           
+a4 a9 a2 
+           
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="82.226"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2419.png"
+                        style
+                        width="95.738"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {matrix} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:math:nodes"
+                        >matrix of math nodes</a
+                      ></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">           </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-matrix#pgf.left:delimiter"
+                        >left delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      >|</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.right:delimiter"
+                        >right delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #0000b2"
+                        >\rmoustache</span
+                      ></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">           </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-matrix#pgf.above:delimiter"
+                        >above delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #800080"
+                        >(</span
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.below:delimiter"
+                        >below delimiter</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      >}]<br />
+                      <span class="spaces">  </span>{<br />
+                      <span class="spaces">    </span>a_8 &amp; a_1 &amp; a_6
+                      <span class="textcolor" style="color: #0000b2">\</span
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      ><br />
+                      <span class="spaces">    </span>a_3 &amp; a_5 &amp; a_7
+                      <span class="textcolor" style="color: #0000b2">\</span
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      ><br />
+                      <span class="spaces">    </span>a_4 &amp; a_9 &amp; a_2
+                      <span class="textcolor" style="color: #0000b2">\</span
+                      ><span class="textcolor" style="color: #0000b2">\</span
+                      ><br />
+                      <span class="spaces">  </span>};<br />
+                      <span class="textcolor" style="color: #000000">\end</span
+                      >{<span class="textcolor" style="color: #0000b2"
+                        ><a href="tikz-scopes#pgf.tikzpicture"
+                          >tikzpicture</a
+                        ></span
+                      >}<br />
+                    </span>
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:above:delimiter"></a
+                        ><a id="pgf.every:above:delimiter"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every above delimiter</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:above:delimiter"
+                          href="#tikz/every:above:delimiter"
+                          id="tikz/every:above:delimiter"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Works as above.</p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/below:delimiter"></a
+                    ><a id="pgf.below:delimiter"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/below delimiter</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>delimiter</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/below:delimiter"
+                      href="#tikz/below:delimiter"
+                      id="tikz/below:delimiter"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works as above.</p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:below:delimiter"></a
+                        ><a id="pgf.every:below:delimiter"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every below delimiter</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:below:delimiter"
+                          href="#tikz/every:below:delimiter"
+                          id="tikz/every:below:delimiter"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Works as above.</p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

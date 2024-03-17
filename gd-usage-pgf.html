@@ -1,0 +1,2510 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2010-2019 by Renée Ahrens
+Copyright 2010-2019 by Olof Frahm
+Copyright 2010-2019 by Jens Kluttig
+Copyright 2010-2019 by Matthias Schulz
+Copyright 2010-2019 by Stephan Schuster
+Copyright 2019 by Jannis Pohlmann
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Using Graph Drawing in PGF - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Using Graph Drawing in PGF",
+            "item": "https://tikz.dev/gd-usage-pgf"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-usage-pgf" rel="canonical" />
+    <meta content="https://tikz.dev/gd-usage-pgf" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Using Graph Drawing in PGF - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4606"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-29.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-29.2"
+                >How Graph Drawing in PGF Works</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-29.2.1"
+                >Graph Drawing Scopes</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-29.3">Layout Scopes</a></p>
+            <p><a class="tocsubsection" href="#sec-29.4">Layout Keys</a></p>
+            <p><a class="tocsubsection" href="#sec-29.5">Parameters</a></p>
+            <p><a class="tocsubsection" href="#sec-29.6">Events</a></p>
+            <p><a class="tocsubsection" href="#sec-29.7">Subgraph Nodes</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4607">
+            <a id="section-gd-pgf"></a
+            ><span
+              ><span class="sectionnumber" id="sec-29">29</span> Using Graph
+              Drawing in PGF</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.29"
+              data-pdf-page="451"
+              href="#sec-29"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4607"></a>
+          <a id="pgfmanual-autofile-33"></a>
+
+          <p>
+            <em>by Till Tantau</em>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>PGF Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >graphdrawing</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usepgflibrary{<span class="textcolor" style="color: #bf0000"
+                    >graphdrawing</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usepgflibrary[<span class="textcolor" style="color: #bf0000"
+                    >graphdrawing</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This package provides the core support for graph drawing inside
+                <span class="textsc">pgf</span>. It does so by providing
+                <span class="textsc">pgf</span> macros for controlling the graph
+                drawing system, but also implements the binding to the graph
+                drawing system (see Section&nbsp;<a
+                  href="gd-binding-layer#section-gd-binding-layer"
+                  >39</a
+                >
+                for details on bindings).
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4609">
+            <span
+              ><span class="sectionnumber" id="sec-29.1">29.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.1"
+              data-pdf-destination="subsection.29.1"
+              data-pdf-page="451"
+              href="#sec-29.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4609"></a>
+
+          <p>
+            Just like everywhere else in <span class="textsc">pgf</span>,
+            <span class="tikzname">TikZ</span> is &ldquo;just a convenient
+            syntax&rdquo; in the context of graph drawing. The &ldquo;hard
+            work&rdquo; of binding the internal representations of nodes and
+            edges with the graph drawing system written in Lua is not done by
+            <span class="tikzname">TikZ</span>, but rather by a set of macros
+            that are part of the basic <span class="textsc">pgf</span> layer.
+          </p>
+
+          <p>
+            The documentation of the <span class="textsc">pgf</span> part of the
+            graph drawing system that is presented in the following includes
+            only those macros that other
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            packages could conceivably call in order to use the graph drawing
+            system without using <span class="tikzname">TikZ</span>; for
+            instance, for efficiency reasons. (The internal callback functions
+            defined in the <span class="verb">graphdrawing</span> library that
+            are part of the binding between <span class="textsc">pgf</span> and
+            the graph drawing system are not documented, should not be called,
+            and may change in the future.)
+          </p>
+          <h5 id="autosec-4610">
+            <span
+              ><span class="sectionnumber" id="sec-29.2">29.2</span> How Graph
+              Drawing in PGF Works</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.2"
+              data-pdf-destination="subsection.29.2"
+              data-pdf-page="451"
+              href="#sec-29.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4610"></a>
+
+          <p>
+            The core idea behind graph drawing in
+            <span class="textsc">pgf</span> is that inside special
+            <em>graph drawing scopes</em> whenever
+            <span class="textsc">pgf</span> creates a node, we intercept this
+            node creation and <em>do not</em> immediately place the node.
+            Rather, we pass it down to Lua part of the graph drawing system via
+            calls to appropriate methods of the (Lua) class
+            <span class="verb">InterfaceToDisplay</span>. The effect will be
+            that the nodes are &ldquo;tucked away&rdquo; in some internal
+            tables. For edges, we introduce a special command called
+            <span class="verb">\pgfgdedge</span> that tells the graph drawing
+            system that there is an edge between two tucked-away nodes. Then, at
+            the end of the graph drawing scope, a graph drawing algorithm
+            written in Lua starts to work on the graph by computing new
+            positions for the nodes. Once the algorithm has finished, the graph
+            drawing system starts sending back the nodes and edges to
+            <span class="textsc">pgf</span> via the methods of the class
+            <span class="verb">BindingToPGF</span>. These methods reinsert some
+            code into the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            output stream that finally places the nodes at their final
+            positions. Note that graph drawing algorithms are perfectly
+            oblivious to all of this; indeed, the graph drawing algorithms can
+            even be used independently of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >.
+          </p>
+
+          <p>
+            Let us have a look at a simple example to see what happens when a
+            graph is specified:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1958"
+                  ><!--
+Hello
+
+World
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="54.195"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1958.png"
+                    style
+                    width="52.725"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {trees} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.as">as</a></span
+                >=<span class="textcolor" style="color: #008000">Hello</span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">World</span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!20</span
+                >]};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The key <span class="verb">tree layout</span> internally calls the
+            key <span class="verb">request scope and layout</span>, which in
+            turn calls the macro <span class="verb">\pgfgdbeginscope</span>,
+            which starts a graph drawing scope inside the graph drawing system.
+            Once this macro has been called, until the next call of
+            <span class="verb">\pgfgdendscope</span>, all nodes that are created
+            actually get passed down to the graph drawing engine. This is
+            implemented on the lowest layer, namely by directly intercepting
+            nodes freshly created using <span class="verb">\pgfnode</span>. In
+            our example, this happens in two places: For the
+            <span class="verb">root</span> node and for the
+            <span class="verb">World</span> node. The
+            <span class="verb">graphs</span> library and
+            <span class="tikzname">TikZ</span> internally call the
+            <span class="verb">\pgfnode</span> macro for these two nodes (after
+            a large number of internal syntax translations, but the graph
+            drawing system does not care about them).
+          </p>
+
+          <p>
+            Note that the node boxes will have been fully created before they
+            are passed down to the graph drawing engine &ndash; only their final
+            position is not yet fixed. It is not possible to modify the size of
+            nodes inside the graph drawing engine, but you can create new nodes
+            in certain situations.
+          </p>
+
+          <p>
+            In contrast, the single edge of the graph that is created by the
+            <span class="verb">-&gt;</span> command is not fully created before
+            it is passed down to the graph drawing system. This would not really
+            make sense since before the final positions of the nodes are fixed,
+            we cannot even begin to compute the length of this edge, let alone
+            where it should start or end. For this reason, on the upper
+            <span class="tikzname">TikZ</span> layer, the normal edge creation
+            that would be caused by <span class="verb">-&gt;</span> via
+            <span class="verb">new -&gt;</span> is suppressed. Instead, the
+            command <span class="verb">\pgfgdedge</span> is called. Similarly,
+            inside a graph drawing scope,
+            <span class="tikzname">TikZ</span> will suppress both the
+            <span class="verb">edge</span> and the
+            <span class="verb">edge from parent</span> command and cause
+            <span class="verb">\pgfgdedge</span> to be called instead.
+          </p>
+
+          <p>
+            An overview of what happens is illustrated by the following call
+            graph:
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-1959"
+              ><!--
+ TikZ layer (TEX) pgf layer (TEX) Display layer (Lua)
+
+\graph[... layout]{ \pgfgdbeginscope beginGraphDrawingScope(...)
+
+     a -> b; \pgfnode createVertex(...)
+
+                             \pgfgdedge createEdge(...)
+
+        }; \pgfgdendscope runGraphDrawingAlgorithm()
+
+                                                                   invoke algorithm
+
+                                                     endGraphDrawingScope()
+
+                      \pgfgdcallbackbeginshipout
+
+                      \pgfgdcallbackrendernode
+
+                      \pgfgddefaultedgecallback
+
+                      \pgfgdcallbackendshipout
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="413.092"
+                loading="lazy"
+                src="pgfmanual-images/image-1959.png"
+                style
+                width="602.937"
+            /></span>
+          </p>
+
+          <p>
+            The above diagram glosses over the fact that the display layer does
+            not actually call any of the macros of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            directly, but uses a so called <em>binding</em> (see the class
+            <span class="verb">BindingToPGF</span>). However, this will not be
+            important for the present section since you cannot access the
+            binding directly.
+          </p>
+          <h6 id="autosec-4615">
+            <a id="section-gd-scopes"></a
+            ><span
+              ><span class="sectionnumber" id="sec-29.2.1">29.2.1</span> Graph
+              Drawing Scopes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.2.1"
+              data-pdf-destination="subsubsection.29.2.1"
+              data-pdf-page="452"
+              href="#sec-29.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4615"></a>
+
+          <p>
+            When the graph drawing system is active, some pretty basic things
+            inside <span class="textsc">pgf</span> change &ndash; such as the
+            fact that nodes are no longer created in the normal manner. For this
+            reason, the graph drawing system must be switched on and of
+            explicitly through opening and closing a so called
+            <em>graph drawing scope</em>. These scopes can, in principle, be
+            nested, namely a graph contains a node that contains some text that
+            in turn contains a subpicture that contains a drawing of a graph.
+            However, this is <em>not</em> the same as subgraphs nodes and
+            sublayouts, which are all part of the same graph drawing scope.
+            Normally, graph drawing scopes are not nested.
+          </p>
+
+          <p>Graph drawing scopes are created using the following commands:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdbeginscope"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdbeginscope</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdbeginscope"
+                      href="#\pgfgdbeginscope"
+                      id="\pgfgdbeginscope"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro starts a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope inside which the following things happen:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> The display layer method
+                    <span class="verb">beginGraphDrawingScope</span> is called,
+                    which created a new graph drawing scope inside the graph
+                    drawing system and places it on top of an internal stack.
+                    From now on, all subsequent interface calls will refer to
+                    this scope until <span class="verb">\pgfgdendscope</span> is
+                    called, which will pop the scope once more.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> Inside the
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    scope, nodes are not placed immediately. Rather,
+                    <span class="verb">\pgfpositionnodelater</span>, see
+                    Section&nbsp;<a
+                      href="base-nodes#section-shapes-deferred-node-positioning"
+                      >106.2.3</a
+                    >, is used to call
+                    <span class="verb">InterfaceToDisplay.createVertex</span>
+                    for all nodes created inside the scope. This will cause them
+                    to be put inside some internal table.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Some additional
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> is executed, which has
+                    been set using the following command:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfgdaddspecificationhook"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfgdaddspecificationhook</kbd></span
+                              >{<span class="angle">&langle;</span><i>code</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfgdaddspecificationhook"
+                              href="#\pgfgdaddspecificationhook"
+                              id="\pgfgdaddspecificationhook"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        This command adds the <span class="angle">&langle;</span
+                        ><i>code</i><span class="angle">&rangle;</span> to the
+                        code that is executed whenever a graph drawing scope
+                        starts. For instance, the
+                        <span class="tikzname">TikZ</span> library
+                        <span class="verb">graphdrawing</span> uses this macro
+                        to add some <span class="angle">&langle;</span
+                        ><i>code</i><span class="angle">&rangle;</span> that
+                        will redirect the <span class="verb">edge</span> and
+                        <span class="verb">edge from parent</span> path commands
+                        to <span class="verb">\pgfgdedge</span>.
+                      </p>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span>
+                    <span class="verb">\pgftransformreset</span> is called.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> The following
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >-if is set to true:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/ifpgfgdgraphdrawingscopeactive"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd
+                                  >\ifpgfgdgraphdrawingscopeactive</kbd
+                                ></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/ifpgfgdgraphdrawingscopeactive"
+                              href="#\ifpgfgdgraphdrawingscopeactive"
+                              id="\ifpgfgdgraphdrawingscopeactive"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>Will be true inside a graph drawing scope.</p>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <p>
+                The above has a number of consequences for what can happen
+                inside a graph drawing scope:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Since nodes are not
+                    actually created before the end of the scope, you cannot
+                    reference these nodes. Thus, you cannot write
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="gd-force#pgf.spring:layout"
+                            >spring layout</a
+                          ></span
+                        >] {<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(a)</span
+                        > {<span class="textcolor" style="color: #000000"
+                          >a</span
+                        >};<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(b)</span
+                        > {<span class="textcolor" style="color: #000000"
+                          >b</span
+                        >};<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(a)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080">(b)</span
+                        >;<br />
+                        }<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    The problem is that we cannot connect
+                    <span class="verb">(a)</span> and
+                    <span class="verb">(b)</span> via a straight line since
+                    these nodes do not exist at that point (they are available
+                    only deeply inside the Lua).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> In order to create
+                    edges between nodes inside a graph drawing scope, you need
+                    to call the <span class="verb">\pgfgdedge</span> command,
+                    described below.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Additionally, when <span class="tikzname">TikZ</span> is used,
+                the following things also happen:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> If the
+                    <span class="verb">graphs</span> library has been loaded,
+                    the default positioning mechanisms of this library are
+                    switched off, leaving the positioning to the graph drawing
+                    engine. Also, when an edge is created by the
+                    <span class="verb">graphs</span> library, this is signalled
+                    to the <span class="verb">graphdrawing</span> library. (To
+                    be more precise: The keys
+                    <span class="verb">new -&gt;</span> and so on are redefined
+                    so that they call
+                    <span class="verb">\pgfgdedge</span> instead of creating an
+                    edge.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <span class="verb">edge</span> path command is modified so
+                    that it also calls
+                    <span class="verb">\pgfgdedge</span> instead of immediately
+                    creating any edges.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <span class="verb">edge from parent</span> path command is
+                    modified so that is also calls
+                    <span class="verb">\pgfgdedge</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The keys
+                    <span class="verb">append after command</span> and
+                    <span class="verb">prefix after command</span> keys are
+                    modified so that they are executed only via
+                    <span class="verb">late options</span>
+                    when the node has &ldquo;reached its final parking
+                    position&rdquo;.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that inside a graph drawing scope you first have to open a
+                (main) layout scope (using the
+                <span class="verb">\pgfgdbeginlayout</span> command described
+                later on) before you can add nodes and edges to the scope.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdendscope"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdendscope</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdendscope"
+                      href="#\pgfgdendscope"
+                      id="\pgfgdendscope"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro is used to end a graph drawing scope. It must be
+                given on the same
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                grouping level as the corresponding
+                <span class="verb">\pgfgdbeginscope</span>. When the macro is
+                called, it triggers a lot of new calls:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> The special treatment of
+                    newly created boxes is ended. Nodes are once more created
+                    normally.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> The effects of the
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> that was inserted via
+                    the specification hook command also ends (provided it had no
+                    global effects).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> We call
+                    <span class="verb"
+                      >InterfaceToDisplay.runGraphDrawingAlgorithm</span
+                    >. This will cause the algorithm(s) for the graph to be
+                    executed (since a graph can have sublayouts, several
+                    algorithms may be run). See Section&nbsp;<a
+                      href="gd-usage-pgf#section-gd-layout-scopes"
+                      >29.3</a
+                    >
+                    below.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Next, we call
+                    <span class="verb"
+                      >InterfaceToDisplay.endGraphDrawingScope</span
+                    >. This causes all nodes that were intercepted during the
+                    graph drawing scope to be reinserted into the output stream
+                    at the positions that were computed for them. Also, for each
+                    edge that was requested via
+                    <span class="verb">\pgfgdedge</span>, the callback macro is
+                    called (see below).
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <p>
+            Inside a graph drawing scope, nodes are automatically passed down to
+            the graph drawing engine, while for edges a command has to be called
+            explicitly:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdedge"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdedge</kbd></span
+                      >{<span class="angle">&langle;</span><i>first node</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>second node</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>edge direction</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>edge options</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>edge nodes</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdedge"
+                      href="#\pgfgdedge"
+                      id="\pgfgdedge"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command is used to tell the graph drawing engine that there
+                is an edge between <span class="angle">&langle;</span
+                ><i>first node</i><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>second node</i
+                ><span class="angle">&rangle;</span> in your graph. The
+                &ldquo;kind&rdquo; of connection is indicated by
+                <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span>, which may be one of the
+                following:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">-&gt;</span> indicates a directed edge
+                    (also known as an arc) from
+                    <span class="angle">&langle;</span><i>first node</i
+                    ><span class="angle">&rangle;</span> to
+                    <span class="angle">&langle;</span><i>second node</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">--</span> indicates an undirected edge
+                    between <span class="angle">&langle;</span><i>first node</i
+                    ><span class="angle">&rangle;</span> and
+                    <span class="angle">&langle;</span><i>second node</i
+                    ><span class="angle">&rangle;</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">&lt;-</span> indicates a directed edge
+                    from <span class="angle">&langle;</span><i>second node</i
+                    ><span class="angle">&rangle;</span> to
+                    <span class="angle">&langle;</span><i>first node</i
+                    ><span class="angle">&rangle;</span>, but with the
+                    &ldquo;additional hint&rdquo; that this is a
+                    &ldquo;backward&rdquo; edge. A graph drawing algorithm may
+                    or may not take this hint into account.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">&lt;-&gt;</span> indicates a bi-directed
+                    edge between <span class="angle">&langle;</span
+                    ><i>first node</i><span class="angle">&rangle;</span> and
+                    <span class="angle">&langle;</span><i>second node</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">-!-</span> indicates that the edge from
+                    <span class="angle">&langle;</span><i>first node</i
+                    ><span class="angle">&rangle;</span> to
+                    <span class="angle">&langle;</span><i>second node</i
+                    ><span class="angle">&rangle;</span> is
+                    &ldquo;missing&rdquo;.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that in all cases, the syntactic digraph will contain an
+                arc from <span class="angle">&langle;</span><i>first node</i
+                ><span class="angle">&rangle;</span> to
+                <span class="angle">&langle;</span><i>second node</i
+                ><span class="angle">&rangle;</span>, regardless of the value of
+                <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span>. The
+                <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> is &ldquo;just&rdquo; a
+                &ldquo;semantic annotation&rdquo;.
+              </p>
+              <p>
+                The parameters <span class="angle">&langle;</span
+                ><i>edge options</i><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>edge nodes</i
+                ><span class="angle">&rangle;</span> are a bit more tricky. When
+                an edge between two vertices of a graph is created via
+                <span class="verb">\pgfgdedge</span>, nothing is actually done
+                immediately. After all, without knowing the final positions of
+                the nodes <span class="angle">&langle;</span><i>first node</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>second node</i
+                ><span class="angle">&rangle;</span>, there is no way of
+                creating the actual drawing commands for the edge. Thus, the
+                actual drawing of the edge is done only when the graph drawing
+                algorithm is done (namely in the macro
+                <span class="verb">\pgfgdedgecallback</span>, see later).
+              </p>
+              <p>
+                Because of this &ldquo;delayed&rdquo; drawing of edges, options
+                that influence the edge must be retained until the moment when
+                the edge is actually drawn. Parameters
+                <span class="angle">&langle;</span><i>edge options</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>edge nodes</i
+                ><span class="angle">&rangle;</span> store such options.
+              </p>
+              <p>
+                Let us start with <span class="angle">&langle;</span
+                ><i>edge options</i><span class="angle">&rangle;</span>. This
+                parameter should be set to a list of key&ndash;value pairs like
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">/tikz/</span
+                    >.<span class="textcolor" style="color: #000000">cd</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >color=red</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >very</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >, <span class="textcolor" style="color: #000000"
+                      >orient=down</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Some of these options may be of interest to the graph drawing
+                algorithm (like the last option) while others will only be
+                important during the drawing of edge (like the first option).
+                The options that are important for the graph drawing algorithm
+                must be pushed onto the graph drawing system&rsquo;s option
+                stack.
+              </p>
+              <p>
+                The tricky part is that options that are of interest to the
+                graph drawing algorithm must be executed <em>before</em> the
+                algorithm starts, but the options as a whole are usually only
+                executed during the drawing of the edges, which is
+                <em>after</em> the algorithm has finished. To overcome this
+                problem, the following happens:
+              </p>
+              <p>
+                The options in <span class="angle">&langle;</span
+                ><i>edge options</i><span class="angle">&rangle;</span> are
+                executed &ldquo;tentatively&rdquo; inside
+                <span class="verb">\pgfgdedge</span>. However, this execution is
+                done in a &ldquo;heavily guarded sandbox&rdquo; where all
+                effects of the options (like changing the color or the line
+                width) do not propagate beyond the sandbox. Only the changes of
+                the graph drawing edge parameters leave the sandbox. These
+                parameters are then passed down to the graph drawing system.
+              </p>
+              <p>
+                Later, when the edge is drawn using
+                <span class="verb">\pgfgdedgecallback</span>, the options
+                <span class="angle">&langle;</span><i>edge options</i
+                ><span class="angle">&rangle;</span> are available once more and
+                then they are executed normally.
+              </p>
+              <p>
+                Note that when the options in <span class="angle">&langle;</span
+                ><i>edge options</i><span class="angle">&rangle;</span> are
+                executed, no path is preset. Thus, you typically need to start
+                it with, say, <span class="verb">/tikz/.cd</span>. Also note
+                that the sandbox is not perfect and changing global values will
+                have an effect outside the sandbox. Indeed, &ldquo;putting
+                things in a sandbox&rdquo; just means that the options are
+                executed inside a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope inside an interrupted path inside a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                box that is thrown away immediately.
+              </p>
+              <p>
+                The text in <span class="angle">&langle;</span><i>edge nodes</i
+                ><span class="angle">&rangle;</span> is some
+                &ldquo;auxiliary&rdquo; text that is simply stored away and
+                later directed to <span class="verb">\pgfgdedgecallback</span>.
+                This is used for instance by
+                <span class="tikzname">TikZ</span> to store its node labels.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdsetedgecallback"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdsetedgecallback</kbd></span
+                      >{<span class="angle">&langle;</span><i>macro</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdsetedgecallback"
+                      href="#\pgfgdsetedgecallback"
+                      id="\pgfgdsetedgecallback"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command allows you to change the
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> that gets called form
+                inside the graph drawing system at the end of the creation of a
+                graph, when the nodes have been positioned. The
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> will be called once for
+                each edge with the following parameters:
+              </p>
+              <blockquote>
+                <p>
+                  <span class="angle">&langle;</span><i>macro</i
+                  ><span class="angle">&rangle;</span>{<span class="angle"
+                    >&langle;</span
+                  ><i>first node</i><span class="angle">&rangle;</span>}{<span
+                    class="angle"
+                    >&langle;</span
+                  ><i>second node</i><span class="angle">&rangle;</span>}{<span
+                    class="angle"
+                    >&langle;</span
+                  ><i>direction</i><span class="angle">&rangle;</span>}{<span
+                    class="angle"
+                    >&langle;</span
+                  ><i>edge options</i><span class="angle">&rangle;</span>}{<span
+                    class="angle"
+                    >&langle;</span
+                  ><i>edge nodes</i><span class="angle">&rangle;</span>}<br />
+                  {<span class="angle">&langle;</span
+                  ><i>algorithm-generated options</i
+                  ><span class="angle">&rangle;</span>}{<span class="angle"
+                    >&langle;</span
+                  ><i>bend information</i
+                  ><span class="angle">&rangle;</span>}{<span class="angle"
+                    >&langle;</span
+                  ><i>animations</i><span class="angle">&rangle;</span>}
+                </p>
+              </blockquote>
+              <p>
+                The first five parameters are the original values that were
+                passed down to the <span class="verb">\pgfgdedge</span> command.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span
+                ><i>algorithm-generated options</i
+                ><span class="angle">&rangle;</span> have been &ldquo;computed
+                by the algorithm&rdquo;. For instance, an algorithm might have
+                determined, say, flow capacities for edges and it might now wish
+                to communicate this information back to the upper layers. These
+                options should be executed with the path
+                <span class="verb">/graph drawing</span>.
+              </p>
+              <p>
+                The parameter <span class="angle">&langle;</span
+                ><i>bend information</i
+                ><span class="angle">&rangle;</span> contains
+                algorithmically-computed information concerning how the edge
+                should bend. This will be a text like
+                <span class="verb">(10pt,20pt)--(30pt,40pt)</span> in
+                <span class="tikzname">TikZ</span>-syntax and may include the
+                path commands <span class="verb">--</span>,
+                <span class="verb">..</span> (followed by B&eacute;zier
+                coordinates), and <span class="verb">--cycle</span>.
+              </p>
+              <p>
+                The last parameter <span class="angle">&langle;</span
+                ><i>animations</i><span class="angle">&rangle;</span> contains
+                algorithmically-generated animation commands (calls to
+                <span class="verb">\pgfanimateattribute</span>). The
+                <span class="verb">whom</span> will be set to
+                <span class="verb">pgf@gd</span>.
+              </p>
+              <p>
+                The default <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> simply draws a line between
+                the nodes. When the
+                <span class="verb">graphdrawing</span> library of the
+                <span class="tikzname">TikZ</span> layer is loaded, a more fancy
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> is used that takes all of
+                the parameters into account.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4617">
+            <a id="section-gd-layout-scopes"></a
+            ><span
+              ><span class="sectionnumber" id="sec-29.3">29.3</span> Layout
+              Scopes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.3"
+              data-pdf-destination="subsection.29.3"
+              data-pdf-page="455"
+              href="#sec-29.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4617"></a>
+
+          <p>
+            As described in Section&nbsp;<a
+              href="gd-usage-tikz#section-gd-sublayouts"
+              >28.10</a
+            >, the graph drawing engine does not always apply only a single
+            algorithm. Rather, several different algorithm may be applied to
+            different parts of the graph. How this happens, exactly, is governed
+            by a hierarchy of layouts, which are setup using the commands
+            <span class="verb">\pgfgdbeginlayout</span> and
+            <span class="verb">\pgfgdendlayout</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdbeginlayout"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdbeginlayout</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdbeginlayout"
+                      href="#\pgfgdbeginlayout"
+                      id="\pgfgdbeginlayout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command first starts a new
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope and then informs the display layer that a new (sub)layout
+                should be started. For each graph there may be a hierarchy of
+                layouts, each of which contains a certain number of vertices and
+                edges. This hierarchy is created through calls to this macros
+                and the corresponding calls of
+                <span class="verb">\pgfgdendlayout</span>. For each graph
+                drawing scope there has to be exactly one main layout that
+                encompasses all nodes and edges and also all sublayouts. Thus,
+                after a graph drawing scope has been opened, a layout scope also
+                needs to be opened almost immediately.
+              </p>
+              <p>
+                For each layout created via this macro, a graph drawing
+                algorithm will be run later on the subgraph of all nodes that
+                make up the layout. Which algorithm is run for the layout is
+                dictated by which layout key (one of the
+                <span class="verb">... layout</span> keys) is &ldquo;in
+                force&rdquo; when the macro is called. Thus, using a layout key
+                for selecting an algorithm must always be done
+                <em>before</em> the layout is started. (However, see the
+                discussion of layout keys in the next subsection for more
+                details on what really happens.)
+              </p>
+              <p>
+                A vertex can be part of several layouts, either because they are
+                nested or because they overlap (this happens when a node is
+                later on added to another layout by calling
+                <span class="verb">\pgfgdsetlatenodeoption</span>). This means
+                that it is not immediately obvious how conflicts arising from
+                the different ways different algorithms &ldquo;would like to
+                place nodes&rdquo; should be resolved. The method for this
+                resolving is detailed in Section&nbsp;<a
+                  href="gd-usage-tikz#section-gd-layout-resolve"
+                  >28.10.3</a
+                >.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdendlayout"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdendlayout</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdendlayout"
+                      href="#\pgfgdendlayout"
+                      id="\pgfgdendlayout"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command ends the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope of the current layout. Once closed, no nodes or edges can
+                be added to a layout.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdsetlatenodeoption"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdsetlatenodeoption</kbd></span
+                      >{<span class="angle">&langle;</span><i>node name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdsetlatenodeoption"
+                      href="#\pgfgdsetlatenodeoption"
+                      id="\pgfgdsetlatenodeoption"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command can only be called when the node named
+                <span class="angle">&langle;</span><i>node name</i
+                ><span class="angle">&rangle;</span> has already been created
+                inside the current graph drawing scope. The effect of calling
+                this macro will be that all options currently on the graph
+                drawing system&rsquo;s option stack will be added to the
+                node&rsquo;s option, possibly overwriting the original option
+                settings. Furthermore, the node will become part of all layouts
+                currently on the option stack. This means that you can use this
+                command to add a node to several layouts that are not included
+                in one another.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4618">
+            <span
+              ><span class="sectionnumber" id="sec-29.4">29.4</span> Layout
+              Keys</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.4"
+              data-pdf-destination="subsection.29.4"
+              data-pdf-page="455"
+              href="#sec-29.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4618"></a>
+
+          <p>
+            <em>Layout keys</em> are keys like
+            <span class="verb">tree layout</span> or
+            <span class="verb">layered layout</span> that are used to select a
+            specific graph drawing algorithm. From the graph drawing
+            system&rsquo;s point of view, these keys &ldquo;just&rdquo; select
+            an algorithm and when several layout keys are used in a row, the
+            last one would &ldquo;win&rdquo;; just as when you say
+            <span class="verb">orient=90</span> directly followed by
+            <span class="verb">orient=0</span>, the result is that the
+            <span class="verb">orient</span> key is set to
+            <span class="verb">0</span> because the last key &ldquo;wins&rdquo;.
+          </p>
+
+          <p>
+            Unfortunately, if keys like
+            <span class="verb">tree layout</span> were &ldquo;just&rdquo; to
+            select an algorithm, we would still need a key or some special
+            syntax to actually start a (sub)layout. In early versions of the
+            system this was exactly what people had to do and this was somewhat
+            awkward. Because of this problem, the behavior of the layout keys in
+            <span class="textsc">pgf</span> (and only there, other display
+            layers need to implement their own behavior) is now a bit more
+            involved. When you use a key like
+            <span class="verb">tree layout</span> (more precisely, any key that
+            was declared as an algorithm key on the algorithm layer of the graph
+            drawing system) in any scope in <span class="textsc">pgf</span>, the
+            following happens:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> The graph drawing system is
+                told that a specific algorithm has been selected (the
+                Reingold&ndash;Tilford-algorithm in this case; this information
+                was communicated to the graph drawing system during the
+                declaration of the algorithm). Being &ldquo;told&rdquo; about
+                this means that a special entry is pushed onto the current
+                options stack of the graph drawing system.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> An internal
+                &ldquo;request&rdquo; for a &ldquo;scope and a layout&rdquo; is
+                made. This has several effects:
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> We first test whether we are
+                already inside a layout scope. If not, we use
+                <span class="verb">\pgfgdbeginscope</span> to open a graph
+                drawing scope. This scope will be closed appropriately (see
+                <span class="verb">\pgfgdsetrequestcallback</span> for details).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> Next, a layout scope is
+                opened using <span class="verb">\pgfgdbeginlayout</span>. It
+                will also be closed appropriately.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            The net effect of the above is that the first use of a layout key in
+            a picture starts both a graph drawing scope and also a main layout,
+            while subsequent uses of layout keys inside a picture will only open
+            sublayouts.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdsetrequestcallback"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdsetrequestcallback</kbd></span
+                      >{<span class="angle">&langle;</span><i>macro</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdsetrequestcallback"
+                      href="#\pgfgdsetrequestcallback"
+                      id="\pgfgdsetrequestcallback"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command sets up <span class="angle">&langle;</span
+                ><i>macro</i><span class="angle">&rangle;</span> as the macro
+                that is called whenever a layout key &ldquo;requests&rdquo; that
+                a layout and, possibly, a graph drawing scope is opened. When
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> is called, it gets two
+                parameters, the <span class="angle">&langle;</span
+                ><i>begin code</i><span class="angle">&rangle;</span> and the
+                <span class="angle">&langle;</span><i>end code</i
+                ><span class="angle">&rangle;</span>. In addition to whatever
+                setup the <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> would like to do, it should
+                execute the <span class="angle">&langle;</span><i>begin code</i
+                ><span class="angle">&rangle;</span> at the beginning of a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope (the code will open graph drawing and layout scopes) and
+                the <span class="angle">&langle;</span><i>end code</i
+                ><span class="angle">&rangle;</span> at the end of the same
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope.
+              </p>
+              <p>
+                The need for this slightly strange macro arises from the fact
+                that in <span class="tikzname">TikZ</span> we often write things
+                like <span class="verb">[spring layout,node sep=2cm]</span>. The
+                point is that when the
+                <span class="verb">spring layout</span> key is executed, we do
+                <em>not</em> wish to open a layout scope immediately. Rather,
+                this should happen only after the option
+                <span class="verb">nodes sep=2cm</span> has been executed. For
+                this reason, <span class="tikzname">TikZ</span> sets up a
+                special <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> that &ldquo;delays&rdquo;
+                the execution of the <span class="angle">&langle;</span
+                ><i>begin code</i><span class="angle">&rangle;</span> until the
+                end of the opening of the next scope.
+              </p>
+              <p>
+                Because of this, in <span class="tikzname">TikZ</span> layout
+                keys can only be used as an option when a
+                <span class="tikzname">TikZ</span> scope is started. Thus, you
+                can pass them to <span class="verb">\tikz</span>, to
+                <span class="verb">{tikzpicture}</span>, to
+                <span class="verb">\scoped</span>, to
+                <span class="verb">{scope}</span>, to
+                <span class="verb">graph</span>, and to
+                <span class="verb">{graph}</span>. For instance, the
+                <span class="verb">tree layout</span> option can be used in the
+                following ways:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1960"
+                      ><!--
+    1
+
+b c
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="49.467"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1960.png"
+                        style
+                        width="47.187" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1961"
+                      ><!--
+    2
+
+b c
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="49.467"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1961.png"
+                        style
+                        width="47.187" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1962"
+                      ><!--
+    3
+
+b c
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="49.539"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1962.png"
+                        style
+                        width="47.187" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1963"
+                      ><!--
+    4
+
+b c
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="49.443"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1963.png"
+                        style
+                        width="47.187" /></span
+                    ><span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1964"
+                      ><!--
+    5 6
+
+b c b c
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="49.539"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1964.png"
+                        style
+                        width="103.874"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary
+                      {trees} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    ><span class="spaces">        </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >1</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">b</span
+                    >,<span class="textcolor" style="color: #000000">c</span
+                    >}};<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >]<span class="spaces">        </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >2</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">b</span
+                    >,<span class="textcolor" style="color: #000000">c</span
+                    >}};<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/path">\path</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.graph">graph</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >]<span class="spaces">   </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >3</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">b</span
+                    >,<span class="textcolor" style="color: #000000">c</span
+                    >}};<br />
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    ><span class="spaces">                          </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >4</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">b</span
+                    >,<span class="textcolor" style="color: #000000">c</span
+                    >}};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/scoped">\scoped</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >] <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    ><span class="spaces">    </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >5</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">b</span
+                    >,<span class="textcolor" style="color: #000000">c</span
+                    >}};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.xshift"
+                        >xshift</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1.5cm</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    ><span class="spaces">                        </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >6</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000">b</span
+                    >,<span class="textcolor" style="color: #000000">c</span
+                    >}};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                You can <em>not</em> use layout keys with a single node or on a
+                path. In particular, to typeset a tree given in the
+                <span class="verb">child</span> syntax somewhere inside a
+                <span class="verb">{tikzpicture}</span>, you must prefix it with
+                the <span class="verb">\scoped</span> command:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1965"
+                      ><!--
+         root
+
+left child right child
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="50.667"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1965.png"
+                        style
+                        width="147.578"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {graphdrawing} \usegdlibrary {trees} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/scoped">\scoped</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      ><a href="gd-trees#pgf.root">root</a></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}<span class="spaces"> </span>}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}<span class="spaces"> </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Naturally, the above could have been written more succinctly as
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1966"
+                      ><!--
+         root
+
+left child right child
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="50.667"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1966.png"
+                        style
+                        width="147.578"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {graphdrawing} \usegdlibrary {trees} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > {<span class="textcolor" style="color: #000000"
+                      ><a href="gd-trees#pgf.root">root</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}<span class="spaces"> </span>}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>Or even more succinctly:</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-1967"
+                      ><!--
+         root
+
+left child right child
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="50.667"
+                        loading="lazy"
+                        src="pgfmanual-images/image-1967.png"
+                        style
+                        width="147.578"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary
+                      {trees} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-trees#pgf.tree:layout">tree layout</a></span
+                    >] {<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="gd-trees#pgf.root">root</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >, <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-trees#pgf.child">child</a></span
+                    >}<span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4635">
+            <a id="section-gd-parameters"></a
+            ><span
+              ><span class="sectionnumber" id="sec-29.5">29.5</span>
+              Parameters</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.5"
+              data-pdf-destination="subsection.29.5"
+              data-pdf-page="457"
+              href="#sec-29.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4635"></a>
+
+          <p>
+            When a graph drawing algorithm starts working, a set of options,
+            called &ldquo;graph drawing parameters&rdquo; or just
+            &ldquo;parameters&rdquo; can influence the way the algorithm works.
+            For instance, a graph drawing parameter might be the average
+            distance between vertices which the algorithm should take into
+            account. Another example might be the fact the certain nodes are
+            special nodes and that a certain edge should have a large label.
+          </p>
+
+          <p>
+            These graph drawing parameters are different from
+            &ldquo;usual&rdquo; <span class="textsc">pgf</span> options: An
+            algorithmic parameter influences the way the algorithm works, while
+            usual options influence the way the result looks like. For instance,
+            the fact that a node is red is not a graph drawing parameter, while
+            the shape of a node might be an graph drawing parameter.
+          </p>
+
+          <p>
+            The possible graph parameters are declared by the algorithmic layer
+            through the <span class="verb">declare</span> method; you cannot
+            declare parameters on the <span class="textsc">pgf</span> layer
+            since this would not be compatible across different display systems.
+          </p>
+
+          <p>
+            Users use a graph parameter in the same way as a normal key. The
+            difference is that each time a key representing a graph drawing
+            parameter is used, a special function of the graph drawing
+            system&rsquo;s interface is called to &ldquo;push&rdquo; the
+            parameter onto an internal option stack (and elements are popped
+            from this stack whenever the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            scope closes in which the key was used).
+          </p>
+
+          <p>
+            The net effect of all of this is that the graph drawing system keeps
+            track of a stack of option in parallel to
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >. You cannot, however, access the current values of graph drawing
+            parameters from
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            since they are tucked away deep inside the graph drawing system.
+          </p>
+          <h5 id="autosec-4636">
+            <span
+              ><span class="sectionnumber" id="sec-29.6">29.6</span>
+              Events</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.6"
+              data-pdf-destination="subsection.29.6"
+              data-pdf-page="457"
+              href="#sec-29.6"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4636"></a>
+
+          <p>
+            <em>Events</em> are used to pass information from the parser about
+            the syntactic structure of a graph to graph drawing algorithms.
+            Consider, for instance, a graph that is actually a tree in which
+            some node &ldquo;misses&rdquo; its first child. In this case, the
+            information that the child is missing is neither part of any node
+            (because the node is missing, after all) nor is it an option of the
+            whole graph. However, events are created by the parser to allow an
+            algorithm to reconstruct the fact that the child is missing.
+            Naturally, graph drawing algorithms may choose to ignore events and
+            most will.
+          </p>
+
+          <p>
+            Most of the creation and handling of events is done automatically.
+            The only reason you might wish to use the following commands is when
+            you write a &ldquo;parser extension&rdquo; together with a new graph
+            drawing algorithm. For instance, you might come up with new options
+            that, when used, trigger events.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdevent"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdevent</kbd></span
+                      >{<span class="angle">&langle;</span><i>kind</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>parameter</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdevent"
+                      href="#\pgfgdevent"
+                      id="\pgfgdevent"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Calls <span class="verb">createEvent</span> of the graph drawing
+                system&rsquo;s interface class. This creates a new
+                <span class="verb">Event</span> object on the Lua layer whose
+                <span class="verb">kind</span> field is set to
+                <span class="angle">&langle;</span><i>kind</i
+                ><span class="angle">&rangle;</span> and the
+                <span class="verb">parameters</span> field to
+                <span class="angle">&langle;</span><i>parameter</i
+                ><span class="angle">&rangle;</span>. You must be inside a graph
+                drawing scope to use this command.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdbegineventgroup"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdbegineventgroup</kbd></span
+                      >{<span class="angle">&langle;</span><i>parameter</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdbegineventgroup"
+                      href="#\pgfgdbegineventgroup"
+                      id="\pgfgdbegineventgroup"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Starts an event group. This just means that an
+                <span class="verb">Event</span> of kind
+                <span class="verb">begin</span> is created with the given
+                <span class="angle">&langle;</span><i>parameter</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdendeventgroup"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdendeventgroup</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdendeventgroup"
+                      href="#\pgfgdendeventgroup"
+                      id="\pgfgdendeventgroup"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Ends an event group. This is done by adding an event of kind
+                <span class="verb">end</span> without any parameters to the
+                event string.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdeventgroup"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdeventgroup</kbd></span
+                      >{<span class="angle">&langle;</span><i>parameters</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdeventgroup"
+                      href="#\pgfgdeventgroup"
+                      id="\pgfgdeventgroup"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Starts an event group just like
+                <span class="verb">\pgfgdbegineventgroup</span>, but adds a
+                corresponding closing <span class="verb">end</span> event at the
+                end of the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group (using <span class="verb">\aftergroup</span>).
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4637">
+            <span
+              ><span class="sectionnumber" id="sec-29.7">29.7</span> Subgraph
+              Nodes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-29.7"
+              data-pdf-destination="subsection.29.7"
+              data-pdf-page="458"
+              href="#sec-29.7"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4637"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfgdsubgraphnode"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfgdsubgraphnode</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>node options</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>node text</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfgdsubgraphnode"
+                      href="#\pgfgdsubgraphnode"
+                      id="\pgfgdsubgraphnode"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A subgraph node is a node that &ldquo;surrounds&rdquo; the nodes
+                of a subgraph. The special property of a subgraph node opposed
+                to a normal node is that it is created only after the subgraph
+                has been laid out. However, the difference to a collection like
+                <span class="verb">hyper</span> is that the node is available
+                immediately as a normal node in the sense that you can connect
+                edges to it.
+              </p>
+              <p>
+                What happens internally is that subgraph nodes get
+                &ldquo;registered&rdquo; immediately both on the
+                <span class="textsc">pgf</span> level and on the Lua level, but
+                the actual node is only created inside the layout pipeline using
+                a callback. The actual node creation happens when the innermost
+                layout in which the subgraph node is declared has finished.
+              </p>
+              <p>
+                When you create a subgraph node using this macro, you also start
+                a collection (of an internal kind) that stores the subgraph. All
+                following nodes in the current
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scope will become part of this collection.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> is the node name by which
+                you can refer to this node in the following. The
+                <span class="angle">&langle;</span><i>node options</i
+                ><span class="angle">&rangle;</span> are normal
+                <span class="textsc">pgf</span> options (like
+                <span class="verb">red</span> or
+                <span class="verb">draw</span> or
+                <span class="verb">circle</span>) that will influence the
+                appearance when it is created later on. The
+                <span class="angle">&langle;</span><i>node text</i
+                ><span class="angle">&rangle;</span> is the text that will be
+                passed to <span class="verb">\pgfnode</span> upon creation of
+                the node.
+              </p>
+              <p>
+                See
+                <span class="verb">InterfaceToDisplay.pushSubgraphVertex</span>
+                for more details.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

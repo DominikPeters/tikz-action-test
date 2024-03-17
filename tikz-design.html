@@ -1,0 +1,1551 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Design Principles - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "TikZ",
+            "item": "https://tikz.dev/tikz"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Design Principles",
+            "item": "https://tikz.dev/tikz-design"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <meta
+      content="This section describes the design principles behind the TikZ frontend, its syntax and commands."
+      name="description"
+    />
+    <meta
+      content="This section describes the design principles behind the TikZ frontend, its syntax and commands."
+      property="og:description"
+    />
+    <link href="https://tikz.dev/tikz-design" rel="canonical" />
+    <meta content="https://tikz.dev/tikz-design" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/tikz-design.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta content="Design Principles - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-478"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-11.1"
+                >Special Syntax For Specifying Points</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.2"
+                >Special Syntax For Path Specifications</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.3">Actions on Paths</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.4"
+                >Key&ndash;Value Syntax for Graphic Parameters</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.5"
+                >Special Syntax for Specifying Nodes</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.6"
+                >Special Syntax for Specifying Trees</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.7"
+                >Special Syntax for Graphs</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.8"
+                >Grouping of Graphic Parameters</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-11.9"
+                >Coordinate Transformation System</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="tikz-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Styles</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-coordinates"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-paths"
+                >Syntax for Path Specifications</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-actions">Actions on Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-arrows">Arrows</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-shapes">Nodes and Edges</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-pics"
+                >Pics: Small Pictures on Paths</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-graphs">Specifying Graphs</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-matrices"
+                >Matrices and Alignment</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-trees">Making Trees Grow</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-plots">Plots of Functions</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-decorations">Decorated Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-transformations"
+                >Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="tikz-animations">Animations</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">TikZ</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-479">
+            <span
+              ><span class="sectionnumber" id="sec-11">11</span> Design
+              Principles</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.11"
+              data-pdf-page="124"
+              href="#sec-11"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-479"></a>
+          <a id="pgfmanual-autofile-14"></a>
+
+          <p>
+            This section describes the design principles behind the
+            <span class="tikzname">TikZ</span> frontend, where
+            <span class="tikzname">TikZ</span> means &ldquo;<span
+              class="tikzname"
+              >TikZ</span
+            >
+            ist <em>kein</em> Zeichenprogramm&rdquo;. To use
+            <span class="tikzname">TikZ</span>, as a
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            user say <span class="verb">\usepackage{tikz}</span> somewhere in
+            the preamble, as a plain
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            user say <span class="verb">\input tikz.tex</span>.
+            <span class="tikzname">TikZ</span>&rsquo;s job is to make your life
+            easier by providing an easy-to-learn and easy-to-use syntax for
+            describing graphics.
+          </p>
+          <p>
+            The commands and syntax of <span class="tikzname">TikZ</span> were
+            influenced by several sources. The basic command names and the
+            notion of path operations is taken from
+            <span class="textsc">metafont</span>, the option mechanism comes
+            from <span class="textsc">pstricks</span>, the notion of styles is
+            reminiscent of <span class="textsc">svg</span>, the graph syntax is
+            taken from <span class="textsc">graphviz</span>. To make it all work
+            together, some compromises were necessary. I also added some ideas
+            of my own, like coordinate transformations.
+          </p>
+
+          <p>
+            The following basic design principles underlie
+            <span class="tikzname">TikZ</span>:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Special syntax for specifying
+                points.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Special syntax for path
+                specifications.
+              </p>
+            </li>
+            <li>
+              <p><span class="listmarker">3.</span> Actions on paths.</p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> Key&ndash;value syntax for
+                graphic parameters.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> Special syntax for nodes.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span> Special syntax for trees.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">7.</span> Special syntax for graphs.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">8.</span> Grouping of graphic
+                parameters.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">9.</span> Coordinate transformation
+                system.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-481">
+            <span
+              ><span class="sectionnumber" id="sec-11.1">11.1</span> Special
+              Syntax For Specifying Points</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.1"
+              data-pdf-destination="subsection.11.1"
+              data-pdf-page="124"
+              href="#sec-11.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-481"></a>
+
+          <p>
+            <span class="tikzname">TikZ</span> provides a special syntax for
+            specifying points and coordinates. In the simplest case, you provide
+            two
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            dimensions, separated by commas, in round brackets as in
+            <span class="verb">(1cm,2pt)</span>.
+          </p>
+
+          <p>
+            You can also specify a point in polar coordinates by using a colon
+            instead of a comma as in <span class="verb">(30:1cm)</span>, which
+            means &ldquo;1cm in a 30 degrees direction&rdquo;.
+          </p>
+
+          <p>
+            If you do not provide a unit, as in <span class="verb">(2,1)</span>,
+            you specify a point in <span class="textsc">pgf</span>&rsquo;s
+            \(xy\)-coordinate system. By default, the unit \(x\)-vector goes 1cm
+            to the right and the unit \(y\)-vector goes 1cm upward.
+          </p>
+
+          <p>
+            By specifying three numbers as in
+            <span class="verb">(1,1,1)</span> you specify a point in
+            <span class="textsc">pgf</span>&rsquo;s \(xyz\)-coordinate system.
+          </p>
+
+          <p>
+            It is also possible to use an anchor of a previously defined shape
+            as in <span class="verb">(first node.south)</span>.
+          </p>
+
+          <p>
+            You can add two plus signs before a coordinate as in
+            <span class="verb">++(1cm,0pt)</span>. This means &ldquo;1cm to the
+            right of the last point used&rdquo;. This allows you to easily
+            specify relative movements. For example,
+            <span class="verb">(1,0) ++(1,0) ++(0,1)</span> specifies the three
+            coordinates <span class="verb">(1,0)</span>, then
+            <span class="verb">(2,0)</span>, and
+            <span class="verb">(2,1)</span>.
+          </p>
+
+          <p>
+            Finally, instead of two plus signs, you can also add a single one.
+            This also specifies a point in a relative manner, but it does not
+            &ldquo;change&rdquo; the current point used in subsequent relative
+            commands. For example,
+            <span class="verb">(1,0) +(1,0) +(0,1)</span> specifies the three
+            coordinates <span class="verb">(1,0)</span>, then
+            <span class="verb">(2,0)</span>, and
+            <span class="verb">(1,1)</span>.
+          </p>
+          <h5 id="autosec-482">
+            <span
+              ><span class="sectionnumber" id="sec-11.2">11.2</span> Special
+              Syntax For Path Specifications</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.2"
+              data-pdf-destination="subsection.11.2"
+              data-pdf-page="124"
+              href="#sec-11.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-482"></a>
+
+          <p>
+            When creating a picture using <span class="tikzname">TikZ</span>,
+            your main job is the specification of <em>paths</em>. A path is a
+            series of straight or curved lines, which need not be connected.
+            <span class="tikzname">TikZ</span> makes it easy to specify paths,
+            partly using the syntax of <span class="textsc">metapost</span>. For
+            example, to specify a triangular path you use
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #800080">(5pt,0pt)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0pt,0pt)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0pt,5pt)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            and you get
+            <span class="lateximagesource" id="lateximage-pgfmanual-143"
+              ><!--
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="10.251"
+                loading="lazy"
+                src="pgfmanual-images/image-143.png"
+                style
+                width="10.251"
+            /></span>
+            when you draw this path.
+          </p>
+          <h5 id="autosec-485">
+            <span
+              ><span class="sectionnumber" id="sec-11.3">11.3</span> Actions on
+              Paths</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.3"
+              data-pdf-destination="subsection.11.3"
+              data-pdf-page="125"
+              href="#sec-11.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-485"></a>
+
+          <p>
+            A path is just a series of straight and curved lines, but it is not
+            yet specified what should happen with it. One can <em>draw</em> a
+            path, <em>fill</em> a path, <em>shade</em> it, <em>clip</em> it, or
+            do any combination of these. Drawing (also known as
+            <em>stroking</em>) can be thought of as taking a pen of a certain
+            thickness and moving it along the path, thereby drawing on the
+            canvas. Filling means that the interior of the path is filled with a
+            uniform color. Obviously, filling makes sense only for
+            <em>closed</em> paths and a path is automatically closed prior to
+            filling, if necessary.
+          </p>
+
+          <p>
+            Given a path as in
+            <span class="verb">\path (0,0) rectangle (2ex,1ex);</span>, you can
+            draw it by adding the <span class="verb">draw</span> option as in
+            <span class="verb">\path[draw] (0,0) rectangle (2ex,1ex);</span>,
+            which yields
+            <span class="lateximagesource" id="lateximage-pgfmanual-144"
+              ><!--
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="9.096"
+                loading="lazy"
+                src="pgfmanual-images/image-144.png"
+                style
+                width="14.993" /></span
+            >. The <span class="verb">\draw</span> command is just an
+            abbreviation for <span class="verb">\path[draw]</span>. To fill a
+            path, use the <span class="verb">fill</span> option or the
+            <span class="verb">\fill</span> command, which is an abbreviation
+            for <span class="verb">\path[fill]</span>. The
+            <span class="verb">\filldraw</span> command is an abbreviation for
+            <span class="verb">\path[fill,draw]</span>. Shading is caused by the
+            <span class="verb">shade</span> option (there are
+            <span class="verb">\shade</span> and
+            <span class="verb">\shadedraw</span> abbreviations) and clipping by
+            the <span class="verb">clip</span> option. There is also a
+            <span class="verb">\clip</span> command, which does the same as
+            <span class="verb">\path[clip]</span>, but not commands like
+            <span class="verb">\drawclip</span>. Use, say,
+            <span class="verb">\draw[clip]</span> or
+            <span class="verb">\path[draw,clip]</span> instead.
+          </p>
+
+          <p>
+            All of these commands can only be used inside
+            <span class="verb">{tikzpicture}</span> environments.
+          </p>
+
+          <p>
+            <span class="tikzname">TikZ</span> allows you to use different
+            colors for filling and stroking.
+          </p>
+          <h5 id="autosec-488">
+            <span
+              ><span class="sectionnumber" id="sec-11.4">11.4</span>
+              Key&ndash;Value Syntax for Graphic Parameters</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.4"
+              data-pdf-destination="subsection.11.4"
+              data-pdf-page="125"
+              href="#sec-11.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-488"></a>
+
+          <p>
+            Whenever <span class="tikzname">TikZ</span> draws or fills a path, a
+            large number of graphic parameters influences the rendering.
+            Examples include the colors used, the dashing pattern, the clipping
+            area, the line width, and many others. In
+            <span class="tikzname">TikZ</span>, all these options are specified
+            as lists of so called key&ndash;value pairs, as in
+            <span class="verb">color=red</span>, that are passed as optional
+            parameters to the path drawing and filling commands. This usage is
+            similar to <span class="textsc">pstricks</span>. For example, the
+            following will draw a thick, red triangle;
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-145"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="45.027"
+                    loading="lazy"
+                    src="pgfmanual-images/image-145.png"
+                    style
+                    width="45.027"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.line:width">line width</a></span
+                >=<span class="textcolor" style="color: #008000">2pt</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.color">color</a></span
+                >=<span class="textcolor" style="color: #008000">red</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(1,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+          <h5 id="autosec-491">
+            <span
+              ><span class="sectionnumber" id="sec-11.5">11.5</span> Special
+              Syntax for Specifying Nodes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.5"
+              data-pdf-destination="subsection.11.5"
+              data-pdf-page="125"
+              href="#sec-11.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-491"></a>
+
+          <p>
+            <span class="tikzname">TikZ</span> introduces a special syntax for
+            adding text or, more generally, nodes to a graphic. When you specify
+            a path, add nodes as in the following example:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-146"
+                  ><!--
+text
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="44.907"
+                    loading="lazy"
+                    src="pgfmanual-images/image-146.png"
+                    style
+                    width="53.835"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(1,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.text">text</a></span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,2)</span
+                >;<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Nodes are inserted at the current position of the path, but either
+            <em>after</em> (the default) or <em>before</em> the complete path is
+            rendered. When special options are given, as in
+            <span class="verb">\draw (1,1) node[circle,draw] {text};</span>, the
+            text is not just put at the current position. Rather, it is
+            surrounded by a circle and this circle is &ldquo;drawn&rdquo;.
+          </p>
+
+          <p>
+            You can add a name to a node for later reference either by using the
+            option <span class="verb">name=</span
+            ><span class="angle">&langle;</span><i>node name</i
+            ><span class="angle">&rangle;</span> or by stating the node name in
+            parentheses outside the text as in
+            <span class="verb">node[circle](name){text}</span>.
+          </p>
+
+          <p>
+            Predefined shapes include <span class="verb">rectangle</span>,
+            <span class="verb">circle</span>, and
+            <span class="verb">ellipse</span>, but it is possible (though a bit
+            challenging) to define new shapes.
+          </p>
+          <h5 id="autosec-494">
+            <span
+              ><span class="sectionnumber" id="sec-11.6">11.6</span> Special
+              Syntax for Specifying Trees</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.6"
+              data-pdf-destination="subsection.11.6"
+              data-pdf-page="125"
+              href="#sec-11.6"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-494"></a>
+
+          <p>
+            The &ldquo;node syntax&rdquo; can also be used to draw trees: A
+            <span class="verb">node</span> can be followed by any number of
+            children, each introduced by the keyword
+            <span class="verb">child</span>. The children are nodes themselves,
+            each of which may have children in turn.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-147"
+                  ><!--
+  root
+
+left right
+
+  child child
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="87.170"
+                    loading="lazy"
+                    src="pgfmanual-images/image-147.png"
+                    style
+                    width="85.058"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.left">left</a></span
+                >}}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">    </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Since trees are made up from nodes, it is possible to use options to
+            modify the way trees are drawn. Here are two examples of the above
+            tree, redrawn with different options:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-148"
+                  ><!--
+       root
+
+
+
+left right
+
+
+
+       child child
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="133.826"
+                    loading="lazy"
+                    src="pgfmanual-images/image-148.png"
+                    style
+                    width="123.434"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {arrows.meta,trees} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="library-trees#pgf.edge:from:parent:fork:down"
+                    >edge from parent fork down</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.sibling:distance"
+                    >sibling distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">15mm</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.level:distance"
+                    >level distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">15mm</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">red!30</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.rounded:corners"
+                    >rounded corners</a
+                  ></span
+                >},<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-trees#pgf.edge:from:parent"
+                    >edge from parent</a
+                  ></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000">red</span
+                >,<span class="textcolor" style="color: #008000"
+                  >-{Circle[open]}</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >}]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.left">left</a></span
+                >}}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >}<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">      </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-149"
+                  ><!--
+               child
+
+       right
+
+root child
+
+       left
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="127.850"
+                    loading="lazy"
+                    src="pgfmanual-images/image-149.png"
+                    style
+                    width="158.642"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.parent:anchor"
+                    >parent anchor</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">east</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.child:anchor">child anchor</a></span
+                >=<span class="textcolor" style="color: #008000">west</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.grow">grow</a></span
+                >=<span class="textcolor" style="color: #008000">east</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-trees#pgf.sibling:distance"
+                    >sibling distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">15mm</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.level:distance"
+                    >level distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">15mm</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="library-shadings#pgf.ball:color"
+                    >ball color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">red</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.text">text</a></span
+                >=<span class="textcolor" style="color: #008000">white}</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-trees#pgf.edge:from:parent"
+                    >edge from parent</a
+                  ></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.dashed">dashed</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >,<span class="textcolor" style="color: #008000">red</span
+                >}]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > {<span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.left">left</a></span
+                >}}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >}<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}}<br />
+                <span class="spaces">      </span>};<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+          <h5 id="autosec-501">
+            <span
+              ><span class="sectionnumber" id="sec-11.7">11.7</span> Special
+              Syntax for Graphs</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.7"
+              data-pdf-destination="subsection.11.7"
+              data-pdf-page="126"
+              href="#sec-11.7"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-501"></a>
+
+          <p>
+            The <span class="verb">\node</span> command gives you fine control
+            over where nodes should be placed, what text they should use, and
+            what they should look like. However, when you draw a graph, you
+            typically need to create numerous fairly similar nodes that only
+            differ with respect to the name they show. In these cases, the
+            <span class="verb">graph</span> syntax can be used, which is another
+            syntax layer build &ldquo;on top&rdquo; of the node syntax.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-150"
+                  ><!--
+root
+
+left right
+
+       child
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="87.170"
+                    loading="lazy"
+                    src="pgfmanual-images/image-150.png"
+                    style
+                    width="69.338"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {graphs} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.grow:down">grow down</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.branch:right">branch right</a></span
+                >] {<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.left">left</a></span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >, <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >}<span class="spaces"> </span>}<br />
+                };<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The syntax of the <span class="verb">graph</span> command extends
+            the so-called <span class="textsc">dot</span>-notation used in the
+            popular <span class="textsc">graphviz</span> program.
+          </p>
+
+          <p>
+            Depending on the version of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            you use (it must allow you to call Lua code, which is the case for
+            Lua<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >), you can also ask <span class="tikzname">TikZ</span> to do
+            automatically compute good positions for the nodes of a graph using
+            one of several integrated <em>graph drawing algorithms</em>.
+          </p>
+          <h5 id="autosec-504">
+            <span
+              ><span class="sectionnumber" id="sec-11.8">11.8</span> Grouping of
+              Graphic Parameters</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.8"
+              data-pdf-destination="subsection.11.8"
+              data-pdf-page="126"
+              href="#sec-11.8"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-504"></a>
+
+          <p>
+            Graphic parameters should often apply to several path drawing or
+            filling commands. For example, we may wish to draw numerous lines
+            all with the same line width of 1pt. For this, we put these commands
+            in a <span class="verb">{scope}</span> environment that takes the
+            desired graphic options as an optional parameter. Naturally, the
+            specified graphic parameters apply only to the drawing and filling
+            commands inside the environment. Furthermore, nested
+            <span class="verb">{scope}</span> environments or individual drawing
+            commands can override the graphic parameters of outer
+            <span class="verb">{scope}</span> environments. In the following
+            example, three red lines, two green lines, and one blue line are
+            drawn:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-151"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="41.019"
+                    loading="lazy"
+                    src="pgfmanual-images/image-151.png"
+                    style
+                    width="40.487"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.color">color</a></span
+                >=<span class="textcolor" style="color: #008000">red</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm,10mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm,10mm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm, 8mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm, 8mm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0mm, 6mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm, 6mm)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.color">color</a></span
+                >=<span class="textcolor" style="color: #008000">green</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0mm, 4mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm, 4mm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                ><span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0mm, 2mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm, 2mm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.color">color</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0mm, 0mm)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10mm, 0mm)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The <span class="verb">{tikzpicture}</span> environment itself also
+            behaves like a <span class="verb">{scope}</span> environment, that
+            is, you can specify graphic parameters using an optional argument.
+            These optional apply to all commands in the picture.
+          </p>
+          <h5 id="autosec-507">
+            <span
+              ><span class="sectionnumber" id="sec-11.9">11.9</span> Coordinate
+              Transformation System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-11.9"
+              data-pdf-destination="subsection.11.9"
+              data-pdf-page="127"
+              href="#sec-11.9"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-507"></a>
+
+          <p>
+            <span class="tikzname">TikZ</span> supports both
+            <span class="textsc">pgf</span>&rsquo;s
+            <em>coordinate</em> transformation system to perform transformations
+            as well as <em>canvas</em> transformations, a more low-level
+            transformation system. (For details on the difference between
+            coordinate transformations and canvas transformations see
+            Section&nbsp;<a href="base-design#section-design-transformations"
+              >99.4</a
+            >.)
+          </p>
+
+          <p>
+            The syntax is set up in such a way that it is harder to use canvas
+            transformations than coordinate transformations. There are two
+            reasons for this: First, the canvas transformation must be used with
+            great care and often results in &ldquo;bad&rdquo; graphics with
+            changing line width and text in wrong sizes. Second,
+            <span class="textsc">pgf</span> loses track of where nodes and
+            shapes are positioned when canvas transformations are used. So, in
+            almost all circumstances, you should use coordinate transformations
+            rather than canvas transformations.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en-US"><!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+<meta charset="utf-8">
+<meta content="LaTeX Lwarp package" name="generator">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Writing Graph Drawing Algorithms in C - PGF/TikZ Manual</title>
+<link href="style.css?v=20240317" rel="stylesheet" type="text/css">
+
+
+
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<script src="pgfmanual.js?v=20240317">
+</script>
+
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Writing Graph Drawing Algorithms in C",
+            "item": "https://tikz.dev/gd-algorithms-in-c"
+        }
+    ]
+}</script><script async src="lwarp-mathjax-emulation.js"></script><link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"><link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"><link href="/site.webmanifest" rel="manifest"><link href="https://tikz.dev/gd-algorithms-in-c" rel="canonical"><meta content="https://tikz.dev/gd-algorithms-in-c" property="og:url"><meta content="article" property="og:type"><meta content="Writing Graph Drawing Algorithms in C - PGF/TikZ Manual" property="og:title"><meta content="summary" name="twitter:card"></head>
+<body>
+
+
+<a id="pgfmanual-autopage-4890"></a>
+
+
+
+
+<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-37.1">How C and TeX Communicate</a></p><p><a class="tocsubsection" href="#sec-37.2">Writing Graph Drawing Algorithms in C</a></p><p><a class="tocsubsubsection" href="#sec-37.2.1">The Hello World of Graph Drawing in C</a></p><p><a class="tocsubsubsection" href="#sec-37.2.2">Documenting Algorithms Written in C</a></p><p><a class="tocsubsubsection" href="#sec-37.2.3">The Interface From C</a></p><p><a class="tocsubsection" href="#sec-37.3">Writing Graph Drawing Algorithms in C++</a></p><p><a class="tocsubsubsection" href="#sec-37.3.1">The Hello World of Graph Drawing in C++</a></p><p><a class="tocsubsubsection" href="#sec-37.3.2">The Interface From C++</a></p><p><a class="tocsubsection" href="#sec-37.4">Writing Graph Drawing Algorithms Using OGDF</a></p><p><a class="tocsubsubsection" href="#sec-37.4.1">The Hello World of Graph Drawing in OGDF &ndash; From Scratch</a></p><p><a class="tocsubsubsection" href="#sec-37.4.2">The Hello World of Graph Drawing in OGDF &ndash; Adapting Existing Classes</a></p><p><a class="tocsubsubsection" href="#sec-37.4.3">Documenting OGDF Algorithms</a></p><p><a class="tocsubsubsection" href="#sec-37.4.4">The Interface From OGDF</a></p></div></nav></div>
+<div class="sidetoccontainer" id="chapter-toc-container">
+
+
+
+<nav class="sidetoc">
+
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="tikzname">TikZ</span> and PGF Packages<br>
+Manual for version 3.1.10</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+
+<div class="sidetoccontents">
+
+<p>
+
+</p>
+
+<p>
+<a class="linkintro" href="/">Introduction</a>
+</p>
+
+
+<p>
+<a class="tocpart" href="tutorials-guidelines">Tutorials and Guidelines</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="install">Installation and Configuration</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="current-part">
+<a class="tocpart" href="gd">Graph Drawing</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-overview">Introduction to Algorithmic Graph Drawing</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-usage-tikz">Using Graph Drawing in <span class="tikzname">TikZ</span></a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-usage-pgf">Using Graph Drawing in PGF</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-trees">Graph Drawing Layouts: Trees</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-layered">Graph Drawing Algorithms: Layered Layouts</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-force">Graph Drawing Algorithms: Force-Based Methods</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-circular">Graph Drawing Algorithms: Circular Layouts</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-phylogenetics">Graph Drawing Layouts: Phylogenetic Trees</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-edge-routing">Graph Drawing Algorithms: Edge Routing</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-algorithm-layer">The Algorithm Layer</a>
+</p>
+
+
+<p class="current current-part">
+<a class="tocsection" href="gd-algorithms-in-c">Writing Graph Drawing Algorithms in C</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-display-layer">The Display Layer</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="gd-binding-layer">The Binding Layer</a>
+</p>
+
+
+<p>
+<a class="tocpart" href="libraries">Libraries</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="dv">Data Visualization</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="utilities">Utilities</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="math">Mathematical and Object-Oriented Engines</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="base">The Basic Layer</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="pgfsys">The System Layer</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+
+<main class="bodycontainer">
+
+
+
+<section class="textbody">
+
+<h1>The <span class="tikzname">TikZ</span> and PGF Packages<br>
+Manual for version 3.1.10</h1><h2 class="inserted">Graph Drawing</h2>
+
+<!--MathJax customizations:-->
+
+
+<p>
+</p><h4 id="autosec-4891"><a id="section-algorithms-in-c"></a><span><span class="sectionnumber" id="sec-37">37</span> Writing Graph Drawing Algorithms in C</span><a class="anchor-link" data-pdf-destination="section.37" data-pdf-page="540" href="#sec-37">&para;</a></h4>
+<a id="pgfmanual-autopage-4891"></a>
+<a id="pgfmanual-autofile-41"></a>
+
+<p>
+<em>by Till Tantau</em>
+</p>
+
+<p>
+In the present section we have a look at how graph drawing algorithms written in the C programming language (or in C++) can be used in the graph drawing framework.
+</p>
+<blockquote>
+
+<p>
+<em>Warning:</em> Graph drawing algorithms written in C can be incredibly fast if you use the facilities of C correctly. <em>However,</em> C code is much less portable than Lua code in the sense that it has to be compiled for the specific
+platform used by the user and that it has to be linked dynamically during a run of the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> program. All of this in possible (and works,
+as demonstrated by the linking of the <span class="textsc">ogdf</span> framework), but it is <em>much</em> harder to get right than writing Lua code.
+</p>
+
+<p>
+Bottom line, <em>you really should be using this method only if it is really necessary (namely, when Lua code is simply not fast enough).</em>
+</p>
+</blockquote>
+
+<p>
+In the following, I first explain how the link between <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> and C code works, in general. Then, in the subsequent sections, we go over
+the different kinds of programming languages and frameworks for which there is direct support for such a link.
+</p>
+<h5 id="autosec-4893"><span><span class="sectionnumber" id="sec-37.1">37.1</span> How C and <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Communicate</span><a class="anchor-link" data-html-link="sec-37.1" data-pdf-destination="subsection.37.1" data-pdf-page="540" href="#sec-37.1">&para;</a></h5>
+<a id="pgfmanual-autopage-4893"></a>
+
+
+<p>
+In order to use C code for graph drawing algorithms during a run of the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> program, there is no need to build a new version of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>. Rather, it is possible that C code is linked into the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> executable at runtime. This is made possible by the fact that Lua (which part of Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>\(\dots \)) is able to link C libraries at runtime &ndash; provided a strict regime of rules is adhered to:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> When you say <span class="verb">require</span> in Lua, it will normally look for a <span class="verb">.lua</span> file; but it will also try to find a <span class="verb">.so</span> file (a shared C library) as
+a fallback.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> If it finds such a shared library, Lua(<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>) will try to link this library dynamically at runtime.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3.</span> Inside the library, there must be a function (called an entry point) with a special name (it must start with <span class="verb">luaopen_</span> and it must otherwise be the path and name of the library
+with slashes replaced by underscores).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">4.</span> This function gets called by Lua, once. Its job is to setup the library so that it can be used by Lua. Mainly, this means that certain C functions get registered in such a way that Lua can call them.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">5.</span> At this point, control returns to Lua and, now, certain functions have become available on the Lua layer that, when called, actually invoke the C code of our linked library.
+</p>
+</li>
+</ul>
+
+<p>
+For each of the above points, there are some bells and whistles:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> looks at slightly inconvenient places for shared libraries: By default, (currently, 2013) it looks
+in a <span class="verb">lib</span> subdirectory of the directory containing the Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> executable. The logic behind is that the shared
+libraries depend on the specific architecture of the executable. Thus, unlike normal Lua files, the library needs to be installed &ldquo;far away&rdquo; from the actual package of which it is part.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> Certain versions of Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> have a broken handling of filenames of libraries written in C. The TL2013
+version of Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>, for instance, crashes when the filename of a shared library does not contain the complete path (while this works for
+normal file). Hopefully, this, too, will be fixed in future versions.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3.</span> On certain platforms, the support for dynamic linking against Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> is broken since the symbol
+table of the Lua library has been stripped away. Hopefully, this will be fixed soon; in the meantime, a highly fragile workaround is to link in another copy of the Lua library.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">4.</span> The entry point that is called by Lua requires a certain signature (it takes a Lua state as its only parameter) and must return the number of objects it returns on the Lua stack.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">5.</span> The registration process of C functions is somewhat tricky and changes from Lua version to Lua version.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">6.</span> C functions that get called by Lua must follow all sorts of tricky rules in order to communicate with Lua correctly.
+</p>
+</li>
+</ul>
+
+<p>
+Despite the above obstacles, one can use graph drawing algorithms written in C inside Lua, in principle, as follows: One loads an appropriately prepared and located C library using <span class="verb">require</span> and this library uses
+commands like <span class="verb">declare</span> to register its own functions into the graph drawing system so that when the <span class="verb">run</span> method is called, a C functions gets called instead.
+</p>
+
+<p>
+Unfortunately, the above approach is extremely tedious and error-prone and it is &ldquo;no fun&rdquo; to access Lua data structures (such as the syntactic digraph) from C. For this reason, I have written some libraries that encapsulate (as much as
+possible) of this communication between C and Lua. Indeed, when you use these libraries, you can focus entirely on the graph drawing issues and you will not even notice that your code &ldquo;is talking to Lua&rdquo;. (Except for the name of the
+entry point, which is fixed to start with <span class="verb">luaopen_</span> and it is impossible to change this without disrupting a lot inside Lua&rsquo;s module system).
+</p>
+
+<p>
+There are libraries available for simplifying the communication between the graph drawing system and graph drawing algorithms written in
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> C, see Section&nbsp;<a href="gd-algorithms-in-c#section-gd-c">37.2</a>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> C++, see Section&nbsp;<a href="gd-algorithms-in-c#section-gd-c++">37.3</a>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> Open Graph Drawing Framework, see Section&nbsp;<a href="gd-algorithms-in-c#section-gd-ogdf-interface">37.4</a>.
+</p>
+</li>
+</ul>
+<h5 id="autosec-4894"><a id="section-gd-c"></a><span><span class="sectionnumber" id="sec-37.2">37.2</span> Writing Graph Drawing Algorithms in C</span><a class="anchor-link" data-html-link="sec-37.2" data-pdf-destination="subsection.37.2" data-pdf-page="541" href="#sec-37.2">&para;</a></h5>
+<a id="pgfmanual-autopage-4894"></a>
+
+
+
+<h6 id="autosec-4895"><span><span class="sectionnumber" id="sec-37.2.1">37.2.1</span> The Hello World of Graph Drawing in C</span><a class="anchor-link" data-html-link="sec-37.2.1" data-pdf-destination="subsubsection.37.2.1" data-pdf-page="541" href="#sec-37.2.1">&para;</a></h6>
+<a id="pgfmanual-autopage-4895"></a>
+
+
+<p>
+As our first example, as always, the &ldquo;hello world&rdquo; of graph drawing simply places nodes on a circle. For this, we implement a function <span class="verb">fast_hello_world</span> in a file <span class="verb">SimpleDemoC.c</span>. It starts as
+follows:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><pgf c gd interface interfacefromc< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><math< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<br>
+<span class="textcolor" style="color:#000000">static</span> <span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">fast_hello_world</span> <span class="textcolor" style="color:#800080">(pgfgd_SyntacticDigraph* graph)</span> {<br>
+<span class="spaces">  </span>...<br>
+}<br>
+
+
+</math<></span></pgf></span></code>
+</div>
+
+</figure>
+
+<p>
+As we can see, we first include a special header file of a rather small library that does all the hard work of translating between Lua and C for us (<span class="verb">InterfaceFromC</span>). These header files reside in the <span class="verb">c</span> subdirectory of the <span class="verb">pgf</span> package. Note that we do <em>not</em> have to include the headers of the Lua library; indeed, you do not need access to the source of Lua to use the interface
+headers. As a side effect, we will, however, have to write <span class="verb">struct lua_State</span> instead of the more common <span class="verb">lua_State</span> once in our code, namely in the declaration of the entry point; but that
+is the only downside.
+</p>
+
+<p>
+The library <span class="verb">InterfaceFromC</span> declares the type <span class="verb">pgfgd_SyntacticDigraph</span>. In a moment, we will see that we can setup a key <span class="verb">fast simple demo layout</span> such that when
+this key is used on the display layer, the function <span class="verb">fast_hello_world</span> gets called. When it is called, the <span class="verb">graph</span> parameter will be a full representation of the to-be-laid-out graph. We can
+access the fields of the graph and even directly modify some of its fields (in particular, we can modify the <span class="verb">pos</span> fields of the vertices). Here is the complete code of the algorithm:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">static</span> <span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">fast_hello_world</span> <span class="textcolor" style="color:#800080">(pgfgd_SyntacticDigraph* graph)</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.angle">angle</a></span> <span class="spaces"> </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">6</span>.<span class="textcolor" style="color:#000000">28318530718</span> <span class="textcolor" style="color:#000000">/</span> <span class="textcolor" style="color:#000000">graph-&gt;vertices</span>.<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.length">length</a></span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">pgfgd_tonumber</span><span class="textcolor" style="color:#800080">(graph-&gt;options, "fast simple demo radius")</span>;<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">i</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">for</span> <span class="textcolor" style="color:#800080">(i = 0; i &lt; graph-&gt;vertices.length; i++)</span> {<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">pgfgd_Vertex*</span> <span class="textcolor" style="color:#000000">v</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">graph-&gt;vertices</span>.<span class="textcolor" style="color:#000000">array</span>[<span class="textcolor" style="color:#008000">i</span>];<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">v-&gt;pos</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.x">x</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.cos">cos</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">v-&gt;pos</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.y">y</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.sin">sin</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">  </span>}<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+That is all that is needed; the C library will take care of both creating the <span class="verb">graph</span> object as all well as of deleting it and of copying back the computed values of the <span class="verb">pos</span> fields of the
+vertices.
+</p>
+
+<p>
+Our next task is to setup the key <span class="verb">fast simple demo layout</span>. We can (and must) also do this from C, using the following code:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">luaopen_pgf_gd_examples_c_SimpleDemoC</span> <span class="textcolor" style="color:#800080">(struct lua_State *state)</span> {<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_Declaration*</span> <span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">pgfgd_new_key</span> <span class="textcolor" style="color:#800080">("fast simple demo layout")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_summary</span> <span class="spaces">         </span><span class="textcolor" style="color:#800080">(d, "The C version of the hello world of graph drawing")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_algorithm</span> <span class="spaces">       </span><span class="textcolor" style="color:#800080">(d, fast_hello_world)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_add_precondition</span> <span class="textcolor" style="color:#800080">(d, "connected")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_add_precondition</span> <span class="textcolor" style="color:#800080">(d, "tree")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_declare</span> <span class="spaces">             </span><span class="textcolor" style="color:#800080">(state, d)</span><br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_free_key</span> <span class="spaces">            </span><span class="textcolor" style="color:#800080">(d)</span>;<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+The function <span class="verb">luaopen_pgf_gd_examples_c_SimpleDemoC</span> is the function that will be called by Lua (we will come to that). More important for us, at the moment, is the declaration of the key: We use <span class="verb">pgfgd_new_key</span> to create a declaration record and then fill the different fields using appropriate function calls. In particular, the call <span class="verb">pgfgd_key_algorithm</span> allows us to link the key with a
+particular C function. The <span class="verb">pgfgd_declare</span> will then pass the whole declaration back to Lua, so the effect of the above is essentially the same as if you had written in Lua:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">key</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">"fast</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">demo</span> <span class="textcolor" style="color:#000000">layout"</span>,<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">"The</span> <span class="textcolor" style="color:#000000">C</span> <span class="textcolor" style="color:#000000">version</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.of">of</a></span> <span class="textcolor" style="color:#000000">the</span> <span class="textcolor" style="color:#000000">hello</span> <span class="textcolor" style="color:#000000">world</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.of">of</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.graph">graph</a></span> <span class="textcolor" style="color:#000000">drawing"</span>,<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">preconditions</span> <span class="textcolor" style="color:#000000">=</span> {<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">connected</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="pgfkeys#pgf.true">true</a></span>,<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">tree</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="pgfkeys#pgf.true">true</a></span>,<br>
+<span class="spaces">  </span>},<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">algorithm</span> <span class="textcolor" style="color:#000000">=</span> {<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">run</span> <span class="textcolor" style="color:#000000">=</span> <span class="spaces"> </span><span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#000000">something</span> <span class="textcolor" style="color:#000000">magic</span> <span class="textcolor" style="color:#000000">we</span> <span class="textcolor" style="color:#000000">cannot</span> <span class="textcolor" style="color:#000000">express</span> <span class="textcolor" style="color:#000000"><a href="library-edges#pgf.in">in</a></span> <span class="textcolor" style="color:#000000">Lua</span><br>
+<span class="spaces">  </span>}<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+In our algorithm, in addition to the above key, we also use the <span class="verb">fast simple demo radius</span> key, which is a simple length key. This key, too, can be declared on the C layer:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">pgfgd_new_key</span> <span class="textcolor" style="color:#800080">("fast simple demo radius")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_summary</span> <span class="textcolor" style="color:#800080">(d, "A radius value for the hello world of graph drawing")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_type</span> <span class="spaces">   </span><span class="textcolor" style="color:#800080">(d, "length")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_initial</span> <span class="textcolor" style="color:#800080">(d, "1cm")</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_declare</span> <span class="spaces">    </span><span class="textcolor" style="color:#800080">(state, d)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_free_key</span> <span class="spaces">   </span><span class="textcolor" style="color:#800080">(d)</span>;<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">return</span> <span class="textcolor" style="color:#000000">0</span>;<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+We simply add this code to the startup function above.
+</p>
+
+<p>
+Now it is time to compile and link the code. For this, you must, well, compile it, link it against the library <span class="verb">InterfaceFromC</span>, and build a shared library out of it. Also, you must place it somewhere where Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> will find it. You will find a Makefile that should be able to achieve all of this in the directory <span class="verb">pgf/c/graphdrawing/pgf/gd/examples/c</span>, where you will also find the code of the above example.
+</p>
+
+<p>
+Now, all you need to do to use it is to write in Lua (after you have loaded the <span class="verb">pgf.gd</span> library, of course), would normally be the call
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf</span>.<span class="textcolor" style="color:#000000">gd</span>.<span class="textcolor" style="color:#000000"><a href="gd-algorithm-layer#pgf.examples">examples</a></span>.<span class="textcolor" style="color:#000000">c</span>.<span class="textcolor" style="color:#000000">SimpleDemoC'</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+or in <span class="tikzname">TikZ</span>
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="gd-usage-tikz#pgf.back/usegdlibrary">\usegdlibrary</a></span> {<span class="textcolor" style="color:#000000"><a href="gd-algorithm-layer#pgf.examples">examples</a></span>.<span class="textcolor" style="color:#000000">c</span>.<span class="textcolor" style="color:#000000">SimpleDemoC</span>}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+This should cause Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> to find the shared library, load it, and then call the function in that library with the lengthy name (the name
+is always <span class="verb">luaopen_</span> followed by the path and filename with slashes replaced by underscores).
+</p>
+
+<p>
+<em>Remark:</em> Unfortunately, the above does not work with the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>Live 2013 versions of Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> due to a bugs that causes the &ldquo;replace dots by slashes&rdquo; to fail. For this reason, we currently need to rename our shared library file to
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pgf_gd_examples_c_SimpleDemoC</span>.<span class="textcolor" style="color:#000000">so</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+and then say
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf_gd_examples_c_SimpleDemoC'</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+or in <span class="tikzname">TikZ</span>
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="gd-usage-tikz#pgf.back/usegdlibrary">\usegdlibrary</a></span> {<span class="textcolor" style="color:#000000">pgf_gd_examples_c_SimpleDemoC</span>}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+In future versions of Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>, things should be &ldquo;back to normal&rdquo; in this regard. Also, the bug only concerns shared libraries; you can
+still create a normal Lua file with a nice name and place at a nice location and the only contents of this file is then the above <span class="verb">require</span> command.
+</p>
+
+<p>
+Anyway, once we have loaded the shared library we can say:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-graphs#pgf.back/graph">\graph</a></span> [<span class="textcolor" style="color:#008000">fast simple demo layout</span>, <span class="textcolor" style="color:#008000">fast simple demo radius</span>=<span class="textcolor" style="color:#008000">1.25cm</span>]<br>
+{<span class="spaces"> </span><span class="textcolor" style="color:#000000">a</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">b</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">c</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">e</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">a</span> };<br>
+
+
+</code>
+</div>
+
+</figure>
+<h6 id="autosec-4896"><a id="section-gd-documenting-c-algos"></a><span><span class="sectionnumber" id="sec-37.2.2">37.2.2</span> Documenting Algorithms Written in C</span><a class="anchor-link" data-html-link="sec-37.2.2" data-pdf-destination="subsubsection.37.2.2" data-pdf-page="543" href="#sec-37.2.2">&para;</a></h6>
+<a id="pgfmanual-autopage-4896"></a>
+
+
+
+
+<p>
+In our above example, we included a summary with the keys in the C code. It would be even better if we added a longer documentation and some examples that show how the key works; but this is a bit impracticable in C since
+multi-line strings are hard to write down in&nbsp;C. The trick is to use the <span class="verb">documentation_in</span> field of a key: It allows us to specify the name of a Lua file that should be loaded (using <span class="verb">require</span>) to install the missing documentation fields. As explained in Section&nbsp;<a href="gd-algorithm-layer#section-gd-documentation-in">36.2.7</a>, this Lua file may make good use the <span class="verb">pgf.gd.doc</span> package. Note, also, that for keys documented in this way the documentation can easily be included in this manual through the use of the <span class="verb">\includedocumentationof</span> command.
+</p>
+
+<p>
+In our example, we would first add the following line twice in the C code (once for each key), assuming that the documentation resides in the file <span class="verb">pgf/gd/doc/examples/SimpleDemoC.lua</span>:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_key_documentation_in</span> <span class="textcolor" style="color:#800080">(d, "pgf.gd.doc.examples.SimpleDemoC")</span>;<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Note that since the documentation is a normal Lua file, it will be searched in the usual places Lua files are located (in the texmf trees) and not, like the C shared library, in the special <span class="verb">lib</span> subdirectory of the
+Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> binary.
+</p>
+
+<p>
+Here are typical contents of the documentation file:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#000000">File</span> <span class="textcolor" style="color:#000000">pgf/gd/doc/examples/SimpleDemoC</span>.<span class="textcolor" style="color:#000000">lua</span><br>
+<span class="textcolor" style="color:#000000">local</span> <span class="textcolor" style="color:#000000">key</span> <span class="spaces">          </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf</span>.<span class="textcolor" style="color:#000000">gd</span>.<span class="textcolor" style="color:#000000">doc'</span>.<span class="textcolor" style="color:#000000">key</span><br>
+<span class="textcolor" style="color:#000000">local</span> <span class="textcolor" style="color:#000000">documentation</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf</span>.<span class="textcolor" style="color:#000000">gd</span>.<span class="textcolor" style="color:#000000">doc'</span>.<span class="textcolor" style="color:#000000">documentation</span><br>
+<span class="textcolor" style="color:#000000">local</span> <span class="textcolor" style="color:#000000">summary</span> <span class="spaces">      </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf</span>.<span class="textcolor" style="color:#000000">gd</span>.<span class="textcolor" style="color:#000000">doc'</span>.<span class="textcolor" style="color:#000000">summary</span><br>
+<span class="textcolor" style="color:#000000">local</span> <span class="textcolor" style="color:#000000">example</span> <span class="spaces">      </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf</span>.<span class="textcolor" style="color:#000000">gd</span>.<span class="textcolor" style="color:#000000">doc'</span>.<span class="textcolor" style="color:#000000">example</span><br>
+<br>
+<span class="textcolor" style="color:#000000">key</span> <span class="spaces">          </span><span class="textcolor" style="color:#000000">"fast</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">demo</span> <span class="textcolor" style="color:#000000">layout"</span><br>
+<span class="textcolor" style="color:#000000">documentation</span><br>
+[<span class="textcolor" style="color:#008000">[</span><br>
+<br>
+<span class="textcolor" style="color:#008000">This layout is used...</span><br>
+<br>
+]<span class="textcolor" style="color:#000000">]</span><br>
+<span class="textcolor" style="color:#000000">example</span><br>
+[<span class="textcolor" style="color:#008000">[</span><br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-graphs#pgf.back/graph">\graph</a></span> <span class="textcolor" style="color:#008000">[fast simple example layout</span>]<br>
+{<span class="spaces"> </span><span class="textcolor" style="color:#000000">a</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#000000">b</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#000000">c</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#000000">e</span>;<span class="spaces"> </span>};<br>
+<span class="textcolor" style="color:#000000">]]</span><br>
+<br>
+<span class="textcolor" style="color:#000000">key</span> <span class="spaces">          </span><span class="textcolor" style="color:#000000">"fast</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">demo</span> <span class="textcolor" style="color:#000000">radius"</span><br>
+<span class="textcolor" style="color:#000000">documentation</span><br>
+[<span class="textcolor" style="color:#008000">[</span><br>
+<br>
+<span class="textcolor" style="color:#008000">The radius parameter is used to ...</span><br>
+<br>
+]<span class="textcolor" style="color:#000000">]</span><br>
+<span class="textcolor" style="color:#000000">example</span><br>
+[<span class="textcolor" style="color:#008000">[</span><br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-graphs#pgf.back/graph">\graph</a></span> <span class="textcolor" style="color:#008000">[fast simple demo layout</span>, <span class="textcolor" style="color:#008000">fast simple demo radius</span>=<span class="textcolor" style="color:#008000">1.25cm</span>]<br>
+{<span class="spaces"> </span><span class="textcolor" style="color:#000000">a</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">b</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">c</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">e</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">a</span> };<br>
+<span class="textcolor" style="color:#000000">]]</span><br>
+
+
+</code>
+</div>
+
+</figure>
+<h6 id="autosec-4897"><span><span class="sectionnumber" id="sec-37.2.3">37.2.3</span> The Interface From C</span><a class="anchor-link" data-html-link="sec-37.2.3" data-pdf-destination="subsubsection.37.2.3" data-pdf-page="543" href="#sec-37.2.3">&para;</a></h6>
+<a id="pgfmanual-autopage-4897"></a>
+
+
+<p>
+In the above example, we already saw some of the functions from the library <span class="verb">InterfaceFromC</span> that translated from Lua to C for us. For a complete list of all functions available, currently please see <span class="verb">graphdrawing/c/pgf/gd/interface/c/InterfaceFromC.h</span> directly.
+</p>
+
+<p>
+Currently, the library provides C functions to directly access all aspects of the syntactic digraph and also of the graphs computed by the preprocessing of the layout pipeline. What is missing, however, is access to the tree of
+(sub)layouts and to collections. Hopefully, these will be added in the future.
+</p>
+<h5 id="autosec-4898"><a id="section-gd-c++"></a><span><span class="sectionnumber" id="sec-37.3">37.3</span> Writing Graph Drawing Algorithms in C++</span><a class="anchor-link" data-html-link="sec-37.3" data-pdf-destination="subsection.37.3" data-pdf-page="544" href="#sec-37.3">&para;</a></h5>
+<a id="pgfmanual-autopage-4898"></a>
+
+
+
+
+<p>
+Built on top of the C interface presented in the previous section, there is also a C++ interface available. It encapsulates as much of the C functions as possible in C++ classes. Thus, this interface is mostly there for convenience, it does
+not offer fundamentally new functionality.
+</p>
+<h6 id="autosec-4899"><span><span class="sectionnumber" id="sec-37.3.1">37.3.1</span> The Hello World of Graph Drawing in C++</span><a class="anchor-link" data-html-link="sec-37.3.1" data-pdf-destination="subsubsection.37.3.1" data-pdf-page="544" href="#sec-37.3.1">&para;</a></h6>
+<a id="pgfmanual-autopage-4899"></a>
+
+
+<p>
+Let us have a look at how our beloved hello world of graph drawing looks in C++. Although it is still possible to put graph drawing algorithms inside functions, it is more natural in C++ to turn them into methods of a class. Thus, we
+start the code of <span class="verb">SimpleDemoCPlusPlus.c++</span> as follows:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><pgf c gd interface interfacefromc++< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><pgf c gd interface interfacefromc< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><math< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<br>
+<span class="textcolor" style="color:#000000">struct</span> <span class="textcolor" style="color:#000000">FastLayout</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.:">:</a></span> <span class="textcolor" style="color:#000000">scripting::declarations</span>, <span class="textcolor" style="color:#000000">scripting::runner</span> {<br>
+<span class="spaces">  </span>...<br>
+}<br>
+
+
+</math<></span></pgf></span></pgf></span></code>
+</div>
+
+</figure>
+
+<p>
+As can be seen, we do not only include the interface from C++, but also that from C (since, currently, not all functionality of the C library is encapsulated in C++).
+</p>
+
+<p>
+The interesting part is the <span class="verb">struct FastLayout</span>, which will contain our algorithm (you could just as well have used a <span class="verb">class</span> instead of a <span class="verb">struct</span>). It is derived from
+two classes: First, from a <span class="verb">declarations</span> class and, secondly, from a <span class="verb">runner</span> class. Both of them, just like everything else from the interface, reside in the namespace <span class="verb">scripting</span>. This name was chosen since the main purpose of the interface is to provide &ldquo;scripting facilities&rdquo; to C code through the use of Lua.
+</p>
+
+<p>
+We are currently interested in the class <span class="verb">runner</span>. This class has a virtual function <span class="verb">run</span> that gets called when, on the Lua side, someone has selected the algorithm represented by the class.
+Thus, we place our algorithm in this method:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">run</span> <span class="textcolor" style="color:#800080">()</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">pgfgd_SyntacticDigraph*</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.graph">graph</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">parameters-&gt;syntactic_digraph</span>;<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.angle">angle</a></span> <span class="spaces"> </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">6</span>.<span class="textcolor" style="color:#000000">28318530718</span> <span class="textcolor" style="color:#000000">/</span> <span class="textcolor" style="color:#000000">graph-&gt;vertices</span>.<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.length">length</a></span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">parameters-&gt;option<double></double></span><span class="textcolor" style="color:#800080">("fast simple demo radius c++")</span>;<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">for</span> <span class="textcolor" style="color:#800080">(int i = 0; i &lt; graph-&gt;vertices.length; i++)</span> {<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">pgfgd_Vertex*</span> <span class="textcolor" style="color:#000000">v</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">graph-&gt;vertices</span>.<span class="textcolor" style="color:#000000">array</span>[<span class="textcolor" style="color:#008000">i</span>];<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">v-&gt;pos</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.x">x</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.cos">cos</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">v-&gt;pos</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.y">y</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.sin">sin</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">  </span>}<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+The <span class="verb">run</span> method has access to the member variable <span class="verb">parameters</span>, which contains all sorts of information concerning the to-be-drawn graph. In particular, the <span class="verb">syntactic_digraph</span> field gives us access to the syntactic digraph structure that was already available in the interface from plain&nbsp;C. However, we can also see that a template function like <span class="verb">option</span> allows us to access the graph&rsquo;s option table in a simple way.
+</p>
+
+<p>
+As for C code, our next task is to setup a key that, when used on the <span class="tikzname">TikZ</span> layer, will run our algorithm. For this, we can use an object derived from a <span class="verb">declarations</span>. In our example,
+the <span class="verb">FastLayout</span> is both derived from a <span class="verb">runner</span> (since it contains an algorithm) and also from <span class="verb">declarations</span> (since it also contains the code necessary for declaring
+this algorithm). If you prefer, you can split this into two classes. A <span class="verb">declarations</span> object must override the <span class="verb">declare</span> method. This method gets a <span class="verb">script</span> object as
+input, which is the &ldquo;representation&rdquo; of Lua inside the C++ code:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(scripting::script s)</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">scripting</span>;<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(key ("fast simple demo layout c++")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#800080">("The C++ version of the hello world of graph drawing")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">precondition</span> <span class="textcolor" style="color:#800080">("connected")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">precondition</span> <span class="textcolor" style="color:#800080">("tree")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">algorithm</span> <span class="textcolor" style="color:#800080">(this)</span>);<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(key ("fast simple demo radius c++")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#800080">("A radius value for the hello world of graph drawing")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000"><a href="library-patterns#pgf.type">type</a></span> <span class="textcolor" style="color:#800080">("length")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000"><a href="library-automata#pgf.initial">initial</a></span> <span class="textcolor" style="color:#800080">("1cm")</span>);<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+For each key that we wish to declare, we call the script&rsquo;s <span class="verb">declare</span> method once. This method takes a <span class="verb">key</span> object as input, which can be configured through a sequence of calls to different
+member functions (like <span class="verb">summary</span> or <span class="verb">algorithm</span>). Most of these member functions are rather self-explaining; only <span class="verb">algorithm</span> is a bit trickier: It does not take a
+function as input, but rather an object of type <span class="verb">runner</span> and it will call the <span class="verb">run</span> method of this object whenever the algorithm is run.
+</p>
+
+<p>
+Lastly, we also need to write the entry point:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">extern</span> <span class="textcolor" style="color:#000000">"C"</span> <span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">luaopen_pgf_gd_examples_c_SimpleDemoCPlusPlus</span> <span class="textcolor" style="color:#800080">(struct lua_State *state)</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">scripting::script</span> <span class="textcolor" style="color:#000000">s</span> <span class="textcolor" style="color:#800080">(state)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span> <span class="textcolor" style="color:#800080">(new FastLayout)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">return</span> <span class="textcolor" style="color:#000000">0</span>;<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Note that it is the job of the interface classes to free the passed <span class="verb">declarations</span> object. For this reason, you really need to call <span class="verb">new</span> and cannot pass the address of a temporary object.
+</p>
+
+<p>
+As before, because of the bug in some Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> versions, to actually load the library at runtime, we need to rename it to
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pgf_gd_examples_c_SimpleDemoCPlusPlus</span>.<span class="textcolor" style="color:#000000">so</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+and then say
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">require</span> <span class="textcolor" style="color:#000000">'pgf_gd_examples_c_SimpleDemoCPlusPlus'</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+or in <span class="tikzname">TikZ</span>
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="gd-usage-tikz#pgf.back/usegdlibrary">\usegdlibrary</a></span> {<span class="textcolor" style="color:#000000">pgf_gd_examples_c_SimpleDemoCPlusPlus</span>}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+We can now use it:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-graphs#pgf.back/graph">\graph</a></span> [<span class="textcolor" style="color:#008000">fast simple demo layout c++</span>, <span class="textcolor" style="color:#008000">fast simple demo radius c++</span>=<span class="textcolor" style="color:#008000">1.25cm</span>]<br>
+{<span class="spaces"> </span><span class="textcolor" style="color:#000000">a</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">b</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">c</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">e</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">a</span> };<br>
+
+
+</code>
+</div>
+
+</figure>
+<h6 id="autosec-4900"><span><span class="sectionnumber" id="sec-37.3.2">37.3.2</span> The Interface From C++</span><a class="anchor-link" data-html-link="sec-37.3.2" data-pdf-destination="subsubsection.37.3.2" data-pdf-page="545" href="#sec-37.3.2">&para;</a></h6>
+<a id="pgfmanual-autopage-4900"></a>
+
+
+<p>
+The header <span class="verb">graphdrawing/c/pgf/gd/interface/c/InterfaceFromC++.h</span> contains, as the name suggest, the interface from C++. A complete documentation is still missing, but let us go over the main ideas:
+</p>
+
+<p>
+<b>Runners.</b> Algorithms are represented by objects of type <span class="verb">runner</span>. An algorithm will overwrite the <span class="verb">run</span> method, as we saw in the example, and it should modify the <span class="verb">parameters</span> of the runner object.
+</p>
+
+<p>
+In addition to the <span class="verb">run</span> method, there are also two more virtual methods, called <span class="verb">bridge</span> and <span class="verb">unbrigde</span>. The first is called before the <span class="verb">run</span>
+method is called and the second afterwards. The idea is that another framework, such as <span class="textsc">ogdf</span>, can implement a new class <span class="verb">ogdf_runner</span> that overrides these two methods in order to
+transform the Lua/C representation of the input graph into an <span class="textsc">ogdf</span> representation prior to the <span class="verb">run</span> method being called. The <span class="verb">run</span> method can then access
+additional member variables that store the graph representations in <span class="textsc">ogdf</span> form (or another form, depending on the framework). The <span class="verb">unbridge</span> method allows the framework to
+translate back.
+</p>
+
+<p>
+Although a <span class="verb">runner</span> object must be created for every algorithm, an algorithm can also reside in a function. The class <span class="verb">function_runner</span> is a simple wrapper that turns a function into such
+an object.
+</p>
+
+<p>
+<b>Keys.</b> A key object is a temporary object that is passed to the <span class="verb">declare</span> method of a script. It represents the table that is passed to the Lua function <span class="verb">declare</span>. In order to make
+setting its field easy, for each field name there is a corresponding function (like <span class="verb">summary</span>) that takes the string that should be set to this field and returns the key object once more, so that we can chain calls.
+</p>
+
+<p>
+The <span class="verb">algorithm</span> method gets a runner object as parameter and will store a pointer to this object inside Lua. Each time the algorithm is used, this object will be used to &ldquo;run&rdquo; the algorithm, that is, the methods
+<span class="verb">prepare</span>, <span class="verb">bridge</span>, <span class="verb">run</span>, and <span class="verb">unbridge</span> will be called in that order. Since the object is reused each time, only one object is needed; but this
+object may not be freed prematurely. Indeed, you will normally create the object using <span class="verb">new</span> once and will then never delete it.
+</p>
+
+<p>
+A typical idiom you may find in the code is
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span> <span class="textcolor" style="color:#800080">(key (...)</span><br>
+<span class="spaces">           </span>.<span class="textcolor" style="color:#000000">algorithm</span><span class="textcolor" style="color:#800080">(this)</span><br>
+<span class="spaces">           </span>...);<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+This code is seen inside the <span class="verb">declare</span> method of objects that are both declarations and runners. They register &ldquo;themselves&rdquo; via the above code. Note, however, that this requires that the <span class="verb">this</span> pointer is not a temporary object. (The typing rules of C++ make it hard for this situation to happen, but it can be achieved.)
+</p>
+
+<p>
+<b>Reading options.</b> Once options have been declared, your C++ algorithms will wish to read them back. For this, the <span class="verb">parameters</span> field of a runner object provides a number of templated methods:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> The <span class="verb">option_is_set</span> method returns <span class="verb">true</span> if the passed option has been set <em>and</em> can be cast to the type of the template. So, <span class="verb">option_is_set<double>("node distance")</double></span> will return true if the <span class="verb">node distance</span> key has been set for the graph as a whole (currently, there is no way to read the options of a vertex or an edge from
+C++, use the C methods instead).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> The <span class="verb">option</span> function comes in two flavours: First, it takes a single option name and just returns the option&rsquo;s value. If, however, the option has not been set or has another type,
+some sort of null value is returned. So, <span class="verb">option<double>("node distance")</double></span> will return the configured node distance as a double. When an option has an initial value, this call will always return a sensible value.
+</p>
+<p>
+The second flavour of <span class="verb">option</span> allows you to pass a reference to an object in which the option&rsquo;s value should be stored and the function will return true if the option is set (and, thus, something was written into
+the reference). This is the &ldquo;safest&rdquo; way to access an option:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000">dist</span>;<br>
+<span class="textcolor" style="color:#000000"><a href="library-calender#pgf.if">if</a></span> <span class="textcolor" style="color:#800080">(parameters-&gt;option ("node distance", dist)</span>)<br>
+<span class="spaces">  </span>...<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+Caution must be taken for <span class="verb">char*</span> options: The returned string must be explicitly freed; it will be a copy of the string stored in the Lua table.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> The <span class="verb">configure_option</span> method is used to set a member of an object based on the value of a certain option. For this, you must pass a pointer to a member function that sets the
+member. Here is an example:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">class</span> <span class="textcolor" style="color:#000000">MyClass</span> {<br>
+<span class="textcolor" style="color:#000000">public:</span><br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">setMyDistance</span> <span class="textcolor" style="color:#800080">(double distance)</span>;<br>
+...<br>
+};<br>
+...<br>
+<br>
+<span class="textcolor" style="color:#000000">MyClass</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.m">m</a></span>;<br>
+<span class="textcolor" style="color:#000000">parameters-&gt;configure_option</span><span class="textcolor" style="color:#800080">("node distance", &amp;MyClass::setMyDistance, m)</span>;<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+If the option has not been set or does not have the correct type, the member function is not called.
+</p>
+</li>
+</ul>
+
+<p>
+<b>Factories and modules.</b> A Lua key is normally either a Boolean, a double, or a string. However, in C++, we may also sometimes wish Lua users to configure which C function is used to achieve something. One could do this using
+strings or numbers and then use search algorithms or a long <span class="verb">switch</span>, but this would neither be flexible nor elegant.
+</p>
+
+<p>
+Instead, it is possible to store <em>factories</em> in Lua keys. A factory is a class derived from <span class="verb">factory</span> that implements the virtual function <span class="verb">make</span>. This function will return a new object
+of a template type. You can store such a factory in a key.
+</p>
+
+<p>
+The <span class="verb">make</span> method of a parameters object allows you to invoke the factory stored in a key. (If no factory is stored in it, <span class="verb">null</span> is returned).
+</p>
+
+<p>
+The <span class="verb">configure_module</span> method is akin to <span class="verb">configure_option</span>, only the result of applying the factory is passed to the member function of the class.
+</p>
+
+<p>
+<b>Scripts.</b> A &ldquo;script&rdquo; is the abstraction of the communication between Lua and C++. From C++&rsquo;s point of view, the script object offers different <span class="verb">declare</span> methods that allow us to &ldquo;make objects and
+function scriptable&rdquo; in the sense that they can then be called and configured from Lua. The script must be initialized with a Lua state and will be bound to that state (basically, the script only stores this single pointer).
+</p>
+
+<p>
+When you call <span class="verb">declare</span>, you either pass a single key object (which is then declared on the Lua layer) or you pass a <span class="verb">declarations</span> object, whose virtual <span class="verb">declare</span>
+method is then called. The <span class="verb">declarations</span> objects are used to bundle several declarations into a single one.
+</p>
+<h5 id="autosec-4901"><a id="section-gd-ogdf-interface"></a><span><span class="sectionnumber" id="sec-37.4">37.4</span> Writing Graph Drawing Algorithms Using OGDF</span><a class="anchor-link" data-html-link="sec-37.4" data-pdf-destination="subsection.37.4" data-pdf-page="547" href="#sec-37.4">&para;</a></h5>
+<a id="pgfmanual-autopage-4901"></a>
+
+
+
+
+<p>
+Built on top of the C++ interface, a small interface allows you to easily link algorithms written for the <span class="textsc">ogdf</span> (Open Graph Drawing Framework) with graph drawing in Lua.
+</p>
+<h6 id="autosec-4902"><span><span class="sectionnumber" id="sec-37.4.1">37.4.1</span> The Hello World of Graph Drawing in OGDF &ndash; From Scratch</span><a class="anchor-link" data-html-link="sec-37.4.1" data-pdf-destination="subsubsection.37.4.1" data-pdf-page="547" href="#sec-37.4.1">&para;</a></h6>
+<a id="pgfmanual-autopage-4902"></a>
+
+
+<p>
+We start with some startup code:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><pgf c gd interfacefromogdf< ogdf span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><math< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<br>
+<span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">ogdf</span>;<br>
+<span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">scripting</span>;<br>
+
+
+</math<></span></pgf></span></code>
+</div>
+
+</figure>
+
+<p>
+Note that the interface from <span class="textsc">ogdf</span> resides in the <span class="verb">ogdf</span> folder, not in the <span class="verb">interface</span> folder.
+</p>
+
+<p>
+Like in the plain C++ interface, we must now subclass the <span class="verb">runner</span> class and the <span class="verb">declarations</span> class. Also like the plain C++ interface, we can use multiple inheritance. The difference lies
+in the fact that we do not directly subclass form <span class="verb">runner</span>, but rather from <span class="verb">ogdf_runner</span>. This class implements the complicated &ldquo;bridging&rdquo; or &ldquo;translation&rdquo; process between the world of
+<span class="verb">InterfaceFromC++</span> and <span class="textsc">ogdf</span>:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">struct</span> <span class="textcolor" style="color:#000000">FastLayoutOGDF</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.:">:</a></span> <span class="textcolor" style="color:#000000">declarations</span>, <span class="textcolor" style="color:#000000">ogdf_runner</span> {<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">run</span> <span class="textcolor" style="color:#800080">()</span> {<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.angle">angle</a></span> <span class="spaces"> </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">6</span>.<span class="textcolor" style="color:#000000">28318530718</span> <span class="textcolor" style="color:#000000">/</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.graph">graph</a></span>.<span class="textcolor" style="color:#000000">numberOfNodes</span><span class="textcolor" style="color:#800080">()</span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">parameters-&gt;option<double></double></span><span class="textcolor" style="color:#800080">("my radius ogdf")</span>;<br>
+<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">i</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">0</span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">for</span> <span class="textcolor" style="color:#800080">(node v = graph.firstNode()</span>;<span class="spaces"> </span><span class="textcolor" style="color:#000000">v</span>;<span class="spaces"> </span><span class="textcolor" style="color:#000000">v=v-&gt;succ</span><span class="textcolor" style="color:#800080">()</span>, <span class="textcolor" style="color:#000000">i++</span>)<span class="spaces"> </span>{<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000">graph_attributes</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.x">x</a></span><span class="textcolor" style="color:#800080">(v)</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.cos">cos</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000">graph_attributes</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.y">y</a></span><span class="textcolor" style="color:#800080">(v)</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.sin">sin</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">    </span>}<br>
+<span class="spaces">  </span>}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+As can be seen, in a subclass of <span class="verb">ogdf_runner</span>, the <span class="verb">run</span> method will have access to a member called <span class="verb">graph</span> and to another member called <span class="verb">graph_attributes</span>. These will have been setup with the graph from the Lua layer and, after the algorithm has run, the information stored in the <span class="verb">x</span> and <span class="verb">y</span> fields of the
+graph attributes and also the bend information of the edges will be written back automatically.
+</p>
+
+<p>
+Next, we need to declare the algorithm. This is done as in the plain C++ interface:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(script s)</span> {<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">scripting</span>;<br>
+<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(key ("fast simple demo layout ogdf")</span><br>
+<span class="spaces">          </span>.<span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#800080">("The OGDF version of the hello world of graph drawing")</span><br>
+<span class="spaces">          </span>.<span class="textcolor" style="color:#000000">precondition</span> <span class="textcolor" style="color:#800080">("connected")</span><br>
+<span class="spaces">          </span>.<span class="textcolor" style="color:#000000">algorithm</span> <span class="textcolor" style="color:#800080">(this)</span>);<br>
+<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(key ("my radius ogdf")</span><br>
+<span class="spaces">          </span>.<span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#800080">("A radius value for the hello world of graph drawing")</span><br>
+<span class="spaces">          </span>.<span class="textcolor" style="color:#000000"><a href="library-patterns#pgf.type">type</a></span> <span class="textcolor" style="color:#800080">("length")</span><br>
+<span class="spaces">          </span>.<span class="textcolor" style="color:#000000"><a href="library-automata#pgf.initial">initial</a></span> <span class="textcolor" style="color:#800080">("1cm")</span>);<br>
+<span class="spaces">  </span>}<br>
+};<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Finally, we need the entry point, which is also &ldquo;as usual&rdquo;:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">extern</span> <span class="textcolor" style="color:#000000">"C"</span> <span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">luaopen_pgf_gd_examples_c_SimpleDemoOGDF</span> <span class="textcolor" style="color:#800080">(struct lua_State *state)</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">script</span> <span class="textcolor" style="color:#800080">(state)</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span> <span class="textcolor" style="color:#800080">(new FastLayoutOGDF)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">return</span> <span class="textcolor" style="color:#000000">0</span>;<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Yet again, we need to rename the resulting shared library and then say <span class="verb">require</span> on it. We can now use it:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-graphs#pgf.back/graph">\graph</a></span> [<span class="textcolor" style="color:#008000">fast simple demo layout ogdf</span>, <span class="textcolor" style="color:#008000">my radius ogdf</span>=<span class="textcolor" style="color:#008000">1cm</span>]<br>
+{<span class="spaces"> </span><span class="textcolor" style="color:#000000">a</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">b</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">c</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">d</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">e</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span> <span class="textcolor" style="color:#000000">a</span> };<br>
+
+
+</code>
+</div>
+
+</figure>
+<h6 id="autosec-4903"><span><span class="sectionnumber" id="sec-37.4.2">37.4.2</span> The Hello World of Graph Drawing in OGDF &ndash; Adapting Existing Classes</span><a class="anchor-link" data-html-link="sec-37.4.2" data-pdf-destination="subsubsection.37.4.2" data-pdf-page="548" href="#sec-37.4.2">&para;</a></h6>
+<a id="pgfmanual-autopage-4903"></a>
+
+
+<p>
+In the previous example we implemented a graph drawing algorithm using <span class="textsc">ogdf</span> for use with Lua &ldquo;from scratch&rdquo;. In particular, the whole algorithm was contained in the <span class="verb">run</span> method
+of our main class. In practice, however, graph drawing algorithms are typically placed in classes that &ldquo;know nothing about scripting&rdquo;. For instance, our hello world of graph drawing might actually be implemented like this:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">//</span> <span class="textcolor" style="color:#000000">File</span> <span class="textcolor" style="color:#000000">HelloWorldLayout</span>.<span class="textcolor" style="color:#000000">h</span><br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><ogdf layoutmodule< module span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<br>
+<span class="textcolor" style="color:#000000">class</span> <span class="textcolor" style="color:#000000">HelloWorldLayout</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.:">:</a></span> <span class="textcolor" style="color:#000000">puplic</span> <span class="textcolor" style="color:#000000">ogdf::LayoutModule</span> {<br>
+<span class="textcolor" style="color:#000000">public:</span><br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">virtual</span> <span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">call</span><span class="textcolor" style="color:#800080">(ogdf::GraphAttributes &amp;GA)</span><br>
+<span class="spaces">  </span>{<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">ogdf</span>;<br>
+<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">const</span> <span class="textcolor" style="color:#000000">Graph</span> <span class="textcolor" style="color:#000000">&amp;graph</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">GA</span>.<span class="textcolor" style="color:#000000">constGraph</span><span class="textcolor" style="color:#800080">()</span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.angle">angle</a></span> <span class="spaces"> </span><span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">6</span>.<span class="textcolor" style="color:#000000">28318530718</span> <span class="textcolor" style="color:#000000">/</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.graph">graph</a></span>.<span class="textcolor" style="color:#000000">numberOfNodes</span><span class="textcolor" style="color:#800080">()</span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">i</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000">0</span>;<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000">for</span> <span class="textcolor" style="color:#800080">(node v = graph.firstNode()</span>;<span class="spaces"> </span><span class="textcolor" style="color:#000000">v</span>;<span class="spaces"> </span><span class="textcolor" style="color:#000000">v=v-&gt;succ</span><span class="textcolor" style="color:#800080">()</span>, <span class="textcolor" style="color:#000000">i++</span>)<span class="spaces"> </span>{<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000">GA</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.x">x</a></span><span class="textcolor" style="color:#800080">(v)</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.cos">cos</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000">GA</span>.<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.y">y</a></span><span class="textcolor" style="color:#800080">(v)</span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.sin">sin</a></span><span class="textcolor" style="color:#800080">(angle*i)</span> <span class="textcolor" style="color:#000000">*</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+<span class="spaces">    </span>}<br>
+<span class="spaces">  </span>}<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">setRadius</span> <span class="textcolor" style="color:#800080">(double r)</span> {<span class="spaces"> </span><span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span> <span class="textcolor" style="color:#000000">=</span> <span class="textcolor" style="color:#000000"><a href="library-perspective#pgf.r">r</a></span>;<span class="spaces"> </span>}<br>
+<br>
+<span class="textcolor" style="color:#000000">private:</span><br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.double">double</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.radius">radius</a></span>;<br>
+};<br>
+
+
+</ogdf></span></code>
+</div>
+
+</figure>
+
+<p>
+Now, what we actually want to do is to &ldquo;make this class scriptable&rdquo;. For this, we setup a new class whose <span class="verb">run</span> method will produce a new <span class="verb">HelloWorldLayout</span>, configure it, and then run it.
+Here is this run method:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">run</span> <span class="textcolor" style="color:#800080">()</span><br>
+{<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">HelloWorldLayout</span> <span class="textcolor" style="color:#000000">layout</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">parameters-&gt;configure_option</span><span class="textcolor" style="color:#800080">("HelloWorldLayout.radius", &amp;HelloWorldLayout::setRadius, layout)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">layout</span>.<span class="textcolor" style="color:#000000">call</span><span class="textcolor" style="color:#800080">(graph_attributes)</span>;<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Next, we need to write the declarations code. This is very similar to the &ldquo;from scratch&rdquo; version:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(script s)</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">scripting</span>;<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(key ("HelloWorldLayout")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#800080">("The OGDF version of the hello world of graph drawing")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">precondition</span> <span class="textcolor" style="color:#800080">("connected")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">algorithm</span> <span class="textcolor" style="color:#800080">(this)</span>);<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">s</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span><span class="textcolor" style="color:#800080">(key ("HelloWorldLayout.radius")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000">summary</span> <span class="textcolor" style="color:#800080">("A radius value for the hello world of graph drawing")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000"><a href="library-patterns#pgf.type">type</a></span> <span class="textcolor" style="color:#800080">("length")</span><br>
+<span class="spaces">            </span>.<span class="textcolor" style="color:#000000"><a href="tikz-shapes#pgf.alias">alias</a></span> <span class="textcolor" style="color:#800080">("radius")</span>);<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Two remarks are in order: First, it is customary to name the keys for the display system the same way as the classes. Second, the different configuration options of the algorithm are named with the class name followed by the option
+name. This makes it clear who, exactly, is being configured. However, these keys should then also get an <span class="verb">alias</span> field set, which will cause an automatic forwarding of the key to something more &ldquo;user friendly&rdquo;
+like just <span class="verb">radius</span>.
+</p>
+
+<p>
+It remains to put the above methods in a &ldquo;script&rdquo; file. It is this file that, when compiled, must be linked at runtime against Lua<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>.
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">//</span> <span class="textcolor" style="color:#000000">File</span> <span class="textcolor" style="color:#000000">HelloWorldLayout_script</span>.<span class="textcolor" style="color:#000000">c++</span><br>
+<br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><pgf c gd interfacefromogdf< ogdf span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<span class="textcolor" style="color:#000000">#include</span> <span class="textcolor" style="color:#000000"><helloworldlayout< span>.<span class="textcolor" style="color:#000000">h&gt;</span><br>
+<br>
+<span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">ogdf</span>;<br>
+<span class="textcolor" style="color:#000000">using</span> <span class="textcolor" style="color:#000000">namespace</span> <span class="textcolor" style="color:#000000">scripting</span>;<br>
+<br>
+<span class="textcolor" style="color:#000000">struct</span> <span class="textcolor" style="color:#000000">HelloWorldLayout_script</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.:">:</a></span> <span class="textcolor" style="color:#000000">declarations</span>, <span class="textcolor" style="color:#000000">ogdf_runner</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000">run</span> <span class="textcolor" style="color:#800080">()</span><span class="spaces">             </span>{<span class="spaces"> </span>...<span class="spaces"> </span><span class="textcolor" style="color:#000000">see</span> <span class="textcolor" style="color:#000000"><a href="tikz-shapes#pgf.above">above</a></span> ...<span class="spaces"> </span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">void</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span> <span class="textcolor" style="color:#800080">(script s)</span> {<span class="spaces"> </span>...<span class="spaces"> </span><span class="textcolor" style="color:#000000">see</span> <span class="textcolor" style="color:#000000"><a href="tikz-shapes#pgf.above">above</a></span> ...<span class="spaces"> </span>}<br>
+};<br>
+<br>
+<span class="textcolor" style="color:#000000">extern</span> <span class="textcolor" style="color:#000000">"C"</span> <span class="textcolor" style="color:#000000">int</span> <span class="textcolor" style="color:#000000">luaopen_my_path_HelloWorldLayout_script</span> <span class="textcolor" style="color:#800080">(struct lua_State *state)</span> {<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">script</span> <span class="textcolor" style="color:#800080">(state)</span>.<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.declare">declare</a></span> <span class="textcolor" style="color:#800080">(new HelloWorldLayout_script)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">return</span> <span class="textcolor" style="color:#000000">0</span>;<br>
+}<br>
+
+
+</helloworldlayout<></span></pgf></span></code>
+</div>
+
+</figure>
+<h6 id="autosec-4904"><span><span class="sectionnumber" id="sec-37.4.3">37.4.3</span> Documenting OGDF Algorithms</span><a class="anchor-link" data-html-link="sec-37.4.3" data-pdf-destination="subsubsection.37.4.3" data-pdf-page="549" href="#sec-37.4.3">&para;</a></h6>
+<a id="pgfmanual-autopage-4904"></a>
+
+
+<p>
+As explained in Section&nbsp;<a href="gd-algorithms-in-c#section-gd-documenting-c-algos">37.2.2</a>, we can add external documentation to algorithms written in C and, using the <span class="verb">documentation_in</span> method of
+the <span class="verb">key</span> class, we can use the exact same method to document <span class="textsc">ogdf</span> algorithms.
+</p>
+
+<p>
+I strongly recommend making use of this feature since, currently, the documentation of many <span class="textsc">ogdf</span> classes is sketchy at best and using <span class="tikzname">TikZ</span> examples seems to be a good way of
+explaining the effect of the different parameters algorithms offer.
+</p>
+<h6 id="autosec-4905"><span><span class="sectionnumber" id="sec-37.4.4">37.4.4</span> The Interface From OGDF</span><a class="anchor-link" data-html-link="sec-37.4.4" data-pdf-destination="subsubsection.37.4.4" data-pdf-page="549" href="#sec-37.4.4">&para;</a></h6>
+<a id="pgfmanual-autopage-4905"></a>
+
+
+<p>
+The support for <span class="textsc">ogdf</span> offered inside <span class="verb">InterfaceFromOGDF.h</span> is just the class <span class="verb">ogdf_runner</span> we saw already in the example. In addition, there is also a wrapper class
+<span class="verb">ogdf_function_runner</span> that allows you to wrap an algorithm implemented in a function that uses <span class="textsc">ogdf</span>, but I expect this to be the case only rarely.
+</p>
+</section>
+
+</main>
+
+<footer><div class="footer-left"><a href="/license">License</a> &middot; <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot; <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf">Official PDF version</a> &middot; <a href="https://github.com/DominikPeters/tikz.dev-issues/issues">Feedback and issues</a> &middot; <a href="https://github.com/DominikPeters/pgf-tikz-html-manual">About this HTML version</a></div><div class="footer-right"><em>HTML version last updated: 2024-03-17</em></div></footer></div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+      docsearch({
+        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
+        indexName: 'tikz',
+        appId: 'JS6V5VZSDB',
+        container: '#search',
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+    });
+    </script></body></html>

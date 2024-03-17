@@ -1,0 +1,3181 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Defining New Arrow Tip Kinds - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Defining New Arrow Tip Kinds",
+            "item": "https://tikz.dev/base-arrows"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-arrows" rel="canonical" />
+    <meta content="https://tikz.dev/base-arrows" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Defining New Arrow Tip Kinds - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8126"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-105.1">Overview</a></p>
+            <p><a class="tocsubsection" href="#sec-105.2">Terminology</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-105.3"
+                >Caching and Rendering of Arrows</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-105.4"
+                >Declaring an Arrow Tip Kind</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-105.5"
+                >Handling Arrow Options</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-105.5.1"
+                >Dimension Options</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-105.5.2"
+                >True&ndash;False Options</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-105.5.3"
+                >Inaccessible Options</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-105.5.4"
+                >Defining New Arrow Keys</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8127">
+            <a id="section-arrows"></a
+            ><span
+              ><span class="sectionnumber" id="sec-105">105</span> Defining New
+              Arrow Tip Kinds</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.105"
+              data-pdf-page="1126"
+              href="#sec-105"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8127"></a>
+          <a id="pgfmanual-autofile-114"></a>
+          <h5 id="autosec-8128">
+            <span
+              ><span class="sectionnumber" id="sec-105.1">105.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.1"
+              data-pdf-destination="subsection.105.1"
+              data-pdf-page="1126"
+              href="#sec-105.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8128"></a>
+
+          <p>
+            In present section we have a look at how you can define new arrow
+            tips for use in <span class="textsc">pgf</span>. The low-level
+            commands for selecting which arrow tips are to be used have already
+            been described in Section&nbsp;<a href="base-actions#section-tips"
+              >104.3</a
+            >, the general syntax rules for using arrows are detailed in
+            Section&nbsp;<a href="tikz-arrows#section-tikz-arrows">16</a>.
+            Although Section&nbsp;<a href="tikz-arrows#section-tikz-arrows"
+              >16</a
+            >
+            describes the use of arrows in <span class="tikzname">TikZ</span>,
+            in reality, <span class="tikzname">TikZ</span> itself does not
+            actually do anything about arrow tips; all of the functionality is
+            implemented on the <span class="textsc">pgf</span> level in the
+            commands described in Section&nbsp;<a
+              href="tikz-arrows#section-tikz-arrows"
+              >16</a
+            >. Indeed, even the <span class="verb">/.tip</span> key handler
+            described in Section&nbsp;<a href="tikz-arrows#section-tikz-arrows"
+              >16</a
+            >
+            is actually implemented on the
+            <span class="textsc">pgf</span> layer.
+          </p>
+
+          <p>
+            What has <em>not</em> yet been covered is how you can actually
+            define a complete new arrow tip. In <span class="textsc">pgf</span>,
+            arrows are &ldquo;meta-arrows&rdquo; in the same way that fonts in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            are &ldquo;meta-fonts&rdquo;. When a meta-arrow is resized, it is
+            not simply scaled, but a possibly complicated transformation is
+            applied to the size.
+          </p>
+
+          <p>
+            A meta-font is not one particular font at a specific size with a
+            specific stroke width (and with a large number of other parameters
+            being fixed). Rather, it is a &ldquo;blueprint&rdquo; (actually,
+            more like a program) for generating such a font at a particular size
+            and width. This allows the designer of a meta-font to make sure
+            that, say, the font is somewhat thicker and wider at very small
+            sizes. To appreciate the difference: Compare the following texts:
+            &ldquo;Berlin&rdquo; and &ldquo;<span
+              class="lateximagesource"
+              id="lateximage-pgfmanual-3276"
+              ><!--
+Berlin
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="11.979"
+                loading="lazy"
+                src="pgfmanual-images/image-3276.png"
+                style
+                width="54.747" /></span
+            >&rdquo;. The first is a &ldquo;normal&rdquo; text, the second is
+            the tiny version scaled by a factor of two. Obviously, the first
+            look better. Now, compare &ldquo;<span
+              class="lateximagesource"
+              id="lateximage-pgfmanual-3277"
+              ><!--
+Berlin
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="7.323"
+                loading="lazy"
+                src="pgfmanual-images/image-3277.png"
+                style
+                width="22.875" /></span
+            >&rdquo; and &ldquo;Berlin&rdquo;. This time, the normal text was
+            scaled down, while the second text is a &ldquo;normal&rdquo; tiny
+            text. The second text is easier to read.
+          </p>
+
+          <p>
+            <span class="textsc">pgf</span>&rsquo;s meta-arrows work in a
+            similar fashion: The shape of an arrow tip can vary according to a
+            great number of parameters, the line width of the arrow tip being
+            one of them. Thus, an arrow tip drawn at a line width of 5pt will
+            typically <em>not</em> be five times as large as an arrow tip of
+            line width 1pt. Instead, the size of the arrow will get bigger only
+            slowly as the line width increases.
+          </p>
+
+          <p>
+            To appreciate the difference, here are the
+            <span class="verb">Latex</span> and
+            <span class="verb">Classical TikZ Rightarrow</span> arrows, as drawn
+            by <span class="textsc">pgf</span> at four different sizes:
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-3278"
+              ><!--
+line width is 0.1pt line width is 0.1pt
+line width is 0.4pt line width is 0.4pt
+line width is 1.2pt line width is 1.2pt
+line width is 5pt line width is 5pt
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="101.906"
+                loading="lazy"
+                src="pgfmanual-images/image-3278.png"
+                style
+                width="468.268"
+            /></span>
+          </p>
+
+          <p>
+            Here, by comparison, are the same arrows when they are simply
+            &ldquo;resized&rdquo;:
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-3279"
+              ><!--
+line width is 0.1pt line width is 0.1pt
+line width is 0.4pt line width is 0.4pt
+line width is 1.2pt line width is 1.2pt
+line width is 5pt line width is 5pt
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="106.874"
+                loading="lazy"
+                src="pgfmanual-images/image-3279.png"
+                style
+                width="468.268"
+            /></span>
+          </p>
+
+          <p>
+            As can be seen, simple scaling produces arrow tips that are way too
+            large at larger sizes and way too small at smaller sizes.
+          </p>
+
+          <p>
+            In addition to the line width, other options may also influence the
+            appearance of an arrow tip. In particular, the width of the inner
+            line (the line used to create the effect of a double line)
+            influences arrow tips as well as other options that are specific to
+            the arrow tip.
+          </p>
+          <h5 id="autosec-8137">
+            <a id="section-arrow-terminology"></a
+            ><span
+              ><span class="sectionnumber" id="sec-105.2">105.2</span>
+              Terminology</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.2"
+              data-pdf-destination="subsection.105.2"
+              data-pdf-page="1126"
+              href="#sec-105.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8137"></a>
+
+          <p>
+            Before we have a look at the exact commands used for defining arrow
+            tips, we need to fix some terminology. Consider the following
+            drawing of an arrow tip where the arrow tip is drawn transparently
+            so that we can see what is &ldquo;happening behind it&rdquo;:
+          </p>
+
+          <p>
+            <span class="lateximagesource" id="lateximage-pgfmanual-3280"
+              ><!--
+               y-axis
+                   2
+
+
+                   1
+
+−3 −2 −1 1 2
+                                x-axis
+
+                   −1
+
+
+                   −2
+--><img
+                alt="(-tikz-&nbsp;diagram)"
+                class="lateximage"
+                height="189.386"
+                loading="lazy"
+                src="pgfmanual-images/image-3280.png"
+                style
+                width="347.932"
+            /></span>
+          </p>
+
+          <p>
+            I have also added a coordinate system. The code for drawing an arrow
+            tip always draws it in the way shown above: Pointing right along the
+            \(x\)-axis.
+          </p>
+
+          <p>We will use the following terminology:</p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The point where tip of
+                the arrow ends is called the <em>tip end</em>. It is at
+                \((1,0)\) in our example and we always assume it to lie on the
+                \(x\)-axis, so we just treat it as a distance, 1 in this case.
+                This is the position where the original path was supposed to end
+                (so if the arrow tip had not been added to the red path, it
+                would have ended here).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The <em>back end</em> of
+                the arrow is where a vertical line just to the left of the arrow
+                intersects the \(x\)-axis. In our case, this is the point
+                \((-3,0)\) and again we treat it as a distance, \(-3\) in this
+                case.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The <em>line end</em> is
+                the position where the path now ends. This should be a position
+                inside the arrow head that gets &ldquo;covered&rdquo; by the
+                path. Note that a path may have a round or a rect head and
+                should still be covered. Clearly, necessary shortening of the
+                path will be the difference between the tip end and the line
+                end.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The
+                <em>visual back end</em> is the position where the path and the
+                the arrow head &ldquo;meet last&rdquo; on the path. In our case,
+                because of the inset, the visual back end is not the same as the
+                back end: The arrow ends &ldquo;visually&rdquo; at \((-2,0)\).
+                The difference between the back end and the visual back end is
+                important when the arrow tip is flexed, see Section&nbsp;<a
+                  href="tikz-arrows#section-arrow-flex"
+                  >16.3.8</a
+                >
+                for an explanation of flexing.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> There is also a
+                <em>visual tip end</em>, the counterpart of the visual back end
+                for the front. In our case, the visual tip end and the tip end
+                obviously coincide, but if we were to reverse the arrow tip, the
+                visual tip end would be different from the tip end (while the
+                visual back end would then coincide with the new back end).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> There are four points
+                that make up the <em>convex hull</em> of the arrow tip:
+                \((1,0)\), \((-3,2)\), and \((-3,-2)\).
+              </p>
+              <p>
+                Normally, <span class="textsc">pgf</span> automatically keeps
+                track of a bounding box of everything you draw. However, since
+                arrow tips are drawn so often,
+                <span class="textsc">pgf</span> caches the code needing for
+                drawing arrow tips internally and because of this cache it
+                cannot determine the size of the arrow tip just based on the
+                drawing commands used for drawing the tip. Instead, a convex
+                hull of the arrow tip must be explicitly provided in the
+                definition.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            When you design a new arrow tip, all of the above parameters must be
+            defined.
+          </p>
+          <h5 id="autosec-8140">
+            <span
+              ><span class="sectionnumber" id="sec-105.3">105.3</span> Caching
+              and Rendering of Arrows</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.3"
+              data-pdf-destination="subsection.105.3"
+              data-pdf-page="1127"
+              href="#sec-105.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8140"></a>
+
+          <p>
+            As a last preparation for the description of the commands for
+            declaring arrows, it is important to understand the exact process by
+            which <span class="textsc">pgf</span> draws arrows.
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> First, you have to define an
+                arrow tip kind using
+                <span class="verb">\pgfdeclarearrow{name=foo,...</span>. This
+                will tell <span class="textsc">pgf</span> that
+                <span class="verb">foo</span> is now the name of an arrow tip.
+                In particular, the parser for arrow tip specifications will now
+                treat <span class="verb">foo</span> as the name of an arrow tip
+                and will not try to consider <span class="verb">f</span>,
+                <span class="verb">o</span>, and <span class="verb">o</span> as
+                the names of single-char shorthands.
+              </p>
+              <p>
+                Other than storing the definitions in the declaration
+                internally, this command has little other effect. In particular,
+                no drawing or other processing takes place.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Now assume that at some point
+                the arrow tip <span class="verb">foo</span> is actually used. In
+                this case, certain options may have been set, for instance the
+                user may have requested the arrow tip
+                <span class="verb">foo[length=5pt,open]</span>. What happens
+                next depends on whether it is the first time the arrow tip
+                <span class="verb">foo</span> is used with
+                <em>these exact options</em> or not.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> Assume that is the first time
+                <span class="verb">foo</span> is requested at a length of 5pt
+                and in an &ldquo;open&rdquo; version.
+                <span class="textsc">pgf</span> now retrieves the definition of
+                the arrow tip kind that it stored in the first step and executes
+                the so-called <em>setup</em> code. When this code is executed,
+                all the options will be in force (for instance,
+                <span class="verb">\pgfarrowlength</span> will equal
+                <span class="verb">5pt</span> in our case). The job of the setup
+                code is two-fold: First, it needs to compute all of the
+                parameters listed in Section&nbsp;<a
+                  href="base-arrows#section-arrow-terminology"
+                  >105.2</a
+                >, that is, it has to compute where the tip end will lie in the
+                arrow tip&rsquo;s coordinate system
+                <em>at the particular size of 5pt</em>, where the back end will
+                be, where the convex hull points lie, and so on. Second, the
+                setup code should precompute values that will be important for
+                constructing the path of the arrow. In our example, there is
+                little to do in this regard, but for more complicated arrows,
+                all time-consuming preparations are done now.
+              </p>
+              <p>
+                It is <em>not</em> the job of the setup to actually draw the
+                arrow tip, only to &ldquo;prepare&rdquo; this as much as
+                possible.
+              </p>
+              <p>
+                The setup code will always be executed only once for each arrow
+                tip kind for a given set of options. Thus, when a user uses
+                <span class="verb">foo[length=5pt,open]</span> once more later
+                anywhere in the document, the setup code will not be executed
+                again.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> The next thing that happens
+                is that we have a look at the <em>drawing code</em> stored in
+                the <span class="verb">code</span> field of the arrow. In our
+                example, the drawing code would consist of creating a filled
+                path with four straight segments.
+              </p>
+              <p>
+                In most cases, what happens now is that the drawing code is
+                executed in a special sandbox in which the low-level driver
+                commands that do the actual drawing are intercepted and stored
+                away in a so-called <em>cache</em>. Once such a cache has been
+                created, its contents will be reused whenever
+                <span class="verb">foo[length=5pt,open]</span> is requested by a
+                user and just like the setup code, the drawing code will not be
+                executed again.
+              </p>
+              <p>
+                There are, however, two cases in which the drawing code gets
+                executed each time the arrow is used: First, an arrow tip kind
+                can specify that this should always happen by saying
+                <span class="verb">cache=false</span> in its definition. This is
+                necessary if the drawing code contains low-level drawing
+                commands that cannot be intercepted such as a use of
+                <span class="verb">\pgftext</span> for arrow tips that
+                &ldquo;contain text&rdquo;. Second, when the
+                <span class="verb">bend</span> option is used, the same arrow
+                tip will look different each time it is used, namely in
+                dependence on the exact curvature of the path to which it is
+                added.
+              </p>
+              <p>
+                Because the drawing code may be executed several times, while
+                the setup code may not, we must find a way to
+                &ldquo;communicate&rdquo; the values computed by the setup code
+                to the drawing code. This is done by explicitly calling
+                <span class="verb">\pgfarrowssave</span> inside the setup code.
+                Whatever is &ldquo;saved&rdquo; in this way is restored each
+                time before the drawing code is executed.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            As can be seen, the process is a bit involved, but it leads to a
+            reasonably fast arrow tip management.
+          </p>
+          <h5 id="autosec-8141">
+            <span
+              ><span class="sectionnumber" id="sec-105.4">105.4</span> Declaring
+              an Arrow Tip Kind</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.4"
+              data-pdf-destination="subsection.105.4"
+              data-pdf-page="1128"
+              href="#sec-105.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8141"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfdeclarearrow"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfdeclarearrow</kbd></span
+                      >{<span class="angle">&langle;</span><i>config</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfdeclarearrow"
+                      href="#\pgfdeclarearrow"
+                      id="\pgfdeclarearrow"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command is both used to define a new arrow tip kind and to
+                to declare a so-called shorthand. We have a look at the case
+                that a complete new arrow tip kind is created and then have a
+                look how the command can be used to create shorthands.
+              </p>
+              <p>
+                <b>Defining a Complete New Arrow Tip Kind.</b> The
+                <span class="angle">&langle;</span><i>config</i
+                ><span class="angle">&rangle;</span> is a key&ndash;value list
+                in which different keys are used to setup the to-be defined
+                arrow. The following keys can be given:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">name</span></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>name</i
+                    ><span class="angle">&rangle;</span> or
+                    <span class="verb">name=</span
+                    ><span class="angle">&langle;</span><i>start name</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">-</span
+                    ><span class="angle">&langle;</span><i>end name</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                  <p>
+                    This defines the name of the arrow tip. It is legal to
+                    define an arrow tip a second time, in this case the previous
+                    definition will be overwritten in the current
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    scope. It is customary to use a name with an uppercase first
+                    letter for a &ldquo;complete&rdquo; arrow tip kind. Short
+                    names and lower case names should be used for shorthands
+                    that change their meaning inside a document, while arrow
+                    tips with uppercase first letters should not be redefined.
+                  </p>
+                  <p>
+                    If the name contains a hyphen, the second syntax is assumed
+                    and everything before the hyphen will be the name used in
+                    start arrow specifications, while the text after the hyphen
+                    is the name used in end specifications.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">parameters</span></span
+                    ><span class="verb">=</span>{<span class="angle"
+                      >&langle;</span
+                    ><i>list of macros</i><span class="angle">&rangle;</span>}
+                  </p>
+                  <p>
+                    As explained earlier, an arrow tip typically needs to be
+                    redrawn each time an option like
+                    <span class="verb">length</span> or
+                    <span class="verb">inset</span> is changed. However, for
+                    some arrow tips, the <span class="verb">inset</span> has no
+                    influence, while for other it is important whether the arrow
+                    is reversed or not. (How keys like
+                    <span class="verb">length</span> actually set
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    dimensions like <span class="verb">\pgfarrowlength</span> is
+                    explained in Section&nbsp;<a
+                      href="base-arrows#section-arrow-options"
+                      >105.5</a
+                    >.)
+                  </p>
+                  <p>
+                    The job of the <span class="verb">parameters</span> key is
+                    to specify which dependencies the arrow tip has. Everything
+                    that will influence any of the parameters computed in the
+                    setup code or used in the drawing code should be listed
+                    here.
+                  </p>
+                  <p>
+                    The <span class="angle">&langle;</span><i>list of macros</i
+                    ><span class="angle">&rangle;</span> will be used inside a
+                    <span class="verb">\csname</span>-<span class="verb"
+                      >\endcsname</span
+                    >
+                    pair and should expand to the current values of the relevant
+                    parameters have. For example, if the arrow tip depends on
+                    the current value of
+                    <span class="verb">\pgfarrowlength</span> and
+                    <span class="verb">\pgfarrowwidth</span> only, then
+                    <span class="angle">&langle;</span><i>list of macros</i
+                    ><span class="angle">&rangle;</span> should be set to
+                    <span class="verb"
+                      >\the\pgfarrowlength,\the\pgfarrowwidth</span
+                    >. (Actually, the comma is optional, the
+                    <span class="angle">&langle;</span><i>list of macros</i
+                    ><span class="angle">&rangle;</span> does not really have to
+                    be a list, just something that can be expanded
+                    unambiguously.)
+                  </p>
+                  <p>
+                    Note that the line width (<span class="verb"
+                      >\pgflinewidth</span
+                    >) and the inner line width (<span class="verb"
+                      >\pgfinnerlinewidth</span
+                    >) are always parameters and need not be specified in the
+                    <span class="verb">parameters</span>.
+                  </p>
+                  <p>
+                    It is important to get this parameter right. Otherwise,
+                    arrow tips may look wrong because
+                    <span class="textsc">pgf</span> thinks that it can reuse
+                    some code when, in reality, this code actually depends on a
+                    parameter not listed here.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">setup code</span></span
+                    ><span class="verb">=</span>{<span class="angle"
+                      >&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span>}
+                  </p>
+                  <p>
+                    When an arrow tip is used, the value stored in
+                    <span class="verb">parameters</span> is expanded and it is
+                    tested whether the result was encountered before. If not,
+                    the <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> gets executed (only
+                    this once). The code can now do arbitrarily complicated
+                    computations the prepare the later drawing of the arrow tip.
+                    Also the <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> must specify the
+                    different tip and back ends and the convex hull points. This
+                    is done by calling the following macros inside the
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssettipend"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssettipend</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssettipend"
+                              href="#\pgfarrowssettipend"
+                              id="\pgfarrowssettipend"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        When this command is called inside the setup code of an
+                        arrow tip, it specifies that the tip of the drawn arrow
+                        will end exactly at <span class="angle">&langle;</span
+                        ><i>dimension</i><span class="angle">&rangle;</span>.
+                        For example, for our earlier example of the large arrow
+                        tip, where the tip end was at 1cm, we would call
+                      </p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowssettipend"
+                                >\pgfarrowssettipend</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >1cm</span
+                            >}<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p>
+                        Note that for efficiency reasons, the
+                        <span class="angle">&langle;</span><i>dimension</i
+                        ><span class="angle">&rangle;</span> is not passed
+                        through <span class="verb">\pgfmathsetlength</span>;
+                        rather what happens is that
+                        <span class="verb">\pgf@x=</span
+                        ><span class="angle">&langle;</span><i>dimension</i
+                        ><span class="angle">&rangle;</span> gets executed. In
+                        particular, you can pack further computations into the
+                        <span class="angle">&langle;</span><i>dimension</i
+                        ><span class="angle">&rangle;</span> by simply starting
+                        it with a number and then appending some code that
+                        modifies <span class="verb">\pgf@x</span>. Here is an
+                        example where instead of 1cm we use \(1\mathrm {cm} -
+                        \frac 12\mathrm {linewidth}\) as the tip end:
+                      </p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowssettipend"
+                                >\pgfarrowssettipend</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >1cm</span
+                            ><span class="textcolor" style="color: #0000b2"
+                              >\advance</span
+                            ><span class="textcolor" style="color: #0000b2"
+                              ><a href="base-internalregisters#pgf.back/pgf@x"
+                                >\pgf@x</a
+                              ></span
+                            > <span
+                              class="textcolor"
+                              style="color: #000000"
+                              >by-</span
+                            >.<span class="textcolor" style="color: #000000"
+                              >5</span
+                            ><span class="textcolor" style="color: #0000b2"
+                              ><a href="base-actions#pgf.back/pgflinewidth"
+                                >\pgflinewidth</a
+                              ></span
+                            >}<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p>
+                        If the command is not called at all inside the setup
+                        code, the tip end is set to
+                        <span class="verb">0pt</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssetbackend"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssetbackend</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssetbackend"
+                              href="#\pgfarrowssetbackend"
+                              id="\pgfarrowssetbackend"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Works like the command for the tip end, only it sets the
+                        back end. In our example we would call
+                      </p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowssettipend"
+                                >\pgfarrowssettipend</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >-3cm</span
+                            >}<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p>Defaults to <span class="verb">0pt</span>.</p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssetlineend"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssetlineend</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssetlineend"
+                              href="#\pgfarrowssetlineend"
+                              id="\pgfarrowssetlineend"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Sets the line end, so in the example we have
+                        <span class="verb">\pgfarrowssettipend{-1cm}</span>.
+                        Default to <span class="verb">0pt</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssetvisualbackend"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssetvisualbackend</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssetvisualbackend"
+                              href="#\pgfarrowssetvisualbackend"
+                              id="\pgfarrowssetvisualbackend"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Sets the visual back end,
+                        <span class="verb"
+                          >\pgfarrowssetvisualbackend{-2cm}</span
+                        >
+                        in our example. Default to the value of the normal back
+                        end.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssetvisualtipend"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssetvisualtipend</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssetvisualtipend"
+                              href="#\pgfarrowssetvisualtipend"
+                              id="\pgfarrowssetvisualtipend"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Sets the visual tip end. Default to the value of the
+                        normal tip end and, thus, we need not set it in our
+                        example.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowshullpoint"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowshullpoint</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>x dimension</i
+                              ><span class="angle">&rangle;</span>}{<span
+                                class="angle"
+                                >&langle;</span
+                              ><i>y dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowshullpoint"
+                              href="#\pgfarrowshullpoint"
+                              id="\pgfarrowshullpoint"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Adds a point to the convex hull of the arrow tip. As for
+                        the previous commands, no math parsing is done; instead
+                        <span class="textsc">pgf</span> says
+                        <span class="verb">\pgf@x=</span
+                        ><span class="angle">&langle;</span><i>x dimension</i
+                        ><span class="angle">&rangle;</span> and then
+                        <span class="verb">\pgf@y=</span
+                        ><span class="angle">&langle;</span><i>y dimension</i
+                        ><span class="angle">&rangle;</span>. Thus, both
+                        &ldquo;dimensions&rdquo; can contain code for advancing
+                        and thus modifying <span class="verb">\pgf@x</span> and
+                        <span class="verb">\pgf@y</span>.
+                      </p>
+                      <p>In our example we would write</p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                                >\pgfarrowshullpoint</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >1cm</span
+                            >}{<span class="textcolor" style="color: #000000"
+                              >0pt</span
+                            >}<br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                                >\pgfarrowshullpoint</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >-3cm</span
+                            >}{<span class="textcolor" style="color: #000000"
+                              >2cm</span
+                            >}<br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                                >\pgfarrowshullpoint</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >-3cm</span
+                            >}{<span class="textcolor" style="color: #000000"
+                              >-2cm</span
+                            >}<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p></p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowsupperhullpoint"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowsupperhullpoint</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>x dimension</i
+                              ><span class="angle">&rangle;</span>}{<span
+                                class="angle"
+                                >&langle;</span
+                              ><i>y dimension</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowsupperhullpoint"
+                              href="#\pgfarrowsupperhullpoint"
+                              id="\pgfarrowsupperhullpoint"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        This command works like the previous command, only it
+                        normally adds <em>two</em> points to the convex hull:
+                        First, the point \((\meta {x dimension},\meta {y
+                        dimension})\) and, secondly, the point \((\meta {x
+                        dimension},-\meta {y dimension})\). However, the second
+                        point is only added if the arrow is not a harpoon.
+                      </p>
+                      <p>
+                        Thus, in our example we could simplify the convex hull
+                        to
+                      </p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                                >\pgfarrowshullpoint</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >1cm</span
+                            >}{<span class="textcolor" style="color: #000000"
+                              >0pt</span
+                            >}<br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a
+                                href="base-arrows#pgf.back/pgfarrowsupperhullpoint"
+                                >\pgfarrowsupperhullpoint</a
+                              ></span
+                            >{<span class="textcolor" style="color: #000000"
+                              >-3cm</span
+                            >}{<span class="textcolor" style="color: #000000"
+                              >2cm</span
+                            >}<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p>
+                        If the <span class="angle">&langle;</span
+                        ><i>y dimension</i
+                        ><span class="angle">&rangle;</span> is zero or less,
+                        only one point, namely \((\meta {x dimension},\meta {y
+                        dimension})\), is added to the hull. Thus, we could also
+                        have used the upper convex hull command in the first of
+                        the two of the above commands.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssave"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssave</kbd></span
+                              >{<span class="angle">&langle;</span><i>macro</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssave"
+                              href="#\pgfarrowssave"
+                              id="\pgfarrowssave"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        As explained earlier, the setup code needs to
+                        &ldquo;communicate&rdquo; with the drawing code via
+                        &ldquo;saved values&rdquo;. This command get the name of
+                        a macro and will store the value this macro had
+                        internally. Then, each time drawing code is executed,
+                        the value of this macro will be restored.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgfarrowssavethe"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgfarrowssavethe</kbd></span
+                              >{<span class="angle">&langle;</span
+                              ><i>register</i
+                              ><span class="angle">&rangle;</span>}</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgfarrowssavethe"
+                              href="#\pgfarrowssavethe"
+                              id="\pgfarrowssavethe"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Works like <span class="verb">\pgfarrowssave</span>,
+                        only the parameter must be a register and
+                        <span class="verb">\the</span
+                        ><span class="angle">&langle;</span><i>register</i
+                        ><span class="angle">&rangle;</span> will be saved.
+                        Typically, you will write something like
+                      </p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowssavethe"
+                                >\pgfarrowssavethe</a
+                              ></span
+                            >{<span class="textcolor" style="color: #0000b2"
+                              >\pgfarrowlength</span
+                            >}<br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="base-arrows#pgf.back/pgfarrowssavethe"
+                                >\pgfarrowssavethe</a
+                              ></span
+                            >{<span class="textcolor" style="color: #0000b2"
+                              >\pgfarrowwidth</span
+                            >}<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p>
+                        To ensure that inside the drawing code the the dimension
+                        registers <span class="verb">\pgfarrowlength</span> and
+                        <span class="verb">\pgfarrowwidth</span> are setup with
+                        the values they had during the setup.
+                      </p>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">drawing code</span></span
+                    ><span class="verb">=</span>{<span class="angle"
+                      >&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span>}
+                  </p>
+                  <p>
+                    This code will be executed at least once for each setting of
+                    the parameters when the time arrow tip is actually drawn.
+                    Usually, this one execution will be all and the low-level
+                    commands generated inside the
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> will we stored in a
+                    special cache; but in some cases the
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> gets executed each time
+                    the arrow tip is used, so do not assume anything about it.
+                    Inside the <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>, you have access to all
+                    values that were saved in the setup code as well as to the
+                    line width.
+                  </p>
+                  <p>
+                    The <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> should draw the arrow
+                    tip &ldquo;going right along the \(x\)-axis&rdquo;.
+                    <span class="textsc">pgf</span> will take care of setting up
+                    a canvas transformation beforehand to a rotation such that
+                    when the drawing is rendered, the arrow tip that is actually
+                    drawn points in the direction of the line. Alternatively,
+                    when bending is switched on, even more complicated low-level
+                    transformations will be done automatically.
+                  </p>
+                  <p>
+                    The are some special considerations concerning the
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>:
+                  </p>
+                  <ul class="itemize" style="list-style-type: none">
+                    <li>
+                      <p>
+                        <span class="listmarker">&ndash;</span> In the
+                        <span class="angle">&langle;</span><i>code</i
+                        ><span class="angle">&rangle;</span> you may
+                        <em>not</em> use
+                        <span class="verb">\pgfusepath</span> since this would
+                        try to add arrow tips to the arrow tip and lead to a
+                        recursion. Use the &ldquo;quick&rdquo; versions
+                        <span class="verb">\pgfusepathqstroke</span> and so on
+                        instead, which never try to add arrow tips.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&ndash;</span> If you stroke
+                        the path that you construct, you should first set the
+                        dashing to solid and set up fixed joins and caps, as
+                        needed. This will ensure that the arrow tip will always
+                        look the same.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&ndash;</span> When the arrow
+                        tip code is executed, it is automatically put inside a
+                        low-level scope, so nothing will &ldquo;leak out&rdquo;
+                        from the scope.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&ndash;</span> The high-level
+                        coordinate transformation matrix will be set to the
+                        identity matrix when the code is executed for the first
+                        time.
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">cache</span></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>true or false</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                  <p>
+                    When set to <span class="verb">true</span>, which is the
+                    default, the <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> will be executed only
+                    once for a particular value of parameters and the low-level
+                    commands created by the drawing code (using the system layer
+                    protocol subsystem, see Section&nbsp;<a
+                      href="pgfsys-protocol#section-protocols"
+                      >122</a
+                    >) will be cached and reused later on. However, when the
+                    drawing code contains &ldquo;uncacheable&rdquo; code like a
+                    call to <span class="verb">\pgftext</span>, caching must be
+                    switched off by saying
+                    <span class="verb">cache=false</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">bending mode</span></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>mode</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                  <p>
+                    This key is important only when the
+                    <span class="verb">bend</span> option is used with an arrow,
+                    see Section&nbsp;<a href="tikz-arrows#section-arrow-flex"
+                      >16.3.8</a
+                    >
+                    for an introduction to this option. The
+                    <span class="verb">bend</span> option asks us to, well, bend
+                    the arrow head. For some arrow head this is not possible or
+                    leads to very strange drawings (for instance, when the
+                    <span class="verb">\pgftext</span> command is used) and then
+                    it is better to switch bending off for the arrow head (<span
+                      class="verb"
+                      >flex</span
+                    >
+                    will then be used instead). To achieve this, set
+                    <span class="angle">&langle;</span><i>mode</i
+                    ><span class="angle">&rangle;</span> to
+                    <span class="verb">none</span>.
+                  </p>
+                  <p>
+                    For most arrow tips it does, however, make sense to bend
+                    them. There are (at least) two different mathematical ways
+                    of doing so, see Section&nbsp;<a
+                      href="base-transformations#section-library-curvilinear"
+                      >108.4.7</a
+                    >
+                    for details. Which of these ways is use can be configured by
+                    setting <span class="angle">&langle;</span><i>mode</i
+                    ><span class="angle">&rangle;</span> to either
+                    <span class="verb">orthogonal</span> or to
+                    <span class="verb">polar</span>. It is best to try simply
+                    try out both when designing an arrow tip to see which works
+                    better. Since <span class="verb">orthogonal</span> is
+                    quicker and often gives good or even better results, it is
+                    the default. Some arrow tips, however, profit from saying
+                    <span class="verb">bending mode=polar</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">defaults</span></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>arrow keys</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                  <p>
+                    The <span class="angle">&langle;</span><i>arrow keys</i
+                    ><span class="angle">&rangle;</span> allow you to configure
+                    the default values for the parameters on which an arrow tip
+                    depends. The <span class="angle">&langle;</span
+                    ><i>arrow keys</i><span class="angle">&rangle;</span> will
+                    be executed first before any other arrow tip options are
+                    executed, see Section&nbsp;<a
+                      href="tikz-arrows#section-arrow-scopes"
+                      >16.4.5</a
+                    >
+                    for the exact sequence. Also see Section&nbsp;<a
+                      href="base-arrows#section-arrow-options"
+                      >105.5</a
+                    >
+                    below for more details on arrow options.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                This concludes the description of the keys you provide for the
+                declaration of an arrow. Let us now have a look at a simple
+                example that uses these features: We want to define an arrow tip
+                kind <span class="verb">foo</span> that produces the arrow tip
+                we used as our running example. However, to make things a bit
+                more interesting, let us make it &ldquo;configurable&rdquo;
+                insofar as the length of the arrow tip can be configured using
+                the <span class="verb">length</span> option, which sets the
+                <span class="verb">\pgfarrowlength</span>. By default, this
+                length should be the gigantic 4cm we say in the example, but
+                uses should be able to set it to anything they like. We will not
+                worry about the arrow width or insets, of arrow line width, or
+                harpoons, or anything else in this example to keep it simple.
+              </p>
+              <p>Here is the code:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfdeclarearrow"
+                        >\pgfdeclarearrow</a
+                      ></span
+                    >{<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-scopes#pgf.name">name</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000">foo</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="library-patterns#pgf.parameters"
+                        >parameters</a
+                      ></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      >\the</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    ><span class="spaces"> </span>},<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >setup</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-pics#pgf.code">code</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    {<br />
+                    <span class="spaces">    </span><span
+                      class="example-code-comment"
+                      >% The different end values:</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowssettipend"
+                        >\pgfarrowssettipend</a
+                      ></span
+                    >{.<span class="textcolor" style="color: #000000">25</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowssetlineend"
+                        >\pgfarrowssetlineend</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">25</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowssetvisualbackend"
+                        >\pgfarrowssetvisualbackend</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowssetbackend"
+                        >\pgfarrowssetbackend</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">75</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="example-code-comment"
+                      >% The hull</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                        >\pgfarrowshullpoint</a
+                      ></span
+                    >{.<span class="textcolor" style="color: #000000">25</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{<span class="textcolor" style="color: #000000">0pt</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                        >\pgfarrowshullpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">75</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{.<span class="textcolor" style="color: #000000">5</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowshullpoint"
+                        >\pgfarrowshullpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">75</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="example-code-comment"
+                      >% Saves: Only the length:</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowssavethe"
+                        >\pgfarrowssavethe</a
+                      ></span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    ><br />
+                    <span class="spaces">  </span>},<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >drawing</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-pics#pgf.code">code</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfqpoint"
+                        >\pgfqpoint</a
+                      ></span
+                    >{.<span class="textcolor" style="color: #000000">25</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{<span class="textcolor" style="color: #000000">0pt</span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfqpoint"
+                        >\pgfqpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">75</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{.<span class="textcolor" style="color: #000000">5</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfqpoint"
+                        >\pgfqpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{<span class="textcolor" style="color: #000000">0pt</span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfqpoint"
+                        >\pgfqpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">75</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowlength</span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathclose"
+                        >\pgfpathclose</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfusepathqfill"
+                        >\pgfusepathqfill</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span>},<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="library-patterns#pgf.defaults"
+                        >defaults</a
+                      ></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-arrows#pgf.length">length</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000">4cm</span>
+                    }<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>We can now use it:</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3281"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="153.866"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3281.png"
+                        style
+                        width="305.053"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {arrows.meta} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >-foo</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(8,0)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3282"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="77.930"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3282.png"
+                        style
+                        width="116.210"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {arrows.meta,bending} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >-{foo[length=2cm,bend]}</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="library-edges#pgf.bend:left">bend left</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(3,0)</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <b>Defining a Shorthand.</b> The
+                <span class="verb">\pgfdeclarearrow</span> command can also used
+                to define <em>shorthands</em>. This works as follows:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> First, you must
+                    provide a <span class="verb">name</span> just in the same
+                    way as when you define a full-flung new arrow tip kind.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Second, instead of
+                    all of the other options listed above, you just use one more
+                    option:
+                  </p>
+                  <p>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">means</span></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span
+                    ><i>end arrow specification</i
+                    ><span class="angle">&rangle;</span>
+                  </p>
+                  <p>
+                    This sets up things so that whenever
+                    <span class="angle">&langle;</span><i>name</i
+                    ><span class="angle">&rangle;</span> is now used in an arrow
+                    specification, it will be replaced by the
+                    <span class="angle">&langle;</span
+                    ><i>end arrow specification</i
+                    ><span class="angle">&rangle;</span> (the problems resulting
+                    form the <span class="angle">&langle;</span><i>name</i
+                    ><span class="angle">&rangle;</span> begin used in a start
+                    arrow specification are taken care of automatically). See
+                    also Section&nbsp;<a
+                      href="tikz-arrows#section-arrow-tip-macro"
+                      >16.4.4</a
+                    >
+                    for details on the order in which options get executed in
+                    such cases.
+                  </p>
+                  <p>
+                    Note that the <span class="angle">&langle;</span
+                    ><i>end arrow specification</i
+                    ><span class="angle">&rangle;</span> will be executed
+                    immediately to build the so-called arrow option caches, a
+                    concept explored in more detail in Section&nbsp;<a
+                      href="base-arrows#section-arrow-option-cache"
+                      >105.5.4</a
+                    >. In practice, this has mainly two effects: First, all
+                    arrow tips referred to in the specification must already
+                    exist (at least as &ldquo;dummy&rdquo; versions). Second,
+                    all dimensions mentioned in options of the
+                    <span class="angle">&langle;</span
+                    ><i>end arrow specification</i
+                    ><span class="angle">&rangle;</span> will be evaluated
+                    immediately. For instance, when you write
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-arrows#pgf.back/pgfdeclarearrow"
+                            >\pgfdeclarearrow</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                          >name=foo</span
+                        >, <span class="textcolor" style="color: #000000"
+                          >means</span
+                        >
+                        <span class="textcolor" style="color: #000000">=</span>
+                        <span class="textcolor" style="color: #000000">bar</span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-arrows#pgf.length">length</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >2cm+<span class="textcolor" style="color: #0000b2"
+                            >\mydimen</span
+                          ></span
+                        >]<span class="spaces"> </span>}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    The value <span class="verb">2cm+\mydimen</span> is
+                    evaluated immediately. When <span class="verb">foo</span> is
+                    used later on and <span class="verb">\mydimen</span> has
+                    changed, this has no effect.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+          <h5 id="autosec-8146">
+            <a id="section-arrow-options"></a
+            ><span
+              ><span class="sectionnumber" id="sec-105.5">105.5</span> Handling
+              Arrow Options</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.5"
+              data-pdf-destination="subsection.105.5"
+              data-pdf-page="1132"
+              href="#sec-105.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8146"></a>
+
+          <p>
+            When you declare an arrow tip, your drawing code should take into
+            account the different arrow keys set for it (like the arrow tip
+            length, width, or harpooning). The different arrow keys that are
+            available have been described in detail in Section&nbsp;<a
+              href="tikz-arrows#section-arrow-config"
+              >16.3</a
+            >; but how do we access the values set by an option like
+            <span class="verb">length</span> or
+            <span class="verb">harpoon</span> or
+            <span class="verb">bend</span> in the drawing code? In the present
+            section we have a look at how this works.
+          </p>
+          <h6 id="autosec-8147">
+            <span
+              ><span class="sectionnumber" id="sec-105.5.1">105.5.1</span>
+              Dimension Options</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.5.1"
+              data-pdf-destination="subsubsection.105.5.1"
+              data-pdf-page="1132"
+              href="#sec-105.5.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8147"></a>
+
+          <p>
+            Most arrow keys, like <span class="verb">length</span> or
+            <span class="verb">width'</span>, simple set a
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            dimension register to a certain value. For example,
+            <span class="verb">length</span> sets the value of the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            dimension register <span class="verb">\pgfarrowlength</span>. Note
+            that <span class="verb">length</span> takes several values as input
+            with a complicated semantics as explained for the
+            <span class="verb">length</span> key in section&nbsp;<a
+              href="tikz-arrows#length-arrow-key"
+              >16.3.1</a
+            >. All of these settings are not important for the setup code: When
+            it gets executed, the code behind the
+            <span class="verb">length</span> key will have computed a simple
+            number that is stored in <span class="verb">\pgfarrowlength</span>.
+            Indeed, inside the setup code you do not have access to the exact
+            value given to the <span class="verb">length</span> key; just to the
+            final computed value.
+          </p>
+
+          <p>
+            The following
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            dimensions are available to the setup code:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\pgfarrowslength</span>. It gets set by the
+                arrow keys <span class="verb">length</span> and
+                <span class="verb">angle</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\pgfarrowswidth</span>. It gets set by
+                <span class="verb">width</span>,
+                <span class="verb">width'</span>, and
+                <span class="verb">angle</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\pgfarrowsinset</span>. It gets set by
+                <span class="verb">inset</span> and
+                <span class="verb">inset'</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\pgfarrowslinewidth</span>. It gets set by
+                <span class="verb">line width</span> and
+                <span class="verb">line width'</span>.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            If your setup code depends on any of them, add them to the
+            <span class="verb">parameters</span> key of the arrow tip.
+          </p>
+          <h6 id="autosec-8148">
+            <span
+              ><span class="sectionnumber" id="sec-105.5.2">105.5.2</span>
+              True&ndash;False Options</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.5.2"
+              data-pdf-destination="subsubsection.105.5.2"
+              data-pdf-page="1133"
+              href="#sec-105.5.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8148"></a>
+
+          <p>
+            A number of arrow keys just do a yes/no switch, like
+            <span class="verb">reversed</span>. All of them setup a
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-if that you can access in the setup code:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\ifpgfarrowreversed</span> is setup by
+                <span class="verb">reversed</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\ifpgfarrowswap</span> is setup by
+                <span class="verb">swap</span> and also
+                <span class="verb">right</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\ifpgfarrowharpoon</span> is setup by
+                <span class="verb">harpoon</span> and also
+                <span class="verb">left</span> and
+                <span class="verb">right</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\ifpgfarrowroundcap</span> is set to true by
+                <span class="verb">line cap=round</span> and set to false by
+                <span class="verb">line cap=butt</span>. It also gets (re)set by
+                <span class="verb">round</span> and
+                <span class="verb">sharp</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\ifpgfarrowroundjoin</span> is set to true by
+                <span class="verb">line join=round</span> and set to false by
+                <span class="verb">line join=miter</span>. It also gets (re)set
+                by <span class="verb">round</span> and
+                <span class="verb">sharp</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">\ifpgfarrowopen</span> is set to true by
+                <span class="verb">fill=none</span> and by
+                <span class="verb">open</span> (which is a shorthand for
+                <span class="verb">fill=none</span>) and set to false by
+                <span class="verb">color</span> and all other
+                <span class="verb">fill=</span
+                ><span class="angle">&langle;</span><i>color</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            If you code depends on any of these, you must add them to the
+            <span class="verb">parameters</span> in such a way that the
+            parameters are different when the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-if is set from when it is not set. An easy way to achieve this is
+            to write something like
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="library-patterns#pgf.parameters"
+                    >parameters</a
+                  ></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                {<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                  >\the</span
+                ><span class="textcolor" style="color: #0000b2"
+                  >\pgfarrowlength</span
+                >,...,<br />
+                <span class="spaces">                 </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\ifpgfarrowharpoon</span
+                > <span class="textcolor" style="color: #000000">h</span
+                ><span class="textcolor" style="color: #0000b2">\fi</span
+                ><span class="textcolor" style="color: #0000b2">\</span><br />
+                <span class="spaces">                 </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\ifpgfarrowroundjoin</span
+                > <span class="textcolor" style="color: #000000">j</span
+                ><span class="textcolor" style="color: #0000b2">\fi</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            In other words, for each set parameter on which the arrow tip
+            depends, a specific letter is added to the parameters, making them
+            unique.
+          </p>
+
+          <p>
+            The first two of the above keys are a bit special: Reversing and
+            swapping an arrow tip can be done just by fiddling with the
+            transformation matrix: a reverse is a &ldquo;flip&rdquo; along the
+            \(y\)-axis and a swap is a flip along the \(x\)-axis. This is done
+            automatically by <span class="textsc">pgf</span>.
+          </p>
+
+          <p>
+            Nevertheless, you may wish to modify you code in dependence
+            especially of the <span class="verb">reverse</span> key: When
+            <span class="verb">\ifpgfarrowreverse</span> is true,
+            <span class="textsc">pgf</span> will flip the coordinate system
+            along the \(y\)-axis, will negate all end values (like line end, tip
+            end, and so on) and will exchange the meaning of back end and tip
+            end as well as of visual back end and visual back end. Usually, this
+            is exactly what one need; <em>except</em> that the line end may no
+            longer be appropriate. After all, the line end should be chosen so
+            that it is completely covered by the arrow. Now, when the arrow tip
+            is open, a reversed arrow should no longer have the line end near
+            the old visual back end, but near to the old visual tip end.
+          </p>
+
+          <p>
+            For these reasons, you may need to make the computation of the line
+            end dependent on whether the arrow is reversed or not. Note that
+            when you specify a different line end for a reversed arrow tip, the
+            transformation and inverting of the coordinate system will still be
+            done, meaning that if <span class="verb">reverse</span> is true, you
+            need to specify a line end in the &ldquo;old&rdquo; coordinate
+            system that is at the position where, after everything is inverted,
+            it will be at the correct position. Usually that means that if the
+            <span class="verb">reverse</span> option is set, you need to
+            <em>increase</em> the line end.
+          </p>
+          <h6 id="autosec-8149">
+            <span
+              ><span class="sectionnumber" id="sec-105.5.3">105.5.3</span>
+              Inaccessible Options</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.5.3"
+              data-pdf-destination="subsubsection.105.5.3"
+              data-pdf-page="1133"
+              href="#sec-105.5.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8149"></a>
+
+          <p>
+            There are some options that influence the way an arrow tip looks,
+            but that you cannot access inside the setup code. Handling these
+            options lies entirely with <span class="textsc">pgf</span>. If you
+            wish your setup code to handle these options, you have to setup your
+            own &ldquo;parallel&rdquo; options.
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">quick</span>, <span class="verb">flex</span>,
+                <span class="verb">flex'</span>, and
+                <span class="verb">bend</span> are all handled automatically.
+                You can, however, set the
+                <span class="verb">bending mode</span> to avoid bending of your
+                arrow tip.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The colors set by
+                <span class="verb">color</span> and
+                <span class="verb">fill</span>. You can, however, access them
+                indirectly, namely through the current stroke and fill colors.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="verb">sep</span>
+              </p>
+            </li>
+          </ul>
+          <h6 id="autosec-8150">
+            <a id="section-arrow-option-cache"></a
+            ><span
+              ><span class="sectionnumber" id="sec-105.5.4">105.5.4</span>
+              Defining New Arrow Keys</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-105.5.4"
+              data-pdf-destination="subsubsection.105.5.4"
+              data-pdf-page="1134"
+              href="#sec-105.5.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8150"></a>
+
+          <p>
+            The set of predefined options is already quite long and most arrow
+            tips will not need more than the predefined options. However,
+            sometimes an arrow tip may need to introduce a new special-purpose
+            option. For instance, suppose we wish to introduce a new fictive
+            arrow key <span class="verb">depth</span>. In such cases, you must
+            do two things:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Introduce a new dimension
+                register or macro that will hold the configuration value and
+                which will be accessed by the setup code. The could be achieved
+                by saying
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\newdimen</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowdepth</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Introduce a new arrow key
+                option <span class="verb">/pgf/arrow keys/depth</span> that
+                allows users to configure the new macro or register.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            When an arrow is selected via for instance
+            <span class="verb">foo[depth=5pt]</span>, the key&ndash;value pairs
+            between the square brackets are executed with the path prefix
+            <span class="verb">/pgf/arrow keys</span>. Thus, in the example, our
+            depth key would get executed. Thus, it is tempting to write
+            something like
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                >{<span class="textcolor" style="color: #000000"
+                  ><span class="textcolor" style="color: #008000"
+                    >/pgf/arrow keys/depth</span
+                  >/<span class="textcolor" style="color: #0000b2">.code </span
+                  >=
+                  <span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="math-parsing#pgf.back/pgfmathsetlength"
+                        >\pgfmathsetlength</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowdepth</span
+                    >}{#1}</span
+                  ></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Sadly, this will not work. The reason is that there is yet another
+            level of caching involved when
+            <span class="textsc">pgf</span> processes arrow tips: The option
+            cache! The problem is each time an arrow tip is used, even when the
+            drawing code of the arrow tip is nicely cached, we still need to
+            process the options in <span class="verb">foo[length=5pt]</span> to
+            find out which version in the cache we would like to access. To make
+            matters worse, <span class="verb">foo</span> might be a shorthand
+            that calls other arrow tips, which add more options, and so on.
+            Unfortunately, executing keys is quite an expensive operation (<span
+              class="textsc"
+              >pgf</span
+            >&rsquo;s key&ndash;value parser is powerful, but that power comes
+            at a price). So, whenever possible, we do <em>not</em> want the
+            key&ndash;value parser to be started.
+          </p>
+
+          <p>
+            For these reasons, when something like <span class="verb">foo[</span
+            ><span class="angle">&langle;</span><i>options</i
+            ><span class="angle">&rangle;</span><span class="verb">]</span> is
+            encountered inside a shorthand, the
+            <span class="angle">&langle;</span><i>options</i
+            ><span class="angle">&rangle;</span> are executed only once. They
+            should now setup the <em>arrow option cache</em>, which is some code
+            that, when executed, should setup the values that the
+            <span class="angle">&langle;</span><i>options</i
+            ><span class="angle">&rangle;</span> configure. In our example, the
+            <span class="verb">depth</span> key should add something to the
+            arrow option cache that sets
+            <span class="verb">\pgfarrowdepth</span> to the given value.
+          </p>
+
+          <p>
+            Adding something to the arrow option cache is done using the
+            following command:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowsaddtooptions"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowsaddtooptions</kbd></span
+                      >{<span class="angle">&langle;</span><i>code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowsaddtooptions"
+                      href="#\pgfarrowsaddtooptions"
+                      id="\pgfarrowsaddtooptions"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command should be called by keys with the prefix
+                <span class="verb">/pgf/arrow keys</span> to add code to the
+                arrow option cache. For our <span class="verb">depth</span> key
+                example, we could use this key as follows:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        >/pgf/arrow keys/depth</span
+                      >/<span class="textcolor" style="color: #0000b2"
+                        ><a href="pgfkeys#pgf./handlers/.code">.code</a></span
+                      >=<br />
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="base-arrows#pgf.back/pgfarrowsaddtooptions"
+                            >\pgfarrowsaddtooptions</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="math-parsing#pgf.back/pgfmathsetlength"
+                            >\pgfmathsetlength</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\pgfarrowdepth</span
+                        >}{#1}}<br /> </span
+                    ></span>
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Actually, this is still not optimal since the expensive
+                <span class="verb">\pgfmathsetlength</span> command is now
+                called each time an arrow tip is used with the
+                <span class="verb">depth</span> option set. The trick is to do
+                the expensive operation only once and then store only very quick
+                code in the arrow option cache:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        >/pgf/arrow keys/depth</span
+                      >/<span class="textcolor" style="color: #0000b2"
+                        ><a href="pgfkeys#pgf./handlers/.code">.code</a></span
+                      >=<br />
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="math-parsing#pgf.back/pgfmathsetlength"
+                            >\pgfmathsetlength</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\somedimen</span
+                        >}{#1}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-arrows#pgf.back/pgfarrowsaddtooptions"
+                            >\pgfarrowsaddtooptions</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\pgfarrowdepth</span
+                        >=<span class="textcolor" style="color: #0000b2"
+                          >\somedimen</span
+                        >} <span class="example-code-comment"
+                          >% buggy</span
+                        ><br /> </span
+                    ></span>
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The above code will not (yet) work since
+                <span class="verb">\somedimen</span> will surely have a
+                different value when the cache is executed. The trick is to use
+                some <span class="verb">\expandafter</span>s:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        >/pgf/arrow keys/depth</span
+                      >/<span class="textcolor" style="color: #0000b2"
+                        ><a href="pgfkeys#pgf./handlers/.code">.code</a></span
+                      >=<br />
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="math-parsing#pgf.back/pgfmathsetlength"
+                            >\pgfmathsetlength</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\somedimen</span
+                        >}{#1}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\expandafter</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="base-arrows#pgf.back/pgfarrowsaddtooptions"
+                            >\pgfarrowsaddtooptions</a
+                          ></span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\expandafter</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\expandafter</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\pgfarrowdepth</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\expandafter</span
+                        >=<span class="textcolor" style="color: #0000b2"
+                          >\the</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\somedimen</span
+                        >}<br /> </span
+                    ></span>
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowsaddtolateoptions"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowsaddtolateoptions</kbd></span
+                      >{<span class="angle">&langle;</span><i>code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowsaddtolateoptions"
+                      href="#\pgfarrowsaddtolateoptions"
+                      id="\pgfarrowsaddtolateoptions"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works like
+                <span class="verb">\pgfarrowsaddtooptions</span>, only the
+                <span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span> will be executed
+                &ldquo;later&rdquo; than the code added by the normal version of
+                the command. This is useful for keys that depend on the length
+                of an arrow: Keys like <span class="verb">width'</span> want to
+                define the arrow width as a multiple of the arrow length, but
+                when the <span class="verb">width'</span> key is given, the
+                length may not yet have been specified. By making the
+                computation of the width a &ldquo;late&rdquo; option, we ensure
+                that <span class="verb">\pgfarrowlength</span> will have been
+                setup correctly.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            If you define a new option that sets a dimensions and if that
+            dimension should change in accordance to the setting of either
+            <span class="verb">scale length</span> or
+            <span class="verb">scale width</span>, you need to make
+            <span class="textsc">pgf</span> &ldquo;aware&rdquo; of this using
+            the following key:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowsaddtolengthscalelist"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowsaddtolengthscalelist</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>dimension register</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowsaddtolengthscalelist"
+                      href="#\pgfarrowsaddtolengthscalelist"
+                      id="\pgfarrowsaddtolengthscalelist"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Each time an arrow tip is used, the given
+                <span class="angle">&langle;</span><i>dimension register</i
+                ><span class="angle">&rangle;</span> will be multiplied by the
+                <span class="verb">scale length</span> factor prior to the
+                actual drawing. You call this command only once in the preamble
+                somewhere.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowsaddtowidthscalelist"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowsaddtowidthscalelist</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>dimension register</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowsaddtowidthscalelist"
+                      href="#\pgfarrowsaddtowidthscalelist"
+                      id="\pgfarrowsaddtowidthscalelist"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Works like
+                <span class="verb">\pgfarrowsaddtolengthscalelist</span>, only
+                for width parameters.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowsthreeparameters"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowsthreeparameters</kbd></span
+                      >{<span class="angle">&langle;</span
+                      ><i>line-width dependent size specification</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowsthreeparameters"
+                      href="#\pgfarrowsthreeparameters"
+                      id="\pgfarrowsthreeparameters"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command is useful for parsing the values given to keys like
+                <span class="verb">length</span> or
+                <span class="verb">width</span> the expect a dimension followed
+                optionally for some numbers. This command converts the
+                <span class="angle">&langle;</span
+                ><i>line-width dependent size specification</i
+                ><span class="angle">&rangle;</span>, which may consist of one,
+                two, or three numbers, into a triple of three numbers in curly
+                braces, which gets stored in the macro
+                <span class="verb">\pgfarrowstheparameters</span>. Here is an
+                example, where <span class="verb">\showvalueofmacro</span> is
+                used in this example to show the value stored in a macro:
+              </p>
+
+              <div class="hidden"></div>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <kbd>{2.0pt}{1}{0}</kbd>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-arrows#pgf.back/pgfarrowsthreeparameters"
+                        >\pgfarrowsthreeparameters</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2pt</span>
+                    <span class="textcolor" style="color: #000000">1</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\showvalueofmacro</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfarrowstheparameters</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowslinewidthdependent"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowslinewidthdependent</kbd></span
+                      >{<span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>line width factor</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>outer factor</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowslinewidthdependent"
+                      href="#\pgfarrowslinewidthdependent"
+                      id="\pgfarrowslinewidthdependent"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command takes three parameters and does the &ldquo;line
+                width dependent computation&rdquo; described in section&nbsp;<a
+                  href="tikz-arrows#length-arrow-key"
+                  >16.3.1</a
+                >
+                for the <span class="verb">length</span> key. The result is
+                returned in <span class="verb">\pgf@x</span>.
+              </p>
+              <p>
+                The idea is that you can setup line-width dependent keys like
+                <span class="verb">length</span> or
+                <span class="verb">width</span> using code like the following:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        >/pgf/arrow keys/depth</span
+                      >/<span class="textcolor" style="color: #0000b2"
+                        ><a href="pgfkeys#pgf./handlers/.code">.code</a></span
+                      >=<span class="textcolor" style="color: #008000"
+                        >{<span class="example-code-comment">%</span><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a
+                            href="base-arrows#pgf.back/pgfarrowsthreeparameters"
+                            >\pgfarrowsthreeparameters</a
+                          ></span
+                        >{#1}<span class="example-code-comment">%</span><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\expandafter</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a
+                            href="base-arrows#pgf.back/pgfarrowsaddtolateoptions"
+                            >\pgfarrowsaddtolateoptions</a
+                          ></span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\expandafter</span
+                        >{<span class="example-code-comment">%</span><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\expandafter</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a
+                            href="base-arrows#pgf.back/pgfarrowslinewidthdependent"
+                            >\pgfarrowslinewidthdependent</a
+                          ></span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\pgfarrowstheparameters</span
+                        ><span class="example-code-comment">% compute...</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\pgfarrowdepth</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="base-internalregisters#pgf.back/pgf@x"
+                            >\pgf@x</a
+                          ></span
+                        ><span class="example-code-comment"
+                          >% ... and store.</span
+                        ><br />
+                        <span class="spaces">  </span>}<span class="example-code-comment"
+                          >%</span
+                        ><br />
+                        }<br /> </span
+                    ></span>
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfarrowslengthdependent"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfarrowslengthdependent</kbd></span
+                      >{<span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>length factor</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>dummy</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfarrowslengthdependent"
+                      href="#\pgfarrowslengthdependent"
+                      id="\pgfarrowslengthdependent"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command takes three parameters, of which the last one is
+                ignored, and does the &ldquo;length dependent computation&rdquo;
+                described for the <span class="verb">width'</span> and
+                <span class="verb">inset'</span> keys. The result is returned in
+                <span class="verb">\pgf@x</span>.
+              </p>
+              <p>
+                You can setup length dependent keys using code like the
+                following:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><span class="textcolor" style="color: #008000"
+                        >/pgf/arrow keys/depth'</span
+                      >/<span class="textcolor" style="color: #0000b2"
+                        ><a href="pgfkeys#pgf./handlers/.code">.code</a></span
+                      >=<span class="textcolor" style="color: #008000"
+                        >{<span class="example-code-comment">%</span><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a
+                            href="base-arrows#pgf.back/pgfarrowsthreeparameters"
+                            >\pgfarrowsthreeparameters</a
+                          ></span
+                        >{#1}<span class="example-code-comment">%</span><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\expandafter</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a
+                            href="base-arrows#pgf.back/pgfarrowsaddtolateoptions"
+                            >\pgfarrowsaddtolateoptions</a
+                          ></span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\expandafter</span
+                        >{<span class="example-code-comment">%</span><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\expandafter</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a
+                            href="base-arrows#pgf.back/pgfarrowslengthdependent"
+                            >\pgfarrowslengthdependent</a
+                          ></span
+                        ><span class="textcolor" style="color: #0000b2"
+                          >\pgfarrowstheparameters</span
+                        ><span class="example-code-comment">% compute...</span
+                        ><br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\pgfarrowdepth</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="base-internalregisters#pgf.back/pgf@x"
+                            >\pgf@x</a
+                          ></span
+                        ><span class="example-code-comment"
+                          >% ... and store.</span
+                        ><br />
+                        <span class="spaces">  </span>}<span class="example-code-comment"
+                          >%</span
+                        ><br />
+                        }<br /> </span
+                    ></span>
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2091 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Three Dimensional Drawing Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Three Dimensional Drawing Library",
+            "item": "https://tikz.dev/library-3d"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-3d" rel="canonical" />
+    <meta content="https://tikz.dev/library-3d" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/library-3d.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Three Dimensional Drawing Library - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4947"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-40.1">Coordinate Systems</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-40.2">Coordinate Planes</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-40.2.1"
+                >Switching to an arbitrary plane</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-40.2.2"
+                >Predefined planes</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-40.3">Examples</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4948">
+            <span
+              ><span class="sectionnumber" id="sec-40">40</span> Three
+              Dimensional Drawing Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.40"
+              data-pdf-page="565"
+              href="#sec-40"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4948"></a>
+          <a id="pgfmanual-autofile-45"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.3d"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >3d</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.3d"
+                      href="#pgf.3d"
+                      id="pgf.3d"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >3d</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >3d</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This package provides some styles and options for drawing three
+                dimensional shapes.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-4950">
+            <span
+              ><span class="sectionnumber" id="sec-40.1">40.1</span> Coordinate
+              Systems</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-40.1"
+              data-pdf-destination="subsection.40.1"
+              data-pdf-page="565"
+              href="#sec-40.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4950"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.xyz:cylindrical"></a>
+                    <span class="hl-def"
+                      ><b>Coordinate system</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >xyz cylindrical</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.xyz:cylindrical"
+                      href="#pgf.xyz:cylindrical"
+                      id="pgf.xyz:cylindrical"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The <span class="verb">xyz cylindrical</span> coordinate system
+                allows to you specify a point in terms of cylindrical
+                coordinates, sometimes also referred to as cylindrical polar
+                coordinates or polar cylindrical coordinates. It is very similar
+                to the <span class="verb">canvas polar</span> and
+                <span class="verb">xy polar</span> coordinate systems with the
+                difference that you provide an elevation over the \(xy\)-plane
+                using the <span class="verb">z</span> key.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/angle</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>degrees</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    The angle of the coordinate interpreted in the ellipse whose
+                    axes are the \(x\)-vector and the \(y\)-vector.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/radius</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>number</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    A factor by which the \(x\)-vector and \(y\)-vector are
+                    multiplied prior to forming the ellipse.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/z</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>number</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Factor by which the \(z\)-vector is multiplied.</p>
+                </ul>
+              </div>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2053"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="55.395"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2053.png"
+                        style
+                        width="55.419"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {3d} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(xyz cylindrical cs:radius=1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(xyz cylindrical cs:radius=1,angle=90)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(xyz cylindrical cs:z=1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.xyz:spherical"></a>
+                    <span class="hl-def"
+                      ><b>Coordinate system</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >xyz spherical</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.xyz:spherical"
+                      href="#pgf.xyz:spherical"
+                      id="pgf.xyz:spherical"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The <span class="verb">xyz spherical</span> coordinate system
+                allows you to specify a point in terms of spherical coordinates.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/radius</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>number</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Factor by which the \(x\)-, \(y\)-, and \(z\)-vector are
+                    multiplied.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/cs/latitude"></a
+                        ><a id="pgf.latitude"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/latitude</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>degrees</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/cs/latitude"
+                          href="#tikz/cs/latitude"
+                          id="tikz/cs/latitude"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Angle of the coordinate between the \(y\)- and \(z\)-vector,
+                    measured from the \(y\)-vector.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/cs/longitude"></a
+                        ><a id="pgf.longitude"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/longitude</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>degrees</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/cs/longitude"
+                          href="#tikz/cs/longitude"
+                          id="tikz/cs/longitude"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Angle of the coordinate between the \(x\)- and \(y\)-vector,
+                    measured from the \(y\)-vector.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/cs/angle</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>degrees</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0</kbd>)</span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Same as <span class="verb">longitude</span>.</p>
+                </ul>
+              </div>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2054"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="55.395"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2054.png"
+                        style
+                        width="55.419"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {3d} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(xyz spherical cs:radius=1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(xyz spherical cs:radius=1,latitude=90)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(xyz spherical cs:radius=1,longitude=90)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-4955">
+            <span
+              ><span class="sectionnumber" id="sec-40.2">40.2</span> Coordinate
+              Planes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-40.2"
+              data-pdf-destination="subsection.40.2"
+              data-pdf-page="565"
+              href="#sec-40.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4955"></a>
+
+          <p>
+            Sometimes drawing with full three dimensional coordinates is not
+            necessary and it suffices to draw in two dimensions but in a
+            different coordinate plane. The following options help you to switch
+            to a different plane.
+          </p>
+          <h6 id="autosec-4956">
+            <span
+              ><span class="sectionnumber" id="sec-40.2.1">40.2.1</span>
+              Switching to an arbitrary plane</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-40.2.1"
+              data-pdf-destination="subsubsection.40.2.1"
+              data-pdf-page="566"
+              href="#sec-40.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4956"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/plane:origin"></a
+                    ><a id="pgf.plane:origin"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/plane origin</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>point</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>(0,0)</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/plane:origin"
+                      href="#tikz/plane:origin"
+                      id="tikz/plane:origin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Origin of the plane.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/plane:x"></a><a id="pgf.plane:x"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/plane x</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>point</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>(1,0)</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/plane:x"
+                      href="#tikz/plane:x"
+                      id="tikz/plane:x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Unit vector of the \(x\)-direction in the new plane.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/plane:y"></a><a id="pgf.plane:y"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/plane y</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>point</i
+                      ><span class="angle">&rangle;</span> </span
+                    ><span class="hl-default"
+                      >(no default, initially <kbd>(0,1)</kbd>)</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/plane:y"
+                      href="#tikz/plane:y"
+                      id="tikz/plane:y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Unit vector of the \(y\)-direction in the new plane.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:plane"></a
+                    ><a id="pgf.canvas:is:plane"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is plane</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:plane"
+                      href="#tikz/canvas:is:plane"
+                      id="tikz/canvas:is:plane"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Perform the transformation into the new canvas plane using the
+                units above. Note that you have to set the units
+                <em>before</em> calling
+                <span class="verb">canvas is plane</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2055"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="56.883"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2055.png"
+                        style
+                        width="29.964"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {3d} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-3d#pgf.plane:x">plane x</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(0.707,-0.707)</span
+                      >}</span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-3d#pgf.plane:y">plane y</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="textcolor" style="color: #800080"
+                        >(0.707,0.707)</span
+                      >}</span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-3d#pgf.canvas:is:plane"
+                        >canvas is plane</a
+                      ></span
+                    >,<br />
+                    ]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,0)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-4959">
+            <span
+              ><span class="sectionnumber" id="sec-40.2.2">40.2.2</span>
+              Predefined planes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-40.2.2"
+              data-pdf-destination="subsubsection.40.2.2"
+              data-pdf-page="566"
+              href="#sec-40.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-4959"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:xy:plane:at:z"></a
+                    ><a id="pgf.canvas:is:xy:plane:at:z"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is xy plane at z</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:xy:plane:at:z"
+                      href="#tikz/canvas:is:xy:plane:at:z"
+                      id="tikz/canvas:is:xy:plane:at:z"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A plane with</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane origin={(0,0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">)}</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane x={(1,0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">)}</span>, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane y={(0,1,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">)}</span>.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:yx:plane:at:z"></a
+                    ><a id="pgf.canvas:is:yx:plane:at:z"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is yx plane at z</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:yx:plane:at:z"
+                      href="#tikz/canvas:is:yx:plane:at:z"
+                      id="tikz/canvas:is:yx:plane:at:z"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A plane with</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane origin={(0,0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">)}</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane x={(0,1,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">)}</span>, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane y={(1,0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">)}</span>.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:xz:plane:at:y"></a
+                    ><a id="pgf.canvas:is:xz:plane:at:y"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is xz plane at y</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:xz:plane:at:y"
+                      href="#tikz/canvas:is:xz:plane:at:y"
+                      id="tikz/canvas:is:xz:plane:at:y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A plane with</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane origin={(0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0)}</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane x={(1,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0)}</span>, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane y={(0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,1)}</span>.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:zx:plane:at:y"></a
+                    ><a id="pgf.canvas:is:zx:plane:at:y"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is zx plane at y</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:zx:plane:at:y"
+                      href="#tikz/canvas:is:zx:plane:at:y"
+                      id="tikz/canvas:is:zx:plane:at:y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A plane with</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane origin={(0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0)}</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane x={(0,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,1)}</span>, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane y={(1,</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0)}</span>.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:yz:plane:at:x"></a
+                    ><a id="pgf.canvas:is:yz:plane:at:x"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is yz plane at x</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:yz:plane:at:x"
+                      href="#tikz/canvas:is:yz:plane:at:x"
+                      id="tikz/canvas:is:yz:plane:at:x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A plane with</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane origin={(</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0,0)}</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane x={(</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,1,0)}</span>, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane y={(</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0,1)}</span>.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/canvas:is:zy:plane:at:x"></a
+                    ><a id="pgf.canvas:is:zy:plane:at:x"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/canvas is zy plane at x</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/canvas:is:zy:plane:at:x"
+                      href="#tikz/canvas:is:zy:plane:at:x"
+                      id="tikz/canvas:is:zy:plane:at:x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A plane with</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane origin={(</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0,0)}</span>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane x={(</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,0,1)}</span>, and
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">plane y={(</span
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">,1,0)}</span>.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+          <h5 id="autosec-4960">
+            <span
+              ><span class="sectionnumber" id="sec-40.3">40.3</span>
+              Examples</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-40.3"
+              data-pdf-destination="subsection.40.3"
+              data-pdf-page="567"
+              href="#sec-40.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4960"></a>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2056"
+                  ><!--
+                    d
+               fiel
+       tric
+   elec
+
+
+                d
+        tic fiel
+magne
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="136.946"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2056.png"
+                    style
+                    width="502.897"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {3d} </span><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.z">z</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #800080"
+                    >(10:10mm)</span
+                  >}</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #800080"
+                    >(-45:5mm)</span
+                  >}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  >\def</span
+                ><span class="textcolor" style="color: #0000b2">\wave</span
+                >{<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thick">thick</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transparency#pgf.fill:opacity"
+                    >fill opacity</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">.2</span
+                >]<br />
+                <span class="spaces">     </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >
+                <span class="textcolor" style="color: #800080">(4,0)</span
+                ><br />
+                <span class="spaces">           </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >
+                <span class="textcolor" style="color: #800080">(5,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >
+                <span class="textcolor" style="color: #800080">(6,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >
+                <span class="textcolor" style="color: #800080">(7,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >
+                <span class="textcolor" style="color: #800080">(8,0)</span
+                ><br />
+                <span class="spaces">           </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >
+                <span class="textcolor" style="color: #800080">(9,1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >
+                <span class="textcolor" style="color: #800080">(10,0)</span
+                ><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >
+                <span class="textcolor" style="color: #800080">(11,-1)</span
+                ><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >
+                <span class="textcolor" style="color: #800080">(12,0)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\shift</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">0</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >4</span
+                >,<span class="textcolor" style="color: #000000">8</span>}<br />
+                <span class="spaces">    </span>{<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.xshift">xshift</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><span class="textcolor" style="color: #0000b2">\shift</span
+                  > <a href="tikz-transformations#pgf.cm">cm</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.thin">thin</a></span
+                >]<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(.5,0)</span
+                ><span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(0.5,0 |- 45:1cm)</span
+                >;<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(1,0)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                >;<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(1.5,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(1.5,0 |- 45:1cm)</span
+                >;<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(2.5,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(2.5,0 |- -45:1cm)</span
+                >;<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(3,0)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,-1)</span
+                >;<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(3.5,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(3.5,0 |- -45:1cm)</span
+                >;<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">  </span>}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="library-3d#pgf.canvas:is:zy:plane:at:x"
+                    >canvas is zy plane at x</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0</span>,<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\wave</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(6,-1.5)</span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.transform:shape"
+                    >transform shape</a
+                  ></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >magnetic</span
+                >
+                <span class="textcolor" style="color: #000000">field</span
+                >};<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="library-3d#pgf.canvas:is:zx:plane:at:y"
+                    >canvas is zx plane at y</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0</span>,<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">red</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,-2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #800080">(12,2)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  >\wave</span
+                ><br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(6,1.5)</span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.rotate">rotate</a></span
+                >=<span class="textcolor" style="color: #008000">180</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.xscale">xscale</a></span
+                >=<span class="textcolor" style="color: #008000">-1</span>,<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.transform:shape"
+                    >transform shape</a
+                  ></span
+                >] {<span class="textcolor" style="color: #000000"
+                  >electric</span
+                >
+                <span class="textcolor" style="color: #000000">field</span
+                >};<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2057"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="84.218"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2057.png"
+                    style
+                    width="84.229"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble">\usetikzlibrary {3d} </span><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="library-3d#pgf.canvas:is:zy:plane:at:x"
+                    >canvas is zy plane at x</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0</span>]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1cm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0)</span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="library-3d#pgf.canvas:is:zx:plane:at:y"
+                    >canvas is zx plane at y</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0</span>]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1cm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0)</span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="library-3d#pgf.canvas:is:xy:plane:at:z"
+                    >canvas is xy plane at z</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">0</span>]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1cm)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(-1,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,0)</span
+                > <span class="textcolor" style="color: #800080"
+                  >(0,-1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.scope">scope</a></span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

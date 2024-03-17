@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en-US"><!--TikZ/PGF documentation:
+Copyright 2019 by Christian Feuersaenger
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+<meta charset="utf-8">
+<meta content="LaTeX Lwarp package" name="generator">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Externalization Library - PGF/TikZ Manual</title>
+<link href="style.css?v=20240317" rel="stylesheet" type="text/css">
+
+
+
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<script src="pgfmanual.js?v=20240317">
+</script>
+
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Externalization Library",
+            "item": "https://tikz.dev/library-external"
+        }
+    ]
+}</script><script async src="lwarp-mathjax-emulation.js"></script><link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"><link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"><link href="/site.webmanifest" rel="manifest"><link href="https://tikz.dev/library-external" rel="canonical"><meta content="https://tikz.dev/library-external" property="og:url"><meta content="article" property="og:type"><meta content="Externalization Library - PGF/TikZ Manual" property="og:title"><meta content="summary" name="twitter:card"></head>
+<body>
+
+
+<a id="pgfmanual-autopage-5715"></a>
+
+
+
+
+<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-52.1">Overview</a></p><p><a class="tocsubsection" href="#sec-52.2">Requirements</a></p><p><a class="tocsubsection" href="#sec-52.3">A Word About ConTeXt And Plain TeX</a></p><p><a class="tocsubsection" href="#sec-52.4">Externalizing Graphics</a></p><p><a class="tocsubsubsection" href="#sec-52.4.1">Support for Labels and References In External Files</a></p><p><a class="tocsubsubsection" href="#sec-52.4.2">Customizing the Generated File Names</a></p><p><a class="tocsubsubsection" href="#sec-52.4.3">Remaking Figures or Skipping Figures</a></p><p><a class="tocsubsubsection" href="#sec-52.4.4">Customizing the Externalization</a></p><p><a class="tocsubsubsection" href="#sec-52.4.5">Details About The Process</a></p><p><a class="tocsubsection" href="#sec-52.5">Using External Graphics Without pgf Installed</a></p><p><a class="tocsubsection" href="#sec-52.6">eps Graphics Export</a></p><p><a class="tocsubsection" href="#sec-52.7">Bitmap Graphics Export</a></p><p><a class="tocsubsection" href="#sec-52.8">Compatibility Issues</a></p><p><a class="tocsubsubsection" href="#sec-52.8.1">References In External Pictures</a></p><p><a class="tocsubsubsection" href="#sec-52.8.2">Compatibility With Other Libraries or Packages</a></p><p><a class="tocsubsubsection" href="#sec-52.8.3">Compatibility With Bounding Box Restrictions</a></p><p><a class="tocsubsubsection" href="#sec-52.8.4">Interoperability With The Basic Layer Externalization</a></p></div></nav></div>
+<div class="sidetoccontainer" id="chapter-toc-container">
+
+
+
+<nav class="sidetoc">
+
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="tikzname">TikZ</span> and PGF Packages<br>
+Manual for version 3.1.10</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+
+<div class="sidetoccontents">
+
+<p>
+
+</p>
+
+<p>
+<a class="linkintro" href="/">Introduction</a>
+</p>
+
+
+<p>
+<a class="tocpart" href="tutorials-guidelines">Tutorials and Guidelines</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="install">Installation and Configuration</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="gd">Graph Drawing</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="current-part">
+<a class="tocpart" href="libraries">Libraries</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-3d">Three Dimensional Drawing Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-angle">Angle Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-automata">Automata Drawing Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-babel">Babel Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-backgrounds">Background Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-calc">Calc Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-calender">Calendar Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-chains">Chains</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-circuits">Circuit Libraries</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-decorations">Decoration Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-er">Entity-Relationship Diagram Drawing Library</a>
+</p>
+
+
+<p class="current current-part">
+<a class="tocsection" href="library-external">Externalization Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-fadings">Fading Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-fit">Fitting Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-fixedpoint">Fixed Point Arithmetic Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-fpu">Floating Point Unit Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-lsystems">Lindenmayer System Drawing Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-math">Math Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-matrix">Matrix Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-mindmaps">Mindmap Drawing Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-folding">Paper-Folding Diagrams Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-patterns">Pattern Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-perspective">Three Point Perspective Drawing Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-petri">Petri-Net Drawing Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-plot-handlers">Plot Handler Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-plot-marks">Plot Mark Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-profiler">Profiler Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-rdf">Resource Description Framework Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-shadings">Shadings Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-shadows">Shadows Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-shapes">Shape Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-spy">Spy Library: Magnifying Parts of Pictures</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-edges">To Path Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-through">Through Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-trees">Tree Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-turtle">Turtle Graphics Library</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="library-views">Views Library</a>
+</p>
+
+
+<p>
+<a class="tocpart" href="dv">Data Visualization</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="utilities">Utilities</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="math">Mathematical and Object-Oriented Engines</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="base">The Basic Layer</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="pgfsys">The System Layer</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+
+<main class="bodycontainer">
+
+
+
+<section class="textbody">
+
+<h1>The <span class="tikzname">TikZ</span> and PGF Packages<br>
+Manual for version 3.1.10</h1><h2 class="inserted">Libraries</h2>
+
+<!--MathJax customizations:-->
+
+
+<p>
+</p><h4 id="autosec-5716"><a id="section-libs-external"></a><span><span class="sectionnumber" id="sec-52">52</span> Externalization Library</span><a class="anchor-link" data-pdf-destination="section.52" data-pdf-page="670" href="#sec-52">&para;</a></h4>
+<a id="pgfmanual-autopage-5716"></a>
+<a id="pgfmanual-autofile-57"></a>
+
+<p>
+<em>by Christian Feuers&auml;nger</em>
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.external"></a>
+                         <span class="hl-def"><b><span class="tikzname">TikZ</span> Library</b> <kbd><span class="textcolor" style="color:#BF0000">external</span></kbd></span>
+<a class="anchor-link" data-html-link="pgf.external" href="#pgf.external" id="pgf.external">&para;</a></p>
+</li></div>
+<p>
+<kbd>\usetikzlibrary{<span class="textcolor" style="color:#BF0000">external</span>} % <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> and plain <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span></kbd><br>
+<kbd>\usetikzlibrary[<span class="textcolor" style="color:#BF0000">external</span>] % Con<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>t</kbd><br>
+<br>
+This library provides a high-level automatic or semi-automatic export feature for <span class="tikzname">TikZ</span> pictures. Its purpose is to convert each picture to a separate <span class="textsc">pdf</span> without changing the
+document as such.
+</p>
+<p>
+It also externalizes <span class="verb">\label</span> information (and other aux file related stuff) using auxiliary files.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-5718"><span><span class="sectionnumber" id="sec-52.1">52.1</span> Overview</span><a class="anchor-link" data-html-link="sec-52.1" data-pdf-destination="subsection.52.1" data-pdf-page="670" href="#sec-52.1">&para;</a></h5>
+<a id="pgfmanual-autopage-5718"></a>
+
+
+<p>
+There are several reasons why external images for at least some pictures are of interest:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> Larger picture require a considerable amount of time, which is necessary for every compilation. However, only few images will change from run to run. It can simply save time to export finished images
+and include them as final graphics.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> It may be desirable to have final images for some graphics, for example to include them in third&ndash;party programs or to communicate them electronically.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3.</span> It may be necessary to typeset a file in environments where <span class="textsc">pgf</span> and <span class="tikzname">TikZ</span> are not available. In this case, external images are the only way to
+ensure compatibility.
+</p>
+</li>
+</ul>
+
+<p>
+The purpose of this library is to provide a way to export any <span class="tikzname">TikZ</span>-picture to separate <span class="textsc">pdf</span> (or <kbd>eps</kbd>) images without changing the main document. It is actually a simple
+user interface to the <span class="verb">\beginpgfgraphicnamed</span> \(\dotsc \) <span class="verb">\endpgfgraphicnamed</span> framework of <span class="textsc">pgf</span> which is discussed in section&nbsp;<a href="base-external#section-external">111</a>.
+</p>
+<h5 id="autosec-5719"><span><span class="sectionnumber" id="sec-52.2">52.2</span> Requirements</span><a class="anchor-link" data-html-link="sec-52.2" data-pdf-destination="subsection.52.2" data-pdf-page="670" href="#sec-52.2">&para;</a></h5>
+<a id="pgfmanual-autopage-5719"></a>
+
+
+<p>
+For most users, the library does not need special attention since requirements are met anyway. It collects all tokens between <span class="verb">\begin{tikzpicture}</span> and the next following <span class="verb">\end{tikzpicture}</span>
+and replaces them by the appropriate graphics or it takes steps to generate such an image.
+</p>
+
+<p>
+It can&rsquo;t expand macros during this step, so the only requirement is that every picture&rsquo;s end is directly reachable from its beginning, without further macro expansion. Furthermore, the library assumes that all <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> pictures are ended with <span class="verb">\end{tikzpicture}</span>.
+</p>
+
+<p>
+The library always searches for the <em>next</em> picture&rsquo;s end, <span class="verb">\end{tikzpicture}</span>. As a consequence, you can&rsquo;t use nested pictures directly. You <em>can</em> nest pictures, but you have to avoid that the nested
+picture&rsquo;s <span class="verb">\end</span> command is found before the outer <span class="verb">\end</span> command (for example using bracing constructs or by writing the nested picture into a separate macro call).
+</p>
+
+<p>
+Consider using the <span class="verb">\tikzexternaldisable</span> method in case you&rsquo;d like to skip selected pictures which do not meet the requirements.
+</p>
+<h5 id="autosec-5720"><span><span class="sectionnumber" id="sec-52.3">52.3</span> A Word About Con<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>t And Plain <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span></span><a class="anchor-link" data-html-link="sec-52.3" data-pdf-destination="subsection.52.3" data-pdf-page="670" href="#sec-52.3">&para;</a></h5>
+<a id="pgfmanual-autopage-5720"></a>
+
+
+<p>
+Currently, the basic layer backend <span class="verb">\beginpgfgraphicnamed</span> \(\dotsc \) <span class="verb">\endpgfgraphicnamed</span> relies on <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> only, so externalization is currently only supported for <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>.
+</p>
+<h5 id="autosec-5721"><span><span class="sectionnumber" id="sec-52.4">52.4</span> Externalizing Graphics</span><a class="anchor-link" data-html-link="sec-52.4" data-pdf-destination="subsection.52.4" data-pdf-page="670" href="#sec-52.4">&para;</a></h5>
+<a id="pgfmanual-autopage-5721"></a>
+
+
+<p>
+After loading the library, a call to <span class="verb">\tikzexternalize</span> is necessary to activate the externalization.
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\documentclass</span>{<span class="textcolor" style="color:#000000">article</span>}<br>
+<span class="example-code-comment">% main document, called main.tex</span><br>
+<span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000"><a href="tikz-scopes#pgf.tikz">tikz</a></span>}<br>
+<br>
+<a href="tikz-scopes#pgf.back/usetikzlibrary">\usetikzlibrary</a>{<a href="library-external#pgf.external">external</a>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalize">\tikzexternalize</a></span> <span class="example-code-comment">% activate!</span><br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="tikz-shapes#pgf.back/node">\node</a></span> {<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.root">root</a></span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.left">left</a></span>}}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.right">right</a></span>}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">    </span>};<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+<span class="textcolor" style="color:#000000">A</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">image</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/fill">\fill</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;.<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+The method works as follows: if the document is typeset normally, the library searches for replacement images for every picture. Filenames are generated automatically in the default configuration. In our case, the two file names will be
+<span class="verb">main-figure0</span> and <span class="verb">main-figure1</span>. If they exist, those images are simply included and the pictures as such are not processed. If graphics files do not exist, steps are taken to generate the
+missing ones. Since (currently) only one output file can be set, each missing image needs to be generated by a separate run of <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> in which the <span class="verb">\jobname</span> is set to the desired image file name. In the default configuration <span class="verb">mode=convert with system call</span>, these commands are
+issued automatically by using the <span class="verb">\write18</span> method to call system commands. It is also possible to output every required file name or to generate a <span class="verb">makefile</span>; users will need to issue the
+required commands manually (or with <span class="verb">make</span>). The probably most comfortable way is to use the default configuration with
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">-shell-escape</span> <span class="textcolor" style="color:#000000">main</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+which authorizes <span class="verb">pdflatex</span> to call itself recursively to generate the images. When it finishes, all images are generated and the document already includes them.
+</p>
+
+<p>
+From this point on, successive runs of <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> will use the final graphics files, the pictures won&rsquo;t be
+used anymore. Section&nbsp;<a href="library-external#section-libs-external-nopgf">52.5</a> contains details about how to submit such a file to environments where <span class="textsc">pgf</span> is not available.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzexternalize"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzexternalize</kbd></span>[<span class="angle">&langle;</span><i>optional arguments</i><span class="angle">&rangle;</span>]</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzexternalize" href="#\tikzexternalize" id="\tikzexternalize">&para;</a></p>
+</li></div>
+<p>
+This command activates the externalization. It installs commands to replace every <span class="tikzname">TikZ</span>-picture. It needs to be called before <span class="verb">\begin{document}</span> because it may need to install its
+separate shipout routine.
+</p>
+<p>
+The <span class="angle">&langle;</span><i>optional arguments</i><span class="angle">&rangle;</span> can be any of the keys described below.
+</p>
+<p>
+Note that the generation/modification of auxiliary files like <span class="verb">.aux</span>, <span class="verb">.toc</span> etc. is usually suppressed while a single image is externalized (details for <span class="verb">\label</span> support
+follow).
+</p>
+<p>
+It is also possible to write <span class="verb">\tikzexternalize</span>{<span class="angle">&langle;</span><i>main job name</i><span class="angle">&rangle;</span>} if the argument is delimited by curly braces. This case is mainly for
+backwards compatibility and is no longer necessary. Since it might be useful in rare circumstances, it is documented in section&nbsp;<a href="library-external#sec:external:detail">52.4.5</a>.
+</p>
+<p>
+A detailed description about the process of externalization is provided in section&nbsp;<a href="library-external#sec:external:detail">52.4.5</a>.
+</p>
+
+
+<div class="manualentry">
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzexternalrealjob"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzexternalrealjob</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/tikzexternalrealjob" href="#\tikzexternalrealjob" id="\tikzexternalrealjob">&para;</a></p>
+</li></div>
+<p>
+After the library is loaded, this macro will <em>always</em> contain the correct main job&rsquo;s name (in the example above, it is <span class="verb">main</span>). It is to be used instead of <span class="verb">\jobname</span> when the
+externalization is in effect.
+</p>
+
+</ul>
+</div>
+
+
+<div class="manualentry">
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfactualjobname"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfactualjobname</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfactualjobname" href="#\pgfactualjobname" id="\pgfactualjobname">&para;</a></p>
+</li></div>
+<p>
+Once <span class="verb">\tikzexternalize</span> has been called, <span class="verb">\pgfactualjobname</span> contains the name of the currently generated output file (which may be <span class="verb">main</span> or <span class="verb">main-figure0</span> or <span class="verb">main-figure1</span> in our example above).
+</p>
+
+</ul>
+</div>
+
+
+<div class="manualentry">
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/jobname"></a>
+                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\jobname</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/jobname" href="#\jobname" id="\jobname">&para;</a></p>
+</li></div>
+<p>
+The value of <span class="verb">\jobname</span> is one of <span class="verb">\tikzexternalrealjob</span> or <span class="verb">\pgfactualjobname</span>, depending on the configuration. In short: if auxiliary file support (<span class="verb">\label</span> and <span class="verb">\ref</span>) is activated, <span class="verb">\jobname=\tikzexternalrealjob</span> (since that&rsquo;s the base file name of auxiliary files).
+</p>
+
+</ul>
+</div>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/system:call"></a><a id="pgf.system:call"></a>
+                                                                            <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/system call</span></span>=</kbd>{<span class="angle">&langle;</span><i>template</i><span class="angle">&rangle;</span>}</span><span class="hl-default">(no default)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/system:call" href="#tikz/external/system:call" id="tikz/external/system:call">&para;</a></p>
+</li></div>
+<a id="extlib:systemcall:option"></a>
+<p>
+A template string used to generate system calls. Inside of {<span class="angle">&langle;</span><i>template</i><span class="angle">&rangle;</span>}, the macro <span class="verb">\image</span> can be used as placeholder for the image
+which is about to be generated while <span class="verb">\texsource</span> contains the main file name (in truth, it contains <span class="verb">\input</span>{<span class="angle">&langle;</span><i>main file name</i><span class="angle">&rangle;</span>}, but that doesn&rsquo;t matter).
+</p>
+<p>
+The default depends on the value of <span class="verb">\pgfsysdriver</span>. For <span class="verb">pgfsys-pdftex.def</span>, it is
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/system:call">external/system call</a></span>=<span class="textcolor" style="color:#008000">{pdflatex <span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalcheckshellescape">\tikzexternalcheckshellescape</a></span><span class="spaces"> </span>-halt-on-error<br>
+<span class="spaces">    </span>-interaction=batchmode -jobname "<span class="textcolor" style="color:#0000B2">\image</span>" "<span class="textcolor" style="color:#0000B2">\texsource</span>"}</span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+         <a id="pgf.back/tikzexternalcheckshellescape"></a>
+where <kbd><span class="textcolor" style="color:#BF0000">\tikzexternalcheckshellescape</span></kbd> inserts the value of the configuration key <span class="verb">shell escape</span> if and only if the current document has been typeset with <span class="verb">-shell-escape</span><sup>6</sup>.
+</p>
+<p>
+Other drivers result in slightly different calls. There is support for <span class="verb">lualatex</span>, <span class="verb">xelatex</span>, and <span class="verb">dvips</span>. The precise values are written to the <span class="verb">.log</span> file as soon as you attempt to compile a document.
+</p>
+<p>
+The argument {<span class="angle">&langle;</span><i>template</i><span class="angle">&rangle;</span>} will be expanded using <span class="verb">\edef</span>, so any control sequences will be expanded. During this evaluation, &lsquo;<span class="verb">\\</span>&rsquo; will result in a normal backslash, &lsquo;<span class="verb">\</span>&rsquo;. Furthermore, double quotes &lsquo;<span class="verb">"</span>&rsquo;, single quotes &lsquo;<span class="verb">'</span>&rsquo;, semicolons and dashes &lsquo;<span class="verb">-</span>&rsquo; will be made to normal characters if any package uses them as macros. This ensures compatibility with the <span class="verb">german</span> package, for example.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/shell:escape"></a><a id="pgf.shell:escape"></a>
+                                                                             <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/shell escape</span></span>=</kbd>{<span class="angle">&langle;</span><i>command-line arg</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>-shell-escape</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/shell:escape" href="#tikz/external/shell:escape" id="tikz/external/shell:escape">&para;</a></p>
+</li></div>
+<p>
+Contains the command line option for <span class="verb">latex</span> which enables the <span class="verb">\write18</span> feature. For <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-Live, this is <span class="verb">-shell-escape</span>. For MiK<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>, you should use <span class="verb">\tikzexternalize[shell escape=-enable-write18]</span>.
+</p>
+
+</ul>
+</div>
+<div class="footnotes" role="note">
+
+<a id="pgfmanual-autopage-5722"></a>
+
+<p>
+<sup>6</sup>&nbsp;Note that this is always true for the default configuration. This security consideration applies mainly for <kbd>mode=list and make</kbd> which will also work <em>without</em> shell escapes.
+</p>
+
+
+</div>
+<h6 id="autosec-5723"><span><span class="sectionnumber" id="sec-52.4.1">52.4.1</span> Support for Labels and References In External Files</span><a class="anchor-link" data-html-link="sec-52.4.1" data-pdf-destination="subsubsection.52.4.1" data-pdf-page="672" href="#sec-52.4.1">&para;</a></h6>
+<a id="pgfmanual-autopage-5723"></a>
+
+
+<p>
+The <span class="verb">external</span> library comes with extra support for <span class="verb">\label</span> and <span class="verb">\ref</span> (and other commands which usually store information in the <span class="verb">.aux</span>
+file) inside an external files.
+</p>
+
+<p>
+In particular, it supports the two use-cases
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">a)</span> <span class="verb">\ref</span> to something in the main document inside an externalized graphics or
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">b)</span> <span class="verb">\label</span> in the externalized graphics which is referenced in the main document.
+</p>
+</li>
+</ul>
+
+<p>
+The only restriction is that you need to compile your document multiple times (as usual for references).
+</p>
+<p>
+<span class="paragraph" id="autosec-5724">NOTE:</span>
+<a id="pgfmanual-autopage-5724"></a>
+support for a) is unavailable for versions up to and including <span class="textsc">pgf</span> 3.0.1.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/aux:in:dpth"></a><a id="pgf.aux:in:dpth"></a>
+                                                                           <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/aux in dpth</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/aux:in:dpth" href="#tikz/external/aux:in:dpth" id="tikz/external/aux:in:dpth">&para;</a></p>
+</li></div>
+<p>
+Allows to enable or disable the feature which handles references and labels as part of image externalization. Disabling it will safe one <span class="verb">\newwrite</span> command, i.e. a write register.
+</p>
+<p>
+Also see the <span class="verb">disable dependency files</span> feature.
+</p>
+<p>
+Here are some implementation details on how references within/from external graphics work for those who would like to know the details:
+</p>
+<p>
+For point a), a <span class="verb">\ref</span> inside of an externalized graphics works by reading the main document&rsquo;s <span class="verb">.aux</span> file. To this end, the standard <span class="verb">mode=convert with system call</span>
+detects such references and reschedules the externalization to <span class="verb">\end{document}.</span><sup>7</sup> Other values of <span class="verb">mode</span> require just one attempt to externalize the picture.
+</p>
+<p>
+Note that <span class="verb">\pageref</span> is not supported (sorry).
+</p>
+<p>
+Point b) works as follows: a <span class="verb">\label</span> inside of an externalized graphics causes the <span class="verb">external</span> library to generate separate auxiliary files for every external image. These files are called <span class="angle">&langle;</span><i>imagename</i><span class="angle">&rangle;</span><span class="verb">.dpth</span>. The extension <span class="verb">.dpth</span> indicates that the file also contains the image&rsquo;s depth (the <span class="verb">baseline</span> key of <span class="tikzname">TikZ</span>). Furthermore, anything which would have been written to an <span class="verb">.aux</span> file will be redirected to the <span class="verb">.dpth</span> file &ndash; but
+only things which occur inside of the externalized <span class="verb">tikzpicture</span> environment. When the main document loads the image, it will copy the <span class="verb">.dpth</span> file into the main <span class="verb">.aux</span> file. Then, successive compilations of the main document contain the external <span class="verb">\label</span> information. In other words, a <span class="verb">\label</span> in an external graphics needs the
+following work flow:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> The external graphics needs to be generated together with its <span class="verb">.dpth</span> (usually automatically by <span class="tikzname">TikZ</span>).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> The main document includes the external graphics and copies the <span class="verb">.dpth</span> content into its main <span class="verb">.aux</span> file.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3.</span> The main document needs to be translated once again to re-read its <span class="verb">.aux</span> file<sup>8</sup>.
+</p>
+</li>
+</ul>
+<p>
+This does also work if a <span class="verb">\label</span>/<span class="verb">\ref</span> combination is implemented itself by a <span class="verb">tikzpicture</span> (a feature offered by <span class="verb">pgfplots</span>).
+</p>
+
+</ul>
+</div>
+<div class="footnotes" role="note">
+
+<a id="pgfmanual-autopage-5725"></a>
+
+<p>
+<sup>7</sup>&nbsp;Note that this requires the <kbd>atveryend</kbd> package. The purpose to reschedule the externalization is to access the main job&rsquo;s aux file, but only after it has been written completely.
+</p>
+
+<p>
+<sup>8</sup>&nbsp;Note that it is not possible to activate the content of an auxiliary file after <kbd>\begin{document}</kbd> in <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>.
+</p>
+
+
+</div>
+<h6 id="autosec-5726"><span><span class="sectionnumber" id="sec-52.4.2">52.4.2</span> Customizing the Generated File Names</span><a class="anchor-link" data-html-link="sec-52.4.2" data-pdf-destination="subsubsection.52.4.2" data-pdf-page="673" href="#sec-52.4.2">&para;</a></h6>
+<a id="pgfmanual-autopage-5726"></a>
+
+
+<p>
+The default filename for externalized graphics is &lsquo;<span class="angle">&langle;</span><i>real file name</i><span class="angle">&rangle;</span><span class="verb">-figure_</span><span class="angle">&langle;</span><i>number</i><span class="angle">&rangle;</span>&rsquo; where <span class="angle">&langle;</span><i>number</i><span class="angle">&rangle;</span> ranges from \(0\) to whatever is required. However, there are a couple of ways to change the generated filenames:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> Changing the overall file name using a <span class="verb">prefix</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> Changing the file name for a single figure using <span class="verb">\tikzsetnextfilename</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> Changing the file name for a restricted set of figures using <span class="verb">figure name</span>.
+</p>
+</li>
+</ul>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/prefix"></a>
+                                         <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/prefix</span></span>=</kbd>{<span class="angle">&langle;</span><i>file name prefix</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>empty</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/prefix" href="#tikz/external/prefix" id="tikz/external/prefix">&para;</a></p>
+</li></div>
+<p>
+A shortcut for <span class="verb">\tikzsetexternalprefix</span>{<span class="angle">&langle;</span><i>file name prefix</i><span class="angle">&rangle;</span>}, see below.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzsetexternalprefix"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzsetexternalprefix</kbd></span>{<span class="angle">&langle;</span><i>file name prefix</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzsetexternalprefix" href="#\tikzsetexternalprefix" id="\tikzsetexternalprefix">&para;</a></p>
+</li></div>
+<p>
+Assigns a common prefix used by all file names. For example,
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzsetexternalprefix">\tikzsetexternalprefix</a></span>{<span class="textcolor" style="color:#000000">figures/</span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+will prepend <span class="verb">figures/</span> to every external graphics file name.
+</p>
+<p>
+Please note that <span class="verb">\tikzsetexternalprefix</span> is the <em>only</em> way to assign a prefix in case you want to prepare your document for environments where <span class="textsc">pgf</span> is not installed (see
+section&nbsp;<a href="library-external#section-libs-external-nopgf">52.5</a>).
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzsetnextfilename"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzsetnextfilename</kbd></span>{<span class="angle">&langle;</span><i>file name</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzsetnextfilename" href="#\tikzsetnextfilename" id="\tikzsetnextfilename">&para;</a></p>
+</li></div>
+<p>
+Sets the file name for the <em>next</em> <span class="tikzname">TikZ</span> picture or <span class="verb">\tikz</span> short command. It will <em>only</em> be used for the next picture.
+</p>
+<p>
+Pictures for which no explicit file name has been set (or the next file name is empty) will get automatically generated file names.
+</p>
+<p>
+Please note that <span class="verb">prefix</span> will still be prepended to {<span class="angle">&langle;</span><i>file name</i><span class="angle">&rangle;</span>}.
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\documentclass</span>{<span class="textcolor" style="color:#000000">article</span>}<br>
+<span class="example-code-comment">% main document, called main.tex</span><br>
+<span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000"><a href="tikz-scopes#pgf.tikz">tikz</a></span>}<br>
+<br>
+<a href="tikz-scopes#pgf.back/usetikzlibrary">\usetikzlibrary</a>{<a href="library-external#pgf.external">external</a>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalize">\tikzexternalize</a></span>[<span class="textcolor" style="color:#008000"><a href="tikz-plots#pgf.prefix">prefix</a></span>=<span class="textcolor" style="color:#008000">figures/</span>] <span class="example-code-comment">% activate</span><br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzsetnextfilename">\tikzsetnextfilename</a></span>{<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.trees">trees</a></span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be written to 'figures/trees.pdf'</span><br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="tikz-shapes#pgf.back/node">\node</a></span> {<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.root">root</a></span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.left">left</a></span>}}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.right">right</a></span>}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">    </span>};<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzsetnextfilename">\tikzsetnextfilename</a></span>{<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span>}<br>
+<span class="textcolor" style="color:#000000">A</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">image</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/fill">\fill</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;.<span class="spaces"> </span><span class="example-code-comment">% will be written to 'figures/simple.pdf'</span><br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be written to 'figures/main-figure0.pdf'</span><br>
+<span class="spaces">   </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span>[<span class="textcolor" style="color:#008000"><a href="tikz-paths#pgf.help:lines">help lines</a></span>] <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.grid">grid</a></span> <span class="textcolor" style="color:#800080">(5,5)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+
+
+</code>
+</div>
+</figure>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">-shell-escape</span> <span class="textcolor" style="color:#000000">main</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/figure:name"></a><a id="pgf.figure:name"></a>
+                                                                             <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/figure name</span></span>=</kbd>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}</span><span class="hl-default">(no default)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/figure:name" href="#tikz/external/figure:name" id="tikz/external/figure:name">&para;</a></p>
+</li></div>
+<p>
+Same as <span class="verb">\tikzsetfigurename</span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzsetfigurename"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzsetfigurename</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzsetfigurename" href="#\tikzsetfigurename" id="\tikzsetfigurename">&para;</a></p>
+</li></div>
+<p>
+Changes the names of <em>all</em> following figures. It is possible to change <span class="verb">figure name</span> during the document either using <span class="verb">\tikzset{external/figure name</span>={<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}<span class="verb">}</span> or with this command. A unique counter will be used for each different {<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}, and each counter will start at \(0\).
+</p>
+<p>
+The value of <span class="verb">prefix</span> will be applied after <span class="verb">figure name</span> has been evaluated.
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\documentclass</span>{<span class="textcolor" style="color:#000000">article</span>}<br>
+<span class="example-code-comment">% main document, called main.tex</span><br>
+<span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000"><a href="tikz-scopes#pgf.tikz">tikz</a></span>}<br>
+<br>
+<a href="tikz-scopes#pgf.back/usetikzlibrary">\usetikzlibrary</a>{<a href="library-external#pgf.external">external</a>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalize">\tikzexternalize</a></span> <span class="example-code-comment">% activate</span><br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be written to 'main-figure0.pdf'</span><br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="tikz-shapes#pgf.back/node">\node</a></span> {<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.root">root</a></span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.left">left</a></span>}}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.right">right</a></span>}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">    </span>};<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+{<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzsetfigurename">\tikzsetfigurename</a></span>{<span class="textcolor" style="color:#000000">subset_</span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">A</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">image</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/fill">\fill</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;.<span class="spaces"> </span><span class="example-code-comment">% will be written to 'subset_0.pdf'</span><br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be written to 'subset_1.pdf'</span><br>
+<span class="spaces">     </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span>[<span class="textcolor" style="color:#008000"><a href="tikz-paths#pgf.help:lines">help lines</a></span>] <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.grid">grid</a></span> <span class="textcolor" style="color:#800080">(5,5)</span>;<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+}<span class="example-code-comment">% here, the old file name will be restored:</span><br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be written to 'main-figure1.pdf'</span><br>
+<span class="spaces">   </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#800080">(5,5)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+The scope of <span class="verb">figure name</span> ends with the next closing brace.
+</p>
+<p>
+Remark: Use <span class="verb">\tikzset{external/figure name/.add={prefix_}{_suffix_}}</span> to add a <span class="verb">prefix_</span> and a <span class="verb">_suffix_</span> to the actual value of <span class="verb">figure name</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzappendtofigurename"></a>
+                                               <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzappendtofigurename</kbd></span>{<span class="angle">&langle;</span><i>suffix</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzappendtofigurename" href="#\tikzappendtofigurename" id="\tikzappendtofigurename">&para;</a></p>
+</li></div>
+<p>
+Appends <span class="angle">&langle;</span><i>suffix</i><span class="angle">&rangle;</span> to the actual value of <span class="verb">figure name</span>.
+</p>
+<p>
+It is a shortcut for <span class="verb">\tikzset{external/figure name/.add={}</span>{<span class="angle">&langle;</span><i>suffix</i><span class="angle">&rangle;</span>}<span class="verb">}</span> (a shortcut which is also supported if <span class="tikzname">TikZ</span> is not installed, see below).
+</p>
+
+</ul>
+</div>
+<h6 id="autosec-5727"><span><span class="sectionnumber" id="sec-52.4.3">52.4.3</span> Remaking Figures or Skipping Figures</span><a class="anchor-link" data-html-link="sec-52.4.3" data-pdf-destination="subsubsection.52.4.3" data-pdf-page="674" href="#sec-52.4.3">&para;</a></h6>
+<a id="pgfmanual-autopage-5727"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzpicturedependsonfile"></a>
+                                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzpicturedependsonfile</kbd></span>{<span class="angle">&langle;</span><i>file name</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzpicturedependsonfile" href="#\tikzpicturedependsonfile" id="\tikzpicturedependsonfile">&para;</a></p>
+</li></div>
+<p>
+Adds a dependency for the <em>next</em> picture which is about to be externalized. If the command is invoked within a picture environment, it adds a dependency for the surrounding picture. Dependencies are written into <span class="angle">&langle;</span><i>target file</i><span class="angle">&rangle;</span><span class="verb">.dep</span> in the format
+</p>
+<p>
+<span class="angle">&langle;</span><i>target file</i><span class="angle">&rangle;</span><span class="verb">.\tikzexternalimgextension: </span><span class="angle">&langle;</span><i>file name</i><span class="angle">&rangle;</span>.
+</p>
+<p>
+The effect is that if <span class="angle">&langle;</span><i>file name</i><span class="angle">&rangle;</span> changes, the external graphics associated with the picture shall be remade.
+</p>
+<p>
+                                       <a id="pgf.back/tikzexternalimgextension"></a>
+This command uses the contents of <kbd><span class="textcolor" style="color:#BF0000">\tikzexternalimgextension</span></kbd> to check for graphics. If you encounter difficulties with image extensions, consider redefining this macro (after <span class="verb">\tikzexternalize</span>).
+</p>
+
+</ul>
+<p>
+<span class="paragraph" id="autosec-5728">Limitations:</span>
+<a id="pgfmanual-autopage-5728"></a>
+this command is currently only supported for <span class="verb">mode=list and make</span> and the generated <span class="verb">makefile</span>.
+</p>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzexternalfiledependsonfile"></a>
+                                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzexternalfiledependsonfile</kbd></span>{<span class="angle">&langle;</span><i>external graphics</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>file name</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzexternalfiledependsonfile" href="#\tikzexternalfiledependsonfile" id="\tikzexternalfiledependsonfile">&para;</a></p>
+</li></div>
+<p>
+A variant of <span class="verb">\tikzpicturedependsonfile</span> which adds a dependency for an <span class="angle">&langle;</span><i>external graphics</i><span class="angle">&rangle;</span>. The argument <span class="angle">&langle;</span><i>external graphics</i><span class="angle">&rangle;</span> must be the path as it would have been generated by the <span class="verb">external</span> library, i.e. without file extension but including any
+prefixes.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/disable:dependency:files"></a><a id="pgf.disable:dependency:files"></a>
+                                                                                                         <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/disable dependency files</span></span></kbd></span><span class="hl-default">(no value)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/disable:dependency:files" href="#tikz/external/disable:dependency:files" id="tikz/external/disable:dependency:files">&para;</a></p>
+</li></div>
+<p>
+Allows to (irreversibly) disable the generation of file dependencies. Disabling it will safe one <span class="verb">\newwrite</span> command, i.e. a write register. Note that the write register is only allocated if the feature has been used at
+all. This key needs to be provided as argument to <span class="verb">\tikzexternalize</span> (or it needs to be set before calling <span class="verb">\tikzexternalize</span>).
+</p>
+<p>
+Also see the <span class="verb">aux in dpth</span> key.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/force:remake"></a><a id="pgf.force:remake"></a>
+                                                                              <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/force remake</span></span><span class="textcolor" style="color:#008000">=</span></kbd><span class="textcolor" style="color:#008000">{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span></span><span class="hl-default">(default <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/force:remake" href="#tikz/external/force:remake" id="tikz/external/force:remake">&para;</a></p>
+</li></div>
+<p>
+A boolean which is used to customize the up-to-date checks of all following figures. Every up-to-date check will fail, resulting in automatic regeneration of every following figure.
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/force:remake">external/force remake</a></span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+You can also use <span class="verb">force remake</span> inside of a local <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> group to remake only selected pictures. The example
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#800080">(1,1)</span>;<br>
+<br>
+{<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/force:remake">external/force remake</a></span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">   </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#800080">(1,1)</span>;<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+will only apply <span class="verb">force remake</span> to the second figure.
+</p>
+<p>
+Up-to-date checks are applied for <span class="verb">mode=convert with system call</span> and the makefile generated by <span class="verb">mode=list and make</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/remake:next"></a><a id="pgf.remake:next"></a>
+                                                                            <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/remake next</span></span><span class="textcolor" style="color:#008000">=</span></kbd><span class="textcolor" style="color:#008000">{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span></span><span class="hl-default">(default <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/remake:next" href="#tikz/external/remake:next" id="tikz/external/remake:next">&para;</a></p>
+</li></div>
+<p>
+A variant of <span class="verb">force remake</span> which applies only to the next image.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/export:next"></a><a id="pgf.export:next"></a>
+                                                                            <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/export next</span></span><span class="textcolor" style="color:#008000">=</span></kbd><span class="textcolor" style="color:#008000">{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span></span><span class="hl-default">(default <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/export:next" href="#tikz/external/export:next" id="tikz/external/export:next">&para;</a></p>
+</li></div>
+<p>
+A boolean which can be used to disable the export mechanism for single pictures.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/export"></a><a id="pgf.export"></a>
+                                                                 <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/export</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/export" href="#tikz/external/export" id="tikz/external/export">&para;</a></p>
+</li></div>
+<p>
+A boolean which can be used to disable the export mechanism for all pictures inside of the current <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-scope.
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be exported</span><br>
+<span class="spaces">    </span>...<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+{<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/export">external/export</a></span>=<span class="textcolor" style="color:#008000"><a href="pgfkeys#pgf.false">false</a></span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% won't be exported</span><br>
+<span class="spaces">    </span>...<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+...<br>
+}<br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>} <span class="example-code-comment">% will be exported</span><br>
+<span class="spaces">    </span>...<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+For <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>, the feature lasts until the next <span class="verb">\end</span>{<span class="angle">&langle;</span><i>\(\cdot \)</i><span class="angle">&rangle;</span>} (this holds for every call to <span class="verb">\tikzset</span>).
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/up:to:date:check"></a><a id="pgf.up:to:date:check"></a>
+                                                                                      <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/up to date check</span></span>=</kbd>{<span class="angle">&langle;</span><i>choice</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>md5</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/up:to:date:check" href="#tikz/external/up:to:date:check" id="tikz/external/up:to:date:check">&para;</a></p>
+</li></div>
+<p>
+The <span class="verb">external</span> lib has to decide when some existing figure is up-to-date. In such a case, it can be used without remaking it. Outdated pictures will be remade.
+</p>
+<p>
+The key <span class="verb">up to date check</span> allows to choose among a couple of heuristics which are supposed to catch the most important reasons to remake a figure.
+</p>
+<p>
+The <span class="verb">up to date check</span> can be overrule by any of the <span class="verb">force remake</span> or <span class="verb">remake next</span> keys: if one of them is true, the figure is not up-to-date.
+</p>
+<p>
+The choice <span class="textcolor" style="color:#BF0000">simple</span> is based on the existence of the file: the file is up-to-date if and only if it exists.
+</p>
+<p>
+The choice <span class="textcolor" style="color:#BF0000">md5</span> generates an MD5 checksum of the picture for which the up-to-date check is running. The MD5 is compared against the MD5 of the previous run, which, in turn, will be written into an extra file with the extension <span class="verb">.md5</span>. This file will be modified if and only if the MD5 comparison indicates a difference. The MD5 computation is based on the pdf<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> method <span class="verb">\pdfmdfivesum</span>. If it is unavailable for some reason, the choice <span class="verb">diff</span> will be used instead.
+</p>
+<p>
+The choice <span class="textcolor" style="color:#BF0000">diff</span> is the same as MD5 &ndash; except that it compares the picture content as-is instead of a hash. The <span class="verb">.md5</span> file will be used to compare an old version with the current one &ndash; but its content is some
+&ldquo;normalized&rdquo; version of the picture for internal use.
+</p>
+
+</ul>
+<p>
+<span class="paragraph" id="autosec-5729">Attention:</span>
+<a id="pgfmanual-autopage-5729"></a>
+the content&ndash;based strategies <span class="verb">md5</span> and <span class="verb">diff</span> operate on the picture content &ndash; and only on the picture content. Here, &ldquo;picture content&rdquo; only includes the top&ndash;level tokens; no expansion is
+applied and no included files are part of the strategies. If you change preamble styles, you have to rebuild the figures manually (for example by deleting the generated graphics files). If you have include files, consider using <span class="verb">\tikzpicturedependsonfile</span> and its variants. Since this key provides heuristics, you should always remake your figures before you finally publish your document. Example: Suppose we have the following picture which
+depends on a command <span class="verb">\mycommand</span>:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\def</span><span class="textcolor" style="color:#0000B2">\mycommand</span>{<span class="textcolor" style="color:#000000">My</span> <span class="textcolor" style="color:#000000">comment</span>}<br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="tikz-shapes#pgf.back/node">\node</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.at">at</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> {<span class="textcolor" style="color:#0000B2">\mycommand</span>};<br>
+<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+What happens if you change &ldquo;My comment&rdquo; to &ldquo;My super comment&rdquo;? Well, <span class="verb">external</span> will <em>not</em> pick it up; you will need to handle this manually. However, if you modify anything between <span class="verb">\begin{tikzpicture}</span> and <span class="verb">\end{tikzpicture}</span>, the <span class="verb">external</span> library <em>will</em> pick it up and regenerate the picture.
+</p>
+<p>
+The <span class="verb">up to date check</span> is applied for <span class="verb">mode=convert with system call</span> and <span class="verb">mode=list and make</span>.
+</p>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzexternaldisable"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzexternaldisable</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/tikzexternaldisable" href="#\tikzexternaldisable" id="\tikzexternaldisable">&para;</a></p>
+</li></div>
+<p>
+Allows to disable the complete externalization. While <span class="verb">export next</span> will still collect the contents of picture environments, this command uninstalls the hooks for the <span class="verb">external</span> library
+completely. Thus, nested picture environments or environments where <span class="verb">\end{tikzpicture}</span> is not directly reachable won&rsquo;t produce compilation failures &ndash; although it is not possible to externalize them automatically.
+</p>
+<p>
+The externalization remains disabled until the end of the next <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> group (or environment) or until the next call to <span class="verb">\tikzexternalenable</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzexternalenable"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzexternalenable</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/tikzexternalenable" href="#\tikzexternalenable" id="\tikzexternalenable">&para;</a></p>
+</li></div>
+<p>
+Re-enables a previously running externalization after <span class="verb">\tikzexternaldisable</span>.
+</p>
+
+</ul>
+</div>
+<h6 id="autosec-5730"><span><span class="sectionnumber" id="sec-52.4.4">52.4.4</span> Customizing the Externalization</span><a class="anchor-link" data-html-link="sec-52.4.4" data-pdf-destination="subsubsection.52.4.4" data-pdf-page="677" href="#sec-52.4.4">&para;</a></h6>
+<a id="pgfmanual-autopage-5730"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/figure:list"></a><a id="pgf.figure:list"></a>
+                                                                             <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/figure list</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/figure:list" href="#tikz/external/figure:list" id="tikz/external/figure:list">&para;</a></p>
+</li></div>
+<p>
+A boolean which configures whether a figure list shall be generated. A figure list is an output file named {<span class="angle">&langle;</span><i>jobname</i><span class="angle">&rangle;</span>}<span class="verb">.figlist</span> which is
+filled with file names of each figure, one per line.
+</p>
+<p>
+This file is not used by <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> anymore, its purpose is to issue the required conversion commands <span class="verb">pdflatex -jobname </span>{<span class="angle">&langle;</span><i>picture file name</i><span class="angle">&rangle;</span>} {<span class="angle">&langle;</span><i>main file</i><span class="angle">&rangle;</span>} manually (or in
+a script). See section&nbsp;<a href="library-external#sec:external:detail">52.4.5</a> for the details about the expected system call (or activate <span class="verb">mode=convert with system call</span> and inspect your log file).
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\documentclass</span>{<span class="textcolor" style="color:#000000">article</span>}<br>
+<span class="example-code-comment">% main document, called main.tex</span><br>
+<span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000"><a href="tikz-scopes#pgf.tikz">tikz</a></span>}<br>
+<br>
+<a href="tikz-scopes#pgf.back/usetikzlibrary">\usetikzlibrary</a>{<a href="library-external#pgf.external">external</a>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalize">\tikzexternalize</a></span>[<br>
+<span class="spaces">   </span><span class="textcolor" style="color:#008000"><a href="library-external#pgf.mode">mode</a></span>=<span class="textcolor" style="color:#008000">graphics <a href="library-calender#pgf.if">if</a> exists</span>,<br>
+<span class="spaces">   </span><span class="textcolor" style="color:#008000"><a href="library-external#pgf.figure:list">figure list</a></span>=<span class="textcolor" style="color:#008000"><a href="pgfkeys#pgf.true">true</a></span>,<br>
+<span class="spaces">   </span><span class="textcolor" style="color:#008000"><a href="tikz-plots#pgf.prefix">prefix</a></span>=<span class="textcolor" style="color:#008000">figures/</span>]<br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzsetnextfilename">\tikzsetnextfilename</a></span>{<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.trees">trees</a></span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="tikz-shapes#pgf.back/node">\node</a></span> {<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.root">root</a></span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.left">left</a></span>}}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.right">right</a></span>}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">    </span>};<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzsetnextfilename">\tikzsetnextfilename</a></span>{<span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span>}<br>
+<span class="textcolor" style="color:#000000">A</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">image</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/fill">\fill</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;.<br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">   </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span>[<span class="textcolor" style="color:#008000"><a href="tikz-paths#pgf.help:lines">help lines</a></span>] <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.grid">grid</a></span> <span class="textcolor" style="color:#800080">(5,5)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+
+
+</code>
+</div>
+</figure>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">main</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+generates <span class="verb">main.figlist</span> containing
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">figures/trees</span><br>
+<span class="textcolor" style="color:#000000">figures/simple</span><br>
+<span class="textcolor" style="color:#000000">figures/main-figure0</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/mode"></a><a id="pgf.mode"></a>
+                                                              <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/mode</span></span>=</kbd>{<span class="angle">&langle;</span><i>choice</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>convert with system call</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/mode" href="#tikz/external/mode" id="tikz/external/mode">&para;</a></p>
+</li></div>
+<p>
+Configures what to do with <span class="tikzname">TikZ</span> pictures (unless we are currently externalizing one particular image, in that case, these modes are ignored).
+</p>
+<p>
+The preconfigured mode <span class="verb">convert with system call</span> checks whether external graphics files are up-to-date and includes them if that is the case. Any picture which is not up-to-date will be generated automatically
+using a system call. The system call can be configured using the <span class="verb">system call</span> template. The up-to-date check is applied according to the <span class="verb">up to date check</span> key. As soon as <span class="verb">convert with system call</span> is set, the <span class="verb">figure list</span> will be disabled &ndash; such a file is not required. In case you still need or want it, you can enable it after setting <span class="verb">mode</span>.
+</p>
+<p>
+Please note that system calls may be disabled for security reasons. For pdflatex, they can be enabled using
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">-shell-escape</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+while other <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> variants may need other switches. The feature is sometimes called <span class="verb">\write18</span>.
+</p>
+<p>
+The choice <span class="verb">only graphics</span> always tries to replace pictures with external graphics. It is an error if the graphics file does not exist.
+</p>
+<p>
+The choice <span class="verb">no graphics</span> (or, equivalently, <span class="verb">only pictures</span>) typesets <span class="tikzname">TikZ</span> pictures without checking for external graphics.
+</p>
+<p>
+A mixture is <span class="verb">graphics if exists</span>, it checks whether a suitable graphics file exists and includes it if that is the case. If it does not exist, the picture is typeset using <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>.
+</p>
+<p>
+Mode <span class="verb">list only</span> skips every <span class="tikzname">TikZ</span> picture; it only generates the file {<span class="angle">&langle;</span><i>main file</i><span class="angle">&rangle;</span>}<span class="verb">.figlist</span> containing file names for every picture, the contents of any picture environment is thrown away and a replacement text is shown. This implies <span class="verb">figure list=true</span>. See also the <span class="verb">list and make</span> mode which includes available graphics.
+</p>
+<p>
+The mode <span class="verb">list and make</span> is similar to <span class="verb">list only</span>: it generates the same file {<span class="angle">&langle;</span><i>main file</i><span class="angle">&rangle;</span>}<span class="verb">.figlist</span>, but any images which exist already are included as graphics instead of ignoring them. Furthermore, this mode generates an additional file: {<span class="angle">&langle;</span><i>main file</i><span class="angle">&rangle;</span>}.makefile. This allows to use a work flow like
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="example-code-comment">% step 1: generate main.makefile:</span><br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">main</span><br>
+<span class="example-code-comment">% step 2: generate ALL graphics on 2 processors:</span><br>
+<span class="textcolor" style="color:#000000">make</span> <span class="textcolor" style="color:#000000">-j</span> <span class="textcolor" style="color:#000000">2</span> <span class="textcolor" style="color:#000000">-f</span> <span class="textcolor" style="color:#000000">main</span>.<span class="textcolor" style="color:#000000">makefile</span><br>
+<span class="example-code-comment">% step 3: include the graphics:</span><br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">main</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+This last make method is optional: <span class="verb">list and make</span> just assumes that images are generated somehow (not necessarily with the generated makefile). The generated makefile allows parallel externalization of
+graphics on multi-core systems and it supports any file dependencies configured with <span class="verb">\tikzpicturedependsonfile</span>. Furthermore, it respects the <span class="verb">force remake</span> and <span class="verb">remake next</span> keys.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/verbose:IO"></a><a id="pgf.verbose:IO"></a>
+                                                                           <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/verbose IO</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/verbose:IO" href="#tikz/external/verbose:IO" id="tikz/external/verbose:IO">&para;</a></p>
+</li></div>
+<p>
+A boolean which configures whether I/O operations shall be listed in the logfile.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/verbose:optimize"></a><a id="pgf.verbose:optimize"></a>
+                                                                                       <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/verbose optimize</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/verbose:optimize" href="#tikz/external/verbose:optimize" id="tikz/external/verbose:optimize">&para;</a></p>
+</li></div>
+<p>
+A boolean which configures whether optimization operations shall be listed in the logfile.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/verbose"></a><a id="pgf.verbose"></a>
+                                                                     <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/verbose</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/verbose" href="#tikz/external/verbose" id="tikz/external/verbose">&para;</a></p>
+</li></div>
+<p>
+Sets all verbosity flags to <span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/optimize"></a><a id="pgf.optimize"></a>
+                                                                       <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/optimize</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>true</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/optimize" href="#tikz/external/optimize" id="tikz/external/optimize">&para;</a></p>
+</li></div>
+<p>
+Configures whether the conversion process shall be optimized. This affects only the case when <span class="verb">\jobname</span> differs from the main file name, i.e. when single pictures are converted.
+</p>
+<p>
+In that case, the main file is compiled as usual &ndash; but everything except the selected picture is thrown away. If optimization is enabled, all other pictures won&rsquo;t be processed at all. Furthermore, expensive commands which do not
+contribute to the selected picture will be thrown away as well.
+</p>
+<p>
+The default implementation discards <span class="verb">\includegraphics</span> commands which are <em>not</em> inside of the selected picture to reduce conversion time.
+</p>
+<p>
+It is possible to add commands which shall be optimized away, see below.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/optimize:command:away"></a><a id="pgf.optimize:command:away"></a>
+                                                                                                 <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/optimize command away</span></span>=</kbd><span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span>{<span class="angle">&langle;</span><i>required argument count</i><span class="angle">&rangle;</span>}</span><span class="hl-default">(no default)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/optimize:command:away" href="#tikz/external/optimize:command:away" id="tikz/external/optimize:command:away">&para;</a></p>
+</li></div>
+<p>
+Installs commands to optimize <span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span> away. As is described above, optimization applies to the case when single pictures are converted: one usually doesn&rsquo;t
+need to process (probably expensive) commands which do not contribute to the selected picture.
+</p>
+<p>
+The argument {<span class="angle">&langle;</span><i>required argument count</i><span class="angle">&rangle;</span>} is either empty or a non-negative integer between \(0\) and \(9\). It denotes the number of arguments which should
+be consumed after <span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span>. In any case, one argument in square brackets after the command will be recognized as well. To be more precise, the following
+cases for arguments of <span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span> are supported:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> If {<span class="angle">&langle;</span><i>required argument count</i><span class="angle">&rangle;</span>} is empty (the default), <span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span> may take one optional argument in square brackets and one in curly braces (which is also optional).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> If {<span class="angle">&langle;</span><i>required argument count</i><span class="angle">&rangle;</span>} is not empty, {<span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span>} may take one optional argument in square brackets. Furthermore, it expects exactly {<span class="angle">&langle;</span><i>required argument count</i><span class="angle">&rangle;</span>} following
+arguments.
+</p>
+</li>
+</ul>
+<p>
+Example:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/optimize:command:away">external/optimize command away</a></span>=<span class="textcolor" style="color:#008000"><span class="textcolor" style="color:#0000B2">\includegraphics</span></span>}<br>
+
+
+</code>
+</div>
+</figure>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\newcommand</span>{<span class="textcolor" style="color:#0000B2">\myExpensiveMacro</span>}[<span class="textcolor" style="color:#008000">1</span>]{<span class="textcolor" style="color:#000000">Very</span> <span class="textcolor" style="color:#000000">expensive!</span>}<br>
+<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/optimize:command:away">external/optimize command away</a></span>=<span class="textcolor" style="color:#008000"><span class="textcolor" style="color:#0000B2">\myExpensiveMacro</span></span>}<br>
+
+
+</code>
+</div>
+</figure>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\newcommand</span>{<span class="textcolor" style="color:#0000B2">\myExpensiveMacroWithThreeArgs</span>}[<span class="textcolor" style="color:#008000">3</span>]{<span class="textcolor" style="color:#000000">Very</span> <span class="textcolor" style="color:#000000">expensive!</span>}<br>
+<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/optimize:command:away">external/optimize command away</a></span>=<span class="textcolor" style="color:#008000">{<span class="textcolor" style="color:#0000B2">\myExpensiveMacroWithThreeArgs</span>}{3}</span>}<br>
+
+
+</code>
+</div>
+</figure>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="example-code-comment">% A command with optional argument:</span><br>
+<span class="textcolor" style="color:#0000B2">\newcommand</span>{<span class="textcolor" style="color:#0000B2">\aFurtherExample</span>}[<span class="textcolor" style="color:#008000">3</span>][]{<span class="textcolor" style="color:#000000">Very</span> <span class="textcolor" style="color:#000000">expensive!</span>}<br>
+<br>
+<span class="example-code-comment">% consume only two arguments: the first optional one will be processed</span><br>
+<span class="example-code-comment">% anyway:</span><br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/optimize:command:away">external/optimize command away</a></span>=<span class="textcolor" style="color:#008000">{<span class="textcolor" style="color:#0000B2">\myExpensiveMacroWithThreeArgs</span>}{2}</span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+The argument <span class="angle">&langle;</span><i>\command</i><span class="angle">&rangle;</span> must be the name of a single macro. Any occurrence of this macro, together with its arguments, will be removed.
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">    </span><span class="example-code-comment">% this picture is currently converted!</span><br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+<span class="textcolor" style="color:#000000">This</span> <span class="textcolor" style="color:#000000">here</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#000000">outside</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.of">of</a></span> <span class="textcolor" style="color:#000000">the</span> <span class="textcolor" style="color:#000000">converted</span> <span class="textcolor" style="color:#000000">picture</span> <span class="textcolor" style="color:#000000"><a href="pgfkeys#pgf.and">and</a></span> <span class="textcolor" style="color:#000000">contains</span> <span class="textcolor" style="color:#0000B2">\myExpensiveMacro</span>.<span class="spaces"> </span><span class="textcolor" style="color:#000000">It</span> <span class="textcolor" style="color:#000000">will</span> <span class="textcolor" style="color:#000000">be</span> <span class="textcolor" style="color:#000000">discarded</span>.<br>
+<br>
+<span class="textcolor" style="color:#000000">This</span> <span class="textcolor" style="color:#000000">call:</span> <span class="textcolor" style="color:#0000B2">\myExpensiveMacro</span>[<span class="textcolor" style="color:#008000">argument</span>=<span class="textcolor" style="color:#008000"><a href="tikz-animations#pgf.value">value</a></span>]{<span class="textcolor" style="color:#000000">Argument</span>} <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.as">as</a></span> <span class="textcolor" style="color:#000000">well</span>.<br>
+<span class="textcolor" style="color:#000000">And</span> <span class="textcolor" style="color:#000000">this</span> <span class="textcolor" style="color:#000000">here:</span> <span class="textcolor" style="color:#0000B2">\myExpensiveMacro</span>{<span class="textcolor" style="color:#000000">Argument</span>} <span class="textcolor" style="color:#000000">also</span>.<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+The default is to optimize <span class="verb">\includegraphics</span> away.
+</p>
+<p>
+This key is actually a style which sets the <span class="verb">optimize/install</span> and <span class="verb">optimize/restore</span> keys.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/optimize/install"></a>
+                                                <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/optimize/install</span></span></kbd></span><span class="hl-default">(no value)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/optimize/install" href="#tikz/external/optimize/install" id="tikz/external/optimize/install">&para;</a></p>
+</li></div>
+<p>
+A command key which contains code to install optimizations. You can append code here (or clear the macro) if you need to modify the optimization.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/optimize/restore"></a>
+                                                <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/optimize/restore</span></span></kbd></span><span class="hl-default">(no value)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/optimize/restore" href="#tikz/external/optimize/restore" id="tikz/external/optimize/restore">&para;</a></p>
+</li></div>
+<p>
+A command key which contains code to undo optimizations. You can append code here (or clear the macro) if you need to modify the optimization.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./tikz/external/only:named"></a><a id="pgf.only:named"></a>
+                                                                           <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/tikz/external/only named</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>false</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./tikz/external/only:named" href="#tikz/external/only:named" id="tikz/external/only:named">&para;</a></p>
+</li></div>
+<p>
+If enabled, only pictures for which file names have been set explicitly using <span class="verb">\tikzsetnextfilename</span> will be considered, no file names will be generated automatically.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./pgf/images/include:external"></a><a id="pgf.include:external"></a>
+                                                                                    <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/pgf/images/include external</span></span></kbd></span><span class="hl-default">(initially <kbd>\pgfimage{#1}</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./pgf/images/include:external" href="#pgf/images/include:external" id="pgf/images/include:external">&para;</a></p>
+</li></div>
+<p>
+This command key constitutes the public interface to exchange the <span class="verb">\includegraphics</span> command used for the image inclusion. If can be overwritten using <span class="verb">include external/.code=</span>{<span class="angle">&langle;</span><i><span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> code</i><span class="angle">&rangle;</span>}.
+</p>
+<p>
+Its description can be found in the corresponding basic layer documentation in section&nbsp;<a href="base-external#pgf:includeexternalkey">111.4</a>.
+</p>
+<p>
+Just one example here: you can use
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span>{<span class="textcolor" style="color:#000000"><span class="textcolor" style="color:#008000"><a href="library-external#pgf./pgf/images/include:external">/pgf/images/include external</a></span>/<span class="textcolor" style="color:#0000B2"><a href="pgfkeys#pgf./handlers/.code">.code</a></span>=<span class="textcolor" style="color:#008000">{<span class="textcolor" style="color:#0000B2">\includegraphics</span>[<span class="textcolor" style="color:#008000">viewport</span>=<span class="textcolor" style="color:#008000">0 0 211.28 175.686</span>]{#1}}</span></span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+to manually change the viewport (bounding box) for included graphics.
+</p>
+<p>
+Another example (of probably limited use) is
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span>{<span class="textcolor" style="color:#000000"><span class="textcolor" style="color:#008000"><a href="library-external#pgf./pgf/images/include:external">/pgf/images/include external</a></span>/<span class="textcolor" style="color:#0000B2"><a href="pgfkeys#pgf./handlers/.code">.code</a></span>=<span class="textcolor" style="color:#008000">{<span class="textcolor" style="color:#0000B2">\href</span>{file:#1}{<span class="textcolor" style="color:#0000B2"><a href="base-images#pgf.back/pgfimage">\pgfimage</a></span>{#1}}}</span></span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+which will generate a clickable hyperlink around the image. Clicking on it opens the single exported file<sup>9</sup><a id="pgfmanual-autopage-5731"></a>.
+</p>
+<p>
+If you want to limit the effects of this key to just one externalized figure, use
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+{<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000"><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span>{<span class="textcolor" style="color:#000000"><span class="textcolor" style="color:#008000"><a href="library-external#pgf./pgf/images/include:external">/pgf/images/include external</a></span>/<span class="textcolor" style="color:#0000B2"><a href="pgfkeys#pgf./handlers/.code">.code</a></span>=<span class="textcolor" style="color:#008000">{<span class="textcolor" style="color:#0000B2">\includegraphics</span>[<span class="textcolor" style="color:#008000">viewport</span>=<span class="textcolor" style="color:#008000">0 0 211.28 175.686</span>]{#1}}</span></span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">     </span>...<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+}<span class="example-code-comment">% this brace ends the effect of `include external'</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzifexternalizing"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzifexternalizing</kbd></span>{<span class="angle">&langle;</span><i>true code</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>false code</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzifexternalizing" href="#\tikzifexternalizing" id="\tikzifexternalizing">&para;</a></p>
+</li></div>
+<p>
+This command can be used to check whether an image is currently written to its separate graphics file (if the &ldquo;grab&rdquo; procedure is running). If so, the {<span class="angle">&langle;</span><i>true code</i><span class="angle">&rangle;</span>} will be executed. If not, that means if the main document is being typeset normally, the {<span class="angle">&langle;</span><i>false code</i><span class="angle">&rangle;</span>} will be invoked.
+</p>
+<p>
+This command must be used <em>after</em> <span class="verb">\tikzexternalize</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/tikzifexternalizingnext"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\tikzifexternalizingnext</kbd></span>{<span class="angle">&langle;</span><i>true code</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>false code</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/tikzifexternalizingnext" href="#\tikzifexternalizingnext" id="\tikzifexternalizingnext">&para;</a></p>
+</li></div>
+<p>
+Like <span class="verb">\tikzifexternalizing</span>, but this variant also checks if the next following figure is the one which is about to be written to its separate graphics file.
+</p>
+
+</ul>
+</div>
+<div class="footnotes" role="note">
+
+<a id="pgfmanual-autopage-5732"></a>
+
+<p>
+<sup>9</sup>&nbsp;This requires all external graphics files in the same base directory as the main <span class="verb">.pdf</span> file.
+</p>
+
+
+</div>
+<h6 id="autosec-5733"><a id="sec:external:detail"></a><span><span class="sectionnumber" id="sec-52.4.5">52.4.5</span> Details About The Process</span><a class="anchor-link" data-html-link="sec-52.4.5" data-pdf-destination="subsubsection.52.4.5" data-pdf-page="680" href="#sec-52.4.5">&para;</a></h6>
+<a id="pgfmanual-autopage-5733"></a>
+
+
+
+
+<p>
+The standard run <span class="verb">pdflatex </span><span class="angle">&langle;</span><i>main document</i><span class="angle">&rangle;</span> causes the <span class="verb">external</span> library to check every occurrence of <span class="verb">\begin{tikzpicture}</span> and every <span class="verb">\tikz</span> short command. If it finds a picture which shall be exported, it queries the respective file name and checks whether the file exists already. If so, it
+includes the external graphics. If not, it requires an externalization which can be done automatically (the default), semi-automatically (with <span class="verb">mode=list and make</span>) or manually (by issuing the requires system calls
+somehow).
+</p>
+
+<p>
+The library can detect whether it runs in &ldquo;conversion mode&rdquo;, i.e. if it should only process a single image. To do so, it checks whether the internal macro <kbd><span class="textcolor" style="color:#BF0000">\tikzexternalrealjob</span></kbd> exists. If so, its contents is assumed to be <span class="angle">&langle;</span><i>main document</i><span class="angle">&rangle;</span> (without the suffix <span class="verb">.tex</span>). Usually, this
+macro is set by the conversion system call,
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">-jobname</span> <span class="textcolor" style="color:#000000">"main-figure0"</span> <span class="textcolor" style="color:#000000">"</span><span class="textcolor" style="color:#0000B2">\def</span><span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalrealjob">\tikzexternalrealjob</a></span>{<span class="textcolor" style="color:#000000">main</span>}<span class="textcolor" style="color:#0000B2">\input</span>{<span class="textcolor" style="color:#000000">main</span>}<span class="textcolor" style="color:#000000">"</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+where <span class="verb">main-figure0</span> is the picture we are currently externalizing and <span class="verb">main.tex</span> is the main document.
+</p>
+
+<p>
+As soon as &ldquo;conversion mode&rdquo; has been detected, <span class="textsc">pgf</span> changes the output routine. The complete file <span class="verb">main.tex</span> is processed as normal, but only the part of the desired picture will be
+written to the output file, in our case <span class="verb">main-figure0.pdf</span>. The rest of the document is silently thrown away. Of course, such a conversion process is quite expensive since we need to do it for every picture. Since
+everything except the current picture is thrown away, the library skips all other pictures. Furthermore, any <span class="verb">\includegraphics</span> commands which are outside of the converted <span class="tikzname">TikZ</span>-picture will be skipped as well. Thus, the conversion process should be much faster than typesetting the complete document, but it still requires its time. Eventually, the call <span class="verb">\input{main}</span> returns and the picture is ready. From this point on, the external graphics will be used.
+</p>
+
+<p>
+There is another possibility to communicate <span class="angle">&langle;</span><i>main document</i><span class="angle">&rangle;</span> to the subprocess performing the externalization: namely to write &lsquo;<span class="verb">\tikzexternalize{main}</span>&rsquo; into the document. In this case, the conversion system call will be
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">pdflatex</span> <span class="textcolor" style="color:#000000">-jobname</span> <span class="textcolor" style="color:#000000">"main-figure0"</span> <span class="textcolor" style="color:#000000">"main"</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+and the contents of <span class="verb">\tikzexternalrealjob</span> is set automatically. This case is detected by <span class="verb">\tikzexternalize</span>, and the <span class="verb">system call</span> is updated automatically (by
+patching its <span class="verb">\texsource</span> template argument). It is not necessary to change the <span class="verb">system call</span> manually.
+</p>
+
+<p>
+The sequence in which system calls are performed and the decision whether they are issued automatically is governed by the <span class="verb">mode</span> key, consult its documentation for details.
+</p>
+<h5 id="autosec-5734"><a id="section-libs-external-nopgf"></a><span><span class="sectionnumber" id="sec-52.5">52.5</span> Using External Graphics Without <span class="textmd"><span class="textsc">pgf</span></span> Installed</span><a class="anchor-link" data-html-link="sec-52.5" data-pdf-destination="subsection.52.5" data-pdf-page="681" href="#sec-52.5">&para;</a></h5>
+<a id="pgfmanual-autopage-5734"></a>
+
+
+
+
+<p>
+Given that every picture has been exported correctly, one may want to compile a file without <span class="textsc">pgf</span> and <span class="tikzname">TikZ</span> installed. <span class="tikzname">TikZ</span> comes with a minimal
+package which contains just enough commands to replace every <span class="verb">tikzpicture</span> environment and the <span class="verb">\tikz</span> short command with the appropriate external graphics. It can be found at
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">latex/pgf/utilities/tikzexternal</span>.<span class="textcolor" style="color:#000000">sty</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+and needs to be used instead of <span class="verb">\usepackage{tikz}</span>. So, we comment <span class="verb">\usepackage{tikz}</span> and <span class="verb">\usetikzlibrary{external}</span>, load packages <span class="verb">graphicx</span> and <span class="verb">tikzexternal</span>, and finally our example from the beginning becomes
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\documentclass</span>{<span class="textcolor" style="color:#000000">article</span>}<br>
+<span class="example-code-comment">% main document, called main.tex</span><br>
+<span class="example-code-comment">%\usepackage{tikz}</span><br>
+<br>
+<span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000">graphicx</span>}<br>
+<span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000">tikzexternal</span>}<br>
+<br>
+<span class="example-code-comment">%\usetikzlibrary{external}</span><br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzexternalize">\tikzexternalize</a></span><br>
+<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="tikz-shapes#pgf.back/node">\node</a></span> {<span class="textcolor" style="color:#000000"><a href="gd-trees#pgf.root">root</a></span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.left">left</a></span>}}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-arrows#pgf.right">right</a></span>}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">      </span><span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.node">node</a></span> {<span class="textcolor" style="color:#000000"><a href="tikz-trees#pgf.child">child</a></span>}}<br>
+<span class="spaces">    </span>};<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<br>
+<span class="textcolor" style="color:#000000">A</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.simple">simple</a></span> <span class="textcolor" style="color:#000000">image</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/fill">\fill</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.circle">circle</a></span><span class="textcolor" style="color:#800080">(5pt)</span>;.<br>
+<br>
+<span class="textcolor" style="color:#000000">Furthermore</span>, <span class="textcolor" style="color:#000000">we</span> <span class="textcolor" style="color:#000000">might</span> <span class="textcolor" style="color:#000000">want</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.to">to</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.draw">draw</a></span> <span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span>[<span class="textcolor" style="color:#008000"><a href="tikz-scopes#pgf.baseline">baseline</a></span>]<span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,-1)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.rectangle">rectangle</a></span> <span class="textcolor" style="color:#800080">(1,1)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2">document</span>}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+where the following files are necessary to compile the document:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000">tikzexternal</span>.<span class="textcolor" style="color:#000000">sty</span><br>
+<span class="textcolor" style="color:#000000">main</span>.<span class="textcolor" style="color:#000000">tex</span><br>
+<span class="textcolor" style="color:#000000">main-figure0</span>.<span class="textcolor" style="color:#000000">pdf</span><br>
+<span class="textcolor" style="color:#000000">main-figure1</span>.<span class="textcolor" style="color:#000000">pdf</span><br>
+<span class="textcolor" style="color:#000000">main-figure2</span>.<span class="textcolor" style="color:#000000">pdf</span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+If there are any &lsquo;<span class="verb">.dpth</span>&rsquo; files, for example <span class="verb">main-figure2.dpth</span>, these files are also required. They contain information for the <span class="tikzname">TikZ</span> <span class="verb">baseline</span> option (or <span class="verb">\label</span>s inside external graphics).
+</p>
+
+<p>
+Just copy the <span class="verb">.sty</span> file into the directory of your <span class="verb">main.tex</span> file and use it as part of your document.
+</p>
+
+<p>
+Please keep in mind, that only <span class="verb">tikzpicture</span> environments and <span class="verb">\tikz</span> short images are available within the externalization framework. Additionally, calls to <span class="verb">\tikzset</span> and <span class="verb">\pgfkeys</span> won&rsquo;t lead to compilation errors because they are simply ignored. But since <span class="verb">pgfkeys</span> is not available, any option supplied to <span class="verb">\tikzexternalize</span> is <em>ignored</em>.
+</p>
+<p>
+<span class="paragraph" id="autosec-5735">Attention:</span>
+<a id="pgfmanual-autopage-5735"></a>
+Since the simple replacement <span class="verb">\usepackage{tikzexternal}</span> doesn&rsquo;t support the key&ndash;value interface, you <em>need</em> to use <span class="verb">\tikzsetexternalprefix</span> instead of the <span class="verb">prefix</span> option and <span class="verb">\tikzsetfigurename</span> instead of the <span class="verb">figure name</span> option since <span class="verb">\tikzset</span> is not available in such a context.
+</p>
+<p>
+<span class="paragraph" id="autosec-5736">Remark:</span>
+<a id="pgfmanual-autopage-5736"></a>
+Some of the features of this library are mainly useful to improve the speed of successive document compilations. In other words: you can&rsquo;t use all features in this context, keep it simple.
+</p>
+<h5 id="autosec-5737"><span><span class="sectionnumber" id="sec-52.6">52.6</span><kbd>eps</kbd> Graphics Export</span><a class="anchor-link" data-html-link="sec-52.6" data-pdf-destination="subsection.52.6" data-pdf-page="681" href="#sec-52.6">&para;</a></h5>
+<a id="pgfmanual-autopage-5737"></a>
+
+
+<p>
+It is also possible to use <kbd>eps</kbd> graphics instead of <span class="textsc">pdf</span> files. There are different ways to produce them, for example to use <span class="verb">pdflatex</span> and call <span class="verb">pdftops -eps </span>{<span class="angle">&langle;</span><i>pdf file</i><span class="angle">&rangle;</span>} {<span class="angle">&langle;</span><i>eps file</i><span class="angle">&rangle;</span>} afterwards. You could add this
+command to the <span class="verb">system call</span> option.
+</p>
+
+<p>
+Alternatively, you can use <span class="verb">latex</span> and <span class="verb">dvips</span> for image conversion as is explained for the <span class="verb">system call</span> option, see section&nbsp;<a href="library-external#extlib:systemcall:option">52.4</a>. See the documentation for the basic level externalization in section&nbsp;<a href="base-external#section-external">111</a> for restrictions of other drivers.
+</p>
+<h5 id="autosec-5738"><span><span class="sectionnumber" id="sec-52.7">52.7</span> Bitmap Graphics Export</span><a class="anchor-link" data-html-link="sec-52.7" data-pdf-destination="subsection.52.7" data-pdf-page="682" href="#sec-52.7">&para;</a></h5>
+<a id="pgfmanual-autopage-5738"></a>
+
+
+<p>
+Occasionally, you may have an extremely large graphics which takes long times to render. It might be interesting to generate a bitmap (raster) image, which displays much faster (for example in a presentation). I have used this feature
+to speed-up the display of large shadings.
+</p>
+
+<p>
+The <span class="verb">external</span> library can be customized to export bitmap images &ndash; with the help of external programs. Due to the dependence of external programs, you may need to adjust these commands manually. For
+example, on my computer, the ImageMagick Suite is installed which comes with the <span class="verb">convert</span> tool. Together with <span class="verb">pdflatex</span>, I can define the following style:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<br>
+<span class="spaces">    </span><span class="example-code-comment">% Defines a custom style which generates BOTH, .pdf and .png export</span><br>
+<span class="spaces">    </span><span class="example-code-comment">% but prefers the .png on inclusion.</span><br>
+<span class="spaces">    </span><span class="example-code-comment">%</span><br>
+<span class="spaces">    </span><span class="example-code-comment">% This style is not pre-defined, you may need to copy-paste and</span><br>
+<span class="spaces">    </span><span class="example-code-comment">% adjust it.</span><br>
+<span class="spaces">    </span><span class="textcolor" style="color:#008000">png export</span>/<span class="textcolor" style="color:#0000B2"><a href="pgfkeys#pgf./handlers/.style">.style</a></span>={<br>
+<span class="spaces">        </span><span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/system:call">external/system call</a></span>/<span class="textcolor" style="color:#0000B2"><a href="pgfkeys#pgf./handlers/.append">.append</a></span>=<br>
+<span class="textcolor" style="color:#008000">{;<span class="spaces"> </span>convert -density 300 -transparent white "<span class="textcolor" style="color:#0000B2">\image</span>.pdf" "<span class="textcolor" style="color:#0000B2">\image</span>.png"}</span>,<br>
+<span class="spaces">        </span><span class="example-code-comment">%</span><br>
+<span class="spaces">        </span><span class="textcolor" style="color:#008000"><a href="library-external#pgf./pgf/images/external:info">/pgf/images/external info</a></span>,<br>
+<span class="spaces">        </span><span class="textcolor" style="color:#008000"><a href="library-external#pgf./pgf/images/include:external">/pgf/images/include external</a></span>/<span class="textcolor" style="color:#0000B2"><a href="pgfkeys#pgf./handlers/.code">.code</a></span>=<span class="textcolor" style="color:#008000">{<span class="example-code-comment">%</span><br>
+<span class="spaces">            </span><span class="textcolor" style="color:#0000B2">\includegraphics</span><br>
+<span class="spaces">                </span>[<span class="textcolor" style="color:#008000"><a href="tikz-arrows#pgf.width">width</a></span>=<span class="textcolor" style="color:#008000"><span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/pgfexternalwidth">\pgfexternalwidth</a></span></span>,<span class="textcolor" style="color:#008000"><a href="library-spy#pgf.height">height</a></span>=<span class="textcolor" style="color:#008000"><span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/pgfexternalheight">\pgfexternalheight</a></span></span>]<br>
+<span class="spaces">                </span>{##1.png}<span class="example-code-comment">%</span><br>
+<span class="spaces">        </span>}</span>,<br>
+<span class="spaces">    </span>}<br>
+}<br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+The example above defines a new style called &lsquo;<span class="verb">png export</span>&rsquo; which, when it is set with <span class="verb">\tikzset{png export}</span> somewhere in the document, modifies the configuration for both file generation
+and file input. The file generation is modified by appending the ImageMagick command to <span class="verb">system call</span> (separated by &lsquo;<span class="verb">;</span>&rsquo; as usual on Linux). This is, in principle, enough to generate a
+<span class="verb">.png</span> file. The <span class="verb">include external</span> command is overwritten such that it uses the <span class="verb">.png</span> file instead of the <span class="verb">.pdf</span> file (which exists as well in
+the configuration above). But since a <span class="verb">.png</span> file can have a much higher resolution than the desired image dimensions, we have to add <span class="verb">width</span> and <span class="verb">height</span>
+explicitly. Usually, the <span class="verb">external</span> library does not provide size information (it is unnecessary for <span class="verb">.pdf</span> or <span class="verb">.eps</span> since these formats have their bounding box
+information). To enable size information, the style uses the <span class="verb">external info</span> key, which, in turn, provides the <span class="verb">\pgfexternalwidth</span> and <span class="verb">\pgfexternalheight</span> commands.
+</p>
+
+<p>
+Now we can use <span class="verb">\tikzset{png export}</span> either document-wide or just for one particular image. The configuration remains in effect until the end of the current environment (or until the next closing curly brace
+&lsquo;<span class="verb">}</span>&rsquo;).
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf./pgf/images/external:info"></a><a id="pgf.external:info"></a>
+                                                                           <span class="hl-def"><kbd><span class="keyname"><span class="textcolor" style="color:#BF0000">/pgf/images/external info</span></span>=</kbd>{<span class="angle">&langle;</span><i>boolean</i><span class="angle">&rangle;</span>} </span><span class="hl-default">(no default, initially <kbd>false</kbd>)</span>
+<a class="anchor-link" data-html-link="pgf./pgf/images/external:info" href="#pgf/images/external:info" id="pgf/images/external:info">&para;</a></p>
+</li></div>
+<p>
+If this key is activated, the size for any externalized image will be stored explicitly into the associated <span class="verb">.dpth</span> file.
+</p>
+<p>
+                                                                                                                                                                                     <a id="pgf.back/pgfexternalwidth"></a>
+When the file is included by <span class="verb">\pgfincludeexternalgraphics</span> (or automatically by the <span class="verb">external</span> library), the width is available as <kbd><span <a class="textcolor" id="pgf.back/pgfexternalheight" style="color:#BF0000">
+&gt;\pgfexternalwidth</span></kbd> and the height as <kbd><span class="textcolor" style="color:#BF0000">\pgfexternalheight</span></kbd>.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-5739"><span><span class="sectionnumber" id="sec-52.8">52.8</span> Compatibility Issues</span><a class="anchor-link" data-html-link="sec-52.8" data-pdf-destination="subsection.52.8" data-pdf-page="682" href="#sec-52.8">&para;</a></h5>
+<a id="pgfmanual-autopage-5739"></a>
+<h6 id="autosec-5740"><span><span class="sectionnumber" id="sec-52.8.1">52.8.1</span> References In External Pictures</span><a class="anchor-link" data-html-link="sec-52.8.1" data-pdf-destination="subsubsection.52.8.1" data-pdf-page="682" href="#sec-52.8.1">&para;</a></h6>
+<a id="pgfmanual-autopage-5740"></a>
+
+
+<p>
+It is allowed if a picture contains references, for example <span class="verb">\tikz \node {Reference to \ref{a:label}};</span>.
+</p>
+
+<p>
+There is just one issue: if the main job is currently compiling, its <span class="verb">.aux</span> file is not in its final state (even worse: it may not be readable at all). The picture externalization, however, needs the main <span class="verb">.aux</span> file to query any references.
+</p>
+
+<p>
+Thus, you <em>will</em> need to invoke <span class="verb">pdflatex -jobname </span><span class="angle">&langle;</span><i>image</i><span class="angle">&rangle;</span><span class="verb"> </span><span class="angle">&langle;</span><i>mainfile</i><span class="angle">&rangle;</span> <em>manually</em> for any image which contains references.
+</p>
+
+<p>
+This problem arises only for <span class="verb">mode=convert with system call</span>. In this case, the <span class="verb">external</span> library creates a special <span class="verb">\jobname.auxlock</span> file to check whether the main
+<span class="verb">.aux</span> file is currently usable.
+</p>
+<h6 id="autosec-5741"><span><span class="sectionnumber" id="sec-52.8.2">52.8.2</span> Compatibility With Other Libraries or Packages</span><a class="anchor-link" data-html-link="sec-52.8.2" data-pdf-destination="subsubsection.52.8.2" data-pdf-page="683" href="#sec-52.8.2">&para;</a></h6>
+<a id="pgfmanual-autopage-5741"></a>
+
+
+<p>
+The <span class="verb">external</span> library has the following compatibility issues:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> The <span class="verb">external</span> library comes with special support for <span class="verb">\usetikzlibrary{fadings}</span>: the <span class="verb">fadings</span> library may define local pictures
+which would be externalized (although they shouldn&rsquo;t). There is special handling to suppress this bug if <span class="verb">\tikzexternalize</span> is called <em>after</em> <span class="verb">\usetikzlibrary{fadings}</span> or if all fadings
+are defined <em>before</em> <span class="verb">\tikzexternalize</span>.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> Problems have been reported when using <span class="verb">\tikzexternalize</span> (or the basic layer externalization) together with <span class="verb">\usepackage{glossary}</span>. This problem
+disappears if <span class="verb">\tikzexternalize</span> is called <em>before</em> <span class="verb">\usepackage{glossary}</span>.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3.</span> Problems with <span class="verb">\usepackage{pdfpages}</span> and <span class="verb">\usepackage{vmargin}</span>: The <span class="verb">external</span> library replaces the current shipout routine of
+<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> during its externalization. This might raise problems with other packages which also manipulate the shipout routine (like the
+mentioned ones). To fix those problems, use
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<br>
+<a href="tikz-scopes#pgf.back/usetikzlibrary">\usetikzlibrary</a>{<a href="library-external#pgf.external">external</a>}<br>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="library-external#pgf.back/tikzifexternalizing">\tikzifexternalizing</a></span>{<span class="example-code-comment">%</span><br>
+<span class="spaces">    </span><span class="example-code-comment">% don't include package XYZ here</span><br>
+}{<span class="example-code-comment">%</span><br>
+<span class="spaces">    </span><span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000">pdfpages</span>}<br>
+<span class="spaces">    </span><span class="textcolor" style="color:#0000B2">\usepackage</span>{<span class="textcolor" style="color:#000000">vmargin</span>}<br>
+<span class="spaces">    </span>...<br>
+}<span class="example-code-comment">%</span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+This uses the requested packages for the main document, but not for the single, exported graphics.
+</p>
+</li>
+</ul>
+
+<p>
+In general, the <span class="verb">\tikzifexternalizing</span> feature might be used to solve package conflicts and the <span class="verb">\tikzexternaldisable</span> and <span class="verb">\tikzexternalenable</span> features can be used
+to solve problems with single pictures.
+</p>
+<h6 id="autosec-5742"><span><span class="sectionnumber" id="sec-52.8.3">52.8.3</span> Compatibility With Bounding Box Restrictions</span><a class="anchor-link" data-html-link="sec-52.8.3" data-pdf-destination="subsubsection.52.8.3" data-pdf-page="683" href="#sec-52.8.3">&para;</a></h6>
+<a id="pgfmanual-autopage-5742"></a>
+
+
+<p>
+Bounding box restrictions provide no problem when used with <kbd>eps</kbd> graphics. However, they pose problems for <span class="verb">pdflatex</span>, so you may need to use the <span class="verb">latex</span>/<span class="verb">dvips</span> combination if you use bounding box restrictions and externalization. Currently, the only possibility for bounding box restrictions and <span class="verb">pdflatex</span> is to use a combination of <span class="verb">trim left</span>/<span class="verb">trim right</span>/<span class="verb">baseline</span>: these keys do not <em>really</em> truncate the bounding box, they only store horizontal and vertical shifts (also see the <span class="verb">trim lowlevel</span> key in this context).
+</p>
+<h6 id="autosec-5743"><span><span class="sectionnumber" id="sec-52.8.4">52.8.4</span> Interoperability With The Basic Layer Externalization</span><a class="anchor-link" data-html-link="sec-52.8.4" data-pdf-destination="subsubsection.52.8.4" data-pdf-page="683" href="#sec-52.8.4">&para;</a></h6>
+<a id="pgfmanual-autopage-5743"></a>
+
+
+<p>
+This library is fully compatible with <span class="verb">\beginpgfgraphicnamed</span>\(\dotsc \)<span class="verb">\endpgfgraphicnamed</span> environments. However, you will need to use the <span class="verb">export next=false</span> key
+to avoid conflicts:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="base-external#pgf.back/beginpgfgraphicnamed">\beginpgfgraphicnamed</a></span>{<span class="textcolor" style="color:#000000">picture4</span>}<br>
+<a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span class="textcolor" style="color:#008000"><a href="library-external#pgf./tikz/external/export:next">external/export next</a></span>=<span class="textcolor" style="color:#008000"><a href="pgfkeys#pgf.false">false</a></span>}<br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="spaces">   </span><span class="textcolor" style="color:#0000B2"><a href="tikz-actions#pgf.back/draw">\draw</a></span> <span class="textcolor" style="color:#800080">(0,0)</span> <span class="textcolor" style="color:#000000"><a href="tikz-paths#pgf.--">--</a></span> <span class="textcolor" style="color:#800080">(4,4)</span>;<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="base-external#pgf.back/endpgfgraphicnamed">\endpgfgraphicnamed</a></span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+Please keep in mind that file prefixes do not apply to the basic layer.
+</p>
+</section>
+
+</main>
+
+<footer><div class="footer-left"><a href="/license">License</a> &middot; <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot; <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf">Official PDF version</a> &middot; <a href="https://github.com/DominikPeters/tikz.dev-issues/issues">Feedback and issues</a> &middot; <a href="https://github.com/DominikPeters/pgf-tikz-html-manual">About this HTML version</a></div><div class="footer-right"><em>HTML version last updated: 2024-03-17</em></div></footer></div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+      docsearch({
+        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
+        indexName: 'tikz',
+        appId: 'JS6V5VZSDB',
+        container: '#search',
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+    });
+    </script></body></html>

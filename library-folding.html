@@ -1,0 +1,3307 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Paper-Folding Diagrams Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Paper-Folding Diagrams Library",
+            "item": "https://tikz.dev/library-folding"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-folding" rel="canonical" />
+    <meta content="https://tikz.dev/library-folding" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/library-folding.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Paper-Folding Diagrams Library - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5941"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5942">
+            <a id="section-calender-folding"></a
+            ><span
+              ><span class="sectionnumber" id="sec-61">61</span> Paper-Folding
+              Diagrams Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.61"
+              data-pdf-page="724"
+              href="#sec-61"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5942"></a>
+          <a id="pgfmanual-autofile-66"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.folding"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.folding"
+                      href="#pgf.folding"
+                      id="pgf.folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >folding</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >folding</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library defines pic types for creating paper-folding
+                diagrams. Many thanks to Nico van Cleemput for providing most of
+                the code.
+              </p>
+            </ul>
+          </div>
+
+          <p>Here is a big example that produces a diagram for a calendar:</p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2436"
+                  ><!--
+                                  4
+                            2 02 1
+                     b er 8
+                   em 7 15
+                  c
+               De 6 4 2
+                          5 13 1 1 2
+                                      2 9
+                      4 12
+                                 2 0 28 2
+                  3 1 9 27
+                2 10 1 8 1
+                                6
+                 9 17 1 5 2
+                           2 November 2024
+                  16 24
+                    2 3 31 1 2 3
+                       30 4 5 6 7 8 9 10
+                           11 12 13 14 15 16 17
+                           18 19 20 21 22 23 24
+
+
+
+
+                                                                                                    11 1 20 21 9 30 3
+                                                                                                    4 5
+                           25 26 27 28 29 30
+
+
+
+
+                                                                                                     18 1 27 28
+                                                                                                      25 2
+
+
+
+
+                                                                                                       Mar
+                                              24 6 Fe
+
+
+
+
+                                                                                                        2 13
+                                           20
+
+
+
+
+                                                                                                         9
+                                                                                           br
+
+
+
+
+                                                                                                          6
+                                                    5 13
+
+
+
+
+                                                                                                           ch 2
+                                                                                             ua
+
+
+
+
+                                                                                                           6 7 5 16
+                                       e r 5
+                                   o b 4 2 0 1 ry
+                                 t 1 2 2 6 20
+
+
+
+
+                                                                                                              14 1
+                              Oc 3 11
+
+
+
+
+                                                                                                               024
+                                                         1 9 7 1 1 3 7 1 24
+                                                               2 9
+
+
+
+
+                                                                                                                 1 2 10
+                                      2 10 8 26 2 1 2
+
+
+
+
+                                                                                                                  8 9 17
+                                                    1 2 4 8
+
+
+
+
+                                                                                                                   22 2
+                                1 9 6 0
+
+
+
+
+                                                                                                                    2
+                                                 7 5 27 21 15 9 3
+                                    8 16 1 4 2 2 2 16 10 4
+                                                  2 2
+
+
+
+
+                                                                                                                       3 24
+                               7 15 8 11
+
+
+
+
+                                                                                                                        3
+                                               3 1 2 2 3 1 7
+                                             2 3 9
+                                       1
+
+
+
+
+                                14 22 30 24 18
+                                      8
+                                   024
+
+
+
+
+                                     5
+
+
+
+
+                                                                                                                           1
+                                                          January 2024
+                                1 22
+
+
+
+
+                                                                                                 25
+      23 2 18 19 3 14 1
+
+
+
+
+                                   21 29
+                                  29
+       16 1 11 12 6 7
+                              er 2
+
+
+
+
+                                       28
+                                5
+
+
+
+
+                                                                                     29
+                                                   1 2 3 4 5 6 7
+                          7 28
+
+
+
+                8 9 17 18
+                          20 2
+
+
+
+
+                                                                                      2
+                          24 2
+               1 2 10 11
+
+
+
+
+                                                                                       15 1 10 11 5 6
+                                                                                        2
+  12 1 21 22 0 31
+   b
+
+
+
+
+                            4
+
+
+
+
+                                                   8 9 10 11 12 13 14
+                           1
+
+
+
+
+                                                                                          3
+tem
+
+
+
+
+                                                                                           8
+                                                                                           2
+                                                                                           0
+          9 10 4 5
+
+
+
+
+                                                                                            1 2
+                     26 2
+
+
+
+
+                                                                                             3 24 18 19
+                                                15 16 17 18 19 20 21
+                        3
+
+
+
+
+                                                                                              6
+                       3
+                       3
+
+
+
+
+                                                                                               9
+Sep
+
+
+
+
+                     16
+                      2
+
+
+
+
+                                                                                                 1
+                    24
+
+
+
+
+   19 2 28 29
+
+
+
+
+                                                22 23 24 25 26 27 28
+
+
+
+
+                                                                                                  7
+             4 25
+
+
+
+
+  5 6 14 15
+                  0
+
+
+
+
+                                                                                                    2
+           2 3
+
+
+
+
+                                                                                                     3
+                                                                                                     Apr
+                2
+
+
+
+
+                                                29 30 31
+
+
+                                                                                                      5
+              7
+
+
+
+            st
+
+
+
+
+                                                                                                        2
+
+
+
+                                                                                                         4
+                                                                                                         il 20
+          7
+
+
+
+
+                                                                                                          6 27 21
+          u
+
+
+
+
+         7
+
+
+
+
+                                                                                                           1
+        0
+
+
+
+
+                                                                                                        27
+        g
+
+
+
+
+    26 2
+
+
+
+
+                                                                                                            2
+       3
+     Au
+     30
+
+
+
+
+                                                                                                              20
+                                                                                                      20 28
+
+
+
+
+                                                                                                              24
+                                                 24 25 26 27 28 29 30
+
+                                                                                                               13 1
+                                                                                                    13 21 29
+                                                                                                                 28
+                                                 17 18 19 20 21 22 23 2 30
+                                                                                                   6 14 1 2 2
+                                                                                                                    4
+                                                                                                                     7
+                                                                                                                    3 31
+                                                 10 11 12 13 14 15 16
+                                                                                                      7 5
+                                                  3 4 5 6 7 8 9 8 1 6 24 2
+                                                                 1 2 1 9 17 1 5 2
+                                                                                                                            6
+                                                                                                    M 2 10 1 8 1
+                                                          28
+                                                          June 2024 ay 3 1 9
+                                                     27 21 20 4 12
+                                                 26 20 14 24
+                                                                                                                        5
+                                        31 25 19
+                                    30 24 18 13 7
+                                  9 1 2 6
+                                2 23 17 11 5
+                                   22 16 10 4 4
+                                     15 9 3 2 02
+                                         8 2 ly
+                                           1 Ju
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="738.937"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2436.png"
+                    style
+                    width="610.393"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {calendar,folding} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2">\sffamily</span
+                ><span class="textcolor" style="color: #0000b2"
+                  >\scriptsize</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                > [<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.transform:shape"
+                    >transform shape</a
+                  ></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="library-calender#pgf.every:calendar"
+                    >every calendar</a
+                  ></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #800080"
+                    >(-8ex,4ex)</span
+                  >}</span
+                >,<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-calender#pgf.week:list">week list</a></span
+                >,<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-calender#pgf.month:label:above:centered"
+                    >month label above centered</a
+                  ></span
+                >,<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-calender#pgf.month:text"
+                    >month text</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><span class="textcolor" style="color: #0000b2"
+                    >\bfseries</span
+                  ><span class="textcolor" style="color: #0000b2"
+                    >\textcolor</span
+                  >{red}{<span class="textcolor" style="color: #0000b2">\</span
+                  >%mt} <span class="textcolor" style="color: #0000b2"
+                    >\</span
+                  >%y0</span
+                >,<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-calender#pgf.if">if</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #800080"
+                    >(Sunday)</span
+                  > [<span class="textcolor" style="color: #008000"
+                    >black!50</span
+                  >]}<br />
+                  <span class="spaces">  </span>}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="library-folding#pgf.folding:line:length"
+                    >folding line length</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">2.5cm</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="library-folding#pgf.face:1">face 1</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >01-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >01-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="library-folding#pgf.face:2">face 2</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >02-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >02-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="library-folding#pgf.face:3">face 3</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >03-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >03-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="library-folding#pgf.face:4">face 4</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >04-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >04-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 5</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >05-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >05-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 6</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >06-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >06-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 7</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >07-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >07-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 8</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >08-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >08-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 9</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >09-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >09-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 10</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >10-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >10-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 11</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >11-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >11-last</span
+                  >];}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >face 12</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<span class="textcolor" style="color: #0000b2"
+                    ><a href="library-calender#pgf.back/calendar"
+                      >\calendar</a
+                    ></span
+                  > [<span class="textcolor" style="color: #008000"
+                    ><a href="library-calender#pgf.dates">dates</a></span
+                  >=<span class="textcolor" style="color: #008000"
+                    ><span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >12-01 <a href="tikz-paths#pgf.to">to</a>
+                    <span class="textcolor" style="color: #0000b2">\the</span
+                    ><span class="textcolor" style="color: #0000b2">\year-</span
+                    >12-last</span
+                  >];}<br /> </span
+                >] {<span class="textcolor" style="color: #000000"
+                  >dodecahedron</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-folding#pgf.folding">folding</a></span
+                >};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>The foldings are sorted by number of faces.</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.tetrahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >tetrahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.tetrahedron:folding"
+                      href="#pgf.tetrahedron:folding"
+                      id="pgf.tetrahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This pic type draws a folding diagram for a tetrahedron. The
+                following keys influence the pic:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/folding:line:length"></a
+                        ><a id="pgf.folding:line:length"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/folding line length</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/folding:line:length"
+                          href="#tikz/folding:line:length"
+                          id="tikz/folding:line:length"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Sets the length of the base line for folding. For the
+                    dodecahedron this is the length of all the sides of the
+                    pentagons.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/face:1"></a><a id="pgf.face:1"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/face 1</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/face:1"
+                          href="#tikz/face:1"
+                          id="tikz/face:1"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    The <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> is executed for the
+                    first face of the dodecahedron. When it is executed, the
+                    coordinate system will have been shifted and rotated such
+                    that it lies at the middle of the first face of the
+                    dodecahedron.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/face:2"></a><a id="pgf.face:2"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/face 2</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/face:2"
+                          href="#tikz/face:2"
+                          id="tikz/face:2"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Same as <span class="verb">face 1</span>, but for the second
+                    face.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/face:3"></a><a id="pgf.face:3"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/face 3</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/face:3"
+                          href="#tikz/face:3"
+                          id="tikz/face:3"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p></p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/face:4"></a><a id="pgf.face:4"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/face 4</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>code</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/face:4"
+                          href="#tikz/face:4"
+                          id="tikz/face:4"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p></p>
+                </ul>
+              </div>
+              <p>
+                There are further similar options for more faces (for commands
+                shown later).
+              </p>
+              <p>Here is a simple example:</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2437"
+                      ><!--
+    1
+
+
+
+
+4
+    2
+    3
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="47.019"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2437.png"
+                        style
+                        width="48.555"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.face:1">face 1</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                      >[<span class="textcolor" style="color: #008000">red</span
+                      >] {1};}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.face:2">face 2</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                      ><span class="spaces">      </span>{2};}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.face:3">face 3</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                      ><span class="spaces">      </span>{3};}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.face:4">face 4</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                        ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                      ><span class="spaces">      </span>{4};}<br /> </span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >tetrahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The appearance of the cut and folding lines can be influenced
+                using the following styles:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:cut"></a
+                        ><a id="pgf.every:cut"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every cut</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>empty</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:cut"
+                          href="#tikz/every:cut"
+                          id="tikz/every:cut"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Executed for every line that should be cut using scissors.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:fold"></a
+                        ><a id="pgf.every:fold"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every fold</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>help lines</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:fold"
+                          href="#tikz/every:fold"
+                          id="tikz/every:fold"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Executed for every line that should be folded.</p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2438"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="46.995"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2438.png"
+                            style
+                            width="48.536"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {folding} </span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                        >[<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-folding#pgf.every:cut"
+                            >every cut</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >,<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-folding#pgf.every:fold"
+                            >every fold</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.dotted">dotted</a></span
+                        >,<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-folding#pgf.folding:line:length"
+                            >folding line length</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >6mm<br /> </span
+                        >] {<span class="spaces"> </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >tetrahedron</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="library-folding#pgf.folding"
+                            >folding</a
+                          ></span
+                        >
+                        };<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                There is one style that is mainly useful for the present
+                documentation:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/numbered:faces"></a
+                        ><a id="pgf.numbered:faces"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/numbered faces</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/numbered:faces"
+                          href="#tikz/numbered:faces"
+                          id="tikz/numbered:faces"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Sets <span class="verb">face </span
+                    ><span class="angle">&langle;</span><i>i</i
+                    ><span class="angle">&rangle;</span> to
+                    <span class="verb">\node {</span
+                    ><span class="angle">&langle;</span><i>i</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">};</span> for all&nbsp;\(i\).
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.tetrahedron:truncated:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >tetrahedron truncated folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.tetrahedron:truncated:folding"
+                      href="#pgf.tetrahedron:truncated:folding"
+                      id="pgf.tetrahedron:truncated:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a truncated tetrahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2439"
+                      ><!--
+7
+    6
+        8
+5
+        1
+            2
+
+
+
+
+        3
+    4
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="110.522"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2439.png"
+                        style
+                        width="127.901"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >tetrahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >truncated</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.cube:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >cube folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.cube:folding"
+                      href="#pgf.cube:folding"
+                      id="pgf.cube:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a cube.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2440"
+                      ><!--
+    2
+    1
+
+
+
+
+6
+
+        3
+    4
+    5
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="98.498"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2440.png"
+                        style
+                        width="75.801"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >cube</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.cube:truncated:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >cube truncated folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.cube:truncated:folding"
+                      href="#pgf.cube:truncated:folding"
+                      id="pgf.cube:truncated:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a truncated cube.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2441"
+                      ><!--
+            7
+                 8
+        4
+3 12 10
+    2
+
+
+
+            1
+
+
+                      9
+                 14
+        5
+6 11
+            13
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="229.538"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2441.png"
+                        style
+                        width="167.477"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >cube</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >truncated</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.octahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >octahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.octahedron:folding"
+                      href="#pgf.octahedron:folding"
+                      id="pgf.octahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of an octahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2442"
+                      ><!--
+    4
+    3
+    2
+5
+    1 6
+
+
+
+
+    7
+    8
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="62.019"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2442.png"
+                        style
+                        width="82.562"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >octahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >octahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a truncated octahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2443"
+                      ><!--
+    4 5 13 14 10
+3
+
+        2
+
+                1
+                    8
+
+                         9
+            6 11
+    7 12
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="210.242"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2443.png"
+                        style
+                        width="116.602"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >octahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >truncated</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.dodecahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >dodecahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.dodecahedron:folding"
+                      href="#pgf.dodecahedron:folding"
+                      id="pgf.dodecahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a dodecahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2444"
+                      ><!--
+    12
+         11
+
+                  2
+
+
+
+
+                      3
+         10
+              1
+9
+
+
+
+
+                      4
+    8
+              6 5
+         7
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="177.194"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2444.png"
+                        style
+                        width="148.948"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >dodecahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.dodecahedron':folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >dodecahedron' folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.dodecahedron':folding"
+                      href="#pgf.dodecahedron':folding"
+                      id="pgf.dodecahedron':folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>This is an alternative folding of a dodecahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2445"
+                      ><!--
+         7 4
+
+             3
+
+
+
+
+     6
+
+
+                      5
+             2
+
+         1
+10
+
+
+                 11
+         8
+             12
+     9
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="177.170"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2445.png"
+                        style
+                        width="118.442"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >dodecahedron'</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.dodecahedron:rhombic:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >dodecahedron rhombic folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.dodecahedron:rhombic:folding"
+                      href="#pgf.dodecahedron:rhombic:folding"
+                      id="pgf.dodecahedron:rhombic:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A rhombic dodecahedron, based on square-of-two rhombi.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2446"
+                      ><!--
+ 10
+              8 6
+                  2
+
+
+          7
+
+
+11
+     12 8 3
+                  5
+                  6
+
+
+
+
+                          4
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="136.058"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2446.png"
+                        style
+                        width="91.898"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >dodecahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >rhombic</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.dodecahedron:golden:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >dodecahedron golden folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.dodecahedron:golden:folding"
+                      href="#pgf.dodecahedron:golden:folding"
+                      id="pgf.dodecahedron:golden:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An alternative rhombic dodecahedron, flat laying, based on
+                golden rhombi.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2447"
+                      ><!--
+    2
+         7
+
+
+
+
+3
+    1
+     4
+
+
+
+
+        5
+             8
+6
+    9
+    12
+10 11
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="129.482"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2447.png"
+                        style
+                        width="94.954"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >dodecahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000">golden</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.cuboctahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >cuboctahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.cuboctahedron:folding"
+                      href="#pgf.cuboctahedron:folding"
+                      id="pgf.cuboctahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a cuboctahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2448"
+                      ><!--
+                  5
+ 13
+
+
+
+
+              4
+          2
+
+
+
+
+              3
+  12
+
+
+
+14
+          1
+
+
+
+     11
+
+              6
+          8 7
+
+
+
+     9
+       10
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="126.386"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2448.png"
+                        style
+                        width="103.706"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >cuboctahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.cuboctahedron:truncated:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >cuboctahedron truncated folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.cuboctahedron:truncated:folding"
+                      href="#pgf.cuboctahedron:truncated:folding"
+                      id="pgf.cuboctahedron:truncated:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a truncated cuboctahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2449"
+                      ><!--
+                       25
+    8 12 24 19
+6 10 14 21
+                       15
+
+                            16
+
+                                 17
+5
+
+    4
+
+        3
+
+             2
+
+                  1
+7 11 26 20
+    9 13 22 18
+                       23
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="328.826"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2449.png"
+                        style
+                        width="212.834"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >cuboctahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >truncated</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.icosahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >icosahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.icosahedron:folding"
+                      href="#pgf.icosahedron:folding"
+                      id="pgf.icosahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of an icosahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2450"
+                      ><!--
+13
+12
+
+     111
+14 0 210
+                    9
+         16
+
+
+
+
+      9 15
+     8 1
+          18
+
+
+
+
+             17
+         2
+     4
+
+
+
+
+         3
+     5
+         7
+
+
+
+
+     6
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="110.522"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2450.png"
+                        style
+                        width="116.573"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >icosahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.rhombicuboctahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >rhombicuboctahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.rhombicuboctahedron:folding"
+                      href="#pgf.rhombicuboctahedron:folding"
+                      id="pgf.rhombicuboctahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of an rhombicuboctahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2451"
+                      ><!--
+                15
+6 8 10 12 14 24 22 20
+                     16
+                          17
+                               18
+5
+    4
+        3
+            2
+                1
+
+7 19 21 23 25 13 11 9
+                26
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="189.218"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2451.png"
+                        style
+                        width="116.620"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >rhombicuboctahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.snub:cube:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >snub cube folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.snub:cube:folding"
+                      href="#pgf.snub:cube:folding"
+                      id="pgf.snub:cube:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of a snub cube.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2452"
+                      ><!--
+ 36 34
+     33
+
+
+
+
+ 35
+                         8
+                10
+
+
+
+
+         37
+      32
+
+
+
+
+  38
+        31
+
+
+
+
+                     6
+                     7
+           2
+
+
+
+
+              5
+              3
+               4
+       30
+                     9
+           1
+
+
+
+
+        29
+
+                 11
+            12
+   27 20
+
+
+
+     22
+             13
+
+
+
+    21
+    23
+   25
+
+
+
+
+                 19
+           14
+  24
+ 28
+
+
+
+
+18
+    26 15
+
+
+
+
+                     17
+          16
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="164.138"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2452.png"
+                        style
+                        width="155.882"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >snub</span
+                    >
+                    <span class="textcolor" style="color: #000000">cube</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.icosidodecahedron:folding"></a>
+                    <span class="hl-def"
+                      ><b>Pic type</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >icosidodecahedron folding</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.icosidodecahedron:folding"
+                      href="#pgf.icosidodecahedron:folding"
+                      id="pgf.icosidodecahedron:folding"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>A folding of an icosidodecahedron.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2453"
+                      ><!--
+22 23
+                               16
+
+
+
+
+21
+    20 17 15
+        24
+                          14
+
+
+
+
+     19 13
+ 26
+ 18
+25
+
+           12
+                  27
+                              32
+                              28
+
+
+              1
+         11
+                      2
+                                    30
+
+
+
+
+                               29
+      7
+                                     31
+
+
+
+
+              6
+                      3
+     8
+                  4 5
+10
+
+
+
+
+     9
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="191.690"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2453.png"
+                        style
+                        width="184.692"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {folding} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-pics#pgf.back/pic">\pic</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.folding:line:length"
+                        >folding line length</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">6mm</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="library-folding#pgf.numbered:faces"
+                        >numbered faces</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.transform:shape"
+                        >transform shape</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >icosidodecahedron</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-folding#pgf.folding">folding</a></span
+                    >
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,3065 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Creating Plots - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Creating Plots",
+            "item": "https://tikz.dev/base-plots"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-plots" rel="canonical" />
+    <meta content="https://tikz.dev/base-plots" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Creating Plots - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8363"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-112.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-112.2"
+                >Generating Plot Streams</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-112.2.1"
+                >Basic Building Blocks of Plot Streams</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-112.2.2"
+                >Commands That Generate Plot Streams</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-112.3">Plot Handlers</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-112.4"
+                >Defining New Plot Handlers</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8364">
+            <a id="section-plots"></a
+            ><span
+              ><span class="sectionnumber" id="sec-112">112</span> Creating
+              Plots</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.112"
+              data-pdf-page="1185"
+              href="#sec-112"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8364"></a>
+          <a id="pgfmanual-autofile-121"></a>
+
+          <p>
+            This section describes the <span class="verb">plot</span> module.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepgfmodule{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >plot</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        >
+                        and plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        and pure pgf</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepgfmodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >plot</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t and pure pgf</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This module provides a set of commands that are intended to make
+                it reasonably easy to plot functions using
+                <span class="textsc">pgf</span>. It is loaded automatically by
+                <span class="verb">pgf</span>, but you can load it manually if
+                you have only included <span class="verb">pgfcore</span>.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8366">
+            <span
+              ><span class="sectionnumber" id="sec-112.1">112.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-112.1"
+              data-pdf-destination="subsection.112.1"
+              data-pdf-page="1185"
+              href="#sec-112.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8366"></a>
+
+          <p>
+            There are different reasons for using
+            <span class="textsc">pgf</span> for creating plots rather than some
+            more powerful program such as <span class="textsc">gnuplot</span> or
+            <span class="textsc">mathematica</span>, as discussed in
+            Section&nbsp;<a href="tikz-plots#section-why-pgname-for-plots"
+              >22.1</a
+            >. So, let us assume that &ndash; for whatever reason &ndash; you
+            wish to use <span class="textsc">pgf</span> for generating a plot.
+          </p>
+
+          <p>
+            <span class="textsc">pgf</span> (conceptually) uses a two-stage
+            process for generating plots. First, a <em>plot stream</em> must be
+            produced. This stream consists (more or less) of a large number of
+            coordinates. Second a <em>plot handler</em> is applied to the
+            stream. A plot handler &ldquo;does something&rdquo; with the stream.
+            The standard handler will issue line-to operations to the
+            coordinates in the stream. However, a handler might also try to
+            issue appropriate curve-to operations in order to smooth the curve.
+            A handler may even do something else entirely, like writing each
+            coordinate to another stream, thereby duplicating the original
+            stream.
+          </p>
+
+          <p>
+            Both for the creation of streams and the handling of streams
+            different sets of commands exist. The commands for creating streams
+            start with <span class="verb">\pgfplotstream</span>, the commands
+            for setting the handler start with
+            <span class="verb">\pgfplothandler</span>.
+          </p>
+          <h5 id="autosec-8367">
+            <span
+              ><span class="sectionnumber" id="sec-112.2">112.2</span>
+              Generating Plot Streams</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-112.2"
+              data-pdf-destination="subsection.112.2"
+              data-pdf-page="1185"
+              href="#sec-112.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8367"></a>
+          <h6 id="autosec-8368">
+            <span
+              ><span class="sectionnumber" id="sec-112.2.1">112.2.1</span> Basic
+              Building Blocks of Plot Streams</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-112.2.1"
+              data-pdf-destination="subsubsection.112.2.1"
+              data-pdf-page="1185"
+              href="#sec-112.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8368"></a>
+
+          <p>
+            A <em>plot stream</em> is a (long) sequence of the following
+            commands:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span>
+                <span class="verb">\pgfplotstreamstart</span>,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span>
+                <span class="verb">\pgfplotstreampoint</span>,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span>
+                <span class="verb">\pgfplotstreampointoutlier</span>,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span>
+                <span class="verb">\pgfplotstreampointundefined</span>,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span>
+                <span class="verb">\pgfplotstreamnewdataset</span>,
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span>
+                <span class="verb">\pgfplotstreamspecial</span>, and
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">7.</span>
+                <span class="verb">\pgfplotstreamend</span>.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Between calls of these commands arbitrary other code may be called.
+            Obviously, the stream should start with the first command and end
+            with the last command. Here is an example of a plot stream:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                    >\pgfplotstreamstart</a
+                  ></span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                    >\pgfplotstreampoint</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #000000">1cm</span
+                >}{<span class="textcolor" style="color: #000000">1cm</span
+                >}}<br />
+                <span class="textcolor" style="color: #0000b2">\newdimen</span
+                ><span class="textcolor" style="color: #0000b2">\mydim</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2">\mydim</span
+                ><span class="textcolor" style="color: #000000">=2cm</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                    >\pgfplotstreampoint</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #0000b2">\mydim</span
+                >}{<span class="textcolor" style="color: #000000">2cm</span
+                >}}<br />
+                <span class="textcolor" style="color: #0000b2">\advance</span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\mydim</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.by">by</a></span
+                >
+                <span class="textcolor" style="color: #000000">3cm</span><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                    >\pgfplotstreampoint</a
+                  ></span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                >{<span class="textcolor" style="color: #0000b2">\mydim</span
+                >}{<span class="textcolor" style="color: #000000">2cm</span
+                >}}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="base-plots#pgf.back/pgfplotstreamend"
+                    >\pgfplotstreamend</a
+                  ></span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Streams are <em>global</em>, meaning that they are not influenced by
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            groups.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreamstart"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreamstart</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreamstart"
+                      href="#\pgfplotstreamstart"
+                      id="\pgfplotstreamstart"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command signals that a plot stream starts. The effect of
+                this command is to call the internal command
+                <span class="verb">\pgf@plotstreamstart</span>, which is set by
+                the current plot handler to do whatever needs to be done at the
+                beginning of the plot. It will also reset the meaning of the
+                internal commands like
+                <span class="verb">\pgf@plotstreampoint</span> to the initial
+                setting for the plot handler (what this means will be explained
+                in a moment).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreampoint"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreampoint</kbd></span
+                      >{<span class="angle">&langle;</span><i>point</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreampoint"
+                      href="#\pgfplotstreampoint"
+                      id="\pgfplotstreampoint"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command adds a <span class="angle">&langle;</span
+                ><i>point</i><span class="angle">&rangle;</span> to the current
+                plot stream. The effect of this command is to call the internal
+                command <span class="verb">\pgf@plotstreampoint</span>, which is
+                also set by the current plot handler. This command should now
+                &ldquo;handle&rdquo; the point in some sensible way. For
+                example, a line-to command might be issued for the point.
+              </p>
+              <p>
+                When a plot handler is installed, it will setup the internal
+                command <span class="verb">\pgf@plotstreampoint</span> in some
+                way. It is permissible to change the meaning of this internal
+                command during a stream. For instance, a handler might setup
+                <span class="verb">\pgf@plotstreampoint</span> in some sensible
+                way for the first point and then redefine it so that subsequent
+                points are handled in some other way.
+              </p>
+              <p>
+                As mentioned earlier, the
+                <span class="verb">\pgfplotstreamstart</span> will always reset
+                the definition of the internal command to the initial meaning it
+                had when the handler was installed. This is true for the other
+                commands mentioned in the following.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreampointoutlier"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreampointoutlier</kbd></span
+                      >{<span class="angle">&langle;</span><i>point</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreampointoutlier"
+                      href="#\pgfplotstreampointoutlier"
+                      id="\pgfplotstreampointoutlier"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An <em>outlier</em> is a point that is &ldquo;out of
+                bounds&rdquo; in some way. For instance, it might have very
+                large coordinates or the coordinates might just be outside some
+                specified range. Nevertheless, an outlier is still a
+                well-defined point. This command is issued, for instance, by
+                <span class="textsc">gnuplot</span> when a value is outside the
+                specified range.
+              </p>
+              <p>
+                You can configure how outliers are treated using the following
+                key:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/handle:outlier:points:in:plots"></a
+                        ><a id="pgf.handle:outlier:points:in:plots"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/handle outlier points in plots</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>how</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>jump</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/handle:outlier:points:in:plots"
+                          href="#pgf/handle:outlier:points:in:plots"
+                          id="pgf/handle:outlier:points:in:plots"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <li>
+                    <p>alias <kbd>/tikz/handle outlier points in plots</kbd></p>
+                    <p>
+                      <a id="pgf./tikz/handle:outlier:points:in:plots"></a> You
+                      can set <span class="angle">&langle;</span><i>how</i
+                      ><span class="angle">&rangle;</span> to one of the
+                      following values:
+                    </p>
+                    <ul class="itemize" style="list-style-type: none">
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">plot</span> This will cause the
+                          outlier to be drawn normally, just as if
+                          <span class="verb">\pgfplotstreampoint</span> had been
+                          used rather than this command.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">ignore</span> The outlier will be
+                          completely ignored, just as if the command had not
+                          been used at all.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">jump</span> This causes the
+                          internal macro
+                          <span class="verb">\pgf@plotstreamjump</span> to be
+                          called. A &ldquo;jump&rdquo; in a stream is a position
+                          where a &ldquo;gap&rdquo; is introduced. For instance,
+                          a simple line-to plot handler will stop the current
+                          subpath at a jump position and begin with a move-to
+                          operation at the next normal point of the stream.
+                        </p>
+                        <p>
+                          The net effect of this setting is that at outlier
+                          points plots get interrupted and
+                          &ldquo;restarted&rdquo; when the points are no longer
+                          outliers. This is usually the behavior you will be
+                          looking for.
+                        </p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreampointundefined"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreampointundefined</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreampointundefined"
+                      href="#\pgfplotstreampointundefined"
+                      id="\pgfplotstreampointundefined"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command indicated that the stream contains an
+                &ldquo;undefined&rdquo; point like a point where some coordinate
+                results for a division by zero. Such a point cannot be plotted,
+                which is why it is not given as a parameter. However, such a
+                point <em>can</em> result in a jump in the plot, depending on
+                the setting of the following key:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/handle:undefined:points:in:plots"></a
+                        ><a id="pgf.handle:undefined:points:in:plots"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/handle undefined points in plots</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>how</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>jump</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/handle:undefined:points:in:plots"
+                          href="#pgf/handle:undefined:points:in:plots"
+                          id="pgf/handle:undefined:points:in:plots"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <li>
+                    <p>
+                      alias <kbd>/tikz/handle undefined points in plots</kbd>
+                    </p>
+                    <p>
+                      <a id="pgf./tikz/handle:undefined:points:in:plots"></a>
+                      You can set <span class="angle">&langle;</span><i>how</i
+                      ><span class="angle">&rangle;</span> to one of the
+                      following values:
+                    </p>
+                    <ul class="itemize" style="list-style-type: none">
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">ignore</span> The undefined point
+                          will be completely ignored, just as if the command had
+                          not been used at all.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">jump</span> This causes the
+                          internal macro
+                          <span class="verb">\pgf@plotstreamjump</span> to be
+                          called.
+                        </p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreamnewdataset"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreamnewdataset</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreamnewdataset"
+                      href="#\pgfplotstreamnewdataset"
+                      id="\pgfplotstreamnewdataset"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command indicated that in the stream a &ldquo;new data
+                set&rdquo; starts. So, the stream does not end, but there is a
+                logical break in the data. For example, when a table is read
+                from a file, empty lines are interpreted as indicating new data
+                sets. What happens when a new data set is encountered is
+                governed by the following key:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/handle:new:data:sets:in:plots"></a
+                        ><a id="pgf.handle:new:data:sets:in:plots"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/handle new data sets in plots</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>how</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>jump</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/handle:new:data:sets:in:plots"
+                          href="#pgf/handle:new:data:sets:in:plots"
+                          id="pgf/handle:new:data:sets:in:plots"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <li>
+                    <p>alias <kbd>/tikz/handle new data sets in plots</kbd></p>
+                    <p>
+                      <a id="pgf./tikz/handle:new:data:sets:in:plots"></a> You
+                      can set <span class="angle">&langle;</span><i>how</i
+                      ><span class="angle">&rangle;</span> to one of the
+                      following values:
+                    </p>
+                    <ul class="itemize" style="list-style-type: none">
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">ignore</span> The command will be
+                          completely ignored, just as if the command had not
+                          been used at all.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <span class="listmarker">&bull;</span>
+                          <span class="verb">jump</span> This causes the
+                          internal macro
+                          <span class="verb">\pgf@plotstreamjump</span> to be
+                          called.
+                        </p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreamspecial"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreamspecial</kbd></span
+                      >{<span class="angle">&langle;</span><i>text</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreamspecial"
+                      href="#\pgfplotstreamspecial"
+                      id="\pgfplotstreamspecial"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command causes
+                <span class="verb">\pgf@plotstreamspecial</span> to be called
+                with <span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span> as its parameter. This
+                allows handler-specific information to be passed to the handler.
+                All normal handlers ignore this command.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotstreamend"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotstreamend</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotstreamend"
+                      href="#\pgfplotstreamend"
+                      id="\pgfplotstreamend"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command signals that a plot stream ends. It calls
+                <span class="verb">\pgf@plotstreamend</span>, which should now
+                do any necessary &ldquo;cleanup&rdquo;.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            Note that plot streams are not buffered, that is, the different
+            points are handled immediately. However, using the recording
+            handler, it is possible to record a stream.
+          </p>
+          <h6 id="autosec-8369">
+            <a id="section-plot-jumps"></a
+            ><span
+              ><span class="sectionnumber" id="sec-112.2.2">112.2.2</span>
+              Commands That Generate Plot Streams</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-112.2.2"
+              data-pdf-destination="subsubsection.112.2.2"
+              data-pdf-page="1187"
+              href="#sec-112.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-8369"></a>
+
+          <p>
+            Plot streams can be created &ldquo;by hand&rdquo; as in the earlier
+            example. However, most of the time the coordinates will be produced
+            internally by some command. For example, the
+            <span class="verb">\pgfplotxyfile</span> reads a file and converts
+            it into a plot stream.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotxyfile"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotxyfile</kbd></span
+                      >{<span class="angle">&langle;</span><i>filename</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotxyfile"
+                      href="#\pgfplotxyfile"
+                      id="\pgfplotxyfile"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will try to open the file
+                <span class="angle">&langle;</span><i>filename</i
+                ><span class="angle">&rangle;</span>. If this succeeds, it will
+                convert the file contents into a plot stream as follows: A
+                <span class="verb">\pgfplotstreamstart</span> is issued. Then,
+                for each empty line a
+                <span class="verb">\pgfplotstreamnewdataset</span> is produced.
+                Other lines in the file should start with two numbers separated
+                by a space, such as <span class="verb">0.1 1</span> or
+                <span class="verb">100 -.3</span>. The numbers may be followed
+                by some text, which will be ignore <em>except</em> if it is
+                exactly &ldquo;<span class="verb">u</span>&rdquo; or
+                &ldquo;<span class="verb">o</span>&rdquo;. For &ldquo;<span
+                  class="verb"
+                  >u</span
+                >&rdquo; the point is considered to be undefined and
+                <span class="verb">\pgfplotstreampointundefined</span> is
+                called. For &ldquo;<span class="verb">o</span>&rdquo; the point
+                is considered to be an outlier and
+                <span class="verb">\pgfplotstreampointoutlier</span> is called.
+                Otherwise, each pair <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>y</i
+                ><span class="angle">&rangle;</span> of numbers is converted
+                into one plot stream point in the \(xy\)-coordinate system.
+                Thus, a line like
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">0</span>
+                    <span class="textcolor" style="color: #000000">Nan</span>
+                    <span class="textcolor" style="color: #000000">u</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">1</span>
+                    <span class="textcolor" style="color: #000000">1</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-axes#pgf.some">some</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-shapes#pgf.text">text</a></span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #000000">4</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000">9</span
+                    ><br />
+                    <br />
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000">16</span>
+                    <span class="textcolor" style="color: #000000">o</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">5</span>
+                    <span class="textcolor" style="color: #000000">25</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="oo#pgf.oo">oo</a></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>is turned into</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                        >\pgfplotstreamstart</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampointundefined"
+                        >\pgfplotstreampointundefined</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxy"
+                        >\pgfpointxy</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >}{<span class="textcolor" style="color: #000000">1</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxy"
+                        >\pgfpointxy</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2</span
+                    >}{<span class="textcolor" style="color: #000000">4</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxy"
+                        >\pgfpointxy</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">3</span
+                    >}{<span class="textcolor" style="color: #000000">9</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamnewdataset"
+                        >\pgfplotstreamnewdataset</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampointoutlier"
+                        >\pgfplotstreampointoutlier</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxy"
+                        >\pgfpointxy</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">4</span
+                    >}{<span class="textcolor" style="color: #000000">16</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxy"
+                        >\pgfpointxy</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5</span
+                    >}{<span class="textcolor" style="color: #000000">25</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamend"
+                        >\pgfplotstreamend</a
+                      ></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                (Note that the last line is not an outlier because
+                <span class="verb">oo</span> is not the same as
+                <span class="verb">o</span>).
+              </p>
+              <p>
+                The two characters <span class="verb">%</span> and
+                <span class="verb">#</span> are also allowed in a file and they
+                are both treated as comment characters. Thus, a line starting
+                with either of them is treated as empty.
+              </p>
+              <p>
+                When the file has been read completely,
+                <span class="verb">\pgfplotstreamend</span> is called.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotxyzfile"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotxyzfile</kbd></span
+                      >{<span class="angle">&langle;</span><i>filename</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotxyzfile"
+                      href="#\pgfplotxyzfile"
+                      id="\pgfplotxyzfile"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works like
+                <span class="verb">\pgfplotxyfile</span>, only
+                <em>three</em> numbers are expected on each non-empty line. They
+                are converted into points in the \(xyz\)-coordinate system.
+                Consider, the following file:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="example-code-comment">% Some comments</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">#</span>
+                    <span class="textcolor" style="color: #000000">more</span>
+                    <span class="textcolor" style="color: #000000"
+                      >comments</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #000000">-5</span>
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >1</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="gd-trees#pgf.first">first</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-animations#pgf.entry">entry</a></span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #000000">o</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">2</span>
+                    <span class="textcolor" style="color: #000000">-5</span>
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >2</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="gd-trees#pgf.third">third</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-animations#pgf.entry">entry</a></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>It is turned into the following stream:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                        >\pgfplotstreamstart</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamnewdataset"
+                        >\pgfplotstreamnewdataset</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamnewdataset"
+                        >\pgfplotstreamnewdataset</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxyz"
+                        >\pgfpointxyz</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2</span
+                    >}{<span class="textcolor" style="color: #000000">-5</span
+                    >}{<span class="textcolor" style="color: #000000">1</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampointoutlier"
+                        >\pgfplotstreampointoutlier</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxyz"
+                        >\pgfpointxyz</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2</span
+                    >}{<span class="textcolor" style="color: #000000">-</span
+                    >.<span class="textcolor" style="color: #000000">2</span
+                    >}{<span class="textcolor" style="color: #000000">2</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxyz"
+                        >\pgfpointxyz</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2</span
+                    >}{<span class="textcolor" style="color: #000000">-5</span
+                    >}{<span class="textcolor" style="color: #000000">2</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamend"
+                        >\pgfplotstreamend</a
+                      ></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            Currently, there is no command that can decide automatically whether
+            the \(xy\)-coordinate system should be used or whether the
+            \(xyz\)-system should be used. However, it would not be terribly
+            difficult to write a &ldquo;smart file reader&rdquo; that parses
+            coordinate files a bit more intelligently.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotfunction"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotfunction</kbd></span
+                      >{<span class="angle">&langle;</span><i>variable</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>sample list</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>point</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotfunction"
+                      href="#\pgfplotfunction"
+                      id="\pgfplotfunction"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will produce coordinates by iterating the
+                <span class="angle">&langle;</span><i>variable</i
+                ><span class="angle">&rangle;</span> over all values in
+                <span class="angle">&langle;</span><i>sample list</i
+                ><span class="angle">&rangle;</span>, which should be a list in
+                the <span class="verb">\foreach</span> syntax. For each value of
+                <span class="angle">&langle;</span><i>variable</i
+                ><span class="angle">&rangle;</span>, the
+                <span class="angle">&langle;</span><i>point</i
+                ><span class="angle">&rangle;</span> is evaluated and the
+                resulting coordinate is inserted into the plot stream.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3349"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="119.714"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3349.png"
+                        style
+                        width="146.841"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3.8cm/360</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerlineto"
+                        >\pgfplothandlerlineto</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotfunction"
+                        >\pgfplotfunction</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/x">\x</a></span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >,<span class="textcolor" style="color: #000000">5</span
+                    >,...,<span class="textcolor" style="color: #000000"
+                      >360</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxy"
+                        >\pgfpointxy</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/x">\x</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.sin">sin</a></span
+                    ><span class="textcolor" style="color: #800080">(\x)</span
+                    ><span class="textcolor" style="color: #000000">+sin</span
+                    ><span class="textcolor" style="color: #800080">(3*\x)</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3350"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="120.266"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3350.png"
+                        style
+                        width="84.268"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.y">y</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >3cm/360</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerlineto"
+                        >\pgfplothandlerlineto</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotfunction"
+                        >\pgfplotfunction</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/y">\y</a></span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >,<span class="textcolor" style="color: #000000">5</span
+                    >,...,<span class="textcolor" style="color: #000000"
+                      >360</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointxyz"
+                        >\pgfpointxyz</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.sin">sin</a></span
+                    ><span class="textcolor" style="color: #800080">(2*\y)</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/y">\y</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.cos">cos</a></span
+                    ><span class="textcolor" style="color: #800080">(2*\y)</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Be warned that if the expressions that need to evaluated for
+                each point are complex, then this command can be very slow.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplotgnuplot"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplotgnuplot</kbd></span
+                      >[<span class="angle">&langle;</span><i>prefix</i
+                      ><span class="angle">&rangle;</span>]{<span class="angle"
+                        >&langle;</span
+                      ><i>function</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplotgnuplot"
+                      href="#\pgfplotgnuplot"
+                      id="\pgfplotgnuplot"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will &ldquo;try&rdquo; to call the
+                <span class="textsc">gnuplot</span> program to generate the
+                coordinates of the <span class="angle">&langle;</span
+                ><i>function</i><span class="angle">&rangle;</span>. In detail,
+                the following happens:
+              </p>
+              <p>
+                This command works with two files:
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.gnuplot</span> and
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.table</span>. If the optional argument
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span> is not given, it is set to
+                <span class="verb">\jobname</span>.
+              </p>
+              <p>
+                Let us start with the situation where none of these files
+                exists. Then <span class="textsc">pgf</span> will first generate
+                the file <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.gnuplot</span>. In this file it writes
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.set">set</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-formats#pgf.table">table</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">"#1</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >table"</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.set">set</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">"</span
+                    ><span class="example-code-comment">%.5f"</span><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                where <span class="verb">#1</span> is replaced by
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span>. Then, in a second line, it
+                writes the text <span class="angle">&langle;</span
+                ><i>function</i><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                Next, <span class="textsc">pgf</span> will try to invoke the
+                program <span class="verb">gnuplot</span> with the argument
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.gnuplot</span>. This call may or may not
+                succeed, depending on whether the
+                <span class="verb">\write18</span> mechanism (also known as
+                shell escape) is switched on and whether the
+                <span class="verb">gnuplot</span>
+                program is available.
+              </p>
+              <p>
+                Assuming that the call succeeded, the next step is to invoke
+                <span class="verb">\pgfplotxyfile</span> on the file
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.table</span>; which is exactly the file
+                that has just been created by <span class="verb">gnuplot</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3351"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="118.202"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3351.png"
+                        style
+                        width="154.130"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(4,1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerlineto"
+                        >\pgfplothandlerlineto</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotgnuplot"
+                        >\pgfplotgnuplot</a
+                      ></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >plots/pgfplotgnuplot-example</span
+                    >]{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-plots#pgf.plot">plot</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.x">x</a></span
+                    >=<span class="textcolor" style="color: #008000">0:3.5</span
+                    >] <span class="textcolor" style="color: #000000"
+                      >x*sin</span
+                    ><span class="textcolor" style="color: #800080">(x)</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The more difficult situation arises when the
+                <span class="verb">.gnuplot</span> file exists, which will be
+                the case on the second run of
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                on the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                file. In this case <span class="textsc">pgf</span> will read
+                this file and check whether it contains exactly what
+                <span class="textsc">pgf</span> &ldquo;would have written&rdquo;
+                into this file. If this is not the case, the file contents is
+                overwritten with what &ldquo;should be there&rdquo; and, as
+                above, <span class="verb">gnuplot</span> is invoked to generate
+                a new <span class="verb">.table</span> file. However, if the
+                file contents is &ldquo;as expected&rdquo;, the external
+                <span class="verb">gnuplot</span> program is
+                <em>not</em> called. Instead, the
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span
+                ><span class="verb">.table</span> file is immediately read.
+              </p>
+              <p>
+                As explained in Section&nbsp;<a
+                  href="tikz-plots#section-tikz-gnuplot"
+                  >22.6</a
+                >, the net effect of the above mechanism is that
+                <span class="verb">gnuplot</span> is called as seldom as
+                possible and that when you pass along the
+                <span class="verb">.gnuplot</span> and
+                <span class="verb">.table</span> files with your
+                <span class="verb">.tex</span> file to someone else, that person
+                can
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                the <span class="verb">.tex</span> file without having
+                <span class="verb">gnuplot</span> installed and without having
+                the <span class="verb">\write18</span> mechanism switched on.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/plot/gnuplot:call"></a
+                        ><a id="pgf.gnuplot:call"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/plot/gnuplot call</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span
+                          ><i>gnuplot invocation</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>gnuplot</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/plot/gnuplot:call"
+                          href="#pgf/plot/gnuplot:call"
+                          id="pgf/plot/gnuplot:call"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key can be used to change the way gnuplot is called.
+                  </p>
+                  <p>
+                    Some portable MiK<span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    distribution needs something like the following.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="pgfkeys#pgf.back/pgfkeys">\pgfkeys</a></span
+                        >{<span class="textcolor" style="color: #000000"
+                          ><span class="textcolor" style="color: #008000"
+                            ><a href="base-plots#pgf./pgf/plot/gnuplot:call"
+                              >/pgf/plot/gnuplot call</a
+                            ></span
+                          >=<span class="textcolor" style="color: #008000"
+                            >"/Programs/gnuplot/binary/gnuplot"</span
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p></p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+          <h5 id="autosec-8376">
+            <a id="section-plot-handlers"></a
+            ><span
+              ><span class="sectionnumber" id="sec-112.3">112.3</span> Plot
+              Handlers</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-112.3"
+              data-pdf-destination="subsection.112.3"
+              data-pdf-page="1189"
+              href="#sec-112.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8376"></a>
+
+          <p>
+            A <em>plot handler</em> determines what &ldquo;should be done&rdquo;
+            with a plot stream. You must set the plot handler before the stream
+            starts. The following commands install the most basic plot handlers;
+            more plot handlers are defined in the file
+            <span class="verb">pgflibraryplothandlers</span>, which is
+            documented in Section&nbsp;<a
+              href="library-plot-handlers#section-library-plothandlers"
+              >65</a
+            >.
+          </p>
+
+          <p>
+            All plot handlers work by setting or redefining the following three
+            macros: <span class="verb">\pgf@plotstreamstart</span>,
+            <span class="verb">\pgf@plotstreampoint</span>, and
+            <span class="verb">\pgf@plotstreamend</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplothandlerlineto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplothandlerlineto</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplothandlerlineto"
+                      href="#\pgfplothandlerlineto"
+                      id="\pgfplothandlerlineto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This handler will issue a
+                <span class="verb">\pgfpathlineto</span> command for each point
+                of the plot, <em>except</em> possibly for the first. What
+                happens with the first point can be specified using the two
+                commands described below.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3352"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.746"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3352.png"
+                        style
+                        width="79.106"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerlineto"
+                        >\pgfplothandlerlineto</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                        >\pgfplotstreamstart</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">3cm</span
+                    >}{<span class="textcolor" style="color: #000000">2cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">2cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamend"
+                        >\pgfplotstreamend</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetmovetofirstplotpoint"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetmovetofirstplotpoint</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetmovetofirstplotpoint"
+                      href="#\pgfsetmovetofirstplotpoint"
+                      id="\pgfsetmovetofirstplotpoint"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Specifies that the line-to plot handler (and also some other
+                plot handlers) should issue a move-to command for the first
+                point of the plot instead of a line-to. This will start a new
+                part of the current path, which is not always, but often,
+                desirable. This is the default.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetlinetofirstplotpoint"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetlinetofirstplotpoint</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetlinetofirstplotpoint"
+                      href="#\pgfsetlinetofirstplotpoint"
+                      id="\pgfsetlinetofirstplotpoint"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Specifies that plot handlers should issue a line-to command for
+                the first point of the plot.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3353"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.818"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3353.png"
+                        style
+                        width="116.725"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfsetlinetofirstplotpoint"
+                        >\pgfsetlinetofirstplotpoint</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerlineto"
+                        >\pgfplothandlerlineto</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                        >\pgfplotstreamstart</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">3cm</span
+                    >}{<span class="textcolor" style="color: #000000">2cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">2cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamend"
+                        >\pgfplotstreamend</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplothandlerpolygon"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplothandlerpolygon</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplothandlerpolygon"
+                      href="#\pgfplothandlerpolygon"
+                      id="\pgfplothandlerpolygon"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This handler works like the line-to plot handler, only the line
+                is closed at the end using
+                <span class="verb">\pgfpathclose</span>, resulting in a polygon.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplothandlerdiscard"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplothandlerdiscard</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplothandlerdiscard"
+                      href="#\pgfplothandlerdiscard"
+                      id="\pgfplothandlerdiscard"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>This handler will simply throw away the stream.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfplothandlerrecord"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfplothandlerrecord</kbd></span
+                      >{<span class="angle">&langle;</span><i>macro</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfplothandlerrecord"
+                      href="#\pgfplothandlerrecord"
+                      id="\pgfplothandlerrecord"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                When this handler is installed, each time a plot stream command
+                is called, this command will be appended to
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span>. Thus, at the end of the
+                stream, <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> will contain all the
+                commands that were issued on the stream. You can then install
+                another handler and invoke <span class="angle">&langle;</span
+                ><i>macro</i><span class="angle">&rangle;</span> to
+                &ldquo;replay&rdquo; the stream (possibly many times).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3354"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="79.802"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3354.svg"
+                        style
+                        width="85.730"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerrecord"
+                        >\pgfplothandlerrecord</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\mystream</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                        >\pgfplotstreamstart</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">3cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                        >\pgfplotstreampoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">2cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamend"
+                        >\pgfplotstreamend</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplothandlerlineto"
+                        >\pgfplothandlerlineto</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\mystream</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="library-plot-handlers#pgf.back/pgfplothandlerclosedcurve"
+                        >\pgfplothandlerclosedcurve</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\mystream</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-8383">
+            <span
+              ><span class="sectionnumber" id="sec-112.4">112.4</span> Defining
+              New Plot Handlers</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-112.4"
+              data-pdf-destination="subsection.112.4"
+              data-pdf-page="1190"
+              href="#sec-112.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8383"></a>
+
+          <p>You can define new plot handlers using the following command:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfdeclareplothandler"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfdeclareplothandler</kbd></span
+                      >{<span class="angle">&langle;</span><i>macro</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>arguments</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>configuration</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfdeclareplothandler"
+                      href="#\pgfdeclareplothandler"
+                      id="\pgfdeclareplothandler"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command creates a new plot handler that can subsequently be
+                called using the macro <span class="angle">&langle;</span
+                ><i>macro</i><span class="angle">&rangle;</span>. This macro
+                take the arguments given in <span class="angle">&langle;</span
+                ><i>arguments</i><span class="angle">&rangle;</span>, which can
+                be a list like <span class="verb">#1#2</span> if
+                <span class="angle">&langle;</span><i>macro</i
+                ><span class="angle">&rangle;</span> should be invoked with two
+                arguments. Here is a typical example:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfdeclareplothandler"
+                        >\pgfdeclareplothandler</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\myhandler</span
+                    >}{<span class="textcolor" style="color: #000000">#1</span
+                    >}{...}<br />
+                    ...<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\myhandler</span
+                    >{<span class="textcolor" style="color: #000000">foo</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                        >\pgfplotstreamstart</a
+                      ></span
+                    ><br />
+                    ...<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-plots#pgf.back/pgfplotstreamend"
+                        >\pgfplotstreamend</a
+                      ></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The <span class="angle">&langle;</span><i>configuration</i
+                ><span class="angle">&rangle;</span> is used to define the
+                behavior of the handler. It is a list of key&ndash;value pairs,
+                where the following keys are allowed:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">start=</span
+                    ><span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>. The
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> will be executed
+                    whenever <span class="verb">\pgfplotstreamstart</span> is
+                    used while the handler <span class="angle">&langle;</span
+                    ><i>macro</i><span class="angle">&rangle;</span> is
+                    selected. Inside the <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span>, you can use
+                    <span class="verb">#1</span>, <span class="verb">#2</span>,
+                    and so on to refer to the parameters that were given to
+                    <span class="angle">&langle;</span><i>macro</i
+                    ><span class="angle">&rangle;</span>:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>Hi foo.Bye foo.Hi bar.Bye bar.</p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfdeclareplothandler"
+                            >\pgfdeclareplothandler</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\myhandler</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >#1</span
+                        >}{<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >start</span
+                        >
+                        <span class="textcolor" style="color: #000000">=</span>
+                        <span class="textcolor" style="color: #000000">Hi</span>
+                        <span class="textcolor" style="color: #000000">#1</span
+                        >.,<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="base-animations#pgf.end">end</a></span
+                        >
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >=</span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          >Bye</span
+                        >
+                        <span class="textcolor" style="color: #000000">#1</span
+                        >.,<br />
+                        }<br />
+                        <span class="textcolor" style="color: #0000b2"
+                          >\myhandler</span
+                        >{<span class="textcolor" style="color: #000000"
+                          >foo</span
+                        >}<br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                            >\pgfplotstreamstart</a
+                          ></span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamend"
+                            >\pgfplotstreamend</a
+                          ></span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          >\myhandler</span
+                        >{<span class="textcolor" style="color: #000000"
+                          >bar</span
+                        >}<br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                            >\pgfplotstreamstart</a
+                          ></span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamend"
+                            >\pgfplotstreamend</a
+                          ></span
+                        ><br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">end=</span
+                    ><span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> Works just like
+                    <span class="verb">start</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">point=</span
+                    ><span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>. The
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> will be executed
+                    whenever <span class="verb">\pgfplotstreampoint</span> is
+                    used while the handler <span class="angle">&langle;</span
+                    ><i>macro</i><span class="angle">&rangle;</span> is in
+                    force. Inside the <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span>, you can use
+                    <span class="verb">#1</span>, <span class="verb">#2</span>,
+                    and so on to refer to the arguments give to
+                    <span class="angle">&langle;</span><i>macro</i
+                    ><span class="angle">&rangle;</span>, while you can use
+                    <span class="verb">##1</span> to refer to the argument given
+                    to <span class="verb">\pgfplotstreampoint</span> itself
+                    (this will be the coordinate).
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-3355"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="12.531"
+                            loading="lazy"
+                            src="pgfmanual-images/image-3355.png"
+                            style
+                            width="23.151"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfdeclareplothandler"
+                            >\pgfdeclareplothandler</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          >\myhandler</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >#1</span
+                        >}{<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >point=</span
+                        ><span class="textcolor" style="color: #0000b2"
+                          ><a href="base-paths#pgf.back/pgfpathcircle"
+                            >\pgfpathcircle</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >##1</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >#1</span
+                        >} <span class="example-code-comment"
+                          >% ##1 is the coordinate,</span
+                        ><br />
+                        <span class="spaces">                              </span><span class="spaces">  </span><span
+                          class="example-code-comment"
+                          >% #1 the parameter for \myhandler</span
+                        ><br />
+                        }<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\myhandler</span
+                        >{<span class="textcolor" style="color: #000000"
+                          >1pt</span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                            >\pgfplotstreamstart</a
+                          ></span
+                        ><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                            >\pgfplotstreampoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >0pt</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0pt</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                            >\pgfplotstreampoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >3pt</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >3pt</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                            >\pgfplotstreampoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >6pt</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >3pt</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                            >\pgfplotstreampoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >9pt</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0pt</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamend"
+                            >\pgfplotstreamend</a
+                          ></span
+                        ><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-actions#pgf.back/pgfusepath"
+                            >\pgfusepath</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >stroke</span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          >\myhandler</span
+                        >{<span class="textcolor" style="color: #000000"
+                          >3pt</span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamstart"
+                            >\pgfplotstreamstart</a
+                          ></span
+                        ><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                            >\pgfplotstreampoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >0pt</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0pt</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreampoint"
+                            >\pgfplotstreampoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-points#pgf.back/pgfpoint"
+                            >\pgfpoint</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >9pt</span
+                        >}{<span class="textcolor" style="color: #000000"
+                          >0pt</span
+                        >}}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-plots#pgf.back/pgfplotstreamend"
+                            >\pgfplotstreamend</a
+                          ></span
+                        ><br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="base-actions#pgf.back/pgfusepath"
+                            >\pgfusepath</a
+                          ></span
+                        >{<span class="textcolor" style="color: #000000"
+                          >stroke</span
+                        >}<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="base-scopes#pgf.pgfpicture"
+                            >pgfpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    The <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> will also be called for
+                    <span class="verb">\pgfplotstreampointoutlier</span> when
+                    this command has been configured to
+                    <span class="verb">plot</span>
+                    the outliers.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">jump=</span
+                    ><span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> The
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> will be called whenever
+                    a jump has been requested indirectly via an outlier point,
+                    and undefined point, or a new data set (for each of which
+                    the command needs to be configured to
+                    <span class="verb">jump</span>). As always, inside the
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> you can access
+                    <span class="verb">#1</span> and so on.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">special=</span
+                    ><span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> Causes
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> to be executed whenever
+                    <span class="verb">\pgfplotstreamspecial</span>{<span
+                      class="angle"
+                      >&langle;</span
+                    ><i>something</i><span class="angle">&rangle;</span>} is
+                    used. Inside the <span class="angle">&langle;</span
+                    ><i>code</i><span class="angle">&rangle;</span>, you can
+                    access <span class="angle">&langle;</span><i>something</i
+                    ><span class="angle">&rangle;</span> via
+                    <span class="verb">##1</span> and the parameters of
+                    <span class="angle">&langle;</span><i>macro</i
+                    ><span class="angle">&rangle;</span> as
+                    <span class="verb">#1</span>, <span class="verb">#2</span>,
+                    and so on.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                In addition to the above keys, there exist also &ldquo;code
+                macro versions&rdquo; of them:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">point macro=</span
+                    ><span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span>. Causes
+                    <span class="verb">\pgfplotstreampoint</span> to call
+                    <span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span> directly (actually,
+                    <span class="verb">\pgf@plotstreampoint</span> is set to be
+                    equal to <span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span>). Inside the
+                    <span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span> you can use
+                    <span class="verb">#1</span> to access the coordinate passed
+                    to <span class="verb">\pgfplotstreampoint</span> and you can
+                    no longer access the parameters passed to the original call
+                    to <span class="angle">&langle;</span><i>macro</i
+                    ><span class="angle">&rangle;</span> that installed the
+                    handler. So, <span class="angle">&langle;</span
+                    ><i>some macro</i><span class="angle">&rangle;</span> must
+                    take exactly one argument, namely
+                    <span class="verb">#1</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">special macro=</span
+                    ><span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span>. As
+                    <span class="verb">point macro</span>, only for specials.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">start macro=</span
+                    ><span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span>. Causes
+                    <span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span> to be executed at the
+                    start. This macro, like the below ones, may not take any
+                    parameters and will not have access to the parameters passed
+                    to the original <span class="angle">&langle;</span
+                    ><i>macro</i><span class="angle">&rangle;</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">end macro=</span
+                    ><span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span>. As above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">jump macro=</span
+                    ><span class="angle">&langle;</span><i>some macro</i
+                    ><span class="angle">&rangle;</span>. As above.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2174 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Date and Calendar Utility Macros - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Utilities",
+            "item": "https://tikz.dev/utilities"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Date and Calendar Utility Macros",
+            "item": "https://tikz.dev/pgfcalendar"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/pgfcalendar" rel="canonical" />
+    <meta content="https://tikz.dev/pgfcalendar" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Date and Calendar Utility Macros - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7613"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-89.1">Handling Dates</a></p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-89.1.1"
+                >Conversions Between Date Types</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-89.1.2">Checking Dates</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-89.1.3"
+                >Typesetting Dates</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-89.1.4">Localization</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-89.2"
+                >Typesetting Calendars</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfkeys">Key Management</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgffor"
+                >Repeating Things: The Foreach Statement</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="pgfcalendar"
+                >Date and Calendar Utility Macros</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pages">Page Management</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="xxcolor">Extended Color Support</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="module-parser">Parser Module</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Utilities</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7614">
+            <a id="section-calendar"></a
+            ><span
+              ><span class="sectionnumber" id="sec-89">89</span> Date and
+              Calendar Utility Macros</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.89"
+              data-pdf-page="1008"
+              href="#sec-89"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7614"></a>
+          <a id="pgfmanual-autofile-96"></a>
+
+          <p>
+            This section describes the package
+            <span class="verb">pgfcalendar</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.pgfcalendar"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usepackage{<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pgfcalendar</span
+                        >} %
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >L<span class="latexlogosup">a</span>T<span
+                              class="latexlogosub"
+                              >e</span
+                            >X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.pgfcalendar"
+                      href="#pgf.pgfcalendar"
+                      id="pgf.pgfcalendar"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\input
+                        <span class="textcolor" style="color: #bf0000"
+                          >pgfcalendar</span
+                        >.tex % plain
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\usemodule[<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pgfcalendar</span
+                        >] % Con<span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >t</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This package can be used independently of
+                <span class="textsc">pgf</span>. It has two purposes:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> It provides functions for
+                    working with dates. Most noticeably, it can convert a date
+                    in ISO-standard format (like 1975-12-26) to a so-called
+                    Julian day number, which is defined in Wikipedia as follows:
+                    &ldquo;The Julian day or Julian day number is the (integer)
+                    number of days that have elapsed since the initial epoch at
+                    noon Universal Time (UT) Monday, January 1, 4713 BC in the
+                    proleptic Julian calendar&rdquo;. The package also provides
+                    a function for converting a Julian day number to an
+                    ISO-format date.
+                  </p>
+                  <p>
+                    Julian day numbers make it very easy to work with days. For
+                    example, the date ten days in the future of 2008-02-20 can
+                    be computed by converting this date to a Julian day number,
+                    adding 10, and then converting it back. Also, the day of
+                    week of a given date can be computed by taking the Julian
+                    day number modulo&nbsp;7.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> It provides a macro for
+                    typesetting a calendar. This macro is highly configurable
+                    and flexible (for example, it can produce both plain text
+                    calendars and also complicated
+                    <span class="tikzname">TikZ</span>-based calendars), but
+                    most users will not use the macro directly. It is the job of
+                    a frontend to provide useful configurations for typesetting
+                    calendars based on this command.
+                  </p>
+                </li>
+              </ul>
+            </ul>
+          </div>
+          <h5 id="autosec-7616">
+            <span
+              ><span class="sectionnumber" id="sec-89.1">89.1</span> Handling
+              Dates</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-89.1"
+              data-pdf-destination="subsection.89.1"
+              data-pdf-page="1008"
+              href="#sec-89.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7616"></a>
+          <h6 id="autosec-7617">
+            <span
+              ><span class="sectionnumber" id="sec-89.1.1">89.1.1</span>
+              Conversions Between Date Types</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-89.1.1"
+              data-pdf-destination="subsubsection.89.1.1"
+              data-pdf-page="1008"
+              href="#sec-89.1.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-7617"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendardatetojulian"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendardatetojulian</kbd></span
+                      >{<span class="angle">&langle;</span><i>date</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>counter</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendardatetojulian"
+                      href="#\pgfcalendardatetojulian"
+                      id="\pgfcalendardatetojulian"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro converts a date in a format to be described in a
+                moment to the Julian day number in the Gregorian calendar. The
+                <span class="angle">&langle;</span><i>date</i
+                ><span class="angle">&rangle;</span> should expand to a string
+                of the following form:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <a id="calendar-date-format"></a>
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> It should start with a
+                    number representing the year. Use
+                    <span class="verb">\year</span> for the current year, that
+                    is, the year the file is being typeset.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> The year must be followed
+                    by a hyphen.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Next should come a number
+                    representing the month. Use
+                    <span class="verb">\month</span> for the current month. You
+                    can, but need not, use leading zeros. For example,
+                    <span class="verb">02</span> represents February, just like
+                    <span class="verb">2</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> The month must also be
+                    followed by a hyphen.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> Next you must either
+                    provide a day of month (again, a number and, again,
+                    <span class="verb">\day</span> yields the current day of
+                    month) or the keyword <span class="verb">last</span>. This
+                    keyword refers to the last day of the month, which is
+                    automatically computed (and which is a bit tricky to
+                    compute, especially for February).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">6.</span> Optionally, you can next
+                    provide a plus sign followed by positive or negative number.
+                    This number of days will be added to the computed date.
+                  </p>
+                </li>
+              </ul>
+              <p>Here are some examples:</p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">2006-01-01</span> refers to the first day
+                    of 2006.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">2006-02-last</span> refers to February
+                    28, 2006.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\year-\month-\day</span> refers to today.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">2006-01-01+2</span> refers to January 3,
+                    2006.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\year-\month-\day+1</span> refers to
+                    tomorrow.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\year-\month-\day+-1</span> refers to
+                    yesterday.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The conversion method is taken from the English Wikipedia entry
+                on Julian days.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb"
+                  >\pgfcalendardatetojulian{2007-01-14}{\mycount}</span
+                >
+                sets <span class="verb">\mycount</span> to 2454115.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarjuliantodate"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarjuliantodate</kbd></span
+                      >{<span class="angle">&langle;</span><i>Julian day</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>year macro</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>month macro</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>day macro</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarjuliantodate"
+                      href="#\pgfcalendarjuliantodate"
+                      id="\pgfcalendarjuliantodate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command converts a Julian day number to an ISO-date. The
+                <span class="angle">&langle;</span><i>Julian day</i
+                ><span class="angle">&rangle;</span> must be a number or
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                counter, the <span class="angle">&langle;</span><i>year macro</i
+                ><span class="angle">&rangle;</span>,
+                <span class="angle">&langle;</span><i>month macro</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>day macro</i
+                ><span class="angle">&rangle;</span> must be
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                macro names. They will be set to numbers representing the year,
+                month, and day of the given Julian day in the Gregorian
+                calendar.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>year macro</i
+                ><span class="angle">&rangle;</span> will be assigned the year
+                without leading zeros. Note that this macro will produce year 0
+                (as opposed to other calendars, where year 0 does not exist).
+                However, if you really need calendars for before the year 1, it
+                is expected that you know what you are doing anyway.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>month macro</i
+                ><span class="angle">&rangle;</span> gets assigned a two-digit
+                number representing the month (with a leading zero, if
+                necessary). Thus, the macro is set to
+                <span class="verb">01</span> for January.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>day macro</i
+                ><span class="angle">&rangle;</span> gets assigned a two-digit
+                number representing the day of the month (again, possibly with a
+                leading zero).
+              </p>
+              <p>
+                To convert a Julian day number to an ISO-date you use code like
+                the following:
+              </p>
+              <pre class="verbatim">
+\pgfcalendarjuliantodate{2454115}{\myyear}{\mymonth}{\myday}
+\edef\isodate{\myyear-\mymonth-\myday}
+
+</pre
+              >
+              <p>
+                The above code sets <span class="verb">\isodate</span> to
+                <kbd>2007-01-14</kbd>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarjuliantoweekday"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarjuliantoweekday</kbd></span
+                      >{<span class="angle">&langle;</span><i>Julian day</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>week day counter</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarjuliantoweekday"
+                      href="#\pgfcalendarjuliantoweekday"
+                      id="\pgfcalendarjuliantoweekday"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command converts a Julian day to a week day by computing
+                the day modulo 7. The <span class="angle">&langle;</span
+                ><i>week day counter</i><span class="angle">&rangle;</span> must
+                be a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                counter. It will be set to 0 for a Monday, to 1 for a Tuesday,
+                and so on.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb"
+                  >\pgfcalendarjuliantoweekday{2454115}{\mycount}</span
+                >
+                sets <span class="verb">\mycount</span> to 6 (it was a Sunday).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendareastersunday"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendareastersunday</kbd></span
+                      >{<span class="angle">&langle;</span><i>year</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>counter</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendareastersunday"
+                      href="#\pgfcalendareastersunday"
+                      id="\pgfcalendareastersunday"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command computes the date of Easter Sunday as a Julian date
+                and stores it in <span class="angle">&langle;</span
+                ><i>counter</i><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb"
+                  >\pgfcalendareastersunday{2019}{\mycount}</span
+                >
+                sets <span class="verb">\mycount</span> to 2458595, which
+                corresponds to <kbd>2019-04-21</kbd>.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-7619">
+            <span
+              ><span class="sectionnumber" id="sec-89.1.2">89.1.2</span>
+              Checking Dates</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-89.1.2"
+              data-pdf-destination="subsubsection.89.1.2"
+              data-pdf-page="1009"
+              href="#sec-89.1.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-7619"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarifdate"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarifdate</kbd></span
+                      >{<span class="angle">&langle;</span><i>date</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>tests</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>code</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>else code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarifdate"
+                      href="#\pgfcalendarifdate"
+                      id="\pgfcalendarifdate"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <a id="pgfcalendarifdate"></a>
+              <p>
+                This command is used to execute code based on properties of
+                <span class="angle">&langle;</span><i>date</i
+                ><span class="angle">&rangle;</span>. The
+                <span class="angle">&langle;</span><i>date</i
+                ><span class="angle">&rangle;</span> must be a date in
+                ISO-format. For this date, the
+                <span class="angle">&langle;</span><i>tests</i
+                ><span class="angle">&rangle;</span> are checked (to be detailed
+                later) and if one of the tests succeeds, the
+                <span class="angle">&langle;</span><i>code</i
+                ><span class="angle">&rangle;</span> is executed. If none of the
+                tests succeeds, the <span class="angle">&langle;</span
+                ><i>else code</i><span class="angle">&rangle;</span> is
+                executed.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb"
+                  >\pgfcalendarifdate{2007-02-07}{Wednesday}{Is a Wednesday}{Is
+                  not a Wednesday}</span
+                >
+                yields <kbd>Is a Wednesday</kbd>.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>tests</i
+                ><span class="angle">&rangle;</span> is a comma-separated list
+                of key&ndash;value pairs. The following are defined by default:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>all</kbd></span
+                    >
+                    This test is passed by all dates.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Monday</kbd></span
+                    >
+                    This test is passed by all dates that are Mondays.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Tuesday</kbd></span
+                    >
+                    as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Wednesday</kbd></span
+                    >
+                    as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Thursday</kbd></span
+                    >
+                    as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Friday</kbd></span
+                    >
+                    as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Saturday</kbd></span
+                    >
+                    as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Sunday</kbd></span
+                    >
+                    as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>workday</kbd></span
+                    >
+                    Passed by Mondays, Tuesdays, Wednesdays, Thursdays, and
+                    Fridays.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>weekend</kbd></span
+                    >
+                    Passed by Saturdays and Sundays.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>equals</kbd></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span> The
+                    <span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span> can be in one of two
+                    forms: Either, it is a full ISO format date like
+                    <span class="verb">2007-01-01</span> or the year may be
+                    missing as in <span class="verb">12-31</span>. In the first
+                    case, the test is passed if
+                    <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> is the same as
+                    <span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span>. In the second case,
+                    the test is passed if the month and day part of
+                    <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> is the same as
+                    <span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                  <p>
+                    For example, the test
+                    <span class="verb">equals=2007-01-10</span> will only be
+                    passed by this particular date. The test
+                    <span class="verb">equals=05-01</span> will be passed by
+                    every first of May on any year.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>at least</kbd></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span> This test works
+                    similarly to the <span class="verb">equals</span> test, only
+                    it is checked whether <span class="angle">&langle;</span
+                    ><i>date</i><span class="angle">&rangle;</span> is equal to
+                    <span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span> or to any later date.
+                    Again, the <span class="angle">&langle;</span
+                    ><i>reference</i><span class="angle">&rangle;</span> can be
+                    a full date like <span class="verb">2007-01-01</span> or a
+                    short version like <span class="verb">07-01</span>. For
+                    example, <span class="verb">at least=07-01</span> is true
+                    for every day in the second half of any year.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>at most</kbd></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>reference</i
+                    ><span class="angle">&rangle;</span> as above.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>between</kbd></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>start reference</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb"> and </span
+                    ><span class="angle">&langle;</span><i>end reference</i
+                    ><span class="angle">&rangle;</span> This test checks
+                    whether the current date lies between the two given
+                    reference dates. Both full and short version may be given.
+                  </p>
+                  <p>
+                    For example
+                    <span class="verb">between=2007-01-01 and 2007-02-28</span>
+                    is true for the days in January and February of 2007.
+                  </p>
+                  <p>
+                    For another example,
+                    <span class="verb">between=05-01 and 05-07</span> is true
+                    for the days of the first week of May of any year.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>day of month</kbd></span
+                    ><span class="verb">=</span
+                    ><span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span> Passed by the day of
+                    month of the <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> that is
+                    <span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span>. For example, the test
+                    <span class="verb">day of month=1</span> is passed by every
+                    first of every month.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>end of month</kbd></span
+                    ><span class="textcolor" style="color: #008000"
+                      ><span class="verb">=</span
+                      ><span class="angle">&langle;</span><i>number</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    Passed by the day of month of the
+                    <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> that is
+                    <span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span> from the end of the
+                    month. For example, the test
+                    <span class="verb">end of month=1</span> is passed by the
+                    last day of every month, the test
+                    <span class="verb">end of month=2</span> is passed by the
+                    second last day of every month. If
+                    <span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span> is omitted, it is
+                    assumed to be <span class="verb">1</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>Easter</kbd></span
+                    ><span class="textcolor" style="color: #008000"
+                      ><span class="verb">=</span
+                      ><span class="angle">&langle;</span><i>number</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    This test checks whether the given date is Easter Sunday.
+                    The optional number can be used for offsets from Easter
+                    Sunday, e.g. <span class="verb">Easter=-3</span> for Maundy
+                    Thursday, <span class="verb">Easter=-2</span> for Good
+                    Friday, <span class="verb">Easter=1</span> for Easter
+                    Monday. Since the dates of other Christian holidays are
+                    determined by the date of Easter, these can be accessed as
+                    well, e.g. <span class="verb">Easter=39</span> for Feast of
+                    the Ascension, <span class="verb">Easter=49</span> for
+                    Pentecost, and <span class="verb">Easter=50</span> for Whit
+                    Monday.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                In addition to the above checks, you can also define new checks.
+                To do so, you must add a new key to the path
+                <span class="verb">/pgf/calendar/</span> using the
+                <span class="verb">\pgfkeys</span> command. The job of the code
+                of this new key is to possibly set the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-if <span class="verb">\ifpgfcalendarmatches</span> to true (if
+                it is already true, no action should be taken) to indicate that
+                the <span class="angle">&langle;</span><i>date</i
+                ><span class="angle">&rangle;</span> passes the test setup by
+                this new key.
+              </p>
+              <p>
+                In order to perform the test, the key code needs to know the
+                date that should be checked. The date is available through a
+                macro, but a whole bunch of additional information about this
+                date is also available through the following macros:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarifdatejulian</span> is the
+                    Julian day number of the <span class="angle">&langle;</span
+                    ><i>date</i><span class="angle">&rangle;</span> to be
+                    checked.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarifdateweekday</span> is the
+                    weekday of the <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> to be checked.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarifdateyear</span> is the year
+                    of the <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> to be checked.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarifdatemonth</span> is the
+                    month of the <span class="angle">&langle;</span><i>date</i
+                    ><span class="angle">&rangle;</span> to be checked.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarifdateday</span> is the day
+                    of month of the <span class="angle">&langle;</span
+                    ><i>date</i><span class="angle">&rangle;</span> to be
+                    checked.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                For example, let us define a new key that checks whether the
+                <span class="angle">&langle;</span><i>date</i
+                ><span class="angle">&rangle;</span> is a Workers day (May 1st).
+                This can be done as follows:
+              </p>
+              <pre class="verbatim">
+\pgfkeys{/pgf/calendar/workers day/.code=%
+{
+  \ifnum\pgfcalendarifdatemonth=5\relax
+    \ifnum\pgfcalendarifdateday=1\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+}}
+
+</pre
+              >
+            </ul>
+          </div>
+          <h6 id="autosec-7621">
+            <span
+              ><span class="sectionnumber" id="sec-89.1.3">89.1.3</span>
+              Typesetting Dates</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-89.1.3"
+              data-pdf-destination="subsubsection.89.1.3"
+              data-pdf-page="1010"
+              href="#sec-89.1.3"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-7621"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarweekdayname"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarweekdayname</kbd></span
+                      >{<span class="angle">&langle;</span><i>week day number</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarweekdayname"
+                      href="#\pgfcalendarweekdayname"
+                      id="\pgfcalendarweekdayname"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command expands to a textual representation of the day of
+                week, given by the <span class="angle">&langle;</span
+                ><i>week day number</i><span class="angle">&rangle;</span>.
+                Thus,
+                <span class="verb">\pgfcalendarweekdayname{0}</span> expands to
+                <span class="verb">Monday</span> if the current language is
+                English and to <span class="verb">Montag</span> if the current
+                language is German, and so on. See Section&nbsp;<a
+                  href="pgfcalendar#section-calendar-locale"
+                  >89.1.4</a
+                >
+                for more details on translations.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb">\pgfcalendarweekdayname{2}</span> yields
+                <kbd>Wednesday</kbd>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarweekdayshortname"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarweekdayshortname</kbd></span
+                      >{<span class="angle">&langle;</span><i>week day number</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarweekdayshortname"
+                      href="#\pgfcalendarweekdayshortname"
+                      id="\pgfcalendarweekdayshortname"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works similarly to the previous command, only an
+                abbreviated version of the week day is produced.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb">\pgfcalendarweekdayshortname{2}</span>
+                yields <kbd>Wed</kbd>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarmonthname"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarmonthname</kbd></span
+                      >{<span class="angle">&langle;</span><i>month number</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarmonthname"
+                      href="#\pgfcalendarmonthname"
+                      id="\pgfcalendarmonthname"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command expands to a textual representation of the month,
+                which is given by the <span class="angle">&langle;</span
+                ><i>month number</i><span class="angle">&rangle;</span>.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="verb">\pgfcalendarmonthname{12}</span> yields
+                <kbd>December</kbd>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarmonthshortname"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarmonthshortname</kbd></span
+                      >{<span class="angle">&langle;</span><i>month number</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarmonthshortname"
+                      href="#\pgfcalendarmonthshortname"
+                      id="\pgfcalendarmonthshortname"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>As above, only an abbreviated version is produced.</p>
+              <p>
+                <i>Example: </i
+                ><span class="verb">\pgfcalendarmonthshortname{12}</span> yields
+                <kbd>Dec</kbd>.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-7622">
+            <a id="section-calendar-locale"></a
+            ><span
+              ><span class="sectionnumber" id="sec-89.1.4">89.1.4</span>
+              Localization</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-89.1.4"
+              data-pdf-destination="subsubsection.89.1.4"
+              data-pdf-page="1011"
+              href="#sec-89.1.4"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-7622"></a>
+
+          <p>
+            All textual representations of week days or months (like
+            &ldquo;Monday&rdquo; or &ldquo;February&rdquo;) are wrapped with
+            <span class="verb">\translate</span> commands from the
+            <span class="verb">translator</span> package (it this package is not
+            loaded, no translation takes place). Furthermore, the
+            <span class="verb">pgfcalendar</span> package will try to load the
+            <span class="verb">translator-months-dictionary</span>, if the
+            <span class="verb">translator</span> package is loaded.
+          </p>
+
+          <p>
+            If you want to use the <span class="verb">translator</span> package,
+            it has to be loaded before the
+            <span class="verb">pgfcalendar</span> package or, when you are using
+            the <span class="verb">calendar</span>
+            <span class="tikzname">TikZ</span> library, before
+            <span class="verb">tikz</span>. Otherwise it will not be properly
+            detected.
+          </p>
+
+          <p>
+            The net effect of all this is that all dates will be translated to
+            the current language setup in the
+            <span class="verb">translator</span> package. See the documentation
+            of this package for more details.
+          </p>
+          <h5 id="autosec-7623">
+            <span
+              ><span class="sectionnumber" id="sec-89.2">89.2</span> Typesetting
+              Calendars</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-89.2"
+              data-pdf-destination="subsection.89.2"
+              data-pdf-page="1011"
+              href="#sec-89.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7623"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendar"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendar</kbd></span
+                      >{<span class="angle">&langle;</span><i>prefix</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>start date</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>end date</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>rendering code</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendar"
+                      href="#\pgfcalendar"
+                      id="\pgfcalendar"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command can be used to typeset a calendar. It is a very
+                general command, the actual work has to be done by giving clever
+                implementations of <span class="angle">&langle;</span
+                ><i>rendering code</i><span class="angle">&rangle;</span>. Note
+                that this macro need <em>not</em> be called inside a
+                <span class="verb">{pgfpicture}</span> environment (even though
+                it typically will be) and you can use it to typeset calendars in
+                normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                or using packages other than <span class="textsc">pgf</span>.
+              </p>
+              <p>
+                <b>Basic typesetting process.</b> A calendar is typeset as
+                follows: The <span class="angle">&langle;</span><i>start date</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>end date</i
+                ><span class="angle">&rangle;</span> specify a range of dates.
+                For each date in this range the
+                <span class="angle">&langle;</span><i>rendering code</i
+                ><span class="angle">&rangle;</span> is executed with certain
+                macros setup to yield information about the
+                <em>current date</em> (the current date in the enumeration of
+                dates of the range). Typically, the
+                <span class="angle">&langle;</span><i>rendering code</i
+                ><span class="angle">&rangle;</span> places nodes inside a
+                picture, but it can do other things as well. Note that it is
+                also the job of the <span class="angle">&langle;</span
+                ><i>rendering code</i><span class="angle">&rangle;</span> to
+                position the calendar correctly.
+              </p>
+              <p>
+                The different calls of the <span class="angle">&langle;</span
+                ><i>rending code</i><span class="angle">&rangle;</span> are not
+                surrounded by
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                groups (though you can do so yourself, of course). This means
+                that settings can accumulate between different calls, which is
+                often desirable and useful.
+              </p>
+              <p>
+                <b>Information about the current date.</b> Inside the
+                <span class="angle">&langle;</span><i>rendering code</i
+                ><span class="angle">&rangle;</span>, different macros can be
+                access:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarprefix</span> The
+                    <span class="angle">&langle;</span><i>prefix</i
+                    ><span class="angle">&rangle;</span> parameter. This prefix
+                    is recommended for nodes inside the calendar, but you have
+                    to use it yourself explicitly.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarbeginiso</span> The
+                    <span class="angle">&langle;</span><i>start date</i
+                    ><span class="angle">&rangle;</span> of range being typeset
+                    in ISO format (like 2006-01-10).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarbeginjulian</span> Julian day
+                    number of <span class="angle">&langle;</span
+                    ><i>start date</i><span class="angle">&rangle;</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarendiso</span> The
+                    <span class="angle">&langle;</span><i>end date</i
+                    ><span class="angle">&rangle;</span> of range being typeset
+                    in ISO format.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarendjulian</span> Julian day
+                    number of <span class="angle">&langle;</span><i>end date</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarcurrentjulian</span> This
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    count holds the Julian day number of the day currently being
+                    rendered.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarcurrentweekday</span> The
+                    weekday (a number with zero representing Monday) of the
+                    current date.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarcurrentyear</span> The year
+                    of the current date.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarcurrentmonth</span> The month
+                    of the current date (always two digits with a leading zero,
+                    if necessary).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="verb">\pgfcalendarcurrentday</span> The day of
+                    month of the current date (always two digits).
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The <span class="verb">\ifdate</span> command. Inside the
+                <span class="verb">\pgfcalendar</span> the macro
+                <span class="verb">\ifdate</span> is available locally:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf.back/ifdate"></a>
+                        <span class="hl-def"
+                          ><span class="textcolor" style="color: #bf0000"
+                            ><kbd>\ifdate</kbd></span
+                          >{<span class="angle">&langle;</span><i>tests</i
+                          ><span class="angle">&rangle;</span>}{<span
+                            class="angle"
+                            >&langle;</span
+                          ><i>code</i><span class="angle">&rangle;</span>}{<span
+                            class="angle"
+                            >&langle;</span
+                          ><i>else code</i
+                          ><span class="angle">&rangle;</span>}</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf.back/ifdate"
+                          href="#\ifdate"
+                          id="\ifdate"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <a id="ifdate"></a>
+                  <p>
+                    This command has the same effect as calling
+                    <span class="verb">\pgfcalendarifdate</span> for the current
+                    date.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                <b>Examples.</b> In a first example, let us create a very simple
+                calendar: It just lists the dates in a certain range.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    20 21 22 23 24 25 26 27 28 29 30 31 01 02 03 04 05 06 07 08
+                    09 10
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {pgfcalendar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendar"
+                        >\pgfcalendar</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">cal</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-20</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-02-10</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      >\pgfcalendarcurrentday</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="spaces"> </span>}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Let us now make this a little more interesting: Let us add a
+                line break after each Sunday.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>20 21</p>
+                  <p>22 23 24 25 26 27 28</p>
+                  <p>29 30 31 01 02 03 04</p>
+                  <p>05 06 07 08 09 10</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {pgfcalendar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendar"
+                        >\pgfcalendar</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">cal</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-20</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-02-10</span
+                    >}<br />
+                    {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\pgfcalendarcurrentday</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Sunday</span
+                    >}{<span class="textcolor" style="color: #0000b2">\par</span
+                    >}{}<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                We now want to have all Mondays to be aligned on a column. For
+                this, different approaches work. Here is one based positioning
+                each day horizontally using a skip.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>20 21</p>
+                  <p>22 23 24 25 26 27 28</p>
+                  <p>29 30 31 01 02 03 04</p>
+                  <p>05 06 07 08 09 10</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {pgfcalendar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendar"
+                        >\pgfcalendar</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">cal</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-20</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-02-10</span
+                    >}<br />
+                    {<span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\leavevmode</span
+                    ><span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\hbox</span
+                    > <span class="textcolor" style="color: #000000"
+                      >to0pt</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\hskip</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfcalendarcurrentweekday</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-transformations#pgf.cm">cm</a></span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfcalendarcurrentday</span
+                    ><span class="textcolor" style="color: #0000b2">\hss</span
+                    >}<span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Sunday</span
+                    >}{<span class="textcolor" style="color: #0000b2">\par</span
+                    >}{}<span class="example-code-comment">%</span><br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>Let us now typeset two complete months.</p>
+
+              <figure class="example">
+                <div class="example-image">
+                  January
+                  <p>1 2 3 4 5 6 7</p>
+                  <p>8 9 10 11 12 13 14</p>
+                  <p>15 16 17 18 19 20 21</p>
+                  <p>22 23 24 25 26 27 28</p>
+                  <p>29 30 31</p>
+                  February
+                  <p>1 2 3 4</p>
+                  <p>5 6 7 8 9 10 11</p>
+                  <p>12 13 14 15 16 17 18</p>
+                  <p>19 20 21 22 23 24 25</p>
+                  <p>26 27 28</p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {pgfcalendar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendar"
+                        >\pgfcalendar</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">cal</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-01</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-02-28</span
+                    >}{<span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000">day</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.of">of</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">month=1</span
+                    >}{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\par</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\bigskip</span
+                    ><span class="textcolor" style="color: #0000b2">\hbox</span
+                    > <span class="textcolor" style="color: #000000"
+                      >to7</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      >\itshape</span
+                    ><span class="textcolor" style="color: #0000b2">\hss</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendarshorthand"
+                        >\pgfcalendarshorthand</a
+                      ></span
+                    > <span class="textcolor" style="color: #000000"
+                      >mt</span
+                    ><span class="textcolor" style="color: #0000b2">\hss</span
+                    >}<span class="textcolor" style="color: #0000b2">\par</span
+                    ><br />
+                    <span class="spaces">  </span>}{}<span class="example-code-comment">%</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\leavevmode</span
+                    ><span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span>{<span class="example-code-comment">%</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >weekend</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >black!50</span
+                    >}}{<span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">black</span
+                    >}}<span class="example-code-comment">%</span><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\hbox</span
+                    > <span class="textcolor" style="color: #000000"
+                      >to0pt</span
+                    >{<span class="example-code-comment">%</span><br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\hskip</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\pgfcalendarcurrentweekday</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-transformations#pgf.cm">cm</a></span
+                    ><span class="example-code-comment">%</span><br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\hbox</span
+                    > <span class="textcolor" style="color: #000000"
+                      >to1cm</span
+                    >{<span class="textcolor" style="color: #0000b2">\hss</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendarshorthand"
+                        >\pgfcalendarshorthand</a
+                      ></span
+                    > <span class="textcolor" style="color: #000000"
+                      >d-</span
+                    >}<span class="textcolor" style="color: #0000b2">\hss</span
+                    ><span class="example-code-comment">%</span><br />
+                    <span class="spaces">    </span>}<span
+                      class="example-code-comment"
+                      >%</span
+                    ><br />
+                    <span class="spaces">  </span>}<span class="example-code-comment">%</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Sunday</span
+                    >}{<span class="textcolor" style="color: #0000b2">\par</span
+                    >}{}<span class="example-code-comment">%</span><br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                For our final example, we use a
+                <span class="verb">{tikzpicture}</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3116"
+                      ><!--
+                         20 21
+
+
+22 23 24 25 26 27 28
+
+
+29 30 31 01 02 03 04
+
+05 06 07 08 09 10
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="152.138"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3116.png"
+                        style
+                        width="259.322"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {pgfcalendar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendar"
+                        >\pgfcalendar</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">cal</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-20</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-02-10</span
+                    >}{<span class="example-code-comment">%</span><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >workday</span
+                    >}<br />
+                    <span class="spaces">      </span>{<a
+                      href="tikz-scopes#pgf.back/tikzset"
+                      >\tikzset</a
+                    >{<span class="textcolor" style="color: #008000"
+                      >filling</span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >blue!20}</span
+                    >}}<br />
+                    <span class="spaces">      </span>{<a
+                      href="tikz-scopes#pgf.back/tikzset"
+                      >\tikzset</a
+                    >{<span class="textcolor" style="color: #008000"
+                      >filling</span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >red!20}</span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(\pgfcalendarsuggestedname)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(\pgfcalendarcurrentweekday,0)</span
+                    ><br />
+                    <span class="spaces">      </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.anchor">anchor</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-animations#pgf.base">base</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      >filling</span
+                    >] {<span class="textcolor" style="color: #0000b2"
+                      >\pgfcalendarcurrentday</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/ifdate">\ifdate</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Sunday</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-transformations#pgf.back/pgftransformyshift"
+                        >\pgftransformyshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-3em</span
+                    >}}{}<span class="example-code-comment">%</span><br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(cal-2007-01-21)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(cal-2007-02-03)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarshorthand"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarshorthand</kbd></span
+                      >{<span class="angle">&langle;</span><i>kind</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>representation</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarshorthand"
+                      href="#\pgfcalendarshorthand"
+                      id="\pgfcalendarshorthand"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <a id="pgfcalendarshorthand"></a>
+              <p>
+                This command can be used inside a
+                <span class="verb">\pgfcalendar</span>, where it will expand to
+                a representation of the current day, month, year or day of week,
+                depending on whether <span class="angle">&langle;</span
+                ><i>kind</i><span class="angle">&rangle;</span> is
+                <span class="verb">d</span>, <span class="verb">m</span>,
+                <span class="verb">y</span> or <span class="verb">w</span>. The
+                <span class="angle">&langle;</span><i>representation</i
+                ><span class="angle">&rangle;</span> can be one of the
+                following: <span class="verb">-</span>,
+                <span class="verb">=</span>, <span class="verb">0</span>,
+                <span class="verb">.</span>, and <span class="verb">t</span>.
+                They have the following meanings:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The minus sign
+                    selects the shortest numerical representation possible (no
+                    leading zeros).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The equal sign also
+                    selects the shortest numerical representation, but a space
+                    is added to single digit days and months (thereby ensuring
+                    that they have the same length as other days).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The zero digit
+                    selects a two-digit numerical representation for days and
+                    months. For years it is allowed, but has no effect.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The letter
+                    <span class="verb">t</span> selects a textual
+                    representation.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The dot selects an
+                    abbreviated textual representation.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Normally, you should say
+                <span class="verb">\let\%=\pgfcalendarshorthand</span> locally,
+                so that you can write <span class="verb">\%wt</span> instead of
+                the much more cumbersome
+                <span class="verb">\pgfcalendarshorthand{w}{t}</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    ISO form: 2007-01-20, long form: Saturday, January 20, 2007
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usepackage {pgfcalendar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2">\let</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">%=</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendarshorthand"
+                        >\pgfcalendarshorthand</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfcalendar#pgf.back/pgfcalendar"
+                        >\pgfcalendar</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">cal</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-20</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >2007-01-20</span
+                    >}<br />
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >ISO</span
+                    >
+                    <span class="textcolor" style="color: #000000">form:</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">%y0-</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">%m0-</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">%d0</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >long</span
+                    >
+                    <span class="textcolor" style="color: #000000">form:</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">%wt</span
+                    >, <span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">%mt</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #000000">%d-</span
+                    >, <span class="textcolor" style="color: #0000b2"
+                      >\</span
+                    ><span class="textcolor" style="color: #000000">%y0</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfcalendarsuggestedname"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfcalendarsuggestedname</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfcalendarsuggestedname"
+                      href="#\pgfcalendarsuggestedname"
+                      id="\pgfcalendarsuggestedname"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This macro expands to a suggested name for nodes representing
+                days in a calendar. If the <span class="angle">&langle;</span
+                ><i>prefix</i><span class="angle">&rangle;</span> is empty, it
+                expands to the empty string, otherwise it expands to the
+                <span class="angle">&langle;</span><i>prefix</i
+                ><span class="angle">&rangle;</span> of the calendar, followed
+                by a hyphen, followed by the ISO format version of the date.
+                Thus, when the date <span class="verb">2007-01-01</span> is
+                typeset in a calendar for the prefix
+                <span class="verb">mycal</span>, the macro expands to
+                <span class="verb">mycal-2007-01-01</span>.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

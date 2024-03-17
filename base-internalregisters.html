@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Christian Feuersaenger
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+      Adding libraries to pgf: temporary registers - PGF/TikZ Manual
+    </title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Adding libraries to pgf: temporary registers",
+            "item": "https://tikz.dev/base-internalregisters"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-internalregisters" rel="canonical" />
+    <meta content="https://tikz.dev/base-internalregisters" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Adding libraries to pgf: temporary registers - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8512"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8513">
+            <a id="section-internal-registers"></a
+            ><span
+              ><span class="sectionnumber" id="sec-117">117</span> Adding
+              libraries to <span class="textsc">pgf</span>: temporary
+              registers</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.117"
+              data-pdf-page="1227"
+              href="#sec-117"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8513"></a>
+          <a id="pgfmanual-autofile-126"></a>
+
+          <p>
+            This section is intended for those who like to write libraries to
+            extend <span class="textsc">pgf</span>. Of course, this requires a
+            good deal of knowledge about
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >-programming and the structure of the
+            <span class="textsc">pgf</span> basic layer. Besides, one will
+            encounter the need of temporary variables and, especially, temporary
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            registers. This section describes how to use a set of pre-allocated
+            temporary registers of the basic layer without needing to allocate
+            more of them.
+          </p>
+          <p>
+            A part of these internals are already mentioned in section&nbsp;<a
+              href="base-points#section-internal-pointcmds"
+              >101.7</a
+            >, but the basic layer provides more temporaries than
+            <span class="verb">\pgf@x</span> and
+            <span class="verb">\pgf@y</span>.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@x"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@x</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@x"
+                      href="#\pgf@x"
+                      id="\pgf@x"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@y"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@y</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@y"
+                      href="#\pgf@y"
+                      id="\pgf@y"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                These registers are used to process point coordinates in the
+                basic layer of <span class="textsc">pgf</span>, see
+                section&nbsp;<a href="base-points#section-internal-pointcmds"
+                  >101.7</a
+                >. After a <span class="verb">\pgfpoint</span>\(\dotsc \)
+                command, they contain the final \(x\) and \(y\) coordinate,
+                respectively.
+              </p>
+              <p>
+                The values of <span class="verb">\pgf@x</span> and
+                <span class="verb">\pgf@y</span> are set <em>globally</em> in
+                contrast to other available
+                <span class="textsc">pgf</span> registers. You should never
+                assume anything about their value unless the context defines
+                them explicitly.
+              </p>
+              <p>
+                Please prefer the <span class="verb">\pgf@xa</span>,
+                <span class="verb">\pgf@xb</span>, \(\dotsc \) registers for
+                temporary dimen registers unless you are writing point
+                coordinate commands.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@xa"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@xa</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@xa"
+                      href="#\pgf@xa"
+                      id="\pgf@xa"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@xb"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@xb</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@xb"
+                      href="#\pgf@xb"
+                      id="\pgf@xb"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@xc"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@xc</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@xc"
+                      href="#\pgf@xc"
+                      id="\pgf@xc"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@ya"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@ya</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@ya"
+                      href="#\pgf@ya"
+                      id="\pgf@ya"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@yb"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@yb</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@yb"
+                      href="#\pgf@yb"
+                      id="\pgf@yb"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgf@yc"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgf@yc</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgf@yc"
+                      href="#\pgf@yc"
+                      id="\pgf@yc"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Temporary registers for
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                dimensions which can be modified freely. Just make sure changes
+                occur only within
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                groups.
+              </p>
+            </ul>
+            <p>
+              <span class="paragraph" id="autosec-8515">Attention:</span>
+              <a id="pgfmanual-autopage-8515"></a>
+              <span class="textsc">pgf</span> uses these registers to perform
+              path operations. For reasons of efficiency, path commands do not
+              always guard them. As a consequence, the code
+            </p>
+
+            <figure class="example">
+              <div class="example-code">
+                <button class="clipboardButton" type="button">copy</button>
+                <code>
+                  <br />
+                  <span class="textcolor" style="color: #0000b2"
+                    ><a href="base-points#pgf.back/pgfpointadd"
+                      >\pgfpointadd</a
+                    ></span
+                  >{<span class="textcolor" style="color: #0000b2"
+                    ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                  >{<span class="textcolor" style="color: #0000b2">\pgf</span
+                  ><span class="textcolor" style="color: #000000">@xa</span
+                  >}{<span class="textcolor" style="color: #0000b2">\pgf</span
+                  ><span class="textcolor" style="color: #000000">@ya</span
+                  >}}{<span class="textcolor" style="color: #0000b2"
+                    ><a href="base-points#pgf.back/pgfpoint">\pgfpoint</a></span
+                  >{<span class="textcolor" style="color: #0000b2">\pgf</span
+                  ><span class="textcolor" style="color: #000000">@xb</span
+                  >}{<span class="textcolor" style="color: #0000b2">\pgf</span
+                  ><span class="textcolor" style="color: #000000">@yb</span
+                  >}}<br />
+                </code>
+              </div>
+            </figure>
+            <p>
+              may fail: Inside <span class="verb">\pgfpointadd</span>, the
+              <span class="verb">\pgf@xa</span> and friend registers might be
+              modified. In particular, it might happen that
+              <span class="verb">\pgf@xb</span> is changed before
+              <span class="verb">\pgfpoint{\pgf@xb}{\pgf@yb}</span> is
+              evaluated. The right thing to do would be to first expand
+              everything using <span class="verb">\edef</span> and process the
+              values afterwards, resulting in unnecessary expensive operations.
+              Of course, one can avoid this by simply looking into the source
+              code of <span class="verb">\pgfpointadd</span> to see which
+              registers are used.
+            </p>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfutil@tempdima"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfutil@tempdima</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfutil@tempdima"
+                      href="#\pgfutil@tempdima"
+                      id="\pgfutil@tempdima"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfutil@tempdimb"></a>
+                    <span class="hl-def"
+                      >Internal dimen register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfutil@tempdimb</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfutil@tempdimb"
+                      href="#\pgfutil@tempdimb"
+                      id="\pgfutil@tempdimb"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Further multi-purpose temporary dimen registers. For
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >, these registers are already allocated as
+                <span class="verb">\@tempdima</span> and
+                <span class="verb">\@tempdimb</span> and are simply
+                <span class="verb">\let</span> to the
+                <span class="verb">\pgfutil@</span>\(\dotsc \) names.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/c@pgf@counta"></a>
+                    <span class="hl-def"
+                      >Internal count register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\c@pgf@counta</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/c@pgf@counta"
+                      href="#\c@pgf@counta"
+                      id="\c@pgf@counta"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/c@pgf@countb"></a>
+                    <span class="hl-def"
+                      >Internal count register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\c@pgf@countb</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/c@pgf@countb"
+                      href="#\c@pgf@countb"
+                      id="\c@pgf@countb"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/c@pgf@countc"></a>
+                    <span class="hl-def"
+                      >Internal count register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\c@pgf@countc</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/c@pgf@countc"
+                      href="#\c@pgf@countc"
+                      id="\c@pgf@countc"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/c@pgf@countd"></a>
+                    <span class="hl-def"
+                      >Internal count register
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\c@pgf@countd</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/c@pgf@countd"
+                      href="#\c@pgf@countd"
+                      id="\c@pgf@countd"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                These multiple-purpose count registers are used throughout
+                <span class="textsc">pgf</span> to perform integer computations.
+                Feel free to use them as well, just make sure changes are scoped
+                by local
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                groups.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/w@pgf@writea"></a>
+                    <span class="hl-def"
+                      >Internal openout handle
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\w@pgf@writea</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/w@pgf@writea"
+                      href="#\w@pgf@writea"
+                      id="\w@pgf@writea"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An <span class="verb">\openout</span> handle which is used to
+                generate complete output files within locally scoped parts of
+                <span class="textsc">pgf</span> (for example, to interact with
+                <span class="verb">gnuplot</span>). You should always use
+                <span class="verb">\immediate</span> in front of output
+                operations involving <span class="verb">\w@pgf@writea</span> and
+                you should always close the file before returning from your
+                code.
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\openout</span
+                    ><span class="textcolor" style="color: #0000b2">\w</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@writea=myfile</span
+                    >.<span class="textcolor" style="color: #000000">dat</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2">\write</span
+                    ><span class="textcolor" style="color: #0000b2">\w</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@writea</span
+                    >{...}<span class="example-code-comment">%</span><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2">\write</span
+                    ><span class="textcolor" style="color: #0000b2">\w</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@writea</span
+                    >{...}<span class="example-code-comment">%</span><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\closeout</span
+                    ><span class="textcolor" style="color: #0000b2">\w</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@writea</span
+                    ><span class="example-code-comment">%</span><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/r@pgf@reada"></a>
+                    <span class="hl-def"
+                      >Internal openin handle
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\r@pgf@reada</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/r@pgf@reada"
+                      href="#\r@pgf@reada"
+                      id="\r@pgf@reada"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                An <span class="verb">\openin</span> handle which is used to
+                read files within locally scoped parts of
+                <span class="textsc">pgf</span>, for example to check if a file
+                exists or to read data files. You should always use
+                <span class="verb">\immediate</span> in front of output
+                operations involving <span class="verb">\r@pgf@writea</span> and
+                you should always close the file before returning from your
+                code.
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\openin</span
+                    ><span class="textcolor" style="color: #0000b2">\r</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@reada=myfile</span
+                    >.<span class="textcolor" style="color: #000000">dat</span
+                    ><br />
+                    <span class="example-code-comment"
+                      >% do something with \macro</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2">\ifeof</span
+                    ><span class="textcolor" style="color: #0000b2">\r</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@reada</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="example-code-comment"
+                      >% end of file or it doesn't exist</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2">\else</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="example-code-comment"
+                      >% loop or whatever</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2">\read</span
+                    ><span class="textcolor" style="color: #0000b2">\r</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@reada</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.to">to</a></span
+                    ><span class="textcolor" style="color: #0000b2">\macro</span
+                    ><br />
+                    <span class="spaces">    </span>...<br />
+                    <span class="textcolor" style="color: #0000b2">\fi</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      >\immediate</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      >\closein</span
+                    ><span class="textcolor" style="color: #0000b2">\r</span
+                    ><span class="textcolor" style="color: #000000"
+                      >@pgf@reada</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfutil@tempboxa"></a>
+                    <span class="hl-def"
+                      >Internal box
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfutil@tempboxa</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfutil@tempboxa"
+                      href="#\pgfutil@tempboxa"
+                      id="\pgfutil@tempboxa"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A box for temporary use inside of local
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                scopes. For
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >, this box is the same as the already pre-allocated
+                <span class="verb">\@tempboxa</span>.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

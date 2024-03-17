@@ -1,0 +1,2951 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Spy Library: Magnifying Parts of Pictures - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Spy Library: Magnifying Parts of Pictures",
+            "item": "https://tikz.dev/library-spy"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-spy" rel="canonical" />
+    <meta content="https://tikz.dev/library-spy" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/library-spy.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Spy Library: Magnifying Parts of Pictures - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-6549"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-72.1"
+                >Magnifying a Part of a Picture</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-72.2">Spy Scopes</a></p>
+            <p><a class="tocsubsection" href="#sec-72.3">The Spy Command</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-72.4"
+                >Predefined Spy Styles</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-72.5">Examples</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-6550">
+            <a id="section-library-spy"></a
+            ><span
+              ><span class="sectionnumber" id="sec-72">72</span> Spy Library:
+              Magnifying Parts of Pictures</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.72"
+              data-pdf-page="832"
+              href="#sec-72"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-6550"></a>
+          <a id="pgfmanual-autofile-77"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.spy"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >spy</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.spy"
+                      href="#pgf.spy"
+                      id="pgf.spy"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >spy</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >spy</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                The package defines options for creating pictures in which some
+                part of the picture is repeated in another area in a magnified
+                way (as if you were looking through a spyglass, hence the name).
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-6552">
+            <span
+              ><span class="sectionnumber" id="sec-72.1">72.1</span> Magnifying
+              a Part of a Picture</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-72.1"
+              data-pdf-destination="subsection.72.1"
+              data-pdf-page="832"
+              href="#sec-72.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6552"></a>
+
+          <p>
+            The idea behind the <span class="verb">spy</span> library is to make
+            it easy to create high-density pictures in which some important
+            parts are repeated somewhere, but magnified as if you were looking
+            through a spyglass:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2692"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="163.970"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2692.png"
+                    style
+                    width="136.058"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.fractals,spy} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.spy:using:outlines"
+                    >spy using outlines</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-paths#pgf.circle">circle</a
+                  >,<span class="spaces"> </span>magnification=4,<span class="spaces"> </span>size=2cm, <a
+                    href="oo#pgf.connect"
+                    >connect</a
+                  >
+                  spies}</span
+                >]<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3,2)</span
+                >;<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >Koch curve
+                  <a href="library-patterns#pgf.type">type</a> 1</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,0)</span
+                ><span class="spaces"> </span>}}}};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >red</span
+                >] <span class="textcolor" style="color: #000000"
+                  >on</span
+                >
+                <span class="textcolor" style="color: #800080">(1.6,0.3)</span
+                ><br />
+                <span class="spaces">             </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.left">left</a></span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(3.5,-1.25)</span
+                >;<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >blue</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.size">size</a></span
+                >=<span class="textcolor" style="color: #008000">1cm</span
+                >] <span class="textcolor" style="color: #000000"
+                  >on</span
+                >
+                <span class="textcolor" style="color: #800080">(1,1)</span
+                ><br />
+                <span class="spaces">              </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >] <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,-1.25)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2693"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="86.594"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2693.png"
+                    style
+                    width="146.330"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.fractals,spy} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.spy:using:overlays"
+                    >spy using overlays</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{size=12mm}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >Koch snowflake</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,0)</span
+                ><span class="spaces"> </span>}}}};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >green</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.magnification"
+                    >magnification</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">3</span
+                >] <span class="textcolor" style="color: #000000"
+                  >on</span
+                >
+                <span class="textcolor" style="color: #800080">(0.6,0.1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(-0.3,-1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >blue</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.magnification"
+                    >magnification</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">5</span
+                >]<span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >on</span
+                >
+                <span class="textcolor" style="color: #800080">(1,0.5)</span
+                ><span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1,-1)</span
+                >;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >red</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.magnification"
+                    >magnification</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">10</span
+                >]<span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >on</span
+                >
+                <span class="textcolor" style="color: #800080">(1.6,0.1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2.3,-1)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Note that this magnification uses what is called a
+            <em>canvas transformation</em> in this manual: Everything is
+            magnified, including line width and text.
+          </p>
+
+          <p>
+            In order for &ldquo;spying&rdquo; to work, the picture obviously has
+            to be drawn several times: Once at its normal size and then again
+            for each &ldquo;magnifying glass&rdquo;. Several keys and commands
+            work in concert to make this possible:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> You need to make
+                <span class="tikzname">TikZ</span> aware of the fact that a
+                picture (or just a scope) is to be magnified. This is done by
+                adding the special key <span class="verb">spy scope</span> to a
+                <span class="verb">{scope}</span> or
+                <span class="verb">{tikzpicture}</span> (which is also just a
+                scope). Some special keys like
+                <span class="verb">spy using outlines</span> implicitly set the
+                <span class="verb">spy scope</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Inside this scope you may
+                then use the command <span class="verb">\spy</span>, which is
+                only available inside such scopes (so there is no danger of you
+                inadvertently using this command outside such a scope). This
+                command has a special syntax and will (at some point) create two
+                nodes: One node that shows the magnified picture (called the
+                <em>spy-in node</em>) and another node showing which part of the
+                original picture is magnified (called the <em>spy-on</em> node).
+                The spy-in node is, indeed, a normal node, so it can have any
+                shape or border that you like and you can apply all of
+                <span class="tikzname">TikZ</span>&rsquo;s advanced features to
+                it. The only difference compared to a normal node is that
+                instead of some &ldquo;text&rdquo; it contains a magnified
+                version of the picture, clipped to the size of the node.
+              </p>
+              <p>
+                The <span class="verb">\spy</span> command does not create the
+                nodes immediately. Rather, the creation of these nodes is
+                postponed till the end of the
+                <span class="verb">spy scope</span> in which the
+                <span class="verb">\spy</span>
+                command is used. This is necessary since in order to repeat the
+                whole scope inside the node containing the magnified version,
+                the whole picture needs to be available when this node is
+                created.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            A basic question any library for &ldquo;magnifying things&rdquo; has
+            to address is how you specify which part of the picture is to be
+            magnified (the spy-on node) and where this magnified part is to be
+            shown (the spy-in node). There are two possible ways:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> You specify the size and
+                position of the spy-on node. Then the size of the spy-in node is
+                determined by the size of the spy-on node and the magnification
+                factor &ndash; you can still decide where the spy-in node should
+                be placed, but not its size.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> Alternatively, you specify
+                the size and position of the spy-in node. Then, similarly to the
+                first case, the size of the spy-on node is determined implicitly
+                and you can only decide where the spy-on node should be placed,
+                but not its size.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            The <span class="verb">spy</span> library uses the second method:
+            You specify the size and position of the spy-in nodes, the sizes of
+            the spy-on nodes are then computed automatically.
+          </p>
+          <h5 id="autosec-6557">
+            <span
+              ><span class="sectionnumber" id="sec-72.2">72.2</span> Spy
+              Scopes</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-72.2"
+              data-pdf-destination="subsection.72.2"
+              data-pdf-page="833"
+              href="#sec-72.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6557"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/spy:scope"></a><a id="pgf.spy:scope"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/spy scope</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/spy:scope"
+                      href="#tikz/spy:scope"
+                      id="tikz/spy:scope"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option may be used with a
+                <span class="verb">{scope}</span> or any environment that
+                creates such a scope internally (like
+                <span class="verb">{tikzpicture}</span>). It has the following
+                effects:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> It resets a number of
+                    graphic state parameters, including the color, line style,
+                    and others. This is necessary for technical reasons.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> It tells
+                    <span class="tikzname">TikZ</span> that the content of the
+                    scope should be saved internally in a special box.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> It defines the
+                    command <span class="verb">\spy</span> so that it can be
+                    used inside the scope.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> At the end of the
+                    scope, the nodes belonging to the
+                    <span class="verb">\spy</span> commands used inside the
+                    scope are created.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span> are saved in an
+                    internal style. Each time <span class="verb">\spy</span> is
+                    used, these <span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span> will be used.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Three keys are
+                    defined that provide useful shortcuts:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/size"></a><a id="pgf.size"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/size</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span></span
+                            ><span class="hl-default">(no default)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/size"
+                              href="#tikz/size"
+                              id="tikz/size"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Inside a <span class="verb">spy scope</span>, this is a
+                        shortcut for <span class="verb">minimum size</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/height"></a
+                            ><a id="pgf.height"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/height</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span></span
+                            ><span class="hl-default">(no default)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/height"
+                              href="#tikz/height"
+                              id="tikz/height"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Inside a <span class="verb">spy scope</span>, this is a
+                        shortcut for <span class="verb">minimum height</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="itemize" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/width"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/width</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span
+                              ><i>dimension</i
+                              ><span class="angle">&rangle;</span></span
+                            ><span class="hl-default">(no default)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/width"
+                              href="#tikz/width"
+                              id="tikz/width"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Inside a <span class="verb">spy scope</span>, this is a
+                        shortcut for <span class="verb">minimum width</span>.
+                      </p>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <p>
+                It is permissible to nest <span class="verb">spy scopes</span>.
+                In this case, all <span class="verb">\spy</span> commands inside
+                the inner <span class="verb">spy scope</span> only have an
+                effect on material inside the scope, whereas
+                <span class="verb">\spy</span> commands outside the inner
+                <span class="verb">spy scope</span> but inside the outer
+                <span class="verb">spy scope</span> allow you to &ldquo;spy on
+                the spy&rdquo;.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2694"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="154.514"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2694.png"
+                        style
+                        width="136.034"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.fractals,spy} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-spy#pgf.spy:using:outlines"
+                        >spy using outlines</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.rectangle">rectangle</a
+                      >,<span class="spaces"> </span>red,<span class="spaces"> </span>magnification=5,<br />
+                      <span class="spaces">                       </span>size=1.5cm, <a
+                        href="oo#pgf.connect"
+                        >connect</a
+                      >
+                      spies}</span
+                    >]<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-spy#pgf.spy:using:outlines"
+                        >spy using outlines</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.circle">circle</a
+                      >,<span class="spaces"> </span>blue,<br />
+                      <span class="spaces">                         </span>magnification=3,<span class="spaces"> </span>size=1.5cm, <a
+                        href="oo#pgf.connect"
+                        >connect</a
+                      >
+                      spies}</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >Koch curve
+                      <a href="library-patterns#pgf.type">type</a> 1</span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    ><span class="spaces"> </span>}}};<br />
+                    <br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.6,0.3)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(zoom)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(3.5,-1.25)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(zoom.north west)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.right">right</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(0,-1.25)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-6560">
+            <span
+              ><span class="sectionnumber" id="sec-72.3">72.3</span> The Spy
+              Command</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-72.3"
+              data-pdf-destination="subsection.72.3"
+              data-pdf-page="833"
+              href="#sec-72.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6560"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/spy"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\spy</kbd></span
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      >
+                      <span class="verb">on</span>
+                      <span class="angle">&langle;</span><i>coordinate</i
+                      ><span class="angle">&rangle;</span> <kbd>in node</kbd>
+                      <span class="angle">&langle;</span><i>node options</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">;</span></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/spy"
+                      href="#\spy"
+                      id="\spy"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command can only be used inside a
+                <span class="verb">spy scope</span>. Let us start with the
+                syntax:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <span class="verb">\spy</span> command is not a special case
+                    of <span class="verb">\path</span>. Rather, it has a small
+                    parser of its own.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Following the
+                    optional <span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span>, you must write
+                    <span class="verb">on</span>, followed by a coordinate. This
+                    coordinate will be the center of the area that is to be
+                    magnified.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> Following the
+                    <span class="angle">&langle;</span><i>coordinate</i
+                    ><span class="angle">&rangle;</span>, you must write
+                    <span class="verb">in node</span> followed by some
+                    <span class="angle">&langle;</span><i>node options</i
+                    ><span class="angle">&rangle;</span>. The syntax for these
+                    options is the same as for a normal
+                    <span class="verb">node</span> path command, such as
+                    <span class="verb">[left]</span> or
+                    <span class="verb">(foo) [red] at (bar)</span>.
+                    <em>However</em>, <span class="angle">&langle;</span
+                    ><i>node options</i><span class="angle">&rangle;</span> are
+                    <em>not</em> followed by a curly brace. Rather, the
+                    <span class="angle">&langle;</span><i>node options</i
+                    ><span class="angle">&rangle;</span> must directly be
+                    followed by a semicolon.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The effect of this command is the following: The
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span>,
+                <span class="angle">&langle;</span><i>coordinate</i
+                ><span class="angle">&rangle;</span>, and
+                <span class="angle">&langle;</span><i>node options</i
+                ><span class="angle">&rangle;</span> are stored internally till
+                the end of the current <span class="verb">spy scope</span>. This
+                means that, in particular, you can reference any node inside the
+                <span class="verb">spy scope</span>, even if it is not yet
+                defined when the <span class="verb">\spy</span> command is
+                given. At the end of the current
+                <span class="verb">spy scope</span>, two nodes are created,
+                called the <em>spy-in node</em> and the <em>spy-on node</em>.
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <em>spy-in node</em> is the node that contains a magnified
+                    part of the picture (the node <em>in</em> which we see on
+                    what we spy). This node is, indeed, a normal
+                    <span class="tikzname">TikZ</span>
+                    node, so you can use all standard options to style this
+                    node. In particular, you can specify a shape or a border
+                    color or a drop shadow or whatever. The only thing that is
+                    special about this node is that instead of containing some
+                    normal text, its &ldquo;text&rdquo; is the magnified
+                    picture.
+                  </p>
+                  <p>
+                    To be precise, the picture of the
+                    <span class="verb">spy scope</span> is scaled by a certain
+                    factor, specified by the <span class="verb">lens</span> or
+                    <span class="verb">magnification</span> options discussed
+                    below, and is shifted in such a way that the
+                    <span class="angle">&langle;</span><i>coordinate</i
+                    ><span class="angle">&rangle;</span> lies at the center of
+                    the spy-on node.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <em>spy-on node</em> is a node that is centered on the
+                    <span class="angle">&langle;</span><i>coordinate</i
+                    ><span class="angle">&rangle;</span> and whose size reflects
+                    exactly the area shown inside the spy-in node (the node
+                    containing <em>on</em> what we spy).
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Let us now go over what happens in detail when the two nodes are
+                created:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> A scope is started. Two
+                    sets of options are used with this scope: First, the options
+                    passed to the enclosing
+                    <span class="verb">spy scope</span> and then the
+                    <span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span> (which will, thus,
+                    overrule the options of the
+                    <span class="verb">spy scope</span>).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> Then, the spy-on node is
+                    created. However, we will first discuss the spy-in node.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> The spy-in node is
+                    created after the spy-on node (and, hence, will cover the
+                    spy-on node in case they overlap). When this node is
+                    created, the <span class="angle">&langle;</span
+                    ><i>node options</i><span class="angle">&rangle;</span> are
+                    used in addition to the effect caused by the
+                    <span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span> and the options of the
+                    <span class="verb">{spy scope}</span>. Additionally, the
+                    following style is used:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/every:spy:in:node"></a
+                            ><a id="pgf.every:spy:in:node"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/every spy in node</span
+                                  ></span
+                                ></kbd
+                              ></span
+                            ><span class="hl-default">(style, no value)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/every:spy:in:node"
+                              href="#tikz/every:spy:in:node"
+                              id="tikz/every:spy:in:node"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>This style is used with every spy-in node.</p>
+                    </ul>
+                  </div>
+                  <p>
+                    The position of the node (the
+                    <span class="verb">at</span> option) is set to the
+                    <span class="angle">&langle;</span><i>coordinate</i
+                    ><span class="angle">&rangle;</span> by default, so that it
+                    will cover the to-be-magnified area. You can change this by
+                    providing the <span class="verb">at</span> option yourself:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2695"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="104.162"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2695.png"
+                            style
+                            width="82.597"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {decorations.fractals,spy} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-spy#pgf.spy:using:outlines"
+                            >spy using outlines</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{<a href="tikz-paths#pgf.circle">circle</a
+                          >,<span class="spaces"> </span>magnification=3,<span class="spaces"> </span>size=1cm}</span
+                        >]<br />
+                        <br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-decorations#pgf.decoration"
+                            >decoration</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >Koch curve
+                          <a href="library-patterns#pgf.type">type</a> 1</span
+                        >]<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="tikz-decorations#pgf.decorate"
+                            >decorate</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                          ><a href="tikz-decorations#pgf.decorate"
+                            >decorate</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                          ><a href="tikz-decorations#pgf.decorate"
+                            >decorate</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(2,0)</span
+                        ><span class="spaces"> </span>}}};<br />
+                        <br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="library-spy#pgf.back/spy">\spy</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >]<span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >on</span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(1.6,0.3)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="library-edges#pgf.in">in</a></span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-coordinates#pgf.node">node</a></span
+                        >;<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="library-spy#pgf.back/spy">\spy</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          >blue</span
+                        >] <span class="textcolor" style="color: #000000"
+                          >on</span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(1,1)</span
+                        ><span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="library-edges#pgf.in">in</a></span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-coordinates#pgf.node">node</a></span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.at">at</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(1,-1)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    No &ldquo;text&rdquo; can be specified for the node. Rather,
+                    the &ldquo;text&rdquo; shown inside this node is the picture
+                    of the current <span class="verb">spy scope</span>, but
+                    canvas-transformed according to the following key:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/lens"></a><a id="pgf.lens"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/lens</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span><i>options</i
+                              ><span class="angle">&rangle;</span></span
+                            ><span class="hl-default">(no default)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/lens"
+                              href="#tikz/lens"
+                              id="tikz/lens"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        The <span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span> should contain
+                        transformation commands like
+                        <span class="verb">scale</span> or
+                        <span class="verb">rotate</span>. These transformations
+                        are applied to the picture when it is shown inside the
+                        spy-on node.
+                      </p>
+                    </ul>
+                  </div>
+                  <p>
+                    Since the most common transformation is undoubtedly a simple
+                    scaling, there is a special style for this:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/magnification"></a
+                            ><a id="pgf.magnification"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/magnification</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span><i>number</i
+                              ><span class="angle">&rangle;</span></span
+                            ><span class="hl-default">(no default)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/magnification"
+                              href="#tikz/magnification"
+                              id="tikz/magnification"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        This has the same effect as saying
+                        <span class="verb">lens={scale=</span
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">}</span>.
+                      </p>
+                    </ul>
+                  </div>
+                  <p>
+                    Now, usually the size of a node is determined in such a way
+                    that it &ldquo;fits&rdquo; around the text of the node. For
+                    a spy-on node this is not a good approach since the
+                    &ldquo;text&rdquo; of this node would contain &ldquo;the
+                    whole picture&rdquo;. Because of this,
+                    <span class="tikzname">TikZ</span> acts as if the
+                    &ldquo;text&rdquo; of the node has zero size. You must then
+                    use keys like <span class="verb">minimum size</span> to
+                    cause the node to have a certain size. Note that the key
+                    <span class="verb">size</span> is an abbreviation for
+                    <span class="verb">minimum size</span> inside a spy scope.
+                  </p>
+                  <p>
+                    You can name the spy-on node in the usual ways.
+                    Additionally, the node is (also) always named
+                    <span class="verb">tikzspyinnode</span>. Following the spy
+                    scope, you can use this node like any other node:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2696"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="132.506"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2696.png"
+                            style
+                            width="136.058"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {decorations.fractals,spy} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.scope">scope</a></span
+                        >}<br />
+                        <span class="spaces">    </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-spy#pgf.spy:using:outlines"
+                            >spy using outlines</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{<a href="tikz-paths#pgf.circle">circle</a
+                          >,<span class="spaces"> </span>magnification=3,<span class="spaces"> </span>size=2cm, <a
+                            href="oo#pgf.connect"
+                            >connect</a
+                          >
+                          spies}</span
+                        >]<br />
+                        <br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-decorations#pgf.decoration"
+                            >decoration</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >Koch curve
+                          <a href="library-patterns#pgf.type">type</a> 1</span
+                        >]<br />
+                        <span class="spaces">      </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="tikz-decorations#pgf.decorate"
+                            >decorate</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                          ><a href="tikz-decorations#pgf.decorate"
+                            >decorate</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                          ><a href="tikz-decorations#pgf.decorate"
+                            >decorate</a
+                          ></span
+                        >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(2,0)</span
+                        ><span class="spaces"> </span>}}};<br />
+                        <br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="library-spy#pgf.back/spy">\spy</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >] <span class="textcolor" style="color: #000000"
+                          >on</span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(1.6,0.3)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="library-edges#pgf.in">in</a></span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-coordinates#pgf.node">node</a></span
+                        >
+                        <span class="textcolor" style="color: #800080">(a)</span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-arrows#pgf.left">left</a></span
+                        >] <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.at">at</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(3.5,-1.25)</span
+                        >;<br />
+                        <br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="library-spy#pgf.back/spy">\spy</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          >blue</span
+                        >, <span class="textcolor" style="color: #008000"
+                          ><a href="library-spy#pgf.size">size</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >1cm</span
+                        >] <span class="textcolor" style="color: #000000"
+                          >on</span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(1,1)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="library-edges#pgf.in">in</a></span
+                        >
+                        <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-coordinates#pgf.node">node</a></span
+                        >
+                        <span class="textcolor" style="color: #800080">(b)</span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-arrows#pgf.right">right</a></span
+                        >] <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.at">at</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(0,-1.25)</span
+                        >;<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.scope">scope</a></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.ultra:thick"
+                            >ultra thick</a
+                          ></span
+                        >, <span class="textcolor" style="color: #008000"
+                          >green!50!black</span
+                        >] <span class="textcolor" style="color: #800080"
+                          >(b)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(a.north west)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Once both nodes have been
+                    created, the current value of the following key is used to
+                    connect them:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/spy:connection:path"></a
+                            ><a id="pgf.spy:connection:path"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/spy connection path</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span><i>code</i
+                              ><span class="angle">&rangle;</span> </span
+                            ><span class="hl-default"
+                              >(no default, initially <kbd>empty</kbd>)</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/spy:connection:path"
+                              href="#tikz/spy:connection:path"
+                              id="tikz/spy:connection:path"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        The <span class="angle">&langle;</span><i>code</i
+                        ><span class="angle">&rangle;</span> is executed after
+                        the spy-on and spy-in nodes have just been created.
+                        Inside this <span class="angle">&langle;</span
+                        ><i>code</i><span class="angle">&rangle;</span>, the two
+                        nodes can be accessed as
+                        <span class="verb">tikzspyinnode</span> and
+                        <span class="verb">tikzspyonnode</span>. For example,
+                        the key <span class="verb">connect spies</span> sets
+                        this command to
+                      </p>
+
+                      <figure class="example">
+                        <div class="example-code">
+                          <button class="clipboardButton" type="button">
+                            copy
+                          </button>
+                          <code>
+                            <br />
+                            <span class="textcolor" style="color: #0000b2"
+                              ><a href="tikz-actions#pgf.back/draw"
+                                >\draw</a
+                              ></span
+                            >[<span class="textcolor" style="color: #008000"
+                              ><a href="tikz-actions#pgf.thin">thin</a></span
+                            >] <span
+                              class="textcolor"
+                              style="color: #800080"
+                              >(tikzspyonnode)</span
+                            > <span
+                              class="textcolor"
+                              style="color: #000000"
+                              ><a href="tikz-paths#pgf.--">--</a></span
+                            >
+                            <span class="textcolor" style="color: #800080"
+                              >(tikzspyinnode)</span
+                            >;<br />
+                          </code>
+                        </div>
+                      </figure>
+                      <p></p>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <p>
+                Returning to the creation of the spy-in node: This node is
+                centered on <span class="angle">&langle;</span><i>coordinate</i
+                ><span class="angle">&rangle;</span> (more precisely, its anchor
+                is set to <span class="verb">center</span> and the
+                <span class="verb">at</span> option is set to
+                <span class="angle">&langle;</span><i>coordinate</i
+                ><span class="angle">&rangle;</span>). Its size and shape are
+                initially determined in the same way as the size and shape of
+                the spy-on node (unless, of course, you explicitly provide a
+                different shape for, say, the spy-on node locally, which is not
+                really a good idea). Then, additionally, the
+                <em>inverted</em> transformation done by the
+                <span class="verb">lens</span> option is applied, resulting in a
+                node whose size and shape exactly corresponds to the area in the
+                picture that is shown in the spy-on node.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2697"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="124.922"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2697.png"
+                        style
+                        width="135.494"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.fractals,spy} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-spy#pgf.spy:using:outlines"
+                        >spy using outlines</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{lens={scale=3,rotate=20},<span class="spaces"> </span>size=2cm, <a
+                        href="oo#pgf.connect"
+                        >connect</a
+                      >
+                      spies}</span
+                    >]<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >Koch curve
+                      <a href="library-patterns#pgf.type">type</a> 1</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    ><span class="spaces"> </span>}}};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.6,0.3)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(2.5,-1.25)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Like for the spy-in node, a style can be used to format the
+                spy-on node:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:spy:on:node"></a
+                        ><a id="pgf.every:spy:on:node"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every spy on node</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:spy:on:node"
+                          href="#tikz/every:spy:on:node"
+                          id="tikz/every:spy:on:node"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>This style is used with every spy-on node.</p>
+                </ul>
+              </div>
+              <p>
+                The spy-on node is named
+                <span class="verb">tikzspyonnode</span> (but, as always, this
+                node is only available after the spy scope). If you have
+                multiple spy-on nodes and you would like to access all of them,
+                you need to use the <span class="verb">name</span> key inside
+                the <span class="verb">every spy on node</span> style.
+              </p>
+              <p>
+                The <span class="verb">inner sep</span> and
+                <span class="verb">outer sep</span> of both spy-in and spy-on
+                nodes are set to <span class="verb">0pt</span>.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-6567">
+            <span
+              ><span class="sectionnumber" id="sec-72.4">72.4</span> Predefined
+              Spy Styles</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-72.4"
+              data-pdf-destination="subsection.72.4"
+              data-pdf-page="835"
+              href="#sec-72.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6567"></a>
+
+          <p>
+            There are some predefined styles that make using the
+            <span class="verb">spy</span> library easier. The following two
+            styles can be used instead of <span class="verb">spy scope</span>,
+            they pass their <span class="angle">&langle;</span><i>options</i
+            ><span class="angle">&rangle;</span> directly to
+            <span class="verb">spy scope</span>. They additionally set up the
+            graphic styles to be used for the spy-in nodes and the spy-on nodes
+            in some special way.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/spy:using:outlines"></a
+                    ><a id="pgf.spy:using:outlines"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/spy using outlines</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/spy:using:outlines"
+                      href="#tikz/spy:using:outlines"
+                      id="tikz/spy:using:outlines"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key creates a <span class="verb">spy scope</span> in which
+                the spy-in node is drawn, but not filled, using a thick line;
+                and the spy-on node is drawn, but not filled, using a very thin
+                line.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2698"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="60.195"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2698.png"
+                        style
+                        width="135.517"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.fractals,spy} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-spy#pgf.spy:using:outlines"
+                        >spy using outlines</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.circle">circle</a
+                      >,<span class="spaces"> </span>magnification=3,<span class="spaces"> </span>size=1cm, <a
+                        href="oo#pgf.connect"
+                        >connect</a
+                      >
+                      spies}</span
+                    >]<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >Koch curve
+                      <a href="library-patterns#pgf.type">type</a> 1</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    ><span class="spaces"> </span>}}};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.6,0.3)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/spy:using:overlays"></a
+                    ><a id="pgf.spy:using:overlays"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/spy using overlays</span
+                          ></span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>
+                      </span></span
+                    ><span class="hl-default">(default <kbd>empty</kbd>)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/spy:using:overlays"
+                      href="#tikz/spy:using:overlays"
+                      id="tikz/spy:using:overlays"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key creates a <span class="verb">spy scope</span> in which
+                both the spy-in and spy-on nodes are filled, but with the fill
+                opacity set to 20%.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2699"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="59.667"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2699.png"
+                        style
+                        width="134.976"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.fractals,spy} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-spy#pgf.spy:using:overlays"
+                        >spy using overlays</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.circle">circle</a
+                      >,<span class="spaces"> </span>magnification=3,<span class="spaces"> </span>size=1cm, <a
+                        href="oo#pgf.connect"
+                        >connect</a
+                      >
+                      spies}</span
+                    >]<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >Koch curve
+                      <a href="library-patterns#pgf.type">type</a> 1</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    ><span class="spaces"> </span>}}};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >green</span
+                    >] <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.6,0.3)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>
+            The following style is useful for connecting the spy-in and the
+            spy-on nodes:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/connect:spies"></a
+                    ><a id="pgf.connect:spies"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/connect spies</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/connect:spies"
+                      href="#tikz/connect:spies"
+                      id="tikz/connect:spies"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Causes the spy-in and the spy-on nodes to be connected by a thin
+                line.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2700"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="103.346"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2700.png"
+                        style
+                        width="134.976"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {decorations.fractals,spy} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-spy#pgf.spy:using:overlays"
+                        >spy using overlays</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-paths#pgf.circle">circle</a
+                      >,<span class="spaces"> </span>magnification=3,<span class="spaces"> </span>size=1cm}</span
+                    >]<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-decorations#pgf.decoration"
+                        >decoration</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >Koch curve
+                      <a href="library-patterns#pgf.type">type</a> 2</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-decorations#pgf.decorate"
+                        >decorate</a
+                      ></span
+                    >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    ><span class="spaces"> </span>}}};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >green</span
+                    >] <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(1.6,0.1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-spy#pgf.back/spy">\spy</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-spy#pgf.connect:spies"
+                        >connect spies</a
+                      ></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >on</span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(0.5,0.4)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.node">node</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1.5)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-6574">
+            <span
+              ><span class="sectionnumber" id="sec-72.5">72.5</span>
+              Examples</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-72.5"
+              data-pdf-destination="subsection.72.5"
+              data-pdf-page="836"
+              href="#sec-72.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-6574"></a>
+
+          <p>
+            Usually, the spy-in node and the spy-on node should have the same
+            shape. However, you might also wish to use the
+            <span class="verb">circle</span> shape for the spy-on node and the
+            <span class="verb">magnifying glass</span> shape for the spy-in
+            node:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2701"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="94.130"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2701.png"
+                    style
+                    width="144.645"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary
+                  {decorations.fractals,shadows,shapes.symbols,spy} </span
+                ><br />
+                <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span
+                  class="textcolor"
+                  style="color: #008000"
+                  >spy using mag glass</span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-spy#pgf.spy:scope">spy scope</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<br />
+                  <span class="spaces">      </span>every
+                  <a href="library-spy#pgf.spy">spy</a> on node/.style={<br />
+                  <span class="spaces">        </span><a
+                    href="tikz-paths#pgf.circle"
+                    >circle</a
+                  >,<br />
+                  <span class="spaces">        </span><a
+                    href="tikz-actions#pgf.fill"
+                    >fill</a
+                  >, <a href="tikz-actions#pgf.fill">fill</a>
+                  opacity=0.2, <a href="tikz-shapes#pgf.text">text</a>
+                  opacity=1},<br />
+                  <span class="spaces">      </span>every
+                  <a href="library-spy#pgf.spy">spy</a>
+                  <a href="library-edges#pgf.in">in</a> node/.style={<br />
+                  <span class="spaces">        </span>magnifying
+                  glass, <a href="gd-circular#pgf.circular">circular</a>
+                  drop shadow,<br />
+                  <span class="spaces">        </span>fill=white, <a
+                    href="tikz-actions#pgf.draw"
+                    >draw</a
+                  >,<span class="spaces"> </span>ultra
+                  <a href="tikz-actions#pgf.thick">thick</a
+                  >,<span class="spaces"> </span>cap=round},<br />
+                  <span class="spaces">      </span>#1<br />
+                  <span class="spaces">    </span>}}</span
+                >}<br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  >spy using mag glass</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{magnification=3,<span class="spaces"> </span>size=1cm}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >Koch curve
+                  <a href="library-patterns#pgf.type">type</a> 2</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,0)</span
+                ><span class="spaces"> </span>}}};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >green!50!black</span
+                >] <span class="textcolor" style="color: #000000"
+                  >on</span
+                >
+                <span class="textcolor" style="color: #800080">(1.6,0.1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2.5,-0.5)</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            With the magnifying glass, you can also put it &ldquo;on top&rdquo;
+            of the picture itself:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2702"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="89.930"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2702.png"
+                    style
+                    width="110.630"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary
+                  {decorations.fractals,shadows,shapes.symbols,spy} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="library-spy#pgf.spy:scope">spy scope</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{magnification=4,<span class="spaces"> </span>size=1cm}</span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-spy#pgf.every:spy:in:node"
+                    >every spy in node</a
+                  ></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<br />
+                <span class="spaces">     </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="library-shapes#pgf.magnifying:glass"
+                    >magnifying glass</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="library-shadows#pgf.circular:drop:shadow"
+                    >circular drop shadow</a
+                  ></span
+                >,<br />
+                <span class="spaces">     </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">white</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.ultra:thick">ultra thick</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  >cap</span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.round">round</a>}</span
+                >]<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >Koch curve
+                  <a href="library-patterns#pgf.type">type</a> 2</span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >{<span class="spaces"> </span><span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #800080">(2,0)</span
+                ><span class="spaces"> </span>}}};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-spy#pgf.back/spy">\spy</a></span
+                > <span class="textcolor" style="color: #000000">on</span>
+                <span class="textcolor" style="color: #800080">(1.6,0.1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

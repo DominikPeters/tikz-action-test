@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Layered Graphics - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Layered Graphics",
+            "item": "https://tikz.dev/base-layers"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-layers" rel="canonical" />
+    <meta content="https://tikz.dev/base-layers" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Layered Graphics - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8387"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-113.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-113.2">Declaring Layers</a>
+            </p>
+            <p><a class="tocsubsection" href="#sec-113.3">Using Layers</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8388">
+            <a id="section-layers"></a
+            ><span
+              ><span class="sectionnumber" id="sec-113">113</span> Layered
+              Graphics</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.113"
+              data-pdf-page="1192"
+              href="#sec-113"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8388"></a>
+          <a id="pgfmanual-autofile-122"></a>
+          <h5 id="autosec-8389">
+            <span
+              ><span class="sectionnumber" id="sec-113.1">113.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-113.1"
+              data-pdf-destination="subsection.113.1"
+              data-pdf-page="1192"
+              href="#sec-113.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8389"></a>
+
+          <p>
+            <span class="textsc">pgf</span> provides a layering mechanism for
+            composing graphics from multiple layers. (This mechanism is not to
+            be confused with the conceptual &ldquo;software layers&rdquo; the
+            <span class="textsc">pgf</span> system is composed of.) Layers are
+            often used in graphic programs. The idea is that you can draw on the
+            different layers in any order. So you might start drawing something
+            on the &ldquo;background&rdquo; layer, then something on the
+            &ldquo;foreground&rdquo; layer, then something on the
+            &ldquo;middle&rdquo; layer, and then something on the background
+            layer once more, and so on. At the end, no matter in which ordering
+            you drew on the different layers, the layers are &ldquo;stacked on
+            top of each other&rdquo; in a fixed ordering to produce the final
+            picture. Thus, anything drawn on the middle layer would come on top
+            of everything of the background layer.
+          </p>
+
+          <p>
+            Normally, you do not need to use different layers since you will
+            have little trouble &ldquo;ordering&rdquo; your graphic commands in
+            such a way that layers are superfluous. However, in certain
+            situations you only &ldquo;know&rdquo; what you should draw behind
+            something else after the &ldquo;something else&rdquo; has been
+            drawn.
+          </p>
+
+          <p>
+            For example, suppose you wish to draw a yellow background behind
+            your picture. The background should be as large as the bounding box
+            of the picture, plus a little border. If you know the size of the
+            bounding box of the picture at its beginning, this is easy to
+            accomplish. However, in general this is not the case and you need to
+            create a &ldquo;background&rdquo; layer in addition to the standard
+            &ldquo;main&rdquo; layer. Then, at the end of the picture, when the
+            bounding box has been established, you can add a rectangle of the
+            appropriate size to the picture.
+          </p>
+          <h5 id="autosec-8390">
+            <span
+              ><span class="sectionnumber" id="sec-113.2">113.2</span> Declaring
+              Layers</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-113.2"
+              data-pdf-destination="subsection.113.2"
+              data-pdf-page="1192"
+              href="#sec-113.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8390"></a>
+
+          <p>
+            In <span class="textsc">pgf</span> layers are referenced using
+            names. The standard layer, which is a bit special in certain ways,
+            is called <span class="verb">main</span>. If nothing else is
+            specified, all graphic commands are added to the
+            <span class="verb">main</span> layer. You can declare a new layer
+            using the following command:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfdeclarelayer"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfdeclarelayer</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfdeclarelayer"
+                      href="#\pgfdeclarelayer"
+                      id="\pgfdeclarelayer"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command declares a layer named
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> for later use. Mainly, this
+                will set up some internal bookkeeping.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            The next step toward using a layer is to tell
+            <span class="textsc">pgf</span> which layers will be part of the
+            actual picture and which will be their ordering. Thus, it is
+            possible to have more layers declared than are actually used.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetlayers"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetlayers</kbd></span
+                      >{<span class="angle">&langle;</span><i>layer list</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetlayers"
+                      href="#\pgfsetlayers"
+                      id="\pgfsetlayers"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command tells <span class="textsc">pgf</span> which layers
+                will be used in pictures. They are stacked on top of each other
+                in the order given. The layer
+                <span class="verb">main</span> should always be part of the
+                list. Here is an example:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.back/pgfdeclarelayer"
+                        >\pgfdeclarelayer</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >background</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.back/pgfdeclarelayer"
+                        >\pgfdeclarelayer</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >foreground</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.back/pgfsetlayers"
+                        >\pgfsetlayers</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >background</span
+                    >,<span class="textcolor" style="color: #000000">main</span
+                    >,<span class="textcolor" style="color: #000000"
+                      >foreground</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                This command should be given either outside of any picture or
+                &ldquo;directly inside&rdquo; of a picture. Here, the
+                &ldquo;directly inside&rdquo; means that there should be no
+                further level of
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                grouping between <span class="verb">\pgfsetlayers</span> and the
+                matching <span class="verb">\end{pgfpicture}</span> (no closing
+                braces, no <span class="verb">\end{...}</span>). It will also
+                work if <span class="verb">\pgfsetlayers</span> is provided
+                before <span class="verb">\end{tikzpicture}</span> (with similar
+                restrictions).
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8391">
+            <span
+              ><span class="sectionnumber" id="sec-113.3">113.3</span> Using
+              Layers</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-113.3"
+              data-pdf-destination="subsection.113.3"
+              data-pdf-page="1192"
+              href="#sec-113.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8391"></a>
+
+          <p>
+            Once the layers of your picture have been declared, you can start to
+            &ldquo;fill&rdquo; them. As said before, all graphics commands are
+            normally added to the <span class="verb">main</span> layer. Using
+            the <span class="verb">{pgfonlayer}</span> environment, you can tell
+            <span class="textsc">pgf</span> that certain commands should,
+            instead, be added to the given layer.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.pgfonlayer"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\begin{<span class="textcolor" style="color: #bf0000"
+                          >pgfonlayer</span
+                        >}</kbd
+                      >{<span class="angle">&langle;</span><i>layer name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.pgfonlayer"
+                      href="#pgf.pgfonlayer"
+                      id="pgf.pgfonlayer"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\end{<span class="textcolor" style="color: #bf0000"
+                          >pgfonlayer</span
+                        >}</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                The whole <span class="angle">&langle;</span
+                ><i>environment contents</i
+                ><span class="angle">&rangle;</span> is added to the layer with
+                the name <span class="angle">&langle;</span><i>layer name</i
+                ><span class="angle">&rangle;</span>. This environment can be
+                used anywhere inside a picture. Thus, even if it is used inside
+                a <span class="verb">{pgfscope}</span> or a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                group, the contents will still be added to the
+                &ldquo;whole&rdquo; picture. Using this environment multiple
+                times inside the same picture will cause the
+                <span class="angle">&langle;</span><i>environment contents</i
+                ><span class="angle">&rangle;</span> to accumulate.
+              </p>
+              <p>
+                <em>Note:</em> You can <em>not</em> add anything to the
+                <span class="verb">main</span> layer using this environment. The
+                only way to add anything to the main layer is to give graphic
+                commands outside all
+                <span class="verb">{pgfonlayer}</span> environments.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3356"
+                      ><!--
+foreground
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.290"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3356.png"
+                        style
+                        width="78.290"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.back/pgfdeclarelayer"
+                        >\pgfdeclarelayer</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >background</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.back/pgfdeclarelayer"
+                        >\pgfdeclarelayer</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >foreground</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.back/pgfsetlayers"
+                        >\pgfsetlayers</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >background</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >,<span class="textcolor" style="color: #000000">main</span
+                    >,<span class="textcolor" style="color: #000000"
+                      >foreground</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% On main layer:</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1cm)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >background</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >yellow</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(-1,-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >foreground</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000">white</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >foreground</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >background</span
+                    >
+                    <span class="textcolor" style="color: #000000">layer</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">black</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(-.8,-.8)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.8,.8)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-layers#pgf.pgfonlayer">pgfonlayer</a></span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% On main layer again:</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >blue!50</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(-.5,-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5,1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\pgfonlayer</span
+                        ></kbd
+                      >{<span class="angle">&langle;</span><i>layer name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\endpgfonlayer</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the plain
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                version of the environment.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\startpgfonlayer</span
+                        ></kbd
+                      >{<span class="angle">&langle;</span><i>layer name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >\stoppgfonlayer</span
+                        ></kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is the Con<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >t version of the environment.
+              </p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,3295 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Chains - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Chains",
+            "item": "https://tikz.dev/library-chains"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-chains" rel="canonical" />
+    <meta content="https://tikz.dev/library-chains" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Chains - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5143"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-48.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-48.2"
+                >Starting and Continuing a Chain</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-48.3">Nodes on a Chain</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-48.4"
+                >Joining Nodes on a Chain</a
+              >
+            </p>
+            <p><a class="tocsubsection" href="#sec-48.5">Branches</a></p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5144">
+            <a id="section-chains"></a
+            ><span
+              ><span class="sectionnumber" id="sec-48">48</span> Chains</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.48"
+              data-pdf-page="601"
+              href="#sec-48"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5144"></a>
+          <a id="pgfmanual-autofile-53"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.chains"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >chains</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.chains"
+                      href="#pgf.chains"
+                      id="pgf.chains"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >chains</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >chains</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library defines options for creating chains.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-5146">
+            <span
+              ><span class="sectionnumber" id="sec-48.1">48.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-48.1"
+              data-pdf-destination="subsection.48.1"
+              data-pdf-page="601"
+              href="#sec-48.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5146"></a>
+
+          <p>
+            <em>Chains</em> are sequences of nodes that are &ndash; typically
+            &ndash; arranged in a row or a column and that are &ndash; typically
+            &ndash; connected by edges. More generally, they can be used to
+            position nodes of a branching network in a systematic manner. For
+            the positioning of nodes in rows and columns you can also use
+            matrices, see Section&nbsp;<a href="tikz-matrices#section-matrices"
+              >20</a
+            >, but chains can also be used to describe the connections between
+            nodes that have already been connected using, say, matrices. Thus,
+            it often makes sense to use matrices for the positioning of elements
+            and chains to describe the connections.
+          </p>
+          <h5 id="autosec-5147">
+            <span
+              ><span class="sectionnumber" id="sec-48.2">48.2</span> Starting
+              and Continuing a Chain</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-48.2"
+              data-pdf-destination="subsection.48.2"
+              data-pdf-page="601"
+              href="#sec-48.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5147"></a>
+
+          <p>
+            Typically, you construct one chain at a time, but it is permissible
+            to construct multiple chains simultaneously. In this case, the
+            chains must be named differently and you must specify for each node
+            which chain it belongs to.
+          </p>
+
+          <p>
+            The first step toward creating a chain is to use the
+            <span class="verb">start chain</span> option.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/start:chain"></a
+                    ><a id="pgf.start:chain"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/start chain</span
+                          ></span
+                        >=</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>chain name</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>direction</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/start:chain"
+                      href="#tikz/start:chain"
+                      id="tikz/start:chain"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key should, but need not, be given as an option to a scope
+                enclosing all nodes of the chain. Typically, this will be a
+                <span class="verb">scope</span> or the whole
+                <span class="verb">tikzpicture</span>, but it might just be a
+                path on which all nodes of the chain are found. If no
+                <span class="angle">&langle;</span><i>chain name</i
+                ><span class="angle">&rangle;</span> is given, the default value
+                <span class="verb">chain</span> will be used instead.
+              </p>
+              <p>
+                The key starts a chain named <span class="angle">&langle;</span
+                ><i>chain name</i><span class="angle">&rangle;</span> and makes
+                it <em>active</em>, which means that it is currently being
+                constructed. The <span class="verb">start chain</span> can be
+                issued only once to activate a chain, inside a scope in which a
+                chain is active you cannot use this option once more (for the
+                same chain name). The chain stops being active at the end of the
+                scope in which the <span class="verb">start chain</span> command
+                was given.
+              </p>
+              <p>
+                Although chains are only locally active (that is, active inside
+                the scope the <span class="verb">start chain</span> command was
+                issued), the information concerning the chains is stored
+                globally and it is possible to <em>continue</em> a chain after a
+                scope has ended. For this, the
+                <span class="verb">continue chain</span> option can be used,
+                which allows you to reactivate an existing chain in another
+                scope.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> is used to determine the
+                placement rule for nodes on the chain. If it is omitted, the
+                current value of the following key is used:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/chain:default:direction"></a
+                        ><a id="pgf.chain:default:direction"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/chain default direction</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>direction</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>going right</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/chain:default:direction"
+                          href="#tikz/chain:default:direction"
+                          id="tikz/chain:default:direction"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This <span class="angle">&langle;</span><i>direction</i
+                    ><span class="angle">&rangle;</span> is used in a
+                    <span class="verb">chain</span> option, if no other
+                    <span class="angle">&langle;</span><i>direction</i
+                    ><span class="angle">&rangle;</span> is specified.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                The <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> can have two different
+                forms:
+                <span class="textcolor" style="color: #bf0000"
+                  ><span class="verb">going </span
+                  ><span class="angle">&langle;</span><i>options</i
+                  ><span class="angle">&rangle;</span></span
+                >
+                or
+                <span class="textcolor" style="color: #bf0000"
+                  ><span class="verb">placed </span
+                  ><span class="angle">&langle;</span><i>options</i
+                  ><span class="angle">&rangle;</span></span
+                >. The effect of these rules will be explained in the
+                description of the <span class="verb">on chain</span> option.
+                Right now, just remember that the
+                <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> you provide with the
+                <span class="verb">chain</span> option applies to the whole
+                chain.
+              </p>
+              <p>
+                Other than this, this key has no further effect. In particular,
+                to place nodes on the chain, you must use the
+                <span class="verb">on chain</span> option, described next.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2127"
+                      ><!--
+A B C
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="12.075"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2127.png"
+                        style
+                        width="129.050"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% The chain is called just "chain"</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >C</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2128"
+                      ><!--
+A B C
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="12.075"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2128.png"
+                        style
+                        width="129.050"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {chains,scopes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% Same as above, using the scope shorthand</span
+                    ><br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >C</span
+                    >};<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2129"
+                      ><!--
+A B C D
+    0
+
+    1
+
+    2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="114.045"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2129.png"
+                        style
+                        width="142.069"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >1 going <a href="tikz-arrows#pgf.right">right</a></span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >2 going <a href="tikz-shapes#pgf.below">below</a></span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >C</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(0.5,-.5)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >0</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >1</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >2</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >D</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/continue:chain"></a
+                    ><a id="pgf.continue:chain"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/continue chain</span
+                          ></span
+                        >=</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>chain name</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>direction</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/continue:chain"
+                      href="#tikz/continue:chain"
+                      id="tikz/continue:chain"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option allows you to (re)activate an existing chain and to
+                possibly change the default direction. If the
+                <span class="verb">chain name</span> is missing, the name of the
+                innermost activated chain is used. If no chain is activated,
+                <span class="verb">chain</span> is used.
+              </p>
+              <p>
+                Let us have a look at the two different applications of this
+                option. The first is to change the direction of a chain as it is
+                being constructed. For this, just give this option somewhere
+                inside the scope of the chain.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2130"
+                      ><!--
+Hello World
+
+          ,
+
+
+         this
+
+          is
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="129.357"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2130.png"
+                        style
+                        width="116.585"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >going <a href="tikz-arrows#pgf.right">right</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >World</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.continue:chain"
+                        >continue chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >going <a href="tikz-shapes#pgf.below">below</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {,};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >this</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >is</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The second application is to reactivate a chain after it
+                &ldquo;has already been closed down&rdquo;.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2131"
+                      ><!--
+A B C D
+    0
+
+    1
+
+    2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="114.045"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2131.png"
+                        style
+                        width="142.069"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {chains,scopes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >C</span
+                    >};<br />
+                    <span class="spaces">  </span>}<br />
+                    <br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >2 going <a href="tikz-shapes#pgf.below">below</a></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(0.5,-.5)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >0</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >1</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000">2</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >2</span
+                    >};<br />
+                    <span class="spaces">  </span>}<br />
+                    <br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.continue:chain"
+                        >continue chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >D</span
+                    >};<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-5158">
+            <span
+              ><span class="sectionnumber" id="sec-48.3">48.3</span> Nodes on a
+              Chain</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-48.3"
+              data-pdf-destination="subsection.48.3"
+              data-pdf-page="603"
+              href="#sec-48.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5158"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/on:chain"></a><a id="pgf.on:chain"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/on chain</span
+                          ></span
+                        >=</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>chain name</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>direction</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/on:chain"
+                      href="#tikz/on:chain"
+                      id="tikz/on:chain"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key should be given as an option to a node. When the option
+                is used, the <span class="angle">&langle;</span><i>chain name</i
+                ><span class="angle">&rangle;</span> must be the name of a chain
+                that has been started using the
+                <span class="verb">start chain</span> option. If
+                <span class="angle">&langle;</span><i>chain name</i
+                ><span class="angle">&rangle;</span> is the empty string, the
+                current value of the innermost activated chain is used. If this
+                option is used several times for a node, only the last
+                invocation &ldquo;wins&rdquo;. (To place a node on several
+                chains, use the <span class="verb">\chainin</span> command
+                repeatedly.)
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> part is optional. If
+                present, it sets the direction used for this node, otherwise the
+                <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> that was given to the
+                original <span class="verb">start chain</span> option is used
+                (or of the last <span class="verb">continue chain</span> option,
+                which allows you to change this default).
+              </p>
+              <p>The effects of this option are the following:</p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> An internal counter
+                    (there is one local counter for each chain) is increased.
+                    This counter reflects the current number of the node in the
+                    chain, where the first node is node 1, the second is node 2,
+                    and so on.
+                  </p>
+                  <p>
+                    The value of this internal counter is globally stored in the
+                    macro
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>\tikzchaincount</kbd></span
+                    >.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> If the node does not yet
+                    have a name, (having been given using the
+                    <span class="verb">name</span> option or the name-syntax),
+                    the name of the node is set to
+                    <span class="angle">&langle;</span><i>chain name</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">-</span
+                    ><span class="angle">&langle;</span
+                    ><i>value of the internal chain counter</i
+                    ><span class="angle">&rangle;</span>. For instance, if the
+                    chain is called <span class="verb">nums</span>, the first
+                    node would be named <span class="verb">nums-1</span>, the
+                    second <span class="verb">nums-2</span>, and so on. For the
+                    default chain name <span class="verb">chain</span>, the
+                    first node is named <span class="verb">chain-1</span>, the
+                    second <span class="verb">chain-2</span>, and so on.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> Independently of whether
+                    the name has been provided automatically or via the
+                    <span class="verb">name</span> option, the name of the node
+                    is globally stored in the macro
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>\tikzchaincurrent</kbd></span
+                    >.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">4.</span> Except for the first
+                    node, the macro
+                    <span class="textcolor" style="color: #bf0000"
+                      ><kbd>\tikzchainprevious</kbd></span
+                    >
+                    is now globally set to the name of the node of the previous
+                    node on the chain. For the first node of the chain, this
+                    macro is globally set to the empty string.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">5.</span> Except possibly for the
+                    first node of the chain, the placement rule is now executed.
+                    The placement rule is just a
+                    <span class="tikzname">TikZ</span> option that is applied
+                    automatically to each node on the chain. Depending on the
+                    form of the <span class="angle">&langle;</span
+                    ><i>direction</i
+                    ><span class="angle">&rangle;</span> parameter (either the
+                    locally given one or the one given to the
+                    <span class="verb">start chain</span> option), different
+                    things happen.
+                  </p>
+                  <p>
+                    First, it makes a difference whether the
+                    <span class="angle">&langle;</span><i>direction</i
+                    ><span class="angle">&rangle;</span> starts with
+                    <span class="verb">going</span> or with
+                    <span class="verb">placed</span>. The difference is that in
+                    the first case, the placement rule is not applied to the
+                    first node of the chain, while in the second case the
+                    placement rule is applied also to this first node. The idea
+                    is that a <span class="verb">going</span>-direction
+                    indicates that we are &ldquo;going somewhere relative to the
+                    previous node&rdquo; whereas a
+                    <span class="verb">placed</span> indicates that we are
+                    &ldquo;placing nodes according to their number&rdquo;.
+                  </p>
+                  <p>
+                    Independently of which form is used, the
+                    <span class="angle">&langle;</span><i>text</i
+                    ><span class="angle">&rangle;</span> inside
+                    <span class="angle">&langle;</span><i>direction</i
+                    ><span class="angle">&rangle;</span> that follows
+                    <span class="verb">going</span> or
+                    <span class="verb">placed</span> (separated by a compulsory
+                    space) can have two different effects:
+                  </p>
+                  <ul class="enumerate" style="list-style-type: none">
+                    <li>
+                      <p>
+                        <span class="listmarker">(a)</span> If it contains an
+                        equal sign, then this <span class="angle">&langle;</span
+                        ><i>text</i><span class="angle">&rangle;</span> is used
+                        as the placement rule, that is, it is simply executed.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">(b)</span> If it does not
+                        contain an equal sign, then
+                        <span class="angle">&langle;</span><i>text</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">=of \tikzchainprevious</span> is
+                        used as the placement rule.
+                      </p>
+                    </li>
+                  </ul>
+                  <p>
+                    Note that in the first case, inside the
+                    <span class="angle">&langle;</span><i>text</i
+                    ><span class="angle">&rangle;</span> you have access to
+                    <span class="verb">\tikzchainprevious</span> and
+                    <span class="verb">\tikzchaincount</span> for doing your
+                    positioning calculations.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2132"
+                          ><!--
+        3
+    4 2
+5 1
+
+6
+
+7
+    8 10
+        9
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="124.898"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2132.png"
+                            style
+                            width="114.338"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {chains} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}[<span class="textcolor" style="color: #008000"
+                          ><a href="library-chains#pgf.start:chain"
+                            >start chain</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-paths#pgf.circle">circle</a> placed
+                          {at=<span class="textcolor" style="color: #800080"
+                            >(\tikzchaincount*30:1.5)</span
+                          >}</span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          >\i</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="library-edges#pgf.in">in</a></span
+                        >
+                        {<span class="textcolor" style="color: #000000">1</span
+                        >,...,<span class="textcolor" style="color: #000000"
+                          >10</span
+                        >}<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="library-chains#pgf.on:chain"
+                            >on chain</a
+                          ></span
+                        >] {<span class="textcolor" style="color: #0000b2"
+                          >\i</span
+                        >};<br />
+                        <br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(circle-1)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(circle-10)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">6.</span> The following style is
+                    executed:
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="enumerate" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./tikz/every:on:chain"></a
+                            ><a id="pgf.every:on:chain"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/tikz/every on chain</span
+                                  ></span
+                                ></kbd
+                              ></span
+                            ><span class="hl-default">(style, no value)</span>
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./tikz/every:on:chain"
+                              href="#tikz/every:on:chain"
+                              id="tikz/every:on:chain"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        This key is executed for every node on a chain,
+                        including the first one.
+                      </p>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <p>
+                Recall that the standard placement rule has a form like
+                <span class="verb">right=of (\tikzchainprevious)</span>. This
+                means that each new node is placed to the right of the previous
+                one, spaced by the current value of
+                <span class="verb">node distance</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2133"
+                      ><!--
+Hallo Welt
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="21.377"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2133.png"
+                        style
+                        width="135.809"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hallo</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Welt</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The optional <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span> allows us to temporarily
+                change the direction in the middle of a chain:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2134"
+                      ><!--
+Hello World
+
+          , this is
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="56.636"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2134.png"
+                        style
+                        width="189.645"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >World</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >going <a href="tikz-shapes#pgf.below">below</a></span
+                    >] {,};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >this</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >is</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                You can also use more complicated computations in the
+                <span class="angle">&langle;</span><i>direction</i
+                ><span class="angle">&rangle;</span>:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2135"
+                      ><!--
+                .
+        World
+    Hello
+1
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="87.433"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2135.png"
+                        style
+                        width="124.706"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >going {at=<span class="textcolor" style="color: #800080"
+                        >(\tikzchainprevious)</span
+                      >,shift=<span class="textcolor" style="color: #800080"
+                        >(30:1)</span
+                      >}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >1</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >World</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {.};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>
+            For each chain, two special &ldquo;pseudo nodes&rdquo; are created.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.meta(chain:name)-begin"></a>
+                    <span class="hl-def"
+                      ><b>Predefined node</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          ><span class="angle">&langle;</span><i>chain name</i
+                          ><span class="angle">&rangle;</span>-begin</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.meta(chain:name)-begin"
+                      href="#pgf.meta(chain:name)-begin"
+                      id="pgf.meta(chain:name)-begin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This node is the same as the first node on the chain. It is only
+                defined after a first node has been defined.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.meta(chain:name)-end"></a>
+                    <span class="hl-def"
+                      ><b>Predefined node</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          ><span class="angle">&langle;</span><i>chain name</i
+                          ><span class="angle">&rangle;</span>-end</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.meta(chain:name)-end"
+                      href="#pgf.meta(chain:name)-end"
+                      id="pgf.meta(chain:name)-end"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This node is the same as the (currently) last node on the chain.
+                As the chain is extended, this node changes.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            The <span class="verb">on chain</span> option can also be used, in
+            conjunction with <span class="verb">late options</span>, to add an
+            already existing node to a chain. The following command, which is
+            only defined inside scopes where a
+            <span class="verb">start chain</span> option is present, simplifies
+            this process.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/chainin"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\chainin</kbd></span
+                      ><span class="verb">(</span
+                      ><span class="angle">&langle;</span><i>existing name</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">)</span>
+                      <span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/chainin"
+                      href="#\chainin"
+                      id="\chainin"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command makes it easy to add a node to chain that has
+                already been constructed. This node may even be part of a
+                another chain.
+              </p>
+              <p>
+                When you say <span class="verb">\chainin (some node);</span>,
+                the node <span class="verb">some node</span> must already exist.
+                It will then be made part of the current chain. This does not
+                mean that the node can be changed (it is already constructed,
+                after all), but the <span class="verb">join</span> option can be
+                used to join <span class="verb">some node</span> to the previous
+                last node on the chain and subsequent nodes will be placed
+                relative to <span class="verb">some node</span>.
+              </p>
+              <p>
+                It is permissible to give the
+                <span class="verb">on chain</span> option inside the
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> in order to specify on
+                which chain the node should be put.
+              </p>
+              <p>This command is just a shortcut for</p>
+              <blockquote>
+                <p>
+                  <span class="verb">\path (</span
+                  ><span class="angle">&langle;</span><i>existing name</i
+                  ><span class="angle">&rangle;</span
+                  ><span class="verb"
+                    >) [late options={on chain,every chain in,</span
+                  ><span class="angle">&langle;</span><i>options</i
+                  ><span class="angle">&rangle;</span
+                  ><span class="verb">}]</span>
+                </p>
+              </blockquote>
+              <p>
+                In particular, it is possible to continue to path after a
+                <span class="verb">\chainin</span> command, though that does not
+                seem very useful.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2136"
+                      ><!--
+existing this is
+
+
+
+
+ Hello World
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="98.192"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2136.png"
+                        style
+                        width="155.217"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.every:join"
+                        >every join</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    >[<span class="textcolor" style="color: #008000">red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(existing)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,2)</span
+                    > {<span class="textcolor" style="color: #000000"
+                      >existing</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hello</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >World</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(existing)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >];<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >this</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >is</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Here is an example where nodes are positioned using a matrix and
+                then connected using a chain
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2137"
+                      ><!--
+World peace
+
+
+
+
+ be would
+
+
+
+great !
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="186.898"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2137.png"
+                        style
+                        width="163.640"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {chains,matrix,scopes,shapes.geometric} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.every:node">every node</a></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-matrices#pgf.back/matrix">\matrix</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-matrix#pgf.matrix:of:nodes"
+                        >matrix of nodes</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-matrices#pgf.column:sep"
+                        >column sep</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-matrices#pgf.row:sep">row sep</a></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >]<br />
+                    <span class="spaces">  </span>{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >|</span
+                    ><span class="textcolor" style="color: #800080">(a)</span
+                    ><span class="textcolor" style="color: #000000">|</span>
+                    <span class="spaces">          </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >World</span
+                    >
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">|</span
+                    ><span class="textcolor" style="color: #800080">(b)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >]<span class="textcolor" style="color: #000000">|</span>
+                    <span class="spaces">            </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >peace</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >|</span
+                    ><span class="textcolor" style="color: #800080">(c)</span
+                    ><span class="textcolor" style="color: #000000">|</span>
+                    <span class="spaces">          </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >be</span
+                    >
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >&amp;</span
+                    >
+                    <span class="textcolor" style="color: #000000">|</span
+                    ><span class="textcolor" style="color: #800080">(d)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shapes#pgf.isosceles:triangle"
+                        >isosceles triangle</a
+                      ></span
+                    >]<span class="textcolor" style="color: #000000">|</span>
+                    <span class="textcolor" style="color: #000000">would</span>
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >|</span
+                    ><span class="textcolor" style="color: #800080">(e)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >]<span class="textcolor" style="color: #000000">|</span>
+                    <span class="textcolor" style="color: #000000">great</span>
+                    <span class="textcolor" style="color: #000000">&amp;</span>
+                    <span class="textcolor" style="color: #000000">|</span
+                    ><span class="textcolor" style="color: #800080">(f)</span
+                    ><span class="textcolor" style="color: #000000">|</span>
+                    <span class="spaces">                     </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >!</span
+                    >
+                    <span class="textcolor" style="color: #0000b2">\</span
+                    ><span class="textcolor" style="color: #0000b2">\</span
+                    ><br />
+                    <span class="spaces">  </span>};<br />
+                    <br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% (the `scopes' library needs to be loaded to make the
+                      following work)</span
+                    ><br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.every:on:chain"
+                        >every on chain</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-coordinates#pgf.by">by</a>
+                      <a href="tikz-graphs#pgf.-&gt;">-&gt;</a>}</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(a)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(b)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(d)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(c)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(e)</span
+                    >;<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-chains#pgf.back/chainin"
+                        >\chainin</a
+                      ></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(f)</span
+                    >;<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-5172">
+            <span
+              ><span class="sectionnumber" id="sec-48.4">48.4</span> Joining
+              Nodes on a Chain</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-48.4"
+              data-pdf-destination="subsection.48.4"
+              data-pdf-page="605"
+              href="#sec-48.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5172"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/join"></a><a id="pgf.join"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/join</span
+                          ></span
+                        >=</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="verb">with </span
+                        ><span class="angle">&langle;</span><i>with</i
+                        ><span class="angle">&rangle;</span> </span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="verb">by </span
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/join"
+                      href="#tikz/join"
+                      id="tikz/join"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                When this key is given to any node on a chain (except possibly
+                for the first node), an <span class="verb">edge</span> command
+                is added after the node. The <span class="verb">with</span> part
+                specifies which node should be used for the start point of the
+                edge; if the <span class="verb">with</span> part is omitted, the
+                <span class="verb">\tikzchainprevious</span> is used. This
+                <span class="verb">edge</span> command gets the
+                <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> as parameter and the
+                current node as its target. If there is no previous node and no
+                <span class="verb">with</span> is given, no
+                <span class="verb">edge</span>
+                command gets executed.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:join"></a
+                        ><a id="pgf.every:join"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every join</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:join"
+                          href="#tikz/every:join"
+                          id="tikz/every:join"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>This style is executed each time this command is used.</p>
+                </ul>
+              </div>
+              <p>
+                Note that it makes sense to call this option several times for a
+                node, in order to connect it to several nodes. This is
+                especially useful for joining in branches, see the next section.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2138"
+                      ><!--
+Hallo Welt
+
+        foo
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="59.040"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2138.png"
+                        style
+                        width="135.809"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble">\usetikzlibrary {chains} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">5mm</span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.every:join"
+                        >every join</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >,<span class="textcolor" style="color: #008000">red</span
+                    >}]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Hallo</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >Welt</span
+                    >};<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >going <a href="tikz-shapes#pgf.below">below</a></span
+                    >,<br />
+                    <span class="spaces">         </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >with chain-1
+                      <a href="tikz-coordinates#pgf.by">by</a> {blue,<a
+                        href="tikz-graphs#pgf.&lt;-"
+                        >&lt;-</a
+                      >}</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >foo</span
+                    >};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-5175">
+            <span
+              ><span class="sectionnumber" id="sec-48.5">48.5</span>
+              Branches</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-48.5"
+              data-pdf-destination="subsection.48.5"
+              data-pdf-page="606"
+              href="#sec-48.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5175"></a>
+
+          <p>
+            A <em>branch</em> is a chain that (typically only temporarily)
+            extends an existing chain. The idea is the following: Suppose we are
+            constructing a chain and at some node
+            <span class="verb">x</span> there is a fork. In this case, one (or
+            even more) branches starts at this fork. For each branch a chain is
+            created, but the first node on this chain should be&nbsp;<span
+              class="verb"
+              >x</span
+            >. For this, it is useful to use
+            <span class="verb">\chainin</span> on the node
+            <span class="verb">x</span> to make it part of the different branch
+            chains and to name the branch chains in some way that reflects the
+            name of the main chain.
+          </p>
+
+          <p>
+            The <span class="verb">start branch</span> option provides a
+            shorthand for doing exactly what was just described.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/start:branch"></a
+                    ><a id="pgf.start:branch"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/start branch</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>branch name</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>direction</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/start:branch"
+                      href="#tikz/start:branch"
+                      id="tikz/start:branch"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key is used in the same manner as the
+                <span class="verb">start chain</span> command, however, the
+                effect is slightly different:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> This option may only
+                    be used if some chain is already active and there is a
+                    (last) node on this chain. Let us call this node the
+                    <span class="angle">&langle;</span><i>fork node</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The chain is not just
+                    called <span class="angle">&langle;</span><i>branch name</i
+                    ><span class="angle">&rangle;</span>, but
+                    <span class="angle">&langle;</span><i>current chain</i
+                    ><span class="angle">&rangle;</span
+                    ><span class="verb">/</span
+                    ><span class="angle">&langle;</span><i>branch name</i
+                    ><span class="angle">&rangle;</span>. For instance, if the
+                    <span class="angle">&langle;</span><i>fork node</i
+                    ><span class="angle">&rangle;</span> is part of the chain
+                    called <span class="verb">trunk</span> and the
+                    <span class="angle">&langle;</span><i>branch name</i
+                    ><span class="angle">&rangle;</span> is set to
+                    <span class="verb">left</span>, the complete chain name of
+                    the branch is <span class="verb">trunk/left</span>. The
+                    <span class="angle">&langle;</span><i>branch name</i
+                    ><span class="angle">&rangle;</span> must be given, there is
+                    no default value.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The
+                    <span class="angle">&langle;</span><i>fork node</i
+                    ><span class="angle">&rangle;</span> is automatically
+                    &ldquo;chained into&rdquo; the branch chain as its first
+                    node. Thus, for the first node on the branch that you
+                    provide, the <span class="verb">join</span> option will
+                    cause it to be connected to the fork node.
+                  </p>
+                </li>
+              </ul>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2139"
+                      ><!--
+    γ
+
+    β
+    α
+A B C
+    1 ?
+
+    2 ◦
+
+    3
+        R
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="166.418"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2139.png"
+                        style
+                        width="129.050"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {chains,scopes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.every:on:chain"
+                        >every on chain</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.every:join"
+                        >every join</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >2mm <a href="pgfkeys#pgf.and">and</a> 1cm</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">trunk</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:branch"
+                        >start branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >numbers going
+                      <a href="tikz-shapes#pgf.below">below</a></span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >1</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >2</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >3</span
+                    >};<br />
+                    <span class="spaces">    </span>}<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:branch"
+                        >start branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >greek going
+                      <a href="tikz-shapes#pgf.above">above</a></span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\alpha</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\beta</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\gamma</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">    </span>}<br />
+                    <br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >with trunk/numbers-end</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >with trunk/greek-end</span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >C</span
+                    >};<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:branch"
+                        >start branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >symbols going
+                      <a href="tikz-shapes#pgf.below">below</a></span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\star</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\circ</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\int</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">    </span>}<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/continue:branch"></a
+                    ><a id="pgf.continue:branch"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/continue branch</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>branch name</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>direction</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/continue:branch"
+                      href="#tikz/continue:branch"
+                      id="tikz/continue:branch"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This option works like the
+                <span class="verb">continue chain</span> option, only
+                <span class="angle">&langle;</span><i>current chain</i
+                ><span class="angle">&rangle;</span><span class="verb">/</span
+                ><span class="angle">&langle;</span><i>branch name</i
+                ><span class="angle">&rangle;</span> is used as the chain name,
+                rather than just <span class="angle">&langle;</span
+                ><i>branch name</i><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2140"
+                      ><!--
+    β
+    α
+A B C
+    1
+    2
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="114.650"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2140.png"
+                        style
+                        width="129.050"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {chains,scopes} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.every:on:chain"
+                        >every on chain</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.join">join</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.every:join"
+                        >every join</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >,<br />
+                    <span class="spaces">                    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >2mm <a href="pgfkeys#pgf.and">and</a> 1cm</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:chain"
+                        >start chain</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">trunk</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >A</span
+                    >};<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >B</span
+                    >};<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:branch"
+                        >start branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >numbers going
+                      <a href="tikz-shapes#pgf.below">below</a></span
+                    >]<span class="spaces"> </span>} <span class="example-code-comment"
+                      >% just a declaration,</span
+                    ><br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.start:branch"
+                        >start branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >greek <span class="spaces">  </span>going
+                      <a href="tikz-shapes#pgf.above">above</a></span
+                    >]<span class="spaces"> </span>} <span class="example-code-comment"
+                      >% we will come back later</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >C</span
+                    >};<br />
+                    <br />
+                    <span class="spaces">    </span><span
+                      class="example-code-comment"
+                      >% Now come the branches...</span
+                    ><br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.continue:branch"
+                        >continue branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >numbers</span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >1</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >2</span
+                    >};<br />
+                    <span class="spaces">    </span>}<br />
+                    <span class="spaces">    </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-chains#pgf.continue:branch"
+                        >continue branch</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">greek</span
+                    >]<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\alpha</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-chains#pgf.on:chain">on chain</a></span
+                    >] {<span class="textcolor" style="color: #000000"
+                      >$</span
+                    ><span class="textcolor" style="color: #0000b2">\beta</span
+                    ><span class="textcolor" style="color: #000000">$</span
+                    >};<br />
+                    <span class="spaces">    </span>}<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

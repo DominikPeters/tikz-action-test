@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mathematical and Object-Oriented Engines - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/math" rel="canonical" />
+    <meta content="https://tikz.dev/math" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Mathematical and Object-Oriented Engines - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7649"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-parsing"
+                >Mathematical Expressions</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-commands"
+                >Additional Mathematical Commands</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-algorithms"
+                >Customizing the Mathematical Engine</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="math-numberprinting"
+                >Number Printing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="oo">Object-Oriented Programming</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h2 id="autosec-7650">
+            Part&nbsp;<span class="sectionnumber">VIII&emsp;</span>Mathematical
+            and Object-Oriented Engines
+          </h2>
+          <div class="mobile-toc">
+            <strong>Sections</strong>
+            <ul>
+              <li><a href="math-design">Design Principles</a></li>
+              <li><a href="math-parsing">Mathematical Expressions</a></li>
+              <li>
+                <a href="math-commands">Additional Mathematical Commands</a>
+              </li>
+              <li>
+                <a href="math-algorithms"
+                  >Customizing the Mathematical Engine</a
+                >
+              </li>
+              <li><a href="math-numberprinting">Number Printing</a></li>
+              <li><a href="oo">Object-Oriented Programming</a></li>
+            </ul>
+          </div>
+          <a id="pgfmanual-autopage-7650"></a>
+          <a id="pgfmanual-autofile-100"></a>
+
+          <p>
+            <em>by Mark Wibrow and Till Tantau</em>
+          </p>
+
+          <p>
+            <span class="textsc">pgf</span> comes with two useful engines: One
+            for doing mathematics, one for doing object-oriented programming.
+            Both engines can be used independently of the main
+            <span class="textsc">pgf</span>.
+          </p>
+          <p>
+            The job of the mathematical engine is to support mathematical
+            operations like addition, subtraction, multiplication and division,
+            using both integers and non-integers, but also functions such as
+            square-roots, sine, cosine, and generate pseudo-random numbers.
+            Mostly, you will use the mathematical facilities of
+            <span class="textsc">pgf</span> indirectly, namely when you write a
+            coordinate like <span class="verb">(5cm*3,6cm/4)</span>, but the
+            mathematical engine can also be used independently of
+            <span class="textsc">pgf</span> and
+            <span class="tikzname">TikZ</span>.
+          </p>
+
+          <p>
+            The job of the object-oriented engine is to support simple
+            object-oriented programming in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >. It allows the definition of <em>classes</em> (without
+            inheritance), <em>methods</em>, <em>attributes</em> and
+            <em>objects</em>.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3119"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="161.714"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3119.png"
+                    style
+                    width="159.510"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3120"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="130.082"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3120.png"
+                    style
+                    width="114.489"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3121"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="100.850"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3121.png"
+                    style
+                    width="180.150"
+                /></span>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3122"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="91.538"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3122.png"
+                    style
+                    width="87.682"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="math-commands#pgf.back/pgfmathsetseed"
+                    >\pgfmathsetseed</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">1</span>}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  >\col</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">black</span
+                >,<span class="textcolor" style="color: #000000">red</span
+                >,<span class="textcolor" style="color: #000000">green</span
+                >,<span class="textcolor" style="color: #000000">blue</span
+                >}<br />
+                {<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >=<span class="textcolor" style="color: #008000">10pt</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.y">y</a></span
+                >=<span class="textcolor" style="color: #008000">10pt</span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.ultra:thick">ultra thick</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                >,<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.line:cap">line cap</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.round">round</a></span
+                >]<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/coordinate"
+                    >\coordinate</a
+                  ></span
+                > <span class="textcolor" style="color: #800080"
+                  >(current point)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/coordinate"
+                    >\coordinate</a
+                  ></span
+                > <span class="textcolor" style="color: #800080"
+                  >(old velocity)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(0,0)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/coordinate"
+                    >\coordinate</a
+                  ></span
+                > <span class="textcolor" style="color: #800080"
+                  >(new velocity)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(rand,rand)</span
+                >;<br />
+                <br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2">\i</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">0</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >1</span
+                >,...,<span class="textcolor" style="color: #000000">100</span
+                >}<br />
+                <span class="spaces">    </span>{<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                >[<span class="textcolor" style="color: #0000b2">\col</span
+                ><span class="textcolor" style="color: #008000">!</span
+                ><span class="textcolor" style="color: #0000b2">\i</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(current point)</span
+                ><br />
+                <span class="spaces">      </span>..<span class="spaces"> </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="library-edges#pgf.controls">controls</a></span
+                >
+                <span class="textcolor" style="color: #000000">++</span
+                ><span class="textcolor" style="color: #800080"
+                  >([scale=-1]old velocity)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="pgfkeys#pgf.and">and</a></span
+                ><br />
+                <span class="spaces">                  </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >++</span
+                ><span class="textcolor" style="color: #800080"
+                  >(new velocity)</span
+                ><span class="spaces"> </span>..<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >++</span
+                ><span class="textcolor" style="color: #800080"
+                  >(rand,rand)</span
+                ><br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-shapes#pgf.coordinate">coordinate</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(current point)</span
+                >;<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/coordinate"
+                    >\coordinate</a
+                  ></span
+                > <span class="textcolor" style="color: #800080"
+                  >(old velocity)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080"
+                  >(new velocity)</span
+                >;<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/coordinate"
+                    >\coordinate</a
+                  ></span
+                > <span class="textcolor" style="color: #800080"
+                  >(new velocity)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.at">at</a></span
+                >
+                <span class="textcolor" style="color: #800080">(rand,rand)</span
+                >;<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >\end</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                }<br />
+              </code>
+            </div>
+          </figure>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

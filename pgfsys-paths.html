@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Soft Path Subsystem - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The System Layer",
+            "item": "https://tikz.dev/pgfsys"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "The Soft Path Subsystem",
+            "item": "https://tikz.dev/pgfsys-paths"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/pgfsys-paths" rel="canonical" />
+    <meta content="https://tikz.dev/pgfsys-paths" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="The Soft Path Subsystem - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8566"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-121.1"
+                >Path Creation Process</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-121.2"
+                >Starting and Ending a Soft Path</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-121.3"
+                >Soft Path Creation Commands</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-121.4"
+                >The Soft Path Data Structure</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-overview"
+                >Design of the System Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-commands"
+                >Commands of the System Layer</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="pgfsys-paths"
+                >The Soft Path Subsystem</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-protocol"
+                >The Protocol Subsystem</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="pgfsys-animations"
+                >Animation System Layer</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The System Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8567">
+            <a id="section-soft-paths"></a
+            ><span
+              ><span class="sectionnumber" id="sec-121">121</span> The Soft Path
+              Subsystem</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.121"
+              data-pdf-page="1250"
+              href="#sec-121"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8567"></a>
+          <a id="pgfmanual-autofile-131"></a>
+
+          <p>
+            This section describes a set of commands for creating
+            <em>soft paths</em> as opposed to the commands of the previous
+            section, which created <em>hard paths</em>. A soft path is a path
+            that can still be &ldquo;changed&rdquo; or &ldquo;molded&rdquo;.
+            Once you (or the <span class="textsc">pgf</span> system) is
+            satisfied with a soft path, it is turned into a hard path, which can
+            be inserted into the resulting <span class="verb">.pdf</span> or
+            <span class="verb">.ps</span> file.
+          </p>
+
+          <p>
+            Note that the commands described in this section are
+            &ldquo;high-level&rdquo; in the sense that they are not implemented
+            in driver files, but rather directly by the
+            <span class="textsc">pgf</span>-system layer. For this reason, the
+            commands for creating soft paths do not start with
+            <span class="verb">\pgfsys@</span>, but rather with
+            <span class="verb">\pgfsyssoftpath@</span>. On the other hand, as a
+            user you will never use these commands directly, they are described
+            as part of the low-level interface.
+          </p>
+          <h5 id="autosec-8569">
+            <span
+              ><span class="sectionnumber" id="sec-121.1">121.1</span> Path
+              Creation Process</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-121.1"
+              data-pdf-destination="subsection.121.1"
+              data-pdf-page="1250"
+              href="#sec-121.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8569"></a>
+
+          <p>
+            When the user writes a command like
+            <span class="verb">\draw (0bp,0bp) -- (10bp,0bp);</span> quite a lot
+            happens behind the scenes:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> The frontend command is
+                translated by <span class="tikzname">TikZ</span> into commands
+                of the basic layer. In essence, the command is translated to
+                something like
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0bp</span
+                    >}{<span class="textcolor" style="color: #000000">0bp</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">10bp</span
+                    >}{<span class="textcolor" style="color: #000000">0bp</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> The
+                <span class="verb">\pgfpathxxxx</span> commands do
+                <em>not</em> directly call &ldquo;hard&rdquo; commands like
+                <span class="verb">\pgfsys@xxxx</span>. Instead, the command
+                <span class="verb">\pgfpathmoveto</span> invokes a special
+                command called
+                <span class="verb">\pgfsyssoftpath@moveto</span> and
+                <span class="verb">\pgfpathlineto</span> invokes
+                <span class="verb">\pgfsyssoftpath@lineto</span>.
+              </p>
+              <p>
+                The <span class="verb">\pgfsyssoftpath@xxxx</span> commands,
+                which are described below, construct a soft path. Each time such
+                a command is used, special tokens are added to the end of an
+                internal macro that stores the soft path currently being
+                constructed.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> When the
+                <span class="verb">\pgfusepath</span> is encountered, the soft
+                path stored in the internal macro is &ldquo;invoked&rdquo;. Only
+                now does a special macro iterate over the soft path. For each
+                line-to or move-to operation on this path it calls an
+                appropriate <span class="verb">\pgfsys@moveto</span> or
+                <span class="verb">\pgfsys@lineto</span> in order to, finally,
+                create the desired hard path, namely, the string of literals in
+                the <span class="verb">.pdf</span> or
+                <span class="verb">.ps</span> file.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> After the path has been
+                invoked, <span class="verb">\pgfsys@stroke</span> is called to
+                insert the literal for stroking the path.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Why such a complicated process? Why not have
+            <span class="verb">\pgfpathlineto</span> directly call
+            <span class="verb">\pgfsys@lineto</span> and be done with it? There
+            are two reasons:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> The
+                <span class="textsc">pdf</span> specification requires that a
+                path is not interrupted by any non-path-construction commands.
+                Thus, the following code will result in a corrupted
+                <span class="verb">.pdf</span>:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-commands#pgf.back/pgfsys@moveto"
+                        >\pgfsys@moveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-commands#pgf.back/pgfsys@setlinewidth"
+                        >\pgfsys@setlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-commands#pgf.back/pgfsys@lineto"
+                        >\pgfsys@lineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">10</span
+                    >}{<span class="textcolor" style="color: #000000">0</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-commands#pgf.back/pgfsys@stroke"
+                        >\pgfsys@stroke</a
+                      ></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Such corrupt code is <em>tolerated</em> by most viewers, but not
+                always. It is much better to create only (reasonably) legal
+                code.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> A soft path can still be
+                changed, while a hard path is fixed. For example, one can still
+                change the starting and end points of a soft path or do
+                optimizations on it. Such transformations are not possible on
+                hard paths.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-8570">
+            <span
+              ><span class="sectionnumber" id="sec-121.2">121.2</span> Starting
+              and Ending a Soft Path</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-121.2"
+              data-pdf-destination="subsection.121.2"
+              data-pdf-page="1250"
+              href="#sec-121.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8570"></a>
+
+          <p>
+            No special action must be taken in order to start the creation of a
+            soft path. Rather, each time a command like
+            <span class="verb">\pgfsyssoftpath@lineto</span> is called, a
+            special token is added to the (global) current soft path being
+            constructed.
+          </p>
+
+          <p>
+            However, you can access and change the current soft path. In this
+            way, it is possible to store a soft path, to manipulate it, or to
+            invoke it.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@getcurrentpath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@getcurrentpath</kbd></span
+                      >{<span class="angle">&langle;</span><i>macro name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@getcurrentpath"
+                      href="#\pgfsyssoftpath@getcurrentpath"
+                      id="\pgfsyssoftpath@getcurrentpath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will store the current soft path in
+                <span class="angle">&langle;</span><i>macro name</i
+                ><span class="angle">&rangle;</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@setcurrentpath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@setcurrentpath</kbd></span
+                      >{<span class="angle">&langle;</span><i>macro name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@setcurrentpath"
+                      href="#\pgfsyssoftpath@setcurrentpath"
+                      id="\pgfsyssoftpath@setcurrentpath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will set the current soft path to be the path
+                stored in <span class="angle">&langle;</span><i>macro name</i
+                ><span class="angle">&rangle;</span>. This macro should store a
+                path that has previously been extracted using the
+                <span class="verb">\pgfsyssoftpath@getcurrentpath</span> command
+                and has possibly been modified subsequently.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@invokecurrentpath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@invokecurrentpath</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@invokecurrentpath"
+                      href="#\pgfsyssoftpath@invokecurrentpath"
+                      id="\pgfsyssoftpath@invokecurrentpath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will turn the current soft path in a
+                &ldquo;hard&rdquo; path. To do so, it iterates over the soft
+                path and calls an appropriate
+                <span class="verb">\pgfsys@xxxx</span> command for each element
+                of the path. Note that the current soft path is
+                <em>not changed</em> by this command. Thus, in order to start a
+                new soft path after the old one has been invoked and is no
+                longer needed, you need to set the current soft path to be
+                empty. This may seem strange, but it is often useful to
+                immediately use the last soft path again.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@flushcurrentpath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@flushcurrentpath</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@flushcurrentpath"
+                      href="#\pgfsyssoftpath@flushcurrentpath"
+                      id="\pgfsyssoftpath@flushcurrentpath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command will invoke the current soft path and then set it
+                to be empty.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8571">
+            <span
+              ><span class="sectionnumber" id="sec-121.3">121.3</span> Soft Path
+              Creation Commands</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-121.3"
+              data-pdf-destination="subsection.121.3"
+              data-pdf-page="1251"
+              href="#sec-121.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8571"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@moveto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@moveto</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@moveto"
+                      href="#\pgfsyssoftpath@moveto"
+                      id="\pgfsyssoftpath@moveto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command appends a &ldquo;move-to&rdquo; segment to the
+                current soft path. The coordinates
+                <span class="angle">&langle;</span><i>x</i
+                ><span class="angle">&rangle;</span> and
+                <span class="angle">&langle;</span><i>y</i
+                ><span class="angle">&rangle;</span> are given as normal
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                dimensions.
+              </p>
+              <p><i>Example: </i>One way to draw a line:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-paths#pgf.back/pgfsyssoftpath@moveto"
+                        >\pgfsyssoftpath@moveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0pt</span
+                    >}{<span class="textcolor" style="color: #000000">0pt</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-paths#pgf.back/pgfsyssoftpath@lineto"
+                        >\pgfsyssoftpath@lineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">10pt</span
+                    >}{<span class="textcolor" style="color: #000000">10pt</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="pgfsys-paths#pgf.back/pgfsyssoftpath@flushcurrentpath"
+                        >\pgfsyssoftpath@flushcurrentpath</a
+                      ></span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfsys-commands#pgf.back/pgfsys@stroke"
+                        >\pgfsys@stroke</a
+                      ></span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@lineto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@lineto</kbd></span
+                      >{<span class="angle">&langle;</span><i>x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@lineto"
+                      href="#\pgfsyssoftpath@lineto"
+                      id="\pgfsyssoftpath@lineto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Appends a &ldquo;line-to&rdquo; segment to the current soft
+                path.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@curveto"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@curveto</kbd></span
+                      >{<span class="angle">&langle;</span><i>a</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>b</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>c</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>d</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>x</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>y</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@curveto"
+                      href="#\pgfsyssoftpath@curveto"
+                      id="\pgfsyssoftpath@curveto"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Appends a &ldquo;curve-to&rdquo; segment to the current soft
+                path with controls \((a,b)\) and \((c,d)\).
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@rect"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@rect</kbd></span
+                      >{<span class="angle">&langle;</span><i>lower left x</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>lower left y</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>width</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>height</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@rect"
+                      href="#\pgfsyssoftpath@rect"
+                      id="\pgfsyssoftpath@rect"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Appends a rectangle segment to the current soft path.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsyssoftpath@closepath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsyssoftpath@closepath</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsyssoftpath@closepath"
+                      href="#\pgfsyssoftpath@closepath"
+                      id="\pgfsyssoftpath@closepath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Appends a &ldquo;close-path&rdquo; segment to the current soft
+                path.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-8572">
+            <span
+              ><span class="sectionnumber" id="sec-121.4">121.4</span> The Soft
+              Path Data Structure</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-121.4"
+              data-pdf-destination="subsection.121.4"
+              data-pdf-page="1251"
+              href="#sec-121.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8572"></a>
+
+          <p>
+            A soft path is stored in a standardized way, which makes it possible
+            to modify it before it becomes &ldquo;hard&rdquo;. Basically, a soft
+            path is a long sequence of triples. Each triple starts with a
+            <em>token</em> that identifies what is going on. This token is
+            followed by two dimensions in braces. For example, the following is
+            a soft path that means &ldquo;the path starts at \((0\mathrm {bp},
+            0\mathrm {bp})\) and then continues in a straight line to
+            \((10\mathrm {bp}, 0\mathrm {bp})\)&rdquo;.
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\pgfsyssoftpath@movetotoken</span
+                >{<span class="textcolor" style="color: #000000">0bp</span
+                >}{<span class="textcolor" style="color: #000000">0bp</span
+                >}<span class="textcolor" style="color: #0000b2"
+                  >\pgfsyssoftpath@linetotoken</span
+                >{<span class="textcolor" style="color: #000000">10bp</span
+                >}{<span class="textcolor" style="color: #000000">0bp</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            A curve-to is hard to express in this way since we need six numbers
+            to express it, not two. For this reasons, a curve-to is expressed
+            using three triples as follows: The command
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfsys-paths#pgf.back/pgfsyssoftpath@curveto"
+                    >\pgfsyssoftpath@curveto</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">1bp</span
+                >}{<span class="textcolor" style="color: #000000">2bp</span
+                >}{<span class="textcolor" style="color: #000000">3bp</span
+                >}{<span class="textcolor" style="color: #000000">4bp</span
+                >}{<span class="textcolor" style="color: #000000">5bp</span
+                >}{<span class="textcolor" style="color: #000000">6bp</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>results in the following three triples:</p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\pgfsyssoftpath@curvetosupportatoken</span
+                >{<span class="textcolor" style="color: #000000">1bp</span
+                >}{<span class="textcolor" style="color: #000000">2bp</span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\pgfsyssoftpath@curvetosupportbtoken</span
+                >{<span class="textcolor" style="color: #000000">3bp</span
+                >}{<span class="textcolor" style="color: #000000">4bp</span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  >\pgfsyssoftpath@curvetotoken</span
+                >{<span class="textcolor" style="color: #000000">5bp</span
+                >}{<span class="textcolor" style="color: #000000">6bp</span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            These three triples must always &ldquo;remain together&rdquo;. Thus,
+            a lonely <span class="verb">supportbtoken</span> is forbidden.
+          </p>
+
+          <p>In details, the following tokens exist:</p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@movetotoken</kbd></span
+                >
+                indicates a move-to operation. The two following numbers
+                indicate the position to which the current point should be
+                moved.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@linetotoken</kbd></span
+                >
+                indicates a line-to operation.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@curvetosupportatoken</kbd></span
+                >
+                indicates the first control point of a curve-to operation. The
+                triple must be followed by a
+                <span class="verb">\pgfsyssoftpath@curvetosupportbtoken</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@curvetosupportbtoken</kbd></span
+                >
+                indicates the second control point of a curve-to operation. The
+                triple must be followed by a
+                <span class="verb">\pgfsyssoftpath@curvetotoken</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@curvetotoken</kbd></span
+                >
+                indicates the target of a curve-to operation.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@rectcornertoken</kbd></span
+                >
+                indicates the corner of a rectangle on the soft path. The triple
+                must be followed by a
+                <span class="verb">\pgfsyssoftpath@rectsizetoken</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@rectsizetoken</kbd></span
+                >
+                indicates the size of a rectangle on the soft path.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span>
+                <span class="textcolor" style="color: #bf0000"
+                  ><kbd>\pgfsyssoftpath@closepath</kbd></span
+                >
+                indicates that the subpath begun with the last move-to operation
+                should be closed. The parameter numbers are currently not
+                important, but if set to anything different from
+                <span class="verb">{0pt}{0pt}</span>, they should be set to the
+                coordinate of the original move-to operation to which the path
+                &ldquo;returns&rdquo; now.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

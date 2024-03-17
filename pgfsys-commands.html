@@ -1,0 +1,3965 @@
+<!DOCTYPE html>
+<html lang="en-US"><!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+<meta charset="utf-8">
+<meta content="LaTeX Lwarp package" name="generator">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Commands of the System Layer - PGF/TikZ Manual</title>
+<link href="style.css?v=20240317" rel="stylesheet" type="text/css">
+
+
+
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<script src="pgfmanual.js?v=20240317">
+</script>
+
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The System Layer",
+            "item": "https://tikz.dev/pgfsys"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Commands of the System Layer",
+            "item": "https://tikz.dev/pgfsys-commands"
+        }
+    ]
+}</script><script async src="lwarp-mathjax-emulation.js"></script><link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"><link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" type="image/png"><link href="/site.webmanifest" rel="manifest"><link href="https://tikz.dev/pgfsys-commands" rel="canonical"><meta content="https://tikz.dev/pgfsys-commands" property="og:url"><meta content="article" property="og:type"><meta content="Commands of the System Layer - PGF/TikZ Manual" property="og:title"><meta content="summary" name="twitter:card"></head>
+<body>
+
+
+<a id="pgfmanual-autopage-8543"></a>
+
+
+
+
+<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-120.1">Beginning and Ending a Stream of System Commands</a></p><p><a class="tocsubsection" href="#sec-120.2">Scoping System Commands</a></p><p><a class="tocsubsection" href="#sec-120.3">Path Construction System Commands</a></p><p><a class="tocsubsection" href="#sec-120.4">Canvas Transformation System Commands</a></p><p><a class="tocsubsection" href="#sec-120.5">Stroking, Filling, and Clipping System Commands</a></p><p><a class="tocsubsection" href="#sec-120.6">Graphic State Option System Commands</a></p><p><a class="tocsubsection" href="#sec-120.7">Color System Commands</a></p><p><a class="tocsubsection" href="#sec-120.8">Pattern System Commands</a></p><p><a class="tocsubsection" href="#sec-120.9">Image System Commands</a></p><p><a class="tocsubsection" href="#sec-120.10">Shading System Commands</a></p><p><a class="tocsubsection" href="#sec-120.11">Transparency System Commands</a></p><p><a class="tocsubsection" href="#sec-120.12">Animation Commands</a></p><p><a class="tocsubsection" href="#sec-120.13">Object Identification System Commands</a></p><p><a class="tocsubsection" href="#sec-120.14">Resource Description Framework Annotations (RDFa)</a></p><p><a class="tocsubsection" href="#sec-120.15">Reusable Objects System Commands</a></p><p><a class="tocsubsection" href="#sec-120.16">Invisibility System Commands</a></p><p><a class="tocsubsection" href="#sec-120.17">Page Size Commands</a></p><p><a class="tocsubsection" href="#sec-120.18">Position Tracking Commands</a></p><p><a class="tocsubsection" href="#sec-120.19">Internal Conversion Commands</a></p></div></nav></div>
+<div class="sidetoccontainer" id="chapter-toc-container">
+
+
+
+<nav class="sidetoc">
+
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="tikzname">TikZ</span> and PGF Packages<br>
+Manual for version 3.1.10</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+
+<div class="sidetoccontents">
+
+<p>
+
+</p>
+
+<p>
+<a class="linkintro" href="/">Introduction</a>
+</p>
+
+
+<p>
+<a class="tocpart" href="tutorials-guidelines">Tutorials and Guidelines</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="install">Installation and Configuration</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="gd">Graph Drawing</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="libraries">Libraries</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="dv">Data Visualization</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="utilities">Utilities</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="math">Mathematical and Object-Oriented Engines</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="base">The Basic Layer</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="current-part">
+<a class="tocpart" href="pgfsys">The System Layer</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="pgfsys-overview">Design of the System Layer</a>
+</p>
+
+
+<p class="current current-part">
+<a class="tocsection" href="pgfsys-commands">Commands of the System Layer</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="pgfsys-paths">The Soft Path Subsystem</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="pgfsys-protocol">The Protocol Subsystem</a>
+</p>
+
+
+<p class="current-part">
+<a class="tocsection" href="pgfsys-animations">Animation System Layer</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+
+<main class="bodycontainer">
+
+
+
+<section class="textbody">
+
+<h1>The <span class="tikzname">TikZ</span> and PGF Packages<br>
+Manual for version 3.1.10</h1><h2 class="inserted">The System Layer</h2>
+
+<!--MathJax customizations:-->
+
+
+<p>
+</p><h4 id="autosec-8544"><span><span class="sectionnumber" id="sec-120">120</span> Commands of the System Layer</span><a class="anchor-link" data-pdf-destination="section.120" data-pdf-page="1234" href="#sec-120">&para;</a></h4>
+<a id="pgfmanual-autopage-8544"></a>
+<a id="pgfmanual-autofile-130"></a>
+<h5 id="autosec-8545"><span><span class="sectionnumber" id="sec-120.1">120.1</span> Beginning and Ending a Stream of System Commands</span><a class="anchor-link" data-html-link="sec-120.1" data-pdf-destination="subsection.120.1" data-pdf-page="1234" href="#sec-120.1">&para;</a></h5>
+<a id="pgfmanual-autopage-8545"></a>
+
+
+<p>
+A &ldquo;user&rdquo; of the <span class="textsc">pgf</span> system layer (like the basic layer or a frontend) will interface with the system layer by calling a stream of commands starting with <span class="verb">\pgfsys@</span>. From the system
+layer&rsquo;s point of view, these commands form a long stream. Between calls to the system layer, control goes back to the user.
+</p>
+
+<p>
+The driver files implement system layer commands by inserting <span class="verb">\special</span> commands that implement the desired operation. For example, <span class="verb">\pgfsys@stroke</span> will be mapped to <span class="verb">\special{pdf: S}</span> by the driver file for <span class="verb">pdftex</span>.
+</p>
+
+<p>
+For many drivers, when such a stream of specials starts, it is necessary to install an appropriate transformation and perhaps perform some more bureaucratic tasks. For this reason, every stream will start with a <span class="verb">\pgfsys@beginpicture</span> and will end with a corresponding ending command.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@beginpicture"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@beginpicture</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@beginpicture" href="#\pgfsys@beginpicture" id="\pgfsys@beginpicture">&para;</a></p>
+</li></div>
+<p>
+Called at the beginning of a <span class="verb">{pgfpicture}</span>. This command should &ldquo;set up things&rdquo;.
+</p>
+<p>
+Most drivers will need to implement this command.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@endpicture"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@endpicture</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@endpicture" href="#\pgfsys@endpicture" id="\pgfsys@endpicture">&para;</a></p>
+</li></div>
+<p>
+Called at the end of a <span class="verb">{pgfpicture}</span>.
+</p>
+<p>
+Most drivers will need to implement this command.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@typesetpicturebox"></a>
+                                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@typesetpicturebox</kbd></span>{<span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@typesetpicturebox" href="#\pgfsys@typesetpicturebox" id="\pgfsys@typesetpicturebox">&para;</a></p>
+</li></div>
+<p>
+Called <em>after</em> a <span class="verb">{pgfpicture}</span> has been typeset. The picture will have been put in box <span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span>. This command should insert the box
+into the normal text. The box <span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span> will still be a &ldquo;raw&rdquo; box that contains only the <span class="verb">\special</span>&rsquo;s that make up the description of the
+picture. The job of this command is to resize and shift <span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span> according to the baseline shift and the size of the box.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@beginpurepicture"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@beginpurepicture</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@beginpurepicture" href="#\pgfsys@beginpurepicture" id="\pgfsys@beginpurepicture">&para;</a></p>
+</li></div>
+<p>
+This version of the <span class="verb">\pgfsys@beginpicture</span> picture command can be used for pictures that are guaranteed not to contain any escaped boxes (see below). In this case, a driver might provide a more compact version
+of the command.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@endpurepicture"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@endpurepicture</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@endpurepicture" href="#\pgfsys@endpurepicture" id="\pgfsys@endpurepicture">&para;</a></p>
+</li></div>
+<p>
+Called at the end of a &ldquo;pure&rdquo; <span class="verb">{pgfpicture}</span>.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+
+<p>
+Inside a stream it is sometimes necessary to &ldquo;escape&rdquo; back into normal typesetting mode; for example to insert some normal text, but with all of the current transformations and clippings being in force. For this escaping, the following
+command is used:
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@hbox"></a>
+                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@hbox</kbd></span>{<span class="angle">&langle;</span><i>box number</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@hbox" href="#\pgfsys@hbox" id="\pgfsys@hbox">&para;</a></p>
+</li></div>
+<p>
+Called to insert a (horizontal) TeX box inside a <span class="verb">{pgfpicture}</span>.
+</p>
+<p>
+Most drivers will need to (re-)implement this command.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@hboxsynced"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@hboxsynced</kbd></span>{<span class="angle">&langle;</span><i>box number</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@hboxsynced" href="#\pgfsys@hboxsynced" id="\pgfsys@hboxsynced">&para;</a></p>
+</li></div>
+<p>
+Called to insert a (horizontal) TeX box inside a <span class="verb">{pgfpicture}</span>, but with the current coordinate transformation matrix synced with the canvas transformation matrix.
+</p>
+<p>
+This command should do the same as if you used <span class="verb">\pgflowlevelsynccm</span> followed by <span class="verb">\pgfsys@hbox</span>. However, the default implementation of this command will use a &ldquo;TeX-translation&rdquo; for the
+translation part of the transformation matrix. This will ensure that hyperlinks &ldquo;survive&rdquo; at least translations. On the other hand, a driver may choose to revert to a simpler implementation. This is done, for example, for the <span class="textsc">svg</span> implementation, where a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-translation makes no sense.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@pictureboxsynced"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@pictureboxsynced</kbd></span>{<span class="angle">&langle;</span><i>box number</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@pictureboxsynced" href="#\pgfsys@pictureboxsynced" id="\pgfsys@pictureboxsynced">&para;</a></p>
+</li></div>
+<p>
+Basically, this should do the same as doing a (scoped) low level sync followed by inserting the box <span class="angle">&langle;</span><i>box number</i><span class="angle">&rangle;</span> directly into the output stream. However, the
+default implementation uses <span class="verb">\pgfsys@hboxsynced</span> in conjunction with <span class="verb">\pgfsys@beginpicture</span> to ensure that, if possible, hyperlinks survive in <span class="textsc">pdf</span>s. Drivers that
+are sensitive to picture-in-picture scopes should replace this implementation by
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@beginscope">\pgfsys@beginscope</a></span><span class="textcolor" style="color:#0000B2"><a href="base-transformations#pgf.back/pgflowlevelsynccm">\pgflowlevelsynccm</a></span><span class="textcolor" style="color:#0000B2">\box</span><span class="textcolor" style="color:#000000">#1</span><span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@endscope">\pgfsys@endscope</a></span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8546"><span><span class="sectionnumber" id="sec-120.2">120.2</span> Scoping System Commands</span><a class="anchor-link" data-html-link="sec-120.2" data-pdf-destination="subsection.120.2" data-pdf-page="1235" href="#sec-120.2">&para;</a></h5>
+<a id="pgfmanual-autopage-8546"></a>
+
+
+<p>
+The scoping commands are used to keep changes of the graphics state local.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@beginscope"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@beginscope</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@beginscope" href="#\pgfsys@beginscope" id="\pgfsys@beginscope">&para;</a></p>
+</li></div>
+<p>
+Saves the current graphic state on a graphic state stack. All changes to the graphic state parameters mentioned for <span class="verb">\pgfsys@stroke</span> and <span class="verb">\pgfsys@fill</span> will be local to the current graphic
+state and the old values will be restored after <span class="verb">\pgfsys@endscope</span> is used.
+</p>
+<p>
+<em>Warning:</em> <span class="textsc">pdf</span> and PostScript differ with respect to the question of whether the current path is part of the graphic state or not. For this reason, you should never use this command unless the path is
+currently empty. For example, it might be a good idea to use <span class="verb">\pgfsys@discardpath</span> prior to calling this command.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@endscope"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@endscope</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@endscope" href="#\pgfsys@endscope" id="\pgfsys@endscope">&para;</a></p>
+</li></div>
+<p>
+Restores the last saved graphic state.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8547"><span><span class="sectionnumber" id="sec-120.3">120.3</span> Path Construction System Commands</span><a class="anchor-link" data-html-link="sec-120.3" data-pdf-destination="subsection.120.3" data-pdf-page="1235" href="#sec-120.3">&para;</a></h5>
+<a id="pgfmanual-autopage-8547"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@moveto"></a>
+                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@moveto</kbd></span>{<span class="angle">&langle;</span><i>x</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@moveto" href="#\pgfsys@moveto" id="\pgfsys@moveto">&para;</a></p>
+</li></div>
+<p>
+This command is used to start a path at a specific point \((x,y)\) or to move the current point of the current path to \((x,y)\) without drawing anything upon stroking (the current path is &ldquo;interrupted&rdquo;).
+</p>
+<p>
+Both <span class="angle">&langle;</span><i>x</i><span class="angle">&rangle;</span> and <span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span> are given as <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimensions. It is the driver&rsquo;s job to transform these to the coordinate system of the backend. Typically, this means converting the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimension into a dimensionless multiple of \(\frac {1}{72}\mathrm {in}\). The function <span class="verb">\pgf@sys@bp</span> helps with this conversion.
+</p>
+<p>
+<i>Example: </i>Draw a line from \((10\mathrm {pt},10\mathrm {pt})\) to the origin of the picture.
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@moveto">\pgfsys@moveto</a></span>{<span class="textcolor" style="color:#000000">10pt</span>}{<span class="textcolor" style="color:#000000">10pt</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">0pt</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@stroke">\pgfsys@stroke</a></span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@lineto"></a>
+                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@lineto</kbd></span>{<span class="angle">&langle;</span><i>x</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@lineto" href="#\pgfsys@lineto" id="\pgfsys@lineto">&para;</a></p>
+</li></div>
+<p>
+Continue the current path to \((x,y)\) with a straight line.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@curveto"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@curveto</kbd></span>{<span class="angle">&langle;</span><i>\(x_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x_3\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_3\)</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@curveto" href="#\pgfsys@curveto" id="\pgfsys@curveto">&para;</a></p>
+</li></div>
+<p>
+Continue the current path to \((x_3,y_3)\) with a B&eacute;zier curve that has the two control points \((x_1,y_1)\) and \((x_2,y_2)\).
+</p>
+<p>
+<i>Example: </i>Draw a good approximation of a quarter circle:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@moveto">\pgfsys@moveto</a></span>{<span class="textcolor" style="color:#000000">10pt</span>}{<span class="textcolor" style="color:#000000">0pt</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@curveto">\pgfsys@curveto</a></span>{<span class="textcolor" style="color:#000000">10pt</span>}{<span class="textcolor" style="color:#000000">5</span>.<span class="textcolor" style="color:#000000">55pt</span>}{<span class="textcolor" style="color:#000000">5</span>.<span class="textcolor" style="color:#000000">55pt</span>}{<span class="textcolor" style="color:#000000">10pt</span>}{<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">10pt</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@stroke">\pgfsys@stroke</a></span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rect"></a>
+                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rect</kbd></span>{<span class="angle">&langle;</span><i>x</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rect" href="#\pgfsys@rect" id="\pgfsys@rect">&para;</a></p>
+</li></div>
+<p>
+Append a rectangle to the current path whose lower left corner is at \((x,y)\) and whose width and height in big points are given by <span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span> and <span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span>.
+</p>
+<p>
+This command can be &ldquo;mapped back&rdquo; to <span class="verb">\pgfsys@moveto</span> and <span class="verb">\pgfsys@lineto</span> commands, but it is included since <span class="textsc">pdf</span> has a special, quick version of this
+command.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@closepath"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@closepath</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@closepath" href="#\pgfsys@closepath" id="\pgfsys@closepath">&para;</a></p>
+</li></div>
+<p>
+Close the current path. This results in joining the current point of the path with the point specified by the last <span class="verb">\pgfsys@moveto</span> operation. Typically, this is preferable over using <span class="verb">\pgfsys@lineto</span> to the last point specified by a <span class="verb">\pgfsys@moveto</span>, since the line starting at this point and the line ending at this point will be smoothly joined by <span class="verb">\pgfsys@closepath</span>.
+</p>
+<p>
+<i>Example: </i>Consider
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@moveto">\pgfsys@moveto</a></span>{<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">0pt</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">10bp</span>}{<span class="textcolor" style="color:#000000">10bp</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">0bp</span>}{<span class="textcolor" style="color:#000000">10bp</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@closepath">\pgfsys@closepath</a></span><br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@stroke">\pgfsys@stroke</a></span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+and
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@moveto">\pgfsys@moveto</a></span>{<span class="textcolor" style="color:#000000">0bp</span>}{<span class="textcolor" style="color:#000000">0bp</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">10bp</span>}{<span class="textcolor" style="color:#000000">10bp</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">0bp</span>}{<span class="textcolor" style="color:#000000">10bp</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">0bp</span>}{<span class="textcolor" style="color:#000000">0bp</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@stroke">\pgfsys@stroke</a></span><br>
+
+
+</code>
+</div>
+</figure>
+<p>
+The difference between the above will be that in the second triangle the corner at the origin will be wrong; it will just be the overlay of two lines going in different directions, not a sharp pointed corner.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8548"><span><span class="sectionnumber" id="sec-120.4">120.4</span> Canvas Transformation System Commands</span><a class="anchor-link" data-html-link="sec-120.4" data-pdf-destination="subsection.120.4" data-pdf-page="1236" href="#sec-120.4">&para;</a></h5>
+<a id="pgfmanual-autopage-8548"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@transformcm"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@transformcm</kbd></span>{<span class="angle">&langle;</span><i>a</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>b</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>c</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>d</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>e</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>f</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@transformcm" href="#\pgfsys@transformcm" id="\pgfsys@transformcm">&para;</a></p>
+</li></div>
+<p>
+Perform a concatenation of the canvas transformation matrix with the matrix given by the values <span class="angle">&langle;</span><i>a</i><span class="angle">&rangle;</span> to <span class="angle">&langle;</span><i>f</i><span class="angle">&rangle;</span>, see the <span class="textsc">pdf</span> or PostScript manual for details. The values <span class="angle">&langle;</span><i>a</i><span class="angle">&rangle;</span> to <span class="angle">&langle;</span><i>d</i><span class="angle">&rangle;</span> are dimensionless factors, <span class="angle">&langle;</span><i>e</i><span class="angle">&rangle;</span> and <span class="angle">&langle;</span><i>f</i><span class="angle">&rangle;</span> are <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimensions
+</p>
+<p>
+<i>Example: </i><span class="verb">\pgfsys@transformcm{1}{0}{0}{1}{1cm}{1cm}</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@transformshift"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@transformshift</kbd></span>{<span class="angle">&langle;</span><i>x displacement</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>y displacement</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@transformshift" href="#\pgfsys@transformshift" id="\pgfsys@transformshift">&para;</a></p>
+</li></div>
+<p>
+This command will change the origin of the canvas to \((x,y)\).
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@transformxyscale"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@transformxyscale</kbd></span>{<span class="angle">&langle;</span><i>x scale</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>y scale</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@transformxyscale" href="#\pgfsys@transformxyscale" id="\pgfsys@transformxyscale">&para;</a></p>
+</li></div>
+<p>
+This command will scale the canvas (and everything that is drawn) by a factor of <span class="angle">&langle;</span><i>x scale</i><span class="angle">&rangle;</span> in the \(x\)-direction and <span class="angle">&langle;</span><i>y
+scale</i><span class="angle">&rangle;</span> in the \(y\)-direction. Note that this applies to everything, including lines. So a scaled line will have a different width and may even have a different width when going along the \(x\)-axis and
+when going along the \(y\)-axis, if the scaling is different in these directions. Usually, you do not want this.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@viewboxmeet"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@viewboxmeet</kbd></span>{<span class="angle">&langle;</span><i>\(x_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x'_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y'_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x'_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y'_2\)</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@viewboxmeet" href="#\pgfsys@viewboxmeet" id="\pgfsys@viewboxmeet">&para;</a></p>
+</li></div>
+<p>
+Starts a &ldquo;view box&rdquo; scope, which must be ended using <span class="verb">\pgfsys@endviewbox</span> later on (with matching scopes).
+</p>
+<p>
+The effect of this command is as follows: Consider the rectangles \(R\) with lower left corner \((x_1,y_1)\) and upper right corner \((x_2,y_2)\) and \(R'\) with corners \((x'_1,y'_1)\) and \((x'_2,y'_2)\). The
+command will install a canvas translation and uniform scaling such that \(R'\) then has the same center as&nbsp;\(R\) and additionally, has maximum size such that it still fits inside&nbsp;\(R\). (Think of this as &ldquo;viewing&rdquo;
+\(R'\) through \(R\) such that the aspect ratio is kept.)
+</p>
+<p>
+This command has a default implementation. Its main purpose is to allow animations of the view box; for static drawings it is better to compute the necessary transformations directly.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@viewboxslice"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@viewboxslice</kbd></span>{<span class="angle">&langle;</span><i>\(x_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x'_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y'_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x'_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y'_2\)</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@viewboxslice" href="#\pgfsys@viewboxslice" id="\pgfsys@viewboxslice">&para;</a></p>
+</li></div>
+<p>
+Works like the previous command, but now \(R'\) has minimal size such that it encompasses all of \(R\).
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@endviewbox"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@endviewbox</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@endviewbox" href="#\pgfsys@endviewbox" id="\pgfsys@endviewbox">&para;</a></p>
+</li></div>
+<p>
+Ends a viewbox previously started using <span class="verb">\pgfsys@viewboxmeet</span> or the <span class="verb">...slice</span> variant.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8549"><span><span class="sectionnumber" id="sec-120.5">120.5</span> Stroking, Filling, and Clipping System Commands</span><a class="anchor-link" data-html-link="sec-120.5" data-pdf-destination="subsection.120.5" data-pdf-page="1237" href="#sec-120.5">&para;</a></h5>
+<a id="pgfmanual-autopage-8549"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@stroke"></a>
+                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@stroke</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@stroke" href="#\pgfsys@stroke" id="\pgfsys@stroke">&para;</a></p>
+</li></div>
+<p>
+Stroke the current path (as if it were drawn with a pen). A number of graphic state parameters influence this, which can be set using appropriate system commands described later.
+</p>
+<dl class="description">
+
+
+<dt><span class="listmarker">Line width</span></dt>
+<dd>
+<p>
+The &ldquo;thickness&rdquo; of the line. A width of 0 is the thinnest width renderable on the device. On a high-resolution printer this may become invisible and should be avoided. A good choice is 0.4pt, which is the default.
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Stroke color</span></dt>
+<dd>
+<p>
+This special color is used for stroking. If it is not set, the current color is used.
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Cap</span></dt>
+<dd>
+<p>
+The cap describes how the endings of lines are drawn. A round cap adds a little half circle to these endings. A butt cap ends the lines exactly at the end (or start) point without anything added. A rectangular cap ends the lines like the
+butt cap, but the lines protrude over the endpoint by the line thickness. (See also the <span class="textsc">pdf</span> manual.) If the path has been closed, no cap is drawn.
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Join</span></dt>
+<dd>
+<p>
+This describes how a bend (a join) in a path is rendered. A round join draws bends using small arcs. A bevel join just draws the two lines and then fills the join minimally so that it becomes convex. A miter join extends the lines so
+that they form a single sharp corner, but only up to a certain miter limit. (See the <span class="textsc">pdf</span> manual once more.)
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Dash</span></dt>
+<dd>
+<p>
+The line may be dashed according to a dashing pattern.
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Clipping area</span></dt>
+<dd>
+<p>
+If a clipping area is established, only those parts of the path that are inside the clipping area will be drawn.
+</p>
+</dd>
+</dl>
+<p>
+In addition to stroking a path, the path may also be used for clipping after it has been stroked. This will happen if the <span class="verb">\pgfsys@clipnext</span> is used prior to this command, see there for details.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@closestroke"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@closestroke</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@closestroke" href="#\pgfsys@closestroke" id="\pgfsys@closestroke">&para;</a></p>
+</li></div>
+<p>
+This command should have the same effect as first closing the path and then stroking it.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@fill"></a>
+                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@fill</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@fill" href="#\pgfsys@fill" id="\pgfsys@fill">&para;</a></p>
+</li></div>
+<p>
+This command fills the area surrounded by the current path. If the path has not yet been closed, it is closed prior to filling. The path itself is not stroked. For self-intersecting paths or paths consisting of multiple parts, the nonzero
+winding number rule is used to determine whether a point is inside or outside the path, except if <span class="verb">\ifpgfsys@eorule</span> holds &ndash; in which case the even-odd rule should be used. (See the <span class="textsc">pdf</span> or PostScript manual for details.)
+</p>
+<p>
+The following graphic state parameters influence the filling:
+</p>
+<dl class="description">
+
+
+<dt><span class="listmarker">Interior rule</span></dt>
+<dd>
+<p>
+If <span class="verb">\ifpgfsys@eorule</span> is set, the even-odd rule is used, otherwise the non-zero winding number rule.
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Fill color</span></dt>
+<dd>
+<p>
+If the fill color is not especially set, the current color is used.
+</p>
+
+
+</dd>
+<dt><span class="listmarker">Clipping area</span></dt>
+<dd>
+<p>
+If a clipping area is established, only those parts of the filling area that are inside the clipping area will be drawn.
+</p>
+</dd>
+</dl>
+<p>
+In addition to filling the path, the path will also be used for clipping if <span class="verb">\pgfsys@clipnext</span> is used prior to this command.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@fillstroke"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@fillstroke</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@fillstroke" href="#\pgfsys@fillstroke" id="\pgfsys@fillstroke">&para;</a></p>
+</li></div>
+<p>
+First, the path is filled, then the path is stroked. If the fill and stroke colors are the same (or if they are not specified and the current color is used), this yields almost the same as a <span class="verb">\pgfsys@fill</span>. However, due
+to the line thickness of the stroked path, the fill-stroked area will be slightly larger.
+</p>
+<p>
+In addition to stroking and filling the path, the path will also be used for clipping if <span class="verb">\pgfsys@clipnext</span> is used prior to this command.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@discardpath"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@discardpath</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@discardpath" href="#\pgfsys@discardpath" id="\pgfsys@discardpath">&para;</a></p>
+</li></div>
+<p>
+Normally, this command should &ldquo;throw away&rdquo; the current path. However, after <span class="verb">\pgfsys@clipnext</span> has been called, the current path should subsequently be used for clipping. See <span class="verb">\pgfsys@clipnext</span> for details.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@clipnext"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@clipnext</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@clipnext" href="#\pgfsys@clipnext" id="\pgfsys@clipnext">&para;</a></p>
+</li></div>
+<p>
+This command should be issued after a path has been constructed, but before it has been stroked and/or filled or discarded. When the command is used, the next stroking/filling/discarding command will first be executed normally.
+Then, afterwards, the just-used path will be used for subsequent clipping. If there has already been a clipping region, this region is intersected with the new clipping path (the clipping cannot get bigger). The nonzero winding number
+rule is used to determine whether a point is inside or outside the clipping area or the even-odd rule, depending on whether <span class="verb">\ifpgfsys@eorule</span> holds.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8550"><span><span class="sectionnumber" id="sec-120.6">120.6</span> Graphic State Option System Commands</span><a class="anchor-link" data-html-link="sec-120.6" data-pdf-destination="subsection.120.6" data-pdf-page="1238" href="#sec-120.6">&para;</a></h5>
+<a id="pgfmanual-autopage-8550"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@setlinewidth"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@setlinewidth</kbd></span>{<span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@setlinewidth" href="#\pgfsys@setlinewidth" id="\pgfsys@setlinewidth">&para;</a></p>
+</li></div>
+<p>
+Sets the width of lines, when stroked, to <span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>, which must be a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimension.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@buttcap"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@buttcap</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@buttcap" href="#\pgfsys@buttcap" id="\pgfsys@buttcap">&para;</a></p>
+</li></div>
+<p>
+Sets the cap to a butt cap. See <span class="verb">\pgfsys@stroke</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@roundcap"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@roundcap</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@roundcap" href="#\pgfsys@roundcap" id="\pgfsys@roundcap">&para;</a></p>
+</li></div>
+<p>
+Sets the cap to a round cap. See <span class="verb">\pgfsys@stroke</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rectcap"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rectcap</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rectcap" href="#\pgfsys@rectcap" id="\pgfsys@rectcap">&para;</a></p>
+</li></div>
+<p>
+Sets the cap to a rectangular cap. See <span class="verb">\pgfsys@stroke</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@miterjoin"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@miterjoin</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@miterjoin" href="#\pgfsys@miterjoin" id="\pgfsys@miterjoin">&para;</a></p>
+</li></div>
+<p>
+Sets the join to a miter join. See <span class="verb">\pgfsys@stroke</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@setmiterlimit"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@setmiterlimit</kbd></span>{<span class="angle">&langle;</span><i>factor</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@setmiterlimit" href="#\pgfsys@setmiterlimit" id="\pgfsys@setmiterlimit">&para;</a></p>
+</li></div>
+<p>
+Sets the miter limit of lines to <span class="angle">&langle;</span><i>factor</i><span class="angle">&rangle;</span>. See the <span class="textsc">pdf</span> or PostScript for details on what the miter limit is.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@roundjoin"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@roundjoin</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@roundjoin" href="#\pgfsys@roundjoin" id="\pgfsys@roundjoin">&para;</a></p>
+</li></div>
+<p>
+Sets the join to a round join. See <span class="verb">\pgfsys@stroke</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@beveljoin"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@beveljoin</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@beveljoin" href="#\pgfsys@beveljoin" id="\pgfsys@beveljoin">&para;</a></p>
+</li></div>
+<p>
+Sets the join to a bevel join. See <span class="verb">\pgfsys@stroke</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@setdash"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@setdash</kbd></span>{<span class="angle">&langle;</span><i>pattern</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>phase</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@setdash" href="#\pgfsys@setdash" id="\pgfsys@setdash">&para;</a></p>
+</li></div>
+<p>
+Sets the dashing patter. <span class="angle">&langle;</span><i>pattern</i><span class="angle">&rangle;</span> should be a list of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>
+dimensions separated by commas. <span class="angle">&langle;</span><i>phase</i><span class="angle">&rangle;</span> should be a single dimension.
+</p>
+<p>
+<i>Example: </i><span class="verb">\pgfsys@setdash{3pt,3pt}{0pt}</span>
+</p>
+<p>
+The list of values in <span class="angle">&langle;</span><i>pattern</i><span class="angle">&rangle;</span> is used to determine the lengths of the &ldquo;on&rdquo; and &ldquo;off&rdquo; phases of the dashing. For example, if <span class="angle">&langle;</span><i>pattern</i><span class="angle">&rangle;</span> is <span class="verb">3bp,4bp</span>, then the dashing pattern is &ldquo;3bp on followed by 4bp off, followed by 3bp on, followed by 4bp off, and so on&rdquo;. A pattern of
+<span class="verb">.5pt,4pt,3pt,1.5pt</span> means &ldquo;.5pt on, 4pt off, 3pt on, 1.5pt off, .5pt on, &hellip;&rdquo; If the number of entries is odd, the last one is used twice, so <span class="verb">3pt</span> means &ldquo;3pt on, 3pt off, 3pt on, 3pt off,
+&hellip;&rdquo; An empty list means &ldquo;always on&rdquo;.
+</p>
+<p>
+The second argument determines the &ldquo;phase&rdquo; of the pattern. For example, for a pattern of <span class="verb">3bp,4bp</span> and a phase of <span class="verb">1bp</span>, the pattern would start: &ldquo;2bp on, 4bp off, 3bp on, 4bp off, 3bp
+on, 4bp off, &hellip;&rdquo;
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/ifpgfsys@eorule"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\ifpgfsys@eorule</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/ifpgfsys@eorule" href="#\ifpgfsys@eorule" id="\ifpgfsys@eorule">&para;</a></p>
+</li></div>
+<p>
+Determines whether the even odd rule is used for filling and clipping or not.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8551"><span><span class="sectionnumber" id="sec-120.7">120.7</span> Color System Commands</span><a class="anchor-link" data-html-link="sec-120.7" data-pdf-destination="subsection.120.7" data-pdf-page="1239" href="#sec-120.7">&para;</a></h5>
+<a id="pgfmanual-autopage-8551"></a>
+
+
+<p>
+The <span class="textsc">pgf</span> system layer provides a number of system commands for setting colors. These command coexist with commands from the <span class="verb">color</span> and <span class="verb">xcolor</span> package,
+which perform similar functions. However, the <span class="verb">color</span> package does not support having two different colors for stroking and filling, which is a useful feature that is supported by <span class="textsc">pgf</span>.
+For this reason, the <span class="textsc">pgf</span> system layer offers commands for setting these colors separately. Also, plain <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>
+profits from the fact that <span class="textsc">pgf</span> can set colors.
+</p>
+
+<p>
+For <span class="textsc">pdf</span>, implementing these color commands is easy since <span class="textsc">pdf</span> supports different stroking and filling colors directly. For PostScript, a more complicated approach is needed in which
+the colors need to be stored in special PostScript variables that are set whenever a stroking or a filling operation is done.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@rgb"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@rgb</kbd></span>{<span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>blue</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@rgb" href="#\pgfsys@color@rgb" id="\pgfsys@color@rgb">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking and filling operations to the given red/green/blue tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@rgb@stroke"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@rgb@stroke</kbd></span>{<span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>blue</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@rgb@stroke" href="#\pgfsys@color@rgb@stroke" id="\pgfsys@color@rgb@stroke">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking operations to the given red/green/blue tuple (numbers between 0 and 1).
+</p>
+<p>
+<i>Example: </i>Make stroked text dark red: <span class="verb">\pgfsys@color@rgb@stroke{0.5}{0}{0}</span>
+</p>
+<p>
+The special stroking color is only used if the stroking color has been set since the last <span class="verb">\color</span> or <span class="verb">\pgfsys@color@...</span> command. Thus, each <span class="verb">\color</span> command will
+reset both the stroking and filling colors by calling <span class="verb">\pgfsys@color@reset</span>.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@rgb@fill"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@rgb@fill</kbd></span>{<span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>blue</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@rgb@fill" href="#\pgfsys@color@rgb@fill" id="\pgfsys@color@rgb@fill">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for filling operations to the given red/green/blue tuple (numbers between 0 and 1). This color may be different from the stroking color.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@cmyk"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@cmyk</kbd></span>{<span class="angle">&langle;</span><i>cyan</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>magenta</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>yellow</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>black</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@cmyk" href="#\pgfsys@color@cmyk" id="\pgfsys@color@cmyk">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking and filling operations to the given cmyk tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@cmyk@stroke"></a>
+                                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@cmyk@stroke</kbd></span>{<span class="angle">&langle;</span><i>cyan</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>magenta</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>yellow</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>black</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@cmyk@stroke" href="#\pgfsys@color@cmyk@stroke" id="\pgfsys@color@cmyk@stroke">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking operations to the given cmyk tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@cmyk@fill"></a>
+                                               <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@cmyk@fill</kbd></span>{<span class="angle">&langle;</span><i>cyan</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>magenta</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>yellow</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>black</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@cmyk@fill" href="#\pgfsys@color@cmyk@fill" id="\pgfsys@color@cmyk@fill">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for filling operations to the given cmyk tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@cmy"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@cmy</kbd></span>{<span class="angle">&langle;</span><i>cyan</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>magenta</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>yellow</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@cmy" href="#\pgfsys@color@cmy" id="\pgfsys@color@cmy">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking and filling operations to the given cmy tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@cmy@stroke"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@cmy@stroke</kbd></span>{<span class="angle">&langle;</span><i>cyan</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>magenta</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>yellow</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@cmy@stroke" href="#\pgfsys@color@cmy@stroke" id="\pgfsys@color@cmy@stroke">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking operations to the given cmy tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@cmy@fill"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@cmy@fill</kbd></span>{<span class="angle">&langle;</span><i>cyan</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>magenta</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>yellow</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@cmy@fill" href="#\pgfsys@color@cmy@fill" id="\pgfsys@color@cmy@fill">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for filling operations to the given cmy tuple (numbers between 0 and 1).
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@gray"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@gray</kbd></span>{<span class="angle">&langle;</span><i>black</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@gray" href="#\pgfsys@color@gray" id="\pgfsys@color@gray">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking and filling operations to the given black value, where 0 means black and 1 means white.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@gray@stroke"></a>
+                                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@gray@stroke</kbd></span>{<span class="angle">&langle;</span><i>black</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@gray@stroke" href="#\pgfsys@color@gray@stroke" id="\pgfsys@color@gray@stroke">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for stroking operations to the given black value, where 0 means black and 1 means white.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@gray@fill"></a>
+                                               <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@gray@fill</kbd></span>{<span class="angle">&langle;</span><i>black</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@gray@fill" href="#\pgfsys@color@gray@fill" id="\pgfsys@color@gray@fill">&para;</a></p>
+</li></div>
+<p>
+Sets the color used for filling operations to the given black value, where 0 means black and 1 means white.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@reset"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@reset</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@reset" href="#\pgfsys@color@reset" id="\pgfsys@color@reset">&para;</a></p>
+</li></div>
+<p>
+This command will be called when the <span class="verb">\color</span> command is used. It should purge any internal settings of stroking and filling color. After this call, till the next use of a command like <span class="verb">\pgfsys@color@rgb@fill</span>, the current color installed by the <span class="verb">\color</span> command should be used.
+</p>
+<p>
+If the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-if <span class="verb">\pgfsys@color@reset@inorder</span> is set to true, this command may &ldquo;assume&rdquo; that any call to a color
+command that sets the fill or stroke color came &ldquo;before&rdquo; the call to this command and may try to optimize the output accordingly.
+</p>
+<p>
+An example of an incorrect &ldquo;out of order&rdquo; call would be using <span class="verb">\pgfsys@color@reset</span> at the beginning of a box that is constructed using <span class="verb">\setbox</span>. Then, when the box is constructed, no
+special fill or stroke color might be in force. However, when the box is later on inserted at some point, a special fill color might already have been set. In this case, this command is not guaranteed to reset the color correctly.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@reset@inordertrue"></a>
+                                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@reset@inordertrue</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@reset@inordertrue" href="#\pgfsys@color@reset@inordertrue" id="\pgfsys@color@reset@inordertrue">&para;</a></p>
+</li></div>
+<p>
+Sets the optimized &ldquo;in order&rdquo; version of the color resetting. This is the default.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@reset@inorderfalse"></a>
+                                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@reset@inorderfalse</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@reset@inorderfalse" href="#\pgfsys@color@reset@inorderfalse" id="\pgfsys@color@reset@inorderfalse">&para;</a></p>
+</li></div>
+<p>
+Switches off the optimized color resetting.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@color@unstacked"></a>
+                                               <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@color@unstacked</kbd></span>{<span class="angle">&langle;</span><i><span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> color</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@color@unstacked" href="#\pgfsys@color@unstacked" id="\pgfsys@color@unstacked">&para;</a></p>
+</li></div>
+<p>
+This slightly obscure command causes the color stack to be tricked. When called, this command should set the current color to <span class="angle">&langle;</span><i><span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> color</i><span class="angle">&rangle;</span> without causing any change in the color stack.
+</p>
+<p>
+<i>Example: </i><span class="verb">\pgfsys@color@unstacked{red}</span>
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8552"><span><span class="sectionnumber" id="sec-120.8">120.8</span> Pattern System Commands</span><a class="anchor-link" data-html-link="sec-120.8" data-pdf-destination="subsection.120.8" data-pdf-page="1241" href="#sec-120.8">&para;</a></h5>
+<a id="pgfmanual-autopage-8552"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@declarepattern"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@declarepattern</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_1\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y_2\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(x\) step</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(y\) step</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(a\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(b\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(c\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(d\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(e\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>\(f\)</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>code</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>flag</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@declarepattern" href="#\pgfsys@declarepattern" id="\pgfsys@declarepattern">&para;</a></p>
+</li></div>
+<p>
+This command declares a new colored or uncolored pattern, depending on whether <span class="angle">&langle;</span><i>flag</i><span class="angle">&rangle;</span> is <span class="verb">0</span>, which means uncolored, or <span class="verb">1</span>, which means colored. Uncolored patterns have no inherent color, the color is provided when they are set. Colored patters have an inherent color.
+</p>
+<p>
+The <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span> is a name for later use when the pattern is to be shown. The pairs \((x_1,y_1)\) and \((x_2,y_2)\) must describe a bounding box of the pattern <span class="angle">&langle;</span><i>code</i><span class="angle">&rangle;</span>.
+</p>
+<p>
+The tiling step of the pattern is given by <span class="angle">&langle;</span><i>\(x\) step</i><span class="angle">&rangle;</span> and <span class="angle">&langle;</span><i>\(y\) step</i><span class="angle">&rangle;</span>.
+</p>
+<p>
+The parameters <span class="angle">&langle;</span><i>\(a\)</i><span class="angle">&rangle;</span> to <span class="angle">&langle;</span><i>\(f\)</i><span class="angle">&rangle;</span> are entries of the transformation matrix that is
+applied to the pattern, see <span class="verb">\pgfsys@patternmatrix</span> for more information.
+</p>
+<p>
+<i>Example: </i>
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@declarepattern">\pgfsys@declarepattern</a></span><br>
+<span class="spaces">    </span>{<span class="textcolor" style="color:#000000">hori</span>}{<span class="textcolor" style="color:#000000">-</span>.<span class="textcolor" style="color:#000000">5pt</span>}{<span class="textcolor" style="color:#000000">0pt</span>}{.<span class="textcolor" style="color:#000000">5pt</span>}{<span class="textcolor" style="color:#000000">3pt</span>}{<span class="textcolor" style="color:#000000">3pt</span>}{<span class="textcolor" style="color:#000000">3pt</span>}<span class="example-code-comment">%</span><br>
+<span class="spaces">    </span>{<span class="textcolor" style="color:#000000">1</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">1</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0pt</span>}<span class="example-code-comment">%</span><br>
+<span class="spaces">    </span>{<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@moveto">\pgfsys@moveto</a></span>{<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">0pt</span>}<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@lineto">\pgfsys@lineto</a></span>{<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">3pt</span>}<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@stroke">\pgfsys@stroke</a></span>}<br>
+<span class="spaces">    </span>{<span class="textcolor" style="color:#000000">0</span>}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@patternmatrix"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@patternmatrix</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@patternmatrix" href="#\pgfsys@patternmatrix" id="\pgfsys@patternmatrix">&para;</a></p>
+</li></div>
+<p>
+For convenience <span class="textsc">pgf</span> defines the transformation matrix that is applied to all patterns defined with <span class="verb">\pgfdeclarepatternformonly</span> and <span class="verb">\pgfdeclarepatterninherentlycolored</span> in a macro. This can be used as an extension point for ad-hoc transformation of existing patterns. The default definition is the identity matrix:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2">\def</span><span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@patternmatrix">\pgfsys@patternmatrix</a></span>{{<span class="textcolor" style="color:#000000">1</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">1</span>.<span class="textcolor" style="color:#000000">0</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0pt</span>}{<span class="textcolor" style="color:#000000">0</span>.<span class="textcolor" style="color:#000000">0pt</span>}}<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+The entries of the enclosed array <span class="verb">{</span><span class="angle">&langle;</span><i>\(a\)</i><span class="angle">&rangle;</span><span class="verb">}{</span><span class="angle">&langle;</span><i>\(b\)</i><span class="angle">&rangle;</span><span class="verb">}{</span><span class="angle">&langle;</span><i>\(c\)</i><span class="angle">&rangle;</span><span class="verb">}{</span><span class="angle">&langle;</span><i>\(d\)</i><span class="angle">&rangle;</span><span class="verb">}{</span><span class="angle">&langle;</span><i>\(e\)</i><span class="angle">&rangle;</span><span class="verb">}{</span><span class="angle">&langle;</span><i>\(f\)</i><span class="angle">&rangle;</span><span class="verb">}</span> are entries in the transformation matrix, identified as in the following transformation prescription:
+</p>
+<span class="hidden"> \(\seteqnumber{0}{}{0}\)</span>
+<!--
+
+                                                                                                                 0   
+                                                                                                                 x a c e x
+                                                                                                                 0 
+                                                                                                                y  =  b d f  y  .
+                                                                                                                                      
+
+                                                                                                                  1 0 0 1 1
+-->
+<p>
+
+
+\begin{equation*}
+\begin{pmatrix} x' \\ y' \\ 1 \\ \end {pmatrix} = \begin{pmatrix} a &amp; c &amp; e \\ b &amp; d &amp; f \\ 0 &amp; 0 &amp; 1 \\ \end {pmatrix} \begin{pmatrix} x \\ y \\ 1 \\ \end {pmatrix} .
+\end{equation*}
+
+
+</p>
+<p>
+Carrying out the matrix multiplication results in the following system of equations
+</p>
+<span class="hidden"> \(\seteqnumber{0}{}{0}\)</span>
+
+
+<!--
+
+
+
+                                                                                                                      x0 = ax + cy + e,
+                                                                                                                      y 0 = bx + dy + f.
+
+
+
+-->
+
+
+<p>
+
+
+\begin{align*}
+x' &amp;= a x + c y + e , \\ y' &amp;= b x + d y + f .
+\end{align*}
+Evidently, the parameters {<span class="angle">&langle;</span><i>\(a\)</i><span class="angle">&rangle;</span>} to {<span class="angle">&langle;</span><i>\(d\)</i><span class="angle">&rangle;</span>} have to be dimensionless because they
+are scaling factors, but the parameters {<span class="angle">&langle;</span><i>\(e\)</i><span class="angle">&rangle;</span>} and {<span class="angle">&langle;</span><i>\(f\)</i><span class="angle">&rangle;</span>} are offsets, therefore
+they have to carry a unit.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@setpatternuncolored"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@setpatternuncolored</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>blue</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@setpatternuncolored" href="#\pgfsys@setpatternuncolored" id="\pgfsys@setpatternuncolored">&para;</a></p>
+</li></div>
+<p>
+Sets the fill color to the pattern named <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>. This pattern must previously have been declared with <span class="angle">&langle;</span><i>flag</i><span class="angle">&rangle;</span> set to <span class="verb">0</span>. The color of the pattern is given in the parameters <span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span>, <span class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span>, and <span class="angle">&langle;</span><i>blue</i><span class="angle">&rangle;</span> in the usual way.
+</p>
+<p>
+The fill color &ldquo;pattern&rdquo; will persist till the next color command that modifies the fill color.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@setpatterncolored"></a>
+                                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@setpatterncolored</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@setpatterncolored" href="#\pgfsys@setpatterncolored" id="\pgfsys@setpatterncolored">&para;</a></p>
+</li></div>
+<p>
+Sets the fill color to the pattern named <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>. This pattern must have been declared with the <span class="verb">1</span> flag.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8553"><span><span class="sectionnumber" id="sec-120.9">120.9</span> Image System Commands</span><a class="anchor-link" data-html-link="sec-120.9" data-pdf-destination="subsection.120.9" data-pdf-page="1241" href="#sec-120.9">&para;</a></h5>
+<a id="pgfmanual-autopage-8553"></a>
+
+
+<p>
+The system layer provides some commands for image inclusion.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@imagesuffixlist"></a>
+                                               <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@imagesuffixlist</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@imagesuffixlist" href="#\pgfsys@imagesuffixlist" id="\pgfsys@imagesuffixlist">&para;</a></p>
+</li></div>
+<p>
+This macro should expand to a list of suffixes, separated by &lsquo;:&rsquo;, that will be tried when searching for an image.
+</p>
+<p>
+<i>Example: </i><span class="verb">\def\pgfsys@imagesuffixlist{eps:epsi:ps}</span>
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@defineimage"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@defineimage</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@defineimage" href="#\pgfsys@defineimage" id="\pgfsys@defineimage">&para;</a></p>
+</li></div>
+<p>
+Called, when an image should be defined.
+</p>
+<p>
+This command does not take any parameters. Instead, certain macros will be preinstalled with appropriate values when this command is invoked. These are:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@filename</kbd></span> File name of the image to be defined.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@imagewidth</kbd></span> Will be set to the desired (scaled) width of the image.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@imageheight</kbd></span> Will be set to the desired (scaled) height of the image.
+</p>
+<p>
+If this macro and also the height macro are empty, the image should have its &ldquo;natural&rdquo; size.
+</p>
+<p>
+If only one of them is specified, the undefined value the image is scaled so that the aspect ratio is kept.
+</p>
+<p>
+If both are set, the image is scaled in both directions independently, possibly changing the aspect ratio.
+</p>
+</li>
+</ul>
+<p>
+The following macros presumable mostly make sense for drivers that can handle <span class="textsc">pdf</span>:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@imagepage</kbd></span> The desired page number to be extracted from a multi-page &ldquo;image&rdquo;.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@imagemask</kbd></span> If set, it will be set to <span class="verb">/SMask x 0 R</span> where <span class="verb">x</span> is the <span class="textsc">pdf</span> object number of a soft mask to be applied to the image.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@imageinterpolate</kbd></span> If set, it will be set to <span class="verb">/Interpolate true</span> or <span class="verb">/Interpolate false</span>, indicating whether the image should be interpolated in <span class="textsc">pdf</span>.
+</p>
+</li>
+</ul>
+<p>
+The command should now set up the macro <span class="verb">\pgf@image</span> such that calling this macro will result in typesetting the image. Thus, <span class="verb">\pgf@image</span> is the &ldquo;return value&rdquo; of the command.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8554"><span><span class="sectionnumber" id="sec-120.10">120.10</span> Shading System Commands</span><a class="anchor-link" data-html-link="sec-120.10" data-pdf-destination="subsection.120.10" data-pdf-page="1242" href="#sec-120.10">&para;</a></h5>
+<a id="pgfmanual-autopage-8554"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@horishading"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@horishading</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>specification</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@horishading" href="#\pgfsys@horishading" id="\pgfsys@horishading">&para;</a></p>
+</li></div>
+<p>
+Declares a horizontal shading for later use. The effect of this command should be the definition of a macro called <span class="verb">\@pgfshading</span><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span><span class="verb">!</span> (or <span class="verb">\csname @pdfshading</span><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span><span class="verb">!\endcsname</span>, to be
+precise). When invoked, this new macro should insert a shading at the current position.
+</p>
+<p>
+<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span> is the name of the shading, which is also used in the output macro name. <span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span> is the height of the shading and must be given as a TeX dimension like <span class="verb">2cm</span> or <span class="verb">10pt</span>. <span class="angle">&langle;</span><i>specification</i><span class="angle">&rangle;</span> is a shading color specification as specified in Section&nbsp;<a href="base-shadings#section-shadings">114</a>. The shading specification implicitly fixes the width of the shading.
+</p>
+<p>
+When <span class="verb">\@pgfshading</span><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span><span class="verb">!</span> is invoked, it should insert a box of height <span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span> and the width implicit in the shading declaration.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@vertshading"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@vertshading</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>specification</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@vertshading" href="#\pgfsys@vertshading" id="\pgfsys@vertshading">&para;</a></p>
+</li></div>
+<p>
+Like the horizontal version, only for vertical shadings. This time, the height of the shading is implicit in <span class="angle">&langle;</span><i>specification</i><span class="angle">&rangle;</span> and the width is given as <span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@radialshading"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@radialshading</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>starting point</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>specification</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@radialshading" href="#\pgfsys@radialshading" id="\pgfsys@radialshading">&para;</a></p>
+</li></div>
+<p>
+Declares a radial shading. Like the previous macros, this command should set up the macro <span class="verb">\@pgfshading</span><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span><span class="verb">!</span>, which upon invocation should insert a radial shading whose size is implicit in <span class="angle">&langle;</span><i>specification</i><span class="angle">&rangle;</span>.
+</p>
+<p>
+The parameter <span class="angle">&langle;</span><i>starting point</i><span class="angle">&rangle;</span> is a <span class="textsc">pgf</span> point specifying the inner starting point of the shading.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@functionalshading"></a>
+                                                 <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@functionalshading</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>lower left corner</i><span class="angle">&rangle;</span>}<span class="angle">&langle;</span><i>upper right corner</i><span class="angle">&rangle;</span>{<span class="angle">&langle;</span><i>type 4 function</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@functionalshading" href="#\pgfsys@functionalshading" id="\pgfsys@functionalshading">&para;</a></p>
+</li></div>
+<p>
+Declares a shading using a PostScript-like function that provides a color for each point. Like the previous macros, this command should set up the macro <span class="verb">\@pgfshading</span><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span><span class="verb">!</span> so that it will produce a box containing the desired shading.
+</p>
+<p>
+Parameter <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span> is the name of the shading. Parameter <span class="angle">&langle;</span><i>type 4 function</i><span class="angle">&rangle;</span> is a
+Postscript-like function (type 4 function of the PDF specification) as described in Section&nbsp;3.9.4 of the PDF specification version 1.7. Parameters <span class="angle">&langle;</span><i>lower left corner</i><span class="angle">&rangle;</span> and <span class="angle">&langle;</span><i>upper right corner</i><span class="angle">&rangle;</span> are <span class="textsc">pgf</span> points that specifies the lower left and upper right corners of the
+shading, respectively.
+</p>
+<p>
+When <span class="angle">&langle;</span><i>type 4 function</i><span class="angle">&rangle;</span> is evaluated, the coordinate of the current point will be on the (virtual) PostScript stack in bp units. After the function has been
+evaluated, the stack should consist of three numbers (not integers! &ndash; the Apple PDF renderer is broken in this regard, so add cvrs at the end if needed) that represent the red, green, and blue components of the color.
+</p>
+<p>
+A buggy function will result is <em>totally unpredictable chaos</em> during rendering.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8555"><span><span class="sectionnumber" id="sec-120.11">120.11</span> Transparency System Commands</span><a class="anchor-link" data-html-link="sec-120.11" data-pdf-destination="subsection.120.11" data-pdf-page="1243" href="#sec-120.11">&para;</a></h5>
+<a id="pgfmanual-autopage-8555"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@opacity"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@opacity</kbd></span>{<span class="angle">&langle;</span><i>value</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@opacity" href="#\pgfsys@opacity" id="\pgfsys@opacity">&para;</a></p>
+</li></div>
+<p>
+Sets the opacity of all operations, treating stroking and filling as a transparency group. Some drivers support this operations, others do not and set the fill and stroke individually. This difference can only be seen when a path is stroked
+and filled at the same time: When the drawing and fill opacities are set individually, the effect of filling and drawing a path at the same time is the same as first filling the path and then drawing it. On the other, if the opacity is set
+using this command, the effect should rather be that same as first filling and then drawing the path without any opacity in an off-screen area and then copying the result to the target area with a homogeneous opacity of <span class="angle">&langle;</span><i>value</i><span class="angle">&rangle;</span>.
+</p>
+<p>
+Since <span class="textsc">pdf</span> does not support this form of opacity, this command is only present on the system layer and not supported in the basic layer.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@stroke@opacity"></a>
+                                               <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@stroke@opacity</kbd></span>{<span class="angle">&langle;</span><i>value</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@stroke@opacity" href="#\pgfsys@stroke@opacity" id="\pgfsys@stroke@opacity">&para;</a></p>
+</li></div>
+<p>
+Sets the opacity of stroking operations.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@fill@opacity"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@fill@opacity</kbd></span>{<span class="angle">&langle;</span><i>value</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@fill@opacity" href="#\pgfsys@fill@opacity" id="\pgfsys@fill@opacity">&para;</a></p>
+</li></div>
+<p>
+Sets the opacity of filling operations.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@blend@mode"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@blend@mode</kbd></span>{<span class="angle">&langle;</span><i>value</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@blend@mode" href="#\pgfsys@blend@mode" id="\pgfsys@blend@mode">&para;</a></p>
+</li></div>
+<p>
+Sets the blend mode, see Section&nbsp;7.2.4 of the <span class="textsc">pdf</span> Specification, Version&nbsp;1.7.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@transparencygroupfrombox"></a>
+                                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@transparencygroupfrombox</kbd></span>{<span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@transparencygroupfrombox" href="#\pgfsys@transparencygroupfrombox" id="\pgfsys@transparencygroupfrombox">&para;</a></p>
+</li></div>
+<p>
+This takes a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> box and converts it into a transparency group. This means that any transparency settings apply to the box as a whole.
+For instance, if a box contains two overlapping black circles and you draw the box and, thus, the two circles normally with 50% transparency, then the overlap will be darker than the rest. By comparison, if the circles are part of a
+transparency group, the overlap will get the same color as the rest.
+</p>
+
+</ul>
+</div>
+
+<p>
+A transparency group can be <em>isolated</em> and/or a <em>knockout</em> group (see Sections&nbsp;7.3.4 and 7.3.5 of the <span class="textsc">pdf</span> Specification Version&nbsp;1.7). Which of these is the case is dictated by the
+current settings of the following two ifs, which must be set before the above command is called:
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/ifpgfsys@transparency@group@isolated"></a>
+                                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\ifpgfsys@transparency@group@isolated</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/ifpgfsys@transparency@group@isolated" href="#\ifpgfsys@transparency@group@isolated" id="\ifpgfsys@transparency@group@isolated">&para;</a></p>
+</li></div>
+<p>
+Determines whether a transparency group should be isolated.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/ifpgfsys@transparency@group@knockout"></a>
+                                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\ifpgfsys@transparency@group@knockout</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/ifpgfsys@transparency@group@knockout" href="#\ifpgfsys@transparency@group@knockout" id="\ifpgfsys@transparency@group@knockout">&para;</a></p>
+</li></div>
+<p>
+Determines whether a transparency group is a knockout group or not.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@fadingfrombox"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@fadingfrombox</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@fadingfrombox" href="#\pgfsys@fadingfrombox" id="\pgfsys@fadingfrombox">&para;</a></p>
+</li></div>
+<p>
+Declares the fading <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>. The <span class="angle">&langle;</span><i>box</i><span class="angle">&rangle;</span> is a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-box. Its content&rsquo;s luminosity determines the opacity of the resulting fading. This means that the lighter a pixel inside the box, the more opaque the fading will be at
+this position.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@usefading"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@usefading</kbd></span><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>{<span class="angle">&langle;</span><i>a</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>b</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>c</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>d</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>e</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>f</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@usefading" href="#\pgfsys@usefading" id="\pgfsys@usefading">&para;</a></p>
+</li></div>
+<p>
+Installs a previously declared fading <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span> in the current graphics state. Afterwards, all drawings will be masked by the fading. The fading should be centered
+on the origin and have its original size, except that the parameters <span class="angle">&langle;</span><i>a</i><span class="angle">&rangle;</span> to <span class="angle">&langle;</span><i>f</i><span class="angle">&rangle;</span> specify a
+transformation matrix that should be applied additionally to the fading before it is installed. The transformation should not apply to the following graphics, however.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@clipfading"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@clipfading</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@clipfading" href="#\pgfsys@clipfading" id="\pgfsys@clipfading">&para;</a></p>
+</li></div>
+<p>
+This command has a default implementation and need not be implemented by driver files other than <span class="verb">pgfsys-dvips.def</span>. The macro is called in
+</p>
+<blockquote>
+<p>
+<span class="verb">\pgfsetfadingforcurrentpath</span> and <span class="verb">\pgfsetfadingforcurrentpathstroked</span>
+</p>
+</blockquote>
+<p>
+of the basic layer, where it invokes the current path for clipping the shading just before installing it as an opacity mask for fading. The default implementation is actually a non-operation, but with <span class="verb">dvips</span> it is
+used to clip the fading as described.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@definemask"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@definemask</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@definemask" href="#\pgfsys@definemask" id="\pgfsys@definemask">&para;</a></p>
+</li></div>
+<p>
+This command declares a fading (known as a soft mask in this context) based on an image and for usage with images. It works similar to <span class="verb">\pgfsys@defineimage</span>: Certain macros are set when the command is called.
+The result should be to set the macro <span class="verb">\pgf@mask</span> to a pdf object count that can subsequently be used as a transparency mask. The following macros will be set when this command is invoked:
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@filename</kbd></span> File name of the mask to be defined.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> <span class="textcolor" style="color:#BF0000"><kbd>\pgf@maskmatte</kbd></span> The so-called matte of the mask (see the <span class="textsc">pdf</span> documentation for details). The matte is a color specification consisting of 1, 3 or 4 numbers between 0 and 1. The number of
+numbers depends on the number of color channels in the image (not in the mask!). It will be assumed that the image has been preblended with this color.
+</p>
+</li>
+</ul>
+
+</ul>
+</div>
+<h5 id="autosec-8557"><span><span class="sectionnumber" id="sec-120.12">120.12</span> Animation Commands</span><a class="anchor-link" data-html-link="sec-120.12" data-pdf-destination="subsection.120.12" data-pdf-page="1244" href="#sec-120.12">&para;</a></h5>
+<a id="pgfmanual-autopage-8557"></a>
+
+
+<p>
+The animation system layer command (<span class="verb">\pgfsys@anim...</span>) are described in a separate section, Section&nbsp;<a href="pgfsys-animations#section-pgfsys-anim">123</a>.
+</p>
+<h5 id="autosec-8558"><a id="section-sys-id"></a><span><span class="sectionnumber" id="sec-120.13">120.13</span> Object Identification System Commands</span><a class="anchor-link" data-html-link="sec-120.13" data-pdf-destination="subsection.120.13" data-pdf-page="1244" href="#sec-120.13">&para;</a></h5>
+<a id="pgfmanual-autopage-8558"></a>
+
+
+
+
+<p>
+The system layer provides commands for adding identification labels (ids) to different objects in a graphic. These can be used for hyperlinking, which is needed for instance in conjunction with animations.
+</p>
+
+<p>
+The following &ldquo;objects&rdquo; can get an id assigned to them:
+</p>
+<ul class="enumerate" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">1.</span> Graphic scopes (namely when <span class="verb">\pgfsys@begin@idscope</span> is called),
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">2.</span> view boxes (namely when <span class="verb">\pgfsys@viewboxmeet</span> or <span class="verb">\pgfsys@viewboxslice</span> are called),
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">3.</span> paths (namely when <span class="verb">\pgfsys@fill</span>, <span class="verb">\pgfsys@stroke</span>, and so on are called),
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">4.</span> text boxes (namely when <span class="verb">\pgfsys@hbox</span> or <span class="verb">\pgfsys@hboxsynced</span> is called), and
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">5.</span> animations (namely when <span class="verb">\pgfsys@animate</span> is called).
+</p>
+</li>
+</ul>
+
+<p>
+Creating and using ids is a two-step process. First, you create the id using <span class="verb">\pgfsys@new@id</span>, which stores a fresh id in a macro. You can now pass this id around and clone it. Then, at some point, you wish one of
+the above objects to actually get this id. For this, you use <span class="verb">\pgfsys@use@id</span> just <em>before</em> the object since this command always influences the <em>next</em> object.
+</p>
+
+<p>
+The basic id management gets more powerful when you use <em>id types</em>. The idea is as follows: In reality, the objects from above do not get assigned only an id, but rather a combination of an id and a type &ndash; and you can set the
+type independently of the id. This is used, for instance, to allow easy access to the different parts of a node in animations: Each node has a single id, but consists of several graphic objects (normally, at least a background path and a
+text). Each of these uses the same underlying id of the node, but the path has the type <span class="verb">path</span> (actually <span class="verb">background.path</span>) while the text has the type <span class="verb">text</span>. The
+advantage is that for each node only one id must be stored instead of a great number of the many different possible parts of a node.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@new@id"></a>
+                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@new@id</kbd></span>{<span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@new@id" href="#\pgfsys@new@id" id="\pgfsys@new@id">&para;</a></p>
+</li></div>
+<p>
+Creates a new id for later use and stores it in <span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span>. It is an internal text created by the driver and may not be changed or modified.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@use@id"></a>
+                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@use@id</kbd></span>{<span class="angle">&langle;</span><i>id</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@use@id" href="#\pgfsys@use@id" id="\pgfsys@use@id">&para;</a></p>
+</li></div>
+<p>
+&ldquo;Uses&rdquo; an id previously created using <span class="verb">\pgfsys@new@id</span>. This causes the <em>next</em> graphic object to get the <span class="angle">&langle;</span><i>id</i><span class="angle">&rangle;</span> (not the current one).
+Once used, the id-type-pair becomes <em>invalid</em> and will not be attached to any other graphics objects. It is, however, not an error to try this. If <span class="angle">&langle;</span><i>id</i><span class="angle">&rangle;</span> is
+empty, no id-type-pair is attached to the next object.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@use@type"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@use@type</kbd></span>{<span class="angle">&langle;</span><i>type</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@use@type" href="#\pgfsys@use@type" id="\pgfsys@use@type">&para;</a></p>
+</li></div>
+<p>
+Changes the type used with the next graphic object. As mentioned earlier, the id assigned to the next object is actually a pair consisting of the currently used id and the currently used type.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@append@type"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@append@type</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@append@type" href="#\pgfsys@append@type" id="\pgfsys@append@type">&para;</a></p>
+</li></div>
+<p>
+Appends the <span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span> to the current type.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@push@type"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@push@type</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@push@type" href="#\pgfsys@push@type" id="\pgfsys@push@type">&para;</a></p>
+</li></div>
+<p>
+Pushes the current type on a global &ldquo;stack of types&rdquo; without opening a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> scope. The is useful when you temporarily wish to change
+the type (for instance, by appending something to it), but you cannot create a new scope.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@pop@type"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@pop@type</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@pop@type" href="#\pgfsys@pop@type" id="\pgfsys@pop@type">&para;</a></p>
+</li></div>
+<p>
+Restores the most recently pushed type.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@begin@idscope"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@begin@idscope</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@begin@idscope" href="#\pgfsys@begin@idscope" id="\pgfsys@begin@idscope">&para;</a></p>
+</li></div>
+<p>
+Starts a (graphics) scope whose sole purpose is to assign it an id-type-pair so that it can be referenced later. Note that this command does not always produce a graphics scope: If no id is currently in use or if the id-type-pair has
+already been used, a graphic scope may or may not be created as defined by the driver (but always a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> scope). This allows drivers to
+minimize the number of graphic scopes created.
+</p>
+<p>
+When an id scope is created, any code that has been &ldquo;attached&rdquo; to it using <span class="verb">\pgfsys@attach@to@id</span> gets executed, see that command.
+</p>
+<p>
+Note that <span class="verb">\pgfsys@beginscope</span> does not use the current id-type-pair. You need to call this command to attach an id to a group.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@end@idscope"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@end@idscope</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@end@idscope" href="#\pgfsys@end@idscope" id="\pgfsys@end@idscope">&para;</a></p>
+</li></div>
+<p>
+Ends the graphics id scope started by <span class="verb">\pgfsys@end@idscope</span>. It must nest correctly with other graphic scopes and <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> scopes.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@attach@to@id"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@attach@to@id</kbd></span>{<span class="angle">&langle;</span><i>id</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>type</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>begin code</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>end code</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>setup code</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@attach@to@id" href="#\pgfsys@attach@to@id" id="\pgfsys@attach@to@id">&para;</a></p>
+</li></div>
+<p>
+Attaches codes to the <span class="angle">&langle;</span><i>id</i><span class="angle">&rangle;</span>-<span class="angle">&langle;</span><i>type</i><span class="angle">&rangle;</span>-pair, where <span class="angle">&langle;</span><i>id</i><span class="angle">&rangle;</span> must have been created using <span class="verb">\pgfsys@new@id</span>. The effect is that just before the id scope for this pair is created, the <span class="angle">&langle;</span><i>setup code</i><span class="angle">&rangle;</span> is executed, then the scope is started, then the <span class="angle">&langle;</span><i>begin code</i><span class="angle">&rangle;</span> is executed at the
+beginning, and, finally, <span class="angle">&langle;</span><i>end code</i><span class="angle">&rangle;</span> gets executed just before the scope ends. Multiple calls of this macro accumulated.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8559"><a id="section-sys-rdf"></a><span><span class="sectionnumber" id="sec-120.14">120.14</span> Resource Description Framework Annotations (RDFa)</span><a class="anchor-link" data-html-link="sec-120.14" data-pdf-destination="subsection.120.14" data-pdf-page="1245" href="#sec-120.14">&para;</a></h5>
+<a id="pgfmanual-autopage-8559"></a>
+
+
+
+
+<p>
+With certain output formats (in particular, with <span class="textsc">svg</span>) you can insert annotations into the output file following the standard set by the <em>resource description framework</em> (<span class="textsc">rdf</span>),
+please consult the literature on <span class="textsc">rdf</span> for an introduction to resource descriptions and ontologies.
+</p>
+
+<p>
+The support for <span class="textsc">rdf</span> annotations works as follows in <span class="textsc">pgf</span>: You use the following commands before you create an id scope (using <span class="verb">\pgfsys@begin@idscope</span>).
+Then the attributes set by the commands will be added as an annotation to that object. Here is an example:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@rdf@resource">\pgfsys@rdf@resource</a></span>{<span class="textcolor" style="color:#000000">/fruits/apple</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@begin@idscope">\pgfsys@begin@idscope</a></span><br>
+<span class="spaces">  </span>...<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@end@idscope">\pgfsys@end@idscope</a></span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+If <span class="textsc">svg</span> output is produced, this results in the following code in the <span class="textsc">svg</span> file:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><g< span> <span class="textcolor" style="color:#000000">resource="/fruits/apple"&gt;</span><br>
+<span class="spaces">  </span>...<br>
+<span class="textcolor" style="color:#000000"></span><br>
+
+
+</g<></span></code>
+</div>
+
+</figure>
+
+<p>
+Note that a call to <span class="verb">\pgfsys@begin@idscope</span> adds all the set attributes, but then clears the settings (globally). Thus, you should set all attributes more or less right before the id scope is created. For most of these
+command, if you call them multiple times before starting the id scope, the &ldquo;last call wins&rdquo;, that is, later values overwrite earlier ones. In contrast, for the commands <span class="verb">\pgfsys@rdf@property</span>, <span class="verb">\pgfsys@rdf@rel</span>, <span class="verb">\pgfsys@rdf@rev</span>, as well as <span class="verb">\pgfsys@rdf@typeof</span>, the calls accumulate, that is, the texts passed in each call will all be added to the output, properly
+separated to form a list of values. Consider for instance:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@rdf@resource">\pgfsys@rdf@resource</a></span>{<span class="textcolor" style="color:#000000">/fruits/apple</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@rdf@resource">\pgfsys@rdf@resource</a></span>{<span class="textcolor" style="color:#000000">/fruits/watermelon</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@rdf@property">\pgfsys@rdf@property</a></span>{<span class="textcolor" style="color:#000000">http://foo</span>.<span class="textcolor" style="color:#000000">com/props/juicy</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@rdf@property">\pgfsys@rdf@property</a></span>{<span class="textcolor" style="color:#000000">http://foo</span>.<span class="textcolor" style="color:#000000">com/props/green</span>}<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@begin@idscope">\pgfsys@begin@idscope</a></span><br>
+<span class="spaces">  </span>...<br>
+<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@end@idscope">\pgfsys@end@idscope</a></span><br>
+
+
+</code>
+</div>
+
+</figure>
+
+<p>
+In the resulting id scope, we will have:
+</p>
+
+
+
+<figure class="example">
+
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+
+<code>
+<br>
+<span class="textcolor" style="color:#000000"><g< span> <span class="textcolor" style="color:#000000">resource="/fruits/watermelon"</span><br>
+<span class="spaces">   </span><span class="textcolor" style="color:#000000">property="http://foo</span>.<span class="textcolor" style="color:#000000">com/props/juicy</span> <span class="textcolor" style="color:#000000">http://foo</span>.<span class="textcolor" style="color:#000000">com/props/green"&gt;</span><br>
+<span class="spaces">  </span>...<br>
+<span class="textcolor" style="color:#000000"></span><br>
+
+
+</g<></span></code>
+</div>
+
+</figure>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@about"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@about</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@about" href="#\pgfsys@rdf@about" id="\pgfsys@rdf@about">&para;</a></p>
+</li></div>
+<p>
+Adds the <span class="textsc">rdf</span> attribute <span class="verb">about="</span><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span><span class="verb">"</span> to the next id scope (please see the <span class="textsc">rdf</span>a specification for details on the semantics of <span class="verb">about</span> in the context of the resource description framework).
+</p>
+
+</ul>
+</div>
+
+<p>
+The following commands work the same way as the above command, except that the set attribute is different. Please see the <span class="textsc">rdf</span>a specification for details on these attributes. Note that the <span class="verb">\pgfsys@rdf@inlist</span> command is the only one that takes no argument.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@content"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@content</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@content" href="#\pgfsys@rdf@content" id="\pgfsys@rdf@content">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@datatype"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@datatype</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@datatype" href="#\pgfsys@rdf@datatype" id="\pgfsys@rdf@datatype">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@href"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@href</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@href" href="#\pgfsys@rdf@href" id="\pgfsys@rdf@href">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@inlist"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@inlist</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@inlist" href="#\pgfsys@rdf@inlist" id="\pgfsys@rdf@inlist">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@prefix"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@prefix</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@prefix" href="#\pgfsys@rdf@prefix" id="\pgfsys@rdf@prefix">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@property"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@property</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@property" href="#\pgfsys@rdf@property" id="\pgfsys@rdf@property">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@rel"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@rel</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@rel" href="#\pgfsys@rdf@rel" id="\pgfsys@rdf@rel">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@resource"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@resource</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@resource" href="#\pgfsys@rdf@resource" id="\pgfsys@rdf@resource">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@rev"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@rev</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@rev" href="#\pgfsys@rdf@rev" id="\pgfsys@rdf@rev">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@src"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@src</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@src" href="#\pgfsys@rdf@src" id="\pgfsys@rdf@src">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@typeof"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@typeof</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@typeof" href="#\pgfsys@rdf@typeof" id="\pgfsys@rdf@typeof">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@rdf@vocab"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@rdf@vocab</kbd></span>{<span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@rdf@vocab" href="#\pgfsys@rdf@vocab" id="\pgfsys@rdf@vocab">&para;</a></p>
+</li></div>
+<p>
+
+
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8560"><span><span class="sectionnumber" id="sec-120.15">120.15</span> Reusable Objects System Commands</span><a class="anchor-link" data-html-link="sec-120.15" data-pdf-destination="subsection.120.15" data-pdf-page="1246" href="#sec-120.15">&para;</a></h5>
+<a id="pgfmanual-autopage-8560"></a>
+
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@invoke"></a>
+                                      <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@invoke</kbd></span>{<span class="angle">&langle;</span><i>literals</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@invoke" href="#\pgfsys@invoke" id="\pgfsys@invoke">&para;</a></p>
+</li></div>
+<p>
+This command gets protocolled literals and should insert them into the <span class="verb">.pdf</span> or <span class="verb">.dvi</span> file using an appropriate <span class="verb">\special</span>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@defobject"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@defobject</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>lower left</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>upper right</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>code</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@defobject" href="#\pgfsys@defobject" id="\pgfsys@defobject">&para;</a></p>
+</li></div>
+<p>
+Declares an object for later use. The idea is that the object can be precached in some way and then be rendered more quickly when used several times. For example, an arrow head might be defined and prerendered in this way.
+</p>
+<p>
+The parameter <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span> is the name for later use. <span class="angle">&langle;</span><i>lower left</i><span class="angle">&rangle;</span> and <span class="angle">&langle;</span><i>upper right</i><span class="angle">&rangle;</span> are <span class="textsc">pgf</span> points specifying a bounding box for the object. <span class="angle">&langle;</span><i>code</i><span class="angle">&rangle;</span> is the code for the object. The code should not be too fancy.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@useobject"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@useobject</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>extra code</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@useobject" href="#\pgfsys@useobject" id="\pgfsys@useobject">&para;</a></p>
+</li></div>
+<p>
+Renders a previously declared object. The first parameter is the name of the object. The second parameter is extra code that should be executed right <em>before</em> the object is rendered. Typically, this will be some transformation
+code.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@marker@declare"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@marker@declare</kbd></span>{<span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>code</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@marker@declare" href="#\pgfsys@marker@declare" id="\pgfsys@marker@declare">&para;</a></p>
+</li></div>
+<p>
+Declares a <em>marker</em> symbol for later use. The command is very similar to <span class="verb">\pgfsys@defobject</span>, but the use case is slightly different: The graphic object defined using the <span class="angle">&langle;</span><i>code</i><span class="angle">&rangle;</span> is stored in such a way that it can be used as an <em>arrow tip marker symbol</em> in animations. The <span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span> is set to an identifier by which the marker can be referenced later on.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@marker@use"></a>
+                                       <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@marker@use</kbd></span>{<span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@marker@use" href="#\pgfsys@marker@use" id="\pgfsys@marker@use">&para;</a></p>
+</li></div>
+<p>
+Adds the marker object referenced by the <span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span> to the current output.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8561"><span><span class="sectionnumber" id="sec-120.16">120.16</span> Invisibility System Commands</span><a class="anchor-link" data-html-link="sec-120.16" data-pdf-destination="subsection.120.16" data-pdf-page="1247" href="#sec-120.16">&para;</a></h5>
+<a id="pgfmanual-autopage-8561"></a>
+
+
+<p>
+All drawing or stroking or text rendering between calls of the following commands should be suppressed. A similar effect can be achieved by clipping against an empty region, but the following commands do not open a graphics scope
+and can be opened and closed &ldquo;orthogonally&rdquo; to other scopes.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@begininvisible"></a>
+                                              <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@begininvisible</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@begininvisible" href="#\pgfsys@begininvisible" id="\pgfsys@begininvisible">&para;</a></p>
+</li></div>
+<p>
+Between this command and the closing <span class="verb">\pgfsys@endinvisible</span> all output should be suppressed. Nothing should be drawn at all, which includes all paths, images and shadings. However, no groups (neither <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> groups nor graphic state groups) should be opened by this command.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@endinvisible"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@endinvisible</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@endinvisible" href="#\pgfsys@endinvisible" id="\pgfsys@endinvisible">&para;</a></p>
+</li></div>
+<p>
+Ends the invisibility section, unless invisibility blocks have been nested. In this case, only the &ldquo;last&rdquo; one restores visibility.
+</p>
+<p>
+This command has a default implementation and need not be implemented by a driver file.
+</p>
+<p>
+This command is protocolled, see Section&nbsp;<a href="pgfsys-protocol#section-protocols">122</a>.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8562"><span><span class="sectionnumber" id="sec-120.17">120.17</span> Page Size Commands</span><a class="anchor-link" data-html-link="sec-120.17" data-pdf-destination="subsection.120.17" data-pdf-page="1247" href="#sec-120.17">&para;</a></h5>
+<a id="pgfmanual-autopage-8562"></a>
+
+
+<p>
+The following commands can be used to set the page size of a document in a &ldquo;portable&rdquo; way. Note, however, that many packages also (try to) set the page size.
+</p>
+
+<p>
+These commands are typically not given inside a <span class="verb">{pgfpicture}</span>, but on the outer level of compilation.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@papersize"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@papersize</kbd></span>{<span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@papersize" href="#\pgfsys@papersize" id="\pgfsys@papersize">&para;</a></p>
+</li></div>
+<p>
+Inserts the necessary <span class="verb">\special</span>s for the current driver into the output stream to &ldquo;locally&rdquo; change the page size. Whether such a &ldquo;local&rdquo; change is possible depends strongly on the driver. For instance, <span class="verb">dvips</span> will honor the first call to this command that is part of the shipped-out document and will ignore all other uses. In contrast, <span class="verb">pdftex</span> will use the current value of the paper size for each
+page and, additionally, setting the papersize is local to the current <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> group.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@global@papersize"></a>
+                                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@global@papersize</kbd></span>{<span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@global@papersize" href="#\pgfsys@global@papersize" id="\pgfsys@global@papersize">&para;</a></p>
+</li></div>
+<p>
+Like the previous command, only for drivers where setting the paper size parameters is a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-group-local operation, <span class="verb">\global</span> is prefixed to the setting of the page sizes.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@thepageheight"></a>
+                                          <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@thepageheight</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@thepageheight" href="#\pgfsys@thepageheight" id="\pgfsys@thepageheight">&para;</a></p>
+</li></div>
+<p>
+This macro expands to the current page&rsquo;s height, provided <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> is used, otherwise a best guess is
+returned (currently just <span class="verb">\the\vsize</span>).
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@thepagewidth"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@thepagewidth</kbd></span></span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@thepagewidth" href="#\pgfsys@thepagewidth" id="\pgfsys@thepagewidth">&para;</a></p>
+</li></div>
+<p>
+As above.
+</p>
+
+</ul>
+</div>
+<h5 id="autosec-8563"><span><span class="sectionnumber" id="sec-120.18">120.18</span> Position Tracking Commands</span><a class="anchor-link" data-html-link="sec-120.18" data-pdf-destination="subsection.120.18" data-pdf-page="1248" href="#sec-120.18">&para;</a></h5>
+<a id="pgfmanual-autopage-8563"></a>
+
+
+<p>
+The following commands are used to determine the position of text on a page. This is a rather complicated process in general since at the moment when the text is read by <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>, the final position cannot be determined, yet. For example, the text might be put in a box which is later put in the headline or perhaps in the footline or perhaps even on a different page.
+</p>
+
+<p>
+For these reasons, position tracking is typically a two-stage process. In a first stage you indicate that a certain position is of interest by <em>marking</em> it. This will (depending on the details of the backend driver) cause page
+coordinates or this position to be written to an <span class="verb">.aux</span> file when the page is shipped. Possibly, the position might also be determined at an even later stage. Then, on a second run of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>, the position is read from the <span class="verb">.aux</span> file and can be used.
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@markposition"></a>
+                                         <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@markposition</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@markposition" href="#\pgfsys@markposition" id="\pgfsys@markposition">&para;</a></p>
+</li></div>
+<p>
+Marks a position on the page. This command should be given while normal typesetting is done such as in
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">The</span> <span class="textcolor" style="color:#000000"><a href="tikz-animations#pgf.value">value</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.of">of</a></span> <span class="textcolor" style="color:#000000">$x$</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@markposition">\pgfsys@markposition</a></span>{<span class="textcolor" style="color:#000000">here</span>}<span class="textcolor" style="color:#000000">important</span>.<br>
+
+
+</code>
+</div>
+</figure>
+<p>
+It causes the position <span class="verb">here</span> to be saved when the page is shipped out.
+</p>
+
+</ul>
+</div>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgfsys@getposition"></a>
+                                        <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgfsys@getposition</kbd></span>{<span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span>}{<span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgfsys@getposition" href="#\pgfsys@getposition" id="\pgfsys@getposition">&para;</a></p>
+</li></div>
+<p>
+This command retrieves a position that has been marked on an earlier run of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> on the current file. The <span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span> must be a macro name such as <span class="verb">\mymacro</span>. It will be redefined such that it is
+</p>
+<ul class="itemize" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker">&bull;</span> either just <span class="verb">\relax</span> or
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+<span class="listmarker">&bull;</span> a <span class="verb">\pgfpoint...</span> command.
+</p>
+</li>
+</ul>
+<p>
+The first case will happen when the position has not been marked at all or when the file is typeset for the first time, when the coordinates are not yet available.
+</p>
+<p>
+In the second case, executing <span class="angle">&langle;</span><i>macro</i><span class="angle">&rangle;</span> yields the position on the page that is to be interpreted as follows: A coordinate like <span class="verb">\pgfpoint{2cm}{3cm}</span> means &ldquo;2cm to the right and 3cm up from the origin of the page&rdquo;. The position of the origin of the page is not guaranteed to be at the lower left corner, it is only guaranteed that all pictures on a
+page use the same origin.
+</p>
+<p>
+To determine the lower left corner of a page, you can call <span class="verb">\pgfsys@getposition</span> with <span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span> set to the special name <span class="verb">pgfpageorigin</span>. By shifting all positions by the amount returned by this call you can position things absolutely on a page.
+</p>
+<p>
+<i>Example: </i>Referencing a point of the page:
+</p>
+
+
+<figure class="example">
+
+
+<div class="example-code"><button class="clipboardButton" type="button">copy</button>
+<code>
+<br>
+<span class="textcolor" style="color:#000000">The</span> <span class="textcolor" style="color:#000000"><a href="tikz-animations#pgf.value">value</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.of">of</a></span> <span class="textcolor" style="color:#000000">$x$</span> <span class="textcolor" style="color:#000000">is</span> <span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@markposition">\pgfsys@markposition</a></span>{<span class="textcolor" style="color:#000000">here</span>}<span class="textcolor" style="color:#000000">important</span>.<br>
+<br>
+<span class="textcolor" style="color:#000000">Lots</span> <span class="textcolor" style="color:#000000"><a href="tikz-coordinates#pgf.of">of</a></span> <span class="textcolor" style="color:#000000"><a href="tikz-shapes#pgf.text">text</a></span>.<br>
+<br>
+<span class="textcolor" style="color:#0000B2">\hbox</span>{<span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@markposition">\pgfsys@markposition</a></span>{<span class="textcolor" style="color:#000000">myorigin</span>}<span class="example-code-comment">%</span><br>
+<span class="textcolor" style="color:#000000">\begin</span>{<span class="textcolor" style="color:#0000B2"><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span>}<br>
+<span class="spaces">  </span><span class="example-code-comment">% Switch of size protocol</span><br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="base-paths#pgf.back/pgfpathmoveto">\pgfpathmoveto</a></span>{<span class="textcolor" style="color:#0000B2"><a href="base-points#pgf.back/pgfpointorigin">\pgfpointorigin</a></span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="base-actions#pgf.back/pgfusepath">\pgfusepath</a></span>{<span class="textcolor" style="color:#000000">use</span> <span class="textcolor" style="color:#000000"><a href="tikz-graphs#pgf.as">as</a></span> <span class="textcolor" style="color:#000000">bounding</span> <span class="textcolor" style="color:#000000">box</span>}<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@getposition">\pgfsys@getposition</a></span>{<span class="textcolor" style="color:#000000">here</span>}{<span class="textcolor" style="color:#0000B2">\hereposition</span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="pgfsys-commands#pgf.back/pgfsys@getposition">\pgfsys@getposition</a></span>{<span class="textcolor" style="color:#000000">myorigin</span>}{<span class="textcolor" style="color:#0000B2">\thispictureposition</span>}<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="base-transformations#pgf.back/pgftransformshift">\pgftransformshift</a></span>{<span class="textcolor" style="color:#0000B2"><a href="base-points#pgf.back/pgfpointscale">\pgfpointscale</a></span>{<span class="textcolor" style="color:#000000">-1</span>}{<span class="textcolor" style="color:#0000B2">\thispictureposition</span>}}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="base-transformations#pgf.back/pgftransformshift">\pgftransformshift</a></span>{<span class="textcolor" style="color:#0000B2">\hereposition</span>}<br>
+<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="base-paths#pgf.back/pgfpathcircle">\pgfpathcircle</a></span>{<span class="textcolor" style="color:#0000B2"><a href="base-points#pgf.back/pgfpointorigin">\pgfpointorigin</a></span>}{<span class="textcolor" style="color:#000000">1cm</span>}<br>
+<span class="spaces">  </span><span class="textcolor" style="color:#0000B2"><a href="base-actions#pgf.back/pgfusepath">\pgfusepath</a></span>{<span class="textcolor" style="color:#000000"><a href="tikz-actions#pgf.draw">draw</a></span>}<br>
+<span class="textcolor" style="color:#000000">\end</span>{<span class="textcolor" style="color:#0000B2"><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span>}}<br>
+
+
+</code>
+</div>
+</figure>
+
+</ul>
+</div>
+<h5 id="autosec-8564"><span><span class="sectionnumber" id="sec-120.19">120.19</span> Internal Conversion Commands</span><a class="anchor-link" data-html-link="sec-120.19" data-pdf-destination="subsection.120.19" data-pdf-page="1248" href="#sec-120.19">&para;</a></h5>
+<a id="pgfmanual-autopage-8564"></a>
+
+
+<p>
+The system commands take <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimensions as input, but the dimensions that have to be inserted into <span class="textsc">pdf</span>
+and PostScript files need to be dimensionless values that are interpreted as multiples of \(\frac {1}{72}\mathrm {in}\). For example, the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimension \(2bp\) should be inserted as <span class="verb">2</span> into a <span class="textsc">pdf</span> file and the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimension \(10\mathrm {pt}\) as <span class="verb">9.9626401</span>. To make this conversion easier, the following command may be useful:
+</p>
+
+
+
+<div class="manualentry">
+
+<ul class="list" style="list-style-type:none">
+
+
+
+<div class="entryheadline"> <li>
+<p>
+<a id="pgf.back/pgf@sys@bp"></a>
+                                <span class="hl-def"><span class="textcolor" style="color:#BF0000"><kbd>\pgf@sys@bp</kbd></span>{<span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span>}</span>
+<a class="anchor-link" data-html-link="pgf.back/pgf@sys@bp" href="#\pgf@sys@bp" id="\pgf@sys@bp">&para;</a></p>
+</li></div>
+<p>
+Inserts how many multiples of \(\frac {1}{72}\mathrm {in}\) the <span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span> is into the current protocol stream (buffered).
+</p>
+<p>
+<i>Example: </i><span class="verb">\pgf@sys@bp{\pgf@x}</span> or <span class="verb">\pgf@sys@bp{1cm}</span>.
+</p>
+
+</ul>
+</div>
+
+<p>
+Note that this command is <em>not</em> a system command that can/needs to be overwritten by a driver.
+</p>
+</section>
+
+</main>
+
+<footer><div class="footer-left"><a href="/license">License</a> &middot; <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot; <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf">Official PDF version</a> &middot; <a href="https://github.com/DominikPeters/tikz.dev-issues/issues">Feedback and issues</a> &middot; <a href="https://github.com/DominikPeters/pgf-tikz-html-manual">About this HTML version</a></div><div class="footer-right"><em>HTML version last updated: 2024-03-17</em></div></footer></div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+      docsearch({
+        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
+        indexName: 'tikz',
+        appId: 'JS6V5VZSDB',
+        container: '#search',
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+    });
+    </script></body></html>

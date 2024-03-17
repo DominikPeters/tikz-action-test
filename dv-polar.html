@@ -1,0 +1,3569 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Polar Axes - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Data Visualization",
+            "item": "https://tikz.dev/dv"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Polar Axes",
+            "item": "https://tikz.dev/dv-polar"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/dv-polar" rel="canonical" />
+    <meta content="https://tikz.dev/dv-polar" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/dv-polar.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta content="Polar Axes - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-7372"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-85.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-85.2"
+                >Scientific Polar Axis System</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-85.2.1">Tick Placements</a>
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-85.2.2">Angle Ranges</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-85.3"
+                >Advanced: Creating a New Polar Axis System</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-introduction"
+                >Introduction to Data Visualization</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-main"
+                >Creating Data Visualizations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-formats"
+                >Providing Data for a Data Visualization</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-axes">Axes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-visualizers">Visualizers</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-stylesheets"
+                >Style Sheets and Legends</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="dv-polar">Polar Axes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="dv-backend"
+                >The Data Visualization Backend</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Data Visualization</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-7373">
+            <a id="section-dv-polar"></a
+            ><span
+              ><span class="sectionnumber" id="sec-85">85</span> Polar
+              Axes</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.85"
+              data-pdf-page="964"
+              href="#sec-85"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-7373"></a>
+          <a id="pgfmanual-autofile-91"></a>
+          <h5 id="autosec-7374">
+            <span
+              ><span class="sectionnumber" id="sec-85.1">85.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-85.1"
+              data-pdf-destination="subsection.85.1"
+              data-pdf-page="964"
+              href="#sec-85.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7374"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.datavisualization.polar"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >datavisualization.polar</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.datavisualization.polar"
+                      href="#pgf.datavisualization.polar"
+                      id="pgf.datavisualization.polar"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >datavisualization.polar</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >datavisualization.polar</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library contains keys that allow you to create plots in a
+                polar axis system is used.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            In a <em>polar axis system</em> two attributes are visualized by
+            displacing a data point as follows: One attribute is used to compute
+            a an angle (a direction) while a second attribute is used as a
+            radius (a distance). The angle can be measured in degrees, radians,
+            or can be scaled arbitrarily.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3028"
+                  ><!--
+                                            1
+                               7
+                                  π 2
+                                              π 5
+                                                           π
+                               12 12
+                     2 1
+                     3
+                       π 3
+                                                                     π
+             3 1
+             4
+               π 4
+                                                                             π
+
+       5 1
+       6
+         π 6
+                                                                                   π
+
+11 1
+12
+   π 12
+                                                                                          π
+
+
+
+ π 0
+        2 1.5 1 0.5 0 0.5 1 1.5 2
+
+                               1 + sin α 1 + cos α
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="195.914"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3028.png"
+                    style
+                    width="302.570"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary { datavisualization.formats.functions,
+                  datavisualization.polar, } </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-main#pgf.back/datavisualization"
+                    >\datavisualization</a
+                  ></span
+                > [<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-polar#pgf.scientific:polar:axes"
+                    >scientific polar axes</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{0 <a href="tikz-paths#pgf.to">to</a> pi,<span class="spaces"> </span>clean}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-axes#pgf.all:axes">all axes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-stylesheets#pgf.style:sheet"
+                    >style sheet</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-stylesheets#pgf.vary:hue">vary hue</a></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-stylesheets#pgf.legend">legend</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.below">below</a><br />
+                  <span class="spaces">  </span></span
+                >]<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                    >visualize as smooth line</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-shapes#pgf.label">label</a>
+                  <a href="library-edges#pgf.in">in</a> legend={text=$1+<span
+                    class="textcolor"
+                    style="color: #0000b2"
+                    >\sin</span
+                  > <span class="textcolor" style="color: #0000b2"
+                    >\alpha</span
+                  >$}}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-main#pgf.format">format</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="pgffor#pgf.var">var</a></span
+                >
+                <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.:">:</a></span
+                >
+                <span class="textcolor" style="color: #000000">interval</span>
+                [<span class="textcolor" style="color: #008000">0:pi</span
+                >];<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                ><span class="textcolor" style="color: #800080"
+                  >(\value{angle}r)</span
+                > <span class="textcolor" style="color: #000000">+</span>
+                <span class="textcolor" style="color: #000000">1</span>;<br />
+                <span class="spaces">  </span>}<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                    >visualize as smooth line</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >,<br />
+                <span class="spaces">   </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-shapes#pgf.label">label</a>
+                  <a href="library-edges#pgf.in">in</a> legend={text=$1+<span
+                    class="textcolor"
+                    style="color: #0000b2"
+                    >\cos</span
+                  ><span class="textcolor" style="color: #0000b2">\alpha</span
+                  >$}}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-main#pgf.format">format</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="pgffor#pgf.var">var</a></span
+                >
+                <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.:">:</a></span
+                >
+                <span class="textcolor" style="color: #000000">interval</span>
+                [<span class="textcolor" style="color: #008000">0:pi</span
+                >];<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.cos">cos</a></span
+                ><span class="textcolor" style="color: #800080"
+                  >(\value{angle}r)</span
+                > <span class="textcolor" style="color: #000000">+</span>
+                <span class="textcolor" style="color: #000000">1</span>;<br />
+                <span class="spaces">  </span>};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Most of the time, in order to create a polar axis system, you will
+            just use the <span class="verb">scientific polar axes</span> key,
+            which takes a number of options that allow you to configure the axis
+            system in greater detail. This key is documented in Section&nbsp;<a
+              href="dv-polar#section-dv-sci-polar-axes"
+              >85.2</a
+            >. Internally, this key uses more low level keys which are
+            documented in the en suite sections.
+          </p>
+
+          <p>
+            It is worthwhile to note that the axes of a polar axis system are,
+            still, normal axes of the data visualization system. In particular,
+            all the configurations possible for, say, Cartesian axes also apply
+            to the &ldquo;angle axis&rdquo; and the &ldquo;radius axis&rdquo; of
+            a polar axis system. For instance, you can could make both axes
+            logarithmic or style their ticks:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3029"
+                  ><!--
+8
+
+6
+
+4
+
+2
+
+0
+    5 10 15 20
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="139.734"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3029.png"
+                    style
+                    width="214.346" /></span
+                >&emsp;&emsp;<span
+                  class="lateximagesource"
+                  id="lateximage-pgfmanual-3030"
+                  ><!--
+              0.1
+8
+
+6
+
+4
+
+2
+
+0 1
+
+2
+
+4 2
+
+6 3
+                        4
+8 5
+
+              10
+    20 15
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="279.362"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3030.png"
+                    style
+                    width="161.426"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary { datavisualization.formats.functions,
+                  datavisualization.polar, } </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                >] <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-main#pgf.back/datavisualization"
+                    >\datavisualization</a
+                  ></span
+                > [<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-axes#pgf.scientific:axes"
+                    >scientific axes</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">{clean}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >x axis</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{attribute=angle,<span class="spaces"> </span>ticks={<a href="dv-axes#pgf.minor"
+                    >minor</a
+                  >
+                  steps between steps=4}}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >y axis</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{attribute=radius,<span class="spaces"> </span>ticks={<a href="dv-axes#pgf.some"
+                    >some</a
+                  >,<span class="spaces"> </span>style=red!80!black}}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-axes#pgf.all:axes">all axes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                    >visualize as smooth line</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-main#pgf.format">format</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="pgffor#pgf.var">var</a></span
+                >
+                <span class="textcolor" style="color: #000000">t</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.:">:</a></span
+                >
+                <span class="textcolor" style="color: #000000">interval</span>
+                [<span class="textcolor" style="color: #008000">-3:3</span
+                >];<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">exp</span
+                ><span class="textcolor" style="color: #800080">(\value t)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                >{<span class="textcolor" style="color: #000000">t</span>}<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >*</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                >{<span class="textcolor" style="color: #000000">t</span
+                >};<br />
+                <span class="spaces">  </span>};<br />
+                <span class="textcolor" style="color: #0000b2">\qquad</span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-scopes#pgf.baseline">baseline</a></span
+                >] <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-main#pgf.back/datavisualization"
+                    >\datavisualization</a
+                  ></span
+                > [<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-polar#pgf.scientific:polar:axes"
+                    >scientific polar axes</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-arrows#pgf.right">right</a> half
+                  <a href="tikz-graphs#pgf.clockwise">clockwise</a
+                  >,<span class="spaces"> </span>clean}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >angle axis</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{logarithmic,<br />
+                  <span class="spaces">    </span>ticks={<br />
+                  <span class="spaces">      </span><a
+                    href="dv-axes#pgf.minor"
+                    >minor</a
+                  >
+                  steps between steps=8,<br />
+                  <span class="spaces">      </span><a
+                    href="dv-axes#pgf.major"
+                    >major</a
+                  >
+                  also at/.list={2,3,4,5,15,20}}}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >radius axis</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{ticks={<a href="dv-axes#pgf.some">some</a
+                  >,<span class="spaces"> </span>style=red!80!black}}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-axes#pgf.all:axes">all axes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.grid">grid</a></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                    >visualize as smooth line</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.sin">sin</a></span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="dv-main#pgf.format">format</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >] {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="pgffor#pgf.var">var</a></span
+                >
+                <span class="textcolor" style="color: #000000">t</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.:">:</a></span
+                >
+                <span class="textcolor" style="color: #000000">interval</span>
+                [<span class="textcolor" style="color: #008000">-3:3</span
+                >];<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">exp</span
+                ><span class="textcolor" style="color: #800080">(\value t)</span
+                >;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >func</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                >{<span class="textcolor" style="color: #000000">t</span>}<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >*</span
+                ><span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-formats#pgf.back/value">\value</a></span
+                >{<span class="textcolor" style="color: #000000">t</span
+                >};<br />
+                <span class="spaces">  </span>};<br />
+              </code>
+            </div>
+          </figure>
+          <h5 id="autosec-7381">
+            <a id="section-dv-sci-polar-axes"></a
+            ><span
+              ><span class="sectionnumber" id="sec-85.2">85.2</span> Scientific
+              Polar Axis System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-85.2"
+              data-pdf-destination="subsection.85.2"
+              data-pdf-page="965"
+              href="#sec-85.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7381"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./tikz/data:visualization/scientific:polar:axes"
+                    ></a
+                    ><a id="pgf.scientific:polar:axes"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/scientific polar
+                            axes</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/scientific:polar:axes"
+                      href="#tikz/data:visualization/scientific:polar:axes"
+                      id="tikz/data:visualization/scientific:polar:axes"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key installs a polar axis system that can be used in a
+                &ldquo;scientific&rdquo; publication. Two axes are created
+                called the <span class="verb">angle axis</span> and the
+                <span class="verb">radius axis</span>. Unlike
+                &ldquo;normal&rdquo; Cartesian axes, these axes do not point in
+                a specific direction. Rather, the
+                <span class="verb">radius axis</span> is used to map the values
+                of one attribute to a distance from the origin while the
+                <span class="verb">angle axis</span> is used to map the values
+                of another attribute to a rotation angle.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> will be executed with the
+                path prefix
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >/tikz/data</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >visualization/scientific</span
+                    >
+                    <span class="textcolor" style="color: #000000">polar</span>
+                    <span class="textcolor" style="color: #000000">axes</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The permissible keys are documented in the later subsections of
+                this section.
+              </p>
+              <p>
+                Let us start with the configuration of the radius axis since it
+                is easier. Firstly, you should specify which attribute is linked
+                to the radius. The default is <span class="verb">radius</span>,
+                but you will typically wish to change this. As with any other
+                axis, the <span class="verb">attribute</span> key is used to
+                configure the axis, see Section&nbsp;<a
+                  href="dv-axes#section-dv-axis-attribute"
+                  >82.2.2</a
+                >
+                for details. You can also apply all other configurations to the
+                radius axis like, say, <span class="verb">unit length</span> or
+                <span class="verb">length</span> or
+                <span class="verb">style</span>. Note, however, that the
+                <span class="verb">logarithmic</span> key will not work with the
+                radius axis for a
+                <span class="verb">scientific polar axes</span> system since the
+                attribute value zero is always placed at the center &ndash; and
+                for a logarithmic plot the value
+                <span class="verb">0</span> cannot be mapped.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3031"
+                      ><!--
+                        105◦ 90◦ 75◦
+                120◦ 60◦
+                               10,000
+        135◦ 45◦
+
+   150◦ 30◦
+                                5,000
+165◦ 15◦
+
+
+
+180◦ 0◦
+       10,000 5,000 0 5,000
+                                            5,000 10,000
+                                                           10,000
+
+
+195◦ 345◦
+                                5,000
+   210◦ 330◦
+
+        225◦ 315◦
+                               10,000
+                240◦ 300◦
+                        255◦ 270◦ 285◦
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="297.002"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3031.png"
+                        style
+                        width="320.090"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { datavisualization.formats.functions,
+                      datavisualization.polar, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    > [<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-polar#pgf.scientific:polar:axes"
+                        >scientific polar axes</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      >radius axis</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<br />
+                      <span class="spaces">    </span>attribute=distance,<br />
+                      <span class="spaces">    </span>ticks={step=5000},<br />
+                      <span class="spaces">    </span>padding=1.5em,<br />
+                      <span class="spaces">    </span>length=3cm,<br />
+                      <span class="spaces">    </span><a href="tikz-paths#pgf.grid"
+                        >grid</a
+                      ><br />
+                      <span class="spaces">  </span>}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                        >visualize as smooth line</a
+                      ></span
+                    >]<br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.function">function</a></span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="pgffor#pgf.var">var</a></span
+                    >
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.:">:</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >interval</span
+                    >
+                    [<span class="textcolor" style="color: #008000">0:100</span
+                    >];<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >func</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="library-patterns#pgf.distance"
+                        >distance</a
+                      ></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-formats#pgf.back/value">\value</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >}<span class="textcolor" style="color: #000000">*</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-formats#pgf.back/value">\value</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >};<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                For the <span class="verb">angle axis</span>, you can also
+                specify an attribute using the
+                <span class="verb">attribute</span> key. However, for this axis
+                the mapping of a value to an actual angle is a complicated
+                process involving many considerations of how the polar axis
+                system should be visualized. For this reason, there are a large
+                number of predefined such mappings documented in Section&nbsp;<a
+                  href="dv-polar#section-dv-angle-ranges"
+                  >85.2.2</a
+                >. Finally, as for a <span class="verb">scientific plot</span>,
+                you can configure where the ticks should be shown using the keys
+                <span class="verb">inner ticks</span>,
+                <span class="verb">outer ticks</span>, and
+                <span class="verb">clean</span>, documented below.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-7384">
+            <span
+              ><span class="sectionnumber" id="sec-85.2.1">85.2.1</span> Tick
+              Placements</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-85.2.1"
+              data-pdf-destination="subsubsection.85.2.1"
+              data-pdf-page="966"
+              href="#sec-85.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-7384"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./tikz/data:visualization/scientific:polar:axes/outer:ticks"
+                    ></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/scientific polar
+                            axes/outer ticks</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/scientific:polar:axes/outer:ticks"
+                      href="#tikz/data:visualization/scientific:polar:axes/outer:ticks"
+                      id="tikz/data:visualization/scientific:polar:axes/outer:ticks"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key, which is the default, causes ticks to be drawn
+                &ldquo;outside&rdquo; the outer &ldquo;ring&rdquo; of the polar
+                axes:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3032"
+                      ><!--
+                     105◦ 90◦ 75◦
+                                 100
+              120◦ 60◦
+       135◦ 75 45◦
+
+   150◦ 30◦
+                                  50
+
+165◦ 15◦
+                                  25
+
+180◦ 0◦
+    100 75 50 25 0 25
+                                           25 50
+                                                  50 75
+                                                         75 100
+                                                                100
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="152.522"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3032.png"
+                        style
+                        width="293.858"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { datavisualization.formats.functions,
+                      datavisualization.polar, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    > [<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-polar#pgf.scientific:polar:axes"
+                        >scientific polar axes</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{outer ticks,<span class="spaces"> </span>0
+                      <a href="tikz-paths#pgf.to">to</a> 180}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                        >visualize as smooth line</a
+                      ></span
+                    >]<br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.function">function</a></span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="pgffor#pgf.var">var</a></span
+                    >
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.:">:</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >interval</span
+                    >
+                    [<span class="textcolor" style="color: #008000">0:100</span
+                    >];<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >func</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-formats#pgf.back/value">\value</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >};<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./tikz/data:visualization/scientific:polar:axes/inner:ticks"
+                    ></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/scientific polar
+                            axes/inner ticks</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/scientific:polar:axes/inner:ticks"
+                      href="#tikz/data:visualization/scientific:polar:axes/inner:ticks"
+                      id="tikz/data:visualization/scientific:polar:axes/inner:ticks"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key causes the ticks to be &ldquo;turned to the
+                inside&rdquo;. I do not recommend using this key.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3033"
+                      ><!--
+                       105◦ 90◦ 75◦
+                               100
+                120◦ 60◦
+         135◦ 75 45◦
+
+  150◦ 30◦
+                                50
+
+165◦ 15◦
+                                25
+
+180◦ 0◦
+   100 75 50 25 0 25
+                                         25 50
+                                                50 75
+                                                       75 100
+                                                             100
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="149.858"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3033.png"
+                        style
+                        width="288.626"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { datavisualization.formats.functions,
+                      datavisualization.polar, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    > [<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-polar#pgf.scientific:polar:axes"
+                        >scientific polar axes</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{inner ticks,<span class="spaces"> </span>0
+                      <a href="tikz-paths#pgf.to">to</a> 180}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                        >visualize as smooth line</a
+                      ></span
+                    >]<br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.function">function</a></span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="pgffor#pgf.var">var</a></span
+                    >
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.:">:</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >interval</span
+                    >
+                    [<span class="textcolor" style="color: #008000">0:100</span
+                    >];<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >func</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-formats#pgf.back/value">\value</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >};<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./tikz/data:visualization/scientific:polar:axes/clean"
+                    ></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/scientific polar
+                            axes/clean</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/scientific:polar:axes/clean"
+                      href="#tikz/data:visualization/scientific:polar:axes/clean"
+                      id="tikz/data:visualization/scientific:polar:axes/clean"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key separates the area where the data is shown from the
+                area where the ticks are shown. Usually, this is the best choice
+                for the tick placement since it avoids a collision of data and
+                explanations.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3034"
+                      ><!--
+                        105◦ 90◦ 75◦
+                120◦ 60◦
+         135◦ 45◦
+
+   150◦ 30◦
+
+165◦ 15◦
+
+
+180◦ 0◦
+       100 75 50 25 0 25 50 75 100
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="165.794"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3034.png"
+                        style
+                        width="306.914"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary { datavisualization.formats.functions,
+                      datavisualization.polar, } </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    > [<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-polar#pgf.scientific:polar:axes"
+                        >scientific polar axes</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{clean,<span class="spaces"> </span>0
+                      <a href="tikz-paths#pgf.to">to</a> 180}</span
+                    >,<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:smooth:line"
+                        >visualize as smooth line</a
+                      ></span
+                    >]<br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.function">function</a></span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="pgffor#pgf.var">var</a></span
+                    >
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.:">:</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >interval</span
+                    >
+                    [<span class="textcolor" style="color: #008000">0:100</span
+                    >];<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >func</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-formats#pgf.back/value">\value</a></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                    >};<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h6 id="autosec-7391">
+            <a id="section-dv-angle-ranges"></a
+            ><span
+              ><span class="sectionnumber" id="sec-85.2.2">85.2.2</span> Angle
+              Ranges</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-85.2.2"
+              data-pdf-destination="subsubsection.85.2.2"
+              data-pdf-page="967"
+              href="#sec-85.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-7391"></a>
+
+          <p>
+            Suppose you create a polar plot in which the radius values vary
+            between, say, \(567\) and \(1234\). Then the normal axis scaling
+            mechanisms can be used to compute a good scaling for the
+            &ldquo;radius axis&rdquo;: Place the value \(1234\) at a distance of
+            , say, \(5\,\mathrm {cm}\) from the origin and place the value \(0\)
+            at the origin. Now, by comparison, suppose that the values of the
+            angle axis&rsquo;s attribute ranged between, say, \(10\) and
+            \(75.7\). In this case, we may wish the angles to be scaled so that
+            the minimum value is horizontal and the maximum value is vertical.
+            But we may also wish the a value of \(0\) is horizontal and a value
+            of \(90\) is vertical.
+          </p>
+
+          <p>
+            Since it is unclear which interpretation is the right one, you have
+            to use an option to select which should happen. The applicable
+            options fall into three categories:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Options that request the
+                scaling to be done in such a way that the attribute is
+                interpreted as a value in degrees and such that the minimum and
+                maximum of the depicted range is a multiple of \(90^\circ \).
+                For instance, the option
+                <span class="verb">0 to 180</span> causes the angle axis to
+                range from \(0^\circ \) to \(180^\circ \), independently of the
+                actual range of the values.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Options that work as
+                above, but use radians rather than degrees. An example is the
+                option <span class="verb">0 to pi</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Options that map the
+                minimum value in the data to a horizontal or vertical line and
+                the maximum value to another such line. This is useful when the
+                values neither directly correspond to degrees or radians. In
+                this case, the angle axis may also be a logarithmic axis.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            In addition to the above categories, all of the option documented in
+            the following implicitly also select quadrants that are used to
+            depict the data. For instance, the
+            <span class="verb">0 to 90</span> key and also the
+            <span class="verb">0 to pi half</span> key setup the polar axis
+            system in such a way that only first (upper right) quadrant is used.
+            No check is done whether the data fill actually lie in this quadrant
+            &ndash; if it does not, the data will &ldquo;bleed outside&rdquo;
+            the range. Naturally, with a key like
+            <span class="verb">0 to 360</span> or
+            <span class="verb">0 to 2pi</span> this cannot happen.
+          </p>
+
+          <p>
+            In order to save some space in this manual, in the following the
+            different possible keys are only given in a table together with a
+            small example for each key. The examples were created using the
+            following code:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3035"
+                  ><!--
+    90◦
+          60◦
+                30◦
+1
+
+0 0◦
+     0 1
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="80.762"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3035.png"
+                    style
+                    width="81.434"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {datavisualization.polar} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="dv-main#pgf.back/datavisualization"
+                    >\datavisualization</a
+                  ></span
+                > [<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-polar#pgf.scientific:polar:axes"
+                    >scientific polar axes</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<br />
+                  <span class="spaces">    </span>clean,<br />
+                  <span class="spaces">    </span>0
+                  <a href="tikz-paths#pgf.to">to</a> 90 <span class="spaces"> </span><span
+                    class="example-code-comment"
+                    >% the option</span
+                  ><br />
+                  <span class="spaces">  </span>}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >angle axis</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{ticks={step=30}}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  >radius axis</span
+                >=<span class="textcolor" style="color: #008000"
+                  >{length=1cm,<span class="spaces"> </span>ticks={step=1}}</span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="dv-visualizers#pgf.visualize:as:scatter"
+                    >visualize as scatter</a
+                  ></span
+                >]<br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.point">point</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >=<span class="textcolor" style="color: #008000">20</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >=<span class="textcolor" style="color: #008000">0.5</span
+                >]<br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.point">point</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >=<span class="textcolor" style="color: #008000">30</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >=<span class="textcolor" style="color: #008000">1</span>]<br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-main#pgf.data">data</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.point">point</a></span
+                >
+                [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.angle">angle</a></span
+                >=<span class="textcolor" style="color: #008000">40</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-coordinates#pgf.radius">radius</a></span
+                >=<span class="textcolor" style="color: #008000">1.5</span
+                >];<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            For the options on radians, the angle values have been replaced by
+            <span class="verb">0.2</span>, <span class="verb">0.3</span>, and
+            <span class="verb">0.4</span> and the stepping has been changed by
+            setting <span class="verb">step=(pi/6)</span>. For the quadrant
+            options, no stepping is set at all (it is computed automatically).
+          </p>
+          <table>
+            <tbody>
+              <tr style="display: none">
+                <th>.</th>
+              </tr>
+
+              <tr>
+                <td class="tdl"><em>Option</em></td>
+                <td class="tdc"><em>With clean ticks</em></td>
+                <td class="tdc"><em>With outer ticks</em></td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>0 to 90</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3036"
+                    ><!--
+    90◦
+          60◦
+                30◦
+1
+
+0 0◦
+     0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.762"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3036.png"
+                      style
+                      width="81.410"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3037"
+                    ><!--
+90◦
+        60◦
+1 30◦
+
+            0◦
+    0 1
+        1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="67.274"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3037.png"
+                      style
+                      width="67.778"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>-90 to 0</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3038"
+                    ><!--
+    0 1
+0 0◦
+
+1
+            −30◦
+        −60◦
+−90◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="87.434"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3038.png"
+                      style
+                      width="89.546"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3039"
+                    ><!--
+        1
+            0◦
+    0 1
+1 −30◦
+        −60◦
+−90◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.786"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3039.png"
+                      style
+                      width="77.642"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>0 to 180</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3040"
+                    ><!--
+              90◦
+       120◦ 60◦
+ 150◦ 30◦
+
+180◦ 0◦
+          1 0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.762"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3040.png"
+                      style
+                      width="135.674"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3041"
+                    ><!--
+           90◦
+   120◦ 60◦
+150◦ 1 30◦
+
+180◦ 0◦
+       1 0 1
+                   1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="67.274"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3041.png"
+                      style
+                      width="122.618"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>-90 to 90</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3042"
+                    ><!--
+    90◦
+          60◦
+                30◦
+1
+
+0 0◦
+
+1
+                −30◦
+          −60◦
+−90◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="119.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3042.png"
+                      style
+                      width="89.546"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3043"
+                    ><!--
+90◦
+        60◦
+1 30◦
+
+            0◦
+    0 1
+        1
+1 −30◦
+        −60◦
+−90◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="105.986"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3043.png"
+                      style
+                      width="77.642"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>0 to 360</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3044"
+                    ><!--
+              90◦
+       120◦ 60◦
+ 150◦ 30◦
+
+180◦ 0◦
+               0 1
+
+ 210◦ 330◦
+       240◦ 300◦
+              270◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="119.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3044.png"
+                      style
+                      width="140.666"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3045"
+                    ><!--
+           90◦
+   120◦ 60◦
+150◦ 1 30◦
+
+180◦ 0◦
+       1 0 1
+                   1
+210◦ 1 330◦
+   240◦ 300◦
+           270◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="105.986"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3045.png"
+                      style
+                      width="128.258"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>-180 to 180</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3046"
+                    ><!--
+              90◦
+       120◦ 60◦
+ 150◦ 30◦
+
+180◦ 0◦
+               0 1
+
+−150◦ −30◦
+  −120◦ −60◦
+              −90◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="119.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3046.png"
+                      style
+                      width="146.282"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3047"
+                    ><!--
+           90◦
+    120◦ 60◦
+ 150◦ 1 30◦
+
+180◦ 0◦
+       1 0 1
+                   1
+−150◦ 1 −30◦
+  −120◦ −60◦
+           −90◦
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="105.986"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3047.png"
+                      style
+                      width="134.762"
+                  /></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <tbody>
+              <tr style="display: none">
+                <th>.</th>
+              </tr>
+
+              <tr>
+                <td class="tdl"><em>Option</em></td>
+                <td class="tdc"><em>With clean ticks</em></td>
+                <td class="tdc"><em>With outer ticks</em></td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>0 to pi half</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3048"
+                    ><!--
+    1
+    2
+      π 1
+              3
+                π
+                    1
+                    6
+                      π
+1
+
+0 0
+    0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="87.026"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3048.png"
+                      style
+                      width="79.586"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3049"
+                    ><!--
+    1
+      π 1
+    2
+          3
+            π
+                1
+                6
+                  π
+1
+
+                0
+    0 1
+          1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="73.538"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3049.png"
+                      style
+                      width="66.603"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>-pi half to 0</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3050"
+                    ><!--
+      0 1
+0 0
+
+1
+                 − 16 π
+             − 13 π
+    − 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="86.834"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3050.png"
+                      style
+                      width="88.370"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3051"
+                    ><!--
+         1
+              0
+    0 1
+1 − 16 π
+         − 13 π
+− 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="77.090"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3051.png"
+                      style
+                      width="75.386"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>0 to pi</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3052"
+                    ><!--
+            1
+      2 2
+              π 1
+      3
+        π 3
+                        π
+5 1
+6
+  π 6
+                              π
+
+
+π 0
+        1 0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="87.026"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3052.png"
+                      style
+                      width="119.124"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3053"
+                    ><!--
+                1
+      2 π 1
+      3
+        π 2
+                      3
+                        π
+5 1
+6
+  π 6
+                              π
+            1
+
+π 0
+        1 0 1
+                      1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="73.538"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3053.png"
+                      style
+                      width="107.618"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>-pi half to pi half</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3054"
+                    ><!--
+     1
+     2
+       π 1
+             3
+               π
+                   1
+                   6
+                     π
+1
+
+0 0
+
+1
+                   − 16 π
+             − 13 π
+    − 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="131.402"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3054.png"
+                      style
+                      width="88.370"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3055"
+                    ><!--
+ 1
+   π 1
+ 2
+          3
+            π
+                1
+                6
+                  π
+      1
+
+                 0
+  0 1
+          1
+      1 − 16 π
+          − 13 π
+− 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.130"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3055.png"
+                      style
+                      width="75.386"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>0 to 2pi</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3056"
+                    ><!--
+                1
+         2 2
+                  π 1
+         3
+           π 3
+                              π
+  5 1
+  6
+    π 6
+                                    π
+
+
+  π 0
+                 0 1
+
+1 16 π 1 56 π
+      1 13 π 1 23 π
+               1 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="131.402"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3056.png"
+                      style
+                      width="131.066"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3057"
+                    ><!--
+                  1
+        2 π 1
+        3
+          π 2
+                        3
+                          π
+  5 1
+  6
+    π 6
+                                π
+              1
+
+  π 0
+          1 0 1
+                        1
+1 16 π 1 1 56 π
+     1 13 π 1 23 π
+              1 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.130"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3057.png"
+                      style
+                      width="119.546"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>-pi to pi</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3058"
+                    ><!--
+                1
+         2 2
+                  π 1
+         3
+           π 3
+                              π
+  5 1
+  6
+    π 6
+                                    π
+
+
+  π 0
+                 0 1
+
+− 56 π − 16 π
+      − 23 π − 13 π
+               − 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="131.402"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3058.png"
+                      style
+                      width="137.330"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3059"
+                    ><!--
+                  1
+        2 π 1
+        3
+          π 2
+                        3
+                          π
+  5 1
+  6
+    π 6
+                                π
+              1
+
+  π 0
+          1 0 1
+                        1
+− 56 π 1 − 16 π
+    − 23 π − 13 π
+              − 12 π
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.130"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3059.png"
+                      style
+                      width="125.834"
+                  /></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <tbody>
+              <tr style="display: none">
+                <th>.</th>
+              </tr>
+
+              <tr>
+                <td class="tdl"><em>Option</em></td>
+                <td class="tdc"><em>With clean ticks</em></td>
+                <td class="tdc"><em>With outer ticks</em></td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>quadrant</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3060"
+                    ><!--
+    40 35
+              30
+1 25
+
+0 20
+    0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.378"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3060.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3061"
+                    ><!--
+    40 35
+              30
+1 25
+
+0 20
+         1
+1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="82.442"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3061.png"
+                      style
+                      width="68.402"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>quadrant clockwise</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3062"
+                    ><!--
+    20 25
+              30
+1 35
+
+0 40
+    0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3062.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3063"
+                    ><!--
+        20 25
+                  30
+    1 35
+
+                    40
+1 0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="66.746"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3063.png"
+                      style
+                      width="84.578"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>fourth quadrant</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3064"
+                    ><!--
+    0 1
+0 40
+
+1 35
+              30
+    20 25
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3064.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3065"
+                    ><!--
+1 0 1
+                    40
+
+    1 35
+                  30
+        20 25
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="66.962"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3065.png"
+                      style
+                      width="84.578"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>fourth quadrant clockwise</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3066"
+                    ><!--
+    0 1
+0 20
+
+1 25
+              30
+    40 35
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3066.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3067"
+                    ><!--
+1
+         1
+0 20
+
+1 25
+              30
+    40 35
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="82.538"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3067.png"
+                      style
+                      width="68.402"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>upper half</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3068"
+                    ><!--
+              30
+     35 25
+
+
+40 20
+          1 0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3068.png"
+                      style
+                      width="125.882"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3069"
+                    ><!--
+              30
+     35 25
+
+          1 0
+40 20
+          1 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="66.746"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3069.png"
+                      style
+                      width="112.610"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>upper half clockwise</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3070"
+                    ><!--
+              30
+     25 35
+
+
+20 40
+          1 0 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3070.png"
+                      style
+                      width="125.498"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3071"
+                    ><!--
+              30
+     25 35
+
+              0 1
+20 40
+          1 1
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="66.746"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3071.png"
+                      style
+                      width="112.226"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>lower half</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3072"
+                    ><!--
+          1 0 1
+20 40
+
+
+     25 35
+              30
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3072.png"
+                      style
+                      width="125.498"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3073"
+                    ><!--
+          1 1
+20 40
+              0 1
+
+     25 35
+              30
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="66.962"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3073.png"
+                      style
+                      width="112.226"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>lower half clockwise</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3074"
+                    ><!--
+          1 0 1
+40 20
+
+
+     35 25
+              30
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="80.258"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3074.png"
+                      style
+                      width="125.882"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3075"
+                    ><!--
+          1 1
+40 20
+          1 0
+
+     35 25
+              30
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="66.962"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3075.png"
+                      style
+                      width="112.610"
+                  /></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <tbody>
+              <tr style="display: none">
+                <th>.</th>
+              </tr>
+
+              <tr>
+                <td class="tdl"><em>Option</em></td>
+                <td class="tdc"><em>With clean ticks</em></td>
+                <td class="tdc"><em>With outer ticks</em></td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>left half</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3076"
+                    ><!--
+          20
+     25
+               1
+
+30 0
+
+               1
+     35
+          40
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.058"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3076.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3077"
+                    ><!--
+          20
+     25
+               1
+
+30 0
+
+          1 1
+     35
+          40
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="104.762"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3077.png"
+                      style
+                      width="68.546"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>left half clockwise</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3078"
+                    ><!--
+          40
+     35
+               1
+
+30 0
+
+               1
+     25
+          20
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.178"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3078.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3079"
+                    ><!--
+          40
+     35
+          1 1
+
+30 0
+
+               1
+     25
+          20
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="104.882"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3079.png"
+                      style
+                      width="68.546"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>right half</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3080"
+                    ><!--
+    40
+         35
+1
+
+0 30
+
+1
+         25
+    20
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.178"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3080.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3081"
+                    ><!--
+    40
+         35
+1 1
+
+     0 30
+
+1
+         25
+    20
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="104.882"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3081.png"
+                      style
+                      width="68.402"
+                  /></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="tdl"><kbd>right half clockwise</kbd></td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3082"
+                    ><!--
+    20
+         25
+1
+
+0 30
+
+1
+         35
+    40
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="118.058"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3082.png"
+                      style
+                      width="82.250"
+                  /></span>
+                </td>
+                <td class="tdc">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3083"
+                    ><!--
+    20
+         25
+1
+
+     0 30
+
+1 1
+         35
+    40
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="104.762"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3083.png"
+                      style
+                      width="68.402"
+                  /></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 id="autosec-7494">
+            <span
+              ><span class="sectionnumber" id="sec-85.3">85.3</span> Advanced:
+              Creating a New Polar Axis System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-85.3"
+              data-pdf-destination="subsection.85.3"
+              data-pdf-page="971"
+              href="#sec-85.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-7494"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/data:visualization/new:polar:axes"></a
+                    ><a id="pgf.new:polar:axes"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/new polar axes</span
+                          ></span
+                        >=</kbd
+                      ><span class="verb">{</span
+                      ><span class="angle">&langle;</span><i>angle axis name</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">}</span><span class="verb">{</span
+                      ><span class="angle">&langle;</span><i>radius axis name</i
+                      ><span class="angle">&rangle;</span
+                      ><span class="verb">}</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/new:polar:axes"
+                      href="#tikz/data:visualization/new:polar:axes"
+                      id="tikz/data:visualization/new:polar:axes"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key actually creates two axes, whose names are give as
+                parameters: An <em>angle axis</em> and a <em>radius axis</em>.
+                These two axes work in concert in the following way: Suppose a
+                data point has two attributes called
+                <span class="verb">angle</span> and
+                <span class="verb">radius</span> (these attribute names can be
+                changed by changing the <span class="verb">attribute</span> of
+                the <span class="angle">&langle;</span><i>angle axis name</i
+                ><span class="angle">&rangle;</span> or the
+                <span class="angle">&langle;</span><i>radius axis name</i
+                ><span class="angle">&rangle;</span>, respectively). These two
+                attributes are then scaled as usual, resulting in two
+                &ldquo;reasonable&rdquo; values \(a\) (for the angle) and \(r\)
+                (for the radius). Then, the data point gets visualized (in
+                principle, details will follow) at a position on the page that
+                is at a distance of \(r\) from the origin and at an angle
+                of&nbsp;\(a\).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3084"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="81.266"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3084.png"
+                        style
+                        width="153.437"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {datavisualization.polar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="dv-polar#pgf.new:polar:axes"
+                        >new polar axes</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-coordinates#pgf.angle">angle</a>
+                      <a href="library-shadings#pgf.axis">axis</a>}{<a
+                        href="tikz-coordinates#pgf.radius"
+                        >radius</a
+                      >
+                      <a href="library-shadings#pgf.axis">axis</a>}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >radius axis</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{length=2cm}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:scatter"
+                        >visualize as scatter</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.named">named</a></span
+                    >] {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >angle=</span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >,<span class="textcolor" style="color: #000000">20</span
+                    >,...,<span class="textcolor" style="color: #000000"
+                      >160</span
+                    >}, <span class="textcolor" style="color: #000000"
+                      >radius=</span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >,...,<span class="textcolor" style="color: #000000">5</span
+                    >}<br />
+                    <span class="spaces">  </span>};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In detail, the <span class="angle">&langle;</span
+                ><i>angle axis</i><span class="angle">&rangle;</span> keeps
+                track of two vectors \(v_0\) and \(v_{90}\), each of which will
+                usually have unit length (length <span class="verb">1pt</span>)
+                and which point in two different directions. Given a radius
+                \(r\) (measured in
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                <span class="verb">pt</span>s, so if the radius attribute
+                <span class="verb">10pt</span>, then \(r\) would be \(10\)) and
+                an angle \(a\), let \(s\) be the sine of \(a\) and let \(c\) be
+                the cosine of \(a\), where \(a\) is a number is degrees (so
+                \(s\) would be \(1\) for \(a = 90\)). Then, the current page
+                position is shifted by \(c \cdot r\) times \(v_0\) and,
+                additionally, by \(s \cdot r\) times \(v_{90}\). This means that
+                in the &ldquo;polar coordinate system&rdquo; \(v_0\) is the unit
+                vector along the &ldquo;\(0^\circ \)-axis&rdquo; and \(v_{90}\)
+                is the unit vector along &ldquo;\(90^\circ \)-axis&rdquo;. The
+                values of \(v_0\) and \(v_{90}\) can be changed using the
+                following key on the <span class="angle">&langle;</span
+                ><i>angle axis</i><span class="angle">&rangle;</span>:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a
+                          id="pgf./tikz/data:visualization/axis:options/unit:vectors"
+                        ></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/data visualization/axis options/unit
+                                vectors</span
+                              ></span
+                            >=</kbd
+                          ><span class="verb">{</span
+                          ><span class="angle">&langle;</span
+                          ><i>unit vector 0 degrees</i
+                          ><span class="angle">&rangle;</span
+                          ><span class="verb">}{</span
+                          ><span class="angle">&langle;</span
+                          ><i>unit vector 90 degrees</i
+                          ><span class="angle">&rangle;</span
+                          ><span class="verb">}</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially
+                          <kbd>{(1pt,0pt)}{(0pt,1pt)}</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/data:visualization/axis:options/unit:vectors"
+                          href="#tikz/data:visualization/axis:options/unit:vectors"
+                          id="tikz/data:visualization/axis:options/unit:vectors"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Both the <span class="angle">&langle;</span
+                    ><i>unit vector 0 degrees</i
+                    ><span class="angle">&rangle;</span> and the
+                    <span class="angle">&langle;</span
+                    ><i>unit vector 90 degrees</i
+                    ><span class="angle">&rangle;</span> are
+                    <span class="tikzname">TikZ</span> coordinates:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-3085"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="70.634"
+                            loading="lazy"
+                            src="pgfmanual-images/image-3085.png"
+                            style
+                            width="76.538"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {datavisualization.polar} </span
+                        ><br />
+                        <span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                        > <span class="textcolor" style="color: #0000b2"
+                          ><a href="dv-main#pgf.back/datavisualization"
+                            >\datavisualization</a
+                          ></span
+                        ><br />
+                        <span class="spaces">    </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="dv-polar#pgf.new:polar:axes"
+                            >new polar axes</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{<a href="tikz-coordinates#pgf.angle">angle</a>
+                          <a href="library-shadings#pgf.axis">axis</a>}{<a
+                            href="tikz-coordinates#pgf.radius"
+                            >radius</a
+                          >
+                          <a href="library-shadings#pgf.axis">axis</a>}</span
+                        >,<br />
+                        <span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          >radius axis</span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{unit length=1cm}</span
+                        >,<br />
+                        <span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          >angle axis</span
+                        >=<span class="textcolor" style="color: #008000"
+                          >{unit vectors={<span
+                            class="textcolor"
+                            style="color: #800080"
+                            >(10:1pt)</span
+                          >}{<span class="textcolor" style="color: #800080"
+                            >(60:1pt)</span
+                          >}}</span
+                        >,<br />
+                        <span class="spaces">     </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="dv-visualizers#pgf.visualize:as:scatter"
+                            >visualize as scatter</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          ><a href="dv-main#pgf.data">data</a></span
+                        >
+                        [<span class="textcolor" style="color: #008000"
+                          ><a href="dv-main#pgf.format">format</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          ><a href="dv-formats#pgf.named">named</a></span
+                        >] {<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #000000"
+                          >angle=</span
+                        >{<span class="textcolor" style="color: #000000">0</span
+                        >,<span class="textcolor" style="color: #000000"
+                          >90</span
+                        >}, <span class="textcolor" style="color: #000000"
+                          >radius=</span
+                        >{<span class="textcolor" style="color: #000000">0</span
+                        >.<span class="textcolor" style="color: #000000"
+                          >25</span
+                        >,<span class="textcolor" style="color: #000000">0</span
+                        >.<span class="textcolor" style="color: #000000">5</span
+                        >,...,<span class="textcolor" style="color: #000000"
+                          >2</span
+                        >}<br />
+                        <span class="spaces">  </span>};<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <p>
+            Once created, the <span class="verb">angle axis</span> can be scaled
+            conveniently using the following keys:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./tikz/data:visualization/axis:options/degrees"
+                    ></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/axis options/degrees</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/axis:options/degrees"
+                      href="#tikz/data:visualization/axis:options/degrees"
+                      id="tikz/data:visualization/axis:options/degrees"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                When this key is passed to the angle axis of a polar axis
+                system, it sets up the scaling so that a value of
+                <span class="verb">360</span> on this axis corresponds to a
+                complete circle.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3086"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="80.762"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3086.png"
+                        style
+                        width="81.273"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {datavisualization.polar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="dv-polar#pgf.new:polar:axes"
+                        >new polar axes</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-coordinates#pgf.angle">angle</a>
+                      <a href="library-shadings#pgf.axis">axis</a>}{<a
+                        href="tikz-coordinates#pgf.radius"
+                        >radius</a
+                      >
+                      <a href="library-shadings#pgf.axis">axis</a>}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >radius axis</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{unit length=1cm}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >angle axis</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{degrees}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:scatter"
+                        >visualize as scatter</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.named">named</a></span
+                    >] {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >angle=</span
+                    >{<span class="textcolor" style="color: #000000">10</span
+                    >,<span class="textcolor" style="color: #000000">90</span
+                    >}, <span class="textcolor" style="color: #000000"
+                      >radius=</span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">25</span
+                    >,<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >,...,<span class="textcolor" style="color: #000000">2</span
+                    >}<br />
+                    <span class="spaces">  </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a
+                      id="pgf./tikz/data:visualization/axis:options/radians"
+                    ></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/data visualization/axis options/radians</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/data:visualization/axis:options/radians"
+                      href="#tikz/data:visualization/axis:options/radians"
+                      id="tikz/data:visualization/axis:options/radians"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                In contrast to <span class="verb">degrees</span>, this option
+                sets up things so that a value of
+                <span class="verb">2*pi</span> on this axis corresponds to a
+                complete circle.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3087"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="82.202"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3087.png"
+                        style
+                        width="81.746"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {datavisualization.polar} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="dv-main#pgf.back/datavisualization"
+                        >\datavisualization</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="dv-polar#pgf.new:polar:axes"
+                        >new polar axes</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-coordinates#pgf.angle">angle</a>
+                      <a href="library-shadings#pgf.axis">axis</a>}{<a
+                        href="tikz-coordinates#pgf.radius"
+                        >radius</a
+                      >
+                      <a href="library-shadings#pgf.axis">axis</a>}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >radius axis</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{unit length=1cm}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      >angle axis</span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{radians}</span
+                    >,<br />
+                    <span class="spaces">     </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="dv-visualizers#pgf.visualize:as:scatter"
+                        >visualize as scatter</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="dv-main#pgf.data">data</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="dv-main#pgf.format">format</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      ><a href="dv-formats#pgf.named">named</a></span
+                    >] {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >angle=</span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >,<span class="textcolor" style="color: #000000">1</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >}, <span class="textcolor" style="color: #000000"
+                      >radius=</span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">25</span
+                    >,<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >,...,<span class="textcolor" style="color: #000000">2</span
+                    >}<br />
+                    <span class="spaces">  </span>};<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

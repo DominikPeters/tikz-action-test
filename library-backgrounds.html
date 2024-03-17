@@ -1,0 +1,2351 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Background Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Background Library",
+            "item": "https://tikz.dev/library-backgrounds"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-backgrounds" rel="canonical" />
+    <meta content="https://tikz.dev/library-backgrounds" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Background Library - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5017"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5018">
+            <a id="section-tikz-backgrounds"></a
+            ><span
+              ><span class="sectionnumber" id="sec-45">45</span> Background
+              Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.45"
+              data-pdf-page="578"
+              href="#sec-45"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5018"></a>
+          <a id="pgfmanual-autofile-50"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.backgrounds"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >backgrounds</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.backgrounds"
+                      href="#pgf.backgrounds"
+                      id="pgf.backgrounds"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >backgrounds</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >backgrounds</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                ><br />
+                <br />
+                This library defines &ldquo;backgrounds&rdquo; for pictures.
+                This does not refer to background pictures, but rather to frames
+                drawn around and behind pictures. For example, this package
+                allows you to just add the
+                <span class="verb">framed</span> option to a picture to get a
+                rectangular box around your picture or
+                <span class="verb">gridded</span> to put a grid behind your
+                picture.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            The first use of this library is to make the following key
+            available:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/on:background:layer"></a
+                    ><a id="pgf.on:background:layer"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/on background layer</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/on:background:layer"
+                      href="#tikz/on:background:layer"
+                      id="tikz/on:background:layer"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key can (only) be used with a
+                <span class="verb">{scope}</span> or
+                <span class="verb">\scoped</span>. It will cause everything
+                inside the scope to be typeset on a background layer.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> will be executed
+                <em>inside</em> background scope. This is useful since
+                <em>other</em> options passed to the
+                <span class="verb">{scope}</span> environment will be executed
+                <em>before</em> the actual background material starts and, thus,
+                will have no effect on it.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2074"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.290"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2074.png"
+                        style
+                        width="78.293"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% On main layer:</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1cm)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.on:background:layer"
+                        >on background layer</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{color=yellow}</span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(-1,-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1,1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.on:background:layer"
+                        >on background layer</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">black</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(-.8,-.8)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.8,.8)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.scope">scope</a></span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% On main layer again:</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >blue!50</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(-.5,-1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(.5,1)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                A scope with this option set should not be &ldquo;deeply
+                nested&rdquo; inside the picture since changes to the graphic
+                state (like the color or the transformation matrix) &ldquo;do
+                not survive a layer switch&rdquo;, see also Section&nbsp;<a
+                  href="base-layers#section-layers"
+                  >113</a
+                >
+                for details. In particular, setting, say, the line width at the
+                beginning of a picture will not have an effect on the background
+                picture.
+              </p>
+              <p>
+                For this reason, it may be useful to setup the following style:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/every:on:background:layer"></a
+                        ><a id="pgf.every:on:background:layer"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/every on background layer</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/every:on:background:layer"
+                          href="#tikz/every:on:background:layer"
+                          id="tikz/every:on:background:layer"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style is executed at the beginning of each background
+                    layer. If you have a global setup in
+                    <span class="verb">every picture</span>, you should consider
+                    putting that part of it that concerns the graphics state
+                    into this style.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2075"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="52.179"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2075.png"
+                            style
+                            width="80.930"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a
+                        >{<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="tikz-scopes#pgf.every:picture"
+                            >every picture</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.line:width"
+                            >line width</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >1ex}</span
+                        >,<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.every:on:background:layer"
+                            >every on background layer</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-scopes#pgf.every:picture"
+                            >every picture</a
+                          ></span
+                        >}<br />
+                        }<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > [<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                        >] <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(2,1)</span
+                        >;<br />
+                        <br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.back/scoped"
+                            >\scoped</a
+                          ></span
+                        >[<span class="textcolor" style="color: #008000"
+                          ><a href="library-backgrounds#pgf.on:background:layer"
+                            >on background layer</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">    </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        >[<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >] <span class="textcolor" style="color: #800080"
+                          >(0,1)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.--">--</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(2,0)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <p>
+            When this package is loaded, the following styles become available:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/show:background:rectangle"></a
+                    ><a id="pgf.show:background:rectangle"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/show background rectangle</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/show:background:rectangle"
+                      href="#tikz/show:background:rectangle"
+                      id="tikz/show:background:rectangle"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style causes a rectangle to be drawn behind your graphic.
+                This style option must be given to the
+                <span class="verb">{tikzpicture}</span> environment or to the
+                <span class="verb">\tikz</span> command.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2076"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="53.321"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2076.png"
+                        style
+                        width="91.116"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a
+                        href="library-backgrounds#pgf.show:background:rectangle"
+                        >show background rectangle</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm and 5mm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The size of the background rectangle is determined as follows:
+                We start with the bounding box of the picture. Then, a certain
+                separator distance is added on the sides. This distance can be
+                different for the \(x\)- and \(y\)-directions and can be set
+                using the following options:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/inner:frame:xsep"></a
+                        ><a id="pgf.inner:frame:xsep"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/inner frame xsep</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>1ex</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/inner:frame:xsep"
+                          href="#tikz/inner:frame:xsep"
+                          id="tikz/inner:frame:xsep"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Sets the additional horizontal separator distance for the
+                    background rectangle.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/inner:frame:ysep"></a
+                        ><a id="pgf.inner:frame:ysep"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/inner frame ysep</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>1ex</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/inner:frame:ysep"
+                          href="#tikz/inner:frame:ysep"
+                          id="tikz/inner:frame:ysep"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Same for the vertical separator distance.</p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/inner:frame:sep"></a
+                        ><a id="pgf.inner:frame:sep"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/inner frame sep</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/inner:frame:sep"
+                          href="#tikz/inner:frame:sep"
+                          id="tikz/inner:frame:sep"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Sets the horizontal and vertical separator distances
+                    simultaneously.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                The following two styles make setting the inner separator a bit
+                easier to remember:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/tight:background"></a
+                        ><a id="pgf.tight:background"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/tight background</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/tight:background"
+                          href="#tikz/tight:background"
+                          id="tikz/tight:background"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Sets the inner frame separator to 0pt. The background
+                    rectangle will have the size of the bounding box.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/loose:background"></a
+                        ><a id="pgf.loose:background"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/loose background</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default">(style, no value)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/loose:background"
+                          href="#tikz/loose:background"
+                          id="tikz/loose:background"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Sets the inner frame separator to 2ex.</p>
+                </ul>
+              </div>
+              <p>
+                You can influence how the background rectangle is rendered by
+                setting the following style:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/background:rectangle"></a
+                        ><a id="pgf.background:rectangle"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/background rectangle</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>draw</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/background:rectangle"
+                          href="#tikz/background:rectangle"
+                          id="tikz/background:rectangle"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style dictates how the background rectangle is drawn or
+                    filled. The default setting causes the path of the
+                    background rectangle to be drawn in the usual way. Setting
+                    this style to, say,
+                    <span class="verb">fill=blue!20</span> causes a light blue
+                    background to be added to the picture. You can also use more
+                    fancy settings as shown in the following example:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2077"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="57.867"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2077.png"
+                            style
+                            width="95.668"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.background:rectangle"
+                            >background rectangle</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >=<br />
+                        {<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.double">double</a></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.ultra:thick"
+                            >ultra thick</a
+                          ></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="library-shadings#pgf.top:color"
+                            >top color</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >blue</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-paths#pgf.rounded:corners"
+                            >rounded corners</a
+                          ></span
+                        >},<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.show:background:rectangle"
+                            >show background rectangle</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(10mm and 5mm)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                  <p>
+                    Naturally, no one in their right mind would use the above,
+                    but here is a nice background:
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2078"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="53.355"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2078.png"
+                            style
+                            width="91.154"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.background:rectangle"
+                            >background rectangle</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >=<br />
+                        {<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >blue!50</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.fill">fill</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >blue!20</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-paths#pgf.rounded:corners"
+                            >rounded corners</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >1ex}</span
+                        >,<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.show:background:rectangle"
+                            >show background rectangle</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(10mm and 5mm)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/framed"></a><a id="pgf.framed"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/framed</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/framed"
+                      href="#tikz/framed"
+                      id="tikz/framed"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a shorthand for
+                <span class="verb">show background rectangle</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/show:background:grid"></a
+                    ><a id="pgf.show:background:grid"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/show background grid</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/show:background:grid"
+                      href="#tikz/show:background:grid"
+                      id="tikz/show:background:grid"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style behaves similarly to the
+                <span class="verb">show background rectangle</span> style, but
+                it will not use a rectangle path, but a grid. The lower left and
+                upper right corner of the grid is computed in the same way as
+                for the background rectangle:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2079"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="52.803"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2079.png"
+                        style
+                        width="90.610"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.show:background:grid"
+                        >show background grid</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm and 5mm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                You can influence the background grid by setting the following
+                style:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/background:grid"></a
+                        ><a id="pgf.background:grid"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/background grid</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>draw,help lines</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/background:grid"
+                          href="#tikz/background:grid"
+                          id="tikz/background:grid"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This style dictates how the background grid path is drawn.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2080"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="52.803"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2080.png"
+                            style
+                            width="90.610"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-backgrounds#pgf.background:grid"
+                            >background grid</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.thick">thick</a></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >red</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-paths#pgf.step">step</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >.5cm}</span
+                        >,<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.show:background:grid"
+                            >show background grid</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(10mm and 5mm)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+              <p>
+                This option can be combined with the
+                <span class="verb">framed</span> option (use the
+                <span class="verb">framed</span> option first):
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2081"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="52.803"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2081.png"
+                        style
+                        width="90.610"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.background:grid"
+                        >background grid</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.thick">thick</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.step">step</a></span
+                    >=<span class="textcolor" style="color: #008000">.5cm}</span
+                    >,<br />
+                    <span class="spaces">         </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.background:rectangle"
+                        >background rectangle</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.rounded:corners"
+                        >rounded corners</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >yellow}</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.framed">framed</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.gridded"
+                        >gridded</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm and 5mm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/gridded"></a><a id="pgf.gridded"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/gridded</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/gridded"
+                      href="#tikz/gridded"
+                      id="tikz/gridded"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This is a shorthand for
+                <span class="verb">show background grid</span>.
+              </p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/show:background:top"></a
+                    ><a id="pgf.show:background:top"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/show background top</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/show:background:top"
+                      href="#tikz/show:background:top"
+                      id="tikz/show:background:top"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This style causes a single line to be drawn at the top of the
+                background rectangle. Normally, the line coincides exactly with
+                the top line of the background rectangle:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2082"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="53.091"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2082.png"
+                        style
+                        width="90.613"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.background:rectangle"
+                        >background rectangle</a
+                      ></span
+                    >/<span class="textcolor" style="color: #0000b2"
+                      ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                    >={<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >yellow}</span
+                    >,<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.framed">framed</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="library-backgrounds#pgf.show:background:top"
+                        >show background top</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm and 5mm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                The following option allows you to lengthen (or shorten) the
+                line:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/outer:frame:xsep"></a
+                        ><a id="pgf.outer:frame:xsep"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/outer frame xsep</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0pt</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/outer:frame:xsep"
+                          href="#tikz/outer:frame:xsep"
+                          id="tikz/outer:frame:xsep"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    The <span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span> is added at the left
+                    and right side of the line.
+                  </p>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2083"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="53.091"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2083.png"
+                            style
+                            width="102.405"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                        <span class="spaces">  </span>[<span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.background:rectangle"
+                            >background rectangle</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.fill">fill</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >yellow}</span
+                        >,<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-backgrounds#pgf.framed"
+                            >framed</a
+                          ></span
+                        >,<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-backgrounds#pgf.show:background:top"
+                            >show background top</a
+                          ></span
+                        >,<br />
+                        <span class="spaces">   </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-backgrounds#pgf.outer:frame:xsep"
+                            >outer frame xsep</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >1ex</span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(10mm and 5mm)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/outer:frame:ysep"></a
+                        ><a id="pgf.outer:frame:ysep"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/outer frame ysep</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span> </span
+                        ><span class="hl-default"
+                          >(no default, initially <kbd>0pt</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/outer:frame:ysep"
+                          href="#tikz/outer:frame:ysep"
+                          id="tikz/outer:frame:ysep"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This option does not apply to the top line, but to the left
+                    and right lines, see below.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/outer:frame:sep"></a
+                        ><a id="pgf.outer:frame:sep"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/outer frame sep</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>dimension</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/outer:frame:sep"
+                          href="#tikz/outer:frame:sep"
+                          id="tikz/outer:frame:sep"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>Sets both the \(x\)- and \(y\)-separation.</p>
+                </ul>
+              </div>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2084"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="64.587"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2084.png"
+                        style
+                        width="102.405"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {backgrounds} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.background:rectangle"
+                        >background rectangle</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{fill=blue!20}</span
+                    >,<br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.outer:frame:sep"
+                        >outer frame sep</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1ex</span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.show:background:top"
+                        >show background top</a
+                      ></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.show:background:bottom"
+                        >show background bottom</a
+                      ></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.show:background:left"
+                        >show background left</a
+                      ></span
+                    >,<span class="example-code-comment">%</span><br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-backgrounds#pgf.show:background:right"
+                        >show background right</a
+                      ></span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(10mm and 5mm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                You can influence how the line is drawn grid by setting the
+                following style:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./tikz/background:top"></a
+                        ><a id="pgf.background:top"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/tikz/background top</span
+                              ></span
+                            ></kbd
+                          ></span
+                        ><span class="hl-default"
+                          >(style, initially <kbd>draw</kbd>)</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./tikz/background:top"
+                          href="#tikz/background:top"
+                          id="tikz/background:top"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <figure class="example">
+                    <div class="example-image">
+                      <p>
+                        <span
+                          class="lateximagesource"
+                          id="lateximage-pgfmanual-2085"
+                          ><!--
+--><img
+                            alt="(-tikz-&nbsp;diagram)"
+                            class="lateximage"
+                            height="55.779"
+                            loading="lazy"
+                            src="pgfmanual-images/image-2085.png"
+                            style
+                            width="90.626"
+                        /></span>
+                      </p>
+                    </div>
+
+                    <div class="example-code">
+                      <button class="clipboardButton" type="button">
+                        copy
+                      </button>
+                      <code>
+                        <span class="codepreamble"
+                          >\usetikzlibrary {backgrounds} </span
+                        ><br />
+                        <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a
+                        >{<span class="textcolor" style="color: #008000"
+                          ><a
+                            href="library-backgrounds#pgf.background:rectangle"
+                            >background rectangle</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.fill">fill</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >blue!20}</span
+                        >,<br />
+                        <span class="spaces">         </span><span
+                          class="textcolor"
+                          style="color: #008000"
+                          ><a href="library-backgrounds#pgf.background:top"
+                            >background top</a
+                          ></span
+                        >/<span class="textcolor" style="color: #0000b2"
+                          ><a href="pgfkeys#pgf./handlers/.style"
+                            >.style</a
+                          ></span
+                        >={<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.draw">draw</a></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >blue!50</span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="tikz-actions#pgf.line:width"
+                            >line width</a
+                          ></span
+                        >=<span class="textcolor" style="color: #008000"
+                          >1ex}</span
+                        >}<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\begin</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}[<span class="textcolor" style="color: #008000"
+                          ><a href="library-backgrounds#pgf.framed"
+                            >framed</a
+                          ></span
+                        >,<span class="textcolor" style="color: #008000"
+                          ><a href="library-backgrounds#pgf.show:background:top"
+                            >show background top</a
+                          ></span
+                        >]<br />
+                        <span class="spaces">  </span><span
+                          class="textcolor"
+                          style="color: #0000b2"
+                          ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                        > <span class="textcolor" style="color: #800080"
+                          >(0,0)</span
+                        > <span class="textcolor" style="color: #000000"
+                          ><a href="tikz-paths#pgf.ellipse">ellipse</a></span
+                        >
+                        <span class="textcolor" style="color: #800080"
+                          >(10mm and 5mm)</span
+                        >;<br />
+                        <span class="textcolor" style="color: #000000"
+                          >\end</span
+                        >{<span class="textcolor" style="color: #0000b2"
+                          ><a href="tikz-scopes#pgf.tikzpicture"
+                            >tikzpicture</a
+                          ></span
+                        >}<br />
+                      </code>
+                    </div>
+                  </figure>
+                </ul>
+              </div>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/show:background:bottom"></a
+                    ><a id="pgf.show:background:bottom"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/show background bottom</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/show:background:bottom"
+                      href="#tikz/show:background:bottom"
+                      id="tikz/show:background:bottom"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works like the style for the top line.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/show:background:left"></a
+                    ><a id="pgf.show:background:left"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/show background left</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/show:background:left"
+                      href="#tikz/show:background:left"
+                      id="tikz/show:background:left"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works similarly.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./tikz/show:background:right"></a
+                    ><a id="pgf.show:background:right"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/tikz/show background right</span
+                          ></span
+                        ></kbd
+                      ></span
+                    ><span class="hl-default">(style, no value)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./tikz/show:background:right"
+                      href="#tikz/show:background:right"
+                      id="tikz/show:background:right"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Works similarly.</p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

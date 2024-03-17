@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Renée Ahrens, Olof Frahm, Jens Kluttig, Matthias Schulz, Stephan Schuster
+Copyright 2019 by Till Tantau
+Copyright 2019 by Jannis Pohlmann
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Introduction to Algorithmic Graph Drawing - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Introduction to Algorithmic Graph Drawing",
+            "item": "https://tikz.dev/gd-overview"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-overview" rel="canonical" />
+    <meta content="https://tikz.dev/gd-overview" property="og:url" />
+    <meta
+      content="https://tikz.dev/social-media-banners/gd-overview.png"
+      property="og:image"
+    />
+    <meta content="max-image-preview:large" name="robots" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Introduction to Algorithmic Graph Drawing - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4385"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-27.1"
+                >What Is Algorithmic Graph Drawing?</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-27.2"
+                >Using the Graph Drawing System</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-27.3"
+                >Extending the Graph Drawing System</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-27.4"
+                >The Layers of the Graph Drawing System</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-27.5"
+                >Organisation of the Graph Drawing Documentation</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-27.6">Acknowledgements</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4386">
+            <a id="section-intro-gd"></a
+            ><span
+              ><span class="sectionnumber" id="sec-27">27</span> Introduction to
+              Algorithmic Graph Drawing</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.27"
+              data-pdf-page="417"
+              href="#sec-27"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4386"></a>
+          <a id="pgfmanual-autofile-31"></a>
+
+          <p>
+            <em>by Till Tantau</em>
+          </p>
+          <h5 id="autosec-4387">
+            <span
+              ><span class="sectionnumber" id="sec-27.1">27.1</span> What Is
+              Algorithmic Graph Drawing?</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-27.1"
+              data-pdf-destination="subsection.27.1"
+              data-pdf-page="417"
+              href="#sec-27.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4387"></a>
+
+          <p>
+            <em>Algorithmic graph drawing</em> (or just
+            <em>graph drawing</em> in the following) is the process of computing
+            algorithmically where the nodes of a graph are positioned on a page
+            so that the graph &ldquo;looks nice&rdquo;. The idea is that you, as
+            human (or you, as a machine, if you happen to be a machine and
+            happen to be reading this document) just specify which nodes are
+            present in a graph and which edges are present. Additionally, you
+            may add some &ldquo;hints&rdquo; like &ldquo;this node should be
+            near the center&rdquo; or &ldquo;this edge is pretty
+            important&rdquo;. You do <em>not</em> specify where, exactly, the
+            nodes and edges should be. This is something you leave to a
+            <em>graph drawing algorithm</em>. The algorithm gets your
+            description of the graph as an input and then decides where the
+            nodes should go on the page.
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1864"
+                  ><!--
+            4
+
+    3 10
+
+0 8
+
+    1 6 9
+
+        5 7
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="119.954"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1864.png"
+                    style
+                    width="120.674"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {trees} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-trees#pgf.binary:tree:layout"
+                    >binary tree layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.level:distance"
+                    >level distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">5mm</span
+                >] {<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >4</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >3</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">0</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">1</span>[<span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="gd-trees#pgf.second">second</a></span
+                >],<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >10</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >8</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >6</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                {<span class="textcolor" style="color: #000000">5</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >7</span
+                >},<br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  >9</span
+                ><br />
+                <span class="spaces">  </span>}<span class="spaces"> </span>}<span class="spaces"> </span>}<br />
+                };<br />
+              </code>
+            </div>
+          </figure>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1865"
+                  ><!--
+        3
+
+
+
+
+    s
+            ist
+ da
+4 Haus 2
+
+
+
+
+              vom
+ko
+
+     as
+     N
+     D
+1 i 5
+     laus
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="125.858"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1865.png"
+                    style
+                    width="61.229"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphs,graphdrawing,quotes} \usegdlibrary
+                  {force} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:layout">spring layout</a></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.edge:quotes:mid"
+                    >edge quotes mid</a
+                  ></span
+                >,<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.edges">edges</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{nodes={font=<span class="textcolor" style="color: #0000b2"
+                    >\scriptsize</span
+                  >,<span class="spaces"> </span>fill=white, <a href="tikz-shapes#pgf.sloped"
+                    >sloped</a
+                  >,<span class="spaces"> </span>inner sep=1pt}}</span
+                >]<br />
+                {<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >1</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000">"Das"</span
+                >] <span class="textcolor" style="color: #000000">2</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000">"ist"</span
+                >] <span class="textcolor" style="color: #000000">3</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000">"das"</span
+                >] <span class="textcolor" style="color: #000000">4</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000">"Haus"</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >2</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  >"vom" near start</span
+                >] <span class="textcolor" style="color: #000000">5</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000">"Ni"</span
+                >] <span class="textcolor" style="color: #000000">4</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  >"ko" near start</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >1</span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >[<span class="textcolor" style="color: #008000">"laus"</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="gd-usage-tikz#pgf.orient">orient</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.right">right</a></span
+                >] <span class="textcolor" style="color: #000000">5</span
+                >;<br />
+                };<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Naturally, graph drawing is a bit of a (black?) art. There is no
+            &ldquo;perfect&rdquo; way of drawing a graph, rather, depending on
+            the circumstances there are several different ways of drawing the
+            same graph and often it will just depend on the aesthetic sense of
+            the reader which layout he or she would prefer. For this reason,
+            there are a huge number of graph drawing algorithms &ldquo;out
+            there&rdquo; and there are scientific conference devoted to such
+            algorithms, where each year dozens of new algorithms are proposed.
+          </p>
+
+          <p>
+            Unlike the rest of <span class="textsc">pgf</span> and
+            <span class="tikzname">TikZ</span>, which is implemented purely in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >, the graph drawing algorithms are simply too complex to be
+            implemented directly in
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >. Instead, the programming language Lua is used by the
+            <span class="verb">graphdrawing</span> library &ndash; a programming
+            language that has been integrated into recent versions of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >. This means that (a) as a user of the graph drawing engine you run
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            on your documents in the usual way, no external programs are called
+            since Lua is already integrated into
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >, and (b) it is pretty easy to implement new graph drawing
+            algorithms for <span class="tikzname">TikZ</span> since Lua can be
+            used and no
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            programming knowledge is needed.
+          </p>
+          <h5 id="autosec-4392">
+            <span
+              ><span class="sectionnumber" id="sec-27.2">27.2</span> Using the
+              Graph Drawing System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-27.2"
+              data-pdf-destination="subsection.27.2"
+              data-pdf-page="417"
+              href="#sec-27.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4392"></a>
+
+          <p>
+            &ldquo;Users&rdquo; of the graph drawing engine can invoke the graph
+            drawing algorithms often by just adding a single option to their
+            picture. Here is a typical example, where the
+            <span class="verb">layered layout</span> option tells
+            <span class="tikzname">TikZ</span> that the graph should be drawn
+            (&ldquo;should be laid out&rdquo;) using a so-called &ldquo;layered
+            graph drawing algorithm&rdquo; (what these are will be explained
+            later):
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1866"
+                  ><!--
+    first root second root third root
+
+     1 6 x child
+
+         2 7 a b c grandchild
+
+3 4 u v d youngster
+
+             5 w z
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="172.346"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1866.png"
+                    style
+                    width="360.870"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {arrows.meta,graphs,graphdrawing}
+                  \usegdlibrary {layered} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-arrows#pgf.&gt;">&gt;</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{Stealth[<span class="textcolor" style="color: #008000"
+                    ><a href="tikz-arrows#pgf.round">round</a></span
+                  >,<span class="textcolor" style="color: #008000"
+                    ><a href="tikz-arrows#pgf.sep">sep</a></span
+                  >]}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-layered#pgf.layered:layout"
+                    >layered layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="gd-usage-tikz#pgf.components:go:right:top:aligned"
+                    >components go right top aligned</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.edges">edges</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >rounded corners</span
+                >]<br />
+                <span class="spaces">  </span>{<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="gd-trees#pgf.first">first</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000">1</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000">2</span
+                >, <span class="textcolor" style="color: #000000">3</span
+                >, <span class="textcolor" style="color: #000000">7</span
+                >} <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000">4</span
+                >, <span class="textcolor" style="color: #000000">5</span
+                >}, <span class="textcolor" style="color: #000000"
+                  >6</span
+                >
+                }, <span class="textcolor" style="color: #000000">4</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">5</span>;<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="gd-trees#pgf.second">second</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.x">x</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000">a</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000">u</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >v</span
+                >}, <span class="textcolor" style="color: #000000">b</span
+                >, <span class="textcolor" style="color: #000000">c</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">d</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                {<span class="textcolor" style="color: #000000">w</span>,<span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.z">z</a></span
+                >}<span class="spaces"> </span>};<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="gd-trees#pgf.third">third</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">grandchild</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">youngster</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.third">third</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="gd-trees#pgf.root">root</a></span
+                >;<br />
+                <span class="spaces">  </span>};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Here is another example, where a different layout method is used
+            that is more appropriate for trees:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1867"
+                  ><!--
+    5 6 9
+
+3 4 8
+
+    2 7
+
+            1
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="140.690"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1867.png"
+                    style
+                    width="135.242"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {graphdrawing} \usegdlibrary {trees} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.grow'">grow'</a></span
+                >=<span class="textcolor" style="color: #008000">up</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="gd-trees#pgf.binary:tree:layout"
+                    >binary tree layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{<a href="tikz-paths#pgf.circle">circle</a>,<a
+                    href="tikz-actions#pgf.draw"
+                    >draw</a
+                  >}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > {<span class="textcolor" style="color: #000000">1</span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">2</span>}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">3</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">4</span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">5</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">6</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">  </span>}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">7</span>}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">8</span>}<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >[<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-trees#pgf.missing">missing</a></span
+                >]<br />
+                <span class="spaces">      </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-trees#pgf.child">child</a></span
+                >
+                {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  ><a href="tikz-coordinates#pgf.node">node</a></span
+                >
+                {<span class="textcolor" style="color: #000000">9</span
+                >}<span class="spaces"> </span>}<br />
+                <span class="spaces">    </span>}<br />
+                <span class="spaces">  </span>};<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            A final example, this time using a &ldquo;spring electrical
+            layout&rdquo; (whatever that might be&hellip;):
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-1868"
+                  ><!--
+    1
+
+
+
+    2
+
+4
+
+        3
+            6
+
+    5
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="203.666"
+                    loading="lazy"
+                    src="pgfmanual-images/image-1868.png"
+                    style
+                    width="123.610"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {decorations.pathmorphing,graphdrawing}
+                  \usegdlibrary {force} </span
+                ><br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="gd-force#pgf.spring:electrical:layout"
+                    >spring electrical layout</a
+                  ></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.node:distance"
+                    >node distance</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">1.3cm</span
+                >,<br />
+                <span class="spaces">       </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-shapes#pgf.every:edge">every edge</a></span
+                >/<span class="textcolor" style="color: #0000b2"
+                  ><a href="pgfkeys#pgf./handlers/.style">.style</a></span
+                >={<br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decoration"
+                    >decoration</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{coil,<span class="spaces"> </span>aspect=-.5, <a
+                    href="tikz-decorations#pgf.post"
+                    >post</a
+                  >
+                  length=1mm,<br />
+                  <span class="spaces">                     </span>segment
+                  length=1mm, <a href="tikz-decorations#pgf.pre">pre</a>
+                  length=2mm}</span
+                >,<br />
+                <span class="spaces">         </span><span
+                  class="textcolor"
+                  style="color: #008000"
+                  ><a href="tikz-decorations#pgf.decorate">decorate</a></span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >}]<br />
+                {<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                > <span class="textcolor" style="color: #0000b2">\i</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                {<span class="textcolor" style="color: #000000">1</span
+                >,...,<span class="textcolor" style="color: #000000">6</span
+                >}<br />
+                <span class="spaces">    </span><span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(node \i)</span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.fill">fill</a></span
+                >=<span class="textcolor" style="color: #008000">blue!50</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-shapes#pgf.text">text</a></span
+                >=<span class="textcolor" style="color: #008000">white</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >] {<span class="textcolor" style="color: #0000b2"
+                  >\i</span
+                >};<br />
+                <br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > <span class="textcolor" style="color: #800080"
+                  >(node 1)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(node 2)</span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(node 2)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(node 3)</span
+                ><br />
+                <span class="spaces">                 </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(node 4)</span
+                ><br />
+                <span class="spaces">        </span><span
+                  class="textcolor"
+                  style="color: #800080"
+                  >(node 3)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(node 4)</span
+                ><br />
+                <span class="spaces">                 </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(node 5)</span
+                ><br />
+                <span class="spaces">                 </span><span
+                  class="textcolor"
+                  style="color: #000000"
+                  ><a href="tikz-shapes#pgf.edge">edge</a></span
+                >
+                <span class="textcolor" style="color: #800080">(node 6)</span
+                >;<br />
+                }<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            In all of the example, the positions of the nodes have only been
+            computed <em>after</em> all nodes have been created and the edges
+            have been specified. For instance, in the last example, without the
+            option <span class="verb">spring electrical layout</span>, all of
+            the nodes would have been placed on top of each other.
+          </p>
+          <h5 id="autosec-4399">
+            <span
+              ><span class="sectionnumber" id="sec-27.3">27.3</span> Extending
+              the Graph Drawing System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-27.3"
+              data-pdf-destination="subsection.27.3"
+              data-pdf-page="418"
+              href="#sec-27.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4399"></a>
+
+          <p>
+            The graph drawing engine is also intended to make is (relatively)
+            easy to implement new graph drawing algorithms. These algorithms can
+            either be implemented in the Lua programming language (which is
+            <em>much</em> easier to program than
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            itself) or in C/C++ (but at a great cost regarding portability). The
+            Lua code for a graph drawing algorithm gets an object-oriented model
+            of the input graph as an input and must just compute the desired new
+            positions of the nodes. The complete handling of passing options and
+            configurations back-and-forth between the different
+            <span class="tikzname">TikZ</span> and
+            <span class="textsc">pgf</span> layers is handled by the graph
+            drawing engine.
+          </p>
+
+          <p>
+            As a caveat, the graph drawing engine comes with a library of
+            functions and methods that simplify the writing of new graph drawing
+            algorithms. As a typical example, when you implement a graph drawing
+            algorithm for trees, you typically require that your input is a
+            tree; but you can bet that users will feed all sorts of graphs to
+            your algorithm, including disjoint unions of cliques. The graph
+            drawing engine offers you to say that a precondition to running your
+            algorithm is that the graph is a <span class="verb">tree</span> and
+            instead of the original graph your algorithm will be provided with a
+            spanning tree of the graph on which it can work. There are numerous
+            further automatic pre- and postprocessing steps that include
+            orienting, anchoring, and packing of components, to name a few.
+          </p>
+
+          <p>
+            The bottom line is that the graph drawing engine makes it easy to
+            try out new graph drawing algorithms for medium sized graphs (up to
+            a few hundred nodes) in Lua. For larger graphs, C/C++ code must be
+            used.
+          </p>
+          <h5 id="autosec-4400">
+            <a id="section-gd-layers"></a
+            ><span
+              ><span class="sectionnumber" id="sec-27.4">27.4</span> The Layers
+              of the Graph Drawing System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-27.4"
+              data-pdf-destination="subsection.27.4"
+              data-pdf-page="419"
+              href="#sec-27.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4400"></a>
+
+          <p>
+            Even though the graph drawing system presented in the following
+            sections was developed as part of <span class="textsc">pgf</span>,
+            it can be used independently of <span class="textsc">pgf</span> and
+            <span class="tikzname">TikZ</span>: It was (re)designed so that it
+            can be used by arbitrary programs as long as they are able to run
+            Lua. To achieve this, the graph drawing system consists of three
+            layers:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> At the &ldquo;bottom&rdquo;
+                we have the <em>algorithmic layer</em>. This layer, written in
+                Lua, contains all graph drawing algorithms. Interestingly,
+                options must also be declared on this layer, so an algorithm
+                together with all options it uses can and must be specified
+                entirely on this layer. If you intend to implement a new graph
+                drawing algorithm, you will only be interested in the
+                functionality of this layer.
+              </p>
+              <p>
+                Algorithm &ldquo;communicate&rdquo; with the graph drawing
+                system through a well-defined interface, encapsulated in the
+                class <span class="verb">InterfaceToAlgorithms</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> At the &ldquo;top&rdquo; we
+                have the <em>display layer</em>. This layer is not actually part
+                of the graph drawing system. Rather, it is a piece of software
+                that &ldquo;displays&rdquo; graphs and
+                <span class="tikzname">TikZ</span> is just one example of such a
+                software. Another example might be a graph editor that uses the
+                graph drawing system to lay out the graph it displays. Yet
+                another example might be a command line tool for drawing graphs
+                described in a file. Finally, you may also wish to use the graph
+                drawing system as a simple subroutine for rendering graphs
+                produced in a larger program.
+              </p>
+              <p>
+                Since the different possible instantiations of the display layer
+                are quite heterogeneous, all display layers must communicate
+                with the graph drawing system through a special interface,
+                encapsulated in the class
+                <span class="verb">InterfaceToDisplay</span>.
+              </p>
+              <p>
+                The main job of this class is to provide a set of methods for
+                specifying that a graph has certain nodes and edges and that
+                certain options have been set for them. However, this interface
+                also allows you to query all options that have been declared by
+                algorithms, including their documentation. This way, an editor
+                or a command line tool can display a list of all graph drawing
+                algorithms and how they can be configured.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> The algorithm layer and the
+                display layer are &ldquo;bound together&rdquo; through the
+                <em>binding layer</em>. Most of the bookkeeping concerning the
+                to-be-drawn graphs is done by the graph drawing system
+                independently of which algorithm is used and also independently
+                of which display layer is used, but some things are still
+                specific to each display layer. For instance, some algorithms
+                may create new nodes and the algorithms may then need to know
+                how large these nodes will be. For this, the display layer must
+                be &ldquo;queried&rdquo; during a run of the algorithm &ndash;
+                and it is the job of the binding layer to achieve this callback.
+              </p>
+              <p>
+                As a rule, the binding layer implements the
+                &ldquo;backward&rdquo; communication from the graph drawing
+                system back to the display layer, while the display
+                layer&rsquo;s interface class provides only functions that are
+                called from the display layer but which will not &ldquo;talk
+                back&rdquo;.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            All of the files concerned with graph drawing reside in the
+            <span class="verb">graphdrawing</span> subdirectory of
+            <span class="verb">generic/pgf</span>.
+          </p>
+          <h5 id="autosec-4401">
+            <span
+              ><span class="sectionnumber" id="sec-27.5">27.5</span>
+              Organisation of the Graph Drawing Documentation</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-27.5"
+              data-pdf-destination="subsection.27.5"
+              data-pdf-page="419"
+              href="#sec-27.5"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4401"></a>
+
+          <p>
+            The documentation of the graph drawing engine is structured as
+            follows:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> Following this overview
+                section, the next section documents the graph drawing engine
+                from &ldquo;the <span class="tikzname">TikZ</span> user&rsquo;s
+                point of view&rdquo;. No knowledge of Lua or algorithmic graph
+                drawing is needed for this section, everyone who intends to use
+                algorithmic graph drawing in
+                <span class="tikzname">TikZ</span> may be interested in reading
+                it.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> You will normally only use
+                <span class="tikzname">TikZ</span>&rsquo;s keys and commands in
+                order to use the graph drawing system, but, internally, these
+                keys call more basic <span class="textsc">pgf</span> commands
+                that do the &ldquo;hard work&rdquo; of binding the world of
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                boxes and macros to the object-oriented world of Lua.
+                Section&nbsp;<a href="gd-usage-pgf#section-gd-pgf">29</a>
+                explains how this works and which commands are available for
+                authors of packages that directly need to use the graph drawing
+                system inside <span class="textsc">pgf</span>, avoiding the
+                overhead incurred by <span class="tikzname">TikZ</span>.
+              </p>
+              <p>Most readers can safely skip this section.</p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> The next sections detail
+                which graph drawing algorithms are currently implemented as part
+                of the <span class="tikzname">TikZ</span> distribution, see
+                Sections&nbsp;<a
+                  href="gd-trees#section-first-graphdrawing-library-in-manual"
+                  >30</a
+                >
+                to&nbsp;<a
+                  href="gd-edge-routing#section-last-graphdrawing-library-in-manual"
+                  >35</a
+                >.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> Section&nbsp;<a
+                  href="gd-algorithm-layer#section-gd-algorithm-layer"
+                  >36</a
+                >
+                is addressed at readers who wish to implement their own graph
+                drawing algorithms. For this, <em>no knowledge at all</em> of
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                programming is needed. The section explains the graph model used
+                in Lua, the available libraries, the graph drawing pipeline, and
+                everything else that is part of the Lua side of the engine.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> Section&nbsp;<a
+                  href="gd-display-layer#section-gd-display-layer"
+                  >38</a
+                >
+                details the display layer of the graph drawing system. You
+                should read this section if you wish to implement a new display
+                system (that is, a non-<span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-based program) that intends to use the graph drawing system.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span> Section&nbsp;<a
+                  href="gd-binding-layer#section-gd-binding-layer"
+                  >39</a
+                >
+                explains how binding layers can be implemented. This section,
+                too, is of interest only to readers who wish to write new
+                display systems.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-4402">
+            <span
+              ><span class="sectionnumber" id="sec-27.6">27.6</span>
+              Acknowledgements</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-27.6"
+              data-pdf-destination="subsection.27.6"
+              data-pdf-page="420"
+              href="#sec-27.6"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4402"></a>
+
+          <p>
+            Graph drawing in <span class="tikzname">TikZ</span> began as a
+            student&rsquo;s project under my supervision. Ren&eacute;e Ahrens,
+            Olof-Joachim Frahm, Jens Kluttig, Matthias Schulz, and Stephan
+            Schuster wrote the first prototype of a graph drawing system inside
+            <span class="tikzname">TikZ</span> that uses Lua<span
+              class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            for the implementation of graph drawing algorithms.
+          </p>
+
+          <p>
+            This first, early version was greatly extended on the algorithmic
+            side by Jannis Pohlmann who wrote his Diploma thesis on graph
+            drawing under my supervision. He implemented, in particular, the
+            Sugiyama method (<span class="verb">layered layout</span>) and force
+            based algorithms. Also, he rewrote some of the code of the
+            prototype.
+          </p>
+
+          <p>
+            At some point it became apparent that the first implementation had a
+            number of deficiencies, both concerning the structure, the
+            interfaces, and (in particular) the performance. Because of this, I
+            rewrote the code of the graph drawing system, both on the
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            side and on the Lua side in its current form. However, I would like
+            to stress that without the work of the people mentioned above graph
+            drawing in <span class="tikzname">TikZ</span> would not exist.
+          </p>
+
+          <p>
+            The documentation was written almost entirely by myself, though I
+            did copy some paragraphs from Jannis&rsquo;s Diploma thesis, which I
+            can highly recommend everyone to read.
+          </p>
+
+          <p>
+            In the future, I hope that other people will contribute algorithms,
+            which will be available as libraries.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

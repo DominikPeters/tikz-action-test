@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Mark Wibrow
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fixed Point Arithmetic Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Fixed Point Arithmetic Library",
+            "item": "https://tikz.dev/library-fixedpoint"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-fixedpoint" rel="canonical" />
+    <meta content="https://tikz.dev/library-fixedpoint" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Fixed Point Arithmetic Library - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5778"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-55.1">Overview</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-55.2"
+                >Using Fixed Point Arithmetic in PGF and TikZ</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5779">
+            <span
+              ><span class="sectionnumber" id="sec-55">55</span> Fixed Point
+              Arithmetic Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.55"
+              data-pdf-page="688"
+              href="#sec-55"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5779"></a>
+          <a id="pgfmanual-autofile-60"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.fixedpointarithmetic"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >fixedpointarithmetic</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.fixedpointarithmetic"
+                      href="#pgf.fixedpointarithmetic"
+                      id="pgf.fixedpointarithmetic"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usepgflibrary{<span class="textcolor" style="color: #bf0000"
+                    >fixedpointarithmetic</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  and pure pgf</kbd
+                ><br />
+                <kbd
+                  >\usepgflibrary[<span class="textcolor" style="color: #bf0000"
+                    >fixedpointarithmetic</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t and pure pgf</kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >fixedpointarithmetic</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  when using <span class="tikzname">TikZ</span></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >fixedpointarithmetic</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t when using <span class="tikzname">TikZ</span></kbd
+                ><br />
+                <br />
+                This library provides an interface to the
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >L<span class="latexlogosup">a</span>T<span
+                      class="latexlogosub"
+                      >e</span
+                    >X</span
+                  ></span
+                >
+                package <span class="verb">fp</span> for fixed point arithmetic.
+                In addition to loading this library you must ensure
+                <span class="verb">fp</span> is loaded, otherwise errors will
+                occur.
+              </p>
+            </ul>
+          </div>
+          <h5 id="autosec-5781">
+            <span
+              ><span class="sectionnumber" id="sec-55.1">55.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-55.1"
+              data-pdf-destination="subsection.55.1"
+              data-pdf-page="688"
+              href="#sec-55.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5781"></a>
+
+          <p>
+            Whilst the mathematical engine that comes with
+            <span class="textsc">pgf</span> is reasonably fast and flexible when
+            it comes to parsing, the accuracy tends to be fairly low,
+            particularly for expressions involving many operations chained
+            together. In addition the range of values that can be computed is
+            very small: \(\pm 16383.99999\). Conversely, the
+            <span class="verb">fp</span> package has a reasonably high accuracy,
+            and can perform computations over a wide range of values
+            (approximately \(\pm 9.999\times 10^{17}\)), but is comparatively
+            slow and not very flexible, particularly regarding parsing.
+          </p>
+
+          <p>
+            This library enables the combination of the two: the flexible parser
+            of the <span class="textsc">pgf</span> mathematical engine with the
+            evaluation accuracy of <span class="verb">fp</span>. There are,
+            however, a number of important points to bear in mind:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Whilst
+                <span class="verb">fp</span> supports very large numbers,
+                <span class="textsc">pgf</span> and
+                <span class="tikzname">TikZ</span> do not. It is possible to
+                calculate the result of <span class="verb">2^20</span> or
+                <span class="verb">1.2e10+3.4e10</span>, but it is not possible
+                to use these results in pictures directly without some
+                &ldquo;extra work&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The
+                <span class="textsc">pgf</span> mathematical engine will still
+                be used to evaluate lengths, such as
+                <span class="verb">10pt</span> or <span class="verb">3em</span>,
+                so it is not possible for an length to exceed the range of
+                values supported by
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >-dimensions (\(\pm 16383.99999\)pt), even though the resulting
+                expression is within the range of <span class="verb">fp</span>.
+                So, for example, one can calculate
+                <span class="verb">3cm*10000</span>, but not
+                <span class="verb">3*10000cm</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> Not all of the functions
+                listed in Section&nbsp;<a href="math-parsing#pgfmath-syntax"
+                  >94</a
+                >, have been mapped onto
+                <span class="verb">fp</span> equivalents. Of those that have
+                been, it is not guaranteed that functions will perform in the
+                same way as they do in <span class="textsc">pgf</span>.
+                Reference should be made to the documentation for
+                <span class="verb">fp</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> In
+                <span class="textsc">pgf</span>, trigonometric functions such as
+                <span class="verb">sin</span> and
+                <span class="verb">cos</span> assume arguments are in degrees,
+                and functions such as <span class="verb">asin</span> and
+                <span class="verb">acos</span> return results in degrees.
+                Although <span class="verb">fp</span> uses radians for such
+                functions, <span class="textsc">pgf</span> automatically
+                converts arguments from degrees to radians, and converts results
+                from radians to degrees, to ensure everything &ldquo;works
+                properly&rdquo;.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The overall speed will
+                actually be slower than using
+                <span class="textsc">pgf</span> mathematical engine. The
+                calculating power of <span class="verb">fp</span> comes at the
+                cost of an increased processing time.
+              </p>
+            </li>
+          </ul>
+          <h5 id="autosec-5782">
+            <span
+              ><span class="sectionnumber" id="sec-55.2">55.2</span> Using Fixed
+              Point Arithmetic in PGF and
+              <span class="tikzname">TikZ</span></span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-55.2"
+              data-pdf-destination="subsection.55.2"
+              data-pdf-page="688"
+              href="#sec-55.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5782"></a>
+
+          <p>
+            The following key is provided to use <span class="verb">fp</span> in
+            <span class="textsc">pgf</span> and
+            <span class="tikzname">TikZ</span>:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fixed:point:arithmetic"></a
+                    ><a id="pgf.fixed:point:arithmetic"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fixed point arithmetic</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fixed:point:arithmetic"
+                      href="#pgf/fixed:point:arithmetic"
+                      id="pgf/fixed:point:arithmetic"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <li>
+                <p>alias <kbd>/tikz/fixed point arithmetic</kbd></p>
+                <p>
+                  <a id="pgf./tikz/fixed:point:arithmetic"></a> This key will
+                  set the key path to
+                  <span class="verb">/pgf/fixed point</span>, and execute
+                  <span class="angle">&langle;</span><i>options</i
+                  ><span class="angle">&rangle;</span>. Then it will install the
+                  necessary commands so that the
+                  <span class="textsc">pgf</span> parser will use
+                  <span class="verb">fp</span> to perform calculations. The best
+                  way to use this key is as an argument to a scope or picture.
+                  This means that <span class="verb">fp</span> does not always
+                  have to be used, and <span class="textsc">pgf</span> can use
+                  its own mathematical engine at other times, which can lead to
+                  a significant reduction in the time for a document to compile.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <p>
+            Currently there are only a few keys key supported for
+            <span class="angle">&langle;</span><i>options</i
+            ><span class="angle">&rangle;</span>:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/fixed:point/scale:results"></a
+                    ><a id="pgf.scale:results"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/fixed point/scale results</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>factor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/fixed:point/scale:results"
+                      href="#pgf/fixed:point/scale:results"
+                      id="pgf/fixed:point/scale:results"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                As noted above, <span class="verb">fp</span> can process a far
+                greater range of numbers than
+                <span class="textsc">pgf</span> and
+                <span class="tikzname">TikZ</span>. In order to use results from
+                <span class="verb">fp</span> in a
+                <span class="verb">{pgfpicture}</span> or a
+                <span class="verb">{tikzpicture}</span> they need to be scaled.
+                When this key is used <span class="textsc">pgf</span> will scale
+                results of any evaluation by <span class="angle">&langle;</span
+                ><i>factor</i><span class="angle">&rangle;</span>. However, as
+                it is not desirable for every part of every expression to be
+                scaled, scaling will only take place if a special prefix
+                <span class="verb">*</span> is used. If
+                <span class="verb">*</span> is used at the beginning of an
+                expression the evaluation of the expression will evaluated and
+                then multiplied by <span class="angle">&langle;</span
+                ><i>factor</i><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2387"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="82.034"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2387.png"
+                        style
+                        width="118.136"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usepgflibrary {fixedpointarithmetic} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-fixedpoint#pgf.fixed:point:arithmetic"
+                        >fixed point arithmetic</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-arrows#pgf.scale">scale</a>
+                      results=10^-6}</span
+                    >]<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.line:width"
+                        >line width</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">4pt</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(*1.0e6,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(*3.0e6,*2.0e6)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                A special case of scaling involves plots of data containing
+                large numbers from files. It is possible to
+                &ldquo;pre-process&rdquo; a file, typically using the
+                application that generates the data, to either precede the
+                relevant column with <span class="verb">*</span> or to perform
+                the scaling as part of the calculation process. However, it may
+                be desirable for the data in a plot to appear in a table as
+                well, so, two files would be required, one pre-processed for
+                plotting, and one not. This extra work may be undesirable so the
+                following keys are provided:
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/fixed:point/scale:file:plot:x"></a
+                        ><a id="pgf.scale:file:plot:x"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/fixed point/scale file plot x</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>factor</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/fixed:point/scale:file:plot:x"
+                          href="#pgf/fixed:point/scale:file:plot:x"
+                          id="pgf/fixed:point/scale:file:plot:x"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key will scale the first column of data read from a
+                    file before it is plotted. It is independent of the
+                    <span class="verb">scale results</span> key.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/fixed:point/scale:file:plot:y"></a
+                        ><a id="pgf.scale:file:plot:y"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/fixed point/scale file plot y</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>factor</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/fixed:point/scale:file:plot:y"
+                          href="#pgf/fixed:point/scale:file:plot:y"
+                          id="pgf/fixed:point/scale:file:plot:y"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key will scale the second column of data read from a
+                    file before it is plotted.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf./pgf/fixed:point/scale:file:plot:z"></a
+                        ><a id="pgf.scale:file:plot:z"></a>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="keyname"
+                              ><span class="textcolor" style="color: #bf0000"
+                                >/pgf/fixed point/scale file plot z</span
+                              ></span
+                            >=</kbd
+                          ><span class="angle">&langle;</span><i>factor</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="hl-default">(no default)</span>
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf./pgf/fixed:point/scale:file:plot:z"
+                          href="#pgf/fixed:point/scale:file:plot:z"
+                          id="pgf/fixed:point/scale:file:plot:z"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This key will scale the third column of data read from a
+                    file before it is plotted.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

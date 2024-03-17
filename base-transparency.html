@@ -1,0 +1,2340 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Transparency - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script
+      async
+      id="MathJax-script"
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Basic Layer",
+            "item": "https://tikz.dev/base"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Transparency",
+            "item": "https://tikz.dev/base-transparency"
+          }
+        ]
+      }
+    </script>
+    <script async src="lwarp-mathjax-emulation.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/base-transparency" rel="canonical" />
+    <meta content="https://tikz.dev/base-transparency" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="Transparency - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-8436"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-115.1"
+                >Specifying a Uniform Opacity</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-115.2"
+                >Specifying a Blend Mode</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-115.3">Specifying a Fading</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-115.4">Transparency Groups</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-design">Design Principles</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-scopes"
+                >Hierarchical Structures: Package, Environments, Scopes, and
+                Text</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-points"
+                >Specifying Coordinates</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-paths">Constructing Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-decorations">Decorations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-actions">Using Paths</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-arrows"
+                >Defining New Arrow Tip Kinds</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-nodes">Nodes and Shapes</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-matrices">Matrices</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-transformations"
+                >Coordinate, Canvas, and Nonlinear Transformations</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-patterns">Patterns</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-images"
+                >Declaring and Using Images</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-external"
+                >Externalizing Graphics</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-plots">Creating Plots</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-layers">Layered Graphics</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-shadings">Shadings</a>
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="base-transparency">Transparency</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-animations">Animations</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-internalregisters"
+                >Adding libraries to <span class="textsc">pgf</span>: temporary
+                registers</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="base-quick">Quick Commands</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">The Basic Layer</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-8437">
+            <a id="section-transparency"></a
+            ><span
+              ><span class="sectionnumber" id="sec-115">115</span>
+              Transparency</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.115"
+              data-pdf-page="1203"
+              href="#sec-115"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-8437"></a>
+          <a id="pgfmanual-autofile-124"></a>
+
+          <p>
+            For an introduction to the notion of transparency, fadings, and
+            transparency groups, please consult Section&nbsp;<a
+              href="tikz-transparency#section-tikz-transparency"
+              >23</a
+            >.
+          </p>
+          <h5 id="autosec-8438">
+            <span
+              ><span class="sectionnumber" id="sec-115.1">115.1</span>
+              Specifying a Uniform Opacity</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-115.1"
+              data-pdf-destination="subsection.115.1"
+              data-pdf-page="1203"
+              href="#sec-115.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8438"></a>
+
+          <p>Specifying a stroke and/or fill opacity is quite easy.</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetstrokeopacity"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetstrokeopacity</kbd></span
+                      >{<span class="angle">&langle;</span><i>value</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetstrokeopacity"
+                      href="#\pgfsetstrokeopacity"
+                      id="\pgfsetstrokeopacity"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the opacity of stroking operations. The
+                <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> should be a number between
+                <span class="verb">0</span> and <span class="verb">1</span>,
+                where <span class="verb">1</span> means &ldquo;fully
+                opaque&rdquo; and <span class="verb">0</span> means &ldquo;fully
+                transparent&rdquo;. A value like
+                <span class="verb">0.5</span> will cause paths to be stroked in
+                a semitransparent way.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3367"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="97.178"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3367.svg"
+                        style
+                        width="134.986"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">5mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">red</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000"
+                      >10mm</span
+                    >} <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\color</span
+                    >{<span class="textcolor" style="color: #000000">black</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetstrokeopacity"
+                        >\pgfsetstrokeopacity</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathcircle"
+                        >\pgfpathcircle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}{<span class="textcolor" style="color: #000000"
+                      >10mm</span
+                    >} <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-scopes#pgf.pgfpicture">pgfpicture</a></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetfillopacity"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetfillopacity</kbd></span
+                      >{<span class="angle">&langle;</span><i>value</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetfillopacity"
+                      href="#\pgfsetfillopacity"
+                      id="\pgfsetfillopacity"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the opacity of filling operations. As for stroking, the
+                <span class="angle">&langle;</span><i>value</i
+                ><span class="angle">&rangle;</span> should be a number between
+                <span class="verb">0</span> and&nbsp;<span class="verb">1</span
+                >.
+              </p>
+              <p>
+                The &ldquo;filling transparency&rdquo; will also be used for
+                text and images.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3368"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="142.514"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3368.svg"
+                        style
+                        width="151.322"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfillopacity"
+                        >\pgfsetfillopacity</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">red</span
+                    >]<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(90:1cm)</span
+                    ><span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(11mm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">green</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(210:1cm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(11mm)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000">blue</span
+                    >]<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(-30:1cm)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(11mm)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>
+            Note the following effect: If you set up a certain opacity for
+            stroking or filling and you stroke or fill the same area twice, the
+            effect accumulates:
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-3369"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="78.290"
+                    loading="lazy"
+                    src="pgfmanual-images/image-3369.svg"
+                    style
+                    width="116.090"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="base-transparency#pgf.back/pgfsetfillopacity"
+                    >\pgfsetfillopacity</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">0</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >5</span
+                >}<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                >[<span class="textcolor" style="color: #008000">red</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(0,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1)</span>;<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                >[<span class="textcolor" style="color: #008000">red</span
+                >] <span class="textcolor" style="color: #800080"
+                  >(1,0)</span
+                > <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.circle">circle</a></span
+                >
+                <span class="textcolor" style="color: #800080">(1)</span>;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Often, this is exactly what you intend, but not always. You can use
+            transparency groups, see the end of this section, to change this.
+          </p>
+          <h5 id="autosec-8445">
+            <span
+              ><span class="sectionnumber" id="sec-115.2">115.2</span>
+              Specifying a Blend Mode</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-115.2"
+              data-pdf-destination="subsection.115.2"
+              data-pdf-page="1203"
+              href="#sec-115.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8445"></a>
+
+          <p>To set the blend mode, use the following command:</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetblendmode"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetblendmode</kbd></span
+                      >{<span class="angle">&langle;</span><i>mode</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetblendmode"
+                      href="#\pgfsetblendmode"
+                      id="\pgfsetblendmode"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Sets the blend mode to one of the values described in
+                Section&nbsp;<a href="tikz-transparency#section-blend-modes"
+                  >23.3</a
+                >. As described there, blend modes are an advanced feature of
+                <span class="textsc">pdf</span> and not always rendered
+                correctly.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3370"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="112.298"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3370.png"
+                        style
+                        width="117.566"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transparency#pgf.transparency:group"
+                        >transparency group</a
+                      ></span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetblendmode"
+                        >\pgfsetblendmode</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >screen</span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >red!90!black</span
+                    >]<span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >( 90:.6)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >green!80!black</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(210:.6)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      >blue!90!black</span
+                    >]<span class="spaces">  </span><span
+                      class="textcolor"
+                      style="color: #800080"
+                      >(330:.6)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.circle">circle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(1)</span
+                    >;<br />
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-8448">
+            <span
+              ><span class="sectionnumber" id="sec-115.3">115.3</span>
+              Specifying a Fading</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-115.3"
+              data-pdf-destination="subsection.115.3"
+              data-pdf-page="1204"
+              href="#sec-115.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8448"></a>
+
+          <p>
+            The method used by <span class="textsc">pgf</span> for specifying
+            fadings is quite general: You &ldquo;paint&rdquo; the fading using
+            any of the standard graphics commands. In more detail: You create a
+            normal picture, which may even contain text, image, and shadings.
+            Then, you create a fading based on this picture. For this, the
+            <em>luminosity</em> of each pixel of the picture is analyzed (the
+            brighter the pixel, the higher the luminosity &ndash; a black pixel
+            has luminosity \(0\), a white pixel has luminosity \(1\), a gray
+            pixel has some intermediate value as does a red pixel). Then, when
+            the fading is used, the luminosity of the pixel determines the
+            opacity of the fading at that position. Positions in the fading
+            where the picture was black will be completely transparent,
+            positions where the picture was white will be completely opaque.
+            Positions that have not been painted at all in the picture are
+            always completely transparent.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfdeclarefading"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfdeclarefading</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>contents</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfdeclarefading"
+                      href="#\pgfdeclarefading"
+                      id="\pgfdeclarefading"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command declares a fading named
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span> for later use. The
+                &ldquo;picture&rdquo; on which the fading is based is given by
+                the <span class="angle">&langle;</span><i>contents</i
+                ><span class="angle">&rangle;</span>. The
+                <span class="angle">&langle;</span><i>contents</i
+                ><span class="angle">&rangle;</span> are normally typeset in a
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                box. The resulting box is then used as the
+                &ldquo;picture&rdquo;. In particular, inside the
+                <span class="angle">&langle;</span><i>contents</i
+                ><span class="angle">&rangle;</span> you must explicitly open a
+                <span class="verb">{pgfpicture}</span> environment if you wish
+                to use <span class="textsc">pgf</span> commands.
+              </p>
+              <p>
+                Let&rsquo;s start with an easy example. Our first fading picture
+                is just some text:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <span class="lateximagesource" id="lateximage-pgfmanual-3371"
+                    ><!--
+<p><span class="textcolor" style="color:#FFFFFF">Ti<em>k</em>Z</span>
+--><img
+                      alt="(-tikz-&nbsp;diagram)"
+                      class="lateximage"
+                      height="78.266"
+                      loading="lazy"
+                      src="pgfmanual-images/image-3371.png"
+                      style
+                      width="425.738"
+                  /></span>
+                  <p></p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfdeclarefading"
+                        >\pgfdeclarefading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading1</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      >\textcolor</span
+                    >{<span class="textcolor" style="color: #000000">white</span
+                    >}{<span class="textcolor" style="color: #000000">Ti</span
+                    ><span class="textcolor" style="color: #0000b2">\emph</span
+                    >{<span class="textcolor" style="color: #000000">k</span
+                    >}<span class="textcolor" style="color: #000000">Z</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!30</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:0:1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfading"
+                        >\pgfsetfading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading1</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transformations#pgf.back/pgftransformshift"
+                        >\pgftransformshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                What&rsquo;s happening here? The &ldquo;fading picture&rdquo; is
+                mostly transparent, except for the pixels that are part of the
+                word Ti<em>k</em>Z. Now, these pixels are <em>white</em> and,
+                thus, have a high luminosity. This in turn means that these
+                pixels of the fading will be highly opaque. For this reason,
+                only those pixels of the big red rectangle &ldquo;shine
+                through&rdquo; that are at the positions of these opaque pixels.
+              </p>
+              <p>
+                It is somewhat counter-intuitive that the white pixels in a
+                fading picture are opaque in a fading. For this reason, the
+                color <span class="verb">pgftransparent</span> is defined to be
+                the same as <span class="verb">black</span>. This allows one to
+                write <span class="verb">pgftransparent</span> for completely
+                transparent parts of a fading picture and
+                <span class="verb">pgftransparent!0</span> for the opaque parts
+                and things like <span class="verb">pgftransparent!20</span> for
+                parts that are 20% transparent.
+              </p>
+              <p>
+                Furthermore, the color
+                <span class="verb">pgftransparent!0</span> (which is the same as
+                white and which corresponds to completely opaque) is installed
+                at the beginning of a fading picture. Thus, in the above example
+                the <span class="verb">\color{white}</span> was not really
+                necessary.
+              </p>
+              <p>
+                Next, let us create a fading that gets more and more transparent
+                as we go from left to right. For this, we put a shading inside
+                the fading picture that has the color
+                <span class="verb">pgftransparent!0</span> at the left-hand side
+                and the color <span class="verb">pgftransparent!100</span> at
+                the right-hand side.
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="spaces"> </span><span class="example-code-comment"
+                      >% TODO: doesn't compile</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfdeclarefading"
+                        >\pgfdeclarefading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading2</span
+                    >}<br />
+                    {<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/shade">\shade</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadings#pgf.left:color"
+                        >left color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >pgftransparent!0</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-shadings#pgf.right:color"
+                        >right color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >pgftransparent!100</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!30</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:0:1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfading"
+                        >\pgfsetfading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading2</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transformations#pgf.back/pgftransformshift"
+                        >\pgftransformshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In our final example, we create a fading that is based on a
+                radial shading.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3372"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="116.090"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3372.png"
+                        style
+                        width="116.078"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-shadings#pgf.back/pgfdeclareradialshading"
+                        >\pgfdeclareradialshading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >myshading</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(0mm)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(pgftransparent!0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(5mm)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(pgftransparent!0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(8mm)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(pgftransparent!100)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(15mm)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(pgftransparent!100)</span
+                    ><br />
+                    }<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfdeclarefading"
+                        >\pgfdeclarefading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading3</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-shadings#pgf.back/pgfuseshading"
+                        >\pgfuseshading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >myshading</span
+                    >}}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!30</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:0:1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfading"
+                        >\pgfsetfading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading3</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transformations#pgf.back/pgftransformshift"
+                        >\pgftransformshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <p>
+            After having declared a fading, we can use it. As for shadings,
+            there are different commands for using fadings:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetfading"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetfading</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>transformations</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetfading"
+                      href="#\pgfsetfading"
+                      id="\pgfsetfading"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command sets the graphic state parameter
+                &ldquo;fading&rdquo; to a previously defined fading
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span>. This graphic state works
+                like other graphic states, that is, is persists till the end of
+                the current scope or until a different transparency setting is
+                chosen.
+              </p>
+              <p>
+                When the fading is installed, it will be centered on the origin
+                with its natural size. Anything outside the fading
+                picture&rsquo;s original bounding box will be transparent and,
+                thus, the fading effectively clips against this bounding box.
+              </p>
+              <p>
+                The <span class="angle">&langle;</span><i>transformations</i
+                ><span class="angle">&rangle;</span> are applied to the fading
+                before it is used. They contain normal
+                <span class="textsc">pgf</span> transformation commands like
+                <span class="verb">\pgftransformshift</span>. You can also scale
+                the fading using this command. Note, however, that the
+                transformation needs to be inverted internally, which may result
+                in inaccuracies and the following graphics may be slightly
+                distorted if you use a strong <span class="angle">&langle;</span
+                ><i>transformation</i><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="spaces"> </span><span class="example-code-comment"
+                      >% TODO: remove code only, doesn't compile</span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfdeclarefading"
+                        >\pgfdeclarefading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading2</span
+                    >}<br />
+                    {<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/shade">\shade</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-shadings#pgf.left:color"
+                        >left color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >pgftransparent!0</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-shadings#pgf.right:color"
+                        >right color</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >pgftransparent!100</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;}<br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!30</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:0:1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfading"
+                        >\pgfsetfading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading2</span
+                    >}{}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\pgfdeclarefading {fading2} {\tikz \shade [left
+                      color=pgftransparent!0, right color=pgftransparent!100]
+                      (0,0) rectangle (2,2);} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!30</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:0:1)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfading"
+                        >\pgfsetfading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading2</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transformations#pgf.back/pgftransformshift"
+                        >\pgftransformshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">1cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">                         </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a
+                        href="base-transformations#pgf.back/pgftransformrotate"
+                        >\pgftransformrotate</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">20</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetfadingforcurrentpath"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetfadingforcurrentpath</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>transformations</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetfadingforcurrentpath"
+                      href="#\pgfsetfadingforcurrentpath"
+                      id="\pgfsetfadingforcurrentpath"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works like <span class="verb">\pgfsetfading</span>,
+                but the fading is scaled and transformed according to the
+                following rules:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> If the current path is
+                    empty, the command has the same effect as
+                    <span class="verb">\pgfsetfading</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> Otherwise it is assumed
+                    that the fading has a size of 100bp times 100bp.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">3.</span> The fading is resized and
+                    shifted (using appropriate transformations) such that the
+                    position \((25\mathrm {bp},25\mathrm {bp})\) lies at the
+                    lower-left corner of the current path and the position
+                    \((75\mathrm {bp},75\mathrm {bp})\) lies at the upper-right
+                    corner of the current path.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that these rules are the same as the ones used in
+                <span class="verb">\pgfshadepath</span> for shadings. After
+                these transformations, the <span class="angle">&langle;</span
+                ><i>transformations</i><span class="angle">&rangle;</span> are
+                executed (typically a rotation).
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3373"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="116.378"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3373.png"
+                        style
+                        width="154.501"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-shadings#pgf.back/pgfdeclarehorizontalshading"
+                        >\pgfdeclarehorizontalshading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.shading">shading</a></span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >100bp</span
+                    >}<br />
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(0pt)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(transparent!0)</span
+                    >;<span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(25bp)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(transparent!0)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080">(75bp)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(transparent!100)</span
+                    >;<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.color">color</a></span
+                    ><span class="textcolor" style="color: #800080"
+                      >(100bp)</span
+                    ><span class="textcolor" style="color: #000000">=</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(transparent!100)</span
+                    >}<br />
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfdeclarefading"
+                        >\pgfdeclarefading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-shadings#pgf.back/pgfuseshading"
+                        >\pgfuseshading</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      ><a href="tikz-actions#pgf.shading">shading</a></span
+                    >}}<br />
+                    <br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!20</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >black!30</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.arc">arc</a></span
+                    >
+                    <span class="textcolor" style="color: #800080"
+                      >(180:0:1)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathrectangle"
+                        >\pgfpathrectangle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-transparency#pgf.back/pgfsetfadingforcurrentpath"
+                        >\pgfsetfadingforcurrentpath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading</span
+                    >}{}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >discard</span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,1)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathrectangle"
+                        >\pgfpathrectangle</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">1cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-transparency#pgf.back/pgfsetfadingforcurrentpath"
+                        >\pgfsetfadingforcurrentpath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-transformations#pgf.back/pgftransformrotate"
+                        >\pgftransformrotate</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">90</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >discard</span
+                    >}<br />
+                    <br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/fill">\fill</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,1)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.rectangle">rectangle</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfsetfadingforcurrentpathstroked"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfsetfadingforcurrentpathstroked</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>transformations</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfsetfadingforcurrentpathstroked"
+                      href="#\pgfsetfadingforcurrentpathstroked"
+                      id="\pgfsetfadingforcurrentpathstroked"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command works like
+                <span class="verb">\pgfsetfadingforcurrentpath</span>, only the
+                current path is enlarged by the line width in both \(x\)- and
+                \(y\)-direction. This is exactly the enlargement necessary to
+                compensate for the fact that if the current path will be
+                stroked, this much needs to be added around the path&rsquo;s
+                bounding box to actually contain the path.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3374"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="17.859"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3374.png"
+                        style
+                        width="169.660"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\pgfdeclarehorizontalshading {shading}{100bp} {
+                      color(0pt)=(transparent!0); color(25bp)=(transparent!0);
+                      color(75bp)=(transparent!100);
+                      color(100bp)=(transparent!100)} \pgfdeclarefading
+                      {fading}{\pgfuseshading {shading}} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfsetlinewidth"
+                        >\pgfsetlinewidth</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2mm</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathlineto"
+                        >\pgfpathlineto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpoint"
+                        >\pgfpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">2cm</span
+                    >}{<span class="textcolor" style="color: #000000">0cm</span
+                    >}}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="base-transparency#pgf.back/pgfsetfadingforcurrentpathstroked"
+                        >\pgfsetfadingforcurrentpathstroked</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >fading</span
+                    >}{}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-8457">
+            <span
+              ><span class="sectionnumber" id="sec-115.4">115.4</span>
+              Transparency Groups</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-115.4"
+              data-pdf-destination="subsection.115.4"
+              data-pdf-page="1206"
+              href="#sec-115.4"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-8457"></a>
+
+          <p>Transparency groups are declared using the following commands.</p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.pgftransparencygroup"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >\begin{<span class="textcolor" style="color: #bf0000"
+                          >pgftransparencygroup</span
+                        >}</kbd
+                      ><span class="textcolor" style="color: #008000"
+                        >[<span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span>]</span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.pgftransparencygroup"
+                      href="#pgf.pgftransparencygroup"
+                      id="pgf.pgftransparencygroup"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd> </kbd><span class="angle">&langle;</span
+                      ><i>environment contents</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd
+                        >\end{<span class="textcolor" style="color: #bf0000"
+                          >pgftransparencygroup</span
+                        >}</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This environment should only be used inside a
+                <span class="verb">{pgfpicture}</span>. It has the following
+                effect:
+              </p>
+              <ul class="enumerate" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">1.</span> The
+                    <span class="angle">&langle;</span
+                    ><i>environment contents</i
+                    ><span class="angle">&rangle;</span> are stroked/filled
+                    &ldquo;ignoring any outside transparency&rdquo;. This means,
+                    all previous transparency settings are ignored (you can
+                    still set transparency inside the group, but never mind).
+                    This means that if in the <span class="angle">&langle;</span
+                    ><i>environment contents</i
+                    ><span class="angle">&rangle;</span> you stroke a pixel
+                    three times in black, it is just black. Stroking it white
+                    afterwards yields a white pixel, and so on.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">2.</span> When the group is
+                    finished, it is painted as a whole. The
+                    <em>fill</em> transparency settings are now applied to the
+                    resulting picture. For instance, the pixel that has been
+                    painted three times in black and once in white is just white
+                    at the end, so this white color will be blended with
+                    whatever is &ldquo;behind&rdquo; the group on the page.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                The optional <span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span> are keys that configure the
+                transparency group further. Two keys are currently defined:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">knockout</span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="verb">=</span
+                        ><span class="angle">&langle;</span><i>true or false</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    Configures whether the group is a knockout group (if no
+                    argument is given, <span class="verb">true</span> is
+                    assumed; initially the key is always false, even when the
+                    command is used in a nested manner.) See Section&nbsp;<a
+                      href="tikz-transparency#section-transparency-groups"
+                      >23.5</a
+                    >
+                    for details on knockout groups.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span>
+                    <span class="textcolor" style="color: #bf0000"
+                      ><span class="verb">isolated</span
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="verb">=</span
+                        ><span class="angle">&langle;</span><i>true or false</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    Similar, but configures whether the group is an isolated
+                    group. Also see Section&nbsp;<a
+                      href="tikz-transparency#section-transparency-groups"
+                      >23.5</a
+                    >
+                    for details on isolated groups.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Note that, depending on the driver,
+                <span class="textsc">pgf</span> may have to guess the size of
+                the contents of the transparency group (because such a group is
+                put in an XForm in <span class="textsc">pdf</span> and a
+                bounding box must be supplied).
+                <span class="textsc">pgf</span> will use normally use the size
+                of the picture&rsquo;s bounding box at the end of the
+                transparency group plus a safety margin of 1cm. Under normal
+                circumstances, this will work nicely since the picture&rsquo;s
+                bounding box contains everything anyway. However, if you have
+                switched off the picture size tracking or if you are using
+                canvas transformations, you may have to make sure that the
+                bounding box is big enough. The trick is to locally create a
+                picture that is &ldquo;large enough&rdquo; and then insert this
+                picture into the main picture while ignoring the size. The
+                following example shows how this is done:
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-3375"
+                      ><!--
+Smoking
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="83.594"
+                        loading="lazy"
+                        src="pgfmanual-images/image-3375.png"
+                        style
+                        width="164.001"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {shapes.symbols} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,2)</span
+                    >;<br />
+                    <br />
+                    <span class="spaces">  </span><span class="example-code-comment"
+                      >% Stuff outside the picture, but still in a transparency
+                      group.</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-arrows#pgf.left">left</a></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.overlay">overlay</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(0,1)</span
+                    > {<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-transparency#pgf.back/pgfsetfillopacity"
+                        >\pgfsetfillopacity</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">0</span
+                    >.<span class="textcolor" style="color: #000000">5</span
+                    >}<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\pgftransparencygroup</span
+                    ><br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="tikz-shapes#pgf.back/node">\node</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.at">at</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(2,0)</span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-shapes#pgf.forbidden:sign"
+                        >forbidden sign</a
+                      ></span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.line:width"
+                        >line width</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">2ex</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.draw">draw</a></span
+                    >=<span class="textcolor" style="color: #008000">red</span
+                    >,<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-actions#pgf.fill">fill</a></span
+                    >=<span class="textcolor" style="color: #008000">white</span
+                    >]<br />
+                    <span class="spaces">        </span>{<span
+                      class="textcolor"
+                      style="color: #000000"
+                      >Smoking</span
+                    >};<br />
+                    <span class="spaces">      </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      >\endpgftransparencygroup</span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span>};<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >\pgftransparencygroup</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd> </kbd><span class="angle">&langle;</span
+                          ><i>environment contents</i
+                          ><span class="angle">&rangle;</span></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >\endpgftransparencygroup</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Plain
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    version of the
+                    <span class="verb">{pgftransparencygroup}</span>
+                    environment.
+                  </p>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >\startpgftransparencygroup</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd> </kbd><span class="angle">&langle;</span
+                          ><i>environment contents</i
+                          ><span class="angle">&rangle;</span></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <span class="hl-def"
+                          ><kbd
+                            ><span class="textcolor" style="color: #bf0000"
+                              >\stoppgftransparencygroup</span
+                            ></kbd
+                          ></span
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This is the Con<span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >t version of the environment.
+                  </p>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

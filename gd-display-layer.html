@@ -1,0 +1,2409 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2010-2018 by Renée Ahrens
+Copyright 2010-2018 by Olof Frahm
+Copyright 2010-2018 by Jens Kluttig
+Copyright 2010-2018 by Matthias Schulz
+Copyright 2010-2018 by Stephan Schuster
+Copyright 2018 by Jannis Pohlmann
+Copyright 2018 by Till Tantau
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Display Layer - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "The Display Layer",
+            "item": "https://tikz.dev/gd-display-layer"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-display-layer" rel="canonical" />
+    <meta content="https://tikz.dev/gd-display-layer" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="The Display Layer - PGF/TikZ Manual" property="og:title" />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4907"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-38.1"
+                >Introduction: The Interplay of the Different Layers</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-38.2"
+                >An Example Display System</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-38.3"
+                >The Interface to Display Systems</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4908">
+            <a id="section-gd-display-layer"></a
+            ><span
+              ><span class="sectionnumber" id="sec-38">38</span> The Display
+              Layer</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.38"
+              data-pdf-page="550"
+              href="#sec-38"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4908"></a>
+          <a id="pgfmanual-autofile-42"></a>
+
+          <p>by Till Tantau</p>
+          <blockquote>
+            <p>
+              You do not need to read this section in order to write new graph
+              drawing algorithms. It is of interest only to those wishing to
+              write programs that wish to &ldquo;use&rdquo; the graph drawing
+              system in a similar way that
+              <span class="tikzname">TikZ</span> does for laying out graphs that
+              are generated and then passed down from the program to the graph
+              drawing system.
+            </p>
+          </blockquote>
+          <h5 id="autosec-4910">
+            <span
+              ><span class="sectionnumber" id="sec-38.1">38.1</span>
+              Introduction: The Interplay of the Different Layers</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-38.1"
+              data-pdf-destination="subsection.38.1"
+              data-pdf-page="550"
+              href="#sec-38.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4910"></a>
+
+          <p>
+            The job of the graph drawing system is to run graph drawing
+            algorithms on graphs. Since graph drawing is useful in many
+            different contexts, not only in the context of
+            <span class="tikzname">TikZ</span> for which the present system was
+            originally developed, the graph drawing system was designed in such
+            a way that it can be used independently of
+            <span class="tikzname">TikZ</span>. To achieve this, the
+            <em>display layer</em> provides an interface via which an arbitrary
+            program (<span class="tikzname">TikZ</span>, a graph editor, a
+            command line interface, etc.) &ldquo;talk&rdquo; to the graph
+            drawing system.
+          </p>
+
+          <p>
+            To better understand how this works, let us consider the following
+            setup:
+          </p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> A program would like to
+                communicate with the graph drawing system. It is written in Java
+                and its job is to analyse social networks. This software would
+                like to use graph drawing to produce drawings of some
+                &ldquo;social graphs&rdquo; arising from its analyses. This
+                software will be called &ldquo;the display system&rdquo; in the
+                following.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> There are two algorithms
+                that the display system would like to apply to the graphs its
+                produces. Let us call these algorithms &ldquo;A&rdquo; and
+                &ldquo;B&rdquo;. However, the display system would also,
+                ideally, wish to make it possible that its user chooses other
+                algorithms &ldquo;C&rdquo; that are not necessarily part of its
+                binary.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The display system has
+                internally generated a &ldquo;social graph&rdquo; that it would
+                now like to draw.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            For this setup, the communication between the different layers of
+            the graph drawing system is as follows:
+          </p>
+          <ul class="enumerate" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">1.</span> The display system, being
+                written in Java, must embed Lua to use the graph drawing system.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">2.</span> The display system must
+                initialize the graph drawing system. For this, it must use
+                <span class="verb">require</span> on the file
+                <span class="verb">InterfaceToDisplay</span>, which, as the name
+                suggests, contains the interface between the display system and
+                the graph drawing system.
+              </p>
+              <p>
+                It must also create a so-called &ldquo;binding&rdquo; between
+                the graph drawing system and the display layer. See
+                Section&nbsp;<a href="gd-binding-layer#section-gd-binding-layer"
+                  >39</a
+                >
+                for more information on bindings.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">3.</span> The display system now needs
+                to load the declarations of the algorithms A and B. For this, it
+                just needs to apply <span class="verb">require</span> to the
+                files in which the algorithms reside. This will cause the
+                <span class="verb">declare</span> function to be called. This
+                function is declared by
+                <span class="verb">InterfaceToAlgorithms</span> and allows files
+                to declare that certain algorithms and options are now
+                available.
+              </p>
+              <p>
+                Once this is done, the graph drawing system is fully initialized
+                and can be used.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">4.</span> Later on, the display system
+                wishes to lay out a social graph. Note that this is known as
+                &ldquo;drawing the graph&rdquo; in the graph drawing community,
+                even though this only means the coordinates are computed for the
+                nodes of the graph. The actual &ldquo;rendering&rdquo; of the
+                graph on the display is the job of the display system (hence the
+                name &ldquo;display layer&rdquo;).
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">5.</span> To start the layout process,
+                the display system calls the function
+                <span class="verb">beginGraphDrawingScope</span> of the class
+                <span class="verb">InterfaceToDisplay</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">6.</span> Next, for each vertex the
+                function <span class="verb">createVertex</span> of the interface
+                class must be called and similarly for each edge. These calls
+                will cause an internal model of the graph to be created on the
+                algorithm layer. Options that are attached to nodes and edges
+                are also communicated to the graph drawing system through
+                function calls like <span class="verb">pushOption</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">7.</span> When the graph is fully
+                specified, the method
+                <span class="verb">runGraphDrawingAlgorithm</span> must be
+                called, which is once more a method of the interface class. This
+                function will internally discern which algorithms have been
+                chosen (via options) and invoke the code of the appropriate
+                algorithms.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">8.</span> Next, the function
+                <span class="verb">renderGraph</span> must be called. Its job is
+                to &ldquo;communicate back&rdquo; which coordinates have been
+                computed. It will use the binding for this communication, see
+                Section&nbsp;<a href="gd-binding-layer#section-gd-binding-layer"
+                  >39</a
+                >.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">9.</span> Finally, by calling
+                <span class="verb">endGraphDrawingScope</span>, the resources
+                needed for the layout process for the social graph are freed
+                once more.
+              </p>
+            </li>
+          </ul>
+
+          <p>A few points may be noteworthy:</p>
+          <ul class="itemize" style="list-style-type: none">
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The whole communication
+                between the display system and the graph drawing system goes
+                through the interface class via function calls. This makes it
+                easy to communicate with display system whose internal model of
+                graphs is quite different from the one used in Lua (as is
+                certainly the case for
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >, but also the &ldquo;social graph&rdquo; mentioned above need
+                not even exist as a separate entity inside the display system).
+              </p>
+              <p>
+                <em
+                  >The display system should only rely on the interface class.
+                  All communication has to go through this class, the display
+                  system may not access the internals of the internally
+                  constructed graphs directly.</em
+                >
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> New algorithms can be
+                loaded at runtime, as long as the
+                <span class="verb">require</span> method is supported.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="listmarker">&bull;</span> The display system can
+                also use the interface class to query which algorithms and which
+                options are available in principle (and display this information
+                to the user). The display system can even get access the
+                documentation of the options at runtime since the documentation
+                is stored in fields of the declared options.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            In the following, we first present a simple display system other
+            than <span class="tikzname">TikZ</span>. The remainder of the
+            section then encompasses a documentation of the different functions
+            of the class <span class="verb">InterfaceToDisplay</span>.
+          </p>
+          <h5 id="autosec-4911">
+            <span
+              ><span class="sectionnumber" id="sec-38.2">38.2</span> An Example
+              Display System</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-38.2"
+              data-pdf-destination="subsection.38.2"
+              data-pdf-page="551"
+              href="#sec-38.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4911"></a>
+
+          <p>
+            In the following, we present the code of a very simple display
+            system written in Lua (another such display system is
+            <span class="tikzname">TikZ</span> itself, but the minimal system
+            will allow us to focus on what is really needed). You will also find
+            it in <span class="verb">pgf.gd.examples.ASCIIDisplayer</span>.
+          </p>
+
+          <p>
+            The job of this display system is to parse a string that encodes a
+            graph and to call the appropriate functions of
+            <span class="verb">InterfaceToDisplay</span> to lay out the graph.
+            The actual calls for rendering the graph are part of the binding,
+            which is documented in Section&nbsp;<a
+              href="gd-binding-layer#section-gd-binding-layer-example"
+              >39.4</a
+            >.
+          </p>
+
+          <p>
+            The syntax of the to-be-laid-out graph is a reduced version of
+            <span class="tikzname">TikZ</span>&rsquo;s
+            <span class="verb">graph</span> syntax: The string must start with
+            <span class="verb">graph[</span><span class="angle">&langle;</span
+            ><i>algorithm&rsquo;s name</i><span class="angle">&rangle;</span
+            ><span class="verb">]{</span> and end with
+            <span class="verb">}</span>. Between the braces, all lines must
+            either be of the form <span class="angle">&langle;</span
+            ><i>node name</i><span class="angle">&rangle;</span
+            ><span class="verb">;</span> or <span class="angle">&langle;</span
+            ><i>name 1</i><span class="angle">&rangle;</span
+            ><span class="verb">-&gt;</span><span class="angle">&langle;</span
+            ><i>name 2</i><span class="angle">&rangle;</span
+            ><span class="verb">;</span> with optional spaces around the node
+            names.
+          </p>
+
+          <p>
+            Let us now have a look at what we must do to use the graph drawing
+            system. First, we load some libraries and initialize the binding
+            (see Section&nbsp;<a
+              href="gd-binding-layer#section-gd-binding-layer-example"
+              >39.4</a
+            >
+            for details on the binding; we can ignore it for now).
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">local</span>
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">require</span>
+                <span class="textcolor" style="color: #000000">"pgf</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >gd</span
+                >.<span class="textcolor" style="color: #000000">interface</span
+                >.<span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay"</span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000">bind</span
+                ><span class="textcolor" style="color: #800080"
+                  >(require "pgf.gd.examples.BindingToASCII")</span
+                ><br />
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">Load</span>
+                <span class="textcolor" style="color: #000000">two</span>
+                <span class="textcolor" style="color: #000000">libraries</span>
+                <span class="textcolor" style="color: #000000">that</span>
+                <span class="textcolor" style="color: #000000">define</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.graph">graph</a></span
+                >
+                <span class="textcolor" style="color: #000000">drawing</span>
+                <span class="textcolor" style="color: #000000">algorithms</span
+                >.<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                  >We</span
+                >
+                <span class="textcolor" style="color: #000000">can</span>
+                <span class="textcolor" style="color: #000000">do</span>
+                <span class="textcolor" style="color: #000000">this</span>
+                <span class="textcolor" style="color: #000000">only</span>
+                <span class="textcolor" style="color: #000000">*after*</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000">binding</span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000">has</span>
+                <span class="textcolor" style="color: #000000">been</span>
+                <span class="textcolor" style="color: #000000">created</span>
+                <span class="textcolor" style="color: #000000">since</span>
+                <span class="textcolor" style="color: #000000">they</span>
+                <span class="textcolor" style="color: #000000">call</span>
+                <span class="textcolor" style="color: #000000">the</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.declare">declare</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="dv-formats#pgf.function">function</a></span
+                >
+                <span class="textcolor" style="color: #000000">internally</span
+                >.<br />
+                <span class="textcolor" style="color: #000000">require</span>
+                <span class="textcolor" style="color: #000000">"pgf</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >gd</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="gd-layered#pgf.layered">layered</a></span
+                >.<span class="textcolor" style="color: #000000">library"</span
+                ><br />
+                <span class="textcolor" style="color: #000000">require</span>
+                <span class="textcolor" style="color: #000000">"pgf</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >gd</span
+                >.<span class="textcolor" style="color: #000000"
+                  ><a href="gd-force#pgf.force">force</a></span
+                >.<span class="textcolor" style="color: #000000">library"</span
+                ><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            Now comes some preparation code that starts a graph drawing scope
+            and sets up the algorithm to the string provided between the square
+            brackets:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">local</span>
+                <span class="textcolor" style="color: #000000">algorithm</span>
+                <span class="textcolor" style="color: #000000">=</span>
+                <span class="textcolor" style="color: #000000">io</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >read</span
+                ><span class="textcolor" style="color: #800080">()</span
+                ><span class="textcolor" style="color: #000000">:match</span
+                ><span class="textcolor" style="color: #800080"
+                  >("<span class="example-code-comment"
+                    >%s*graph%s*%[(.-)%]")</span
+                  ><br />
+                  <br />
+                  InterfaceToDisplay.pushPhase(algorithm, "main", 1)</span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >pushOption</span
+                ><span class="textcolor" style="color: #800080"
+                  >("level distance", 6, 2)</span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >pushOption</span
+                ><span class="textcolor" style="color: #800080"
+                  >("sibling distance", 8, 3)</span
+                ><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >beginGraphDrawingScope</span
+                ><span class="textcolor" style="color: #800080">(3)</span><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >pushLayout</span
+                ><span class="textcolor" style="color: #800080">(4)</span><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The numbers <span class="verb">1</span> to
+            <span class="verb">4</span> are the positions on the options stack
+            at which the options should be placed. See the description of
+            <span class="verb">pushOption</span> for more details.
+          </p>
+
+          <p>
+            We are now ready to create the vertices and edges via a very simple
+            parser:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000">for</span>
+                <span class="textcolor" style="color: #000000">line</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="library-edges#pgf.in">in</a></span
+                >
+                <span class="textcolor" style="color: #000000">io</span>.<span
+                  class="textcolor"
+                  style="color: #000000"
+                  >lines</span
+                ><span class="textcolor" style="color: #800080">()</span
+                > <span class="textcolor" style="color: #000000">do</span
+                ><br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  ><a href="library-calender#pgf.if">if</a></span
+                >
+                <span class="textcolor" style="color: #000000">line:match</span
+                ><span class="textcolor" style="color: #800080"
+                  >("}") then break elseif line:find("-") then<br />
+                  local n1, dir, n2 = string.match(line, "^<span
+                    class="example-code-comment"
+                    >%s*(.-)%s*(-.)%s*(.-)%s*;")</span
+                  ><br />
+                  InterfaceToDisplay.createEdge(n1, n2, dir, 4)<br />
+                  else<br />
+                  local n1 = string.match(line, "^<span
+                    class="example-code-comment"
+                    >%s*(.-)%s*;")</span
+                  ><br />
+                  InterfaceToDisplay.createVertex(n1, "rectangle", nil, 4)<br />
+                  end<br />
+                  end<br />
+                </span>
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            The graph is now completely constructed inside the graph drawing
+            system. We can now invoke the algorithms:
+          </p>
+
+          <figure class="example">
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >runGraphDrawingAlgorithm</span
+                ><span class="textcolor" style="color: #800080">()</span><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >renderGraph</span
+                ><span class="textcolor" style="color: #800080">()</span><br />
+                <span class="textcolor" style="color: #000000"
+                  >InterfaceToDisplay</span
+                >.<span class="textcolor" style="color: #000000"
+                  >endGraphDrawingScope</span
+                ><span class="textcolor" style="color: #800080">()</span><br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            We can now run the resulting file using the Lua interpreter. If we
+            provide the input shown on the left, we get the output shown on the
+            right:
+          </p>
+
+          <p></p>
+          <div
+            class="minipage"
+            style="
+              vertical-align: bottom;
+              justify-content: flex-start;
+              width: 241pt;
+            "
+          >
+            <a id="pgfmanual-autopage-4912"></a>
+
+            <p>
+              <em>Input given to ASCIIDisplayer:</em>
+            </p>
+            <pre class="verbatim">
+graph [layered layout] {
+  Alice;
+  Bob;
+  Charly;
+  Dave;
+  Eve;
+  Fritz;
+  George;
+  Alice -&gt; Bob;
+  Alice -&gt; Charly;
+  Charly -&gt; Dave;
+  Bob -&gt; Dave;
+  Dave -&gt; Eve;
+  Eve -&gt; Fritz;
+  Fritz -&gt; Alice;
+  George -&gt; Eve;
+  George -&gt; Fritz;
+  Alice -&gt; George;
+}
+
+</pre
+            >
+          </div>
+          <div
+            class="minipage"
+            style="
+              vertical-align: bottom;
+              justify-content: flex-start;
+              width: 236pt;
+            "
+          >
+            <a id="pgfmanual-autopage-4914"></a>
+
+            <p>
+              <em>Output produced by ASCIIDisplayer:</em>
+            </p>
+            <pre class="verbatim">
+ Alice
+                   .......
+                 .. . . .
+            ... . . .
+         ... .. . ..
+      .. . . .
+ Charly Bob . .
+     .. . . .
+        . . . .
+         . . . .
+          .. . . .
+            .. . .
+           Dave George .
+               .. . ... .
+                  . . .. .
+                   . . ...
+                    .. . . ...
+                      .. . ..
+                      Eve . ..
+                         .. . ..
+                            . . .
+                             . . .
+                               .. . ..
+                                 ...
+                                Fritz
+
+</pre
+            >
+          </div>
+          <h5 id="autosec-4916">
+            <span
+              ><span class="sectionnumber" id="sec-38.3">38.3</span> The
+              Interface to Display Systems</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-38.3"
+              data-pdf-destination="subsection.38.3"
+              data-pdf-page="552"
+              href="#sec-38.3"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-4916"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><b>Lua table</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >InterfaceToDisplay</span
+                        ></kbd
+                      >
+                      (declared in
+                      <kbd>pgf.gd.interface.InterfaceToDisplay</kbd>)</span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This class provides the interface between a display layer (like
+                <span class="tikzname">TikZ</span> or a graph editor) and graph
+                drawing system. Another class,
+                <span class="verb">InterfaceToAlgorithms</span>, binds the
+                algorithm layer (which are written in Lua) to the graph drawing
+                system.
+              </p>
+              <p>
+                The functions declared here are independent of the actual
+                display layer. Rather, the differences between the layers are
+                encapsulated by subclasses of the
+                <span class="verb">Binding</span> class, see that class for
+                details. Thus, when a new display layer is written, the present
+                class is <em>used</em>, but not <em>modified</em>. Instead, only
+                a new binding is created and all display layer specific
+                interaction is put there.
+              </p>
+              <p>
+                The job of this class is to provide convenient methods that can
+                be called by the display layer. For instance, it provides
+                methods for starting a graph drawing scope, managing the stack
+                of such scope, adding a node to a graph and so on.
+              </p>
+              <p>
+                <em>Alphabetical method summary:</em>
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.addToVertexOptions"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >addToVertexOptions</span
+                    >
+                    (name, height)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.beginGraphDrawingScope"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >beginGraphDrawingScope</span
+                    >
+                    (height)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a href="gd-display-layer#pgf/lua/InterfaceToDisplay.bind"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >bind</span
+                    >
+                    (class)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.createEdge"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >createEdge</span
+                    >
+                    (tail, head, direction, height, binding_infos)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.createEvent"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >createEvent</span
+                    >
+                    (kind, param)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.createVertex"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >createVertex</span
+                    >
+                    (name, shape, path, height, binding_infos, anchors)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.endGraphDrawingScope"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >endGraphDrawingScope</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.getDeclaredKeys"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >getDeclaredKeys</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.pushLayout"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >pushLayout</span
+                    >
+                    (height)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.pushOption"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >pushOption</span
+                    >
+                    (key, value, height)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.pushSubgraphVertex"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >pushSubgraphVertex</span
+                    >
+                    (name, height, info)</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.renderGraph"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >renderGraph</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.resumeGraphDrawingCoroutine"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >resumeGraphDrawingCoroutine</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p>
+                <kbd
+                  ><a
+                    href="gd-display-layer#pgf/lua/InterfaceToDisplay.runGraphDrawingAlgorithm"
+                    >function InterfaceToDisplay.<span
+                      class="textcolor"
+                      style="color: #bf0000"
+                      >runGraphDrawingAlgorithm</span
+                    >
+                    ()</a
+                  ></kbd
+                >
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.bind"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >bind</span
+                        ></kbd
+                      ><kbd>(class)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Initialize the binding. This function is called once by the
+                display layer at the very beginning. For instance,
+                <span class="tikzname">TikZ</span> does the following call:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >InterfaceToDisplay</span
+                    >.<span class="textcolor" style="color: #000000">bind</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(require "pgf.gd.bindings.BindingToPGF")</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Inside this call, many standard declarations will be executed,
+                that is, the declared binding will be used immediately.
+              </p>
+              <p>
+                Subsequently, the <span class="verb">binding</span> field of the
+                <span class="verb">InterfaceCore</span> can be used.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>class</kbd> A subclass of
+                <span class="verb">Binding</span>.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.beginGraphDrawingScope"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >beginGraphDrawingScope</span
+                        ></kbd
+                      ><kbd>(height)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Start a graph drawing scope. Note that this is not the same as
+                starting a subgraph / sublayout, which are local to a graph
+                drawing scope: When a new graph drawing scope is started, it is
+                pushed on top of a stack of graph drawing scopes and all other
+                &ldquo;open&rdquo; scopes are no longer directly accessible. All
+                method calls to an <span class="verb">Interface...</span> object
+                will refer to this newly created scope until either a new scope
+                is opened or until the current scope is closed once more.
+              </p>
+              <p>
+                Each graph drawing scope comes with a syntactic digraph that is
+                build using methods like <span class="verb">addVertex</span> or
+                <span class="verb">addEdge</span>.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>height</kbd> The
+                to-be-used height of the options stack. All options above this
+                height will be popped prior to attacking the options to the
+                syntactic digraph.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.runGraphDrawingAlgorithm"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >runGraphDrawingAlgorithm</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Arranges the current graph using the specified algorithm and
+                options.
+              </p>
+              <p>
+                This function should be called after the graph drawing scope has
+                been opened and the syntactic digraph has been completely
+                specified. It will now start running the algorithm specified
+                through the <span class="verb">algorithm_phase</span> options.
+              </p>
+              <p>
+                Internally, this function creates a coroutine that will run the
+                current graph drawing algorithm. Coroutines are needed since a
+                graph drawing algorithm may choose to create a new node. In this
+                case, the algorithm needs to be suspended and control must be
+                returned back to the display layer, so that the node can be
+                typeset in order to determine the precise size information. Once
+                this is done, control must be passed back to the exact point
+                inside the algorithm where the node was created. Clearly, all of
+                these actions are exactly what coroutines are for.
+              </p>
+              <p>
+                <em>Returns:</em> <em>1.</em> Time it took to run the algorithm
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.resumeGraphDrawingCoroutine"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >resumeGraphDrawingCoroutine</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Resume the graph drawing coroutine.</p>
+              <p>
+                This function is the work horse of the coroutine management. It
+                gets called whenever control passes back from the display layer
+                to the algorithm level. We resume the graph drawing coroutine so
+                that the algorithm can start/proceed. The tricky part is when
+                the algorithm yields, but is not done. In this case, the code
+                needed for creating a new node is passed back to the display
+                layer through the binding, which must then execute the code and
+                then resuming the coroutine.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.endGraphDrawingScope"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >endGraphDrawingScope</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Ends the current graph drawing scope.</p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.createVertex"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >createVertex</span
+                        ></kbd
+                      ><kbd
+                        >(name, shape, path, height, binding_infos,
+                        anchors)</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Creates a new vertex in the syntactic graph of the current graph
+                drawing scope. The display layer should call this function for
+                each node of the graph. The <span class="verb">name</span> must
+                be a unique string identifying the node. The newly created
+                vertex will be added to the syntactic digraph. The binding
+                function <span class="verb">everyVertexCreation</span> will then
+                be called, allowing the binding to store information regarding
+                the newly created vertex.
+              </p>
+              <p>
+                For each vertex an event will be created in the event sequence.
+                This event will have the kind
+                <span class="verb">"node"</span> and its
+                <span class="verb">parameter</span> will be the vertex.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>name</kbd> Name of the
+                vertex.
+              </p>
+              <p>
+                <em>2.</em> <kbd>shape</kbd> The shape of the vertex such as
+                <span class="verb">"circle"</span> or
+                <span class="verb">"rectangle"</span>. This shape may help a
+                graph drawing algorithm figuring out how the node should be
+                placed.
+              </p>
+              <p>
+                <em>3.</em> <kbd>path</kbd> A
+                <span class="verb">Path</span> object representing the
+                vertex&rsquo;s path.
+              </p>
+              <p>
+                <em>4.</em> <kbd>height</kbd> The to-be-used height of the
+                options stack. All options above this height will be popped
+                prior to attacking the options to the syntactic digraph.
+              </p>
+              <p>
+                <em>5.</em> <kbd>binding_infos</kbd> These options are passed to
+                and are specific to the current
+                <span class="verb">Binding</span>.
+              </p>
+              <p>
+                <em>6.</em> <kbd>anchors</kbd> A table of anchors (mapping
+                anchor positions to <span class="verb">Coordinates</span>).
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.pushSubgraphVertex"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pushSubgraphVertex</span
+                        ></kbd
+                      ><kbd>(name, height, info)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Creates a new vertex in the syntactic graph of the current graph
+                drawing scope that is a subgraph vertex. Such a vertex
+                &ldquo;surrounds&rdquo; the vertices of a subgraph. The special
+                property of a subgraph node opposed to a normal node is that it
+                is created only after the subgraph has been laid out. However,
+                the difference to a collection like
+                <span class="verb">hyper</span> is that the node is available
+                immediately as a normal node in the sense that you can connect
+                edges to it.
+              </p>
+              <p>
+                What happens internally is that subgraph nodes get
+                &ldquo;registered&rdquo; immediately both on the display level
+                and on the algorithm level, but the actual node is only created
+                inside the layout pipeline using a callback of the binding. The
+                present function is used to perform this registering. The node
+                creation happens when the innermost layout in which the subgraph
+                node is declared has finished. For each subgraph node, a
+                collection is created that contains all vertices (and edges)
+                being part of the subgraph. For this reason, this method is a
+                <span class="verb">push...</span> method, since it pushes
+                something on the options stack.
+              </p>
+              <p>
+                The <span class="verb">init</span> parameter will be used during
+                the creation of the node, see
+                <span class="verb">Binding:createVertex</span> for details on
+                the fields. Note that <span class="verb">init.text</span> is
+                often not displayed for such &ldquo;vast&rdquo; nodes as those
+                created for whole subgraphs, but a shape may use it nevertheless
+                (for instance, one might display this text at the top of the
+                node or, in case of a <span class="textsc">uml</span> package,
+                in a special box above the actual node).
+              </p>
+              <p>
+                The <span class="verb">init.generated_options</span> will be
+                augmented by additional key&ndash;value pairs when the vertex is
+                created:
+              </p>
+              <ul class="itemize" style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The key
+                    <span class="verb">subgraph point cloud</span> will have as
+                    its value a string that is be a list of points (without
+                    separating commas) like
+                    <span class="verb">"(10pt,20pt)(0pt,0pt)(30pt,40pt)"</span>,
+                    always in this syntax. The list will contain all points
+                    inside the subgraph. In particular, a bounding box around
+                    these points will encompass all nodes and bend points of the
+                    subgraph. The bounding box of this point cloud is guaranteed
+                    to be centered on the origin.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The key
+                    <span class="verb">subgraph bounding box width</span> will
+                    have as its value the width of a bounding box (in
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    points, as a string with the suffix
+                    <span class="verb">"pt"</span>).
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span class="listmarker">&bull;</span> The key
+                    <span class="verb">subgraph bounding box height</span>
+                    stores the height of a bounding box.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>name</kbd> The name of the
+                node. <em>2.</em> <kbd>height</kbd> Height of the options stack.
+                Note that this method pushes something (namely a collection) on
+                the options stack. <em>3.</em> <kbd>info</kbd> A table passed to
+                <span class="verb">Binding:createVertex</span>, see that
+                function.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.addToVertexOptions"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >addToVertexOptions</span
+                        ></kbd
+                      ><kbd>(name, height)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Add options for an already existing vertex.</p>
+              <p>
+                This function allows you to add options to an already existing
+                vertex. The options that will be added are all options on the
+                current options stack; they will overwrite existing options of
+                the same name. For collections, the vertex stays in all
+                collections it used to, it is only added to all collections that
+                are currently on the options stack.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>name</kbd> Name of the
+                vertex. <em>2.</em> <kbd>height</kbd> The option stack height.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.createEdge"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >createEdge</span
+                        ></kbd
+                      ><kbd
+                        >(tail, head, direction, height, binding_infos)</kbd
+                      ></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Creates a new edge in the syntactic graph of the current graph
+                drawing scope. The display layer should call this function for
+                each edge that is created. Both the
+                <span class="verb">from</span> vertex and the
+                <span class="verb">to</span> vertex must exist (have been
+                created through <span class="verb">createVertex</span>) prior to
+                your being able to call this function.
+              </p>
+              <p>
+                After the edge has been created, the binding layer&rsquo;s
+                function <span class="verb">everyEdgeCreation</span> will be
+                called, allowing the binding layer to store information about
+                the edge.
+              </p>
+              <p>
+                For each edge an event is created, whose kind is
+                <span class="verb">"edge"</span> and whose
+                <span class="verb">parameter</span> is a two-element array whose
+                first entry is the edge&rsquo;s arc in the syntactic digraph and
+                whose second entry is the position of the edge in the
+                arc&rsquo;s array of syntactic edges.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>tail</kbd> Name of the
+                node the edge begins at. <em>2.</em> <kbd>head</kbd> Name of the
+                node the edge ends at. <em>3.</em>
+                <kbd>direction</kbd> Direction of the edge (e.g.
+                <span class="verb">--</span> for an undirected edge or
+                <span class="verb">-&gt;</span> for a directed edge from the
+                first to the second node). <em>4.</em> <kbd>height</kbd> The
+                option stack height, see for instance
+                <span class="verb">createVertex</span>.
+              </p>
+              <p>
+                <em>5.</em> <kbd>binding_infos</kbd> These options will be
+                stored in the <span class="verb">storage</span> of the vertex at
+                the field index by the binding.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.pushOption"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pushOption</span
+                        ></kbd
+                      ><kbd>(key, value, height)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Push an option to the stack of options.</p>
+              <p>
+                As a graph is parsed, a stack of &ldquo;current options&rdquo;
+                is created. To add something to this table, the display layers
+                may call the method <span class="verb">pushOption</span>. To pop
+                something from this stack, just set the
+                <span class="verb">height</span> value during the next push to
+                the position to which you actually wish to push something;
+                everything above and including this position will be popped from
+                the stack.
+              </p>
+              <p>
+                When an option is pushed, several additional options may also be
+                pushed, namely whenever the option has a
+                <span class="verb">use</span> field set. These additional
+                options may, in turn, also push new options. Because of this,
+                this function returns a new stack height, representing the
+                resulting stack height.
+              </p>
+              <p>
+                In addition to this stack height, this function returns a
+                Boolean value indicating whether a &ldquo;main algorithm phase
+                was set&rdquo;. This happens whenever a key is executed
+                (directly or indirectly through the
+                <span class="verb">use</span> field) that selects an algorithm
+                for the &ldquo;main&rdquo; algorithm phase. This information may
+                help the caller to setup the graph drawing scopes correctly.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>key</kbd> A parameter
+                (must be a string). <em>2.</em> <kbd>value</kbd> A value (can be
+                anything). If it is a string, it will be converted to whatever
+                the key expects. <em>3.</em> <kbd>height</kbd> A stack height at
+                which to insert the key. Everything above this height will be
+                removed.
+              </p>
+              <p><em>Returns:</em> <em>1.</em> A new stack height</p>
+              <p>
+                <em>Returns:</em> <em>1.</em> A Boolean that is
+                <span class="verb">true</span> if the main algorithm phase was
+                set by the option or one option <span class="verb">use</span>d
+                by it.
+              </p>
+              <p>
+                <em>Returns:</em> <em>1.</em> The newly created entry on the
+                stack. If more entries are created through the use of the
+                <span class="verb">use</span> field, the original entry is
+                returned nevertheless.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.pushLayout"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >pushLayout</span
+                        ></kbd
+                      ><kbd>(height)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Push a layout on the stack of options. As long as this layout is
+                on the stack, all vertices and edges will be part of this
+                layout. For details on layouts, please see
+                <span class="verb">Sublayouts</span>.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>height</kbd> A stack
+                height at which to insert the key. Everything above this height
+                will be removed.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.createEvent"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >createEvent</span
+                        ></kbd
+                      ><kbd>(kind, param)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Creates an event and adds it to the event string of the current
+                scope.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>kind</kbd> Name/kind of
+                the event. <em>2.</em> <kbd>parameters</kbd> Parameters of the
+                event.
+              </p>
+              <p><em>Returns:</em> <em>1.</em> The newly pushed event</p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.getDeclaredKeys"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >getDeclaredKeys</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This method allows you to query the table of all declared keys.
+                It contains them both as an array and also as a table index by
+                the keys&rsquo;s names. In particular, you can then iterate over
+                it using <span class="verb">ipairs</span> and you can check
+                whether a key is defined by accessing the table at the
+                key&rsquo;s name. Each entry of the table is the original table
+                passed to
+                <span class="verb">InterfaceToAlgorithms.declare</span>.
+              </p>
+              <p>
+                <em>Returns:</em> <em>1.</em> A lookup table of all declared
+                keys.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/InterfaceToDisplay.renderGraph"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        >InterfaceToDisplay.<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >renderGraph</span
+                        ></kbd
+                      ><kbd>()</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Renders the graph.</p>
+              <p>
+                This function is called after the graph has been laid out by the
+                graph drawing algorithms. It will trigger a sequence of calls to
+                the binding layer that will, via callbacks, start rendering the
+                whole graph.
+              </p>
+              <p>In detail, this function calls:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">local</span>
+                    <span class="textcolor" style="color: #000000"
+                      >binding</span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000"
+                      >InterfaceCore</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >binding</span
+                    ><br />
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderStart</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >render_vertices</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >render_edges</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >render_collections</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderStop</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Here, the <span class="verb">render_...</span> functions are
+                local, internal functions that are, nevertheless, documented
+                here.
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>name</kbd> Returns the
+                algorithm class that has been declared using
+                <span class="verb">declare</span> under the given name.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/render_vertices"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >render_vertices</span
+                        ></kbd
+                      ><kbd>(vertices)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Render the vertices after the graph drawing algorithm has
+                finished. This function is local and internal and included only
+                for documenting the call graph.
+              </p>
+              <p>
+                When the graph drawing algorithm is done, the interface will
+                start rendering the vertices by calling appropriate callbacks of
+                the binding layer.
+              </p>
+              <p>Consider the following code:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >... layout</span
+                    >] {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >a</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">b</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">c</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">d</span
+                    >;<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In this case, after the graph drawing algorithm has run, the
+                present function will call:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">local</span>
+                    <span class="textcolor" style="color: #000000"
+                      >binding</span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000"
+                      >InterfaceCore</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >binding</span
+                    ><br />
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderVerticesStart</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderVertex</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(vertex_a)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderVertex</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(vertex_b)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderVertex</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(vertex_c)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderVertex</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(vertex_d)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderVerticesStop</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>vertices</kbd> An array of
+                all vertices in the syntactic digraph.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/render_collections"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >render_collections</span
+                        ></kbd
+                      ><kbd>(collections)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Render the collections whose layer is not
+                <span class="verb">0</span>. This local, internal function is
+                called to render the different collection kinds.
+              </p>
+              <p>
+                Collection kinds rendered in the order provided by the
+                <span class="verb">layer</span> field passed to
+                <span class="verb">declare</span> during the declaration of the
+                collection kind, see also
+                <span class="verb">declare_collection</span>. If several
+                collection kinds have the same layer, they are rendered in
+                lexicographical ordering (to ensure that they are always
+                rendered in the same order).
+              </p>
+              <p>Consider the following code:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.declare">declare</a></span
+                    >
+                    {<span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >key</span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000">"hyper"</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >layer</span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000">1</span>
+                    }<br />
+                  </code>
+                </div>
+              </figure>
+              <p>you can say on the <span class="tikzname">TikZ</span> layer</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > {<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >;<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.hyper">hyper</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >a</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >
+                    }<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-usage-tikz#pgf.hyper">hyper</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >b</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >c</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >d</span
+                    >
+                    }<br />
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In this case, after the graph drawing algorithm has run, the
+                present function will call:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #000000">local</span>
+                    <span class="textcolor" style="color: #000000"
+                      >binding</span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000"
+                      >InterfaceCore</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >binding</span
+                    ><br />
+                    <br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderCollectionStartKind</span
+                    ><span class="textcolor" style="color: #800080"
+                      >("hyper", 1)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderCollection</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(collection_containing_abc)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderCollection</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(collection_containing_bcd)</span
+                    ><br />
+                    <span class="textcolor" style="color: #000000"
+                      >binding:renderCollectionStopKind</span
+                    ><span class="textcolor" style="color: #800080"
+                      >("hyper", 1)</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>collections</kbd> The
+                <span class="verb">collections</span> table of the current
+                scope.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/render_edges"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >render_edges</span
+                        ></kbd
+                      ><kbd>(arcs)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Render the syntactic edges of a graph after the graph drawing
+                algorithm has finished. This function is local and internal and
+                included only for documenting the call graph.
+              </p>
+              <p>
+                When the graph drawing algorithm is done, the interface will
+                first rendering the vertices using
+                <span class="verb">render_vertices</span>, followed by calling
+                this function, which in turn calls appropriate callbacks to the
+                binding layer.
+              </p>
+              <p>Consider the following code:</p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >... layout</span
+                    >] {<br />
+                    <span class="spaces">   </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >a</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">b</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">c</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">d</span
+                    >;<br />
+                    <span class="spaces"> </span>};<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                In this case, after the graph drawing algorithm has run, the
+                present function will call:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >local</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >binding</span
+                    >
+                    <span class="textcolor" style="color: #000000">=</span>
+                    <span class="textcolor" style="color: #000000"
+                      >InterfaceCore</span
+                    >.<span class="textcolor" style="color: #000000"
+                      >binding</span
+                    ><br />
+                    <br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >binding:renderEdgesStart</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >binding:renderEdge</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(edge_from_a_to_b)</span
+                    ><br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >binding:renderEdge</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(edge_from_b_to_c)</span
+                    ><br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >binding:renderEdge</span
+                    ><span class="textcolor" style="color: #800080"
+                      >(edge_from_c_to_d)</span
+                    ><br />
+                    <span class="spaces"> </span><span class="textcolor" style="color: #000000"
+                      >binding:renderEdgesStop</span
+                    ><span class="textcolor" style="color: #800080">()</span
+                    ><br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>arcs</kbd> The array of
+                arcs of the syntactic digraph.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <p>
+            <a id="pgf/lua/get_current_options_table"></a>
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <span class="hl-def"
+                      ><kbd>function</kbd>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >get_current_options_table</span
+                        ></kbd
+                      ><kbd>(height, table)</kbd></span
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Get the current options table.</p>
+              <p>
+                An option table can be accessed like a normal table; however,
+                there is a global fallback for this table. If an index is not
+                defined, the value of this index in the global fallback table is
+                used. (This reduces the overall amount of option keys that need
+                to be stored with object.)
+              </p>
+              <p>
+                (This function is local and internal and included only for
+                documentation purposes.)
+              </p>
+              <p>
+                <em>Parameters:</em> <em>1.</em> <kbd>height</kbd> The stack
+                height for which the option table is required. <em>2.</em>
+                <kbd>table</kbd> If non <span class="verb">nil</span>, the
+                options will be added to this table.
+              </p>
+              <p>
+                <em>Returns:</em> <em>1.</em> The option table as described
+                above.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

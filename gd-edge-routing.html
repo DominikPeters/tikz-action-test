@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2018 by Jannis Pohlmann
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Free Documentation License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Graph Drawing Algorithms: Edge Routing - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Graph Drawing",
+            "item": "https://tikz.dev/gd"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Graph Drawing Algorithms: Edge Routing",
+            "item": "https://tikz.dev/gd-edge-routing"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/gd-edge-routing" rel="canonical" />
+    <meta content="https://tikz.dev/gd-edge-routing" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Graph Drawing Algorithms: Edge Routing - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-4829"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-overview"
+                >Introduction to Algorithmic Graph Drawing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-tikz"
+                >Using Graph Drawing in <span class="tikzname">TikZ</span></a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-usage-pgf"
+                >Using Graph Drawing in PGF</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-trees"
+                >Graph Drawing Layouts: Trees</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-layered"
+                >Graph Drawing Algorithms: Layered Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-force"
+                >Graph Drawing Algorithms: Force-Based Methods</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-circular"
+                >Graph Drawing Algorithms: Circular Layouts</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-phylogenetics"
+                >Graph Drawing Layouts: Phylogenetic Trees</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="gd-edge-routing"
+                >Graph Drawing Algorithms: Edge Routing</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithm-layer"
+                >The Algorithm Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-algorithms-in-c"
+                >Writing Graph Drawing Algorithms in C</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-display-layer"
+                >The Display Layer</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="gd-binding-layer"
+                >The Binding Layer</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Graph Drawing</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-4830">
+            <a id="section-last-graphdrawing-library-in-manual"></a
+            ><span
+              ><span class="sectionnumber" id="sec-35">35</span> Graph Drawing
+              Algorithms: Edge Routing</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.35"
+              data-pdf-page="489"
+              href="#sec-35"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-4830"></a>
+          <a id="pgfmanual-autofile-39"></a>
+
+          <p>
+            <em>by Till Tantau</em>
+          </p>
+
+          <a id="section-gd-edge-routing"></a>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.routing"></a>
+                    <span class="hl-def"
+                      ><b>Graph Drawing Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >routing</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.routing"
+                      href="#pgf.routing"
+                      id="pgf.routing"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usegdlibrary{<span class="textcolor" style="color: #bf0000"
+                    >routing</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  ></kbd
+                ><br />
+                <kbd
+                  >\usegdlibrary[<span class="textcolor" style="color: #bf0000"
+                    >routing</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t</kbd
+                >
+              </p>
+              <p>
+                This library contains algorithms for routing edges through a
+                graph.
+              </p>
+              <p></p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.necklace:routing"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        >/graph drawing/<span
+                          class="textcolor"
+                          style="color: #bf0000"
+                          >necklace routing</span
+                        ><span class="textcolor" style="color: #008000"
+                          >=</span
+                        ></kbd
+                      ><span class="textcolor" style="color: #008000"
+                        ><span class="angle">&langle;</span><i>string</i
+                        ><span class="angle">&rangle;</span></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.necklace:routing"
+                      href="#pgf.necklace:routing"
+                      id="pgf.necklace:routing"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Bends all edges of a graph that lie on &ldquo;necklaces&rdquo;
+                along these necklaces. Some graph drawing algorithms lay out
+                some or all nodes along a path, which is then called a
+                <em>necklace</em>. For instance, the
+                <span class="verb">simple necklace layout</span> places all
+                nodes on a circle and that circle is the &ldquo;necklace&rdquo;.
+                When the <span class="verb">necklace routing</span> edge routing
+                algorithm is selected, all edges that connect subsequent nodes
+                on such a necklace are bend in such a way that the &ldquo;follow
+                the necklace path&rdquo;. In the example case, this will cause
+                all edges that connect adjacent nodes to become arcs on of the
+                circle on which the nodes lie.
+              </p>
+              <p>
+                Note that local edge routing options for an edge may overrule
+                the edge routing computed by the algorithm as in the edge from 6
+                to 7 in the example.
+              </p>
+              <p>
+                <em>Example</em>
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2043"
+                      ><!--
+            1
+    2 7
+
+
+
+3 6
+
+
+        4 5
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="147.362"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2043.png"
+                        style
+                        width="150.492"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-graphs#pgf.back/graph">\graph</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="gd-circular#pgf.simple:necklace:layout"
+                        >simple necklace layout</a
+                      ></span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.node:distance"
+                        >node distance</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">1.5cm</span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="gd-edge-routing#pgf.necklace:routing"
+                        >necklace routing</a
+                      ></span
+                    >,<br />
+                    <span class="spaces">              </span><span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="tikz-graphs#pgf.nodes">nodes</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{<a href="tikz-actions#pgf.draw">draw</a>,<a
+                        href="tikz-paths#pgf.circle"
+                        >circle</a
+                      >}</span
+                    >, <span class="textcolor" style="color: #008000"
+                      ><a href="tikz-graphs#pgf.edges">edges</a></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{&gt;={Stealth[<span
+                        class="textcolor"
+                        style="color: #008000"
+                        ><a href="tikz-arrows#pgf.round">round</a></span
+                      >,<span class="textcolor" style="color: #008000"
+                        ><a href="tikz-arrows#pgf.sep">sep</a></span
+                      >,<span class="textcolor" style="color: #008000"
+                        ><a href="tikz-paths#pgf.bend">bend</a></span
+                      >]}}</span
+                    >]<br />
+                    <span class="spaces">  </span>{<span class="spaces"> </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >1</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">2</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-shapes#pgf.minimum:size"
+                        >minimum size</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">30pt</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.&lt;-">&lt;-</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">3</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.&lt;-&gt;">&lt;-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    ><br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #000000"
+                      >5</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">6</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="library-edges#pgf.bend:left">bend left</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      >7</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">1</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.--">--</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">4</span>
+                    };<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>

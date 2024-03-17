@@ -1,0 +1,2571 @@
+<!doctype html>
+<html lang="en-US">
+  <!--TikZ/PGF documentation:
+Copyright 2019 by Mark Wibrow
+
+This file may be distributed and/or modified
+
+1. under the LaTeX Project Public License and/or
+2. under the GNU Public License.
+
+See https://tikz.dev/license for more details.
+
+Translated to HTML using the lwarp package:
+Copyright 2016-2024 Brian Dunn - BD Tech Concepts LLC
+
+tikz.dev:
+Copyright 2021-2024 Dominik Peters
+This file may be distributed and/or modified under the LaTeX Project Public License.--><head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lindenmayer System Drawing Library - PGF/TikZ Manual</title>
+    <link href="style.css?v=20240317" rel="stylesheet" type="text/css" />
+
+    <script src="pgfmanual.js?v=20240317"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Libraries",
+            "item": "https://tikz.dev/libraries"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Lindenmayer System Drawing Library",
+            "item": "https://tikz.dev/library-lsystems"
+          }
+        ]
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link
+      href="/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    />
+    <link href="/site.webmanifest" rel="manifest" />
+    <link href="https://tikz.dev/library-lsystems" rel="canonical" />
+    <meta content="https://tikz.dev/library-lsystems" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta
+      content="Lindenmayer System Drawing Library - PGF/TikZ Manual"
+      property="og:title"
+    />
+    <meta content="summary" name="twitter:card" />
+  </head>
+  <body>
+    <a id="pgfmanual-autopage-5802"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong
+          ><a href="/">PGF/<span class="tikzname">TikZ</span> Manual</a></strong
+        >
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-57.1">Overview</a></p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-57.1.1"
+                >Declaring L-systems</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-57.2"
+                >Using Lindenmayer Systems</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-57.2.1"
+                >Using L-Systems in PGF</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-57.2.2"
+                >Using L-Systems in TikZ</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The <span class="tikzname">TikZ</span> and PGF Packages<br />
+                Manual for version 3.1.10</span
+              >
+            </p>
+
+            <p>Contents</p>
+          </div>
+
+          <div class="sidetoccontents">
+            <p></p>
+
+            <p>
+              <a class="linkintro" href="/">Introduction</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="tutorials-guidelines"
+                >Tutorials and Guidelines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="install"
+                >Installation and Configuration</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="tikz">Ti<em>k</em>Z</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="gd">Graph Drawing</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocpart" href="libraries">Libraries</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-3d"
+                >Three Dimensional Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-angle">Angle Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-arrows">Arrow Tip Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-automata"
+                >Automata Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-babel">Babel Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-backgrounds"
+                >Background Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calc">Calc Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-calender">Calendar Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-chains">Chains</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-circuits"
+                >Circuit Libraries</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-decorations"
+                >Decoration Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-er"
+                >Entity-Relationship Diagram Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-external"
+                >Externalization Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fadings">Fading Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fit">Fitting Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fixedpoint"
+                >Fixed Point Arithmetic Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-fpu"
+                >Floating Point Unit Library</a
+              >
+            </p>
+
+            <p class="current current-part">
+              <a class="tocsection" href="library-lsystems"
+                >Lindenmayer System Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-math">Math Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-matrix">Matrix Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-mindmaps"
+                >Mindmap Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-folding"
+                >Paper-Folding Diagrams Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-patterns">Pattern Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-perspective"
+                >Three Point Perspective Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-petri"
+                >Petri-Net Drawing Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-handlers"
+                >Plot Handler Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-plot-marks"
+                >Plot Mark Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-profiler">Profiler Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-rdf"
+                >Resource Description Framework Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadings">Shadings Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shadows">Shadows Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-shapes">Shape Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-spy"
+                >Spy Library: Magnifying Parts of Pictures</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-svg-path">SVG-Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-edges">To Path Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-through">Through Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-trees">Tree Library</a>
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-turtle"
+                >Turtle Graphics Library</a
+              >
+            </p>
+
+            <p class="current-part">
+              <a class="tocsection" href="library-views">Views Library</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="dv">Data Visualization</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="utilities">Utilities</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="math"
+                >Mathematical and Object-Oriented Engines</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="base">The Basic Layer</a>
+            </p>
+
+            <p>
+              <a class="tocpart" href="pgfsys">The System Layer</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h1>
+            The <span class="tikzname">TikZ</span> and PGF Packages<br />
+            Manual for version 3.1.10
+          </h1>
+          <h2 class="inserted">Libraries</h2>
+
+          <!--MathJax customizations:-->
+
+          <p></p>
+          <h4 id="autosec-5803">
+            <span
+              ><span class="sectionnumber" id="sec-57">57</span> Lindenmayer
+              System Drawing Library</span
+            ><a
+              class="anchor-link"
+              data-pdf-destination="section.57"
+              data-pdf-page="699"
+              href="#sec-57"
+              >&para;</a
+            >
+          </h4>
+          <a id="pgfmanual-autopage-5803"></a>
+          <a id="pgfmanual-autofile-62"></a>
+          <h5 id="autosec-5804">
+            <span
+              ><span class="sectionnumber" id="sec-57.1">57.1</span>
+              Overview</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-57.1"
+              data-pdf-destination="subsection.57.1"
+              data-pdf-page="699"
+              href="#sec-57.1"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5804"></a>
+
+          <p>
+            Lindenmayer systems (also commonly known as
+            &ldquo;L-systems&rdquo;), were originally developed by Aristid
+            Lindenmayer as a theory of algae growth patterns and then
+            subsequently used to model branching patterns in plants and produce
+            fractal patterns. Typically, an L-system consists of a set of
+            symbols, each of which is associated with some graphical action
+            (such as &ldquo;turn left&rdquo; or &ldquo;move forward&rdquo;) and
+            a set of rules (&ldquo;production&rdquo; or &ldquo;rewrite&rdquo;
+            rules). Given a string of symbols, the rewrite rules are applied
+            several times and when the resulting string is processed the action
+            associated with each symbol is executed.
+          </p>
+
+          <p>
+            In <span class="textsc">pgf</span>, L-systems can be used to create
+            simple 2-dimensional fractal patterns&hellip;
+          </p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2388"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="86.594"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2388.png"
+                    style
+                    width="75.362"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {lindenmayersystems} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a
+                    href="library-lsystems#pgf.back/pgfdeclarelindenmayersystem"
+                    >\pgfdeclarelindenmayersystem</a
+                  ></span
+                >{<span class="textcolor" style="color: #000000">Koch</span>
+                <span class="textcolor" style="color: #000000">curve</span
+                >}{<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                  ><a href="library-lsystems#pgf.back/rule">\rule</a></span
+                >{<span class="textcolor" style="color: #000000">F</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                >
+                <span class="textcolor" style="color: #000000">F-F++F-F</span
+                >}<br />
+                }<br />
+                <br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/shadedraw"
+                    >\shadedraw</a
+                  ></span
+                > [<span class="textcolor" style="color: #008000"
+                  ><a href="library-shadings#pgf.top:color">top color</a></span
+                >=<span class="textcolor" style="color: #008000">white</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="library-shadings#pgf.bottom:color"
+                    >bottom color</a
+                  ></span
+                >=<span class="textcolor" style="color: #008000">blue!50</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-actions#pgf.draw">draw</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >blue!50!black</span
+                >]<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="library-lsystems#pgf.l-system">l-system</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{Koch
+                  curve,<span class="spaces"> </span>step=2pt,<span class="spaces"> </span>angle=60,<span class="spaces"> </span>axiom=F++F++F,<span class="spaces"> </span>order=3}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >lindenmayer</span
+                >
+                <span class="textcolor" style="color: #000000">system</span>
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-paths#pgf.--">--</a></span
+                >
+                <span class="textcolor" style="color: #000000"
+                  ><a href="tikz-graphs#pgf.cycle">cycle</a></span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>&hellip;and &ldquo;plant like&rdquo; patterns&hellip;</p>
+
+          <figure class="example">
+            <div class="example-image">
+              <p>
+                <span class="lateximagesource" id="lateximage-pgfmanual-2389"
+                  ><!--
+--><img
+                    alt="(-tikz-&nbsp;diagram)"
+                    class="lateximage"
+                    height="122.138"
+                    loading="lazy"
+                    src="pgfmanual-images/image-2389.png"
+                    style
+                    width="122.120"
+                /></span>
+              </p>
+            </div>
+
+            <div class="example-code">
+              <button class="clipboardButton" type="button">copy</button>
+
+              <code>
+                <span class="codepreamble"
+                  >\usetikzlibrary {lindenmayersystems} </span
+                ><br />
+                <span class="textcolor" style="color: #000000">\begin</span
+                >{<span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+                <span class="textcolor" style="color: #0000b2"
+                  ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                > [<span class="textcolor" style="color: #008000"
+                  >green!50!black</span
+                >, <span class="textcolor" style="color: #008000"
+                  ><a href="tikz-transformations#pgf.rotate">rotate</a></span
+                >=<span class="textcolor" style="color: #008000">90</span
+                >]<br />
+                <span class="spaces">  </span>[<span class="textcolor" style="color: #008000"
+                  ><a href="library-lsystems#pgf.l-system">l-system</a></span
+                >=<span class="textcolor" style="color: #008000"
+                  >{rule set={F
+                  <a href="tikz-graphs#pgf.-&gt;">-&gt;</a> FF-[<span
+                    class="textcolor"
+                    style="color: #008000"
+                    >-F+F</span
+                  >]+[<span class="textcolor" style="color: #008000">+F-F</span
+                  >]},<span class="spaces"> </span>axiom=F,<span class="spaces"> </span>order=4,<span class="spaces"> </span>step=2pt,<br />
+                  <span class="spaces">   </span>randomize
+                  <a href="tikz-paths#pgf.step">step</a>
+                  percent=25,<span class="spaces"> </span>angle=30,<span class="spaces"> </span>randomize
+                  <a href="tikz-coordinates#pgf.angle">angle</a>
+                  percent=5}</span
+                >]<br />
+                <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                  >lindenmayer</span
+                >
+                <span class="textcolor" style="color: #000000">system</span
+                >;<br />
+                <span class="textcolor" style="color: #000000">\end</span>{<span
+                  class="textcolor"
+                  style="color: #0000b2"
+                  ><a href="tikz-scopes#pgf.tikzpicture">tikzpicture</a></span
+                >}<br />
+              </code>
+            </div>
+          </figure>
+
+          <p>
+            &hellip;but it is important to bear in mind that even moderately
+            complex L-systems can exceed the available memory of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >, and can be very slow. If possible, you are advised to increase
+            the main memory and save stack to their maximum possible values for
+            your particular
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            distribution. However, even by doing this you may find you still run
+            out of memory quite quickly.
+          </p>
+
+          <p>
+            For an excellent introduction to L-systems (containing some
+            &ldquo;really cool&rdquo; pictures &ndash; many of which are sadly
+            not possible in <span class="textsc">pgf</span>) see
+            <em>The Algorithmic Beauty of Plants</em> by Przemyslaw
+            Prusinkiewicz and Aristid Lindenmayer (which is freely available via
+            the internet).
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.lindenmayersystems"></a>
+                    <span class="hl-def"
+                      ><b><span class="tikzname">TikZ</span> Library</b>
+                      <kbd
+                        ><span class="textcolor" style="color: #bf0000"
+                          >lindenmayersystems</span
+                        ></kbd
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.lindenmayersystems"
+                      href="#pgf.lindenmayersystems"
+                      id="pgf.lindenmayersystems"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                <kbd
+                  >\usepgflibrary{<span class="textcolor" style="color: #bf0000"
+                    >lindenmayersystems</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  and pure pgf</kbd
+                ><br />
+                <kbd
+                  >\usepgflibrary[<span class="textcolor" style="color: #bf0000"
+                    >lindenmayersystems</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t and pure pgf</kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary{<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >lindenmayersystems</span
+                  >} %
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >
+                  and plain
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  when using <span class="tikzname">TikZ</span></kbd
+                ><br />
+                <kbd
+                  >\usetikzlibrary[<span
+                    class="textcolor"
+                    style="color: #bf0000"
+                    >lindenmayersystems</span
+                  >] % Con<span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >t when using <span class="tikzname">TikZ</span></kbd
+                ><br />
+                <br />
+                This <span class="textsc">pgf</span>-library provides basic
+                commands for defining and using simple L-systems. The
+                <span class="tikzname">TikZ</span>-library provides,
+                furthermore, a front end for using L-systems in
+                <span class="tikzname">TikZ</span>.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-5809">
+            <span
+              ><span class="sectionnumber" id="sec-57.1.1">57.1.1</span>
+              Declaring L-systems</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-57.1.1"
+              data-pdf-destination="subsubsection.57.1.1"
+              data-pdf-page="699"
+              href="#sec-57.1.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5809"></a>
+
+          <p>
+            Before an L-system can be used, it must be declared using the
+            following command:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgfdeclarelindenmayersystem"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgfdeclarelindenmayersystem</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>specification</i
+                      ><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgfdeclarelindenmayersystem"
+                      href="#\pgfdeclarelindenmayersystem"
+                      id="\pgfdeclarelindenmayersystem"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This command declares a Lindenmayer system called
+                <span class="angle">&langle;</span><i>name</i
+                ><span class="angle">&rangle;</span>. The
+                <span class="angle">&langle;</span><i>specification</i
+                ><span class="angle">&rangle;</span> argument contains a
+                description of the L-system&rsquo;s symbols and rules. Two
+                commands <span class="verb">\symbol</span> and
+                <span class="verb">\rule</span> are only defined when the
+                <span class="angle">&langle;</span><i>specification</i
+                ><span class="angle">&rangle;</span> argument is executed.
+              </p>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf.back/symbol"></a>
+                        <span class="hl-def"
+                          ><span class="textcolor" style="color: #bf0000"
+                            ><kbd>\symbol</kbd></span
+                          >{<span class="angle">&langle;</span><i>name</i
+                          ><span class="angle">&rangle;</span>}{<span
+                            class="angle"
+                            >&langle;</span
+                          ><i>code</i><span class="angle">&rangle;</span>}</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf.back/symbol"
+                          href="#\symbol"
+                          id="\symbol"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    This defines a symbol called
+                    <span class="angle">&langle;</span><i>name</i
+                    ><span class="angle">&rangle;</span> for a specific
+                    L-system, and associates it with
+                    <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span>.
+                  </p>
+                  <p>
+                    A symbol should consist of a single alpha-numeric character
+                    (i.e., <span class="verb">A</span>-<span class="verb"
+                      >Z</span
+                    >, <span class="verb">a</span>-<span class="verb">z</span>
+                    or <span class="verb">0</span>-<span class="verb">9</span>).
+                    The symbols <span class="verb">F</span>,
+                    <span class="verb">f</span>, <span class="verb">+</span>,
+                    <span class="verb">-</span>, <span class="verb">[</span> and
+                    <span class="verb">]</span> are available by default so do
+                    not need to be defined for each L-system. However, if you
+                    are feeling adventurous, they can be redefined for specific
+                    L-systems if required. The L-system treats the default
+                    symbols as follows (the commands they execute are described
+                    below):
+                  </p>
+                  <ul class="itemize" style="list-style-type: none">
+                    <li>
+                      <p>
+                        <span class="listmarker">&bull;</span>
+                        <span class="verb">F</span> move forward a certain
+                        distance, drawing a line. Uses
+                        <span class="verb">\pgflsystemdrawforward</span>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&bull;</span>
+                        <span class="verb">f</span> move forward a certain
+                        distance, without drawing a line. Uses
+                        <span class="verb">\pgflsystemmoveforward</span>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&bull;</span>
+                        <span class="verb">+</span> turn left by some angle.
+                        Uses <span class="verb">\pgflsystemturnleft</span>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&bull;</span>
+                        <span class="verb">-</span> turn right by some angle.
+                        Uses <span class="verb">\pgflsystemturnright</span>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&bull;</span>
+                        <span class="verb">[</span> save the current state
+                        (i.e., the position and direction). Uses
+                        <span class="verb">\pgflsystemsavestate</span>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="listmarker">&bull;</span>
+                        <span class="verb">]</span> restore the last saved
+                        state. Uses
+                        <span class="verb">\pgflsystemrestorestate</span>.
+                      </p>
+                    </li>
+                  </ul>
+                  <p>
+                    The symbols <span class="verb">[</span> and
+                    <span class="verb">]</span> act like a stack:
+                    <span class="verb">[</span> pushes the state of the L-system
+                    on to the stack, and <span class="verb">]</span> pops a
+                    state off the stack.
+                  </p>
+                  <p>
+                    When <span class="angle">&langle;</span><i>code</i
+                    ><span class="angle">&rangle;</span> is executed, the
+                    transformation matrix is set up so that the origin is at the
+                    current position and the positive x-axis &ldquo;points
+                    forward&rdquo;, so
+                    <span class="verb"
+                      >\pgfpathlineto{\pgfpoint{1cm}{0cm}}</span
+                    >
+                    draws a line 1cm forward.
+                  </p>
+                  <p>
+                    The following keys can alter the production of an L-system.
+                    However, they do not store values in themselves.
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./pgf/lindenmayer:system/step"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/pgf/lindenmayer system/step</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span><i>length</i
+                              ><span class="angle">&rangle;</span> </span
+                            ><span class="hl-default"
+                              >(no default, initially <kbd>5pt</kbd>)</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./pgf/lindenmayer:system/step"
+                              href="#pgf/lindenmayer:system/step"
+                              id="pgf/lindenmayer:system/step"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        How far the L-system moves forward if required. This key
+                        sets the
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        dimension <span class="verb">\pgflsystemstep</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a
+                              id="pgf./pgf/lindenmayer:system/randomize:step:percent"
+                            ></a
+                            ><a id="pgf.randomize:step:percent"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/pgf/lindenmayer system/randomize step
+                                    percent</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span
+                              ><i>percentage</i
+                              ><span class="angle">&rangle;</span> </span
+                            ><span class="hl-default"
+                              >(no default, initially <kbd>0</kbd>)</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./pgf/lindenmayer:system/randomize:step:percent"
+                              href="#pgf/lindenmayer:system/randomize:step:percent"
+                              id="pgf/lindenmayer:system/randomize:step:percent"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        If the step is to be randomized, this key specifies by
+                        how much. The value is stored in the
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        macro
+                        <span class="verb">\pgflsystemrandomizesteppercent</span
+                        >.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./pgf/lindenmayer:system/left:angle"></a
+                            ><a id="pgf.left:angle"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/pgf/lindenmayer system/left angle</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span><i>angle</i
+                              ><span class="angle">&rangle;</span> </span
+                            ><span class="hl-default"
+                              >(no default, initially <kbd>90</kbd>)</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./pgf/lindenmayer:system/left:angle"
+                              href="#pgf/lindenmayer:system/left:angle"
+                              id="pgf/lindenmayer:system/left:angle"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        This key sets the angle through which the L-system turns
+                        when it turns left. The value is stored in the
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        macro <span class="verb">\pgflsystemrleftangle</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf./pgf/lindenmayer:system/right:angle"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/pgf/lindenmayer system/right angle</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span><i>angle</i
+                              ><span class="angle">&rangle;</span> </span
+                            ><span class="hl-default"
+                              >(no default, initially <kbd>90</kbd>)</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./pgf/lindenmayer:system/right:angle"
+                              href="#pgf/lindenmayer:system/right:angle"
+                              id="pgf/lindenmayer:system/right:angle"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        This key sets the angle through which the L-system turns
+                        when it turns right. The value is stored in the
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        macro <span class="verb">\pgflsystemrrightangle</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a
+                              id="pgf./pgf/lindenmayer:system/randomize:angle:percent"
+                            ></a
+                            ><a id="pgf.randomize:angle:percent"></a>
+                            <span class="hl-def"
+                              ><kbd
+                                ><span class="keyname"
+                                  ><span
+                                    class="textcolor"
+                                    style="color: #bf0000"
+                                    >/pgf/lindenmayer system/randomize angle
+                                    percent</span
+                                  ></span
+                                >=</kbd
+                              ><span class="angle">&langle;</span
+                              ><i>percentage</i
+                              ><span class="angle">&rangle;</span> </span
+                            ><span class="hl-default"
+                              >(no default, initially <kbd>0</kbd>)</span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf./pgf/lindenmayer:system/randomize:angle:percent"
+                              href="#pgf/lindenmayer:system/randomize:angle:percent"
+                              id="pgf/lindenmayer:system/randomize:angle:percent"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        If the angles are to be randomized, this key specifies
+                        by how much. The value is stored in the
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >
+                        macro
+                        <span class="verb"
+                          >\pgflsystemrandomizeanglepercent</span
+                        >.
+                      </p>
+                    </ul>
+                  </div>
+                  <p>
+                    For speed and convenience, when the code for a symbol is
+                    executed, the following commands are available.
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemcurrentstep"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemcurrentstep</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemcurrentstep"
+                              href="#\pgflsystemcurrentstep"
+                              id="\pgflsystemcurrentstep"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        The current &ldquo;step&rdquo; of the L-system (i.e.,
+                        how far the system will move forward if required). This
+                        is initially set to the value in the
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >-dimensions <span class="verb">\pgflsystemstep</span>,
+                        but the actual value may be changed if
+                        <span class="verb">\pgflsystemrandomizestep</span> is
+                        used (see below).
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemcurrentleftangle"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemcurrentleftangle</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemcurrentleftangle"
+                              href="#\pgflsystemcurrentleftangle"
+                              id="\pgflsystemcurrentleftangle"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        The angle the L-system will turn when it turns left. The
+                        value stored in this macro may be changed if
+                        <span class="verb">\pgflsystemrandomizeleftangle</span>
+                        is used.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemcurrentrightangle"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemcurrentrightangle</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemcurrentrightangle"
+                              href="#\pgflsystemcurrentrightangle"
+                              id="\pgflsystemcurrentrightangle"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        The angle the L-system will turn when it turns right.
+                        The value stored in this macro may be changed if
+                        <span class="verb">\pgflsystemrandomizerightangle</span>
+                        is used.
+                      </p>
+                    </ul>
+                  </div>
+                  <p>
+                    The following commands may be useful if you wish to define
+                    your own symbols.
+                  </p>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemrandomizestep"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemrandomizestep</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemrandomizestep"
+                              href="#\pgflsystemrandomizestep"
+                              id="\pgflsystemrandomizestep"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Randomizes the value in
+                        <span class="verb">\pgflsystemcurrentstep</span>
+                        according to the current value of the key
+                        <span class="verb">randomize step percent</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemrandomizeleftangle"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemrandomizeleftangle</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemrandomizeleftangle"
+                              href="#\pgflsystemrandomizeleftangle"
+                              id="\pgflsystemrandomizeleftangle"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Randomizes the value in
+                        <span class="verb">\pgflsystemcurrentleftangle</span>
+                        according to the value of the
+                        <span class="verb">randomize angle percent</span> key.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemrandomizerightangle"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemrandomizerightangle</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemrandomizerightangle"
+                              href="#\pgflsystemrandomizerightangle"
+                              id="\pgflsystemrandomizerightangle"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Randomizes the value in
+                        <span class="verb">\pgflsystemcurrentrightangle</span>
+                        according to the value of the
+                        <span class="verb">randomize angle</span> key.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemdrawforward"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemdrawforward</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemdrawforward"
+                              href="#\pgflsystemdrawforward"
+                              id="\pgflsystemdrawforward"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Move forward in the current direction, by
+                        <span class="verb">\pgflsystemcurrentstep</span>,
+                        drawing a line in the process. This macro calls
+                        <span class="verb">\pgflsystemrandomizestep</span>.
+                        Internally, <span class="textsc">pgf</span> simply
+                        shifts the transformation matrix in the positive
+                        direction of the current (transformed) x-axis by
+                        <span class="verb">\pgflsystemstep</span> and then
+                        executes a line-to to the (newly transformed) origin.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemmoveforward"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemmoveforward</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemmoveforward"
+                              href="#\pgflsystemmoveforward"
+                              id="\pgflsystemmoveforward"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Move forward in the current direction, by
+                        <span class="verb">\pgflsystemcurrentstep</span>,
+                        without drawing a line. This macro calls
+                        <span class="verb">\pgflsystemrandomizestep</span>.
+                        <span class="textsc">pgf</span> executes a
+                        transformation as above, but executes a move-to to the
+                        (newly transformed) origin.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemturnleft"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemturnleft</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemturnleft"
+                              href="#\pgflsystemturnleft"
+                              id="\pgflsystemturnleft"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Turn left by
+                        <span class="verb">\pgflsystemcurrentleftangle</span>.
+                        Internally, <span class="textsc">pgf</span> simply
+                        rotates the transformation matrix. This macro calls
+                        <span class="verb">\pgflsystemrandomizeleftangle</span>.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemturnright"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemturnright</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemturnright"
+                              href="#\pgflsystemturnright"
+                              id="\pgflsystemturnright"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Turn right by
+                        <span class="verb">\pgflsystemcurrentrightangle</span>.
+                        Internally, <span class="textsc">pgf</span> simply
+                        rotates the transformation matrix. This macro calls
+                        <span class="verb">\pgflsystemrandomizerightangle</span
+                        >.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemsavestate"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemsavestate</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemsavestate"
+                              href="#\pgflsystemsavestate"
+                              id="\pgflsystemsavestate"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Save the current position and orientation. Internally,
+                        <span class="textsc">pgf</span> simply starts a new
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >-group.
+                      </p>
+                    </ul>
+                  </div>
+
+                  <div class="manualentry">
+                    <ul class="list" style="list-style-type: none">
+                      <div class="entryheadline">
+                        <li>
+                          <p>
+                            <a id="pgf.back/pgflsystemrestorestate"></a>
+                            <span class="hl-def"
+                              ><span class="textcolor" style="color: #bf0000"
+                                ><kbd>\pgflsystemrestorestate</kbd></span
+                              ></span
+                            >
+                            <a
+                              class="anchor-link"
+                              data-html-link="pgf.back/pgflsystemrestorestate"
+                              href="#\pgflsystemrestorestate"
+                              id="\pgflsystemrestorestate"
+                              >&para;</a
+                            >
+                          </p>
+                        </li>
+                      </div>
+                      <p>
+                        Restore the last saved position and orientation.
+                        Internally, <span class="textsc">pgf</span> closes a
+                        <span class="latexlogofont"
+                          ><span class="latexlogo"
+                            >T<span class="latexlogosub">e</span>X</span
+                          ></span
+                        >-group, restoring the transformation matrix of the
+                        outer scope, and a move-to command is executed to the
+                        (transformed) origin.
+                      </p>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+
+              <div class="manualentry">
+                <ul class="list" style="list-style-type: none">
+                  <div class="entryheadline">
+                    <li>
+                      <p>
+                        <a id="pgf.back/rule"></a>
+                        <span class="hl-def"
+                          ><span class="textcolor" style="color: #bf0000"
+                            ><kbd>\rule</kbd></span
+                          >{<span class="angle">&langle;</span><i>head</i
+                          ><span class="angle">&rangle;</span>-&gt;<span
+                            class="angle"
+                            >&langle;</span
+                          ><i>body</i><span class="angle">&rangle;</span>}</span
+                        >
+                        <a
+                          class="anchor-link"
+                          data-html-link="pgf.back/rule"
+                          href="#\rule"
+                          id="\rule"
+                          >&para;</a
+                        >
+                      </p>
+                    </li>
+                  </div>
+                  <p>
+                    Declare a rule. <span class="angle">&langle;</span
+                    ><i>head</i><span class="angle">&rangle;</span> should
+                    consist of a single symbol, which need not have been
+                    declared using <span class="verb">\symbol</span> or exist as
+                    a default symbol (in fact, the more interesting L-systems
+                    depend on using symbols with no corresponding code, to
+                    control the &ldquo;growth&rdquo; of the system).
+                    <span class="angle">&langle;</span><i>body</i
+                    ><span class="angle">&rangle;</span> consists of a string of
+                    symbols, which again need not necessarily have any code
+                    associated with them.
+                  </p>
+                </ul>
+              </div>
+              <p>
+                As an example, the following shows an L-system that uses some of
+                these commands. This example illustrates the point that some
+                symbols, in this case <span class="verb">A</span> and
+                <span class="verb">B</span>, do not have to have code associated
+                with them. They simply control the growth of the system.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2390"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="102.866"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2390.png"
+                        style
+                        width="102.866"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {lindenmayersystems} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="library-lsystems#pgf.back/pgfdeclarelindenmayersystem"
+                        >\pgfdeclarelindenmayersystem</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Hilbert</span
+                    >
+                    <span class="textcolor" style="color: #000000">curve</span
+                    >}{<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/symbol"
+                        >\symbol</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">X</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/pgflsystemdrawforward"
+                        >\pgflsystemdrawforward</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/symbol"
+                        >\symbol</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">+</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/pgflsystemturnright"
+                        >\pgflsystemturnright</a
+                      ></span
+                    >} <span class="example-code-comment"
+                      >% Explicitly define + and - symbols.</span
+                    ><br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/symbol"
+                        >\symbol</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">-</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/pgflsystemturnleft"
+                        >\pgflsystemturnleft</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/rule">\rule</a></span
+                    >{<span class="textcolor" style="color: #000000">A</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >+BX-AXA-XB+</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/rule">\rule</a></span
+                    >{<span class="textcolor" style="color: #000000">B</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >-AX+BXB+XA-</span
+                    >}<br />
+                    }<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="library-lsystems#pgf.lindenmayer:system"
+                        >lindenmayer system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{Hilbert
+                      curve,<span class="spaces"> </span>axiom=A,<span class="spaces"> </span>order=4,<span class="spaces"> </span>angle=90}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #000000"
+                      >lindenmayer</span
+                    >
+                    <span class="textcolor" style="color: #000000">system</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+          <h5 id="autosec-5812">
+            <span
+              ><span class="sectionnumber" id="sec-57.2">57.2</span> Using
+              Lindenmayer Systems</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-57.2"
+              data-pdf-destination="subsection.57.2"
+              data-pdf-page="701"
+              href="#sec-57.2"
+              >&para;</a
+            >
+          </h5>
+          <a id="pgfmanual-autopage-5812"></a>
+          <h6 id="autosec-5813">
+            <span
+              ><span class="sectionnumber" id="sec-57.2.1">57.2.1</span> Using
+              L-Systems in PGF</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-57.2.1"
+              data-pdf-destination="subsubsection.57.2.1"
+              data-pdf-page="701"
+              href="#sec-57.2.1"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5813"></a>
+
+          <p>
+            The following command is used to run an L-system in
+            <span class="textsc">pgf</span>:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.back/pgflindenmayersystem"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #bf0000"
+                        ><kbd>\pgflindenmayersystem</kbd></span
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}{<span class="angle"
+                        >&langle;</span
+                      ><i>axiom</i><span class="angle">&rangle;</span>}{<span
+                        class="angle"
+                        >&langle;</span
+                      ><i>order</i><span class="angle">&rangle;</span>}</span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.back/pgflindenmayersystem"
+                      href="#\pgflindenmayersystem"
+                      id="\pgflindenmayersystem"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Runs the L-system called <span class="angle">&langle;</span
+                ><i>name</i><span class="angle">&rangle;</span> using the input
+                string <span class="angle">&langle;</span><i>axiom</i
+                ><span class="angle">&rangle;</span> for
+                <span class="angle">&langle;</span><i>order</i
+                ><span class="angle">&rangle;</span> iterations. In general,
+                prior to calling this command, the transformation matrix should
+                be set appropriately for shifting and rotating, and a move-to to
+                the (transformed) origin should be executed. This origin will be
+                where the L-system starts. In addition, the relevant keys should
+                be set appropriately.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2391"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="88.058"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2391.png"
+                        style
+                        width="122.018"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {lindenmayersystems} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      >\pgfset</span
+                    >{<span class="textcolor" style="color: #000000"
+                      >lindenmayer</span
+                    >
+                    <span class="textcolor" style="color: #000000">system/</span
+                    >.<span class="textcolor" style="color: #000000">cd</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >angle=60</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >step=2pt</span
+                    >}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="pgffor#pgf.back/foreach">\foreach</a></span
+                    > <span class="textcolor" style="color: #0000b2"
+                      >\x/</span
+                    ><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/y">\y</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-edges#pgf.in">in</a></span
+                    >
+                    {<span class="textcolor" style="color: #000000"
+                      >0cm/1cm</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >1</span
+                    >.<span class="textcolor" style="color: #000000">5cm/1</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >2</span
+                    >.<span class="textcolor" style="color: #000000">5cm/0</span
+                    >.<span class="textcolor" style="color: #000000">5cm</span
+                    >, <span class="textcolor" style="color: #000000"
+                      >1cm/0cm</span
+                    >}{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-transformations#pgf.back/pgftransformshift"
+                        >\pgftransformshift</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-quick#pgf.back/pgfqpoint"
+                        >\pgfqpoint</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/x">\x</a></span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-paths#pgf.back/y">\y</a></span
+                    >}}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-paths#pgf.back/pgfpathmoveto"
+                        >\pgfpathmoveto</a
+                      ></span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="base-points#pgf.back/pgfpointorigin"
+                        >\pgfpointorigin</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/pgflindenmayersystem"
+                        >\pgflindenmayersystem</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">Koch</span>
+                    <span class="textcolor" style="color: #000000">curve</span
+                    >}{<span class="textcolor" style="color: #000000"
+                      >F++F++F</span
+                    >}{<span class="textcolor" style="color: #000000">2</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="base-actions#pgf.back/pgfusepath"
+                        >\pgfusepath</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >stroke</span
+                    >}<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+              <p>
+                Note that it is perfectly feasible for an L-system to define
+                special symbols which perform the move-to and use-path
+                operations.
+              </p>
+            </ul>
+          </div>
+          <h6 id="autosec-5816">
+            <span
+              ><span class="sectionnumber" id="sec-57.2.2">57.2.2</span> Using
+              L-Systems in Ti<em>k</em>Z</span
+            ><a
+              class="anchor-link"
+              data-html-link="sec-57.2.2"
+              data-pdf-destination="subsubsection.57.2.2"
+              data-pdf-page="702"
+              href="#sec-57.2.2"
+              >&para;</a
+            >
+          </h6>
+          <a id="pgfmanual-autopage-5816"></a>
+
+          <p>
+            In <span class="tikzname">TikZ</span>, an L-system is created using
+            a path operation. However, <span class="tikzname">TikZ</span> is
+            more flexible regarding the positioning of the L-system and also
+            provides keys to create L-systems &ldquo;on-line&rdquo;.
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.lindenmayer:system"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #808080"
+                        ><kbd>\path</kbd> &hellip;</span
+                      >
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>lindenmayer system</kbd></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="verb">[</span
+                        ><span class="angle">&langle;</span><i>keys</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">]</span></span
+                      >
+                      <span class="textcolor" style="color: #808080"
+                        >&hellip;<kbd>;</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.lindenmayer:system"
+                      href="#pgf.lindenmayer:system"
+                      id="pgf.lindenmayer:system"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This will run an L-system according to the parameters specified
+                in <span class="angle">&langle;</span><i>keys</i
+                ><span class="angle">&rangle;</span> (which can also contain
+                normal
+                <span class="lateximagesource" id="lateximage-pgfmanual-2392"
+                  ><!--
+--></span
+                >
+                keys such as <span class="verb">draw</span> or
+                <span class="verb">thin</span>). The syntax is flexible
+                regarding the L-system parameters and the following all do the
+                same thing:
+              </p>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      >lindenmayer</span
+                    >
+                    <span class="textcolor" style="color: #000000">system</span>
+                    [<span class="textcolor" style="color: #008000"
+                      ><a href="library-lsystems#pgf.lindenmayer:system"
+                        >lindenmayer system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{Hilbert curve,<span class="spaces"> </span>axiom=4,<span class="spaces"> </span>order=3}</span
+                    >];<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="library-lsystems#pgf.lindenmayer:system"
+                        >lindenmayer system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{Hilbert curve,<span class="spaces"> </span>axiom=4,<span class="spaces"> </span>order=3}</span
+                    >] <span class="textcolor" style="color: #000000"
+                      >lindenmayer</span
+                    >
+                    <span class="textcolor" style="color: #000000">system</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+
+              <figure class="example">
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <br />
+                    <a href="tikz-scopes#pgf.back/tikzset">\tikzset</a>{<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-lsystems#pgf.lindenmayer:system"
+                        >lindenmayer system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{Hilbert curve,<span class="spaces"> </span>axiom=4,<span class="spaces"> </span>order=3}</span
+                    >}<br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > <span class="textcolor" style="color: #000000"
+                      >lindenmayer</span
+                    >
+                    <span class="textcolor" style="color: #000000">system</span
+                    >;<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf.l-system"></a>
+                    <span class="hl-def"
+                      ><span class="textcolor" style="color: #808080"
+                        ><kbd>\path</kbd> &hellip;</span
+                      >
+                      <span class="textcolor" style="color: #bf0000"
+                        ><kbd>l-system</kbd></span
+                      >
+                      <span class="textcolor" style="color: #008000"
+                        ><span class="verb">[</span
+                        ><span class="angle">&langle;</span><i>keys</i
+                        ><span class="angle">&rangle;</span
+                        ><span class="verb">]</span></span
+                      >
+                      <span class="textcolor" style="color: #808080"
+                        >&hellip;<kbd>;</kbd></span
+                      ></span
+                    >
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf.l-system"
+                      href="#pgf.l-system"
+                      id="pgf.l-system"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                A more compact version of the
+                <span class="verb">lindenmayer system</span> path command.
+              </p>
+            </ul>
+          </div>
+
+          <p>
+            This library adds some additional keys for specifying L-systems.
+            These keys only work in <span class="tikzname">TikZ</span> and all
+            have the same path, namely,
+            <span class="verb">/pgf/lindenmayer</span>
+            <span class="verb">system</span>, but the following keys are
+            provided for convenience, so that you do not have to keep repeating
+            this path:
+          </p>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/lindenmayer:system"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/lindenmayer system</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>keys</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(style, no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/lindenmayer:system"
+                      href="#pgf/lindenmayer:system"
+                      id="pgf/lindenmayer:system"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <li>
+                <p>alias <kbd>/tikz/lindenmayer system</kbd></p>
+                <p>
+                  <a id="pgf./tikz/lindenmayer:system"></a> This key changes the
+                  key path to
+                  <span class="verb">/pgf/lindenmayer systems</span> and
+                  executes <span class="angle">&langle;</span><i>keys</i
+                  ><span class="angle">&rangle;</span>.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/l-system"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/l-system</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>keys</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(style, no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/l-system"
+                      href="#pgf/l-system"
+                      id="pgf/l-system"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+
+              <li>
+                <p>alias <kbd>/tikz/l-system</kbd></p>
+                <p>
+                  <a id="pgf./tikz/l-system"></a> A more compact version of the
+                  previous key.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/lindenmayer:system/name"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/lindenmayer system/name</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>name</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/lindenmayer:system/name"
+                      href="#pgf/lindenmayer:system/name"
+                      id="pgf/lindenmayer:system/name"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Sets the name for the L-system.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/lindenmayer:system/axiom"></a
+                    ><a id="pgf.axiom"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/lindenmayer system/axiom</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>string</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/lindenmayer:system/axiom"
+                      href="#pgf/lindenmayer:system/axiom"
+                      id="pgf/lindenmayer:system/axiom"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Sets the axiom (or input string) for the L-system.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/lindenmayer:system/order"></a
+                    ><a id="pgf.order"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/lindenmayer system/order</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>integer</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/lindenmayer:system/order"
+                      href="#pgf/lindenmayer:system/order"
+                      id="pgf/lindenmayer:system/order"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>Sets the number of iterations the L-system will perform.</p>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/lindenmayer:system/rule:set"></a
+                    ><a id="pgf.rule:set"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/lindenmayer system/rule set</span
+                          ></span
+                        >=</kbd
+                      >{<span class="angle">&langle;</span><i>list</i
+                      ><span class="angle">&rangle;</span>}</span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/lindenmayer:system/rule:set"
+                      href="#pgf/lindenmayer:system/rule:set"
+                      id="pgf/lindenmayer:system/rule:set"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                This key allows an (anonymous) L-system to be declared
+                &ldquo;on-line&rdquo;. There is, however, a restriction that
+                only the default symbols can be used for drawing (empty symbols
+                can still be used to control the growth of the system). The
+                rules in <span class="angle">&langle;</span><i>list</i
+                ><span class="angle">&rangle;</span> should be separated by
+                commas.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2393"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="91.682"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2393.png"
+                        style
+                        width="80.962"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {lindenmayersystems} </span
+                    ><br />
+                    <span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.back/tikz">\tikz</a></span
+                    >[<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-transformations#pgf.rotate"
+                        >rotate</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000">65</span
+                    >]<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >green!60!black</span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    ><br />
+                    <span class="spaces">  </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{rule set={F
+                      <a href="tikz-graphs#pgf.-&gt;">-&gt;</a> F[<span
+                        class="textcolor"
+                        style="color: #008000"
+                        >+F</span
+                      >]F[<span class="textcolor" style="color: #008000"
+                        >-F</span
+                      >]},<span class="spaces"> </span>axiom=F,<span class="spaces"> </span>order=4,<span class="spaces"> </span>angle=25,step=3pt}</span
+                    >];<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+
+          <div class="manualentry">
+            <ul class="list" style="list-style-type: none">
+              <div class="entryheadline">
+                <li>
+                  <p>
+                    <a id="pgf./pgf/lindenmayer:system/anchor"></a>
+                    <span class="hl-def"
+                      ><kbd
+                        ><span class="keyname"
+                          ><span class="textcolor" style="color: #bf0000"
+                            >/pgf/lindenmayer system/anchor</span
+                          ></span
+                        >=</kbd
+                      ><span class="angle">&langle;</span><i>anchor</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="hl-default">(no default)</span>
+                    <a
+                      class="anchor-link"
+                      data-html-link="pgf./pgf/lindenmayer:system/anchor"
+                      href="#pgf/lindenmayer:system/anchor"
+                      id="pgf/lindenmayer:system/anchor"
+                      >&para;</a
+                    >
+                  </p>
+                </li>
+              </div>
+              <p>
+                Be default, when this key is not used, the L-system will start
+                from the last specified coordinate. By using this key, the
+                L-system will be placed inside a special (rectangle) node which
+                can be positioned using <span class="angle">&langle;</span
+                ><i>anchor</i><span class="angle">&rangle;</span>.
+              </p>
+
+              <figure class="example">
+                <div class="example-image">
+                  <p>
+                    <span
+                      class="lateximagesource"
+                      id="lateximage-pgfmanual-2394"
+                      ><!--
+--><img
+                        alt="(-tikz-&nbsp;diagram)"
+                        class="lateximage"
+                        height="78.530"
+                        loading="lazy"
+                        src="pgfmanual-images/image-2394.png"
+                        style
+                        width="116.341"
+                    /></span>
+                  </p>
+                </div>
+
+                <div class="example-code">
+                  <button class="clipboardButton" type="button">copy</button>
+                  <code>
+                    <span class="codepreamble"
+                      >\usetikzlibrary {lindenmayersystems} </span
+                    ><br />
+                    <span class="textcolor" style="color: #000000">\begin</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}[<span class="textcolor" style="color: #008000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{step=1.75pt,<span class="spaces"> </span>order=5,<span class="spaces"> </span>angle=60}</span
+                    >]<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a
+                        href="library-lsystems#pgf.back/pgfdeclarelindenmayersystem"
+                        >\pgfdeclarelindenmayersystem</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000"
+                      >Sierpinski</span
+                    >
+                    <span class="textcolor" style="color: #000000"
+                      >triangle</span
+                    >}{<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/symbol"
+                        >\symbol</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">X</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/pgflsystemdrawforward"
+                        >\pgflsystemdrawforward</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/symbol"
+                        >\symbol</a
+                      ></span
+                    >{<span class="textcolor" style="color: #000000">Y</span
+                    >}{<span class="textcolor" style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/pgflsystemdrawforward"
+                        >\pgflsystemdrawforward</a
+                      ></span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/rule">\rule</a></span
+                    >{<span class="textcolor" style="color: #000000">X</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">Y-X-Y</span
+                    >}<br />
+                    <span class="spaces">    </span><span
+                      class="textcolor"
+                      style="color: #0000b2"
+                      ><a href="library-lsystems#pgf.back/rule">\rule</a></span
+                    >{<span class="textcolor" style="color: #000000">Y</span>
+                    <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-graphs#pgf.-&gt;">-&gt;</a></span
+                    >
+                    <span class="textcolor" style="color: #000000">X+Y+X</span
+                    >}<br />
+                    <span class="spaces">  </span>}<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      ><a href="tikz-paths#pgf.help:lines">help lines</a></span
+                    >] <span class="textcolor" style="color: #000000"
+                      ><a href="tikz-paths#pgf.grid">grid</a></span
+                    >
+                    <span class="textcolor" style="color: #800080">(3,2)</span
+                    >;<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >red</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(0,0)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{Sierpinski
+                      triangle,<span class="spaces"> </span>axiom=+++X,<span class="spaces"> </span>anchor=south west}</span
+                    >];<br />
+                    <span class="spaces">  </span><span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-actions#pgf.back/draw">\draw</a></span
+                    > [<span class="textcolor" style="color: #008000"
+                      >blue</span
+                    >] <span class="textcolor" style="color: #800080"
+                      >(3,2)</span
+                    > <span class="textcolor" style="color: #000000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    ><br />
+                    <span class="spaces">    </span>[<span
+                      class="textcolor"
+                      style="color: #008000"
+                      ><a href="library-lsystems#pgf.l-system"
+                        >l-system</a
+                      ></span
+                    >=<span class="textcolor" style="color: #008000"
+                      >{Sierpinski triangle,<span class="spaces"> </span>axiom=X,<span class="spaces"> </span>anchor=north
+                      east}</span
+                    >];<br />
+                    <span class="textcolor" style="color: #000000">\end</span
+                    >{<span class="textcolor" style="color: #0000b2"
+                      ><a href="tikz-scopes#pgf.tikzpicture"
+                        >tikzpicture</a
+                      ></span
+                    >}<br />
+                  </code>
+                </div>
+              </figure>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-left">
+          <a href="/license">License</a> &middot;
+          <a href="https://ctan.org/pkg/pgf">CTAN</a> &middot;
+          <a href="https://pgf-tikz.github.io/pgf/pgfmanual.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/tikz.dev-issues/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/DominikPeters/pgf-tikz-html-manual"
+            >About this HTML version</a
+          >
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2024-03-17</em>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
+      docsearch({
+        apiKey: "196e8c10ec187c9ae525dd5226fb9378",
+        indexName: "tikz",
+        appId: "JS6V5VZSDB",
+        container: "#search",
+        searchParameters: {
+          filters: "tags:tikz",
+        },
+      });
+    </script>
+  </body>
+</html>
