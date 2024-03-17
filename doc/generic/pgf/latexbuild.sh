@@ -4,4 +4,5 @@ lualatex -interaction=nonstopmode -halt-on-error pgfmanual.tex
 lwarpmk cleanall
 lwarpmk html
 ./build-limages-with-margin.lua limages
-sleep 90
+python3 wait-for-images.py
+sleep 5
